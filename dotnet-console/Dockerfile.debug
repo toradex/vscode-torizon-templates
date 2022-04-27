@@ -49,9 +49,6 @@ RUN apt-get -q -y update && \
 # copies RSA key to enable SSH login for user
 COPY .conf/id_rsa.pub /id_rsa.pub
 
-# copy the entrypoint
-COPY .conf/debug-start.sh /debug-start.sh
-
 # create folders needed for the different components
 # configures SSH access to the container and sets environment by default
 RUN mkdir /var/run/sshd && \
