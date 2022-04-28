@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  dotnet-console-debug:
+    build:
+      context: .
+      dockerfile: Dockerfile.debug
+    image: ${LOCAL_REGISTRY}:5000/dotnet-console-debug
+    ports:
+      - 2222:2222

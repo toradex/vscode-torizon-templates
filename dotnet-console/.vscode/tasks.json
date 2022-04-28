@@ -38,6 +38,20 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "pre-cleanup",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} docker-compose down"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "build-torizon-arm",
             "command": "dotnet",
             "type": "process",
@@ -66,15 +80,49 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "pull-container-torizon-debug-arm",
+            "label": "build-container-torizon-debug-arm",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm",
+                "dotnet-console-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "push-container-torizon-debug-arm",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost"
+                }
+            },
+            "args": [
+                "push",
+                "dotnet-console-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "copy-docker-compose",
             "command": "sshpass",
             "type": "process",
             "args": [
                 "-p",
                 "${config:torizon_psswd}",
-                "ssh",
-                "torizon@${config:torizon_ip}",
-                "docker pull ${config:host_ip}:5000/dotnet-console-debug"
+                "scp",
+                "${workspaceFolder}/docker-compose.yml",
+                "torizon@${config:torizon_ip}:~/"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -88,7 +136,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "docker pull ${config:host_ip}:5000/dotnet-console-debug"
+                "LOCAL_REGISTRY=${config:host_ip} docker-compose pull dotnet-console-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -102,7 +150,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "docker run --rm --name dotnet-console-debug -d -p 2222:2222 ${config:host_ip}:5000/dotnet-console-debug || true"
+                "LOCAL_REGISTRY=${config:host_ip} docker-compose up -d dotnet-console-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -118,7 +166,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "cleanup",
+            "label": "pos-cleanup",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -126,6 +174,10 @@
                 "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "2222",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "rm -rf ~/app"
             ],
@@ -139,6 +191,10 @@
             "args": [
                 "-i",
                 "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
                 "-P",
                 "2222",
                 "-pr",
@@ -146,14 +202,16 @@
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
+                "pre-cleanup",
                 "build-torizon-arm",
                 "publish-torizon-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
+                "copy-docker-compose",
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "cleanup"
+                "pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
