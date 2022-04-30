@@ -1,0 +1,208 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-skia-gtk",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish-skia-gtk",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "pre-cleanup",
+      "command": "sshpass",
+      "type": "process",
+      "args": [
+          "-p",
+          "${config:torizon_psswd}",
+          "ssh",
+          "torizon@${config:torizon_ip}",
+          "LOCAL_REGISTRY=${config:host_ip} docker-compose down"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "build-torizon-arm",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "build",
+            "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+            "/property:GenerateFullPaths=true",
+            "/consoleloggerparameters:NoSummary",
+            "-r",
+            "linux-arm"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "publish-torizon-arm",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "publish",
+            "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+            "-r",
+            "linux-arm"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "build-container-torizon-debug-arm",
+        "command": "docker-compose",
+        "type": "process",
+        "options": {
+            "env": {
+                "LOCAL_REGISTRY": "localhost"
+            }
+        },
+        "args": [
+            "build",
+            "--build-arg",
+            "IMAGE_ARCH=arm",
+            "dotnet-uno-debug"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "push-container-torizon-debug-arm",
+        "command": "docker-compose",
+        "type": "process",
+        "options": {
+            "env": {
+                "LOCAL_REGISTRY": "localhost"
+            }
+        },
+        "args": [
+            "push",
+            "dotnet-uno-debug"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "copy-docker-compose",
+        "command": "sshpass",
+        "type": "process",
+        "args": [
+            "-p",
+            "${config:torizon_psswd}",
+            "scp",
+            "${workspaceFolder}/docker-compose.yml",
+            "torizon@${config:torizon_ip}:~/"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "pull-container-torizon-debug-arm",
+        "command": "sshpass",
+        "type": "process",
+        "args": [
+            "-p",
+            "${config:torizon_psswd}",
+            "ssh",
+            "torizon@${config:torizon_ip}",
+            "LOCAL_REGISTRY=${config:host_ip} docker-compose pull dotnet-uno-debug"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "run-container-torizon-debug-arm",
+        "command": "sshpass",
+        "type": "process",
+        "args": [
+            "-p",
+            "${config:torizon_psswd}",
+            "ssh",
+            "torizon@${config:torizon_ip}",
+            "LOCAL_REGISTRY=${config:host_ip} docker-compose up -d dotnet-uno-debug"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "wait-a-bit",
+        "command": "sleep",
+        "type": "process",
+        "args": [
+            "1"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "pos-cleanup",
+        "command": "ssh",
+        "type": "process",
+        "args": [
+            "-i",
+            "${workspaceFolder}/.conf/id_rsa",
+            "-p",
+            "2222",
+            "-o",
+            "UserKnownHostsFile=/dev/null",
+            "-o", 
+            "StrictHostKeyChecking=no",
+            "torizon@${config:torizon_ip}",
+            "rm -rf ~/app"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "deploy-torizon-arm",
+        "command": "scp",
+        "type": "process",
+        "args": [
+            "-i",
+            "${workspaceFolder}/.conf/id_rsa",
+            "-o",
+            "UserKnownHostsFile=/dev/null",
+            "-o", 
+            "StrictHostKeyChecking=no",
+            "-P",
+            "2222",
+            "-pr",
+            "${workspaceFolder}/dotnetUno.Skia.Gtk/bin/Debug/net6.0/linux-arm/publish",
+            "torizon@${config:torizon_ip}:~/app"
+        ],
+        "dependsOn": [
+            "pre-cleanup",
+            "build-torizon-arm",
+            "publish-torizon-arm",
+            "build-container-torizon-debug-arm",
+            "push-container-torizon-debug-arm",
+            "copy-docker-compose",
+            "pull-container-torizon-debug-arm",
+            "run-container-torizon-debug-arm",
+            "wait-a-bit",
+            "pos-cleanup"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    }
+  ]
+}
