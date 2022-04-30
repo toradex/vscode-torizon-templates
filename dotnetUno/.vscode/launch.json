@@ -39,7 +39,6 @@
       "args": [],
       "env": {
         "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
-        "GDK_BACKEND": "x11",
         "UNO_DISABLE_OPENGL": "true",
         "UNO_FULLSCREEN": "false"
       },
