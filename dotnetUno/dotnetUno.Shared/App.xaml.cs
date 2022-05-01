@@ -6,8 +6,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
+#if HAS_UNO_GTK
 using Uno.UI.Runtime.Skia;
 using Windows.UI.ViewManagement;
+#endif
 
 namespace dotnetUno
 {
@@ -110,6 +112,7 @@ namespace dotnetUno
                 _window.Activate();
             }
 
+#if HAS_UNO_GTK
             GtkHost.Window.Drawn += (o, args) => {
                 Console.WriteLine($"fps: {GetCurrentFPS()}");
             };
@@ -125,6 +128,7 @@ namespace dotnetUno
             {
                 GtkHost.Window.Resize(600, 400);
             }
+#endif
         }
 
         /// <summary>
