@@ -4,6 +4,7 @@
     <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
     <DefineConstants>HAS_UNO_GTK</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="exists('..\dotnetUno.UWP')">
