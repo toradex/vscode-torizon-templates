@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Mono",
+            "request": "attach",
+            "type": "mono",
+            "address": "localhost",
+            "port": 55555
+        },
+        {
+            "name": "Torizon Mono",
+            "request": "attach",
+            "type": "mono",
+            "address": "${config:torizon_ip}",
+            "port": 55555,
+            "preLaunchTask": "run-mono-debug-server"
+        }
+    ]
+}

@@ -1,0 +1,184 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "pre-cleanup",
+      "command": "sshpass",
+      "type": "process",
+      "args": [
+          "-p",
+          "${config:torizon_psswd}",
+          "ssh",
+          "torizon@${config:torizon_ip}",
+          "LOCAL_REGISTRY=${config:host_ip} docker-compose down"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "build-torizon-arm",
+        "command": "msbuild",
+        "type": "process",
+        "args": [
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "build-container-torizon-debug-arm",
+        "command": "docker-compose",
+        "type": "process",
+        "options": {
+            "env": {
+                "LOCAL_REGISTRY": "localhost"
+            }
+        },
+        "args": [
+            "build",
+            "--build-arg",
+            "IMAGE_ARCH=arm/v7",
+            "dotnet-mono-debug"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "push-container-torizon-debug-arm",
+        "command": "docker-compose",
+        "type": "process",
+        "options": {
+            "env": {
+                "LOCAL_REGISTRY": "localhost"
+            }
+        },
+        "args": [
+            "push",
+            "dotnet-mono-debug"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "copy-docker-compose",
+        "command": "sshpass",
+        "type": "process",
+        "args": [
+            "-p",
+            "${config:torizon_psswd}",
+            "scp",
+            "${workspaceFolder}/docker-compose.yml",
+            "torizon@${config:torizon_ip}:~/"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "pull-container-torizon-debug-arm",
+        "command": "sshpass",
+        "type": "process",
+        "args": [
+            "-p",
+            "${config:torizon_psswd}",
+            "ssh",
+            "torizon@${config:torizon_ip}",
+            "LOCAL_REGISTRY=${config:host_ip} docker-compose pull dotnet-mono-debug"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "run-container-torizon-debug-arm",
+        "command": "sshpass",
+        "type": "process",
+        "args": [
+            "-p",
+            "${config:torizon_psswd}",
+            "ssh",
+            "torizon@${config:torizon_ip}",
+            "LOCAL_REGISTRY=${config:host_ip} docker-compose up -d dotnet-mono-debug"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "wait-a-bit",
+        "command": "sleep",
+        "type": "process",
+        "args": [
+            "1"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "pos-cleanup",
+        "command": "ssh",
+        "type": "process",
+        "args": [
+            "-i",
+            "${workspaceFolder}/.conf/id_rsa",
+            "-p",
+            "2222",
+            "-o",
+            "UserKnownHostsFile=/dev/null",
+            "-o", 
+            "StrictHostKeyChecking=no",
+            "torizon@${config:torizon_ip}",
+            "rm -rf ~/app"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "deploy-torizon-arm",
+        "command": "scp",
+        "type": "process",
+        "args": [
+            "-i",
+            "${workspaceFolder}/.conf/id_rsa",
+            "-o",
+            "UserKnownHostsFile=/dev/null",
+            "-o", 
+            "StrictHostKeyChecking=no",
+            "-P",
+            "2222",
+            "-pr",
+            "${workspaceFolder}/bin/Debug",
+            "torizon@${config:torizon_ip}:~/app"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
+        "label": "run-mono-debug-server",
+        "command": "ssh",
+        "type": "process",
+        "args": [
+            "-i",
+            "${workspaceFolder}/.conf/id_rsa",
+            "-p",
+            "2222",
+            "-o",
+            "UserKnownHostsFile=/dev/null",
+            "-o", 
+            "StrictHostKeyChecking=no",
+            "torizon@${config:torizon_ip}",
+            "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:55555 ~/app/monoCsharpForms.exe > out.log 2> err.log &"
+        ],
+        "dependsOn": [
+            "pre-cleanup",
+            "build-torizon-arm",
+            "build-container-torizon-debug-arm",
+            "push-container-torizon-debug-arm",
+            "copy-docker-compose",
+            "pull-container-torizon-debug-arm",
+            "run-container-torizon-debug-arm",
+            "wait-a-bit",
+            "pos-cleanup",
+            "deploy-torizon-arm"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+  ]
+}
