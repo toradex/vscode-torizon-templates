@@ -16,7 +16,11 @@ namespace monoCsharpForms
         {
             InitializeComponent();
 
+            this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
+
+            // laod the image
+            this.pictureBox1.ImageLocation = "./assets/torizon-logo.png";
         }
 
         private void button1_Click(object sender, EventArgs e)
