@@ -2,7 +2,7 @@
 ##
 # Board architecture
 ##
-ARG IMAGE_ARCH=arm/v7
+ARG IMAGE_ARCH=
 # For armv7 use:
 #ARG IMAGE_ARCH=arm
 

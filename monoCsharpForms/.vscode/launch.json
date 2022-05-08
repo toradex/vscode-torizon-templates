@@ -9,12 +9,22 @@
             "port": 55555
         },
         {
-            "name": "Torizon Mono",
+            "name": "Torizon Mono ARMv7",
             "request": "attach",
             "type": "mono",
             "address": "${config:torizon_ip}",
             "port": 55555,
-            "preLaunchTask": "run-mono-debug-server"
-        }
+            "preLaunchTask": "run-mono-debug-server-arm",
+            "postDebugTask": "pre-cleanup-arm"
+        },
+        {
+            "name": "Torizon Mono ARMv8",
+            "request": "attach",
+            "type": "mono",
+            "address": "${config:torizon_ip}",
+            "port": 55555,
+            "preLaunchTask": "run-mono-debug-server-arm64",
+            "postDebugTask": "pre-cleanup-arm64"
+        },
     ]
 }
