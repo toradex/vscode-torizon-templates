@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7FAE0CB2-0ACE-414D-8BEF-8E47D07DB50D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>monoCsharpForms</RootNamespace>
-    <AssemblyName>monoCsharpForms</AssemblyName>
+    <RootNamespace>__change__</RootNamespace>
+    <AssemblyName>__change__</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

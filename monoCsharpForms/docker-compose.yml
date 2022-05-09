@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.debug
-    image: ${LOCAL_REGISTRY}:5000/dotnet-mono:${TAG}
+    image: ${LOCAL_REGISTRY}:5000/__change__:${TAG}
     ports:
       - 2222:2222
       - 55555:55555

@@ -11,7 +11,7 @@ using Uno.UI.Runtime.Skia;
 using Windows.UI.ViewManagement;
 #endif
 
-namespace dotnetUno
+namespace __change__
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

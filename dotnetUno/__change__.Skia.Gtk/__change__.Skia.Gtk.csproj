@@ -9,13 +9,13 @@
     <unoRemoteControlPort>8090</unoRemoteControlPort>
     <DefineConstants>HAS_UNO_GTK</DefineConstants>
   </PropertyGroup>
-  <ItemGroup Condition="exists('..\dotnetUno.UWP')">
-    <EmbeddedResource Include="..\dotnetUno.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
-    <Content Include="..\dotnetUno.UWP\Assets\StoreLogo.png" Link="Assets\StoreLogo.png" />
+  <ItemGroup Condition="exists('..\__change__.UWP')">
+    <EmbeddedResource Include="..\__change__.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
+    <Content Include="..\__change__.UWP\Assets\StoreLogo.png" Link="Assets\StoreLogo.png" />
     <Content Include="Assets\Fonts\uno-fluentui-assets.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <UpToDateCheckInput Include="..\dotnetUno.Shared\**\*.xaml" />
+    <UpToDateCheckInput Include="..\__change__.Shared\**\*.xaml" />
     <Compile Include="..\Utils\*.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -25,5 +25,5 @@
     <PackageReference Include="Uno.UI.RemoteControl" Version="4.2.6" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.2.6" />
   </ItemGroup>
-  <Import Project="..\dotnetUno.Shared\dotnetUno.Shared.projitems" Label="Shared" />
+  <Import Project="..\__change__.Shared\__change__.Shared.projitems" Label="Shared" />
 </Project>

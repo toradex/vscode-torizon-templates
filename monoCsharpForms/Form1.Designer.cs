@@ -1,5 +1,5 @@
 ﻿
-namespace monoCsharpForms
+namespace __change__
 {
     partial class Form1
     {

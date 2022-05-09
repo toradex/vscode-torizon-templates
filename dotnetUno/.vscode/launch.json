@@ -13,7 +13,7 @@
       "request": "launch",
       "preLaunchTask": "build-skia-gtk",
       // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/dotnetUno.Skia.Gtk/bin/Debug/net6.0/dotnetUno.Skia.Gtk.dll",
+      "program": "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/__change__.Skia.Gtk.dll",
       "args": [],
       "env": {
         "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
@@ -21,7 +21,7 @@
         "UNO_DISABLE_OPENGL": "false",
         "UNO_FULLSCREEN": "false"
       },
-      "cwd": "${workspaceFolder}/dotnetUno.Skia.Gtk",
+      "cwd": "${workspaceFolder}/__change__.Skia.Gtk",
       // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
       "console": "internalConsole",
       "stopAtEntry": false
@@ -35,14 +35,14 @@
       "request": "launch",
       "preLaunchTask": "build-skia-gtk",
       // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/dotnetUno.Skia.Gtk/bin/Debug/net6.0/dotnetUno.Skia.Gtk.dll",
+      "program": "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/__change__.Skia.Gtk.dll",
       "args": [],
       "env": {
         "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
         "UNO_DISABLE_OPENGL": "true",
         "UNO_FULLSCREEN": "false"
       },
-      "cwd": "${workspaceFolder}/dotnetUno.Skia.Gtk",
+      "cwd": "${workspaceFolder}/__change__.Skia.Gtk",
       // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
       "console": "internalConsole",
       "stopAtEntry": false
@@ -51,7 +51,7 @@
       "name": ".NET Torizon ARMv7",
       "type": "coreclr",
       "request": "launch",
-      "program": "~/app/dotnetUno.Skia.Gtk",
+      "program": "~/app/__change__.Skia.Gtk",
       "cwd": "~/app/",
       "stopAtEntry": false,
       "console": "internalConsole",
@@ -86,7 +86,7 @@
       "name": ".NET Torizon ARMv8",
       "type": "coreclr",
       "request": "launch",
-      "program": "~/app/dotnetUno.Skia.Gtk",
+      "program": "~/app/__change__.Skia.Gtk",
       "cwd": "~/app/",
       "stopAtEntry": false,
       "console": "internalConsole",

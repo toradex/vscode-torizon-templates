@@ -2,7 +2,7 @@ using System;
 using GLib;
 using Uno.UI.Runtime.Skia;
 
-namespace dotnetUno.Skia.Gtk
+namespace __change__.Skia.Gtk
 {
 	class Program
 	{

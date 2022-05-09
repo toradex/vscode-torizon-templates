@@ -7,7 +7,7 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+        "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -21,7 +21,7 @@
         "publish",
         "-c",
         "Debug",
-        "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+        "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -92,7 +92,7 @@
         "type": "process",
         "args": [
             "build",
-            "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+            "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
             "/property:GenerateFullPaths=true",
             "/consoleloggerparameters:NoSummary",
             "-r",
@@ -109,7 +109,7 @@
             "publish",
             "-c",
             "Debug",
-            "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+            "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
             "-r",
             "linux-arm"
         ],
@@ -196,7 +196,7 @@
             "-P",
             "2222",
             "-pr",
-            "${workspaceFolder}/dotnetUno.Skia.Gtk/bin/Debug/net6.0/linux-arm/publish",
+            "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm/publish",
             "torizon@${config:torizon_ip}:~/app"
         ],
         "dependsOn": [
@@ -235,7 +235,7 @@
         "type": "process",
         "args": [
             "build",
-            "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+            "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
             "/property:GenerateFullPaths=true",
             "/consoleloggerparameters:NoSummary",
             "-r",
@@ -252,7 +252,7 @@
             "publish",
             "-c",
             "Debug",
-            "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
+            "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
             "-r",
             "linux-arm64"
         ],
@@ -339,7 +339,7 @@
             "-P",
             "2222",
             "-pr",
-            "${workspaceFolder}/dotnetUno.Skia.Gtk/bin/Debug/net6.0/linux-arm64/publish",
+            "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm64/publish",
             "torizon@${config:torizon_ip}:~/app"
         ],
         "dependsOn": [

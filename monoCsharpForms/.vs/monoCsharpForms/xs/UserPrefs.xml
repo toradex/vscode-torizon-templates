@@ -3,8 +3,8 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="monoCsharpForms" expanded="True">
-            <Node name="monoCsharpForms" expanded="True">
+          <Node name="__change__" expanded="True">
+            <Node name="__change__" expanded="True">
               <Node name="References" selected="True" />
             </Node>
           </Node>
@@ -12,7 +12,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.monoCsharpForms PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.__change__ PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
