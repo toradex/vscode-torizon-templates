@@ -21,6 +21,7 @@ services:
       - "c 4:7 rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
+      - "c 199:* rmw"
       # ... for /dev/dri devices
       - "c 226:* rmw"
     depends_on: [
