@@ -4,6 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.debug
-    image: ${LOCAL_REGISTRY}:5000/dotnet-console-debug
+    image: ${LOCAL_REGISTRY}:5000/dotnet-console-debug:${TAG}
     ports:
       - 2222:2222
