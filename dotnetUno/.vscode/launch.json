@@ -92,7 +92,8 @@
       "console": "internalConsole",
       "env": {
         "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
-        // "GDK_BACKEND": "x11",
+        //"GDK_BACKEND": "x11",
+        //"GDK_GL": "gles",
         "UNO_DISABLE_OPENGL": "true",
         "UNO_FULLSCREEN": "true"
       },
