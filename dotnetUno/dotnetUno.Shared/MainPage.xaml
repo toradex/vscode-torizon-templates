@@ -9,6 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-      <TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
+      <TextBlock 
+        Text="Hello Torizon!"
+        Margin="20"
+        FontSize="30" />
     </Grid>
 </Page>
