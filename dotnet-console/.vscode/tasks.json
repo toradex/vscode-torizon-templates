@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dotnet-console.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dotnet-console.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/dotnet-console.csproj"
+                "${workspaceFolder}/__change__.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -102,7 +102,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dotnet-console.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
@@ -117,7 +117,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dotnet-console.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "-r",
                 "linux-arm"
             ],
@@ -241,7 +241,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dotnet-console.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
@@ -256,7 +256,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dotnet-console.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "-r",
                 "linux-arm64"
             ],
