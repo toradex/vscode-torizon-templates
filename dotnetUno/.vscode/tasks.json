@@ -19,6 +19,8 @@
       "type": "process",
       "args": [
         "publish",
+        "-c",
+        "Debug",
         "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
@@ -105,6 +107,8 @@
         "type": "process",
         "args": [
             "publish",
+            "-c",
+            "Debug",
             "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
             "-r",
             "linux-arm"
@@ -246,6 +250,8 @@
         "type": "process",
         "args": [
             "publish",
+            "-c",
+            "Debug",
             "${workspaceFolder}/dotnetUno.Skia.Gtk/dotnetUno.Skia.Gtk.csproj",
             "-r",
             "linux-arm64"
