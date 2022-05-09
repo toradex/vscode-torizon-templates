@@ -5,6 +5,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
+    <UnoRemoteControlHost>192.168.15.98</UnoRemoteControlHost>
+    <unoRemoteControlPort>8090</unoRemoteControlPort>
     <DefineConstants>HAS_UNO_GTK</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="exists('..\dotnetUno.UWP')">
