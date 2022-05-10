@@ -37,8 +37,53 @@
             ],
             "problemMatcher": "$msCompile"
         },
+// --------------------------------------------------------------------- COMMON
         {
-            "label": "pre-cleanup",
+            "label": "copy-docker-compose",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "scp",
+                "${workspaceFolder}/docker-compose.yml",
+                "torizon@${config:torizon_ip}:~/"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "wait-a-bit",
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "1"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pos-cleanup",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "2222",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "rm -rf ~/app"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+// --------------------------------------------------------------------- ARMv7
+        {
+            "label": "pre-cleanup-arm",
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -46,7 +91,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} docker-compose down"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose down"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -85,7 +130,9 @@
             "type": "process",
             "options": {
                 "env": {
-                    "LOCAL_REGISTRY": "localhost"
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm",
+                    "GPU": ""
                 }
             },
             "args": [
@@ -103,26 +150,14 @@
             "type": "process",
             "options": {
                 "env": {
-                    "LOCAL_REGISTRY": "localhost"
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm",
+                    "GPU": ""
                 }
             },
             "args": [
                 "push",
                 "dotnet-avalonia-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "copy-docker-compose",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "scp",
-                "${workspaceFolder}/docker-compose.yml",
-                "torizon@${config:torizon_ip}:~/"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -136,7 +171,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} docker-compose pull dotnet-avalonia-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull dotnet-avalonia-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -150,36 +185,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} docker-compose up -d dotnet-avalonia-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "wait-a-bit",
-            "command": "sleep",
-            "type": "process",
-            "args": [
-                "1"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "pos-cleanup",
-            "command": "ssh",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-p",
-                "2222",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o", 
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "rm -rf ~/app"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d dotnet-avalonia-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -202,14 +208,155 @@
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
-                "pre-cleanup",
+                "copy-docker-compose",
+                "pre-cleanup-arm",
                 "build-torizon-arm",
                 "publish-torizon-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
-                "copy-docker-compose",
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+// --------------------------------------------------------------------- ARMv8
+        {
+            "label": "pre-cleanup-arm64",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose down"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-torizon-arm64",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/dotnetAvalonia.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish-torizon-arm64",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/dotnetAvalonia.csproj",
+                "-r",
+                "linux-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-container-torizon-debug-arm64",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm64",
+                    "GPU": "-vivante"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm64",
+                "dotnet-avalonia-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "push-container-torizon-debug-arm64",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm64",
+                    "GPU": "-vivante"
+                }
+            },
+            "args": [
+                "push",
+                "dotnet-avalonia-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pull-container-torizon-debug-arm64",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull dotnet-avalonia-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run-container-torizon-debug-arm64",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d dotnet-avalonia-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-torizon-arm64",
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
+                "-P",
+                "2222",
+                "-pr",
+                "${workspaceFolder}/bin/Debug/net6.0/linux-arm64/publish",
+                "torizon@${config:torizon_ip}:~/app"
+            ],
+            "dependsOn": [
+                "copy-docker-compose",
+                "pre-cleanup-arm64",
+                "build-torizon-arm64",
+                "publish-torizon-arm64",
+                "build-container-torizon-debug-arm64",
+                "push-container-torizon-debug-arm64",
+                "pull-container-torizon-debug-arm64",
+                "run-container-torizon-debug-arm64",
                 "wait-a-bit",
                 "pos-cleanup"
             ],

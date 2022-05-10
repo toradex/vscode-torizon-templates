@@ -52,6 +52,37 @@
                 "debuggerPath": "/vsdbg/vsdbg"
             },
             "preLaunchTask": "deploy-torizon-arm"
-        }
+        },
+        {
+            "name": ".NET Torizon ARMv8",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "~/app/dotnetAvalonia",
+            "cwd": "~/app/",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "env": {
+            },
+            "args": [],
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "ssh",
+                "pipeArgs": [
+                    "-T",
+                    "-q",
+                    "-p",
+                    "2222",
+                    "-i",
+                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
+                    "-o",
+                    "StrictHostKeyChecking=no",
+                    "-o",
+                    "UserKnownHostsFile /dev/null",
+                    "torizon@${config:torizon_ip}" // user@device
+                ],
+                "debuggerPath": "/vsdbg/vsdbg"
+            },
+            "preLaunchTask": "deploy-torizon-arm64"
+        },
     ]
 }
