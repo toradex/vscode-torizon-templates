@@ -2,7 +2,7 @@
 ##
 # Board architecture
 ##
-ARG IMAGE_ARCH=arm
+ARG IMAGE_ARCH=
 # For armv7 use:
 #ARG IMAGE_ARCH=arm
 
@@ -14,7 +14,7 @@ ARG BASE_VERSION=2-6.0
 ##
 # Application Name
 ##
-ARG APP_EXECUTABLE=dotnetAvalonia
+ARG APP_EXECUTABLE=__change__
 
 # BUILD ------------------------------------------------------------------------
 ##

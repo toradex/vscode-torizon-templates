@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ReactiveUI;
 
-namespace dotnetAvalonia.ViewModels
+namespace __change__.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {

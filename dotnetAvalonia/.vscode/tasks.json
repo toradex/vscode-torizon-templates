@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dotnetAvalonia.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dotnetAvalonia.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/dotnetAvalonia.csproj"
+                "${workspaceFolder}/__change__.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -102,7 +102,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dotnetAvalonia.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
@@ -117,7 +117,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dotnetAvalonia.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "-r",
                 "linux-arm"
             ],
@@ -243,7 +243,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dotnetAvalonia.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
@@ -258,7 +258,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dotnetAvalonia.csproj",
+                "${workspaceFolder}/__change__.csproj",
                 "-r",
                 "linux-arm64"
             ],

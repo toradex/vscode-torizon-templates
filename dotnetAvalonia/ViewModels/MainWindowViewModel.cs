@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace dotnetAvalonia.ViewModels
+namespace __change__.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

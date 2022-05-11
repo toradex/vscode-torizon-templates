@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/net6.0/dotnetAvalonia.dll",
+            "program": "${workspaceFolder}/bin/Debug/net6.0/__change__.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -26,7 +26,7 @@
             "name": ".NET Torizon ARMv7",
             "type": "coreclr",
             "request": "launch",
-            "program": "~/app/dotnetAvalonia",
+            "program": "~/app/__change__",
             "cwd": "~/app/",
             "stopAtEntry": false,
             "console": "internalConsole",
@@ -57,7 +57,7 @@
             "name": ".NET Torizon ARMv8",
             "type": "coreclr",
             "request": "launch",
-            "program": "~/app/dotnetAvalonia",
+            "program": "~/app/__change__",
             "cwd": "~/app/",
             "stopAtEntry": false,
             "console": "internalConsole",
