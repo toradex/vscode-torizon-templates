@@ -4,7 +4,7 @@ services:
     build:
         context: .
         dockerfile: Dockerfile.debug
-    image: ${LOCAL_REGISTRY}:5000/dotnet-uno-framebuffer
+    image: ${LOCAL_REGISTRY}:5000/dotnet-uno-framebuffer:${TAG}
     # ports:
     #   - 2222:2222
     # Required to get udev events from host udevd via netlink
@@ -31,5 +31,6 @@ services:
       - "c 4:7 rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
+      - "c 199:* rmw"
       # ... for /dev/dri devices
       - "c 226:* rmw"

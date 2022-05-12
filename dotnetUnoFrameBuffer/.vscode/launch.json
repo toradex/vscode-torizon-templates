@@ -54,6 +54,39 @@
             },
             "preLaunchTask": "deploy-torizon-arm",
             "postDebugTask": "stop-torizon-arm"
-        }
+        },
+        {
+            "name": ".NET Torizon ARMv8",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "~/app/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer",
+            "cwd": "~/app/",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "env": {
+                "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
+            },
+            "args": [],
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "ssh",
+                "pipeArgs": [
+                    "-T",
+                    "-q",
+                    "-p",
+                    "2222",
+                    "-i",
+                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
+                    "-o",
+                    "StrictHostKeyChecking=no",
+                    "-o",
+                    "UserKnownHostsFile /dev/null",
+                    "torizon@${config:torizon_ip}" // user@device
+                ],
+                "debuggerPath": "/vsdbg/vsdbg"
+            },
+            "preLaunchTask": "deploy-torizon-arm64",
+            "postDebugTask": "stop-torizon-arm64"
+        },
     ]
 }
