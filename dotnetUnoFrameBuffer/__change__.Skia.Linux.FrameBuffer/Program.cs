@@ -1,7 +1,7 @@
 using System;
 using Uno.UI.Runtime.Skia;
 
-namespace dotnetUnoFrameBuffer
+namespace __change__
 {
 	class Program
 	{

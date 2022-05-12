@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer.csproj",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer.csproj",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer.csproj"
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -102,7 +102,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer.csproj",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
@@ -117,7 +117,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer.csproj",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
                 "-r",
                 "linux-arm"
             ],
@@ -202,7 +202,7 @@
                 "-P",
                 "2222",
                 "-pr",
-                "${workspaceFolder}/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer/bin/Debug/net6.0/linux-arm/publish",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net6.0/linux-arm/publish",
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -272,7 +272,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer.csproj",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
@@ -287,7 +287,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer.csproj",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
                 "-r",
                 "linux-arm64"
             ],
@@ -372,7 +372,7 @@
                 "-P",
                 "2222",
                 "-pr",
-                "${workspaceFolder}/dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer/bin/Debug/net6.0/linux-arm64/publish",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net6.0/linux-arm64/publish",
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [

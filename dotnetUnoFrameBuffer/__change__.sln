@@ -3,29 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 15.0.26124.0
 
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "dotnetUnoFrameBuffer.Shared", "dotnetUnoFrameBuffer.Shared\dotnetUnoFrameBuffer.Shared.shproj", "{6279C845-92F8-4333-AB99-3D213163593C}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "__change__.Shared", "__change__.Shared\__change__.Shared.shproj", "{6279C845-92F8-4333-AB99-3D213163593C}"
 EndProject
 
 
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetUnoFrameBuffer.Uwp", "dotnetUnoFrameBuffer.UWP\dotnetUnoFrameBuffer.Uwp.csproj", "{270B27DB-1DD0-4EC6-95FF-F83D0A3A1CDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "__change__.Uwp", "__change__.UWP\__change__.Uwp.csproj", "{270B27DB-1DD0-4EC6-95FF-F83D0A3A1CDB}"
 EndProject
 
 
 
 
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer", "dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer\dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer.csproj", "{761D821E-9905-4444-9ADF-76C995FE5427}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__change__.Skia.Linux.FrameBuffer", "__change__.Skia.Linux.FrameBuffer\__change__.Skia.Linux.FrameBuffer.csproj", "{761D821E-9905-4444-9ADF-76C995FE5427}"
 EndProject
 
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		dotnetUnoFrameBuffer.Shared\dotnetUnoFrameBuffer.Shared.projitems*{6F1782AE-30CB-4030-86A6-396809513623}*SharedItemsImports = 4
-		dotnetUnoFrameBuffer.Shared\dotnetUnoFrameBuffer.Shared.projitems*{E66BFEFA-D9D2-468D-92B6-D5FD7674788D}*SharedItemsImports = 5
-		dotnetUnoFrameBuffer.Shared\dotnetUnoFrameBuffer.Shared.projitems*{38D5E885-42A1-467B-A160-1E412E26A8A9}*SharedItemsImports = 4
-		dotnetUnoFrameBuffer.Shared\dotnetUnoFrameBuffer.Shared.projitems*{40ea03f7-8a22-4143-b251-79bac3eb13d2}*SharedItemsImports = 5
-		dotnetUnoFrameBuffer.Shared\dotnetUnoFrameBuffer.Shared.projitems*{a5b8155a-118f-4794-b551-c6f3cf7e5411}*SharedItemsImports = 5
-		dotnetUnoFrameBuffer.Shared\dotnetUnoFrameBuffer.Shared.projitems*{2CEDBD41-827B-4E79-A16B-0585ADBDF291}*SharedItemsImports = 4
-		dotnetUnoFrameBuffer.Shared\dotnetUnoFrameBuffer.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
-		dotnetUnoFrameBuffer.Shared\dotnetUnoFrameBuffer.Shared.projitems*{270B27DB-1DD0-4EC6-95FF-F83D0A3A1CDB}*SharedItemsImports = 4
+		__change__.Shared\__change__.Shared.projitems*{6F1782AE-30CB-4030-86A6-396809513623}*SharedItemsImports = 4
+		__change__.Shared\__change__.Shared.projitems*{E66BFEFA-D9D2-468D-92B6-D5FD7674788D}*SharedItemsImports = 5
+		__change__.Shared\__change__.Shared.projitems*{38D5E885-42A1-467B-A160-1E412E26A8A9}*SharedItemsImports = 4
+		__change__.Shared\__change__.Shared.projitems*{40ea03f7-8a22-4143-b251-79bac3eb13d2}*SharedItemsImports = 5
+		__change__.Shared\__change__.Shared.projitems*{a5b8155a-118f-4794-b551-c6f3cf7e5411}*SharedItemsImports = 5
+		__change__.Shared\__change__.Shared.projitems*{2CEDBD41-827B-4E79-A16B-0585ADBDF291}*SharedItemsImports = 4
+		__change__.Shared\__change__.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
+		__change__.Shared\__change__.Shared.projitems*{270B27DB-1DD0-4EC6-95FF-F83D0A3A1CDB}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

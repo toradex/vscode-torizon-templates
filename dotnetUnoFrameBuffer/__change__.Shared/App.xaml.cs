@@ -6,7 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace dotnetUnoFrameBuffer
+namespace __change__
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

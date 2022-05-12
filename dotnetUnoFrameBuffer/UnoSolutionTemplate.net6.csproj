@@ -94,10 +94,10 @@
     <None Include="Mobile\macOS\Entitlements.plist" />
     <None Include="Mobile\macOS\Info.plist" />
     <None Include="Mobile\macOS\Resources\Fonts\uno-fluentui-assets.ttf" />
-    <None Include="Mobile\dotnetUnoFrameBuffer.Mobile.csproj" />
+    <None Include="Mobile\__change__.Mobile.csproj" />
     <None Include="Skia.Linux.FrameBuffer\Program.cs" />
     <None Include="Skia.Linux.FrameBuffer\Assets\Fonts\uno-fluentui-assets.ttf" />
-    <None Include="Skia.Linux.FrameBuffer\dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer.csproj" />
+    <None Include="Skia.Linux.FrameBuffer\__change__.Skia.Linux.FrameBuffer.csproj" />
     <None Include="Skia.WPF\Program.cs" />
     <None Include="Skia.WPF.Host\App.xaml.cs" />
     <None Include="Skia.WPF.Host\MainWindow.xaml.cs" />
@@ -118,12 +118,12 @@
     <None Include="Shared\Strings\en\Resources.resw">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Skia.Gtk\dotnetUnoFrameBuffer.Skia.Gtk.csproj" />
+    <None Include="Skia.Gtk\__change__.Skia.Gtk.csproj" />
     <None Include="Skia.WPF.Host\App.config" />
     <None Include="Skia.WPF.Host\Assets\Fonts\uno-fluentui-assets.ttf" />
     <None Include="Skia.WPF.Host\Properties\Settings.settings" />
-    <None Include="Skia.WPF.Host\dotnetUnoFrameBuffer.Skia.Wpf.Host.csproj" />
-    <None Include="Skia.WPF\dotnetUnoFrameBuffer.Skia.Wpf.csproj" />
+    <None Include="Skia.WPF.Host\__change__.Skia.Wpf.Host.csproj" />
+    <None Include="Skia.WPF\__change__.Skia.Wpf.csproj" />
     <None Include="Wasm\Program.cs" />
     <None Include="Shared\App.xaml.cs" />
     <None Include="Shared\MainPage.xaml.cs" />
@@ -137,7 +137,7 @@
     </VSTemplate>
     <None Include="Shared\Shared.net6.vstemplate" />
     <None Include="UWP\Properties\Default.rd.xml" />
-    <None Include="UWP\dotnetUnoFrameBuffer.Uwp.csproj">
+    <None Include="UWP\__change__.Uwp.csproj">
       <SubType>Designer</SubType>
     </None>
     <None Include="UWP\Uwp.net6.vstemplate">
@@ -145,10 +145,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shared\dotnetUnoFrameBuffer.Shared.projitems" />
-    <None Include="Shared\dotnetUnoFrameBuffer.Shared.shproj" />
+    <None Include="Shared\__change__.Shared.projitems" />
+    <None Include="Shared\__change__.Shared.shproj" />
     <None Include="UWP\Package.appxmanifest" />
-    <None Include="UWP\dotnetUnoFrameBuffer.Uwp_TemporaryKey.pfx" />
+    <None Include="UWP\__change__.Uwp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shared\App.xaml">
@@ -254,7 +254,7 @@
     <Content Include="__PreviewImage.png" />
     <Content Include="__TemplateIcon.png" />
     <None Include="Wasm\Wasm.net6.vstemplate" />
-    <Content Include="Wasm\dotnetUnoFrameBuffer.Wasm.csproj" />
+    <Content Include="Wasm\__change__.Wasm.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Skia.WPF.Host\Properties\Resources.resx" />

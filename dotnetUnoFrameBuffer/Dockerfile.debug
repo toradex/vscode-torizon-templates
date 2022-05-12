@@ -14,7 +14,7 @@ ARG BASE_VERSION=2-6.0
 ##
 # Application Name
 ##
-ARG APP_EXECUTABLE=dotnetUnoFrameBuffer.Skia.Linux.FrameBuffer
+ARG APP_EXECUTABLE=__change__.Skia.Linux.FrameBuffer
 
 # BUILD ------------------------------------------------------------------------
 ##
