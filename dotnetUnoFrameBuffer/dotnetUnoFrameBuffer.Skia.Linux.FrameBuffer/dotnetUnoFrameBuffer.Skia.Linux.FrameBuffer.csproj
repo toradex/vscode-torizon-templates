@@ -4,6 +4,8 @@
     <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
     <UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
     <TargetFramework>net6.0</TargetFramework>
+    <UnoRemoteControlHost>192.168.15.98</UnoRemoteControlHost>
+    <unoRemoteControlPort>8090</unoRemoteControlPort>
   </PropertyGroup>
   <ItemGroup Condition="exists('..\dotnetUnoFrameBuffer.UWP')">
     <EmbeddedResource Include="..\dotnetUnoFrameBuffer.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
