@@ -1,13 +1,13 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using dotnetAvaloniaFrameBuffer.ViewModels;
-using dotnetAvaloniaFrameBuffer.Views;
+using __change__.ViewModels;
+using __change__.Views;
 using Avalonia.LinuxFramebuffer;
 
 using System;
 
-namespace dotnetAvaloniaFrameBuffer
+namespace __change__
 {
     public partial class App : Application
     {

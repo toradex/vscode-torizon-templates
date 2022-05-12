@@ -7,7 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Skia;
 using Avalonia.Dialogs;
 
-namespace dotnetAvaloniaFrameBuffer
+namespace __change__
 {
     class Program
     {

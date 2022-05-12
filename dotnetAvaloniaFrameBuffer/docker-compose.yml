@@ -4,7 +4,7 @@ services:
     build:
         context: .
         dockerfile: Dockerfile.debug
-    image: ${LOCAL_REGISTRY}:5000/dotnet-avalonia-drm:${TAG}
+    image: ${LOCAL_REGISTRY}:5000/__container__:${TAG}
     # Required to get udev events from host udevd via netlink
     network_mode: host
     volumes:

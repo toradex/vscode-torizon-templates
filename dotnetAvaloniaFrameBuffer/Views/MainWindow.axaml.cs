@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace dotnetAvaloniaFrameBuffer.Views
+namespace __change__.Views
 {
     public partial class MainWindow : UserControl
     {

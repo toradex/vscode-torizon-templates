@@ -1,9 +1,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using dotnetAvaloniaFrameBuffer.ViewModels;
+using __change__.ViewModels;
 
-namespace dotnetAvaloniaFrameBuffer
+namespace __change__
 {
     public class ViewLocator : IDataTemplate
     {
