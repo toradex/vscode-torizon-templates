@@ -49,17 +49,24 @@ Write-Host -ForegroundColor Yellow "Renaming file contents ..."
 Get-ChildItem -Force -File -Recurse * | ForEach-Object {
     Write-Host $_
     $a = $_.fullname;
-    if (-not $a.Contains("id_rsa")) {
-        if ($_ -isnot [System.IO.DirectoryInfo]) {
-            ( Get-Content $a ) |
-            ForEach-Object {
-                $_ -replace "__change__",$projectName
-            } | Set-Content $a
+    
+    # do not mess up with binary files
+    $mimeType = file --mime-encoding $a
 
-            ( Get-Content $a ) |
-            ForEach-Object {
-                $_ -replace "__container__",$containerName
-            } | Set-Content $a
+    if (-not $mimeType.Contains("binary")) {
+        # id_rsa is a special case, is ascii but we do not have permissions
+        if (-not $a.Contains("id_rsa")) {
+            if ($_ -isnot [System.IO.DirectoryInfo]) {
+                ( Get-Content $a ) |
+                ForEach-Object {
+                    $_ -replace "__change__",$projectName
+                } | Set-Content $a
+    
+                ( Get-Content $a ) |
+                ForEach-Object {
+                    $_ -replace "__container__",$containerName
+                } | Set-Content $a
+            }
         }
     }
 }
