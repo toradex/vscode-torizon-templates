@@ -1,0 +1,62 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Main Process",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+            "windows": {
+                "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+            },
+            "args": [
+                "."
+            ],
+            "outputCapture": "std"
+        },
+        {
+            "name": "Torizon Render Process",
+            "type": "chrome",
+            "request": "attach",
+            "address": "${config:torizon_ip}",
+            "port": 9223,
+            "webRoot": "${workspaceFolder}",
+            "pathMapping": {
+                "file:///home/torizon/app/resources/app/": "${workspaceFolder}/./",
+            },
+            "enableContentValidation": true,
+            "trace": true,
+            "timeout": 15000,
+            "preLaunchTask": "tunnel-debug-torizon"
+        },
+        {
+            "name": "Torizon ARMv7",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "address": "${config:torizon_ip}",
+            "restart": false,
+            "sourceMaps": false,
+            "continueOnAttach": true,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/home/torizon/app/resources/app/",
+            "preLaunchTask": "start-torizon-debug-arm",
+            "postDebugTask": "stop-torizon-debug"
+        },
+        {
+            "name": "Torizon ARMv8",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "address": "${config:torizon_ip}",
+            "restart": false,
+            "sourceMaps": false,
+            "continueOnAttach": true,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/home/torizon/app/resources/app/",
+            "preLaunchTask": "start-torizon-debug-arm64",
+            "postDebugTask": "stop-torizon-debug"
+        },
+    ]
+}
