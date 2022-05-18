@@ -1,6 +1,7 @@
 $templateFolder = $args[0]
 $projectName = $args[1]
 $containerName = $args[2]
+$location = $args[3]
 
 if ([string]::IsNullOrEmpty($templateFolder)) {
     $templateFolder = Read-Host "Template Folder"
@@ -23,6 +24,11 @@ if ([string]::IsNullOrEmpty($containerName)) {
     }
 }
 
+if (-not [string]::IsNullOrEmpty($location)) {
+    # special case for automations
+    $location = "$location/$projectName"
+}
+
 Write-Host "Data::"
 Write-Host "Template Folder ->    $templateFolder"
 Write-Host "Project Name ->       $projectName"
@@ -30,10 +36,10 @@ Write-Host "Container Name ->     $containerName"
 
 # create the copy
 Write-Host -ForegroundColor Yellow "Creating from template ..."
-Copy-Item $templateFolder $projectName -Recurse
+Copy-Item $templateFolder $location -Recurse
 Write-Host -ForegroundColor DarkGreen "✅ Folder copy done"
 
-Set-Location $projectName
+Set-Location $location
 
 # change the folders that is needed
 Write-Host -ForegroundColor Yellow "Renaming folders ..."
