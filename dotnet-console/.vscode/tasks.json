@@ -43,7 +43,7 @@
             "command": "pwsh",
             "type": "process",
             "args": [
-                "${workspaceFolder}/.conf/checkDdeps.ps1",
+                "${workspaceFolder}/.conf/checkDeps.ps1",
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
