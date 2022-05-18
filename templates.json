@@ -1,0 +1,53 @@
+{
+    "Templates": [
+        {
+            "folder": "dotnet-console",
+            "description": ".NET 6 C# Console Application",
+            "runtime": ".net 6.0",
+            "language": "C#",
+            "multiContainer": false
+        },
+        {
+            "folder": "dotnetAvalonia",
+            "description": ".NET 6 C# Avalonia GTK MVVM",
+            "runtime": ".net 6.0",
+            "language": "C#",
+            "multiContainer": false
+        },
+        {
+            "folder": "dotnetAvaloniaFrameBuffer",
+            "description": ".NET 6 C# Avalonia Frame Buffer DRM",
+            "runtime": ".net 6.0",
+            "language": "C#",
+            "multiContainer": false
+        },
+        {
+            "folder": "dotnetUno",
+            "description": ".NET 6 C# Uno Platform Skia.GTK",
+            "runtime": ".net 6.0",
+            "language": "C#",
+            "multiContainer": false
+        },
+        {
+            "folder": "dotnetUnoFrameBuffer",
+            "description": ".NET 6 C# Uno Platform Frame Buffer",
+            "runtime": ".net 6.0",
+            "language": "C#",
+            "multiContainer": false
+        },
+        {
+            "folder": "monoCsharpForms",
+            "description": "Mono 4.7 C# Windows Forms Application",
+            "runtime": ".NET 4.7",
+            "language": "C#",
+            "multiContainer": false
+        },
+        {
+            "folder": "nodeElectron",
+            "description": "Node.js JavaScript Electron Application",
+            "runtime": "Node.js",
+            "language": "JavaScript",
+            "multiContainer": false
+        }
+    ]
+}
