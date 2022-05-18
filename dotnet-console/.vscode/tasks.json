@@ -73,7 +73,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "pos-cleanup",
+            "label": "__change__-pos-cleanup",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -93,7 +93,7 @@
         },
 // ---------------------------------------------------------------------- ARMv7
         {
-            "label": "pre-cleanup-arm",
+            "label": "__change__-pre-cleanup-arm",
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -107,7 +107,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "build-torizon-arm",
+            "label": "__change__-build-torizon-arm",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -122,7 +122,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish-torizon-arm",
+            "label": "__change__-publish-torizon-arm",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -135,7 +135,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "build-container-torizon-debug-arm",
+            "label": "__change__-build-container-torizon-debug-arm",
             "command": "docker-compose",
             "type": "process",
             "options": {
@@ -154,7 +154,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "push-container-torizon-debug-arm",
+            "label": "__change__-push-container-torizon-debug-arm",
             "command": "docker-compose",
             "type": "process",
             "options": {
@@ -171,7 +171,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "pull-container-torizon-debug-arm",
+            "label": "__change__-pull-container-torizon-debug-arm",
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -185,7 +185,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "run-container-torizon-debug-arm",
+            "label": "__change__-run-container-torizon-debug-arm",
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -199,7 +199,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "deploy-torizon-arm",
+            "label": "__change__-deploy-torizon-arm",
             "command": "scp",
             "type": "process",
             "args": [
@@ -217,22 +217,22 @@
             ],
             "dependsOn": [
                 "copy-docker-compose",
-                "pre-cleanup-arm",
-                "build-torizon-arm",
-                "publish-torizon-arm",
-                "build-container-torizon-debug-arm",
-                "push-container-torizon-debug-arm",
-                "pull-container-torizon-debug-arm",
-                "run-container-torizon-debug-arm",
+                "__change__-pre-cleanup-arm",
+                "__change__-build-torizon-arm",
+                "__change__-publish-torizon-arm",
+                "__change__-build-container-torizon-debug-arm",
+                "__change__-push-container-torizon-debug-arm",
+                "__change__-pull-container-torizon-debug-arm",
+                "__change__-run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "pos-cleanup"
+                "__change__-pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
 // ---------------------------------------------------------------------- ARMv8
         {
-            "label": "pre-cleanup-arm64",
+            "label": "__change__-pre-cleanup-arm64",
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -246,7 +246,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "build-torizon-arm64",
+            "label": "__change__-build-torizon-arm64",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -261,7 +261,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish-torizon-arm64",
+            "label": "__change__-publish-torizon-arm64",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -274,7 +274,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "build-container-torizon-debug-arm64",
+            "label": "__change__-build-container-torizon-debug-arm64",
             "command": "docker-compose",
             "type": "process",
             "options": {
@@ -293,7 +293,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "push-container-torizon-debug-arm64",
+            "label": "__change__-push-container-torizon-debug-arm64",
             "command": "docker-compose",
             "type": "process",
             "options": {
@@ -310,7 +310,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "pull-container-torizon-debug-arm64",
+            "label": "__change__-pull-container-torizon-debug-arm64",
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -324,7 +324,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "run-container-torizon-debug-arm64",
+            "label": "__change__-run-container-torizon-debug-arm64",
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -338,7 +338,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "deploy-torizon-arm64",
+            "label": "__change__-deploy-torizon-arm64",
             "command": "scp",
             "type": "process",
             "args": [
@@ -356,15 +356,15 @@
             ],
             "dependsOn": [
                 "copy-docker-compose",
-                "pre-cleanup-arm64",
-                "build-torizon-arm64",
-                "publish-torizon-arm64",
-                "build-container-torizon-debug-arm64",
-                "push-container-torizon-debug-arm64",
-                "pull-container-torizon-debug-arm64",
-                "run-container-torizon-debug-arm64",
+                "__change__-pre-cleanup-arm64",
+                "__change__-build-torizon-arm64",
+                "__change__-publish-torizon-arm64",
+                "__change__-build-container-torizon-debug-arm64",
+                "__change__-push-container-torizon-debug-arm64",
+                "__change__-pull-container-torizon-debug-arm64",
+                "__change__-run-container-torizon-debug-arm64",
                 "wait-a-bit",
-                "pos-cleanup"
+                "__change__-pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"

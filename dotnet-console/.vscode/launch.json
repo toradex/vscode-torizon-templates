@@ -49,7 +49,7 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "deploy-torizon-arm"
+            "preLaunchTask": "__change__-deploy-torizon-arm"
         },
         {
             "name": ".NET Torizon ARMv8",
@@ -78,7 +78,7 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "deploy-torizon-arm64"
+            "preLaunchTask": "__change__-deploy-torizon-arm64"
         },
     ]
 }
