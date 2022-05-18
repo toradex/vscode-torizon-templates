@@ -39,6 +39,16 @@
         },
 // --------------------------------------------------------------------- COMMON
         {
+            "label": "check-deps",
+            "command": "pwsh",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/.conf/checkDdeps.ps1",
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "copy-docker-compose",
             "command": "sshpass",
             "type": "process",
