@@ -206,12 +206,12 @@
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
+                "copy-docker-compose",
                 "pre-cleanup-arm",
                 "build-torizon-arm",
                 "publish-torizon-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
-                "copy-docker-compose",
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
@@ -345,12 +345,12 @@
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
+                "copy-docker-compose",
                 "pre-cleanup-arm64",
                 "build-torizon-arm64",
                 "publish-torizon-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
-                "copy-docker-compose",
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
