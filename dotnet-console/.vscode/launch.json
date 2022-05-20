@@ -23,6 +23,31 @@
             "request": "attach"
         },
         {
+            "name": ".NET Attach Torizon ARMv8",
+            "type": "coreclr",
+            "request": "attach",
+            "processName": "__change__",
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "ssh",
+                "pipeArgs": [
+                    "-T",
+                    "-q",
+                    "-p",
+                    "${config:torizon_debug_port}",
+                    "-i",
+                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
+                    "-o",
+                    "StrictHostKeyChecking=no",
+                    "-o",
+                    "UserKnownHostsFile /dev/null",
+                    "torizon@${config:torizon_ip}" // user@device
+                ],
+                "debuggerPath": "/vsdbg/vsdbg"
+            },
+            "preLaunchTask": "__change__-deploy-run-torizon-arm64"
+        },
+        {
             "name": ".NET Torizon ARMv7",
             "type": "coreclr",
             "request": "launch",
@@ -38,7 +63,7 @@
                     "-T",
                     "-q",
                     "-p",
-                    "2222",
+                    "${config:torizon_debug_port}",
                     "-i",
                     "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",
@@ -67,7 +92,7 @@
                     "-T",
                     "-q",
                     "-p",
-                    "2222",
+                    "${config:torizon_debug_port}",
                     "-i",
                     "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",

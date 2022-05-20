@@ -80,7 +80,7 @@
                 "-i",
                 "${workspaceFolder}/.conf/id_rsa",
                 "-p",
-                "2222",
+                "${config:torizon_debug_port}",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o", 
@@ -101,7 +101,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose down"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm PORT=${config:torizon_debug_port} docker-compose down"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -141,14 +141,15 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm"
+                    "TAG": "arm",
+                    "PORT": "${config:torizon_debug_port}"
                 }
             },
             "args": [
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm",
-                "dotnet-console-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -160,12 +161,13 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm"
+                    "TAG": "arm",
+                    "PORT": "${config:torizon_debug_port}"
                 }
             },
             "args": [
                 "push",
-                "dotnet-console-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -179,7 +181,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull dotnet-console-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm PORT=${config:torizon_debug_port} docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -193,7 +195,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose up -d dotnet-console-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm PORT=${config:torizon_debug_port} docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -210,7 +212,7 @@
                 "-o", 
                 "StrictHostKeyChecking=no",
                 "-P",
-                "2222",
+                "${config:torizon_debug_port}",
                 "-pr",
                 "${workspaceFolder}/bin/Debug/net6.0/linux-arm/publish",
                 "torizon@${config:torizon_ip}:~/app"
@@ -230,6 +232,39 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
+        {
+            "label": "__change__-deploy-launch-torizon-arm",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_port}",
+                "torizon@${config:torizon_ip}",
+                "/home/torizon/app/__change__ >out.log 2>err.log &"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "__change__-deploy-run-torizon-arm",
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "2",
+            ],
+            "dependsOn": [
+                "__change__-deploy-torizon-arm",
+                "__change__-deploy-launch-torizon-arm",
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
 // ---------------------------------------------------------------------- ARMv8
         {
             "label": "__change__-pre-cleanup-arm64",
@@ -240,7 +275,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 PORT=${config:torizon_debug_port} docker-compose down"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -280,14 +315,15 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64"
+                    "TAG": "arm64",
+                    "PORT": "${config:torizon_debug_port}"
                 }
             },
             "args": [
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm64",
-                "dotnet-console-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -299,12 +335,13 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64"
+                    "TAG": "arm64",
+                    "PORT": "${config:torizon_debug_port}"
                 }
             },
             "args": [
                 "push",
-                "dotnet-console-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -318,7 +355,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull dotnet-console-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 PORT=${config:torizon_debug_port} docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -332,7 +369,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose up -d dotnet-console-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 PORT=${config:torizon_debug_port} docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -349,7 +386,7 @@
                 "-o", 
                 "StrictHostKeyChecking=no",
                 "-P",
-                "2222",
+                "${config:torizon_debug_port}",
                 "-pr",
                 "${workspaceFolder}/bin/Debug/net6.0/linux-arm64/publish",
                 "torizon@${config:torizon_ip}:~/app"
@@ -365,6 +402,39 @@
                 "__change__-run-container-torizon-debug-arm64",
                 "wait-a-bit",
                 "__change__-pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "__change__-deploy-launch-torizon-arm64",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_port}",
+                "torizon@${config:torizon_ip}",
+                "/home/torizon/app/__change__ >out.log 2>err.log &"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "__change__-deploy-run-torizon-arm64",
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "2",
+            ],
+            "dependsOn": [
+                "__change__-deploy-torizon-arm64",
+                "__change__-deploy-launch-torizon-arm64",
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
