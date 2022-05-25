@@ -48,6 +48,13 @@
             "runtime": "Node.js",
             "language": "JavaScript",
             "multiContainer": false
+        },
+        {
+            "folder": "nodeJSTypeScript",
+            "description": "Node.js TypeScript Application",
+            "runtime": "Node.js",
+            "language": "TypeScript",
+            "multiContainer": false
         }
     ]
 }

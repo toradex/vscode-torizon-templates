@@ -1,0 +1,211 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "typescript",
+            "tsconfig": "tsconfig.json",
+            "problemMatcher": ["$tsc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        // ----------------------------------------------------------------- COMMON
+        {
+            "label": "npm-install",
+            "command": "npm",
+            "type": "process",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "install"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "copy-docker-compose",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "scp",
+                "${workspaceFolder}/docker-compose.yml",
+                "torizon@${config:torizon_ip}:~/"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "wait-a-bit",
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "1"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "pos-cleanup",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "2222",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "rm -rf ~/app"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "build-typescript",
+            "command": "npm",
+            "type": "process",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "run",
+                "output",
+            ],
+            "dependsOrder": "sequence"
+        },
+        // ------------------------------------------------------------------ ARMv8
+        {
+            "label": "pre-cleanup-arm64",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "build-container-torizon-debug-arm64",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm64"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm64",
+                "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "push-container-torizon-debug-arm64",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm64",
+                }
+            },
+            "args": [
+                "push",
+                "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pull-container-torizon-debug-arm64",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull __container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run-container-torizon-debug-arm64",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose up -d __container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-torizon-arm64",
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
+                "-P",
+                "2222",
+                "-pr",
+                "${workspaceFolder}/out",
+                "torizon@${config:torizon_ip}:~/app"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "start-torizon-debug-arm64",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
+                "-p",
+                "2222",
+                "torizon@${config:torizon_ip}",
+                "node --inspect-brk=0.0.0.0:9229 /home/torizon/app/ >out.log 2>err.log &"
+            ],
+            "dependsOn": [
+                "npm-install",
+                "build-typescript",
+                "copy-docker-compose",
+                "pre-cleanup-arm64",
+                "package-torizon-arm64",
+                "build-container-torizon-debug-arm64",
+                "push-container-torizon-debug-arm64",
+                "pull-container-torizon-debug-arm64",
+                "run-container-torizon-debug-arm64",
+                "wait-a-bit",
+                "pos-cleanup",
+                "deploy-torizon-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+    ]
+}
