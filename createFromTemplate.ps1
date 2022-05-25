@@ -27,6 +27,8 @@ if ([string]::IsNullOrEmpty($containerName)) {
 if (-not [string]::IsNullOrEmpty($location)) {
     # special case for automations
     $location = "$location/$projectName"
+} else {
+    $location = "$projectName"
 }
 
 Write-Host "Data::"
