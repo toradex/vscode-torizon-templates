@@ -56,7 +56,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "scp",
-                "${workspaceFolder}/docker-compose.yml",
+                "${config:torizon_workspace}/docker-compose.yml",
                 "torizon@${config:torizon_ip}:~/"
             ],
             "dependsOrder": "sequence",

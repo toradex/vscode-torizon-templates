@@ -36,7 +36,7 @@
             "-p",
             "${config:torizon_psswd}",
             "scp",
-            "${workspaceFolder}/docker-compose.yml",
+            "${config:torizon_workspace}/docker-compose.yml",
             "torizon@${config:torizon_ip}:~/"
         ],
         "dependsOrder": "sequence",
@@ -60,7 +60,7 @@
             "-i",
             "${workspaceFolder}/.conf/id_rsa",
             "-p",
-            "2222",
+            "2223",
             "-o",
             "UserKnownHostsFile=/dev/null",
             "-o", 
@@ -194,7 +194,7 @@
             "-o", 
             "StrictHostKeyChecking=no",
             "-P",
-            "2222",
+            "2223",
             "-pr",
             "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm/publish",
             "torizon@${config:torizon_ip}:~/app"
@@ -337,7 +337,7 @@
             "-o", 
             "StrictHostKeyChecking=no",
             "-P",
-            "2222",
+            "2223",
             "-pr",
             "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm64/publish",
             "torizon@${config:torizon_ip}:~/app"

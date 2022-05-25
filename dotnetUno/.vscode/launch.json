@@ -48,7 +48,7 @@
       "stopAtEntry": false
     },
     {
-      "name": ".NET Torizon ARMv7",
+      "name": "Torizon ARMv7",
       "type": "coreclr",
       "request": "launch",
       "program": "~/app/__change__.Skia.Gtk",
@@ -69,7 +69,7 @@
               "-T",
               "-q",
               "-p",
-              "2222",
+              "2223",
               "-i",
               "${workspaceFolder}/.conf/id_rsa", // ssh key path
               "-o",
@@ -83,7 +83,7 @@
       "preLaunchTask": "deploy-torizon-arm"
     },
     {
-      "name": ".NET Torizon ARMv8",
+      "name": "Torizon ARMv8",
       "type": "coreclr",
       "request": "launch",
       "program": "~/app/__change__.Skia.Gtk",
@@ -105,7 +105,7 @@
               "-T",
               "-q",
               "-p",
-              "2222",
+              "2223",
               "-i",
               "${workspaceFolder}/.conf/id_rsa", // ssh key path
               "-o",
