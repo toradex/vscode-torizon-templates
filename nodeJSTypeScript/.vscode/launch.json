@@ -10,6 +10,19 @@
             "outFiles": ["${workspaceFolder}/lib/**/*.js"]
         },
         {
+            "name": "Torizon ARMv7",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "address": "${config:torizon_ip}",
+            "restart": false,
+            "sourceMaps": true,
+            "continueOnAttach": true,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/home/torizon/app/",
+            "preLaunchTask": "start-torizon-debug-arm"
+        },
+        {
             "name": "Torizon ARMv8",
             "type": "node",
             "request": "attach",

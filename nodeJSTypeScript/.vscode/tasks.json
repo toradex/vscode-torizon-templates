@@ -63,8 +63,9 @@
             ],
             "dependsOrder": "sequence"
         },
+        // ------------------------------------------------------------------ ARMv7
         {
-            "label": "build-typescript",
+            "label": "build-typescript-arm",
             "command": "npm",
             "type": "process",
             "options": {
@@ -72,11 +73,154 @@
             },
             "args": [
                 "run",
-                "output",
+                "output-arm64",
             ],
             "dependsOrder": "sequence"
         },
+        {
+            "label": "pre-cleanup-arm",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "build-container-torizon-debug-arm",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm",
+                "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "push-container-torizon-debug-arm",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm",
+                }
+            },
+            "args": [
+                "push",
+                "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pull-container-torizon-debug-arm",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull __container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run-container-torizon-debug-arm",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose up -d __container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-torizon-arm",
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
+                "-P",
+                "2222",
+                "-pr",
+                "${workspaceFolder}/out",
+                "torizon@${config:torizon_ip}:~/app"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "start-torizon-debug-arm",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o", 
+                "StrictHostKeyChecking=no",
+                "-p",
+                "2222",
+                "torizon@${config:torizon_ip}",
+                "node --inspect-brk=0.0.0.0:9229 /home/torizon/app/ >out.log 2>err.log &"
+            ],
+            "dependsOn": [
+                "npm-install",
+                "build-typescript-arm",
+                "copy-docker-compose",
+                "pre-cleanup-arm",
+                "package-torizon-arm",
+                "build-container-torizon-debug-arm",
+                "push-container-torizon-debug-arm",
+                "pull-container-torizon-debug-arm",
+                "run-container-torizon-debug-arm",
+                "wait-a-bit",
+                "pos-cleanup",
+                "deploy-torizon-arm"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
         // ------------------------------------------------------------------ ARMv8
+        {
+            "label": "build-typescript-arm64",
+            "command": "npm",
+            "type": "process",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "run",
+                "output-arm64",
+            ],
+            "dependsOrder": "sequence"
+        },
         {
             "label": "pre-cleanup-arm64",
             "command": "sshpass",
@@ -192,7 +336,7 @@
             ],
             "dependsOn": [
                 "npm-install",
-                "build-typescript",
+                "build-typescript-arm64",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
                 "package-torizon-arm64",
