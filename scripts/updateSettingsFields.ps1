@@ -4,6 +4,7 @@ $settingsTemplate = [PSCustomObject]@{
     torizon_login = ""
     torizon_ip = ""
     host_ip = ""
+    torizon_workspace = "$`{workspaceFolder`}"
 }
 
 # update all the .vscode/settings.json
