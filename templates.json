@@ -5,56 +5,64 @@
             "description": ".NET 6 C# Console Application",
             "runtime": ".net 6.0",
             "language": "C#",
-            "multiContainer": false
+            "multiContainer": false,
+            "support": "Toradex"
         },
         {
             "folder": "dotnetAvalonia",
             "description": ".NET 6 C# Avalonia GTK MVVM",
             "runtime": ".net 6.0",
             "language": "C#",
-            "multiContainer": false
+            "multiContainer": false,
+            "support": "Community"
         },
         {
             "folder": "dotnetAvaloniaFrameBuffer",
             "description": ".NET 6 C# Avalonia Frame Buffer DRM",
             "runtime": ".net 6.0",
             "language": "C#",
-            "multiContainer": false
+            "multiContainer": false,
+            "support": "Community"
         },
         {
             "folder": "dotnetUno",
             "description": ".NET 6 C# Uno Platform Skia.GTK",
             "runtime": ".net 6.0",
             "language": "C#",
-            "multiContainer": false
+            "multiContainer": false,
+            "support": "Toradex"
         },
         {
             "folder": "dotnetUnoFrameBuffer",
             "description": ".NET 6 C# Uno Platform Frame Buffer",
             "runtime": ".net 6.0",
             "language": "C#",
-            "multiContainer": false
+            "multiContainer": false,
+            "support": "Community"
         },
         {
             "folder": "monoCsharpForms",
             "description": "Mono 4.7 C# Windows Forms Application",
             "runtime": ".NET 4.7",
             "language": "C#",
-            "multiContainer": false
+            "multiContainer": false,
+            "support": "Community"
         },
         {
             "folder": "nodeElectron",
             "description": "Node.js JavaScript Electron Application",
             "runtime": "Node.js",
             "language": "JavaScript",
-            "multiContainer": false
+            "multiContainer": false,
+            "support": "Community"
         },
         {
             "folder": "nodeJSTypeScript",
             "description": "Node.js TypeScript Application",
             "runtime": "Node.js",
             "language": "TypeScript",
-            "multiContainer": false
+            "multiContainer": false,
+            "support": "Community"
         }
     ]
 }
