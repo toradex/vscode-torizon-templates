@@ -1,7 +1,6 @@
 {
-    "torizon_psswd": "1234",
-    "torizon_login": "torizon",
-    "torizon_ip": "192.168.15.171",
-    "host_ip": "192.168.15.98",
-    "torizon_debug_port": "2222"
+  "torizon_psswd": "",
+  "torizon_login": "",
+  "torizon_ip": "",
+  "host_ip": ""
 }
