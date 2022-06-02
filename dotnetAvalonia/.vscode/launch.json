@@ -23,7 +23,7 @@
             "request": "attach"
         },
         {
-            "name": ".NET Torizon ARMv7",
+            "name": "Torizon ARMv7",
             "type": "coreclr",
             "request": "launch",
             "program": "~/app/__change__",
@@ -54,7 +54,7 @@
             "preLaunchTask": "deploy-torizon-arm"
         },
         {
-            "name": ".NET Torizon ARMv8",
+            "name": "Torizon ARMv8",
             "type": "coreclr",
             "request": "launch",
             "program": "~/app/__change__",

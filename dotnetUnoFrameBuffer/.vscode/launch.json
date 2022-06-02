@@ -23,7 +23,7 @@
             "request": "attach"
         },
         {
-            "name": ".NET Torizon ARMv7",
+            "name": "Torizon ARMv7",
             "type": "coreclr",
             "request": "launch",
             "program": "~/app/__change__.Skia.Linux.FrameBuffer",
@@ -56,7 +56,7 @@
             "postDebugTask": "stop-torizon-arm"
         },
         {
-            "name": ".NET Torizon ARMv8",
+            "name": "Torizon ARMv8",
             "type": "coreclr",
             "request": "launch",
             "program": "~/app/__change__.Skia.Linux.FrameBuffer",

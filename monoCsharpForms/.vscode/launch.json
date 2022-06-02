@@ -9,7 +9,7 @@
             "port": 55555
         },
         {
-            "name": "Torizon Mono ARMv7",
+            "name": "Torizon ARMv7",
             "request": "attach",
             "type": "mono",
             "address": "${config:torizon_ip}",
@@ -18,7 +18,7 @@
             "postDebugTask": "pre-cleanup-arm"
         },
         {
-            "name": "Torizon Mono ARMv8",
+            "name": "Torizon ARMv8",
             "request": "attach",
             "type": "mono",
             "address": "${config:torizon_ip}",
