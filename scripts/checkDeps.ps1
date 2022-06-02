@@ -1,10 +1,6 @@
 
 # tested on Ubuntu 22.04
-$_packages = @(
-    "openssh-client",
-    "sshpass",
-    "dotnet-sdk-6.0"
-)
+$_packages = Get-Content deps.json | ConvertFrom-Json
 
 # docker and docker-compose are special cases
 # TODO: check also for podman or other runtimes
@@ -23,7 +19,7 @@ $_packagesToInstall = New-Object Collections.Generic.List[string]
 
 Write-Host -ForegroundColor Yellow "Checking dependencies ..."
 
-foreach ($package in $_packages) {
+foreach ($package in $_packages.packages) {
     dpkg -s $package > /dev/null 2>&1
     
     if ($? -eq $false) {
