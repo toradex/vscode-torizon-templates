@@ -1,6 +1,6 @@
 
 # tested on Ubuntu 22.04
-$_packages = Get-Content deps.json | ConvertFrom-Json
+$_packages = Get-Content .conf/deps.json | ConvertFrom-Json
 
 # docker and docker-compose are special cases
 # TODO: check also for podman or other runtimes
