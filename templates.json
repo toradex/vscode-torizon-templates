@@ -5,6 +5,7 @@
             "description": ".NET 6 C# Console Application",
             "runtime": ".net 6.0",
             "language": "C#",
+            "debugSSHPort": "2222",
             "multiContainer": false,
             "support": "Toradex"
         },
@@ -13,6 +14,7 @@
             "description": ".NET 6 C# Avalonia GTK MVVM",
             "runtime": ".net 6.0",
             "language": "C#",
+            "debugSSHPort": "2223",
             "multiContainer": false,
             "support": "Community"
         },
@@ -21,6 +23,7 @@
             "description": ".NET 6 C# Avalonia Frame Buffer DRM",
             "runtime": ".net 6.0",
             "language": "C#",
+            "debugSSHPort": "2224",
             "multiContainer": false,
             "support": "Community"
         },
@@ -29,6 +32,7 @@
             "description": ".NET 6 C# Uno Platform Skia.GTK",
             "runtime": ".net 6.0",
             "language": "C#",
+            "debugSSHPort": "2225",
             "multiContainer": false,
             "support": "Toradex"
         },
@@ -37,6 +41,7 @@
             "description": ".NET 6 C# Uno Platform Frame Buffer",
             "runtime": ".net 6.0",
             "language": "C#",
+            "debugSSHPort": "2226",
             "multiContainer": false,
             "support": "Community"
         },
@@ -45,6 +50,8 @@
             "description": "Mono 4.7 C# Windows Forms Application",
             "runtime": ".NET 4.7",
             "language": "C#",
+            "debugPort": "55555",
+            "debugSSHPort": "2227",
             "multiContainer": false,
             "support": "Community"
         },
@@ -53,6 +60,9 @@
             "description": "Node.js JavaScript Electron Application",
             "runtime": "Node.js",
             "language": "JavaScript",
+            "debugPort": "9229",
+            "debugPort2": "9223",
+            "debugSSHPort": "2228",
             "multiContainer": false,
             "support": "Community"
         },
@@ -61,6 +71,8 @@
             "description": "Node.js TypeScript Application",
             "runtime": "Node.js",
             "language": "TypeScript",
+            "debugPort": "9229",
+            "debugSSHPort": "2229",
             "multiContainer": false,
             "support": "Community"
         }
