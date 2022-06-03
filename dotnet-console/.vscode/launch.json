@@ -34,7 +34,7 @@
                     "-T",
                     "-q",
                     "-p",
-                    "2222",
+                    "${config:torizon_debug_ssh_port}",
                     "-i",
                     "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",
@@ -63,7 +63,7 @@
                     "-T",
                     "-q",
                     "-p",
-                    "2222",
+                    "${config:torizon_debug_ssh_port}",
                     "-i",
                     "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",
@@ -92,7 +92,7 @@
                     "-T",
                     "-q",
                     "-p",
-                    "2222",
+                    "${config:torizon_debug_ssh_port}",
                     "-i",
                     "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",

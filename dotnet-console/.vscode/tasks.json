@@ -80,7 +80,7 @@
                 "-i",
                 "${workspaceFolder}/.conf/id_rsa",
                 "-p",
-                "2222",
+                "${config:torizon_debug_ssh_port}",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o", 
@@ -101,7 +101,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm PORT=2222 docker-compose down"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose down"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -141,8 +141,7 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm",
-                    "PORT": "2222"
+                    "TAG": "arm"
                 }
             },
             "args": [
@@ -161,8 +160,7 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm",
-                    "PORT": "2222"
+                    "TAG": "arm"
                 }
             },
             "args": [
@@ -181,7 +179,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm PORT=2222 docker-compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -195,7 +193,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm PORT=2222 docker-compose up -d __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -212,7 +210,7 @@
                 "-o", 
                 "StrictHostKeyChecking=no",
                 "-P",
-                "2222",
+                "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/bin/Debug/net6.0/linux-arm/publish",
                 "torizon@${config:torizon_ip}:~/app"
@@ -244,7 +242,7 @@
                 "-o", 
                 "StrictHostKeyChecking=no",
                 "-p",
-                "2222",
+                "${config:torizon_debug_ssh_port}",
                 "torizon@${config:torizon_ip}",
                 "/home/torizon/app/__change__ >out.log 2>err.log &"
             ],
@@ -275,7 +273,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 PORT=2222 docker-compose down"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -315,8 +313,7 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64",
-                    "PORT": "2222"
+                    "TAG": "arm64"
                 }
             },
             "args": [
@@ -335,8 +332,7 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64",
-                    "PORT": "2222"
+                    "TAG": "arm64"
                 }
             },
             "args": [
@@ -355,7 +351,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 PORT=2222 docker-compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -369,7 +365,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 PORT=2222 docker-compose up -d __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
@@ -386,7 +382,7 @@
                 "-o", 
                 "StrictHostKeyChecking=no",
                 "-P",
-                "2222",
+                "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/bin/Debug/net6.0/linux-arm64/publish",
                 "torizon@${config:torizon_ip}:~/app"
@@ -418,7 +414,7 @@
                 "-o", 
                 "StrictHostKeyChecking=no",
                 "-p",
-                "2222",
+                "${config:torizon_debug_ssh_port}",
                 "torizon@${config:torizon_ip}",
                 "/home/torizon/app/__change__ >out.log 2>err.log &"
             ],
