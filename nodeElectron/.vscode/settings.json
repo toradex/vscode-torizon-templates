@@ -3,5 +3,8 @@
   "torizon_login": "",
   "torizon_ip": "",
   "host_ip": "",
-  "torizon_workspace": "${workspaceFolder}"
+  "torizon_workspace": "${workspaceFolder}",
+  "torizon_debug_port": "9229",
+  "torizon_debug_port2": "9223",
+  "torizon_debug_ssh_port": "2228"
 }

@@ -6,11 +6,11 @@ services:
       dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5000/__container__:${TAG}
     expose:
-       - 2222
+       - 2228
        - 9229
        - 9223
     ports:
-       - 2222:2222
+       - 2228:2228
        - 9229:9229
        - 9223:9223
     volumes:
