@@ -5,8 +5,6 @@ services:
         context: .
         dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5000/__container__:${TAG}
-    # ports:
-    #   - 2222:2222
     # Required to get udev events from host udevd via netlink
     network_mode: host
     volumes:

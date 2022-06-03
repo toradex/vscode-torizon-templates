@@ -70,7 +70,7 @@
                 "-i",
                 "${workspaceFolder}/.conf/id_rsa",
                 "-p",
-                "2222",
+                "${config:torizon_debug_ssh_port}",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o", 
@@ -200,7 +200,7 @@
                 "-o", 
                 "StrictHostKeyChecking=no",
                 "-P",
-                "2222",
+                "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net6.0/linux-arm/publish",
                 "torizon@${config:torizon_ip}:~/app"
@@ -370,7 +370,7 @@
                 "-o", 
                 "StrictHostKeyChecking=no",
                 "-P",
-                "2222",
+                "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net6.0/linux-arm64/publish",
                 "torizon@${config:torizon_ip}:~/app"
