@@ -45,7 +45,7 @@
                     "-T",
                     "-q",
                     "-p",
-                    "2222",
+                    "${config:torizon_debug_ssh_port}",
                     "-i",
                     "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",
@@ -60,7 +60,7 @@
             "postDebugTask": "stop-torizon-arm"
         },
         {
-            "name": "Torizon ARMv7",
+            "name": "Torizon ARMv8",
             "type": "coreclr",
             "request": "launch",
             "program": "~/app/__change__",
@@ -79,7 +79,7 @@
                     "-T",
                     "-q",
                     "-p",
-                    "2222",
+                    "${config:torizon_debug_ssh_port}",
                     "-i",
                     "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",

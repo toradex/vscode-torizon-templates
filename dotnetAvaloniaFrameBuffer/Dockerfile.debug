@@ -28,7 +28,7 @@ ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # SSH for remote debug
-EXPOSE 2222
+EXPOSE 2224
 ARG SSHUSERNAME=torizon
 
 # Make sure we don't get notifications we can't answer during building.
@@ -63,7 +63,7 @@ RUN mkdir /var/run/sshd && \
         then cp /id_rsa.pub /home/$SSHUSERNAME/.ssh/authorized_keys ; \
         else cp /id_rsa.pub /root/.ssh/authorized_keys ; fi && \
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
-    echo "Port 2222" >> /etc/ssh/sshd_config && \
+    echo "Port 2224" >> /etc/ssh/sshd_config && \
     su -c "env" $SSHUSERNAME > /etc/environment
 
 RUN rm -r /etc/ssh/ssh*key && \
