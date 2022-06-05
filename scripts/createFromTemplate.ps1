@@ -43,6 +43,7 @@ Write-Host -ForegroundColor DarkGreen "✅ Folder copy done"
 
 # we have to also copy the scripts
 Copy-Item "$templateFolder/../scripts/checkDeps.ps1" "$location/.conf/"
+Copy-Item "$templateFolder/../scripts/runContainerIfNotExists.ps1" "$location/.conf/"
 Write-Host -ForegroundColor DarkGreen "✅ Scripts copy done"
 
 Set-Location $location
