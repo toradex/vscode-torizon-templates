@@ -1,6 +1,6 @@
 
 $_containerRuntime = $args[0]
-$_runArguments = $args[1]
+$_runArguments = $args[1].Trim("'").Trim('"');
 $_containerName = $args[2]
 
 $_containerInfo = 
