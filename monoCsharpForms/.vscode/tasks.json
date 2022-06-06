@@ -6,37 +6,58 @@
         "label": "run-docker-registry",
         "command": "pwsh",
         "type": "process",
+        "presentation": {
+            "echo": false,
+            "reveal": "silent",
+            "focus": false,
+            "panel": "shared",
+            "showReuseMessage": true,
+            "clear": false
+        },
         "args": [
             "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
             "docker",
             "'-d -p 5000:5000 --restart=always registry:2'",
             "registry"
         ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
+        "dependsOrder": "sequence"
     },
     {
         "label": "run-torizon-binfmt",
         "command": "pwsh",
         "type": "process",
+        "presentation": {
+            "echo": false,
+            "reveal": "silent",
+            "focus": false,
+            "panel": "shared",
+            "showReuseMessage": true,
+            "clear": false
+        },
         "args": [
             "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
             "docker",
             "'--rm -it --privileged torizon/binfmt'",
             "binfmt"
         ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
+        "dependsOrder": "sequence"
     },
     {
         "label": "run-share-wsl-ports",
         "command": "pwsh",
         "type": "process",
+        "presentation": {
+            "echo": false,
+            "reveal": "silent",
+            "focus": false,
+            "panel": "shared",
+            "showReuseMessage": true,
+            "clear": false
+        },
         "args": [
             "${workspaceFolder}/.conf/shareWSLPorts.ps1"
         ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
+        "dependsOrder": "sequence"
     },
     {
         "label": "copy-docker-compose",
