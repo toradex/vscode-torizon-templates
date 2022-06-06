@@ -65,6 +65,16 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "run-share-wsl-ports",
+            "command": "pwsh",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/.conf/shareWSLPorts.ps1"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "check-deps",
             "command": "pwsh",
             "type": "process",

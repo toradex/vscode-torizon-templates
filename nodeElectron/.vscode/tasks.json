@@ -29,6 +29,16 @@
         "problemMatcher": "$msCompile"
     },
     {
+        "label": "run-share-wsl-ports",
+        "command": "pwsh",
+        "type": "process",
+        "args": [
+            "${workspaceFolder}/.conf/shareWSLPorts.ps1"
+        ],
+        "dependsOrder": "sequence",
+        "problemMatcher": "$msCompile"
+    },
+    {
         "label": "npm-install",
         "command": "npm",
         "type": "process",
