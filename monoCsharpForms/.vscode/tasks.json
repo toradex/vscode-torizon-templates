@@ -68,7 +68,7 @@
             "reveal": "always",
             "focus": true,
             "panel": "dedicated",
-            "showReuseMessage": false,
+            "showReuseMessage": true,
             "clear": false
         },
         "args": [
