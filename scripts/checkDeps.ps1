@@ -40,4 +40,7 @@ if ($_packagesToInstall.Count -gt 0) {
             sudo apt install $item
         }
     }
+} else {
+    # we need to ran the check deps only if it's not ran yet
+    New-Item -Path .conf/ -Name .depok -ItemType File
 }
