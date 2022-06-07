@@ -99,11 +99,18 @@
             "label": "check-deps",
             "command": "pwsh",
             "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            },
             "args": [
                 "${workspaceFolder}/.conf/checkDeps.ps1",
             ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "dependsOrder": "sequence"
         },
         {
             "label": "copy-docker-compose",
