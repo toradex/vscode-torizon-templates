@@ -42,5 +42,5 @@ if ($_packagesToInstall.Count -gt 0) {
     }
 } else {
     # we need to ran the check deps only if it's not ran yet
-    New-Item -Path .conf/ -Name .depok -ItemType File
+    New-Item -Path .conf/ -Name .depok -ItemType File 2>&1 | out-null
 }
