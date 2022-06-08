@@ -7,3 +7,9 @@ services:
     image: ${LOCAL_REGISTRY}:5000/__container__-debug:${TAG}
     ports:
       - 2222:2222
+
+  __container__:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_LOGIN}/__container__:${TAG}
