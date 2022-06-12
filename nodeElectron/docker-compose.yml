@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  node-electron-debug:
+  __container__-debug:
     build:
       context: .
       dockerfile: Dockerfile.debug
@@ -13,6 +13,31 @@ services:
        - 2228:2228
        - 9229:9229
        - 9223:9223
+    volumes:
+      - type: bind
+        source: /tmp
+        target: /tmp
+      - type: bind
+        source: /dev
+        target: /dev
+    device_cgroup_rules:
+      # ... for tty0
+      - "c 4:0 rmw"
+      # ... for tty7
+      - "c 4:7 rmw"
+      # ... for /dev/input devices
+      - "c 13:* rmw"
+      - "c 199:* rmw"
+      # ... for /dev/dri devices
+      - "c 226:* rmw"
+    depends_on: [
+      weston
+    ]
+
+  __container__:
+    build:
+      dockerfile: Dockerfile
+    image: ${DOCKER_LOGIN}/__container__:${TAG}
     volumes:
       - type: bind
         source: /tmp
