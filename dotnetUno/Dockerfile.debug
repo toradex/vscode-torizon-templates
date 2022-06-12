@@ -14,7 +14,7 @@ ARG BASE_VERSION=2-6.0
 ##
 # Application Name
 ##
-ARG APP_EXECUTABLE=__change__
+ARG APP_EXECUTABLE=__change__.Skia.Gtk
 
 # BUILD ------------------------------------------------------------------------
 ##
