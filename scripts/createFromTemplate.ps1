@@ -64,6 +64,7 @@ Write-Host "Container Name ->     $containerName"
 # send telemetry
 if ($_TELEMETRY -eq $true) {
     try {
+        $ProgressPreference = 'SilentlyContinue'
         $_region = (Get-TimeZone).DisplayName;
         $_query = @{
             region = "$_region"
@@ -73,12 +74,12 @@ if ($_TELEMETRY -eq $true) {
             error = "false"
         }
 
-        Invoke-WebRequest `
+        $ret = Invoke-WebRequest `
             -UseBasicParsing `
             -Uri `
                 "https://castelemetry.azurewebsites.net/api/telemetry/add" `
             -Body $_query `
-            -Method Get | Out-Null
+            -Method Get
     } catch {
         Write-Host -ForegroundColor Red "Telemetry Error"
     }
