@@ -78,7 +78,7 @@ if ($_TELEMETRY -eq $true) {
             -Uri `
                 "https://castelemetry.azurewebsites.net/api/telemetry/add" `
             -Body $_query `
-            -Method Get
+            -Method Get | Out-Null
     } catch {
         Write-Host -ForegroundColor Red "Telemetry Error"
     }
