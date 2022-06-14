@@ -67,19 +67,19 @@ if ($_TELEMETRY -eq $true) {
         $ProgressPreference = 'SilentlyContinue'
         $_region = (Get-TimeZone).DisplayName;
         $_query = @{
-            region = "$_region"
-            template = "$template"
-            boardarch = "$boardarch"
-            boardmodel = "$boardmodel"
+            region = $_region
+            template = $template
+            boardarch = $boardarch
+            boardmodel = $boardmodel
             error = "false"
         }
 
-        $ret = Invoke-WebRequest `
+        Invoke-WebRequest `
             -UseBasicParsing `
             -Uri `
                 "https://castelemetry.azurewebsites.net/api/telemetry/add" `
             -Body $_query `
-            -Method Get
+            -Method Get | Out-Null
     } catch {
         Write-Host -ForegroundColor Red "Telemetry Error"
     }
