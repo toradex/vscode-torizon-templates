@@ -7,6 +7,7 @@ $location = $args[3]
 $telemetry = $args[4]
 $boardarch = $args[5]
 $boardmodel = $args[6]
+$template = $args[7]
 
 # is enabled by default
 if ([string]::IsNullOrEmpty($telemetry)) {
@@ -21,6 +22,10 @@ if ([string]::IsNullOrEmpty($boardarch)) {
 
 if ([string]::IsNullOrEmpty($boardmodel)) {
     $boardmodel = "undefined"
+}
+
+if ([string]::IsNullOrEmpty($template)) {
+    $template = "undefined"
 }
 
 if ([string]::IsNullOrEmpty($templateFolder)) {
@@ -62,7 +67,7 @@ if ($_TELEMETRY -eq $true) {
         $_region = (Get-TimeZone).DisplayName;
         $_query = @{
             region = "$_region"
-            template = "$templateFolder"
+            template = "$template"
             boardarch = "$boardarch"
             boardmodel = "$boardmodel"
             error = "false"
