@@ -3,6 +3,26 @@ $projectName = $args[1]
 $containerName = $args[2]
 $location = $args[3]
 
+# optional
+$telemetry = $args[4]
+$boardarch = $args[5]
+$boardmodel = $args[6]
+
+# is enabled by default
+if ([string]::IsNullOrEmpty($telemetry)) {
+    $_TELEMETRY = $true
+} else {
+    $_TELEMETRY = ($telemetry -eq "true" ? $true : $false)
+}
+
+if ([string]::IsNullOrEmpty($boardarch)) {
+    $boardarch = "undefined"
+}
+
+if ([string]::IsNullOrEmpty($boardmodel)) {
+    $boardmodel = "undefined"
+}
+
 if ([string]::IsNullOrEmpty($templateFolder)) {
     $templateFolder = Read-Host "Template Folder"
     if ($templateFolder -eq "") {
@@ -35,6 +55,31 @@ Write-Host "Data::"
 Write-Host "Template Folder ->    $templateFolder"
 Write-Host "Project Name ->       $projectName"
 Write-Host "Container Name ->     $containerName"
+
+# send telemetry
+if ($_TELEMETRY -eq $true) {
+    try {
+        $_region = (Get-TimeZone).DisplayName;
+        $_query = @{
+            region = "$_region"
+            template = "$templateFolder"
+            boardarch = "$boardarch"
+            boardmodel = "$boardmodel"
+            error = "false"
+        }
+
+        Invoke-WebRequest `
+            -UseBasicParsing `
+            -Uri `
+                "https://castelemetry.azurewebsites.net/api/telemetry/add" `
+            -Body $_query `
+            -Method Get
+    } catch {
+        Write-Host -ForegroundColor Red "Telemetry Error"
+    }
+} else {
+    Write-Host -ForegroundColor Yellow "Telemetry disabled"
+}
 
 # create the copy
 Write-Host -ForegroundColor Yellow "Creating from template ..."
