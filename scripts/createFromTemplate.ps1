@@ -77,7 +77,7 @@ if ($_TELEMETRY -eq $true) {
         Invoke-WebRequest `
             -UseBasicParsing `
             -Uri `
-                "https://castelemetry.azurewebsites.net/api/telemetry/add" `
+                "http://castello.dev.br/api/telemetry/add" `
             -Body $_query `
             -Method Get | Out-Null
     } catch {
