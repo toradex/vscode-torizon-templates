@@ -8,3 +8,9 @@ services:
     ports:
       - 2229:2229
       - 9229:9229
+    
+  __container__:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_LOGIN}__container__:${TAG}
