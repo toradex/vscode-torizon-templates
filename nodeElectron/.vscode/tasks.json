@@ -4,6 +4,7 @@
     // ----------------------------------------------------------------- COMMON
     {
         "label": "docker-login",
+        "detail": "hide",
         "command": "docker",
         "type": "process",
         "options": {
@@ -109,6 +110,7 @@
     },
     {
         "label": "copy-docker-compose",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -122,6 +124,7 @@
     },
     {
         "label": "wait-a-bit",
+        "detail": "hide",
         "command": "sleep",
         "type": "process",
         "args": [
@@ -131,6 +134,7 @@
     },
     {
         "label": "pos-cleanup",
+        "detail": "hide",
         "command": "ssh",
         "type": "process",
         "args": [
@@ -149,6 +153,7 @@
     },
     {
         "label": "stop-torizon-debug",
+        "detail": "hide",
         "command": "ssh",
         "type": "process",
         "args": [
@@ -168,6 +173,7 @@
     },
     {
         "label": "tunnel-debug-torizon",
+        "detail": "hide",
         "command": "echo",
         "type": "process",
         "args": [
@@ -182,6 +188,7 @@
     },
     {
         "label": "tunnel-debug-torizon-pre",
+        "detail": "hide",
         "command": "ssh",
         "type": "process",
         "args": [
@@ -202,6 +209,7 @@
     // ------------------------------------------------------------------ ARMv7
     {
         "label": "build-release-arm",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -242,6 +250,7 @@
     },
     {
         "label": "pre-cleanup-arm",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -255,6 +264,7 @@
     },
     {
         "label": "package-torizon-arm",
+        "detail": "hide",
         "command": "npx",
         "type": "process",
         "options": {
@@ -272,6 +282,7 @@
     },
     {
         "label": "build-container-torizon-debug-arm",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -292,6 +303,7 @@
     },
     {
         "label": "push-container-torizon-debug-arm",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -310,6 +322,7 @@
     },
     {
         "label": "pull-container-torizon-debug-arm",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -324,6 +337,7 @@
     },
     {
         "label": "run-container-torizon-debug-arm",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -338,6 +352,7 @@
     },
     {
         "label": "deploy-torizon-arm",
+        "detail": "hide",
         "command": "scp",
         "type": "process",
         "args": [
@@ -358,6 +373,7 @@
     },
     {
         "label": "start-torizon-debug-arm",
+        "detail": "hide",
         "command": "ssh",
         "type": "process",
         "args": [
@@ -391,6 +407,7 @@
     // ------------------------------------------------------------------ ARMv8
     {
         "label": "pre-cleanup-arm64",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -404,6 +421,7 @@
     },
     {
         "label": "package-torizon-arm64",
+        "detail": "hide",
         "command": "npx",
         "type": "process",
         "options": {
@@ -421,6 +439,7 @@
     },
     {
         "label": "build-container-torizon-debug-arm64",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -441,6 +460,7 @@
     },
     {
         "label": "push-container-torizon-debug-arm64",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -459,6 +479,7 @@
     },
     {
         "label": "pull-container-torizon-debug-arm64",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -473,6 +494,7 @@
     },
     {
         "label": "run-container-torizon-debug-arm64",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -487,6 +509,7 @@
     },
     {
         "label": "deploy-torizon-arm64",
+        "detail": "hide",
         "command": "scp",
         "type": "process",
         "args": [
@@ -507,6 +530,7 @@
     },
     {
         "label": "start-torizon-debug-arm64",
+        "detail": "hide",
         "command": "ssh",
         "type": "process",
         "args": [
@@ -539,6 +563,7 @@
     },
     {
         "label": "build-release-arm64",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {

@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0",
-  "tasks": [
+    "version": "2.0.0",
+    "tasks": [
     // ----------------------------------------------------------------- COMMON
     {
         "label": "docker-login",
@@ -97,6 +97,7 @@
     },
     {
         "label": "copy-docker-compose",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -111,6 +112,7 @@
     },
     {
         "label": "wait-a-bit",
+        "detail": "hide",
         "command": "sleep",
         "type": "process",
         "args": [
@@ -121,6 +123,7 @@
     },
     {
         "label": "pos-cleanup",
+        "detail": "hide",
         "command": "ssh",
         "type": "process",
         "args": [
@@ -149,6 +152,7 @@
     },
     {
         "label": "deploy-application",
+        "detail": "hide",
         "command": "scp",
         "type": "process",
         "args": [
@@ -169,6 +173,7 @@
     },
     {
         "label": "deploy-assets",
+        "detail": "hide",
         "command": "scp",
         "type": "process",
         "args": [
@@ -190,6 +195,7 @@
     // ------------------------------------------------------------------ ARMv7
     {
         "label": "build-release-arm",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -230,6 +236,7 @@
     },
     {
         "label": "build-torizon-arm",
+        "detail": "hide",
         "command": "msbuild",
         "type": "process",
         "args": [
@@ -239,6 +246,7 @@
     },
     {
         "label": "build-container-torizon-debug-arm",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -258,6 +266,7 @@
     },
     {
         "label": "push-container-torizon-debug-arm",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -275,6 +284,7 @@
     },
     {
         "label": "pull-container-torizon-debug-arm",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -289,6 +299,7 @@
     },
     {
         "label": "run-container-torizon-debug-arm",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -303,6 +314,7 @@
     },
     {
         "label": "pre-cleanup-arm",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -317,6 +329,7 @@
     },
     {
         "label": "run-mono-debug-server-arm",
+        "detail": "hide",
         "command": "ssh",
         "type": "process",
         "args": [
@@ -349,6 +362,7 @@
     // ------------------------------------------------------------------ ARMv8
     {
         "label": "build-container-torizon-debug-arm64",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -368,6 +382,7 @@
     },
     {
         "label": "push-container-torizon-debug-arm64",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -385,6 +400,7 @@
     },
     {
         "label": "pull-container-torizon-debug-arm64",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -399,6 +415,7 @@
     },
     {
         "label": "run-container-torizon-debug-arm64",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -413,6 +430,7 @@
     },
     {
         "label": "pre-cleanup-arm64",
+        "detail": "hide",
         "command": "sshpass",
         "type": "process",
         "args": [
@@ -427,6 +445,7 @@
     },
     {
         "label": "run-mono-debug-server-arm64",
+        "detail": "hide",
         "command": "ssh",
         "type": "process",
         "args": [
@@ -459,6 +478,7 @@
     },
     {
         "label": "build-release-arm64",
+        "detail": "hide",
         "command": "docker-compose",
         "type": "process",
         "options": {
@@ -510,5 +530,5 @@
         "password": true,
         "description": "Container Registry Password"
     }
-  ]
+]
 }
