@@ -8,6 +8,7 @@ $telemetry = $args[4]
 $boardarch = $args[5]
 $boardmodel = $args[6]
 $template = $args[7]
+$osrelease = $args[8]
 
 # is enabled by default
 if ([string]::IsNullOrEmpty($telemetry)) {
@@ -26,6 +27,10 @@ if ([string]::IsNullOrEmpty($boardmodel)) {
 
 if ([string]::IsNullOrEmpty($template)) {
     $template = "undefined"
+}
+
+if ([string]::IsNullOrEmpty($osrelease)) {
+    $osrelease = "undefined"
 }
 
 if ([string]::IsNullOrEmpty($templateFolder)) {
@@ -71,6 +76,7 @@ if ($_TELEMETRY -eq $true) {
             template = $template
             boardarch = $boardarch
             boardmodel = $boardmodel
+            osrelease = $osrelease
             error = "false"
         }
 
