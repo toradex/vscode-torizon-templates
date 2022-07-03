@@ -31,8 +31,12 @@ if ($null -ne $env:WSL_DISTRO_NAME) {
 
     for( $i = 0; $i -lt $ports.length; $i++ ){
         $port = $ports[$i];
-        $superScript = "$superScript netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$addr &&";
-        $superScript = "$superScript netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$remoteport &&";
+        $superScript = "($superScript netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$addr) -or `$true &&";
+    }
+
+    for( $i = 0; $i -lt $ports.length; $i++ ){
+        $port = $ports[$i];
+        $superScript = "($superScript netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$remoteport) -or `$true &&";
     }
 
     $superScript = $superScript.Trim();
