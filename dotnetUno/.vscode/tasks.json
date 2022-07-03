@@ -519,7 +519,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-P",
-                "${config:torizon_debug_ssh_port}}",
+                "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm64/publish",
                 "torizon@${config:torizon_ip}:~/app"
