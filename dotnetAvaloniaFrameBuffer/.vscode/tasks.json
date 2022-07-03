@@ -37,7 +37,7 @@
             ],
             "problemMatcher": "$msCompile"
         },
-// --------------------------------------------------------------------- COMMON
+        // --------------------------------------------------------------------- COMMON
         {
             "label": "docker-login",
             "command": "docker",
@@ -169,7 +169,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "rm -rf ~/app"
@@ -177,7 +177,7 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
-// --------------------------------------------------------------------- ARMv7
+        // --------------------------------------------------------------------- ARMv7
         {
             "label": "build-release-arm",
             "detail": "hide",
@@ -342,7 +342,7 @@
                 "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "-P",
                 "${config:torizon_debug_ssh_port}",
@@ -378,7 +378,7 @@
                 "dd if=/dev/zero count=1200 bs=1024 > /dev/fb0"
             ],
             "dependsOrder": "sequence",
-            "dependsOn":[
+            "dependsOn": [
                 "stop-container-torizon-arm"
             ],
             "problemMatcher": "$msCompile"
@@ -398,7 +398,7 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
-// --------------------------------------------------------------------- ARMv8
+        // --------------------------------------------------------------------- ARMv8
         {
             "label": "pre-cleanup-arm64",
             "detail": "hide",
@@ -522,7 +522,7 @@
                 "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "-P",
                 "${config:torizon_debug_ssh_port}",
@@ -558,7 +558,7 @@
                 "dd if=/dev/zero count=1200 bs=1024 > /dev/fb0"
             ],
             "dependsOrder": "sequence",
-            "dependsOn":[
+            "dependsOn": [
                 "stop-container-torizon-arm64"
             ],
             "problemMatcher": "$msCompile"

@@ -38,7 +38,7 @@
             ],
             "problemMatcher": "$msCompile"
         },
-// --------------------------------------------------------------------- COMMON
+        // --------------------------------------------------------------------- COMMON
         {
             "label": "docker-login",
             "command": "docker",
@@ -170,7 +170,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "rm -rf ~/app"
@@ -178,7 +178,7 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
-// --------------------------------------------------------------------- ARMv7
+        // --------------------------------------------------------------------- ARMv7
         {
             "label": "pre-cleanup-arm",
             "detail": "hide",
@@ -304,7 +304,7 @@
                 "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "-P",
                 "${config:torizon_debug_ssh_port}",
@@ -368,7 +368,7 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
-// --------------------------------------------------------------------- ARMv8
+        // --------------------------------------------------------------------- ARMv8
         {
             "label": "pre-cleanup-arm64",
             "detail": "hide",
@@ -494,7 +494,7 @@
                 "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "-P",
                 "${config:torizon_debug_ssh_port}",

@@ -4,7 +4,9 @@
         {
             "type": "typescript",
             "tsconfig": "tsconfig.json",
-            "problemMatcher": ["$tsc"],
+            "problemMatcher": [
+                "$tsc"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -152,7 +154,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "rm -rf ~/app"
@@ -307,7 +309,7 @@
                 "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "-P",
                 "${config:torizon_debug_ssh_port}",
@@ -328,7 +330,7 @@
                 "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
@@ -459,7 +461,7 @@
                 "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "-P",
                 "${config:torizon_debug_ssh_port}",
@@ -480,7 +482,7 @@
                 "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
-                "-o", 
+                "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",

@@ -1,569 +1,569 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "build-skia-gtk",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "publish-skia-gtk",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "publish",
-        "-c",
-        "Debug",
-        "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    // ----------------------------------------------------------------- COMMON
-    {
-        "label": "docker-login",
-        "detail": "hide",
-        "command": "docker",
-        "type": "process",
-        "options": {
-            "env": {
-                "DOCKER_LOGIN": "${input:dockerLogin}",
-                "DOCKER_PSSWD": "${input:dockerPsswd}"
-            }
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-skia-gtk",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
         },
-        "args": [
-            "login",
-            "--username",
-            "${input:dockerLogin}",
-            "--password",
-            "${input:dockerPsswd}"
-        ],
-        "dependsOrder": "sequence"
-    },
-    {
-        "label": "run-docker-registry",
-        "command": "pwsh",
-        "type": "process",
-        "presentation": {
-            "echo": false,
-            "reveal": "silent",
-            "focus": false,
-            "panel": "shared",
-            "showReuseMessage": true,
-            "clear": false
+        {
+            "label": "publish-skia-gtk",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Debug",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
         },
-        "args": [
-            "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
-            "docker",
-            "'-d -p 5000:5000 --restart=always registry:2'",
-            "registry"
-        ],
-        "dependsOrder": "sequence"
-    },
-    {
-        "label": "run-torizon-binfmt",
-        "command": "pwsh",
-        "type": "process",
-        "presentation": {
-            "echo": false,
-            "reveal": "silent",
-            "focus": false,
-            "panel": "shared",
-            "showReuseMessage": true,
-            "clear": false
+        // ----------------------------------------------------------------- COMMON
+        {
+            "label": "docker-login",
+            "detail": "hide",
+            "command": "docker",
+            "type": "process",
+            "options": {
+                "env": {
+                    "DOCKER_LOGIN": "${input:dockerLogin}",
+                    "DOCKER_PSSWD": "${input:dockerPsswd}"
+                }
+            },
+            "args": [
+                "login",
+                "--username",
+                "${input:dockerLogin}",
+                "--password",
+                "${input:dockerPsswd}"
+            ],
+            "dependsOrder": "sequence"
         },
-        "args": [
-            "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
-            "docker",
-            "'--rm -it --privileged torizon/binfmt'",
-            "binfmt"
-        ],
-        "dependsOrder": "sequence"
-    },
-    {
-        "label": "run-share-wsl-ports",
-        "command": "pwsh",
-        "type": "process",
-        "presentation": {
-            "echo": false,
-            "reveal": "silent",
-            "focus": false,
-            "panel": "shared",
-            "showReuseMessage": true,
-            "clear": false
+        {
+            "label": "run-docker-registry",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "args": [
+                "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
+                "docker",
+                "'-d -p 5000:5000 --restart=always registry:2'",
+                "registry"
+            ],
+            "dependsOrder": "sequence"
         },
-        "args": [
-            "${workspaceFolder}/.conf/shareWSLPorts.ps1"
-        ],
-        "dependsOrder": "sequence"
-    },
-    {
-        "label": "check-deps",
-        "command": "pwsh",
-        "type": "process",
-        "presentation": {
-            "echo": false,
-            "reveal": "always",
-            "focus": true,
-            "panel": "dedicated",
-            "showReuseMessage": true,
-            "clear": false
+        {
+            "label": "run-torizon-binfmt",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "args": [
+                "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
+                "docker",
+                "'--rm -it --privileged torizon/binfmt'",
+                "binfmt"
+            ],
+            "dependsOrder": "sequence"
         },
-        "args": [
-            "${workspaceFolder}/.conf/checkDeps.ps1",
-        ],
-        "dependsOrder": "sequence"
-    },
-    {
-        "label": "copy-docker-compose",
-        "detail": "hide",
-        "command": "sshpass",
-        "type": "process",
-        "args": [
-            "-p",
-            "${config:torizon_psswd}",
-            "scp",
-            "${config:torizon_workspace}/docker-compose.yml",
-            "torizon@${config:torizon_ip}:~/"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "wait-a-bit",
-        "detail": "hide",
-        "command": "sleep",
-        "type": "process",
-        "args": [
-            "1"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "pos-cleanup",
-        "detail": "hide",
-        "command": "ssh",
-        "type": "process",
-        "args": [
-            "-i",
-            "${workspaceFolder}/.conf/id_rsa",
-            "-p",
-            "${config:torizon_debug_ssh_port}",
-            "-o",
-            "UserKnownHostsFile=/dev/null",
-            "-o", 
-            "StrictHostKeyChecking=no",
-            "torizon@${config:torizon_ip}",
-            "rm -rf ~/app"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    // ------------------------------------------------------------------ ARMv7
-    {
-        "label": "build-release-arm",
-        "detail": "hide",
-        "command": "docker-compose",
-        "type": "process",
-        "options": {
-            "env": {
-                "DOCKER_LOGIN": "${input:dockerLogin}",
-                "TAG": "arm"
-            }
+        {
+            "label": "run-share-wsl-ports",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "args": [
+                "${workspaceFolder}/.conf/shareWSLPorts.ps1"
+            ],
+            "dependsOrder": "sequence"
         },
-        "args": [
-            "build",
-            "--build-arg",
-            "IMAGE_ARCH=arm",
-            "__container__"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "push-release-arm",
-        "command": "docker-compose",
-        "type": "process",
-        "options": {
-            "env": {
-                "DOCKER_LOGIN": "${input:dockerLogin}",
-                "TAG": "arm"
-            }
+        {
+            "label": "check-deps",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "args": [
+                "${workspaceFolder}/.conf/checkDeps.ps1",
+            ],
+            "dependsOrder": "sequence"
         },
-        "args": [
-            "push",
-            "__container__"
-        ],
-        "dependsOn": [
-            "docker-login",
-            "build-release-arm"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "pre-cleanup-arm",
-        "detail": "hide",
-        "command": "sshpass",
-        "type": "process",
-        "args": [
-            "-p",
-            "${config:torizon_psswd}",
-            "ssh",
-            "torizon@${config:torizon_ip}",
-            "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose down"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "build-torizon-arm",
-        "detail": "hide",
-        "command": "dotnet",
-        "type": "process",
-        "args": [
-            "build",
-            "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-            "/property:GenerateFullPaths=true",
-            "/consoleloggerparameters:NoSummary",
-            "-r",
-            "linux-arm"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "publish-torizon-arm",
-        "detail": "hide",
-        "command": "dotnet",
-        "type": "process",
-        "args": [
-            "publish",
-            "-c",
-            "Debug",
-            "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-            "-r",
-            "linux-arm"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "build-container-torizon-debug-arm",
-        "detail": "hide",
-        "command": "docker-compose",
-        "type": "process",
-        "options": {
-            "env": {
-                "LOCAL_REGISTRY": "localhost",
-                "TAG": "arm",
-                "GPU": ""
-            }
+        {
+            "label": "copy-docker-compose",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "scp",
+                "${config:torizon_workspace}/docker-compose.yml",
+                "torizon@${config:torizon_ip}:~/"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
         },
-        "args": [
-            "build",
-            "--build-arg",
-            "IMAGE_ARCH=arm",
-            "dotnet-uno-debug"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "push-container-torizon-debug-arm",
-        "detail": "hide",
-        "command": "docker-compose",
-        "type": "process",
-        "options": {
-            "env": {
-                "LOCAL_REGISTRY": "localhost",
-                "TAG": "arm",
-                "GPU": ""
-            }
+        {
+            "label": "wait-a-bit",
+            "detail": "hide",
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "1"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
         },
-        "args": [
-            "push",
-            "dotnet-uno-debug"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "pull-container-torizon-debug-arm",
-        "detail": "hide",
-        "command": "sshpass",
-        "type": "process",
-        "args": [
-            "-p",
-            "${config:torizon_psswd}",
-            "ssh",
-            "torizon@${config:torizon_ip}",
-            "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull dotnet-uno-debug"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "run-container-torizon-debug-arm",
-        "detail": "hide",
-        "command": "sshpass",
-        "type": "process",
-        "args": [
-            "-p",
-            "${config:torizon_psswd}",
-            "ssh",
-            "torizon@${config:torizon_ip}",
-            "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d dotnet-uno-debug"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "deploy-torizon-arm",
-        "detail": "hide",
-        "command": "scp",
-        "type": "process",
-        "args": [
-            "-i",
-            "${workspaceFolder}/.conf/id_rsa",
-            "-o",
-            "UserKnownHostsFile=/dev/null",
-            "-o", 
-            "StrictHostKeyChecking=no",
-            "-P",
-            "${config:torizon_debug_ssh_port}",
-            "-pr",
-            "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm/publish",
-            "torizon@${config:torizon_ip}:~/app"
-        ],
-        "dependsOn": [
-            "copy-docker-compose",
-            "pre-cleanup-arm",
-            "build-torizon-arm",
-            "publish-torizon-arm",
-            "build-container-torizon-debug-arm",
-            "push-container-torizon-debug-arm",
-            "pull-container-torizon-debug-arm",
-            "run-container-torizon-debug-arm",
-            "wait-a-bit",
-            "pos-cleanup"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    // ------------------------------------------------------------------ ARMv8
-    {
-      "label": "pre-cleanup-arm64",
-      "detail": "hide",
-      "command": "sshpass",
-      "type": "process",
-      "args": [
-          "-p",
-          "${config:torizon_psswd}",
-          "ssh",
-          "torizon@${config:torizon_ip}",
-          "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose down"
-      ],
-      "dependsOrder": "sequence",
-      "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "build-torizon-arm64",
-        "detail": "hide",
-        "command": "dotnet",
-        "type": "process",
-        "args": [
-            "build",
-            "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-            "/property:GenerateFullPaths=true",
-            "/consoleloggerparameters:NoSummary",
-            "-r",
-            "linux-arm64"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "publish-torizon-arm64",
-        "detail": "hide",
-        "command": "dotnet",
-        "type": "process",
-        "args": [
-            "publish",
-            "-c",
-            "Debug",
-            "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-            "-r",
-            "linux-arm64"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "build-container-torizon-debug-arm64",
-        "detail": "hide",
-        "command": "docker-compose",
-        "type": "process",
-        "options": {
-            "env": {
-                "LOCAL_REGISTRY": "localhost",
-                "TAG": "arm64",
-                "GPU": "-vivante"
-            }
+        {
+            "label": "pos-cleanup",
+            "detail": "hide",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "rm -rf ~/app"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
         },
-        "args": [
-            "build",
-            "--build-arg",
-            "IMAGE_ARCH=arm64",
-            "dotnet-uno-debug"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "push-container-torizon-debug-arm64",
-        "detail": "hide",
-        "command": "docker-compose",
-        "type": "process",
-        "options": {
-            "env": {
-                "LOCAL_REGISTRY": "localhost",
-                "TAG": "arm64",
-                "GPU": "-vivante"
-            }
+        // ------------------------------------------------------------------ ARMv7
+        {
+            "label": "build-release-arm",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "DOCKER_LOGIN": "${input:dockerLogin}",
+                    "TAG": "arm"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm",
+                "__container__"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
         },
-        "args": [
-            "push",
-            "dotnet-uno-debug"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "pull-container-torizon-debug-arm64",
-        "detail": "hide",
-        "command": "sshpass",
-        "type": "process",
-        "args": [
-            "-p",
-            "${config:torizon_psswd}",
-            "ssh",
-            "torizon@${config:torizon_ip}",
-            "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull dotnet-uno-debug"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "run-container-torizon-debug-arm64",
-        "detail": "hide",
-        "command": "sshpass",
-        "type": "process",
-        "args": [
-            "-p",
-            "${config:torizon_psswd}",
-            "ssh",
-            "torizon@${config:torizon_ip}",
-            "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d dotnet-uno-debug"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "deploy-torizon-arm64",
-        "detail": "hide",
-        "command": "scp",
-        "type": "process",
-        "args": [
-            "-i",
-            "${workspaceFolder}/.conf/id_rsa",
-            "-o",
-            "UserKnownHostsFile=/dev/null",
-            "-o", 
-            "StrictHostKeyChecking=no",
-            "-P",
-            "${config:torizon_debug_ssh_port}}",
-            "-pr",
-            "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm64/publish",
-            "torizon@${config:torizon_ip}:~/app"
-        ],
-        "dependsOn": [
-            "copy-docker-compose",
-            "pre-cleanup-arm64",
-            "build-torizon-arm64",
-            "publish-torizon-arm64",
-            "build-container-torizon-debug-arm64",
-            "push-container-torizon-debug-arm64",
-            "pull-container-torizon-debug-arm64",
-            "run-container-torizon-debug-arm64",
-            "wait-a-bit",
-            "pos-cleanup"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "build-release-arm64",
-        "detail": "hide",
-        "command": "docker-compose",
-        "type": "process",
-        "options": {
-            "env": {
-                "DOCKER_LOGIN": "${input:dockerLogin}",
-                "TAG": "arm64"
-            }
+        {
+            "label": "push-release-arm",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "DOCKER_LOGIN": "${input:dockerLogin}",
+                    "TAG": "arm"
+                }
+            },
+            "args": [
+                "push",
+                "__container__"
+            ],
+            "dependsOn": [
+                "docker-login",
+                "build-release-arm"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
         },
-        "args": [
-            "build",
-            "--build-arg",
-            "IMAGE_ARCH=arm64",
-            "__container__"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    },
-    {
-        "label": "push-release-arm64",
-        "command": "docker-compose",
-        "type": "process",
-        "options": {
-            "env": {
-                "DOCKER_LOGIN": "${input:dockerLogin}",
-                "TAG": "arm64"
-            }
+        {
+            "label": "pre-cleanup-arm",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose down"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
         },
-        "args": [
-            "push",
-            "__container__"
-        ],
-        "dependsOn": [
-            "docker-login",
-            "build-release-arm64"
-        ],
-        "dependsOrder": "sequence",
-        "problemMatcher": "$msCompile"
-    }
-],
-"inputs": [
-    {
-        "id": "dockerLogin",
-        "type": "promptString",
-        "description": "Container Registry Login"
-    },
-    {
-        "id": "dockerPsswd",
-        "type": "promptString",
-        "password": true,
-        "description": "Container Registry Password"
-    }
-],
+        {
+            "label": "build-torizon-arm",
+            "detail": "hide",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-arm"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish-torizon-arm",
+            "detail": "hide",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Debug",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "-r",
+                "linux-arm"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-container-torizon-debug-arm",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm",
+                    "GPU": ""
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm",
+                "dotnet-uno-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "push-container-torizon-debug-arm",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm",
+                    "GPU": ""
+                }
+            },
+            "args": [
+                "push",
+                "dotnet-uno-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pull-container-torizon-debug-arm",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull dotnet-uno-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run-container-torizon-debug-arm",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d dotnet-uno-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-torizon-arm",
+            "detail": "hide",
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}",
+                "-pr",
+                "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm/publish",
+                "torizon@${config:torizon_ip}:~/app"
+            ],
+            "dependsOn": [
+                "copy-docker-compose",
+                "pre-cleanup-arm",
+                "build-torizon-arm",
+                "publish-torizon-arm",
+                "build-container-torizon-debug-arm",
+                "push-container-torizon-debug-arm",
+                "pull-container-torizon-debug-arm",
+                "run-container-torizon-debug-arm",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        // ------------------------------------------------------------------ ARMv8
+        {
+            "label": "pre-cleanup-arm64",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose down"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-torizon-arm64",
+            "detail": "hide",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish-torizon-arm64",
+            "detail": "hide",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Debug",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "-r",
+                "linux-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-container-torizon-debug-arm64",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm64",
+                    "GPU": "-vivante"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm64",
+                "dotnet-uno-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "push-container-torizon-debug-arm64",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm64",
+                    "GPU": "-vivante"
+                }
+            },
+            "args": [
+                "push",
+                "dotnet-uno-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pull-container-torizon-debug-arm64",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull dotnet-uno-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run-container-torizon-debug-arm64",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d dotnet-uno-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-torizon-arm64",
+            "detail": "hide",
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}}",
+                "-pr",
+                "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm64/publish",
+                "torizon@${config:torizon_ip}:~/app"
+            ],
+            "dependsOn": [
+                "copy-docker-compose",
+                "pre-cleanup-arm64",
+                "build-torizon-arm64",
+                "publish-torizon-arm64",
+                "build-container-torizon-debug-arm64",
+                "push-container-torizon-debug-arm64",
+                "pull-container-torizon-debug-arm64",
+                "run-container-torizon-debug-arm64",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-release-arm64",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "DOCKER_LOGIN": "${input:dockerLogin}",
+                    "TAG": "arm64"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm64",
+                "__container__"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "push-release-arm64",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "DOCKER_LOGIN": "${input:dockerLogin}",
+                    "TAG": "arm64"
+                }
+            },
+            "args": [
+                "push",
+                "__container__"
+            ],
+            "dependsOn": [
+                "docker-login",
+                "build-release-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "dockerLogin",
+            "type": "promptString",
+            "description": "Container Registry Login"
+        },
+        {
+            "id": "dockerPsswd",
+            "type": "promptString",
+            "password": true,
+            "description": "Container Registry Password"
+        }
+    ],
 }
