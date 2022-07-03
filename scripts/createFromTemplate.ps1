@@ -54,6 +54,9 @@ if ([string]::IsNullOrEmpty($containerName)) {
     }
 }
 
+# container name needs to be lower case
+$containerName = $containerName.ToLower()
+
 if (-not [string]::IsNullOrEmpty($location)) {
     # special case for automations
     $location = "$location/$projectName"
