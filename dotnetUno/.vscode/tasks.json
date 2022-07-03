@@ -131,6 +131,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "scp",
+                "-o", "StrictHostKeyChecking=n",
                 "${config:torizon_workspace}/docker-compose.yml",
                 "torizon@${config:torizon_ip}:~/"
             ],
@@ -219,6 +220,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose down"
             ],
@@ -306,6 +308,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull dotnet-uno-debug"
             ],
@@ -321,6 +324,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d dotnet-uno-debug"
             ],
@@ -370,6 +374,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose down"
             ],
@@ -457,6 +462,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull dotnet-uno-debug"
             ],
@@ -472,6 +478,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d dotnet-uno-debug"
             ],

@@ -127,6 +127,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "scp",
+                "-o", "StrictHostKeyChecking=n",
                 "${workspaceFolder}/docker-compose.yml",
                 "torizon@${config:torizon_ip}:~/"
             ],
@@ -226,6 +227,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down"
             ],
@@ -278,6 +280,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull __container__-debug"
             ],
@@ -293,6 +296,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose up -d __container__-debug"
             ],
@@ -430,6 +434,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull __container__-debug"
             ],
@@ -445,6 +450,7 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o", "StrictHostKeyChecking=n",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose up -d __container__-debug"
             ],
