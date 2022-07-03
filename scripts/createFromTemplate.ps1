@@ -102,6 +102,7 @@ Write-Host -ForegroundColor DarkGreen "✅ Folder copy done"
 Copy-Item "$templateFolder/../scripts/checkDeps.ps1" "$location/.conf/"
 Copy-Item "$templateFolder/../scripts/runContainerIfNotExists.ps1" "$location/.conf/"
 Copy-Item "$templateFolder/../scripts/shareWSLPorts.ps1" "$location/.conf/"
+Copy-Item "$templateFolder/../scripts/createDockerComposeProduction.ps1" "$location/.conf"
 Write-Host -ForegroundColor DarkGreen "✅ Scripts copy done"
 
 Set-Location $location

@@ -3,6 +3,26 @@
     "tasks": [
         // ----------------------------------------------------------------- COMMON
         {
+            "label": "create-production-docker-compose",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "args": [
+                "${workspaceFolder}/.conf/createDockerComposeProduction.ps1",
+                "${workspaceFolder}",
+                "${input:dockerImageRegistry}",
+                "${input:dockerImageTag}"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
             "label": "docker-login",
             "command": "docker",
             "type": "process",
@@ -528,6 +548,21 @@
             "id": "dockerLogin",
             "type": "promptString",
             "description": "Container Registry Login"
+        },
+        {
+            "id": "dockerImageRegistry",
+            "type": "promptString",
+            "description": "Image Registry"
+        },
+        {
+            "id": "dockerImageTag",
+            "type": "promptString",
+            "description": "Image Tag"
+        },
+        {
+            "id": "dockerImageGpu",
+            "type": "promptString",
+            "description": "Image GPU"
         },
         {
             "id": "dockerPsswd",
