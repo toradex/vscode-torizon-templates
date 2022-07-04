@@ -1,6 +1,7 @@
 {
     "Templates": [
         {
+            "img": "project.png",
             "folder": "dotnet-console",
             "description": ".NET 6 C# Console Application",
             "runtime": ".net 6.0",
@@ -10,6 +11,7 @@
             "support": "Toradex"
         },
         {
+            "img": "project.png",
             "folder": "dotnetAvalonia",
             "description": ".NET 6 C# Avalonia GTK MVVM",
             "runtime": ".net 6.0",
@@ -19,6 +21,7 @@
             "support": "Community"
         },
         {
+            "img": "project.png",
             "folder": "dotnetAvaloniaFrameBuffer",
             "description": ".NET 6 C# Avalonia Frame Buffer DRM",
             "runtime": ".net 6.0",
@@ -28,6 +31,7 @@
             "support": "Community"
         },
         {
+            "img": "project.png",
             "folder": "dotnetUno",
             "description": ".NET 6 C# Uno Platform Skia.GTK",
             "runtime": ".net 6.0",
@@ -37,6 +41,7 @@
             "support": "Toradex"
         },
         {
+            "img": "project.png",
             "folder": "dotnetUnoFrameBuffer",
             "description": ".NET 6 C# Uno Platform Frame Buffer",
             "runtime": ".net 6.0",
@@ -46,6 +51,7 @@
             "support": "Community"
         },
         {
+            "img": "project.png",
             "folder": "monoCsharpForms",
             "description": "Mono 4.7 C# Windows Forms Application",
             "runtime": ".NET 4.7",
@@ -56,6 +62,7 @@
             "support": "Community"
         },
         {
+            "img": "project.png",
             "folder": "nodeElectron",
             "description": "Node.js JavaScript Electron Application",
             "runtime": "Node.js",
@@ -67,6 +74,7 @@
             "support": "Community"
         },
         {
+            "img": "project.png",
             "folder": "nodeJSTypeScript",
             "description": "Node.js TypeScript Application",
             "runtime": "Node.js",
