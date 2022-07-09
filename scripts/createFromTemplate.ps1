@@ -105,16 +105,19 @@ Copy-Item $templateFolder $location -Recurse
 Write-Host -ForegroundColor DarkGreen "✅ Folder copy done"
 
 # apply the common tasks and inputs
+Write-Host -ForegroundColor Yellow "Applying common tasks ..."
 $commonTasks = Get-Content "$templateFolder/../assets/tasks/common.json" | ConvertFrom-Json
 $commonInputs = Get-Content "$templateFolder/../assets/tasks/inputs.json" | ConvertFrom-Json
 $projTasks = Get-Content "$location/.vscode/tasks.json" | ConvertFrom-Json
 
-$projTasks.tasks = @($projTasks.tasks, $commonTasks.tasks);
-$projTasks.inputs = @($projTasks.inputs, $commonInputs.inputs);
+$projTasks.tasks += $commonTasks.tasks
+$projTasks.inputs += $commonInputs.inputs
 
 ConvertTo-Json -Depth 100 -InputObject $projTasks | `
     Format-Json | `
     Out-File -FilePath "$location/.vscode/tasks.json"
+
+Write-Host -ForegroundColor DarkGreen "✅ Common tasks applied"
 
 # we have to also copy the scripts
 Copy-Item "$templateFolder/../scripts/checkDeps.ps1" "$location/.conf/"
