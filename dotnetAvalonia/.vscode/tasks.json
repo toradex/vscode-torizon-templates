@@ -38,7 +38,6 @@
             ],
             "problemMatcher": "$msCompile"
         },
-        // --------------------------------------------------------------------- COMMON
         {
             "label": "create-production-docker-compose",
             "command": "pwsh",
@@ -149,7 +148,7 @@
                 "clear": false
             },
             "args": [
-                "${workspaceFolder}/.conf/checkDeps.ps1",
+                "${workspaceFolder}/.conf/checkDeps.ps1"
             ],
             "dependsOrder": "sequence"
         },
@@ -162,7 +161,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "scp",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "${workspaceFolder}/docker-compose.yml",
                 "torizon@${config:torizon_ip}:~/"
             ],
@@ -200,7 +200,6 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
-        // --------------------------------------------------------------------- ARMv7
         {
             "label": "pre-cleanup-arm",
             "detail": "hide",
@@ -210,7 +209,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose down"
             ],
@@ -296,7 +296,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull dotnet-avalonia-debug"
             ],
@@ -312,7 +313,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d dotnet-avalonia-debug"
             ],
@@ -393,7 +395,6 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
-        // --------------------------------------------------------------------- ARMv8
         {
             "label": "pre-cleanup-arm64",
             "detail": "hide",
@@ -403,7 +404,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose down"
             ],
@@ -489,7 +491,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull dotnet-avalonia-debug"
             ],
@@ -505,7 +508,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d dotnet-avalonia-debug"
             ],

@@ -1,7 +1,6 @@
 {
     "version": "2.0.0",
     "tasks": [
-        // ----------------------------------------------------------------- COMMON
         {
             "label": "create-production-docker-compose",
             "command": "pwsh",
@@ -111,7 +110,7 @@
                 "clear": false
             },
             "args": [
-                "${workspaceFolder}/.conf/checkDeps.ps1",
+                "${workspaceFolder}/.conf/checkDeps.ps1"
             ],
             "dependsOrder": "sequence"
         },
@@ -124,7 +123,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "scp",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "${workspaceFolder}/docker-compose.yml",
                 "torizon@${config:torizon_ip}:~/"
             ],
@@ -166,7 +166,7 @@
             "label": "build-application",
             "command": "msbuild",
             "type": "process",
-            "args": [],
+        "args": [],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
@@ -212,7 +212,6 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
-        // ------------------------------------------------------------------ ARMv7
         {
             "label": "build-release-arm",
             "detail": "hide",
@@ -259,7 +258,7 @@
             "detail": "hide",
             "command": "msbuild",
             "type": "process",
-            "args": [],
+        "args": [],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
@@ -310,7 +309,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull dotnet-mono-debug"
             ],
@@ -326,7 +326,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose up -d dotnet-mono-debug"
             ],
@@ -342,7 +343,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose down"
             ],
@@ -381,7 +383,6 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile"
         },
-        // ------------------------------------------------------------------ ARMv8
         {
             "label": "build-container-torizon-debug-arm64",
             "detail": "hide",
@@ -429,7 +430,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull dotnet-mono-debug"
             ],
@@ -445,7 +447,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose up -d dotnet-mono-debug"
             ],
@@ -461,7 +464,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
-                "-o", "StrictHostKeyChecking=no",
+                "-o",
+                "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down"
             ],
