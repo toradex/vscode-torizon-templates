@@ -1,0 +1,30 @@
+{
+    "inputs": [
+        {
+            "id": "dockerLogin",
+            "type": "promptString",
+            "description": "Container Registry Login"
+        },
+        {
+            "id": "dockerImageRegistry",
+            "type": "promptString",
+            "description": "Image Registry"
+        },
+        {
+            "id": "dockerImageTag",
+            "type": "promptString",
+            "description": "Image Tag"
+        },
+        {
+            "id": "dockerImageGpu",
+            "type": "promptString",
+            "description": "Image GPU"
+        },
+        {
+            "id": "dockerPsswd",
+            "type": "promptString",
+            "password": true,
+            "description": "Container Registry Password"
+        }
+    ]
+}
