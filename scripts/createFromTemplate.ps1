@@ -1,5 +1,5 @@
 # include
-. ./utils/formatJson.ps1
+. "$(Split-Path $MyInvocation.MyCommand.Path -Parent)/utils/formatJson.ps1"
 
 $templateFolder = $args[0]
 $projectName = $args[1]
