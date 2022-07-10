@@ -11,7 +11,11 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "publish-skia-gtk",
@@ -25,7 +29,11 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "build-release-arm",
@@ -45,7 +53,11 @@
                 "__container__"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "push-release-arm",
@@ -66,7 +78,11 @@
                 "build-release-arm"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "pre-cleanup-arm",
@@ -83,7 +99,11 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose down"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "build-torizon-arm",
@@ -99,7 +119,11 @@
                 "linux-arm"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "publish-torizon-arm",
@@ -115,7 +139,11 @@
                 "linux-arm"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "build-container-torizon-debug-arm",
@@ -136,7 +164,11 @@
                 "dotnet-uno-debug"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "push-container-torizon-debug-arm",
@@ -155,7 +187,11 @@
                 "dotnet-uno-debug"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "pull-container-torizon-debug-arm",
@@ -172,7 +208,11 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull dotnet-uno-debug"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "run-container-torizon-debug-arm",
@@ -189,7 +229,11 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d dotnet-uno-debug"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "deploy-torizon-arm",
@@ -222,7 +266,11 @@
                 "pos-cleanup"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "pre-cleanup-arm64",
@@ -239,7 +287,11 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose down"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "build-torizon-arm64",
@@ -255,7 +307,11 @@
                 "linux-arm64"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "publish-torizon-arm64",
@@ -271,7 +327,11 @@
                 "linux-arm64"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "build-container-torizon-debug-arm64",
@@ -292,7 +352,11 @@
                 "dotnet-uno-debug"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "push-container-torizon-debug-arm64",
@@ -311,7 +375,11 @@
                 "dotnet-uno-debug"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "pull-container-torizon-debug-arm64",
@@ -328,7 +396,11 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull dotnet-uno-debug"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "run-container-torizon-debug-arm64",
@@ -345,7 +417,11 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d dotnet-uno-debug"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "deploy-torizon-arm64",
@@ -378,7 +454,11 @@
                 "pos-cleanup"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "build-release-arm64",
@@ -398,7 +478,11 @@
                 "__container__"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         },
         {
             "label": "push-release-arm64",
@@ -419,7 +503,11 @@
                 "build-release-arm64"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         }
     ],
 "inputs": []
