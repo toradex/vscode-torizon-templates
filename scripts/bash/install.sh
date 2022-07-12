@@ -2,6 +2,9 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+echo "INSTALL APOLLOX PWSH DEPS NEEDS SUPER USER PRIVILEGIES"
+sudo echo "OK"
+
 install() {
     #Companion code for the blog https://cloudywindows.com
 
