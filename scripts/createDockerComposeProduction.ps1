@@ -32,7 +32,7 @@ if ([string]::IsNullOrEmpty($tag)) {
 }
 
 # check if the yaml module is installed
-if (-not (Get-Module -Name "powershell-yaml")) {
+if (-not (Get-Module -ListAvailable -Name "powershell-yaml")) {
     Write-Host -ForegroundColor Yellow "Installing powershell-yaml ..."
     Install-Module -Name "powershell-yaml" -Confirm:$false -Force
 }
