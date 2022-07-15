@@ -18,7 +18,8 @@
                 "${input:dockerImageRegistry}",
                 "${input:dockerImageTag}",
                 "__container__",
-                "${input:archList}"
+                "${input:archList}",
+                "${input:dockerPsswd}"
             ],
             "dependsOrder": "sequence",
             "icon": {

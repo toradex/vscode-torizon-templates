@@ -4,9 +4,10 @@ $dockerLogin    = $args[1]
 $tag            = $args[2]
 $imageName      = $args[3]
 $imageArch      = $args[4]
+$psswd          = $args[5]
 
 # can be null
-$gpu            = $args[5]
+$gpu            = $args[6]
 
 if ($null -eq $gpu) {
     $gpu = ""
@@ -23,6 +24,13 @@ if ([string]::IsNullOrEmpty($dockerLogin)) {
     $dockerLogin = Read-Host "Image repository"
     if ($dockerLogin -eq "") {
         throw "❌ Docker image repository cannot be empty"
+    }
+}
+
+if ([string]::IsNullOrEmpty($psswd)) {
+    $tag = Read-Host "Docker registry password"
+    if ($tag -eq "") {
+        throw "❌ Docker registry password cannot be empty"
     }
 }
 
@@ -55,6 +63,14 @@ docker-compose build --build-arg IMAGE_ARCH=$imageArch $imageName
 Set-Location -
 
 Write-Host -ForegroundColor DarkGreen "✅ Image rebuild and tagged"
+
+# push it
+Write-Host "Pushing it $dockerLogin/$($imageName):$tag ..."
+
+docker login --username $dockerLogin --password $psswd
+docker push $dockerLogin/$($imageName):$tag
+
+Write-Host -ForegroundColor DarkGreen "✅ Image push OK"
 
 # check if the yaml module is installed
 Write-Host "Importing powershell-yaml ..."
