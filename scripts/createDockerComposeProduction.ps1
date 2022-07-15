@@ -32,12 +32,14 @@ if ([string]::IsNullOrEmpty($tag)) {
 }
 
 # check if the yaml module is installed
+Write-Host "Importing powershell-yaml ..."
 if (-not (Get-Module -ListAvailable -Name "powershell-yaml")) {
     Write-Host -ForegroundColor Yellow "Installing powershell-yaml ..."
     Install-Module -Name "powershell-yaml" -Confirm:$false -Force
 }
 
 Import-Module -Name "powershell-yaml"
+Write-Host -ForegroundColor DarkGreen "✅ powershell-yaml loaded"
 
 # read the yaml file
 Write-Host "Reading docker-compose.yml file ..."
