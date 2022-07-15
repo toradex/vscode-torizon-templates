@@ -16,7 +16,9 @@
                 "${workspaceFolder}/.conf/createDockerComposeProduction.ps1",
                 "${workspaceFolder}",
                 "${input:dockerImageRegistry}",
-                "${input:dockerImageTag}"
+                "${input:dockerImageTag}",
+                "__container__",
+                "${input:archList}"
             ],
             "dependsOrder": "sequence",
             "icon": {

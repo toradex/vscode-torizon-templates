@@ -25,6 +25,15 @@
             "type": "promptString",
             "password": true,
             "description": "Container Registry Password"
+        },
+        {
+            "id": "archList",
+            "type": "pickString",
+            "description": "Container architecture",
+            "options": [
+                "arm",
+                "arm64"
+            ]
         }
     ]
 }

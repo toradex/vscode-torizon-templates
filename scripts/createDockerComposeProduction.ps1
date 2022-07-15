@@ -2,9 +2,11 @@
 $compoFilePath  = $args[0]
 $dockerLogin    = $args[1]
 $tag            = $args[2]
+$imageName      = $args[3]
+$imageArch      = $args[4]
 
 # can be null
-$gpu            = $args[3]
+$gpu            = $args[5]
 
 if ($null -eq $gpu) {
     $gpu = ""
@@ -24,12 +26,35 @@ if ([string]::IsNullOrEmpty($dockerLogin)) {
     }
 }
 
+if ([string]::IsNullOrEmpty($imageName)) {
+    $tag = Read-Host "Image name"
+    if ($tag -eq "") {
+        throw "❌ Docker image name cannot be empty"
+    }
+}
+
 if ([string]::IsNullOrEmpty($tag)) {
     $tag = Read-Host "Image tag"
     if ($tag -eq "") {
         throw "❌ Docker image tag cannot be empty"
     }
 }
+
+# rebuild and tag
+Write-Host "Rebuilding $dockerLogin/$($imageName):$tag ..."
+
+$objSettings = Get-Content ("$compoFilePath/.vscode/settings.json") | `
+    Out-String | ConvertFrom-Json
+$localRegistry = $objSettings.host_ip
+
+$env:LOCAL_REGISTRY="$($localRegistry):5000"
+$env:TAG="$tag"
+$env:DOCKER_LOGIN="$dockerLogin"
+Set-Location $compoFilePath
+docker-compose build --build-arg IMAGE_ARCH=$imageArch $imageName
+Set-Location -
+
+Write-Host -ForegroundColor DarkGreen "✅ Image rebuild and tagged"
 
 # check if the yaml module is installed
 Write-Host "Importing powershell-yaml ..."
