@@ -45,7 +45,7 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "__change__-deploy-run-torizon-arm64"
+            "preLaunchTask": "deploy-run-torizon-arm64"
         },
         {
             "name": "Torizon ARMv7",
@@ -74,7 +74,7 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "__change__-deploy-torizon-arm"
+            "preLaunchTask": "deploy-torizon-arm"
         },
         {
             "name": "Torizon ARMv8",
@@ -103,7 +103,7 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "__change__-deploy-torizon-arm64"
+            "preLaunchTask": "deploy-torizon-arm64"
         },
     ]
 }
