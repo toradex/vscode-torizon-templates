@@ -1,7 +1,7 @@
 {
     "tasks": [
         {
-            "label": "create-production-docker-compose",
+            "label": "create-production-image",
             "command": "pwsh",
             "type": "process",
             "presentation": {
