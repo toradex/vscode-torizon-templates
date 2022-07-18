@@ -5,6 +5,7 @@ $json = $tasksFileContent | ConvertFrom-Json
 $settings = $settingsFileContent | ConvertFrom-Json
 $inputs = $json.inputs
 $inputValues = @{}
+$cliInputs = [System.Collections.ArrayList]@()
 
 function settingsToGlobal () {
     foreach ($set in $settings | Get-Member -MemberType Properties) {
@@ -74,18 +75,26 @@ function checkInput () {
                     $desc = $inputObj.description
                     $default = $inputObj.default
 
-                    if ($inputObj.password -eq $true) {
-                        $fromUser = Read-Host `
-                                    -AsSecureString `
-                                    -Prompt "$desc [***]"
+                    if ($cliInputs.Count -gt 0) {
+                        $fromUser = $cliInputs[0]
+                        $cliInputs.RemoveAt(0)
+                    }
 
-                        # TODO: so much security wow
-                        $fromUser = ConvertFrom-SecureString `
-                            -SecureString $fromUser `
-                            -AsPlainText
-                    } else {
-                        $fromUser = Read-Host `
-                                    -Prompt "$desc [$default]"
+                    # cli input is nothing
+                    if ($null -eq $fromUser) {
+                        if ($inputObj.password -eq $true) {
+                            $fromUser = Read-Host `
+                                        -AsSecureString `
+                                        -Prompt "$desc [***]"
+
+                            # TODO: so much security wow
+                            $fromUser = ConvertFrom-SecureString `
+                                -SecureString $fromUser `
+                                -AsPlainText
+                        } else {
+                            $fromUser = Read-Host `
+                                        -Prompt "$desc [$default]"
+                        }
                     }
 
                     if ($fromUser -eq [String]::Empty) {
@@ -197,6 +206,15 @@ function runTask () {
     }
 }
 
+function getCliInputs () {
+    $argsS = $args[0]
+    # args[0] command / args[1] task name
+    for ($i = 2; $i -lt $argsS.Length; $i++) {
+        # inputs
+        [void]$cliInputs.Add($argsS[$i])
+    }
+}
+
 # main()
 # set the relative workspaceFolder (following the pattern that VS Code expects)
 $Global:workspaceFolder = Join-Path $PSScriptRoot ../
@@ -211,6 +229,7 @@ switch ($args[0]) {
             $args[1] ${function:descTask} "Argument expected desc <task_label>"
     }
     "run" {
+        getCliInputs $args
         taskArgumentExecute `
             $args[1] ${function:runTask} "Argument expected run <task_label>"
     }
