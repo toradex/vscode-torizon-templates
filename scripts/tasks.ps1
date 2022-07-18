@@ -80,7 +80,9 @@ function checkInput () {
                                     -Prompt "$desc [***]"
 
                         # TODO: so much security wow
-                        $fromUser = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($fromUser))
+                        $fromUser = ConvertFrom-SecureString `
+                            -SecureString $fromUser `
+                            -AsPlainText
                     } else {
                         $fromUser = Read-Host `
                                     -Prompt "$desc [$default]"
@@ -175,7 +177,11 @@ function runTask () {
                     Write-Host -ForegroundColor Yellow `
                         "Env: $env=$value"
 
-                    [System.Environment]::SetEnvironmentVariable($env, $value)
+                    $expValue = checkConfig(checkInput($value)).ToString()
+
+                    [System.Environment]::SetEnvironmentVariable(
+                        $env, $expValue
+                    )
                 }
             }
 
@@ -185,7 +191,7 @@ function runTask () {
             }
 
             Write-Host -ForegroundColor Green `
-                "> Executing task: $taskCmd $taskArgs <"
+                "> Executing task: $($json.tasks[$i].label) <"
             Invoke-Expression "$taskCmd $taskArgs"
         }
     }
