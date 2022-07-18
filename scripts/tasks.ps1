@@ -1,11 +1,24 @@
 
 $tasksFileContent = Get-Content $PSScriptRoot/tasks.json
+$settingsFileContent = Get-Content $PSScriptRoot/settings.json
 $json = $tasksFileContent | ConvertFrom-Json
+$settings = $settingsFileContent | ConvertFrom-Json
 $inputs = $json.inputs
 $inputValues = @{}
 
-# set the relative workspaceFolder (following the pattern that VS Code expects)
-$Global:workspaceFolder = Join-Path $PSScriptRoot ../
+function settingsToGlobal () {
+    foreach ($set in $settings | Get-Member -MemberType Properties) {
+        if (-not (Test-Path "variable:Global:$($set.Name)")) {
+            New-Variable `
+                -Scope Global `
+                -Name "config:$($set.Name)" -Value $settings.($set.Name)
+        } else {
+            Set-Variable `
+                -Scope Global `
+                -Name "config:$($set.Name)" -Value $settings.($set.Name)
+        }
+    }
+}
 
 function write-error () {
     Write-Host -ForegroundColor Red `
@@ -91,6 +104,20 @@ function checkInput () {
     return $ret
 }
 
+function checkConfig ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains("config:")) {
+            $item = $item.Replace("config:", "global:config:");
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
 function taskArgumentExecute ($label, [ScriptBlock]$fnExec, $message) {
     if ($null -eq $label -or $label -eq [String]::Empty) {
         write-error $message 10
@@ -124,6 +151,7 @@ function runTask () {
             $task = $json.tasks[$i]
             $taskCmd = $task.command
             $taskArgs = checkInput($task.args)
+            $taskArgs = checkConfig($taskArgs)
             $taskDepends = $task.dependsOn
             $taskEnv = $task.options.env
 
@@ -155,6 +183,11 @@ function runTask () {
         }
     }
 }
+
+# main()
+# set the relative workspaceFolder (following the pattern that VS Code expects)
+$Global:workspaceFolder = Join-Path $PSScriptRoot ../
+settingsToGlobal
 
 switch ($args[0]) {
     "list" {
