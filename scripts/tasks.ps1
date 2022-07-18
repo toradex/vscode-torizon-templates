@@ -108,8 +108,15 @@ function checkConfig ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
     foreach ($item in $list) {
+        # TODO: Add variable expand recursive
         if ($item.Contains("config:")) {
-            $item = $item.Replace("config:", "global:config:");
+            $item = $item.Replace("config:", "global:config:")
+
+            $value = Invoke-Expression "echo $item"
+
+            if ($value.Contains("`${workspaceFolder")) {
+                $item = $value
+            }
         }
 
         [void]$ret.Add($item)
