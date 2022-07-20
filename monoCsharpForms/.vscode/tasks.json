@@ -181,6 +181,8 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull dotnet-mono-debug"
@@ -202,6 +204,8 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose up -d dotnet-mono-debug"
@@ -222,6 +226,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
@@ -326,6 +332,8 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull dotnet-mono-debug"
@@ -347,6 +355,8 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose up -d dotnet-mono-debug"
@@ -367,6 +377,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",

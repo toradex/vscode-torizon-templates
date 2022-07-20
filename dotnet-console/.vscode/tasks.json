@@ -83,6 +83,8 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose down"
@@ -188,6 +190,8 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull __container__-debug"
@@ -208,6 +212,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
@@ -359,6 +365,8 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down"
@@ -464,6 +472,8 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull __container__-debug"
@@ -484,6 +494,8 @@
                 "-p",
                 "${config:torizon_psswd}",
                 "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",

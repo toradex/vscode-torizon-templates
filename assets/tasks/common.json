@@ -149,6 +149,8 @@
                 "${config:torizon_psswd}",
                 "scp",
                 "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_workspace}/docker-compose.yml",
                 "torizon@${config:torizon_ip}:~/"
