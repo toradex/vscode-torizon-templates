@@ -83,6 +83,16 @@
             "debugSSHPort": "2229",
             "multiContainer": false,
             "support": "Community"
+        },
+        {
+            "img": "project.png",
+            "folder": "cppConsole",
+            "description": "C++ Console Application",
+            "runtime": "libc",
+            "language": "C++",
+            "debugSSHPort": "2230",
+            "multiContainer": false,
+            "support": "Toradex"
         }
     ]
 }
