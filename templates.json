@@ -85,7 +85,7 @@
             "support": "Community"
         },
         {
-            "img": "project.png",
+            "img": "cppconsole.png",
             "folder": "cppConsole",
             "description": "C++ Console Application",
             "runtime": "libc",
