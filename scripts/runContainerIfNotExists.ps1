@@ -4,7 +4,7 @@ $_runArguments = $args[1].Trim("'").Trim('"');
 $_containerName = $args[2]
 
 $_containerInfo = 
-    Invoke-Expression "$_containerRuntime inspect $_containerName" | `
+    Invoke-Expression "$_containerRuntime container inspect $_containerName" | `
     ConvertFrom-Json
 
 if ($null -ne $_containerInfo) {
