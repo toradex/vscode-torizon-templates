@@ -1,5 +1,6 @@
 # include
 . "$(Split-Path $MyInvocation.MyCommand.Path -Parent)/utils/formatJson.ps1"
+. "$(Split-Path $MyInvocation.MyCommand.Path -Parent)/utils/replaceTasksInput.ps1"
 
 $templateFolder = $args[0]
 $projectName = $args[1]
@@ -12,6 +13,7 @@ $boardarch = $args[5]
 $boardmodel = $args[6]
 $template = $args[7]
 $osrelease = $args[8]
+$vscode = $args[9]
 
 # is enabled by default
 if ([string]::IsNullOrEmpty($telemetry)) {
@@ -166,6 +168,12 @@ Get-ChildItem -Force -File -Recurse * | ForEach-Object {
         }
     }
 }
+
+# if from vscode we need to replace the inputs
+if (-not [string]::IsNullOrEmpty($vscode)) {
+    Replace-Tasks-Input
+}
+
 Write-Host -ForegroundColor DarkGreen "✅ Renaming file contents ok"
 
 # back
