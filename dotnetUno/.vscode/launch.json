@@ -48,6 +48,42 @@
       "stopAtEntry": false
     },
     {
+      "name": "Torizon x86",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "~/app/__change__.Skia.Gtk",
+      "cwd": "~/app/",
+      "stopAtEntry": false,
+      "console": "internalConsole",
+      "env": {
+        "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
+        //"GDK_BACKEND": "x11",
+        //"GDK_GL": "gles",
+        "UNO_DISABLE_OPENGL": "true",
+        "UNO_FULLSCREEN": "true"
+      },
+      "args": [],
+      "pipeTransport": {
+          "pipeCwd": "${workspaceFolder}",
+          "pipeProgram": "ssh",
+          "pipeArgs": [
+              "-T",
+              "-q",
+              "-p",
+              "${config:torizon_debug_ssh_port}",
+              "-i",
+              "${workspaceFolder}/.conf/id_rsa", // ssh key path
+              "-o",
+              "StrictHostKeyChecking=no",
+              "-o",
+              "UserKnownHostsFile /dev/null",
+              "torizon@${config:torizon_ip}" // user@device
+          ],
+          "debuggerPath": "/vsdbg/vsdbg"
+      },
+      "preLaunchTask": "deploy-torizon-x86"
+    },
+    {
       "name": "Torizon ARMv7",
       "type": "coreclr",
       "request": "launch",
