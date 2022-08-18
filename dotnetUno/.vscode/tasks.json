@@ -163,7 +163,7 @@
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm",
-                "dotnet-uno-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -186,7 +186,7 @@
             },
             "args": [
                 "push",
-                "dotnet-uno-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -209,7 +209,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull dotnet-uno-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -232,7 +232,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d dotnet-uno-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -357,7 +357,7 @@
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm64",
-                "dotnet-uno-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -380,7 +380,7 @@
             },
             "args": [
                 "push",
-                "dotnet-uno-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -403,7 +403,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull dotnet-uno-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -426,7 +426,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d dotnet-uno-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -600,7 +600,7 @@
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=amd64",
-                "dotnet-uno-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -623,7 +623,7 @@
             },
             "args": [
                 "push",
-                "dotnet-uno-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -646,7 +646,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 GPU=-vivante docker-compose pull dotnet-uno-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 GPU=-vivante docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -669,7 +669,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 GPU=-vivante docker-compose up -d dotnet-uno-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 GPU=-vivante docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
