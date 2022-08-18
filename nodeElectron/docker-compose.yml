@@ -60,7 +60,7 @@ services:
     ]
 
   weston:
-    image: torizon/weston${GPU}:2
+    image: torizonextras/weston${GPU}:2
     environment:
       - ACCEPT_FSL_EULA=1
     # Required to get udev events from host udevd via netlink

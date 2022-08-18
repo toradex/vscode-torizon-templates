@@ -21,7 +21,7 @@ ARG APP_EXECUTABLE=__change__
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Build
+    torizonextras/debian:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -54,7 +54,7 @@ RUN npm install --omit=dev
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Deploy
+    torizonextras/debian:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE

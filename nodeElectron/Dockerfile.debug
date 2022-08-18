@@ -18,7 +18,7 @@ ARG APP_EXECUTABLE=__change__
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base:${BASE_VERSION} AS Debug
+    torizonextras/wayland-base:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE

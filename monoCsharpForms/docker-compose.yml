@@ -36,7 +36,7 @@ services:
     ]
   
   weston:
-    image: torizon/weston:2
+    image: torizonextras/weston:2
     # Required to get udev events from host udevd via netlink
     network_mode: host
     volumes:

@@ -21,7 +21,7 @@ ARG APP_EXECUTABLE=__change__.Skia.Linux.FrameBuffer
 # Deploy Step .NET Uno
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-uno-debug:${BASE_VERSION} AS Debug
+    torizonextras/dotnet-uno-debug:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE

@@ -21,7 +21,7 @@ ARG APP_EXECUTABLE=app
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Debug
+    torizonextras/debian:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE

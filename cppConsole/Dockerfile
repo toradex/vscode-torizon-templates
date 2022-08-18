@@ -42,7 +42,7 @@ RUN if [ $IMAGE_ARCH == "arm64" ] then \
 
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/debian:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} torizonextras/debian:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
