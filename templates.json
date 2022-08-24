@@ -93,6 +93,18 @@
             "debugSSHPort": "2230",
             "multiContainer": false,
             "support": "Toradex"
+        },
+        {
+            "img": "project.png",
+            "folder": "cppQML",
+            "description": "C++ Qt 6 QML Application",
+            "runtime": "Qt 6",
+            "language": "C++",
+            "debugPort": "2232",
+            "debugPort2": "2233",
+            "debugSSHPort": "2231",
+            "multiContainer": false,
+            "support": "Toradex"
         }
     ]
 }

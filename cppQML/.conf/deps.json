@@ -1,0 +1,13 @@
+{
+    "packages": [
+        "openssh-client",
+        "sshpass",
+        "build-essential",
+        "make",
+        "gdb",
+        "g++",
+        "qmake6",
+        "qt6-base-dev",
+        "netcat-traditional"
+    ]
+}

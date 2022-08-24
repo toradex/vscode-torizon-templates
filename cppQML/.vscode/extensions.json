@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "ms-vscode.cpptools",
+        "ms-vscode.makefile-tools",
+        "seanwu.vscode-qt-for-python"
+    ]
+}
