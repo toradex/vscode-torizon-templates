@@ -1,0 +1,40 @@
+{
+    "common": {
+        "sdk_tools_url": {
+            "linux": "https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip",
+            "linux_sha256": "d71f75333d79c9c6ef5c39d3456c6c58c613de30e6a751ea0dbd433e8f8b9cbf",
+            "windows": "https://dl.google.com/android/repository/commandlinetools-win-8092744_latest.zip",
+            "windows_sha256": "5de99ed67cb2e30fe443baf8b282d1b0b6247d0c25c6d888a7e8657b3b35c281",
+            "mac": "https://dl.google.com/android/repository/commandlinetools-mac-8092744_latest.zip",
+            "mac_sha256": "1de25523d595198d29666f9976eed65d99bbc5e4a3e8e48e5d6c98bb7e9030cc"
+        },
+        "sdk_essential_packages": {
+            "default": ["platform-tools", "platforms;android-31", "cmdline-tools;latest"],
+            "linux": [],
+            "mac": [],
+            "windows": ["extras;google;usb_driver"]
+        }
+    },
+    "specific_qt_versions": [
+        {
+            "versions": ["default"],
+            "sdk_essential_packages": ["build-tools;31.0.0", "ndk;23.1.7779620"],
+            "ndk_path": "ndk/23.1.7779620"
+        },
+        {
+            "versions": ["6.3", "6.2", "5.15.[9-20]"],
+            "sdk_essential_packages": ["build-tools;31.0.0", "ndk;22.1.7171670"],
+            "ndk_path": "ndk/22.1.7171670"
+        },
+        {
+            "versions": ["5.15.[0-8]", "5.14.[0-2]", "5.13.2", "6.0", "6.1"],
+            "sdk_essential_packages": ["build-tools;31.0.0", "ndk;21.3.6528147"],
+            "ndk_path": "ndk/21.3.6528147"
+        },
+        {
+            "versions": ["5.12.[0-5]", "5.13.[0-1]"],
+            "sdk_essential_packages": ["build-tools;28.0.2", "ndk;19.2.5345600"],
+            "ndk_path": "ndk/19.2.5345600"
+        }
+    ]
+}

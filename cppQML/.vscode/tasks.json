@@ -17,6 +17,7 @@
                 "id": "tools",
                 "color": "terminal.ansiGreen"
             },
+            "dependsOrder": "sequence",
             "dependsOn": [
                 "build-debug-x86-local"
             ]
@@ -45,7 +46,11 @@
             "icon": {
                 "id": "tools",
                 "color": "terminal.ansiGreen"
-            }
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-x86-local"
+            ]
         },
         {
             "label": "kill-redirect-qml-debugger",

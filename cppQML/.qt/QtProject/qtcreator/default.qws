@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QtCreatorSession>
+<!-- Written by QtCreator 8.0.0, 2022-08-06T02:04:48. -->
+<qtcreator>
+ <data>
+  <variable>CascadeSetActive</variable>
+  <value type="bool">false</value>
+ </data>
+ <data>
+  <variable>Color</variable>
+  <value type="QString">#666666</value>
+ </data>
+ <data>
+  <variable>EditorSettings</variable>
+  <value type="QByteArray">AAAAD0VkaXRvck1hbmFnZXJWNQAAAAIAAAByAC8AaABvAG0AZQAvAGMAYQBzAHQAZQBsAGwAbwAvAHcAbwByAGsALwB0AG8AcgBpAHoAbwBuAC0AdABlAG0AcABsAGEAdABlAHMALwBjAHAAcABRAE0ATAAvAFEATQBMAC8AbQBhAGkAbgAuAHEAbQBsAAAADAAAAAAgAAAAAgAAAAAAAAAAAAAAFAAAAAEAAAAAAAAAAAAAABMAAABqAC8AaABvAG0AZQAvAGMAYQBzAHQAZQBsAGwAbwAvAHcAbwByAGsALwB0AG8AcgBpAHoAbwBuAC0AdABlAG0AcABsAGEAdABlAHMALwBjAHAAcABRAE0ATAAvAG0AYQBpAG4ALgBjAHAAcAAAAAwAAAAAIAAAAAIAAAAAAAAAAAAAABQAAAABAAAAAAAAAAAAAAATAAAAAgAAAGoALwBoAG8AbQBlAC8AYwBhAHMAdABlAGwAbABvAC8AdwBvAHIAawAvAHQAbwByAGkAegBvAG4ALQB0AGUAbQBwAGwAYQB0AGUAcwAvAGMAcABwAFEATQBMAC8AbQBhAGkAbgAuAGMAcABwAAAAEABtAGEAaQBuAC4AYwBwAHAAAAATQ3BwRWRpdG9yLkMrK0VkaXRvcgAAAAByAC8AaABvAG0AZQAvAGMAYQBzAHQAZQBsAGwAbwAvAHcAbwByAGsALwB0AG8AcgBpAHoAbwBuAC0AdABlAG0AcABsAGEAdABlAHMALwBjAHAAcABRAE0ATAAvAFEATQBMAC8AbQBhAGkAbgAuAHEAbQBsAAAAEABtAGEAaQBuAC4AcQBtAGwAAAAXUW1sSlNFZGl0b3IuUU1MSlNFZGl0b3IAAAAAzQAAAA1jdXJyZW50ZWRpdG9yAAAAagAvAGgAbwBtAGUALwBjAGEAcwB0AGUAbABsAG8ALwB3AG8AcgBrAC8AdABvAHIAaQB6AG8AbgAtAHQAZQBtAHAAbABhAHQAZQBzAC8AYwBwAHAAUQBNAEwALwBtAGEAaQBuAC4AYwBwAHAAAAAmAEMAcABwAEUAZABpAHQAbwByAC4AQwArACsARQBkAGkAdABvAHIAAAAgAAAAAgAAAAAAAAAAAAAAFAAAAAEAAAAAAAAAAAAAABMAAAAA</value>
+ </data>
+ <data>
+  <variable>ProjectDependencies</variable>
+  <valuemap type="QVariantMap"/>
+ </data>
+ <data>
+  <variable>ProjectList</variable>
+  <valuelist type="QVariantList">
+   <value type="QString">/home/castello/work/torizon-templates/cppQML/cppQML.pro</value>
+  </valuelist>
+ </data>
+ <data>
+  <variable>StartupProject</variable>
+  <value type="QString">/home/castello/work/torizon-templates/cppQML/cppQML.pro</value>
+ </data>
+ <data>
+  <variable>value-ActiveMode</variable>
+  <value type="QString">Mode.Debug</value>
+ </data>
+ <data>
+  <variable>value-Breakpoints</variable>
+  <valuelist type="QVariantList">
+   <valuemap type="QVariantMap">
+    <value type="QString" key="filename">/home/castello/work/torizon-templates/cppQML/QML/main.qml</value>
+    <value type="int" key="linenumber">13</value>
+   </valuemap>
+   <valuemap type="QVariantMap">
+    <value type="QString" key="filename">/home/castello/work/torizon-templates/cppQML/QML/main.qml</value>
+    <value type="int" key="linenumber">5</value>
+   </valuemap>
+   <valuemap type="QVariantMap">
+    <value type="QString" key="filename">/home/castello/work/torizon-templates/cppQML/QML/main.qml</value>
+    <value type="int" key="linenumber">17</value>
+   </valuemap>
+  </valuelist>
+ </data>
+ <data>
+  <variable>value-DebuggerSeparateWidgetGeometry</variable>
+  <value type="QRect">400x400+0+0</value>
+ </data>
+ <data>
+  <variable>value-DefaultFormats</variable>
+  <valuemap type="QVariantMap"/>
+ </data>
+ <data>
+  <variable>value-IndividualFormats</variable>
+  <valuemap type="QVariantMap"/>
+ </data>
+ <data>
+  <variable>value-ProjectTree.ExpandData</variable>
+  <valuelist type="QVariantList">
+   <valuelist type="QVariantList">
+    <value type="QString">/home/castello/work/torizon-templates/cppQML</value>
+    <value type="QString">Sources</value>
+   </valuelist>
+   <valuelist type="QVariantList">
+    <value type="QString">/home/castello/work/torizon-templates/cppQML</value>
+    <value type="QString">QML</value>
+   </valuelist>
+   <valuelist type="QVariantList">
+    <value type="QString">/home/castello/work/torizon-templates/cppQML/QML</value>
+    <value type="QString">QML</value>
+   </valuelist>
+   <valuelist type="QVariantList">
+    <value type="QString">/home/castello/work/torizon-templates/cppQML</value>
+    <value type="QString">cppQML [main]</value>
+   </valuelist>
+  </valuelist>
+ </data>
+ <data>
+  <variable>value-TaskWindow.Categories</variable>
+  <valuelist type="QVariantList">
+   <value type="QString">Task.Category.QmlAnalysis</value>
+  </valuelist>
+ </data>
+ <data>
+  <variable>value-TaskWindow.IncludeWarnings</variable>
+  <value type="bool">true</value>
+ </data>
+ <data>
+  <variable>value-Watchers</variable>
+  <valuelist type="QVariantList"/>
+ </data>
+ <data>
+  <variable>valueKeys</variable>
+  <valuelist type="QVariantList">
+   <value type="QString">ActiveMode</value>
+   <value type="QString">Breakpoints</value>
+   <value type="QString">DebuggerSeparateWidgetGeometry</value>
+   <value type="QString">DefaultFormats</value>
+   <value type="QString">IndividualFormats</value>
+   <value type="QString">ProjectTree.ExpandData</value>
+   <value type="QString">TaskWindow.Categories</value>
+   <value type="QString">TaskWindow.IncludeWarnings</value>
+   <value type="QString">Watchers</value>
+  </valuelist>
+ </data>
+</qtcreator>
