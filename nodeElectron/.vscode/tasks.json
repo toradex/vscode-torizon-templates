@@ -314,6 +314,7 @@
                 "/home/torizon/app/__change__ --no-sandbox --remote-debugging-port=9222 --inspect-brk=0.0.0.0:9229 >out.log 2>err.log &"
             ],
             "dependsOn": [
+                "validate-settings",
                 "npm-install",
                 "copy-docker-compose",
                 "pre-cleanup-arm",
@@ -514,6 +515,7 @@
                 "/home/torizon/app/__change__ --no-sandbox --remote-debugging-port=9222 --inspect-brk=0.0.0.0:9229 >out.log 2>err.log &"
             ],
             "dependsOn": [
+                "validate-settings",
                 "npm-install",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",

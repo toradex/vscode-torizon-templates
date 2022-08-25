@@ -233,6 +233,7 @@
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
+                "validate-settings",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
                 "build-makedir",
@@ -434,6 +435,7 @@
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
+                "validate-settings",
                 "copy-docker-compose",
                 "pre-cleanup-arm",
                 "build-makedir",
@@ -635,6 +637,7 @@
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
+                "validate-settings",
                 "copy-docker-compose",
                 "pre-cleanup-x86",
                 "build-makedir",

@@ -224,6 +224,7 @@
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
+                "validate-settings",
                 "copy-docker-compose",
                 "pre-cleanup-arm",
                 "build-torizon-arm",
@@ -465,6 +466,7 @@
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
+                "validate-settings",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
                 "build-torizon-arm64",

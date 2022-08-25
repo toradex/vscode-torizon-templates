@@ -256,6 +256,7 @@
                 "node --inspect-brk=0.0.0.0:9229 /home/torizon/app/ >out.log 2>err.log &"
             ],
             "dependsOn": [
+                "validate-settings",
                 "npm-install",
                 "build-typescript-arm",
                 "copy-docker-compose",
@@ -447,6 +448,7 @@
                 "node --inspect-brk=0.0.0.0:9229 /home/torizon/app/ >out.log 2>err.log &"
             ],
             "dependsOn": [
+                "validate-settings",
                 "npm-install",
                 "build-typescript-arm64",
                 "copy-docker-compose",
