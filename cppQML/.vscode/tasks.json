@@ -189,7 +189,7 @@
             }
         },
         {
-            "label": "run-qmake-debug-x86",
+            "label": "run-qmake-debug-x86-local",
             "command": "qmake",
             "type": "shell",
             "args": [
@@ -207,7 +207,7 @@
             }
         },
         {
-            "label": "build-debug-x86",
+            "label": "build-debug-x86-local",
             "command": "make",
             "type": "shell",
             "options": {
@@ -224,7 +224,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "run-qmake-x86",
+                "run-qmake-x86-local",
                 "copy-assets-x86"
             ]
         },
