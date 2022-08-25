@@ -227,7 +227,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "run-qmake-x86-local",
+                "run-qmake-debug-x86-local",
                 "copy-assets-x86"
             ]
         },
