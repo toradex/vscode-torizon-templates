@@ -16,7 +16,10 @@
             "icon": {
                 "id": "tools",
                 "color": "terminal.ansiGreen"
-            }
+            },
+            "dependsOn": [
+                "build-debug-x86-local"
+            ]
         },
         {
             "label": "Open in QT Creator",
