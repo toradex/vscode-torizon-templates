@@ -5,6 +5,7 @@
         "build-essential",
         "make",
         "gdb",
+        "gdb-multiarch",
         "g++",
         "qmake6",
         "qt6-base-dev",
