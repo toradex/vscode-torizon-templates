@@ -99,7 +99,7 @@
             }
         },
         {
-            "label": "Start GDB Server Remote",
+            "label": "Start GDB Server Remote arm64",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -116,6 +116,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
+                "kill-redirect-qml-debugger",
                 "deploy-torizon-arm64",
                 "redirect-qml-debugger"
             ],
@@ -130,9 +131,15 @@
             "command": "gdbserver",
             "type": "process",
             "isBackground": false,
+            "options": {
+                "env": {
+                    "QT_LOGGING_RULES": "*.debug=true; qt.*.debug=false"
+                }
+            },
             "args": [
                 "localhost:${config:torizon_debug_ssh_port}",
-                "${workspaceFolder}/x86_64/debug/__change__"
+                "${workspaceFolder}/x86_64/debug/__change__",
+                "-qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -140,6 +147,62 @@
             "icon": {
                 "id": "tools",
                 "color": "terminal.ansiGreen"
+            }
+        },
+        {
+            "label": "Start GDB Server Remote arm32",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "cd ~/app && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "kill-redirect-qml-debugger",
+                "deploy-torizon-arm32",
+                "redirect-qml-debugger"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
+            "label": "Start GDB Server Remote x86",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "cd ~/app && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "kill-redirect-qml-debugger",
+                "deploy-torizon-x86",
+                "redirect-qml-debugger"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
             }
         },
         {
