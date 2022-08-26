@@ -137,7 +137,7 @@
                 }
             },
             "args": [
-                "localhost:${config:torizon_debug_ssh_port}",
+                "localhost:${config:torizon_debug_port2}",
                 "${workspaceFolder}/x86_64/debug/__change__",
                 "-qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
