@@ -231,7 +231,7 @@
             "args": [
                 "-r",
                 "QML",
-                "${workspaceFolder}/x86_64/debug"
+                "${workspaceFolder}/armhf/debug"
             ],
             "problemMatcher": [
                 "$gcc"
