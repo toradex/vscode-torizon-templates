@@ -20,6 +20,10 @@ ARG IMAGE_ARCH
 RUN echo "deb http://deb.debian.org/debian bullseye-backports main" >> \
     /etc/apt/sources.list
 
+# TODO: use this still we have a new libdrm from feeds
+RUN sed -i '/deb https:\/\/feeds.toradex.com*/d' \
+    /etc/apt/sources.list
+
 # __deps__
 RUN apt-get -q -y update && \
     apt-get -q -y install \
