@@ -168,7 +168,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "kill-redirect-qml-debugger",
-                "deploy-torizon-arm32",
+                "deploy-torizon-arm",
                 "redirect-qml-debugger"
             ],
             "problemMatcher": "$msCompile",
