@@ -59,7 +59,9 @@
             "type": "shell",
             "isBackground": true,
             "args": [
-                "nc.traditional"
+                "nc.traditional",
+                "||",
+                "true"
             ],
             "icon": {
                 "id": "tools",
