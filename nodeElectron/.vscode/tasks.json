@@ -147,7 +147,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose down"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -348,7 +348,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose down"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "icon": {

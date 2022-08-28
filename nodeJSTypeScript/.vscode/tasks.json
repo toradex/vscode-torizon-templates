@@ -113,7 +113,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -305,7 +305,7 @@
                 "${config:torizon_psswd}",
                 "ssh",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "icon": {
