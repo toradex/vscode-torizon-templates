@@ -36,7 +36,12 @@ services:
     ]
   
   weston:
-    image: torizonextras/weston:2
+    image: torizonextras/weston${GPU}:2
+    environment:
+      - ACCEPT_FSL_EULA=1
+      - WESTON_ARGS=--continue-without-input
+      # if you want run without GPU support
+      #- WESTON_ARGS=--use-pixman -B fbdev-backend.so
     # Required to get udev events from host udevd via netlink
     network_mode: host
     volumes:
@@ -59,5 +64,8 @@ services:
       - "c 4:7 rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
+      - "c 199:* rmw"
       # ... for /dev/dri devices
       - "c 226:* rmw"
+      # ... for /dev/fb0
+      - "c 29:* rmw"

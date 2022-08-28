@@ -58,6 +58,9 @@ services:
     image: torizonextras/weston${GPU}:2
     environment:
       - ACCEPT_FSL_EULA=1
+      - WESTON_ARGS=--continue-without-input
+      # if you want run without GPU support
+      #- WESTON_ARGS=--use-pixman -B fbdev-backend.so
     # Required to get udev events from host udevd via netlink
     network_mode: host
     volumes:
