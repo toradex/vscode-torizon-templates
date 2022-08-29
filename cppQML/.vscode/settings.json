@@ -1,12 +1,13 @@
 {
-    "torizon_psswd": "",
-    "torizon_login": "",
-    "torizon_ip": "",
-    "host_ip": "",
-    "torizon_workspace": "${workspaceFolder}",
-    "torizon_debug_port": "",
-    "torizon_debug_ssh_port": "2231",
-    "torizon_debug_port2": "2232",
-    "torizon_debug_port3": "2233",
-    "terminal.integrated.defaultProfile.linux": "bash"
+  "torizon_psswd": "",
+  "torizon_login": "",
+  "torizon_ip": "",
+  "host_ip": "",
+  "torizon_workspace": "${workspaceFolder}",
+  "torizon_debug_port": "",
+  "torizon_debug_ssh_port": "2231",
+  "torizon_debug_port2": "2232",
+  "torizon_debug_port3": "2233",
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "torizon_gpu": ""
 }

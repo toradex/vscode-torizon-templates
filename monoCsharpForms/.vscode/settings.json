@@ -6,5 +6,7 @@
   "torizon_workspace": "${workspaceFolder}",
   "torizon_debug_port": "55555",
   "torizon_debug_ssh_port": "2227",
-  "torizon_debug_port2": ""
+  "torizon_debug_port2": "",
+  "torizon_debug_port3": "",
+  "torizon_gpu": ""
 }

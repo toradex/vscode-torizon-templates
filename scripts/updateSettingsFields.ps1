@@ -5,7 +5,9 @@ $settingsTemplate = [PSCustomObject]@{
     torizon_ip = ""
     torizon_debug_port = ""
     torizon_debug_port2 = ""
+    torizon_debug_port3 = ""
     torizon_debug_ssh_port = "2222"
+    torizon_gpu = ""
     host_ip = ""
     torizon_workspace = "$`{workspaceFolder`}"
 }
