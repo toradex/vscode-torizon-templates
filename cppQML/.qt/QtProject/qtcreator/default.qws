@@ -21,12 +21,12 @@
  <data>
   <variable>ProjectList</variable>
   <valuelist type="QVariantList">
-   <value type="QString">/home/castello/work/torizon-templates/cppQML/cppQML.pro</value>
+   <value type="QString">__home__/work/torizon-templates/cppQML/cppQML.pro</value>
   </valuelist>
  </data>
  <data>
   <variable>StartupProject</variable>
-  <value type="QString">/home/castello/work/torizon-templates/cppQML/cppQML.pro</value>
+  <value type="QString">__home__/work/torizon-templates/cppQML/cppQML.pro</value>
  </data>
  <data>
   <variable>value-ActiveMode</variable>
@@ -36,15 +36,15 @@
   <variable>value-Breakpoints</variable>
   <valuelist type="QVariantList">
    <valuemap type="QVariantMap">
-    <value type="QString" key="filename">/home/castello/work/torizon-templates/cppQML/QML/main.qml</value>
+    <value type="QString" key="filename">__home__/work/torizon-templates/cppQML/QML/main.qml</value>
     <value type="int" key="linenumber">13</value>
    </valuemap>
    <valuemap type="QVariantMap">
-    <value type="QString" key="filename">/home/castello/work/torizon-templates/cppQML/QML/main.qml</value>
+    <value type="QString" key="filename">__home__/work/torizon-templates/cppQML/QML/main.qml</value>
     <value type="int" key="linenumber">5</value>
    </valuemap>
    <valuemap type="QVariantMap">
-    <value type="QString" key="filename">/home/castello/work/torizon-templates/cppQML/QML/main.qml</value>
+    <value type="QString" key="filename">__home__/work/torizon-templates/cppQML/QML/main.qml</value>
     <value type="int" key="linenumber">17</value>
    </valuemap>
   </valuelist>
@@ -65,19 +65,19 @@
   <variable>value-ProjectTree.ExpandData</variable>
   <valuelist type="QVariantList">
    <valuelist type="QVariantList">
-    <value type="QString">/home/castello/work/torizon-templates/cppQML</value>
+    <value type="QString">__home__/work/torizon-templates/cppQML</value>
     <value type="QString">Sources</value>
    </valuelist>
    <valuelist type="QVariantList">
-    <value type="QString">/home/castello/work/torizon-templates/cppQML</value>
+    <value type="QString">__home__/work/torizon-templates/cppQML</value>
     <value type="QString">QML</value>
    </valuelist>
    <valuelist type="QVariantList">
-    <value type="QString">/home/castello/work/torizon-templates/cppQML/QML</value>
+    <value type="QString">__home__/work/torizon-templates/cppQML/QML</value>
     <value type="QString">QML</value>
    </valuelist>
    <valuelist type="QVariantList">
-    <value type="QString">/home/castello/work/torizon-templates/cppQML</value>
+    <value type="QString">__home__/work/torizon-templates/cppQML</value>
     <value type="QString">cppQML [main]</value>
    </valuelist>
   </valuelist>

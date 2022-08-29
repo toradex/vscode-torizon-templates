@@ -8,11 +8,11 @@
    <value type="bool" key="AutoCreateBuildDirectory">false</value>
    <value type="bool" key="AutoDetected">true</value>
    <value type="bool" key="AutoRun">true</value>
-   <value type="QString" key="Binary">/home/castello/Qt/Tools/CMake//bin/cmake</value>
+   <value type="QString" key="Binary">__home__/Qt/Tools/CMake//bin/cmake</value>
    <value type="QString" key="DetectionSource"></value>
    <value type="QString" key="DisplayName">CMake 3.21.1 (Qt)</value>
    <value type="QString" key="Id">qt.tools.cmake</value>
-   <value type="QString" key="QchFile">/home/castello/Qt/Tools/CMake/doc/cmake/CMake.qch</value>
+   <value type="QString" key="QchFile">__home__/Qt/Tools/CMake/doc/cmake/CMake.qch</value>
   </valuemap>
  </data>
  <data>
