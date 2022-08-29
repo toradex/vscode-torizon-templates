@@ -770,7 +770,7 @@
             }
         },
         {
-            "label": "pull-container-torizon-debug-arm64",
+            "label": "pull-container-torizon-debug-arm",
             "detail": "hide",
             "command": "sshpass",
             "type": "process",
