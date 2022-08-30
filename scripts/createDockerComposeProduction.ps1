@@ -128,6 +128,6 @@ Write-Host -ForegroundColor DarkGreen "✅ variables replaced"
 
 # write the torizon.io ready docker-compose
 ConvertTo-Yaml $composeLoad `
-    -OutFile "$compoFilePath/docker-compose.prod.yml"
+    -OutFile "$compoFilePath/docker-compose.prod.yml" -Force
 
 Write-Host -ForegroundColor DarkGreen "✅ docker-compose.prod.yml created"
