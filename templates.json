@@ -95,7 +95,7 @@
             "support": "Toradex"
         },
         {
-            "img": "project.png",
+            "img": "qt6qml.png",
             "folder": "cppQML",
             "description": "C++ Qt 6 QML Application",
             "runtime": "Qt 6",
