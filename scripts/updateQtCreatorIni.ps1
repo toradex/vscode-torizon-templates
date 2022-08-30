@@ -4,6 +4,8 @@
 # get arguments
 $_path = $args[0]
 $_deviceHostname = $args[1]
+$_projectName = $args[2]
+$_deviceArch = $args[3]
 
 # get the ini structured
 $datas = `
@@ -15,6 +17,14 @@ Write-Host "to"
 Write-Host $_deviceHostname
 
 # replace
-$datas.DebugMode["StartApplication\2\LastServerAddress"] = "$_deviceHostname"
+$datas.DebugMode["StartApplication\2\LastServerAddress"] = `
+    "$_deviceHostname"
+
+$datas.DebugMode["StartApplication\2\LastExternalExecutable"] = `
+    "$_path/$_deviceArch/debug/$_projectName"
+
+$datas.DebugMode["StartApplication\2\LastExternalWorkingDirectory"] = `
+    "$_path/$_deviceArch/debug"
+
 # write
 New-IniContent $datas | Out-File -FilePath "$_path/.qt/QtProject/QtCreator.ini"
