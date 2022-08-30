@@ -13,7 +13,7 @@
                 "clear": false
             },
             "args": [
-                "'✅ Done!'"
+                "✅ Successfully Finished"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
