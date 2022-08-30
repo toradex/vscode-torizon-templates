@@ -1,7 +1,32 @@
 {
     "tasks": [
         {
+            "label": "Create Production Docker Image",
+            "command": "echo",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "args": [
+                "'✅ Done!'"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "create-production-image"
+            ],
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
             "label": "create-production-image",
+            "detail": "hide",
             "command": "pwsh",
             "type": "process",
             "presentation": {

@@ -32,7 +32,8 @@
             "description": "Container architecture",
             "options": [
                 "arm",
-                "arm64"
+                "arm64",
+                "amd64"
             ]
         }
     ]
