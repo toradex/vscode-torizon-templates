@@ -4,15 +4,16 @@ CCFLAGS :=
 DBGFLAGS := -g
 LDFLAGS :=
 CCOBJFLAGS := $(CCFLAGS) -c
+ARCH :=
 
 # path macros
-BIN_PATH := bin
-OBJ_PATH := obj
+BIN_PATH := $(ARCH)/bin
+OBJ_PATH := $(ARCH)/obj
 SRC_PATH := src
-DBG_PATH := debug
+DBG_PATH := $(ARCH)/debug
 
 # compile macros
-TARGET_NAME := main
+TARGET_NAME := __change__
 TARGET := $(BIN_PATH)/$(TARGET_NAME)
 TARGET_DEBUG := $(DBG_PATH)/$(TARGET_NAME)
 

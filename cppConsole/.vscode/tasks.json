@@ -2,10 +2,59 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-makedir",
+            "label": "build-makedir-x86-local",
             "command": "make",
             "type": "shell",
             "args": [
+                "ARCH=x86_64",
+                "makedir"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-makedir-x86",
+            "command": "make",
+            "type": "shell",
+            "args": [
+                "ARCH=amd64",
+                "makedir"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-makedir-arm",
+            "command": "make",
+            "type": "shell",
+            "args": [
+                "ARCH=armhf",
+                "makedir"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-makedir-arm64",
+            "command": "make",
+            "type": "shell",
+            "args": [
+                "ARCH=aarch64",
                 "makedir"
             ],
             "problemMatcher": [
@@ -21,6 +70,7 @@
             "command": "make",
             "type": "shell",
             "args": [
+                "ARCH=x86_64",
                 "debug"
             ],
             "problemMatcher": [
@@ -32,7 +82,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-makedir"
+                "build-makedir-x86-local"
             ]
         },
         {
@@ -84,6 +134,7 @@
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm64-__container__",
                 "make",
+                "ARCH=aarch64",
                 "CC=aarch64-linux-gnu-g++",
                 "debug"
             ],
@@ -229,14 +280,14 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/debug",
+                "${workspaceFolder}/aarch64/debug",
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
-                "build-makedir",
+                "build-makedir-arm64",
                 "build-debug-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
@@ -286,6 +337,7 @@
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm-__container__",
                 "make",
+                "ARCH=armhf",
                 "CC=arm-linux-gnueabihf-g++",
                 "debug"
             ],
@@ -431,14 +483,14 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/debug",
+                "${workspaceFolder}/armhf/debug",
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
                 "copy-docker-compose",
                 "pre-cleanup-arm",
-                "build-makedir",
+                "build-makedir-arm",
                 "build-debug-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
@@ -488,6 +540,7 @@
                 "${workspaceFolder}:/app",
                 "cross-toolchain-amd64-__container__",
                 "make",
+                "ARCH=amd64",
                 "CC=x86_64-linux-gnu-g++",
                 "debug"
             ],
@@ -633,14 +686,14 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/debug",
+                "${workspaceFolder}/amd64/debug",
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
                 "copy-docker-compose",
                 "pre-cleanup-x86",
-                "build-makedir",
+                "build-makedir-x86",
                 "build-debug-x86",
                 "build-container-torizon-debug-x86",
                 "push-container-torizon-debug-x86",
