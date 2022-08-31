@@ -32,10 +32,12 @@ RUN apt-get -q -y update && \
 COPY . /app
 WORKDIR /app
 
-RUN if [ $IMAGE_ARCH == "arm64" ] then \
-    make CC=aarch64-linux-gnu-g++ \
-    elif [ $IMAGE_ARCH == "arm" ] then \
-    make CC=arm-linux-gnueabihf-g++ \
+RUN if [ $IMAGE_ARCH == "arm64" ] ; then \
+    make CC=aarch64-linux-gnu-g++ ; \
+    elif [ $IMAGE_ARCH == "arm" ] ; then \
+    make CC=arm-linux-gnueabihf-g++ ; \
+    elif [ $IMAGE_ARCH == "amd64" ] ; then \
+    make CC=x86_64-linux-gnu-g++ ; \
     fi
 
 # BUILD ------------------------------------------------------------------------
