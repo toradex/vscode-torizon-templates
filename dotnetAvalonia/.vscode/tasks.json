@@ -127,7 +127,7 @@
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm",
-                "dotnet-avalonia-debug"
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -150,7 +150,7 @@
             },
             "args": [
                 "push",
-                "dotnet-avalonia-debug"
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -173,7 +173,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull dotnet-avalonia-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull __container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -196,7 +196,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d dotnet-avalonia-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d __container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -369,7 +369,7 @@
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm64",
-                "dotnet-avalonia-debug"
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -392,7 +392,7 @@
             },
             "args": [
                 "push",
-                "dotnet-avalonia-debug"
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -415,7 +415,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull dotnet-avalonia-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull __container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -438,7 +438,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d dotnet-avalonia-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d __container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
