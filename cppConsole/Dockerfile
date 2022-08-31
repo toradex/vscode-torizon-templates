@@ -18,7 +18,7 @@ FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
 
 ARG IMAGE_ARCH
 ARG COMPILER_ARCH
-ENV IMAGE_ARCH ${IMAGE_ARCH}}
+ENV IMAGE_ARCH ${IMAGE_ARCH}
 
 # __deps__
 RUN apt-get -q -y update && \
@@ -33,11 +33,11 @@ COPY . /app
 WORKDIR /app
 
 RUN if [ $IMAGE_ARCH == "arm64" ] ; then \
-    make CC=aarch64-linux-gnu-g++ ; \
+        make ARCH=. CC=aarch64-linux-gnu-g++ ; \
     elif [ $IMAGE_ARCH == "arm" ] ; then \
-    make CC=arm-linux-gnueabihf-g++ ; \
+        make ARCH=. CC=arm-linux-gnueabihf-g++ ; \
     elif [ $IMAGE_ARCH == "amd64" ] ; then \
-    make CC=x86_64-linux-gnu-g++ ; \
+        make ARCH=. CC=x86_64-linux-gnu-g++ ; \
     fi
 
 # BUILD ------------------------------------------------------------------------
@@ -58,6 +58,6 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 COPY --from=Build /app/debug /app
 
 # ADD YOUR ARGUMENTS HERE
-CMD [ "./app/main" ]
+CMD [ "./app/__change__" ]
 
 # DEPLOY ------------------------------------------------------------------------
