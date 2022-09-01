@@ -533,6 +533,248 @@
                 "id": "flame",
                 "color": "terminal.ansiYellow"
             }
+        },
+        {
+            "label": "pre-cleanup-x86",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 GPU=${config:torizon_gpu} docker-compose down --remove-orphans"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-torizon-x86",
+            "detail": "hide",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/__change__.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-x64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "publish-torizon-x86",
+            "detail": "hide",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/__change__.csproj",
+                "-r",
+                "linux-x64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-container-torizon-debug-x64",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "x86",
+                    "GPU": "${config:torizon_gpu}"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=amd64",
+                "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "push-container-torizon-debug-x86",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "amd64",
+                    "GPU": "${config:torizon_gpu}"
+                }
+            },
+            "args": [
+                "push",
+                "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "pull-container-torizon-debug-x86",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 GPU=${config:torizon_gpu} docker-compose pull __container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "run-container-torizon-debug-x86",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-x86",
+            "detail": "hide",
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}",
+                "-pr",
+                "${workspaceFolder}/bin/Debug/net6.0/linux-x64/publish",
+                "torizon@${config:torizon_ip}:~/app"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "copy-docker-compose",
+                "pre-cleanup-x86",
+                "build-torizon-x86",
+                "publish-torizon-x86",
+                "build-container-torizon-debug-x86",
+                "push-container-torizon-debug-x86",
+                "pull-container-torizon-debug-x86",
+                "run-container-torizon-debug-x86",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-release-x86",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "DOCKER_LOGIN": "${input:dockerLogin}",
+                    "TAG": "x86"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=amd64",
+                "__container__"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "push-release-x86",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "DOCKER_LOGIN": "${input:dockerLogin}",
+                    "TAG": "x86"
+                }
+            },
+            "args": [
+                "push",
+                "__container__"
+            ],
+            "dependsOn": [
+                "docker-login",
+                "build-release-x86"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         }
     ],
 "inputs": []

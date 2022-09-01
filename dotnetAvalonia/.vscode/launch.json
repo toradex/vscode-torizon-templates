@@ -23,6 +23,37 @@
             "request": "attach"
         },
         {
+            "name": "Torizon x86",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "~/app/__change__",
+            "cwd": "~/app/",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "env": {
+            },
+            "args": [],
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "ssh",
+                "pipeArgs": [
+                    "-T",
+                    "-q",
+                    "-p",
+                    "${config:torizon_debug_ssh_port}",
+                    "-i",
+                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
+                    "-o",
+                    "StrictHostKeyChecking=no",
+                    "-o",
+                    "UserKnownHostsFile /dev/null",
+                    "torizon@${config:torizon_ip}" // user@device
+                ],
+                "debuggerPath": "/vsdbg/vsdbg"
+            },
+            "preLaunchTask": "deploy-torizon-x86"
+        },
+        {
             "name": "Torizon ARMv7",
             "type": "coreclr",
             "request": "launch",
