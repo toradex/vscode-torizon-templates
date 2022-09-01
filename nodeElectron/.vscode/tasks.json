@@ -147,7 +147,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose down --remove-orphans"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -186,7 +186,7 @@
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm",
-                    "GPU": ""
+                    "GPU": "${config:torizon_gpu}"
                 }
             },
             "args": [
@@ -211,7 +211,7 @@
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm",
-                    "GPU": ""
+                    "GPU": "${config:torizon_gpu}"
                 }
             },
             "args": [
@@ -239,7 +239,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose pull node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose pull node-electron-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -262,7 +262,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU= docker-compose up -d node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose up -d node-electron-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -348,7 +348,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose down --remove-orphans"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -387,7 +387,7 @@
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm64",
-                    "GPU": "-vivante"
+                    "GPU": "${config:torizon_gpu}"
                 }
             },
             "args": [
@@ -412,7 +412,7 @@
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm64",
-                    "GPU": "-vivante"
+                    "GPU": "${config:torizon_gpu}"
                 }
             },
             "args": [
@@ -440,7 +440,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose pull node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose pull node-electron-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -463,7 +463,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=-vivante docker-compose up -d node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose up -d node-electron-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
