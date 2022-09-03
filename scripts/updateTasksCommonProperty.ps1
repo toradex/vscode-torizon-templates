@@ -21,13 +21,13 @@ Get-ChildItem -Path ../ `
 
             foreach ($field in $newFields) {
                 $hasField = $false
-    
+
                 foreach ($checkField in $oldFields) {
                     if ($checkField.Name -eq $field.Name) {
                         $hasField = $true
                     }
                 }
-    
+
                 if (-not $hasField) {
                     # need to update
                     $tasks[$i] | `
