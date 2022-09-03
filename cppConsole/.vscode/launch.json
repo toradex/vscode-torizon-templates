@@ -24,7 +24,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build-debug-x86"
+            "preLaunchTask": "build-debug-x86-local"
         },
         {
             "name": "Torizon x86",
