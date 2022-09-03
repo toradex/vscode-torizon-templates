@@ -257,6 +257,7 @@
             ],
             "dependsOn": [
                 "validate-settings",
+                "validate-arch-arm",
                 "npm-install",
                 "build-typescript-arm",
                 "copy-docker-compose",
@@ -449,6 +450,7 @@
             ],
             "dependsOn": [
                 "validate-settings",
+                "validate-arch-arm64",
                 "npm-install",
                 "build-typescript-arm64",
                 "copy-docker-compose",

@@ -285,6 +285,7 @@
             ],
             "dependsOn": [
                 "validate-settings",
+                "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
                 "build-makedir-arm64",
@@ -488,6 +489,7 @@
             ],
             "dependsOn": [
                 "validate-settings",
+                "validate-arch-arm",
                 "copy-docker-compose",
                 "pre-cleanup-arm",
                 "build-makedir-arm",
@@ -691,6 +693,7 @@
             ],
             "dependsOn": [
                 "validate-settings",
+                "validate-arch-x86",
                 "copy-docker-compose",
                 "pre-cleanup-x86",
                 "build-makedir-x86",

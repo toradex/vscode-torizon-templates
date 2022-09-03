@@ -259,6 +259,7 @@
             ],
             "dependsOn": [
                 "validate-settings",
+                "validate-arch-arm",
                 "copy-docker-compose",
                 "pre-cleanup-arm",
                 "build-application",
@@ -411,6 +412,7 @@
             ],
             "dependsOn": [
                 "validate-settings",
+                "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
                 "build-application",
