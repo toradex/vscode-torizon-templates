@@ -241,6 +241,54 @@
                 "id": "layers",
                 "color": "terminal.ansiCyan"
             }
+        },
+        {
+            "label": "validate-arch-x86",
+            "detail": "hide",
+            "command": "bash",
+            "type": "process",
+            "args": [
+                "-c",
+                "[[ \"${config:torizon_arch}\" == \"x86_64\" ]] && true || false"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
+            "label": "validate-arch-arm",
+            "detail": "hide",
+            "command": "bash",
+            "type": "process",
+            "args": [
+                "-c",
+                "[[ \"${config:torizon_arch}\" == \"armhf\" ]] && true || false"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
+            "label": "validate-arch-arm64",
+            "detail": "hide",
+            "command": "bash",
+            "type": "process",
+            "args": [
+                "-c",
+                "[[ \"${config:torizon_arch}\" == \"aarch64\" ]] && true || false"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            }
         }
     ]
 }
