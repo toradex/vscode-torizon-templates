@@ -9,7 +9,7 @@ $propertyToUpdate = [PSCustomObject]@{
 # update all the .vscode/tasks.json
 Write-Host -ForegroundColor Yellow "Updating tasks.json ..."
 Get-ChildItem -Path ../ `
-    -Force -Filter tasks.json -Recurse | ForEach-Object {
+    -Force -Include "tasks.json", "common.json" -Recurse | ForEach-Object {
         Write-Host $_
         $old = Get-Content $_ | ConvertFrom-Json
         $tasks = $old.tasks
