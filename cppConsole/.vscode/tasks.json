@@ -15,8 +15,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-makedir-x86",
@@ -32,8 +31,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-makedir-arm",
@@ -49,8 +47,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-makedir-arm64",
@@ -66,8 +63,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-debug-x86-local",
@@ -87,8 +83,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-makedir-x86-local"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "clean",
@@ -103,8 +98,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-container-image-sdk-arm64",
@@ -126,8 +120,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-debug-arm64",
@@ -155,8 +148,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm64"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "pre-cleanup-arm64",
@@ -179,8 +171,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-container-torizon-debug-arm64",
@@ -204,8 +195,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "push-container-torizon-debug-arm64",
@@ -227,8 +217,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "pull-container-torizon-debug-arm64",
@@ -251,8 +240,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-container-torizon-debug-arm64",
@@ -275,8 +263,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "deploy-torizon-arm64",
@@ -314,8 +301,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-container-image-sdk-arm",
@@ -337,8 +323,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-debug-arm",
@@ -366,8 +351,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "pre-cleanup-arm",
@@ -390,8 +374,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-container-torizon-debug-arm",
@@ -415,8 +398,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "push-container-torizon-debug-arm",
@@ -438,8 +420,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "pull-container-torizon-debug-arm",
@@ -462,8 +443,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-container-torizon-debug-arm",
@@ -486,8 +466,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "deploy-torizon-arm",
@@ -525,8 +504,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-container-image-sdk-x86",
@@ -548,8 +526,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-debug-x86",
@@ -577,8 +554,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-x86"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "pre-cleanup-x86",
@@ -601,8 +577,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-container-torizon-debug-x86",
@@ -626,8 +601,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "push-container-torizon-debug-x86",
@@ -649,8 +623,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "pull-container-torizon-debug-x86",
@@ -673,8 +646,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-container-torizon-debug-x86",
@@ -697,8 +669,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "deploy-torizon-x86",
@@ -736,9 +707,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
-        }
+            }
+        },
     ],
 "inputs": []
 }

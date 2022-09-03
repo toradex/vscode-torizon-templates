@@ -76,29 +76,25 @@
             "isBackground": true,
             "args": [
                 "-vv",
-                "-l",
-                "-p",
+                "-l", 
+                "-p", 
                 "2233",
                 "-c",
-            "\"nc.traditional ${config:torizon_ip} 2233\""
+                "\"nc.traditional ${config:torizon_ip} 2233\"",
             ],
-            "problemMatcher": [
-                {
-                    "pattern": [
-                        {
-                            "regexp": ".",
-                            "file": 1,
-                            "location": 2,
-                            "message": 3
-                        }
-                    ],
-                    "background": {
-                        "activeOnStart": true,
-                        "beginsPattern": ".",
-                        "endsPattern": "."
-                    }
+            "problemMatcher": [{
+                "pattern": [{
+                    "regexp": ".",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                }],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": ".",
                 }
-            ],
+            }],
             "icon": {
                 "id": "tools",
                 "color": "terminal.ansiGreen"
@@ -131,8 +127,7 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "Start GDB Server Local",
@@ -184,8 +179,7 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "Start GDB Server Remote x86",
@@ -214,8 +208,7 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "copy-assets-arm64",
@@ -233,8 +226,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "copy-assets-arm",
@@ -252,8 +244,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "copy-assets-x86-local",
@@ -271,8 +262,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "copy-assets-x86",
@@ -290,8 +280,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-qmake-debug-x86-local",
@@ -309,8 +298,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-debug-x86-local",
@@ -319,7 +307,8 @@
             "options": {
                 "cwd": "${workspaceFolder}/x86_64"
             },
-        "args": [],
+            "args": [
+            ],
             "problemMatcher": [
                 "$gcc"
             ],
@@ -331,8 +320,7 @@
             "dependsOn": [
                 "run-qmake-debug-x86-local",
                 "copy-assets-x86-local"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "clean-x86-local",
@@ -350,8 +338,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-qmake-debug-arm64",
@@ -378,8 +365,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm64"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "build-container-image-sdk-arm64",
@@ -401,8 +387,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-debug-arm64",
@@ -430,8 +415,8 @@
             "dependsOn": [
                 "run-qmake-debug-arm64",
                 "copy-assets-arm64"
-            ],
-            "isBackground": true
+                
+            ]
         },
         {
             "label": "clean-arm64",
@@ -458,8 +443,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm64"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "pre-cleanup-arm64",
@@ -482,8 +466,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-container-torizon-debug-arm64",
@@ -507,8 +490,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "push-container-torizon-debug-arm64",
@@ -530,8 +512,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "pull-container-torizon-debug-arm64",
@@ -554,8 +535,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-container-torizon-debug-arm64",
@@ -578,8 +558,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "deploy-torizon-arm64",
@@ -617,8 +596,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-qmake-debug-arm",
@@ -645,8 +623,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "build-container-image-sdk-arm",
@@ -668,8 +645,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-debug-arm",
@@ -697,8 +673,8 @@
             "dependsOn": [
                 "run-qmake-debug-arm",
                 "copy-assets-arm"
-            ],
-            "isBackground": true
+                
+            ]
         },
         {
             "label": "clean-arm",
@@ -725,8 +701,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "pre-cleanup-arm",
@@ -749,8 +724,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-container-torizon-debug-arm",
@@ -774,8 +748,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "push-container-torizon-debug-arm",
@@ -797,8 +770,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "pull-container-torizon-debug-arm",
@@ -821,8 +793,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-container-torizon-debug-arm",
@@ -845,8 +816,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "deploy-torizon-arm",
@@ -884,8 +854,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-qmake-debug-x86",
@@ -912,8 +881,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-x86"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "build-container-image-sdk-x86",
@@ -935,8 +903,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-debug-x86",
@@ -964,8 +931,8 @@
             "dependsOn": [
                 "run-qmake-debug-x86",
                 "copy-assets-x86"
-            ],
-            "isBackground": true
+                
+            ]
         },
         {
             "label": "clean-x86",
@@ -992,8 +959,7 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-x86"
-            ],
-            "isBackground": true
+            ]
         },
         {
             "label": "pre-cleanup-x86",
@@ -1016,8 +982,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "build-container-torizon-debug-x86",
@@ -1041,8 +1006,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "push-container-torizon-debug-x86",
@@ -1064,8 +1028,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "pull-container-torizon-debug-x86",
@@ -1088,8 +1051,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "run-container-torizon-debug-x86",
@@ -1112,8 +1074,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "deploy-torizon-x86",
@@ -1151,8 +1112,7 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "update-qt-ini-arm64",
@@ -1173,8 +1133,7 @@
             "icon": {
                 "id": "symbol-parameter",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "update-qt-ini-arm",
@@ -1195,8 +1154,7 @@
             "icon": {
                 "id": "symbol-parameter",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         },
         {
             "label": "update-qt-ini-x86",
@@ -1217,9 +1175,8 @@
             "icon": {
                 "id": "symbol-parameter",
                 "color": "terminal.ansiYellow"
-            },
-            "isBackground": true
+            }
         }
     ],
-"inputs": []
+    "inputs": []
 }
