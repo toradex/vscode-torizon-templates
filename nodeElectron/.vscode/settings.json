@@ -8,5 +8,6 @@
   "torizon_debug_port2": "9223",
   "torizon_debug_ssh_port": "2228",
   "torizon_debug_port3": "",
-  "torizon_gpu": ""
+  "torizon_gpu": "",
+  "torizon_arch": ""
 }
