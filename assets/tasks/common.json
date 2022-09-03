@@ -22,7 +22,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "create-production-image",
@@ -50,7 +51,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "docker-login",
@@ -73,7 +75,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "run-docker-registry",
@@ -97,7 +100,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "run-torizon-binfmt",
@@ -121,7 +125,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "run-share-wsl-ports",
@@ -142,7 +147,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "check-deps",
@@ -163,7 +169,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "copy-docker-compose",
@@ -185,7 +192,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "wait-a-bit",
@@ -200,7 +208,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "pos-cleanup",
@@ -224,7 +233,8 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "validate-settings",
@@ -233,14 +243,15 @@
             "type": "process",
             "args": [
                 "-c",
-                "[[ ! -z \"${config:torizon_ip}\" ]] && true || false"
+            "[[ ! -z \"${config:torizon_ip}\" ]] && true || false"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "isBackground": true
         }
     ]
 }

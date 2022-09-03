@@ -11,7 +11,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "deploy-application",
@@ -36,7 +37,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "deploy-assets",
@@ -61,7 +63,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "build-release-arm",
@@ -85,7 +88,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "push-release-arm",
@@ -110,7 +114,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "build-torizon-arm",
@@ -123,7 +128,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "build-container-torizon-debug-arm",
@@ -147,7 +153,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "push-container-torizon-debug-arm",
@@ -169,7 +176,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "pull-container-torizon-debug-arm",
@@ -192,7 +200,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "run-container-torizon-debug-arm",
@@ -215,7 +224,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "pre-cleanup-arm",
@@ -238,7 +248,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "run-mono-debug-server-arm",
@@ -275,7 +286,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "build-container-torizon-debug-arm64",
@@ -299,7 +311,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "push-container-torizon-debug-arm64",
@@ -321,7 +334,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "pull-container-torizon-debug-arm64",
@@ -344,7 +358,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "run-container-torizon-debug-arm64",
@@ -367,7 +382,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "pre-cleanup-arm64",
@@ -390,7 +406,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "run-mono-debug-server-arm64",
@@ -428,7 +445,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "build-release-arm64",
@@ -452,7 +470,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         },
         {
             "label": "push-release-arm64",
@@ -477,7 +496,8 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "isBackground": true
         }
     ],
 "inputs": []
