@@ -55,20 +55,30 @@ function _ReplaceSection ([string[]]$fileLines, [string]$section) {
     return $_newFileContent
 }
 
+Write-Host "Applying torizonPackages.json ..."
+
 # Dockerfile.debug
+Write-Host "Applying to Dockerfile.debug ..."
 $debugDockerfile = _getFileLines("Dockerfile.debug")
 _ReplaceSection($debugDockerfile, "torizon_packages_dev") `
     | Out-File -FilePath "Dockerfile.debug"
+Write-Host -ForegroundColor DarkGreen "✅ Dockerfile.debug"
 
 # Dockerfile.sdk
+Write-Host "Applying to Dockerfile.sdk ..."
 $debugDockerfileSDK = _getFileLines("Dockerfile.sdk")
 $debugDockerfileSDK = `
     _ReplaceSection($debugDockerfileSDK, "torizon_packages_prod")
 _ReplaceSection($debugDockerfileSDK, "torizon_packages_dev") `
     | Out-File -FilePath "Dockerfile.sdk"
+Write-Host -ForegroundColor DarkGreen "✅ Dockerfile.sdk"
 
 # Dockerfile
+Write-Host "Applying to Dockerfile ..."
 $Dockerfile = _getFileLines("Dockerfile")
 $Dockerfile = _ReplaceSection($Dockerfile, "torizon_packages_prod")
 _ReplaceSection($Dockerfile, "torizon_packages_dev") `
     | Out-File -FilePath "Dockerfile"
+Write-Host -ForegroundColor DarkGreen "✅ Dockerfile"
+
+Write-Host "torizonPackages.json applied"
