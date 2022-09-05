@@ -74,13 +74,16 @@ _ReplaceSection $debugDockerfile "torizon_packages_dev" `
 Write-Host -ForegroundColor DarkGreen "✅ Dockerfile.debug"
 
 # Dockerfile.sdk
-Write-Host "Applying to Dockerfile.sdk ..."
-$debugDockerfileSDK = _getFileLines "Dockerfile.sdk"
-$debugDockerfileSDK = `
-    _ReplaceSection $debugDockerfileSDK "torizon_packages_prod"
-_ReplaceSection $debugDockerfileSDK "torizon_packages_dev" `
-    | Out-File -FilePath "Dockerfile.sdk"
-Write-Host -ForegroundColor DarkGreen "✅ Dockerfile.sdk"
+# is not all templates that's need the Dockerfile.sdk
+if (Test-Path -Path "Dockerfile.sdk") {
+    Write-Host "Applying to Dockerfile.sdk ..."
+    $debugDockerfileSDK = _getFileLines "Dockerfile.sdk"
+    $debugDockerfileSDK = `
+        _ReplaceSection $debugDockerfileSDK "torizon_packages_prod"
+    _ReplaceSection $debugDockerfileSDK "torizon_packages_dev" `
+        | Out-File -FilePath "Dockerfile.sdk"
+    Write-Host -ForegroundColor DarkGreen "✅ Dockerfile.sdk"
+}
 
 # Dockerfile
 Write-Host "Applying to Dockerfile ..."
