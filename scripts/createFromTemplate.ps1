@@ -145,7 +145,7 @@ Write-Host -ForegroundColor Yellow "Renaming file contents ..."
 Get-ChildItem -Force -File -Recurse * | ForEach-Object {
     Write-Host $_
     $a = $_.fullname;
-    
+
     # do not mess up with binary files
     $mimeType = file --mime-encoding $a
 
@@ -157,7 +157,7 @@ Get-ChildItem -Force -File -Recurse * | ForEach-Object {
                 ForEach-Object {
                     $_ -replace "__change__",$projectName
                 } | Set-Content $a
-    
+
                 ( Get-Content $a ) |
                 ForEach-Object {
                     $_ -replace "__container__",$containerName
