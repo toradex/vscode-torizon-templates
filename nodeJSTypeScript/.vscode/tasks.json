@@ -258,6 +258,7 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
+                "apply-torizon-packages",
                 "npm-install",
                 "build-typescript-arm",
                 "copy-docker-compose",
@@ -451,6 +452,7 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
+                "apply-torizon-packages",
                 "npm-install",
                 "build-typescript-arm64",
                 "copy-docker-compose",

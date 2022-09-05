@@ -247,6 +247,7 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
+                "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup-arm",
                 "build-torizon-arm",
@@ -531,6 +532,7 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-x86",
+                "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup-amd64",
                 "build-torizon-amd64",
@@ -815,6 +817,7 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
+                "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
                 "build-torizon-arm64",
