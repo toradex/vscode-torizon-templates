@@ -39,6 +39,10 @@ RUN apt-get -q -y update && \
     qt6-declarative-private-dev \
     libqt6opengl6-dev \
     # ADD YOUR PACKAGES HERE
+# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+    # __torizon_packages_dev_start__
+    # __torizon_packages_dev_end__
+# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
@@ -93,6 +97,10 @@ RUN apt-get -q -y update && \
     qml6-module-qtquick-controls \
     qml6-module-qtquick-layouts \
     qml6-module-qtquick-templates \
+# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+    # __torizon_packages_prod_start__
+    # __torizon_packages_prod_end__
+# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
