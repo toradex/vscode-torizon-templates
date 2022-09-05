@@ -126,7 +126,10 @@ Copy-Item "$templateFolder/../scripts/checkDeps.ps1" "$location/.conf/"
 Copy-Item "$templateFolder/../scripts/runContainerIfNotExists.ps1" "$location/.conf/"
 Copy-Item "$templateFolder/../scripts/shareWSLPorts.ps1" "$location/.conf/"
 Copy-Item "$templateFolder/../scripts/createDockerComposeProduction.ps1" "$location/.conf"
+Copy-Item "$templateFolder/../scripts/torizonPackages.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/tasks.ps1" "$location/.vscode"
+Copy-Item "$templateFolder/../assets/json/torizonPackages.json" "$location/"
+
 Write-Host -ForegroundColor DarkGreen "✅ Scripts copy done"
 
 Set-Location $location

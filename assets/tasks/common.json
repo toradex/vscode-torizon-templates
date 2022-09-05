@@ -166,6 +166,27 @@
             }
         },
         {
+            "label": "apply-torizon-packages",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "args": [
+                "${workspaceFolder}/.conf/torizonPackages.ps1"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
             "label": "copy-docker-compose",
             "command": "sshpass",
             "type": "process",
