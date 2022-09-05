@@ -14,11 +14,11 @@ function _ReplaceSection ([string[]]$fileLines, [string]$section) {
     $_newFileContent = New-Object System.Collections.Generic.List[string]
 
     foreach ($line in $fileLines) {
-        if ($line.Contains("__${section}_start__")) {
+        if ($line.Contains("__$($section)_start__")) {
             $_startIx = $_ix
         }
 
-        if ($line.Contains("__${section}_end__")) {
+        if ($line.Contains("__$($section)_end__")) {
             $_endIx = $_ix
         }
 
@@ -35,9 +35,16 @@ function _ReplaceSection ([string[]]$fileLines, [string]$section) {
 
             $_json = Get-Content -Path "torizonPackages.json" | ConvertFrom-Json
             $_devPacks = $_json.devDeps
+            $_prodPacks = $_json.deps
 
-            foreach ($pack in $_devPacks) {
-                $_newFileContent.Add("`t$pack \")
+            if ($section.Contains("dev")) {
+                foreach ($pack in $_devPacks) {
+                    $_newFileContent.Add("`t$pack \")
+                }
+            } elseif ($section.Contains("prod")) {
+                foreach ($pack in $_prodPacks) {
+                    $_newFileContent.Add("`t$pack \")
+                }
             }
         }
 
