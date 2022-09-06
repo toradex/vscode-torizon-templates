@@ -9,6 +9,15 @@
             "port": 55555
         },
         {
+            "name": "Torizon x86",
+            "request": "attach",
+            "type": "mono",
+            "address": "${config:torizon_ip}",
+            "port": 55555,
+            "preLaunchTask": "run-mono-debug-server-amd64",
+            "postDebugTask": "pre-cleanup-amd64"
+        },
+        {
             "name": "Torizon ARMv7",
             "request": "attach",
             "type": "mono",
