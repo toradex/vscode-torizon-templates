@@ -6,10 +6,11 @@
             "command": "mono",
             "type": "process",
             "args": [
-                "${workspaceFolder}/.conf/bin/mwf-designer",
+                "${workspaceFolder}/.conf/mwf-designer/mwf-designer.exe",
                 "${file}"
             ],
             "dependsOrder": "sequence",
+            "isBackground": true,
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "eye",
