@@ -193,7 +193,7 @@
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm",
-                "node-electron-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -216,7 +216,7 @@
             },
             "args": [
                 "push",
-                "node-electron-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -239,7 +239,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose pull node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -262,7 +262,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose up -d node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -396,7 +396,7 @@
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm64",
-                "node-electron-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -419,7 +419,7 @@
             },
             "args": [
                 "push",
-                "node-electron-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -442,7 +442,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose pull node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -465,7 +465,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose up -d node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -648,7 +648,7 @@
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=amd64",
-                "node-electron-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -671,7 +671,7 @@
             },
             "args": [
                 "push",
-                "node-electron-debug"
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -694,7 +694,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose pull node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -717,7 +717,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose up -d node-electron-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
