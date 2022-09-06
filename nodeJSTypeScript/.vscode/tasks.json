@@ -694,7 +694,7 @@
             ],
             "dependsOn": [
                 "validate-settings",
-                "validate-arch-amd64",
+                "validate-arch-x86",
                 "apply-torizon-packages",
                 "npm-install",
                 "build-typescript-amd64",
