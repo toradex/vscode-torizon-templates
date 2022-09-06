@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "output-arm64": "npm run build && rm -rf out && mkdir -p out && cp -r lib ./out && cp package.json ./out && npm i --prefix ./out --omit=dev --target_arch=arm64",
-    "output-arm": "npm run build && rm -rf out && mkdir -p out && cp -r lib ./out && cp package.json ./out && npm i --prefix ./out --omit=dev --target_arch=arm"
+    "output-arm": "npm run build && rm -rf out && mkdir -p out && cp -r lib ./out && cp package.json ./out && npm i --prefix ./out --omit=dev --target_arch=arm",
+    "output-amd64": "npm run build && rm -rf out && mkdir -p out && cp -r lib ./out && cp package.json ./out && npm i --prefix ./out --omit=dev --target_arch=x64"
   },
   "author": "Matheus Castello",
   "license": "MIT",
