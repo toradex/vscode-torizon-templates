@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.9"
 services:
   __container__-debug:
     build:
@@ -6,13 +6,13 @@ services:
       dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5000/__container__:${TAG}
     expose:
-       - 2228
-       - 9229
-       - 9223
+      - 2228
+      - 9229
+      - 9223
     ports:
-       - 2228:2228
-       - 9229:9229
-       - 9223:9223
+      - 2228:2228
+      - 9229:9229
+      - 9223:9223
     volumes:
       - type: bind
         source: /tmp
@@ -36,6 +36,7 @@ services:
 
   __container__:
     build:
+      context: .
       dockerfile: Dockerfile
     image: ${DOCKER_LOGIN}/__container__:${TAG}
     volumes:
