@@ -10,7 +10,7 @@
             "outFiles": ["${workspaceFolder}/lib/**/*.js"]
         },
         {
-            "name": "Torizon ARMv8",
+            "name": "Torizon x86",
             "type": "node",
             "request": "attach",
             "port": 9229,
