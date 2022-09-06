@@ -2,6 +2,21 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Open Mono Designer",
+            "command": "mono",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/.conf/bin/mwf-designer",
+                "${file}"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "eye",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "build-application",
             "command": "msbuild",
             "type": "process",
