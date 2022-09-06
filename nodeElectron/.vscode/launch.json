@@ -31,6 +31,20 @@
             "preLaunchTask": "tunnel-debug-torizon"
         },
         {
+            "name": "Torizon x86",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "address": "${config:torizon_ip}",
+            "restart": false,
+            "sourceMaps": false,
+            "continueOnAttach": true,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/home/torizon/app/resources/app/",
+            "preLaunchTask": "start-torizon-debug-amd64",
+            "postDebugTask": "stop-torizon-debug"
+        },
+        {
             "name": "Torizon ARMv7",
             "type": "node",
             "request": "attach",
