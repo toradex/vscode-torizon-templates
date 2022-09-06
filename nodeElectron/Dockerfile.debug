@@ -43,6 +43,7 @@ RUN apt-get -q -y update && \
     openssh-server \
     rsync \
     file \
+    curl \
     libatspi2.0-0 \
     libgconf-2-4 \
     libglib2.0-bin \

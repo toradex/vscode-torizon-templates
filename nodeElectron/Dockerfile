@@ -49,6 +49,7 @@ RUN apt-get -q -y update && \
     libxss1 \
     libxtst6 \
     libasound2 \
+    curl \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
@@ -97,6 +98,7 @@ RUN apt-get -q -y update && \
     libxss1 \
     libxtst6 \
     libasound2 \
+    curl \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
