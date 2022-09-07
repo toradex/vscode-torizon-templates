@@ -1,0 +1,13 @@
+{
+    "torizon_psswd": "1234",
+    "torizon_login": "torizon",
+    "torizon_ip": "raspberrypi4-64-100000008c7e0024.local",
+    "host_ip": "192.168.15.98",
+    "torizon_workspace": "${workspaceFolder}",
+    "torizon_debug_port": "2235",
+    "torizon_debug_ssh_port": "2234",
+    "torizon_debug_port2": "",
+    "torizon_debug_port3": "",
+    "torizon_gpu": "",
+    "torizon_arch": "aarch64"
+}

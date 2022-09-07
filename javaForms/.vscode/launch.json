@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // {
+        //     "type": "java",
+        //     "name": "Run Local",
+        //     "request": "launch",
+        //     "mainClass": "examples.Form1"
+        // },
+        {
+            "type": "java",
+            "name": "Run Local",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": "${config:torizon_debug_port}",
+            "preLaunchTask": "run-debugger-local"
+        },
+        {
+            "type": "java",
+            "name": "Torizon x86",
+            "request": "attach",
+            "hostName": "${config:torizon_ip}",
+            "port": "${config:torizon_debug_port}",
+            "preLaunchTask": "run-debugger-amd64"
+        },
+        {
+            "type": "java",
+            "name": "Torizon armv8",
+            "request": "attach",
+            "hostName": "${config:torizon_ip}",
+            "port": "${config:torizon_debug_port}",
+            "preLaunchTask": "run-debugger-arm64"
+        }
+    ],
+}

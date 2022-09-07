@@ -105,6 +105,17 @@
             "debugSSHPort": "2231",
             "multiContainer": false,
             "support": "Toradex"
+        },
+        {
+            "img": "jframe.png",
+            "folder": "javaForms",
+            "description": "Java Swing JFrame Application",
+            "runtime": "JRE",
+            "language": "Java",
+            "debugPort": "2235",
+            "debugSSHPort": "2234",
+            "multiContainer": false,
+            "support": "Community"
         }
     ]
 }
