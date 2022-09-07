@@ -293,7 +293,7 @@
             }
         },
         {
-            "label": "launch-tasks-amd64",
+            "label": "deploy-torizon-amd64",
             "detail": "hide",
             "command": "echo",
             "type": "process",
@@ -517,7 +517,7 @@
             }
         },
         {
-            "label": "launch-tasks-arm64",
+            "label": "deploy-torizon-arm64",
             "detail": "hide",
             "command": "echo",
             "type": "process",
