@@ -311,7 +311,28 @@
                 "deploy-assets"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
+            "problemMatcher": [
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "line": 1,
+                            "column": 1,
+                            "message": 1
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": {
+                            "regexp": "."
+                        },
+                        "endsPattern": {
+                            "regexp": "."
+                        }
+                    }
+                }
+            ],
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
@@ -536,7 +557,28 @@
                 "deploy-assets"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
+            "problemMatcher": [
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "line": 1,
+                            "column": 1,
+                            "message": 1
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": {
+                            "regexp": "."
+                        },
+                        "endsPattern": {
+                            "regexp": "."
+                        }
+                    }
+                }
+            ],
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
