@@ -283,7 +283,25 @@
                 "wait-a-bit",
                 "pos-cleanup",
                 "deploy-application",
-                "deploy-assets",
+                "deploy-assets"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "launch-tasks-amd64",
+            "detail": "hide",
+            "command": "echo",
+            "type": "process",
+            "args": [
+                "done",
+            ],
+            "dependsOn": [
+                "run-debugger-amd64",
                 "wait-a-bit"
             ],
             "dependsOrder": "sequence",
@@ -489,7 +507,25 @@
                 "wait-a-bit",
                 "pos-cleanup",
                 "deploy-application",
-                "deploy-assets",
+                "deploy-assets"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "launch-tasks-arm64",
+            "detail": "hide",
+            "command": "echo",
+            "type": "process",
+            "args": [
+                "done",
+            ],
+            "dependsOn": [
+                "run-debugger-arm64",
                 "wait-a-bit"
             ],
             "dependsOrder": "sequence",
