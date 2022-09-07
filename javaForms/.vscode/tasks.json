@@ -137,6 +137,30 @@
             }
         },
         {
+            "label": "exterminate-debugger",
+            "detail": "hide",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "pkill java"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "build-container-torizon-debug-amd64",
             "detail": "hide",
             "command": "docker-compose",
@@ -256,6 +280,7 @@
             "detail": "hide",
             "command": "ssh",
             "type": "process",
+            "isBackground": true,
             "args": [
                 "-i",
                 "${workspaceFolder}/.conf/id_rsa",
@@ -266,7 +291,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/__change__.jar > out.log 2> err.log &"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/__change__.jar"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -480,6 +505,7 @@
             "detail": "hide",
             "command": "ssh",
             "type": "process",
+            "isBackground": true,
             "args": [
                 "-i",
                 "${workspaceFolder}/.conf/id_rsa",
@@ -490,7 +516,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/__change__.jar > out.log 2> err.log &"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/__change__.jar"
             ],
             "dependsOn": [
                 "validate-settings",

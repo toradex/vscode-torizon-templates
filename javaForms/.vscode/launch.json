@@ -21,7 +21,8 @@
             "request": "attach",
             "hostName": "${config:torizon_ip}",
             "port": "${config:torizon_debug_port}",
-            "preLaunchTask": "deploy-torizon-amd64"
+            "preLaunchTask": "deploy-torizon-amd64",
+            "postDebugTask": "exterminate-debugger"
         },
         {
             "type": "java",
@@ -29,7 +30,8 @@
             "request": "attach",
             "hostName": "${config:torizon_ip}",
             "port": "${config:torizon_debug_port}",
-            "preLaunchTask": "deploy-torizon-arm64"
+            "preLaunchTask": "deploy-torizon-arm64",
+            "postDebugTask": "exterminate-debugger"
         }
     ],
 }
