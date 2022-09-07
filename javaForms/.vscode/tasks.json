@@ -283,7 +283,8 @@
                 "wait-a-bit",
                 "pos-cleanup",
                 "deploy-application",
-                "deploy-assets"
+                "deploy-assets",
+                "wait-a-bit"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
