@@ -358,7 +358,7 @@
             },
             "args": [
                 "-jar",
-                "${workspaceFolder}/dist/GUIFormExamples.jar"
+                "${workspaceFolder}/dist/__change__.jar"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -379,7 +379,7 @@
             "args": [
                 "-agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n",
                 "-jar",
-                "${workspaceFolder}/dist/GUIFormExamples.jar"
+                "${workspaceFolder}/dist/__change__.jar"
             ],
             "problemMatcher": [{
                 "pattern": [{
@@ -578,7 +578,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/GUIFormExamples.jar > out.log 2> err.log &"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/__change__.jar > out.log 2> err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -784,7 +784,7 @@
             "-o",
             "StrictHostKeyChecking=no",
             "torizon@${config:torizon_ip}",
-            "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/GUIFormExamples.jar > out.log 2> err.log &"
+            "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/__change__.jar > out.log 2> err.log &"
         ],
         "dependsOn": [
             "validate-settings",
