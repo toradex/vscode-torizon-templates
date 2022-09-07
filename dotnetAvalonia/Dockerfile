@@ -50,7 +50,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # __torizon_packages_prod_end__
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     libice6 \
-    libsm6 && \
+    libsm6 \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
