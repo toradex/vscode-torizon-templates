@@ -66,21 +66,32 @@
             "isBackground": true,
             "args": [
                 "-agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n",
-                "-jar",
-                "${workspaceFolder}/dist/__change__.jar"
+                "-cp",
+                "${workspaceFolder}/libs/*:${workspaceFolder}/dist/__change__.jar",
+                "__change__.Form1"
             ],
-            "problemMatcher": [{
-                "pattern": [{
-                    "regexp": ".",
-                    "file": 1,"line": 1,
-                    "column": 1,"message": 1
-                }],
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern": { "regexp": "." },
-                    "endsPattern": { "regexp": "." }
-                },
-            }],
+            "problemMatcher": [
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "line": 1,
+                            "column": 1,
+                            "message": 1
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": {
+                            "regexp": "."
+                        },
+                        "endsPattern": {
+                            "regexp": "."
+                        }
+                    }
+                }
+            ],
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
@@ -127,7 +138,32 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/assets",
-                "torizon@${config:torizon_ip}:~/assets"
+                "torizon@${config:torizon_ip}:~/app/assets"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-libs",
+            "detail": "hide",
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}",
+                "-pr",
+                "${workspaceFolder}/libs",
+                "torizon@${config:torizon_ip}:~/app/libs"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -291,7 +327,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/__change__.jar || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp /home/torizon/app/libs/*:/home/torizon/app/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -308,7 +344,8 @@
                 "wait-a-bit",
                 "pos-cleanup",
                 "deploy-application",
-                "deploy-assets"
+                "deploy-assets",
+                "deploy-libs"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": [
@@ -537,7 +574,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -jar ~/app/__change__.jar || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp /home/torizon/app/libs/*:/home/torizon/app/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -554,7 +591,8 @@
                 "wait-a-bit",
                 "pos-cleanup",
                 "deploy-application",
-                "deploy-assets"
+                "deploy-assets",
+                "deploy-libs"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": [

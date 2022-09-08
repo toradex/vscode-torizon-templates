@@ -24,6 +24,12 @@
 <!-- (If you delete it and reopen the project it will be recreated.) -->
 <project name="__change__" default="default" basedir=".">
     <description>Builds, tests, and runs the project __change__.</description>
+    <path id="build.classpath">
+        <fileset dir="libs">
+            <include name="**/*.jar"/>
+            <include name="**/*.zip"/>
+        </fileset>
+    </path>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
