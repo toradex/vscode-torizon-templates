@@ -116,6 +116,16 @@
             "debugSSHPort": "2234",
             "multiContainer": false,
             "support": "Community"
+        },
+        {
+            "img": "rust-console.png",
+            "folder": "rust-console",
+            "description": "Rust Console Application",
+            "runtime": "libc",
+            "language": "Rust",
+            "debugSSHPort": "2299",
+            "multiContainer": false,
+            "support": "Community"
         }
     ]
 }
