@@ -1,5 +1,5 @@
 # ARGUMENTS --------------------------------------------------------------------
-ARG CROSS_SDK_BASE_TAG=2.6-bullseye
+ARG CROSS_SDK_BASE_TAG=2.7-bullseye
 
 ##
 # Board architecture
