@@ -66,6 +66,22 @@
             }
         },
         {
+            "label": "build-makedir-riscv64",
+            "command": "make",
+            "type": "shell",
+            "args": [
+                "ARCH=riscv64",
+                "makedir"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "build-debug-x86-local",
             "command": "make",
             "type": "shell",
@@ -725,9 +741,9 @@
                 "${workspaceFolder}/Dockerfile.sdk",
                 "${workspaceFolder}",
                 "-t",
-                "cross-toolchain-amd64-__container__",
+                "cross-toolchain-riscv64-__container__",
                 "--build-arg",
-                "IMAGE_ARCH=amd64"
+                "IMAGE_ARCH=riscv64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -747,9 +763,9 @@
                 "-it",
                 "-v",
                 "${workspaceFolder}:/app",
-                "cross-toolchain-amd64-__container__",
+                "cross-toolchain-riscv64-__container__",
                 "make",
-                "ARCH=amd64",
+                "ARCH=riscv64",
                 "CC=riscv64-linux-gnu-g++",
                 "debug"
             ],
@@ -802,7 +818,7 @@
             "args": [
                 "build",
                 "--build-arg",
-                "IMAGE_ARCH=amd64",
+                "IMAGE_ARCH=riscv64",
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
@@ -895,7 +911,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/amd64/debug",
+                "${workspaceFolder}/riscv64/debug",
                 "torizon@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
