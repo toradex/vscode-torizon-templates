@@ -310,6 +310,22 @@
                 "id": "layers",
                 "color": "terminal.ansiCyan"
             }
+        },
+        {
+            "label": "validate-arch-riscv64",
+            "detail": "hide",
+            "command": "bash",
+            "type": "process",
+            "args": [
+                "-c",
+                "[[ \"${config:torizon_arch}\" == \"riscv64\" ]] && true || false"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            }
         }
     ]
 }
