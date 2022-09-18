@@ -1,4 +1,6 @@
 
+$TORIZON_ARCH = $args[0]
+
 # get the files content
 function _getFileLines ($file) {
     [string[]] $lines = Get-Content -Path $file
@@ -39,11 +41,11 @@ function _ReplaceSection ([string[]]$fileLines, [string]$section) {
 
             if ($section.Contains("dev")) {
                 foreach ($pack in $_devPacks) {
-                    $_newFileContent.Add("`t$pack \")
+                    $_newFileContent.Add("`t${pack}:${TORIZON_ARCH} \")
                 }
             } elseif ($section.Contains("prod")) {
                 foreach ($pack in $_prodPacks) {
-                    $_newFileContent.Add("`t$pack \")
+                    $_newFileContent.Add("`t${pack}:${TORIZON_ARCH} \")
                 }
             }
         }

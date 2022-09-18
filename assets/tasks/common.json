@@ -178,7 +178,8 @@
                 "clear": false
             },
             "args": [
-                "${workspaceFolder}/.conf/torizonPackages.ps1"
+                "${workspaceFolder}/.conf/torizonPackages.ps1",
+                "${config:torizon_arch}"
             ],
             "dependsOrder": "sequence",
             "icon": {
