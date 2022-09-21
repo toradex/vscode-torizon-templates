@@ -1,6 +1,7 @@
 {
     "packages": [
         "openssh-client",
-        "sshpass"
+        "sshpass",
+        "cargo"
     ]
 }
