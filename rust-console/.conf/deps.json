@@ -3,7 +3,10 @@
         "openssh-client",
         "sshpass",
         "cargo",
-        "rust-all",
-        "rust-src"
+        "rustc",
+        "rust-clippy",
+        "rust-lldb",
+        "rust-src",
+        "rust-gdb"
     ]
 }
