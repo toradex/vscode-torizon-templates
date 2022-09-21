@@ -2,6 +2,8 @@
     "packages": [
         "openssh-client",
         "sshpass",
-        "cargo"
+        "cargo",
+        "rust-all",
+        "rust-src"
     ]
 }
