@@ -14,7 +14,7 @@ ARG APP_EXECUTABLE=__change__
 
 
 # BUILD ------------------------------------------------------------------------
-FROM rust:1.62 AS Build
+FROM rust:1.48 AS Build
 
 RUN apt-get update && \
     apt-get install -y \

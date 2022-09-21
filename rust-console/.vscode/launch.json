@@ -12,6 +12,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/rust-gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -40,7 +41,7 @@
                 "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
-                "debuggerPath": "/usr/bin/gdb",
+                "debuggerPath": "/usr/bin/rust-gdb",
                 "pipeProgram": "ssh",
                 "pipeArgs": [
                     "-T",
@@ -85,7 +86,7 @@
                 "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
-                "debuggerPath": "/usr/bin/gdb",
+                "debuggerPath": "/usr/bin/rust-gdb",
                 "pipeProgram": "ssh",
                 "pipeArgs": [
                     "-T",
