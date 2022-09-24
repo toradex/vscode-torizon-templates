@@ -14,7 +14,7 @@ if ($null -ne $env:WSL_DISTRO_NAME) {
     #[Ports]
 
     #All the ports you want to forward separated by coma
-    $ports=@(8090, 5000);
+    $ports=@(8090, 5002);
     $superScript = "";
 
     #[Static ip]
@@ -23,23 +23,26 @@ if ($null -ne $env:WSL_DISTRO_NAME) {
     $ports_a = $ports -join ",";
 
     #Remove Firewall Exception Rules
-    $superScript = "($superScript Remove-NetFireWallRule -DisplayName ApolloX) -or `$true &&";
+    $superScript = "(Remove-NetFireWallRule -DisplayName ApolloX) -or `$true ; ";
 
     #adding Exception Rules for inbound and outbound Rules
-    $superScript = "$superScript New-NetFireWallRule -DisplayName ApolloX -Direction Outbound -LocalPort $ports_a -Action Allow -Protocol TCP &&";
-    $superScript = "$superScript New-NetFireWallRule -DisplayName ApolloX -Direction Inbound -LocalPort $ports_a -Action Allow -Protocol TCP &&";
+    $superScript = "$($superScript) New-NetFireWallRule -DisplayName ApolloX -Direction Outbound -LocalPort $ports_a -Action Allow -Protocol TCP ; ";
+    $superScript = "$($superScript) New-NetFireWallRule -DisplayName ApolloX -Direction Inbound -LocalPort $ports_a -Action Allow -Protocol TCP ; ";
 
     for( $i = 0; $i -lt $ports.length; $i++ ){
         $port = $ports[$i];
-        $superScript = "($superScript netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$addr) -or `$true &&";
+        $superScript = "$($superScript) (netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$addr) -or `$true ; ";
     }
 
     for( $i = 0; $i -lt $ports.length; $i++ ){
         $port = $ports[$i];
-        $superScript = "($superScript netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$remoteport) -or `$true &&";
+        $superScript = "$($superScript) (netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$remoteport) -or `$true ; ";
     }
 
     $superScript = $superScript.Trim();
 
-    pwsh.exe -C "start-process pwsh -verb runas -ArgumentList '-C `"$superScript echo done`"'"
+    # in case of issues break the glass
+    #Write-Host "start-process powershell -verb runas -ArgumentList '-NoProfile -C `"$($superScript) echo done`"'"
+
+    powershell.exe -NoProfile -C "start-process powershell -verb runas -ArgumentList '-NoProfile -C `"$superScript echo done`"'"
 }
