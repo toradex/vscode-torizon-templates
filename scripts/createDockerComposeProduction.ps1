@@ -55,7 +55,7 @@ $objSettings = Get-Content ("$compoFilePath/.vscode/settings.json") | `
     Out-String | ConvertFrom-Json
 $localRegistry = $objSettings.host_ip
 
-$env:LOCAL_REGISTRY="$($localRegistry):5000"
+$env:LOCAL_REGISTRY="$($localRegistry):5002"
 $env:TAG="$tag"
 $env:DOCKER_LOGIN="$dockerLogin"
 Set-Location $compoFilePath

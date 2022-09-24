@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.debug
-    image: ${LOCAL_REGISTRY}:5000/__container__:${TAG}
+    image: ${LOCAL_REGISTRY}:5002/__container__:${TAG}
     ports:
       - 2225:2225
     volumes:
@@ -55,7 +55,7 @@ services:
     depends_on: [
       weston
     ]
-  
+
   weston:
     image: torizonextras/weston${GPU}:2
     environment:

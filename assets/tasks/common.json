@@ -88,9 +88,10 @@
                 "clear": false
             },
             "args": [
+                "-file",
                 "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
                 "docker",
-                "'-d -p 5002:5002--restart=always registry:2'",
+                "\"'-d -p 5000:5002 --restart=always registry:2'\"",
                 "registry"
             ],
             "dependsOrder": "sequence",
