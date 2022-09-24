@@ -6,6 +6,7 @@ $settings = $settingsFileContent | ConvertFrom-Json
 $inputs = $json.inputs
 $inputValues = @{}
 $cliInputs = [System.Collections.ArrayList]@()
+$runDeps = $true;
 
 function settingsToGlobal () {
     foreach ($set in $settings | Get-Member -MemberType Properties) {
@@ -58,7 +59,7 @@ function checkInput () {
                                 -Pattern "(?<=\`${input:).*?(?=\s*})" `
                                 -AllMatches
                         ).Matches
-            
+
             foreach ($matchValue in $maches) {
                 $inputObj = $null
 
@@ -67,7 +68,7 @@ function checkInput () {
                         $inputObj = $inp
                     }
                 }
-                
+
                 $fromUser = $null
                 if ($inputValues.ContainsKey($matchValue.Value)) {
                     $fromUser = $inputValues[$matchValue.Value]
@@ -103,7 +104,7 @@ function checkInput () {
 
                     $inputValues.Add($matchValue.Value, $fromUser)
                 }
-                
+
                 $matchValue = $matchValue.Value
                 $arg = $arg.Replace("`${input:${matchValue}}", $fromUser)
             }
@@ -141,7 +142,7 @@ function taskArgumentExecute ($label, [ScriptBlock]$fnExec, $message) {
         write-error $message 10
     } else {
         $taskLabel = $label
-        
+
         if ($taskLabel -match "^\d+$") {
             Invoke-Command -ScriptBlock $fnExec `
                 -ArgumentList $json.tasks[[int]::Parse($taskLabel) -1].label
@@ -195,8 +196,10 @@ function runTask () {
             }
 
             # run dependencies
-            for ($j = 0; $j -lt $taskDepends.Count; $j++) {
-                runTask $taskDepends[$j]
+            if ($runDeps -eq $true) {
+                for ($j = 0; $j -lt $taskDepends.Count; $j++) {
+                    runTask $taskDepends[$j]
+                }
             }
 
             Write-Host -ForegroundColor Green `
@@ -240,12 +243,19 @@ switch ($args[0]) {
         taskArgumentExecute `
             $args[1] ${function:runTask} "Argument expected run <task_label>"
     }
+    "run-nodeps" {
+        $runDeps = $false;
+        getCliInputs $args
+        taskArgumentExecute `
+            $args[1] ${function:runTask} "Argument expected run <task_label>"
+    }
     Default {
         Write-Host "usage:"
-        Write-Host "    list                : list the tasks.json labels defined"
-        Write-Host "    desc <task_label>   : describe the task <task_label>"
-        Write-Host "    desc <task_index>   : describe the task <task_index>"
-        Write-Host "    run <task_label>    : run the task <task_label>"
-        Write-Host "    run <task_index>    : run the task <task_index>"
+        Write-Host "    list                    : list the tasks.json labels defined"
+        Write-Host "    desc <task_label>       : describe the task <task_label>"
+        Write-Host "    desc <task_index>       : describe the task <task_index>"
+        Write-Host "    run <task_label>        : run the task <task_label>"
+        Write-Host "    run <task_index>        : run the task <task_index>"
+        Write-Host "    run-nodeps <task_label> : run the tasks without dependencies <task_label>"
     }
 }
