@@ -1,0 +1,18 @@
+{
+    "torizon_psswd": "1234",
+    "torizon_login": "torizon",
+    "torizon_ip": "apalis-imx8-06804474.local",
+    "host_ip": "192.168.15.98",
+    "torizon_workspace": "${workspaceFolder}",
+    "torizon_debug_port": "",
+    "torizon_debug_ssh_port": "2250",
+    "torizon_debug_port2": "",
+    "torizon_debug_port3": "",
+    "torizon_gpu": "-vivante",
+    "torizon_arch": "aarch64",
+    "files.associations": {
+        "*.modules": "vb",
+        "*.form": "vb",
+        "*.class": "vb"
+    },
+}

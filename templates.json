@@ -126,6 +126,16 @@
             "debugSSHPort": "2299",
             "multiContainer": false,
             "support": "Community"
+        },
+        {
+            "img": "gambasform.png",
+            "folder": "gambasForms",
+            "description": "Gambas3 Form Project",
+            "runtime": "gambas3",
+            "language": "Visual Basic",
+            "debugSSHPort": "2250",
+            "multiContainer": false,
+            "support": "Community"
         }
     ]
 }
