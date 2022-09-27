@@ -9,6 +9,9 @@
                 "${workspaceFolder}/__change__/"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "update-settings-ini"
+            ],
             "isBackground": true,
             "problemMatcher": "$msCompile",
             "icon": {
