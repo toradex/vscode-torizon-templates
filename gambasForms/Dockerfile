@@ -65,6 +65,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 
 # copy the build
 COPY --from=Build /build/__change__/__change__.gambas /app
+# coyp the assets
+COPY __change__/assets /app/assets
 
 # ADD YOUR ARGUMENTS HERE
 CMD [ "./app/__change__.gambas" ]
