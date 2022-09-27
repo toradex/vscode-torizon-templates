@@ -46,7 +46,7 @@ RUN apt-get -q -y update && \
     openssh-server \
     rsync \
     file \
-    gambas3/bullseye-backports \
+    gambas3-runtime/bullseye-backports \
     gambas3-gb-gui/bullseye-backports \
     gambas3-gb-form/bullseye-backports \
     gambas3-gb-gtk3-wayland/bullseye-backports && \
