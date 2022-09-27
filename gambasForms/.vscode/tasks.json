@@ -46,11 +46,11 @@
             "args": [
                 "-nop",
                 "-c",
-                "${env:HOME}/.apollox/scripts/updateQtCreatorIni.ps1",
+                "${env:HOME}/.apollox/scripts/updateGambasIni.ps1",
                 "${workspaceFolder}",
-                "${config:torizon_ip}:${config:torizon_debug_port2}",
-                "__change__",
-                "aarch64"
+                "${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "__change__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -257,7 +257,7 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "gambas-ide-subs"
+                "update-settings-ini"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
