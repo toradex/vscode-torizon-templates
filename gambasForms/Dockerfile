@@ -24,16 +24,8 @@ FROM --platform=linux/${IMAGE_ARCH} \
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
 
-COPY . /build
+COPY __change__ /build
 WORKDIR /build
-
-# Add the mono preview feed
-RUN apt-get -q -y update && \
-    apt install apt-transport-https dirmngr gnupg ca-certificates && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
-    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
-    echo "deb https://download.mono-project.com/repo/debian preview-buster main" \
-    | sudo tee /etc/apt/sources.list.d/mono-official-preview.list
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # ADD YOUR PACKAGES HERE
@@ -41,11 +33,11 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
-    mono-complete \
+    gambas3 \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # build
-RUN msbuild
+RUN gbc3 /build
 
 # BUILD ------------------------------------------------------------------------
 
@@ -59,27 +51,22 @@ ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
-# Add the mono preview feed
-RUN apt-get -q -y update && \
-    apt install apt-transport-https dirmngr gnupg ca-certificates && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
-    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
-    echo "deb https://download.mono-project.com/repo/debian preview-buster main" \
-    | sudo tee /etc/apt/sources.list.d/mono-official-preview.list
-
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # ADD YOUR PACKAGES HERE
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
-    mono-runtime && \
+    gambas3-runtime \
+    gambas3-gb-gui \
+    gambas3-gb-form \
+    gambas3-gb-gtk3-wayland \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
-COPY --from=Build /build/bin/Debug /app
+COPY --from=Build /build/__change__/__change__.gambas /app
 
 # ADD YOUR ARGUMENTS HERE
-CMD [ "mono", "./app/gambas.exe" ]
+CMD [ "./app/__change__.gambas" ]
 
 # DEPLOY -----------------------------------------------------------------------
