@@ -14,37 +14,23 @@ ApolloX project templates are in their nature VS Code workspaces, with multiple 
 
 > ℹ️ The best way to start creating a new project template is taking one of the already published templates as reference. Check the [cppConsole/.vscode/tasks.json](./cppConsole/.vscode/tasks.json) to see an example.
 
-
-
 ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/vscodetasksDiagram.png?raw=true&v=6)
-
-
 
 > ⚠️ To trigger the ApolloX `build/deploy start` event the first dependency tasks from the pipeline needs to be labeled `validate-settings-*`.
 > 
 > Check the common tasks to use the right validate settings task for the architecture that is being added  [assets/tasks/common.json](./assets/tasks/common.json)
 
-
-
 > ⚠️ To trigger the ApolloX `build/deploy end` event the last task to be executed from the pipeline needs to be labeled `deploy-torizon-*`.
-
-
 
 This pattern is replicated for each architecture supported by the template:
 
 > ⚠️ Remember to split task groups adding the architecture prefix to the task label: `-arm64`, `-arm`, `-riscv64` and `-x86`
 
-
-
 ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/vscodeTasksMultiArch.png?raw=true)
 
 > ℹ️ Check the [cppConsole/.vscode/tasks.json](./cppConsole/.vscode/tasks.json) to see an example.
 
-
-
 Some tasks are exceptions and are common to all architectures, the identified tasks that can be used for all templates are defined in [assets/tasks/common.json](./assets/tasks/common.json)
-
-
 
 > ⚠️ Define the tasks in a way that is easy to reuse them for the CI/CD pipeline. The idea is to use the `tasks.json` definitions to also execute and generate CI/CD pipelines. Check the [tasks.ps1](./scripts/tasks.ps1) script for reference.
 
@@ -62,23 +48,17 @@ ApolloX projects templates were designed to automate creation and development of
 
 It is recommended to be a multi-stage `Dockerfile` with the instructions to build the application artifacts in the `build` stage and generate the production ready image in the `deploy` stage. With multi stage we also guarantee that it will be easy to use during the development cycle in the user CI/CD pipeline.
 
-
-
 #### Dockerfile.debug
 
 The purpose of `Dockerfile.debug` is to create an image with the application's dependencies and also to setup a `ssh` server to the container generated from the image. The project template tasks will upload the debug release artifacts to the debug container running, through `ssh`. The `ssh` server is also needed to create the remote debug session on VS Code.
 
 > ⚠️ The public and "private" keys used in the `Dockerfile.debug` are expected to be located in the [.conf](./cppConsole/.conf) folder of the template.
 
-
-
 #### Dockerfile.sdk
 
 The purpose of `Dockerfile.sdk` is to create an image with the cross toolchain SDK to build the application to a target architecture. This is used to output the build artifacts to be deployed on the `Dockferfile.debug` container.
 
 > ⚠️ The `Dockerfile.sdk` file is needed only if the application framework or runtime only runs machine code.
-
-
 
 #### Scripts
 
@@ -88,8 +68,6 @@ The idea is that the project created from the template should be independent of 
 
 > ⚠️ Check the [createFromTemplate.ps1](./scripts/createFromTemplate.ps1) script for reference.
 
-
-
 #### Substitution tags
 
 Substitution tags can be used inside files and as folders names to rename stuff needed by the project template. There are two substitution tags used by ApolloX:
@@ -98,17 +76,29 @@ Substitution tags can be used inside files and as folders names to rename stuff 
 
 - `__container__`: that will be substituted to the project container name service;
 
-
-
 > ⚠️ Check the [createFromTemplate.ps1](./scripts/createFromTemplate.ps1) script for reference.
-
-
 
 #### Dot VS Code Folder
 
 In the `.vscode` folder the following files are expected:
 
-
+- `settings.json`: define configurations about the host and the target device;
+  
+  - ```json
+    {
+      "torizon_psswd": "", // remote device psswd
+      "torizon_login": "", // remote device login
+      "torizon_ip": "", // remote device hostname or ip address
+      "host_ip": "", // development pc ip address
+      "torizon_workspace": "${workspaceFolder}",
+      "torizon_debug_port": "", // debug port used by the framework
+      "torizon_debug_ssh_port": "2230", // ssh port used by debug container
+      "torizon_debug_port2": "", // second port used by the framework
+      "torizon_debug_port3": "", // third port used by the framework
+      "torizon_gpu": "", // remote device specific gpu vendor
+      "torizon_arch": "" // remote device machine architecture
+    }
+    ```
 
 - `tasks.json`: define tasks to run the pipeline to build and remote deploy/debug application;
 
@@ -116,11 +106,7 @@ In the `.vscode` folder the following files are expected:
 
 - `extensions.json`:  define the extensions recommended to handle the files and the application framework;
 
-
-
-> ℹ️ All these files are files used by VS Code related files, check the Microsoft official documentation to know more: [Documentation for Visual Studio Code](https://code.visualstudio.com/docs)
-
-
+> ℹ️ All these are VS Code related files, check the Microsoft official documentation to know more: [Documentation for Visual Studio Code](https://code.visualstudio.com/docs)
 
 #### Dot Conf Folder
 
@@ -147,8 +133,6 @@ In the `.conf` folder the following files are expected:
 
 > ⚠️ The "private" and public keys used on ApolloX projects are only for debug purposes!
 
-
-
 ## Creating a Pull Request
 
 For ApolloX project templates we are using [Github platform](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
@@ -163,7 +147,6 @@ For ApolloX project templates we are using [Github platform](https://docs.github
   
   - ```git
     <template Folder>: <description>
-    
     
     [optional body] <detailed description>
     
