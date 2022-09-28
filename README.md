@@ -15,6 +15,14 @@ This repository maintains the templates used in conjunction with the [VS Code To
 | ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/dotnetconsole.png?raw=true) | .NET 6 C# Console Application   | .NET 6.0 | C#        | ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/arm32.png?raw=true) ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/arm64.png?raw=true)  ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/x8664.png?raw=true)                                                                                               | [dotnet-console](./dotnet-console) |
 | ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/unogtk.png?raw=true)        | .NET 6 C# Uno Platform Skia.GTK | .NET 6.0 | C#        | ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/arm32.png?raw=true) ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/arm64.png?raw=true)  ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/x8664.png?raw=true)                                                                                               | [dotnetUNO](./dotnetUNO)           |
 
+# Contributing
+
+We encourage you to also contribute templates. The community supported templates can also be used in the [VS Code Torizon Integrated Development Environment ApolloX Labs Project](https://labs.toradex.com/projects/torizon-vs-code-v2-apollo-x):
+
+- [Code of Conduct](./CODE_OF_CONDUCT.md)
+
+- [How to Contribute](./CONTRIBUTING.md)
+
 ## Community Supported Templates
 
 > ⚠️ **Community Supported Templates** are templates with emerging development stacks or unstable technology stacks and are maintained by the Torizon community.
