@@ -260,7 +260,8 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "update-settings-ini"
+                "update-settings-ini",
+                "deploy-torizon-fake"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -385,6 +386,20 @@
             }
         },
         {
+            "label": "deploy-torizon-fake",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "deployed ✅"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "Run Container arm64",
             "command": "echo",
             "type": "shell",
@@ -403,7 +418,8 @@
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
-                "update-settings-ini"
+                "update-settings-ini",
+                "deploy-torizon-fake"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
