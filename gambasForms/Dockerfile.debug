@@ -20,8 +20,8 @@ ARG APP_EXECUTABLE=__change__
 ##
 # Deploy Step .NET Uno
 ##
-FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/dotnet-uno-debug:${BASE_VERSION} AS Debug
+# TODO: Add arm support
+FROM matheuscastello/gambas3:${IMAGE_ARCH} AS Debug
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -34,9 +34,10 @@ ARG SSHUSERNAME=torizon
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
 
-# add the backports to get gambas packages
-RUN echo "deb http://deb.debian.org/debian bullseye-backports main" >> \
-    /etc/apt/sources.list
+# TODO: use this still we have a new libdrm from feeds
+RUN sed -i '/deb https:\/\/feeds.toradex.com*/d' \
+    /etc/apt/sources.list && \
+    apt-get purge imx-gpu-viv-wayland
 
 # your regular RUN statements here
 # Install required packages
@@ -46,10 +47,7 @@ RUN apt-get -q -y update && \
     openssh-server \
     rsync \
     file \
-    gambas3-runtime/bullseye-backports \
-    gambas3-gb-gui/bullseye-backports \
-    gambas3-gb-form/bullseye-backports \
-    gambas3-gb-gtk3-wayland/bullseye-backports && \
+    && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
