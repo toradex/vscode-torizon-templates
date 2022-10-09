@@ -36,8 +36,7 @@ ENV DEBIAN_FRONTEND="noninteractive"
 
 # TODO: use this still we have a new libdrm from feeds
 RUN sed -i '/deb https:\/\/feeds.toradex.com*/d' \
-    /etc/apt/sources.list && \
-    apt-get purge imx-gpu-viv-wayland
+    /etc/apt/sources.list
 
 # your regular RUN statements here
 # Install required packages
