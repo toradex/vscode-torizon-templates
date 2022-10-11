@@ -1,0 +1,42 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Local",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/main.py",
+            "preLaunchTask": "host-install-pip-requirements"
+        },
+        {
+            "name": "Torizon ARMv7",
+            "type": "python",
+            "request": "attach",
+            "justMyCode": false,
+            "host": "${config:torizon_ip}",
+            "port": 6512,
+            "pathMappings": [
+                {
+                "localRoot": "${workspaceFolder}/src",
+                "remoteRoot": "/home/torizon/app"
+                }
+            ],
+            "preLaunchTask": "wait-debugpy-start-arm"
+        },
+        {
+            "name": "Torizon ARMv8",
+            "type": "python",
+            "request": "attach",
+            "justMyCode": false,
+            "host": "${config:torizon_ip}",
+            "port": 6512,
+            "pathMappings": [
+                {
+                "localRoot": "${workspaceFolder}/src",
+                "remoteRoot": "/home/torizon/app"
+                }
+            ],
+            "preLaunchTask": "wait-debugpy-start-arm64"
+        }
+    ]
+}

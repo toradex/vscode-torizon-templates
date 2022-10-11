@@ -136,6 +136,28 @@
             "debugSSHPort": "2250",
             "multiContainer": false,
             "support": "Community"
+        },
+        {
+            "img": "python3console.png",
+            "folder": "python3Console",
+            "description": "Python 3 Console Application",
+            "runtime": "Python 3",
+            "language": "Python 3",
+            "debugPort": "6512",
+            "debugSSHPort": "6502",
+            "multiContainer": false,
+            "support": "Toradex"
+        },
+        {
+            "img": "python3pyside2.png",
+            "folder": "python3Pyside2QML",
+            "description": "Python 3 Pyside 2(Qt 5) QML Application",
+            "runtime": "Pyside 2",
+            "language": "Python 3",
+            "debugPort": "6512",
+            "debugSSHPort": "6502",
+            "multiContainer": false,
+            "support": "Community"
         }
     ]
 }
