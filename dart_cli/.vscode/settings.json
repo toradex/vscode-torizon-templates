@@ -5,7 +5,7 @@
     "host_ip": "10.42.0.1",
     "torizon_workspace": "${workspaceFolder}",
     "torizon_debug_port": "",
-    "torizon_debug_ssh_port": "2230",
+    "torizon_debug_ssh_port": "2300",
     "torizon_debug_dart_port": "8181",
     "torizon_debug_dart_vm_file": "/tmp/dart-vm-service-torizon.json",
     "torizon_debug_dart_vm_uri": "",
