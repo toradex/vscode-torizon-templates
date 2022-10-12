@@ -1,0 +1,351 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-x86-local",
+            "command": "dart",
+            "type": "process",
+            "args": [
+                "compile",
+                "exe",
+                "${workspaceFolder}/dart_cli/bin/main.dart",
+                "--output",
+                "${workspaceFolder}/dart_cli/bin/main"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "pre-cleanup-arm64",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down --remove-orphans"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-container-torizon-debug-arm64",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm64"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm64",
+                "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "push-container-torizon-debug-arm64",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm64"
+                }
+            },
+            "args": [
+                "push",
+                "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "pull-container-torizon-debug-arm64",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull __container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "run-container-torizon-debug-arm64",
+            "detail": "hide",
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose up -d __container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-arm64",
+            "detail": "hide",
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}",
+                "-pr",
+                "${workspaceFolder}",
+                "torizon@${config:torizon_ip}:~/app"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm64",
+                "apply-torizon-packages",
+                "copy-docker-compose",
+                "pre-cleanup-arm64",
+                "build-container-torizon-debug-arm64",
+                "push-container-torizon-debug-arm64",
+                "pull-container-torizon-debug-arm64",
+                "run-container-torizon-debug-arm64",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-launch-torizon-arm64",
+            "detail": "hide",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "torizon@${config:torizon_ip}",
+                "dart",
+                "--enable-vm-service=${config:torizon_debug_dart_port}/0.0.0.0",
+                "--pause_isolates_on_start=true",
+                "--no-serve-devtools",
+                "--write-service-info=file://${config:torizon_debug_dart_vm_file}",
+                "--enable-asserts",
+                "-DSILENT_OBSERVATORY=true",
+                "/home/torizon/app/bin/main.dart >out.log 2>err.log &"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-fetch-service-info-torizon-arm64",
+            "detail": "hide",
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}",
+                "-pr",
+                "torizon@${config:torizon_ip}:${config:torizon_debug_dart_vm_file}",
+                "/tmp/",
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-replace-ip-torizon-arm64",
+            "detail": "hide",
+            "command": "sed",
+            "type": "process",
+            "args": [
+                "-i",
+                "s/0.0.0.0/${config:torizon_ip}/",
+                "${config:torizon_debug_dart_vm_file}"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-log-vm-uri-arm64",
+            "command": "jq",
+            "type": "process",
+            "args": [
+                "-r",
+                ".uri",
+                "${config:torizon_debug_dart_vm_file}"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "detail": "Use the output to start remote debugging",
+            "presentation": {
+                "echo": false,
+                "focus": true,
+                "panel": "dedicated",
+                "clear": true,
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "deploy-run-torizon-arm64",
+            "detail": "hide",
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "2"
+            ],
+            "dependsOn": [
+                "deploy-torizon-arm64",
+                "deploy-launch-torizon-arm64",
+                "wait-a-bit",
+                "wait-a-bit",
+                "wait-a-bit",
+                "wait-a-bit",
+                "deploy-fetch-service-info-torizon-arm64",
+                "deploy-replace-ip-torizon-arm64",
+                "deploy-log-vm-uri-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "build-release-arm64",
+            "detail": "hide",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "DOCKER_LOGIN": "${input:dockerLogin}",
+                    "TAG": "arm64"
+                }
+            },
+            "args": [
+                "build",
+                "--build-arg",
+                "IMAGE_ARCH=arm64",
+                "__container__"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "push-release-arm64",
+            "command": "docker-compose",
+            "type": "process",
+            "options": {
+                "env": {
+                    "DOCKER_LOGIN": "${input:dockerLogin}",
+                    "TAG": "arm64"
+                }
+            },
+            "args": [
+                "push",
+                "__container__"
+            ],
+            "dependsOn": [
+                "docker-login",
+                "build-release-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        }
+    ],
+"inputs": []
+}

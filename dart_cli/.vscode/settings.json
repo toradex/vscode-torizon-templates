@@ -1,0 +1,29 @@
+{
+    "torizon_psswd": "1",
+    "torizon_login": "torizon",
+    "torizon_ip": "colibri-imx8x-06787861.local",
+    "host_ip": "10.42.0.1",
+    "torizon_workspace": "${workspaceFolder}",
+    "torizon_debug_port": "",
+    "torizon_debug_ssh_port": "2230",
+    "torizon_debug_dart_port": "8181",
+    "torizon_debug_dart_vm_file": "/tmp/dart-vm-service-torizon.json",
+    "torizon_debug_dart_vm_uri": "",
+    "torizon_debug_port2": "",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "torizon_debug_port3": "",
+    "torizon_gpu": "-vivante",
+    "torizon_arch": "aarch64",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false
+    }
+}

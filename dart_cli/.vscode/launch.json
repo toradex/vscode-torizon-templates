@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Dart Launch (CLI)",
+            "type": "dart",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/main.dart",
+            "args": [
+
+            ],
+            "cwd": "${workspaceRoot}",
+            "env": {
+
+            }
+            /*
+            "preLaunchTask": "build-debug-x86-local"
+            */
+        },
+        {
+            "name": "Torizon ARMv8",
+            "type": "dart",
+            "request": "attach",
+            "program": "${workspaceFolder}/bin/main.dart",
+            "cwd": "${workspaceRoot}",
+            "packages": "${workspaceFolder}/.dart_tool/package_config.json",
+            //"vmServiceUri": "${config:torizon_debug_dart_vm_uri}", // set the VM Service URI
+            "preLaunchTask": "deploy-run-torizon-arm64"
+        }
+    ]
+}
