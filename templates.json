@@ -136,6 +136,16 @@
             "debugSSHPort": "2250",
             "multiContainer": false,
             "support": "Community"
+        },
+        {
+            "img": "dartcli.png",
+            "folder": "dart_cli",
+            "description": "Dart CLI Project",
+            "runtime": "dart",
+            "language": "Dart",
+            "debugSSHPort": "2300",
+            "multiContainer": false,
+            "support": "Community"
         }
     ]
 }
