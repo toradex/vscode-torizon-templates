@@ -1,0 +1,16 @@
+{
+  "torizon_psswd": "123",
+  "torizon_login": "torizon",
+  "torizon_ip": "192.168.0.155",
+  "host_ip": "192.168.0.74",
+  "torizon_workspace": "${workspaceFolder}",
+  "torizon_debug_port": "2345",
+  "torizon_debug_ssh_port": "2299",
+  "torizon_debug_port2": "",
+  "torizon_debug_port3": "",
+  "torizon_gpu": "",
+  "torizon_arch": "aarch64",
+  "docker_login": "felipetdx",
+  "docker_password": "secret",
+  "docker_registry": "felipemadureira"
+}

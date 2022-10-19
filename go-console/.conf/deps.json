@@ -1,0 +1,7 @@
+{
+    "packages": [
+        "openssh-client",
+        "sshpass",
+        "golang-go"
+    ]
+}
