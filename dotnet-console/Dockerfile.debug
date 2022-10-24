@@ -16,6 +16,11 @@ ARG BASE_VERSION=2-6.0
 ##
 ARG APP_EXECUTABLE=__change__
 
+##
+# Debug port
+##
+ARG SSH_DEBUG_PORT=
+
 # BUILD ------------------------------------------------------------------------
 ##
 # Deploy Step .NET
@@ -25,10 +30,11 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
+ARG SSH_DEBUG_PORT
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # SSH for remote debug
-EXPOSE 2222
+EXPOSE ${SSH_DEBUG_PORT}
 ARG SSHUSERNAME=torizon
 
 # Make sure we don't get notifications we can't answer during building.
@@ -72,7 +78,7 @@ RUN mkdir /var/run/sshd && \
         then cp /id_rsa.pub /home/$SSHUSERNAME/.ssh/authorized_keys ; \
         else cp /id_rsa.pub /root/.ssh/authorized_keys ; fi && \
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
-    echo "Port 2222" >> /etc/ssh/sshd_config && \
+    echo "Port ${SSH_DEBUG_PORT}" >> /etc/ssh/sshd_config && \
     su -c "env" $SSHUSERNAME > /etc/environment
 
 RUN rm -r /etc/ssh/ssh*key && \
