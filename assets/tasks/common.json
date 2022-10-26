@@ -204,6 +204,9 @@
                 "torizon@${config:torizon_ip}:~/"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "wait-a-bit"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "layers",
@@ -216,7 +219,7 @@
             "command": "sleep",
             "type": "process",
             "args": [
-                "1"
+                "${config:wait_sync}"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
