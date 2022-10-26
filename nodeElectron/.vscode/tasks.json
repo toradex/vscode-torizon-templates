@@ -242,6 +242,9 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "wait-a-bit"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -265,6 +268,9 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "wait-a-bit"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -445,6 +451,9 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "wait-a-bit"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -468,6 +477,9 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "wait-a-bit"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -697,6 +709,9 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "wait-a-bit"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -720,6 +735,9 @@
                 "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "wait-a-bit"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
