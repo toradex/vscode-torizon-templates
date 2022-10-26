@@ -11,6 +11,7 @@ $settingsTemplate = [PSCustomObject]@{
     torizon_arch = ""
     host_ip = ""
     torizon_workspace = "$`{workspaceFolder`}"
+    wait_sync = "1"
 }
 
 # update all the .vscode/settings.json

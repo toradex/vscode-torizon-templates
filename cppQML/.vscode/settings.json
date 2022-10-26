@@ -10,5 +10,6 @@
   "torizon_debug_port3": "2233",
   "terminal.integrated.defaultProfile.linux": "bash",
   "torizon_gpu": "",
-  "torizon_arch": ""
+  "torizon_arch": "",
+  "wait_sync": "1"
 }
