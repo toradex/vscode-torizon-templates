@@ -1,3 +1,20 @@
+# supress warnings that we need to use
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidOverwritingBuiltInCmdlets', ""
+)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidUsingWriteHost', ""
+)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidUsingInvokeExpression', ""
+)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidUsingPositionalParameters', ""
+)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidGlobalVars', ""
+)]
+param()
 
 $_containerRuntime = $args[0]
 $_runArguments = $args[1].Trim("'").Trim('"');

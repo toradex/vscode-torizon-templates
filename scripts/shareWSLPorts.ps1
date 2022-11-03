@@ -1,4 +1,5 @@
-
+# DOES NOT ADD THE SUPRESS HERE
+# THIS NEED TO BE SUPPORTED ON THE WINDOWS POWERSHELL
 # this only makes sense for WSL
 if ($null -ne $env:WSL_DISTRO_NAME) {
     $remoteport = bash -c "ifconfig eth0 | grep 'inet '"

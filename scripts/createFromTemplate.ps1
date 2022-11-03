@@ -1,3 +1,21 @@
+# supress warnings that we need to use
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidOverwritingBuiltInCmdlets', ""
+)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidUsingWriteHost', ""
+)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidUsingInvokeExpression', ""
+)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidUsingPositionalParameters', ""
+)]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidGlobalVars', ""
+)]
+param()
+
 # include
 . "$(Split-Path $MyInvocation.MyCommand.Path -Parent)/utils/formatJson.ps1"
 . "$(Split-Path $MyInvocation.MyCommand.Path -Parent)/utils/replaceTasksInput.ps1"
