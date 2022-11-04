@@ -291,7 +291,7 @@
             "type": "process",
             "args": [
                 "-c",
-                "[[ \"${config:torizon_arch}\" == \"armhf\" ]] && true || false"
+                "[[ \"${config:torizon_arch}\" == \"armv7l\" ]] && true || false"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
