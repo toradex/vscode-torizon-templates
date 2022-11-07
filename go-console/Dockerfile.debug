@@ -37,7 +37,6 @@ ARG SSHUSERNAME=torizon
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
 
-#GENERALIZAR AQUI
 COPY ./main ./home/torizon
 
 

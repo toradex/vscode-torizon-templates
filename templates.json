@@ -136,6 +136,16 @@
             "debugSSHPort": "2250",
             "multiContainer": false,
             "support": "Community"
+        },
+        {
+            "img": "goconsole.png",
+            "folder": "go-console",
+            "description": "Go console application",
+            "runtime": "go",
+            "language": "Go",
+            "debugSSHPort": "2250",
+            "multiContainer": false,
+            "support": "Community"
         }
     ]
 }

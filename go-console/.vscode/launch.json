@@ -7,25 +7,8 @@
       "request": "launch",
       "program": "${workspaceFolder}/src/main.go",
       "args": [],
-      //"stopAtEntry": false,
       "cwd": "${workspaceRoot}",
-      //"environment": [],
-      //"externalConsole": false,
-      //"MIMode": "gdb",
-      //"miDebuggerPath": "/usr/bin/rust-gdb",
       "mode": "auto",
-      /* "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        }
-      ], */
       "preLaunchTask": "build-debug-x86"
     },
     {
@@ -39,52 +22,20 @@
       "showLog": true,
       "trace": "log",
       "logOutput": "rpc",
-      "preLaunchTask": "wait-debugpy-start-arm64"
+      "preLaunchTask": "wait-debugger-start-arm64"
     },
     {
       "name": "Torizon ARMv7",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "~/app/main",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "~/app",
-      "environment": [],
-      "externalConsole": false,
-      "sourceFileMap": {
-        "/app": "${workspaceFolder}"
-      },
-      "pipeTransport": {
-        "debuggerPath": "/usr/bin/rust-gdb",
-        "pipeProgram": "ssh",
-        "pipeArgs": [
-          "-T",
-          "-q",
-          "-p",
-          "${config:torizon_debug_ssh_port}",
-          "-i",
-          "${workspaceFolder}/.conf/id_rsa", // ssh key path
-          "-o",
-          "StrictHostKeyChecking=no",
-          "-o",
-          "UserKnownHostsFile /dev/null",
-          "torizon@${config:torizon_ip}" // user@device
-        ]
-      },
-      "MIMode": "gdb",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        }
-      ],
-      "preLaunchTask": "deploy-torizon-arm"
+      "type": "go",
+      "request": "attach",
+      "mode": "remote",
+      "remotePath": "",
+      "port": 2345,
+      "host": "${config:torizon_ip}",
+      "showLog": true,
+      "trace": "log",
+      "logOutput": "rpc",
+      "preLaunchTask": "wait-debugger-start-arm"
     }
   ]
 }

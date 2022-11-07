@@ -379,7 +379,12 @@
           "TAG": "arm"
         }
       },
-      "args": ["build", "--build-arg", "IMAGE_ARCH=arm", "__container__-debug"],
+      "args": [
+        "build", 
+        "--build-arg", 
+        "IMAGE_ARCH=arm", 
+        "__container__-debug"
+      ],
       "dependsOrder": "sequence",
       "problemMatcher": "$msCompile",
       "icon": {
@@ -487,7 +492,7 @@
       }
     },
     {
-      "label": "wait-debugpy-start-arm",
+      "label": "wait-debugger-start-arm",
       "detail": "hide",
       "command": "sleep",
       "type": "process",
@@ -509,6 +514,30 @@
         "start-torizon-debug-arm"
       ],
       "dependsOrder": "sequence",
+      "icon": {
+        "id": "flame",
+        "color": "terminal.ansiYellow"
+      }
+    },
+    {
+      "label": "start-torizon-debug-arm",
+      "detail": "hide",
+      "command": "ssh",
+      "type": "process",
+      "args": [
+        "-i",
+        "${workspaceFolder}/.conf/id_rsa",
+        "-o",
+        "UserKnownHostsFile=/dev/null",
+        "-o",
+        "StrictHostKeyChecking=no",
+        "-p",
+        "${config:torizon_debug_ssh_port}",
+        "torizon@${config:torizon_ip}",
+        "/home/torizon/go/bin/dlv exec /home/torizon/main --listen=:2345 --headless=true --log=true --log-output=debugger,debuglineerr,gdbwire,lldbout,rpc --accept-multiclient --api-version=2 > out.log 2> err.log &"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": "$msCompile",
       "icon": {
         "id": "flame",
         "color": "terminal.ansiYellow"
@@ -830,7 +859,7 @@
       }
     },
     {
-      "label": "wait-debugpy-start-arm64",
+      "label": "wait-debugger-start-arm64",
       "detail": "hide",
       "command": "sleep",
       "type": "process",
