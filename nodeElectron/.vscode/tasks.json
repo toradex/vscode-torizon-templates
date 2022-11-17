@@ -75,7 +75,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "torizon@${config:torizon_ip}",
-                "ssh -i /home/torizon/app/resources/app/.conf/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${config:torizon_debug_ssh_port} -L 0.0.0.0:9223:localhost:9222 localhost -N >out2.log 2>err2.log &"
+                "ssh -i /home/torizon/app/resources/app/.conf/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${config:torizon_debug_ssh_port} -L 0.0.0.0:${config:torizon_debug_port2}:localhost:${config:torizon_debug_port3} localhost -N >out2.log 2>err2.log &"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -317,7 +317,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "torizon@${config:torizon_ip}",
-                "/home/torizon/app/__change__ --no-sandbox --remote-debugging-port=9222 --inspect-brk=0.0.0.0:9229 >out.log 2>err.log &"
+                "/home/torizon/app/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -526,7 +526,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "torizon@${config:torizon_ip}",
-                "/home/torizon/app/__change__ --no-sandbox --remote-debugging-port=9222 --inspect-brk=0.0.0.0:9229 >out.log 2>err.log &"
+                "/home/torizon/app/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -784,7 +784,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "torizon@${config:torizon_ip}",
-                "/home/torizon/app/__change__ --no-sandbox --remote-debugging-port=9222 --inspect-brk=0.0.0.0:9229 >out.log 2>err.log &"
+                "/home/torizon/app/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",

@@ -277,7 +277,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:55555 ~/app/__change__.exe > out.log 2> err.log &"
+                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} ~/app/__change__.exe > out.log 2> err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -437,7 +437,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:55555 ~/app/__change__.exe > out.log 2> err.log &"
+                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} ~/app/__change__.exe > out.log 2> err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -647,7 +647,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:55555 ~/app/__change__.exe > out.log 2> err.log &"
+                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} ~/app/__change__.exe > out.log 2> err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
