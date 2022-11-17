@@ -14,7 +14,7 @@
             "request": "attach",
             "justMyCode": false,
             "host": "${config:torizon_ip}",
-            "port": 6512,
+            "port": "${config:torizon_debug_port}",
             "pathMappings": [
                 {
                 "localRoot": "${workspaceFolder}/src",
@@ -29,7 +29,7 @@
             "request": "attach",
             "justMyCode": false,
             "host": "${config:torizon_ip}",
-            "port": 6512,
+            "port": "${config:torizon_debug_port}",
             "pathMappings": [
                 {
                 "localRoot": "${workspaceFolder}/src",
