@@ -167,30 +167,6 @@
             ]
         },
         {
-            "label": "build-container-torizon-debug-arm64",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64"
-                }
-            },
-            "args": [
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm64",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "push-container-torizon-debug-arm64",
             "detail": "hide",
             "command": "docker-compose",
@@ -353,30 +329,6 @@
             "dependsOn": [
                 "build-container-image-sdk-arm"
             ]
-        },
-        {
-            "label": "build-container-torizon-debug-arm",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm"
-                }
-            },
-            "args": [
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
         },
         {
             "label": "push-container-torizon-debug-arm",
@@ -543,30 +495,6 @@
             ]
         },
         {
-            "label": "build-container-torizon-debug-x86",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "x86"
-                }
-            },
-            "args": [
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=amd64",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "push-container-torizon-debug-x86",
             "detail": "hide",
             "command": "docker-compose",
@@ -729,30 +657,6 @@
             "dependsOn": [
                 "build-container-image-sdk-riscv64"
             ]
-        },
-        {
-            "label": "build-container-torizon-debug-riscv64",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "riscv64"
-                }
-            },
-            "args": [
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=riscv64",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
         },
         {
             "label": "push-container-torizon-debug-riscv64",

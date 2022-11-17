@@ -51,30 +51,6 @@
             }
         },
         {
-            "label": "build-container-torizon-debug-arm",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm"
-                }
-            },
-            "args": [
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "push-container-torizon-debug-arm",
             "detail": "hide",
             "command": "docker-compose",
@@ -219,30 +195,6 @@
                 "${config:torizon_debug_ssh_port}",
                 "torizon@${config:torizon_ip}",
                 "screen -d -m /usr/bin/python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port} --wait-for-client /home/torizon/app/main.py",
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-container-torizon-debug-arm64",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64"
-                }
-            },
-            "args": [
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm64",
-                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",

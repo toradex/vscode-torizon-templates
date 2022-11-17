@@ -125,31 +125,6 @@
             }
         },
         {
-            "label": "build-container-torizon-debug-arm",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm",
-                    "GPU": "${config:torizon_gpu}"
-                }
-            },
-            "args": [
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "push-container-torizon-debug-arm",
             "detail": "hide",
             "command": "docker-compose",
@@ -296,31 +271,6 @@
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
                 "-r",
                 "linux-arm64"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-container-torizon-debug-arm64",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64",
-                    "GPU": "${config:torizon_gpu}"
-                }
-            },
-            "args": [
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm64",
-                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -525,31 +475,6 @@
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
                 "-r",
                 "linux-x64"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-container-torizon-debug-x86",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "x86",
-                    "GPU": "${config:torizon_gpu}"
-                }
-            },
-            "args": [
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=amd64",
-                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
