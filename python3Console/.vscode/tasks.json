@@ -51,32 +51,6 @@
             }
         },
         {
-            "label": "pull-container-torizon-debug-arm",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull __container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "run-container-torizon-debug-arm",
             "detail": "hide",
             "command": "sshpass",
@@ -175,32 +149,6 @@
                 "screen -d -m /usr/bin/python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port} --wait-for-client /home/torizon/app/main.py",
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "pull-container-torizon-debug-arm64",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull __container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
