@@ -167,29 +167,6 @@
             ]
         },
         {
-            "label": "pre-cleanup-arm64",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down --remove-orphans"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "build-container-torizon-debug-arm64",
             "detail": "hide",
             "command": "docker-compose",
@@ -376,29 +353,6 @@
             "dependsOn": [
                 "build-container-image-sdk-arm"
             ]
-        },
-        {
-            "label": "pre-cleanup-arm",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose down --remove-orphans"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
         },
         {
             "label": "build-container-torizon-debug-arm",
@@ -589,29 +543,6 @@
             ]
         },
         {
-            "label": "pre-cleanup-x86",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 docker-compose down --remove-orphans"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "build-container-torizon-debug-x86",
             "detail": "hide",
             "command": "docker-compose",
@@ -798,29 +729,6 @@
             "dependsOn": [
                 "build-container-image-sdk-riscv64"
             ]
-        },
-        {
-            "label": "pre-cleanup-riscv64",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=riscv64 docker-compose down --remove-orphans"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
         },
         {
             "label": "build-container-torizon-debug-riscv64",

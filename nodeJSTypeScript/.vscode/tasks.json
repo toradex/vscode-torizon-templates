@@ -100,28 +100,6 @@
             }
         },
         {
-            "label": "pre-cleanup-arm",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down --remove-orphans"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "build-container-torizon-debug-arm",
             "detail": "hide",
             "command": "docker-compose",
@@ -296,24 +274,6 @@
             "args": [
                 "run",
                 "output-arm64"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "pre-cleanup-arm64",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -545,24 +505,6 @@
             "args": [
                 "run",
                 "output-amd64"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "pre-cleanup-amd64",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "icon": {
