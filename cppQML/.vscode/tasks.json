@@ -78,9 +78,9 @@
                 "-vv",
                 "-l", 
                 "-p", 
-                "2233",
+                "${config:torizon_debug_port3}",
                 "-c",
-                "\"nc.traditional ${config:torizon_ip} 2233\"",
+                "\"nc.traditional ${config:torizon_ip} ${config:torizon_debug_port3}\"",
             ],
             "problemMatcher": [{
                 "pattern": [{
