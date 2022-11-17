@@ -89,29 +89,6 @@
             }
         },
         {
-            "label": "push-container-torizon-debug-arm",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm",
-                    "GPU": "${config:torizon_gpu}"
-                }
-            },
-            "args": [
-                "push",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "pull-container-torizon-debug-arm",
             "detail": "hide",
             "command": "sshpass",
@@ -290,29 +267,7 @@
                 "color": "terminal.ansiYellow"
             }
         },
-        {
-            "label": "push-container-torizon-debug-arm64",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64",
-                    "GPU": "${config:torizon_gpu}"
-                }
-            },
-            "args": [
-                "push",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
+
         {
             "label": "pull-container-torizon-debug-arm64",
             "detail": "hide",
@@ -481,29 +436,6 @@
                 "${workspaceFolder}/__change__.csproj",
                 "-r",
                 "linux-x64"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "push-container-torizon-debug-x86",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "x86",
-                    "GPU": "${config:torizon_gpu}"
-                }
-            },
-            "args": [
-                "push",
-                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
