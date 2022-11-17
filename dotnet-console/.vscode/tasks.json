@@ -112,32 +112,6 @@
             }
         },
         {
-            "label": "pull-container-torizon-debug-arm",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull __container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "run-container-torizon-debug-arm",
             "detail": "hide",
             "command": "sshpass",
@@ -334,32 +308,6 @@
             }
         },
         {
-            "label": "pull-container-torizon-debug-amd64",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 docker-compose pull __container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "run-container-torizon-debug-amd64",
             "detail": "hide",
             "command": "sshpass",
@@ -549,32 +497,6 @@
                 "linux-arm64"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "pull-container-torizon-debug-arm64",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull __container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
