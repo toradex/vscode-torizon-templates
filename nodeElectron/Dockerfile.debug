@@ -16,16 +16,22 @@ ARG BASE_VERSION=2
 ##
 ARG APP_EXECUTABLE=__change__
 
+##
+# Debug port
+##
+ARG SSH_DEBUG_PORT=
+
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
     torizonextras/wayland-base:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
+ARG SSH_DEBUG_PORT
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # SSH for remote debug
-EXPOSE 2228
+EXPOSE ${SSH_DEBUG_PORT}
 EXPOSE 9229
 ARG SSHUSERNAME=torizon
 
@@ -94,7 +100,7 @@ RUN mkdir /var/run/sshd && \
         then cp /id_rsa.pub /home/$SSHUSERNAME/.ssh/authorized_keys ; \
         else cp /id_rsa.pub /root/.ssh/authorized_keys ; fi && \
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
-    echo "Port 2228" >> /etc/ssh/sshd_config && \
+    echo "Port ${SSH_DEBUG_PORT}" >> /etc/ssh/sshd_config && \
     su -c "env" $SSHUSERNAME > /etc/environment
 
 RUN rm -r /etc/ssh/ssh*key && \
