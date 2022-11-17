@@ -167,28 +167,6 @@
             ]
         },
         {
-            "label": "push-container-torizon-debug-arm64",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64"
-                }
-            },
-            "args": [
-                "push",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "pull-container-torizon-debug-arm64",
             "detail": "hide",
             "command": "sshpass",
@@ -329,28 +307,6 @@
             "dependsOn": [
                 "build-container-image-sdk-arm"
             ]
-        },
-        {
-            "label": "push-container-torizon-debug-arm",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm"
-                }
-            },
-            "args": [
-                "push",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
         },
         {
             "label": "pull-container-torizon-debug-arm",
@@ -495,28 +451,6 @@
             ]
         },
         {
-            "label": "push-container-torizon-debug-x86",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "x86"
-                }
-            },
-            "args": [
-                "push",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "pull-container-torizon-debug-x86",
             "detail": "hide",
             "command": "sshpass",
@@ -657,28 +591,6 @@
             "dependsOn": [
                 "build-container-image-sdk-riscv64"
             ]
-        },
-        {
-            "label": "push-container-torizon-debug-riscv64",
-            "detail": "hide",
-            "command": "docker-compose",
-            "type": "process",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "riscv64"
-                }
-            },
-            "args": [
-                "push",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
         },
         {
             "label": "pull-container-torizon-debug-riscv64",
