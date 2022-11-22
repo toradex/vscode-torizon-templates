@@ -260,9 +260,11 @@
         {
             "label": "host-install-pip-requirements",
             "detail": "hide",
-            "command": "pip3",
+            "command": "${command:python.interpreterPath}",
             "type": "process",
             "args": [
+                "-m",
+                "pip",
                 "install",
                 "-r",
                 "requirements-debug.txt"
