@@ -6,6 +6,7 @@
         "python3-pip",
         "python3-pylint-common",
         "python3-pyside2.qtquick",
-        "python3-pyside2.qtwidgets"
+        "python3-pyside2.qtwidgets",
+        "python3-venv"
     ]
 }
