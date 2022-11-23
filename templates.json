@@ -8,7 +8,20 @@
             "language": "C#",
             "debugSSHPort": "2222",
             "multiContainer": false,
-            "support": "Toradex"
+            "support": "Toradex",
+            "tests": {
+                "debuggers": [
+                    ".NET Core Launch (console)", 
+                    ".NET Core Attach", 
+                    ".NET Attach Torizon ARMv8", 
+                    "Torizon x86", "Torizon ARMv7", 
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": null,
+                "mainFile": "Program.cs",
+                "mainFileBreakpointLine": 2,
+                "successDebugMessage": "This is a simple .NET C# Torizon Template!"
+            }
         },
         {
             "img": "avaloniagtk.png",
@@ -38,7 +51,20 @@
             "language": "C#",
             "debugSSHPort": "2225",
             "multiContainer": false,
-            "support": "Toradex"
+            "support": "Toradex",
+            "tests": {
+                "debuggers": [
+                    "Skia.GTK openGL", 
+                    "Skia.GTK noGL", 
+                    "Torizon x86", 
+                    "Torizon ARMv7", 
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": null,
+                "mainFile": "Program.cs",
+                "mainFileBreakpointLine": 29,
+                "successDebugMessage": "Loaded 'Anonymously Hosted DynamicMethods Assembly'."
+            }
         },
         {
             "img": "unofbdrm.png",
@@ -92,7 +118,20 @@
             "language": "C++",
             "debugSSHPort": "2230",
             "multiContainer": false,
-            "support": "Toradex"
+            "support": "Toradex",
+            "tests" : {
+                "debuggers": [
+                    "Launch x86", 
+                    "Torizon riscv64", 
+                    "Torizon x86", 
+                    "Torizon ARMv7", 
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": "cppdbg",
+                "mainFile": "main.cpp",
+                "mainFileBreakpointLine": 4,
+                "successDebugMessage": "Hello Torizon!"
+            }
         },
         {
             "img": "qt6qml.png",
@@ -104,7 +143,20 @@
             "debugPort2": "2233",
             "debugSSHPort": "2231",
             "multiContainer": false,
-            "support": "Toradex"
+            "support": "Toradex",
+            "tests": {
+                "debuggers": [
+                    "Local x86", 
+                    "Torizon x86", 
+                    "Torizon ARMv7", 
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": "cppdbg",
+                "mainFile": "main.cpp",
+                "mainFileBreakpointLine": 18,
+                "successDebugMessage": "Loaded '/usr/lib/arm-linux-gnueabihf/qt6/plugins/wayland-decoration-client/libbradient.so'. Symbols loaded."
+            
+            }
         },
         {
             "img": "jframe.png",
@@ -146,7 +198,18 @@
             "debugPort": "6512",
             "debugSSHPort": "6502",
             "multiContainer": false,
-            "support": "Toradex"
+            "support": "Toradex",
+            "tests": {
+                "debuggers": [
+                    "Python Local", 
+                    "Torizon ARMv7", 
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": "Python Debug Console",
+                "mainFile": "main.py",
+                "mainFileBreakpointLine": 4,
+                "successDebugMessage": "Hello world!"
+            }
         },
         {
             "img": "python3pyside2.png",
