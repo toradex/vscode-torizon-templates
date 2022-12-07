@@ -2,7 +2,7 @@
     "Templates": [
         {
             "img": "dotnetconsole.png",
-            "folder": "dotnet-console",
+            "folder": "dotnetConsole",
             "description": ".NET 6 C# Console Application",
             "runtime": ".net 6.0",
             "language": "C#",
