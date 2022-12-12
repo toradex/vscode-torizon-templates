@@ -20,7 +20,7 @@
                 "debuggerConsole": null,
                 "mainFile": "Program.cs",
                 "mainFileBreakpointLine": 2,
-                "successDebugMessage": "This is a simple .NET C# Torizon Template!"
+                "successDebugMessage": "Hello Torizon!"
             }
         },
         {
@@ -61,9 +61,9 @@
                     "Torizon ARMv8"
                 ],
                 "debuggerConsole": null,
-                "mainFile": "Program.cs",
-                "mainFileBreakpointLine": 29,
-                "successDebugMessage": "Loaded 'Anonymously Hosted DynamicMethods Assembly'."
+                "mainFile": "App.xaml.cs",
+                "mainFileBreakpointLine": 117,
+                "successDebugMessage": "fps: "
             }
         },
         {
@@ -153,8 +153,8 @@
                 ],
                 "debuggerConsole": "cppdbg",
                 "mainFile": "main.cpp",
-                "mainFileBreakpointLine": 18,
-                "successDebugMessage": "Loaded '/usr/lib/arm-linux-gnueabihf/qt6/plugins/wayland-decoration-client/libbradient.so'. Symbols loaded."
+                "mainFileBreakpointLine": 19,
+                "successDebugMessage": "Hello Torizon!"
             
             }
         },
@@ -208,7 +208,7 @@
                 "debuggerConsole": "Python Debug Console",
                 "mainFile": "main.py",
                 "mainFileBreakpointLine": 4,
-                "successDebugMessage": "Hello world!"
+                "successDebugMessage": "Hello Torizon!"
             }
         },
         {
