@@ -26,34 +26,11 @@ $containerName = $args[2]
 $location = $args[3]
 
 # optional
-$telemetry = $args[4]
-$boardarch = $args[5]
-$boardmodel = $args[6]
-$template = $args[7]
-$osrelease = $args[8]
-$vscode = $args[9]
-
-# is enabled by default
-if ([string]::IsNullOrEmpty($telemetry)) {
-    $_TELEMETRY = $true
-} else {
-    $_TELEMETRY = ($telemetry -eq "true" ? $true : $false)
-}
-
-if ([string]::IsNullOrEmpty($boardarch)) {
-    $boardarch = "undefined"
-}
-
-if ([string]::IsNullOrEmpty($boardmodel)) {
-    $boardmodel = "undefined"
-}
+$template = $args[4]
+$vscode = $args[5]
 
 if ([string]::IsNullOrEmpty($template)) {
     $template = "undefined"
-}
-
-if ([string]::IsNullOrEmpty($osrelease)) {
-    $osrelease = "undefined"
 }
 
 if ([string]::IsNullOrEmpty($templateFolder)) {
@@ -92,33 +69,6 @@ Write-Host "Template Folder ->    $templateFolder"
 Write-Host "Project Name ->       $projectName"
 Write-Host "Container Name ->     $containerName"
 
-# send telemetry
-if ($_TELEMETRY -eq $true) {
-    try {
-        $ProgressPreference = 'SilentlyContinue'
-        $_region = (Get-TimeZone).DisplayName;
-        $_query = @{
-            region = $_region
-            template = $template
-            boardarch = $boardarch
-            boardmodel = $boardmodel
-            osrelease = $osrelease
-            error = "false"
-        }
-
-        Invoke-WebRequest `
-            -UseBasicParsing `
-            -Uri `
-                "http://castello.dev.br/api/telemetry/add" `
-            -Body $_query `
-            -Method Get | Out-Null
-    } catch {
-        Write-Host -ForegroundColor Red "Telemetry Error"
-    }
-} else {
-    Write-Host -ForegroundColor Yellow "Telemetry disabled"
-}
-
 # create the copy
 Write-Host -ForegroundColor Yellow "Creating from template ..."
 Copy-Item $templateFolder $location -Recurse
@@ -147,6 +97,9 @@ Copy-Item "$templateFolder/../scripts/createDockerComposeProduction.ps1" "$locat
 Copy-Item "$templateFolder/../scripts/torizonPackages.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/tasks.ps1" "$location/.vscode"
 Copy-Item "$templateFolder/../assets/json/torizonPackages.json" "$location/"
+
+# create a dot file to store the template that was used
+Write-Output "$template" | Out-File -FilePath "$location/.conf/.template"
 
 Write-Host -ForegroundColor DarkGreen "✅ Scripts copy done"
 
