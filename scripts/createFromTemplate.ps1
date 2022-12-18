@@ -28,6 +28,14 @@ $location = $args[3]
 # optional
 $template = $args[4]
 $vscode = $args[5]
+$telemetry = $args[6]
+
+# is enabled by default
+if ([string]::IsNullOrEmpty($telemetry)) {
+    $_TELEMETRY = $true
+} else {
+    $_TELEMETRY = ($telemetry -eq "true" ? $true : $false)
+}
 
 if ([string]::IsNullOrEmpty($template)) {
     $template = "undefined"
@@ -68,6 +76,28 @@ Write-Host "Data::"
 Write-Host "Template Folder ->    $templateFolder"
 Write-Host "Project Name ->       $projectName"
 Write-Host "Container Name ->     $containerName"
+
+# send telemetry
+if ($_TELEMETRY -eq $true) {
+    try {
+        $ProgressPreference = 'SilentlyContinue'
+
+        $_query = @{
+            template = $template
+        }
+
+        Invoke-WebRequest `
+            -UseBasicParsing `
+            -Uri `
+                "http://castello.dev.br/api/template/plus" `
+            -Body $_query `
+            -Method Get | Out-Null
+    } catch {
+        Write-Host -ForegroundColor Red "Telemetry Error"
+    }
+} else {
+    Write-Host -ForegroundColor Yellow "Telemetry disabled"
+}
 
 # create the copy
 Write-Host -ForegroundColor Yellow "Creating from template ..."
