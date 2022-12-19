@@ -21,6 +21,11 @@ ARG APP_EXECUTABLE=__change__
 ##
 ARG SSH_DEBUG_PORT=
 
+##
+# Run as
+##
+ARG SSHUSERNAME=
+
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
     torizonextras/wayland-base:${BASE_VERSION} AS Debug
@@ -28,12 +33,12 @@ FROM --platform=linux/${IMAGE_ARCH} \
 ARG IMAGE_ARCH
 ARG SSH_DEBUG_PORT
 ARG APP_EXECUTABLE
+ARG SSHUSERNAME
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
 EXPOSE 9229
-ARG SSHUSERNAME=torizon
 
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"

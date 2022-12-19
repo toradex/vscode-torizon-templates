@@ -481,6 +481,8 @@
             "args": [
                 "build",
                 "--build-arg",
+                "SSHUSERNAME=${config:torizon_run_as}",
+                "--build-arg",
                 "IMAGE_ARCH=arm64",
                 "--build-arg",
                 "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
@@ -511,6 +513,8 @@
             },
             "args": [
                 "build",
+                "--build-arg",
+                "SSHUSERNAME=${config:torizon_run_as}",
                 "--build-arg",
                 "IMAGE_ARCH=arm",
                 "--build-arg",
@@ -543,6 +547,8 @@
             "args": [
                 "build",
                 "--build-arg",
+                "SSHUSERNAME=${config:torizon_run_as}",
+                "--build-arg",
                 "IMAGE_ARCH=amd64",
                 "--build-arg",
                 "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
@@ -574,6 +580,8 @@
             "args": [
                 "build",
                 "--build-arg",
+                "SSHUSERNAME=${config:torizon_run_as}",
+                "--build-arg",
                 "IMAGE_ARCH=amd64",
                 "--build-arg",
                 "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
@@ -604,6 +612,8 @@
             },
             "args": [
                 "build",
+                "--build-arg",
+                "SSHUSERNAME=${config:torizon_run_as}",
                 "--build-arg",
                 "IMAGE_ARCH=riscv64",
                 "--build-arg",
