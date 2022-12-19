@@ -23,7 +23,7 @@
             "request": "attach"
         },
         {
-            "name": ".NET Attach Torizon ARMv8",
+            "name": ".NET Attach Torizon arm64",
             "type": "coreclr",
             "request": "attach",
             "processName": "__change__",

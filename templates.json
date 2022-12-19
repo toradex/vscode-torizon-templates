@@ -13,8 +13,9 @@
                 "debuggers": [
                     ".NET Core Launch (console)", 
                     ".NET Core Attach", 
-                    ".NET Attach Torizon ARMv8", 
-                    "Torizon x86", "Torizon ARMv7", 
+                    ".NET Attach Torizon arm64",
+                    "Torizon x86",
+                    "Torizon ARMv7",
                     "Torizon ARMv8"
                 ],
                 "debuggerConsole": null,
