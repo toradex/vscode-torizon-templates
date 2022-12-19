@@ -242,7 +242,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "rm -rf ~/app"
             ],
             "dependsOrder": "sequence",

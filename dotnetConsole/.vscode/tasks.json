@@ -63,7 +63,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "rm -rf ~/app"
             ],
             "dependsOrder": "sequence",
@@ -127,7 +127,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/bin/Debug/net6.0/linux-arm/publish",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -165,7 +165,7 @@
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "/home/torizon/app/__change__ >out.log 2>err.log &"
             ],
             "dependsOrder": "sequence",
@@ -297,7 +297,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/bin/Debug/net6.0/linux-x64/publish",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -335,7 +335,7 @@
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "/home/torizon/app/__change__ >out.log 2>err.log &"
             ],
             "dependsOrder": "sequence",
@@ -467,7 +467,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/bin/Debug/net6.0/linux-arm64/publish",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -505,7 +505,7 @@
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "/home/torizon/app/__change__ >out.log 2>err.log &"
             ],
             "dependsOrder": "sequence",

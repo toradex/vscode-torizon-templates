@@ -11,5 +11,6 @@
   "terminal.integrated.defaultProfile.linux": "bash",
   "torizon_gpu": "",
   "torizon_arch": "",
-  "wait_sync": "1"
+  "wait_sync": "1",
+  "torizon_run_as": "torizon"
 }

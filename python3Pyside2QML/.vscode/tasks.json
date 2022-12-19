@@ -66,7 +66,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/src",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -119,7 +119,7 @@
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "screen -d -m /usr/bin/python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port} --wait-for-client /home/torizon/app/main.py",
             ],
             "dependsOrder": "sequence",
@@ -145,7 +145,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/src",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -198,7 +198,7 @@
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "screen -d -m /usr/bin/python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port} --wait-for-client /home/torizon/app/main.py",
             ],
             "dependsOrder": "sequence",

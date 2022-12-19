@@ -113,7 +113,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "cd ~/app && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
@@ -165,7 +165,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "cd ~/app && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
@@ -194,7 +194,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "cd ~/app && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
@@ -461,7 +461,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/aarch64/debug",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -606,7 +606,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/armhf/debug",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -751,7 +751,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/amd64/debug",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",

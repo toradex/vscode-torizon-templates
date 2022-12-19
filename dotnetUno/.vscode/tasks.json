@@ -140,7 +140,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm/publish",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -220,7 +220,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm64/publish",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -349,7 +349,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/linux-arm64/publish",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
                 "validate-settings",

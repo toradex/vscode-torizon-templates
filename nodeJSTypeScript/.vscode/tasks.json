@@ -115,7 +115,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/out",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -138,7 +138,7 @@
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} /home/torizon/app/ >out.log 2>err.log &"
             ],
             "dependsOn": [
@@ -199,7 +199,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/out",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -222,7 +222,7 @@
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} /home/torizon/app/ >out.log 2>err.log &"
             ],
             "dependsOn": [
@@ -332,7 +332,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/out",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -355,7 +355,7 @@
                 "StrictHostKeyChecking=no",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} /home/torizon/app/ >out.log 2>err.log &"
             ],
             "dependsOn": [

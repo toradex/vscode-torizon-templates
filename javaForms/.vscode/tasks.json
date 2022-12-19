@@ -113,7 +113,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/dist",
-                "torizon@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -138,7 +138,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/assets",
-                "torizon@${config:torizon_ip}:~/app/assets"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app/assets"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -163,7 +163,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/libs",
-                "torizon@${config:torizon_ip}:~/app/libs"
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app/libs"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -186,7 +186,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "pkill java"
             ],
             "dependsOrder": "sequence",
@@ -211,7 +211,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp /home/torizon/app/libs/*:/home/torizon/app/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
@@ -343,7 +343,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp /home/torizon/app/libs/*:/home/torizon/app/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [

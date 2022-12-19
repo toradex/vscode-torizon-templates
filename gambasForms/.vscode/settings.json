@@ -15,5 +15,6 @@
     "*.form": "vb",
     "*.class": "vb"
   },
-  "wait_sync": "1"
+  "wait_sync": "1",
+  "torizon_run_as": "torizon"
 }

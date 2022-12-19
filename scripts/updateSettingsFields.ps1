@@ -20,6 +20,7 @@ $settingsTemplate = [PSCustomObject]@{
     torizon_psswd = ""
     torizon_login = ""
     torizon_ip = ""
+    torizon_run_as = "torizon"
     torizon_debug_port = ""
     torizon_debug_port2 = ""
     torizon_debug_port3 = ""

@@ -77,7 +77,7 @@
               "StrictHostKeyChecking=no",
               "-o",
               "UserKnownHostsFile /dev/null",
-              "torizon@${config:torizon_ip}" // user@device
+              "${config:torizon_run_as}@${config:torizon_ip}" // user@device
           ],
           "debuggerPath": "/vsdbg/vsdbg"
       },
@@ -112,7 +112,7 @@
               "StrictHostKeyChecking=no",
               "-o",
               "UserKnownHostsFile /dev/null",
-              "torizon@${config:torizon_ip}" // user@device
+              "${config:torizon_run_as}@${config:torizon_ip}" // user@device
           ],
           "debuggerPath": "/vsdbg/vsdbg"
       },
@@ -148,7 +148,7 @@
               "StrictHostKeyChecking=no",
               "-o",
               "UserKnownHostsFile /dev/null",
-              "torizon@${config:torizon_ip}" // user@device
+              "${config:torizon_run_as}@${config:torizon_ip}" // user@device
           ],
           "debuggerPath": "/vsdbg/vsdbg"
       },
