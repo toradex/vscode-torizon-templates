@@ -16,5 +16,6 @@
     "*.class": "vb"
   },
   "wait_sync": "1",
-  "torizon_run_as": "torizon"
+  "torizon_run_as": "torizon",
+  "torizon_app_root": "/home/torizon"
 }

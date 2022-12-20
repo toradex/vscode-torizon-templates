@@ -9,9 +9,9 @@ if __name__ == "__main__":
     print("Hello world!")
 
     qurlPath = ""
-    if(os.path.exists("/home/torizon/app/mainwindow.qml")):
+    if(os.path.exists(os.path.expanduser("~/app/mainwindow.qml"))):
         # Path of the qml source code file inside the debug container on the board, to debug the application remotelly on the board
-        qurlPath = "/home/torizon/app/mainwindow.qml"
+        qurlPath = os.path.expanduser("~/app/mainwindow.qml")
     elif (os.path.exists("/app/mainwindow.qml")):
         # Path of the qml source code file inside the release container on the board, to run the release (production) application on the board
         qurlPath = "/app/mainwindow.qml"

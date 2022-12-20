@@ -19,7 +19,7 @@
             "sourceMaps": true,
             "continueOnAttach": true,
             "localRoot": "${workspaceFolder}",
-            "remoteRoot": "/home/torizon/app/",
+            "remoteRoot": "${config:torizon_app_root}/app/",
             "preLaunchTask": "start-torizon-debug-amd64"
         },
         {
@@ -32,7 +32,7 @@
             "sourceMaps": true,
             "continueOnAttach": true,
             "localRoot": "${workspaceFolder}",
-            "remoteRoot": "/home/torizon/app/",
+            "remoteRoot": "${config:torizon_app_root}/app/",
             "preLaunchTask": "start-torizon-debug-arm"
         },
         {
@@ -45,7 +45,7 @@
             "sourceMaps": true,
             "continueOnAttach": true,
             "localRoot": "${workspaceFolder}",
-            "remoteRoot": "/home/torizon/app/",
+            "remoteRoot": "${config:torizon_app_root}/app/",
             "preLaunchTask": "start-torizon-debug-arm64"
         },
     ]

@@ -166,7 +166,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "/home/torizon/app/__change__ >out.log 2>err.log &"
+                "${config:torizon_app_root}/app/__change__ >out.log 2>err.log &"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -336,7 +336,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "/home/torizon/app/__change__ >out.log 2>err.log &"
+                "${config:torizon_app_root}/app/__change__ >out.log 2>err.log &"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -506,7 +506,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "/home/torizon/app/__change__ >out.log 2>err.log &"
+                "${config:torizon_app_root}/app/__change__ >out.log 2>err.log &"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",

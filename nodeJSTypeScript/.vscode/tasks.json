@@ -139,7 +139,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} /home/torizon/app/ >out.log 2>err.log &"
+                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root}/app/ >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -223,7 +223,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} /home/torizon/app/ >out.log 2>err.log &"
+                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root}/app/ >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -356,7 +356,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} /home/torizon/app/ >out.log 2>err.log &"
+                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root}/app/ >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",

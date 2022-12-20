@@ -212,7 +212,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp /home/torizon/app/libs/*:/home/torizon/app/__change__.jar __change__.Form1 || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/app/libs/*:${config:torizon_app_root}/app/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -344,7 +344,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp /home/torizon/app/libs/*:/home/torizon/app/__change__.jar __change__.Form1 || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/app/libs/*:${config:torizon_app_root}/app/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
