@@ -68,6 +68,8 @@ if ($_packagesToInstall.Count -gt 0) {
         New-Item -Path .conf/ -Name .depok -ItemType File 2>&1 | out-null
     }
 } else {
+    Write-Host -ForegroundColor DarkGreen "✅ All packages already installed"
+
     # we need to ran the check deps only if it's not ran yet
     New-Item -Path .conf/ -Name .depok -ItemType File 2>&1 | out-null
 }
