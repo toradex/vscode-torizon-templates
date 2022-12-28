@@ -55,7 +55,14 @@ if ($_packagesToInstall.Count -gt 0) {
     if ($_installConfirm -eq 'y') {
         foreach ($item in $_packagesToInstall) {
             sudo apt install $item
+            
+            if ($? -eq $false) {
+                Write-Host -ForegroundColor DarkRed "❌ error trying to install package $item"
+                exit 69
+            }
         }
+
+        Write-Host -ForegroundColor DarkGreen "✅ All packages installed succesfully"
     }
 } else {
     # we need to ran the check deps only if it's not ran yet
