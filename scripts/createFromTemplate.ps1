@@ -1,4 +1,4 @@
-# supress warnings that we need to use
+# suppress warnings that we need to use
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSAvoidOverwritingBuiltInCmdlets', ""
 )]
@@ -66,7 +66,7 @@ if ([string]::IsNullOrEmpty($containerName)) {
 $containerName = $containerName.ToLower()
 
 if (-not [string]::IsNullOrEmpty($location)) {
-    # special case for automations
+    # special case for automation
     $location = "$location/$projectName"
 } else {
     $location = "$projectName"

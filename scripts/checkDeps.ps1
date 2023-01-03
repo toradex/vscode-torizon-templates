@@ -1,4 +1,4 @@
-# supress warnings that we need to use
+# suppress warnings that we need to use
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSAvoidOverwritingBuiltInCmdlets', ""
 )]
@@ -20,7 +20,7 @@ param()
 $_packages = Get-Content .conf/deps.json | ConvertFrom-Json
 
 # docker and docker-compose are special cases
-# TODO: check also for podman or other runtimes
+# TODO: check also for podman or other runtime
 if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
     Write-Host -ForegroundColor DarkRed "❌ you need docker installed"
     exit 69
@@ -62,7 +62,7 @@ if ($_packagesToInstall.Count -gt 0) {
             }
         }
 
-        Write-Host -ForegroundColor DarkGreen "✅ All packages installed succesfully"
+        Write-Host -ForegroundColor DarkGreen "✅ All packages installed successfully"
 
         # all packages installed then dep ok
         New-Item -Path .conf/ -Name .depok -ItemType File 2>&1 | out-null

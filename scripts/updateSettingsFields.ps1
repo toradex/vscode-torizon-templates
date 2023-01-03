@@ -1,4 +1,4 @@
-# supress warnings that we need to use
+# suppress warnings that we need to use
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSAvoidOverwritingBuiltInCmdlets', ""
 )]

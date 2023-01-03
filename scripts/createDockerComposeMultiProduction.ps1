@@ -12,7 +12,7 @@ foreach ($project in $codeWorkspace.folders) {
         $path = [string]$project.path
         $path
         if (-not [System.IO.File]::Exists("$path/docker-compose.prod.yml")) {
-            throw "Project path ($path) does not contain a docker-compose.prod.yml file. Plese first run the (Create Production Docker Image) task for each project on the workspace."
+            throw "Project path ($path) does not contain a docker-compose.prod.yml file. Please first run the (Create Production Docker Image) task for each project on the workspace."
         }
     }
 }

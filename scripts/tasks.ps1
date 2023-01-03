@@ -1,4 +1,4 @@
-# supress warnings that we need to use
+# suppress warnings that we need to use
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSAvoidOverwritingBuiltInCmdlets', ""
 )]
@@ -190,6 +190,7 @@ function runTask () {
             $taskArgs = checkConfig($taskArgs)
             $taskDepends = $task.dependsOn
             $taskEnv = $task.options.env
+            $taskCwd = $task.options.cwd
 
             # inject env
             if ($null -ne $taskEnv) {
@@ -221,13 +222,21 @@ function runTask () {
 
             Write-Host -ForegroundColor Green `
                 "> Executing task: $($json.tasks[$i].label) <"
+
+            # we need to change dir if we are setting cwd
+            if ($null -ne $taskCwd) {
+                Set-Location $taskCwd
+            }
+
+            # execute the task
             Invoke-Expression "$taskCmd $taskArgs"
+            $exitCode = $LASTEXITCODE
 
             # abort we had a error
-            if ($LASTEXITCODE -ne 0) {
+            if ($exitCode -ne 0) {
                 Write-Host -ForegroundColor Red `
                     "> TASK $($json.tasks[$i].label) exited with error code <"
-                exit 69
+                exit $exitCode
             }
         }
     }

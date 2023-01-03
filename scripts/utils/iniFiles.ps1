@@ -100,7 +100,7 @@ function New-IniContent {
     )
     process {
         $iniData = $data
-        # Previously, $iniData was egqual to $_ but could only accept parameter from pipeline. With this declaration, $iniData accepts parameter from pipeline or raw declaration like "New-IniContent $myHashContent"
+        # Previously, $iniData was equal to $_ but could only accept parameter from pipeline. With this declaration, $iniData accepts parameter from pipeline or raw declaration like "New-IniContent $myHashContent"
 
         if ($iniData.Contains($anonymous)) {
             $iniData[$anonymous].GetEnumerator() |  ForEach-Object {

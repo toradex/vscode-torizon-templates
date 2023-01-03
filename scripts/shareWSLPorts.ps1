@@ -1,4 +1,4 @@
-# DOES NOT ADD THE SUPRESS HERE
+# DOES NOT ADD THE suppress HERE
 # THIS NEED TO BE SUPPORTED ON THE WINDOWS POWERSHELL
 # this only makes sense for WSL
 if ($null -ne $env:WSL_DISTRO_NAME) {
@@ -32,18 +32,22 @@ if ($null -ne $env:WSL_DISTRO_NAME) {
 
     for( $i = 0; $i -lt $ports.length; $i++ ){
         $port = $ports[$i];
+        # cspell:disable-next-line
         $superScript = "$($superScript) (netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$addr) -or `$true ; ";
     }
 
     for( $i = 0; $i -lt $ports.length; $i++ ){
         $port = $ports[$i];
+        # cspell:disable-next-line
         $superScript = "$($superScript) (netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$remoteport) -or `$true ; ";
     }
 
     $superScript = $superScript.Trim();
 
     # in case of issues break the glass
+    # cspell:disable-next-line
     #Write-Host "start-process powershell -verb runas -ArgumentList '-NoProfile -C `"$($superScript) echo done`"'"
 
+    # cspell:disable-next-line
     powershell.exe -NoProfile -C "start-process powershell -verb runas -ArgumentList '-NoProfile -C `"$superScript echo done`"'"
 }
