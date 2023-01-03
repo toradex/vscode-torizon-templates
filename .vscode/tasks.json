@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "check-spell",
+            "command": "npx",
+            "type": "shell",
+            "args": [
+                "cspell-cli",
+                "lint",
+                "--relative",
+                "**/*.ps1",
+                "**/**/*.ps1"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "build"
+        },
+        {
+            "label": "install-cspell",
+            "command": "npm",
+            "type": "shell",
+            "args": [
+                "install",
+                "git+https://github.com/streetsidesoftware/cspell-cli"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "build"
+        }
+    ]
+}

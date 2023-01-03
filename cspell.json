@@ -1,0 +1,48 @@
+{
+    "version": "0.2",
+    "ignorePaths": [
+        "./cspell.json"
+    ],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "listenport",
+        "netsh",
+        "portproxy"
+    ],
+    "ignoreWords": [
+        "torizon",
+        "torizon.io",
+        "Torizon",
+        "git",
+        "ApolloX",
+        "binfmt",
+        "wsl",
+        "nmap",
+        "avahi",
+        "iputils",
+        "utf8",
+        "Toradex",
+        "workspace",
+        "yml",
+        "vscode",
+        "Dockerfile",
+        "inet",
+        "psswd",
+        "nodeps",
+        "datas"
+    ],
+    "import": [],
+    "languageSettings": [
+        {
+            "languageId": "PowerShell",
+            "includeRegExpList": [
+                "#.*?(?=\n|$)",
+                "string"
+            ]
+        }
+    ],
+    "enableFiletypes": [
+        "powershell"
+    ]
+}
