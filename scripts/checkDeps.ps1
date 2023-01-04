@@ -54,7 +54,7 @@ if ($_packagesToInstall.Count -gt 0) {
 
     if ($_installConfirm -eq 'y') {
         foreach ($item in $_packagesToInstall) {
-            sudo apt install $item
+            sudo apt-get install -y $item
             
             if ($? -eq $false) {
                 Write-Host -ForegroundColor DarkRed "❌ error trying to install package $item"
