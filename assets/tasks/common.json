@@ -465,7 +465,7 @@
         {
             "label": "build-container-torizon-debug-arm64",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -479,6 +479,7 @@
                 }
             },
             "args": [
+                "compose",
                 "build",
                 "--build-arg",
                 "SSHUSERNAME=${config:torizon_run_as}",
@@ -498,7 +499,7 @@
         {
             "label": "build-container-torizon-debug-arm",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -512,6 +513,7 @@
                 }
             },
             "args": [
+                "compose",
                 "build",
                 "--build-arg",
                 "SSHUSERNAME=${config:torizon_run_as}",
@@ -531,7 +533,7 @@
         {
             "label": "build-container-torizon-debug-amd64",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -545,6 +547,7 @@
                 }
             },
             "args": [
+                "compose",
                 "build",
                 "--build-arg",
                 "SSHUSERNAME=${config:torizon_run_as}",
@@ -564,7 +567,7 @@
         {
             "label": "build-container-torizon-debug-x86",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -578,6 +581,7 @@
                 }
             },
             "args": [
+                "compose",
                 "build",
                 "--build-arg",
                 "SSHUSERNAME=${config:torizon_run_as}",
@@ -597,7 +601,7 @@
         {
             "label": "build-container-torizon-debug-riscv64",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -611,6 +615,7 @@
                 }
             },
             "args": [
+                "compose",
                 "build",
                 "--build-arg",
                 "SSHUSERNAME=${config:torizon_run_as}",
@@ -630,7 +635,7 @@
         {
             "label": "push-container-torizon-debug-arm",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -639,6 +644,7 @@
                 }
             },
             "args": [
+                "compose",
                 "push",
                 "__container__-debug"
             ],
@@ -652,7 +658,7 @@
         {
             "label": "push-container-torizon-debug-arm64",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -661,6 +667,7 @@
                 }
             },
             "args": [
+                "compose",
                 "push",
                 "__container__-debug"
             ],
@@ -674,7 +681,7 @@
         {
             "label": "push-container-torizon-debug-amd64",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -683,6 +690,7 @@
                 }
             },
             "args": [
+                "compose",
                 "push",
                 "__container__-debug"
             ],
@@ -696,7 +704,7 @@
         {
             "label": "push-container-torizon-debug-x86",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -705,6 +713,7 @@
                 }
             },
             "args": [
+                "compose",
                 "push",
                 "__container__-debug"
             ],
@@ -718,7 +727,7 @@
         {
             "label": "push-container-torizon-debug-riscv64",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -727,6 +736,7 @@
                 }
             },
             "args": [
+                "compose",
                 "push",
                 "__container__-debug"
             ],

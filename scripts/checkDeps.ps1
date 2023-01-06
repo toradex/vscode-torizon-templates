@@ -26,8 +26,10 @@ if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
     exit 69
 }
 
-if (-not (Get-Command docker-compose -ErrorAction SilentlyContinue)) {
-    Write-Host -ForegroundColor DarkRed "❌ you need docker-compose installed"
+$_dockerComposeV = (docker compose version)
+
+if ($? -eq $false || [string]::IsNullOrEmpty($_dockerComposeV)) {
+    Write-Host -ForegroundColor DarkRed "❌ you need docker compose plugin installed"
     exit 69
 }
 

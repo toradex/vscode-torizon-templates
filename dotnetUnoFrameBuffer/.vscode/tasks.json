@@ -52,7 +52,7 @@
         {
             "label": "build-release-arm",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -61,6 +61,7 @@
                 }
             },
             "args": [
+                "compose",
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm",
@@ -75,7 +76,7 @@
         },
         {
             "label": "push-release-arm",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -84,6 +85,7 @@
                 }
             },
             "args": [
+                "compose",
                 "push",
                 "__container__"
             ],
@@ -355,7 +357,7 @@
         {
             "label": "build-release-arm64",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -364,6 +366,7 @@
                 }
             },
             "args": [
+                "compose",
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=arm64",
@@ -378,7 +381,7 @@
         },
         {
             "label": "push-release-arm64",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -387,6 +390,7 @@
                 }
             },
             "args": [
+                "compose",
                 "push",
                 "__container__"
             ],
@@ -531,7 +535,7 @@
         {
             "label": "build-release-x86",
             "detail": "hide",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -540,6 +544,7 @@
                 }
             },
             "args": [
+                "compose",
                 "build",
                 "--build-arg",
                 "IMAGE_ARCH=amd64",
@@ -554,7 +559,7 @@
         },
         {
             "label": "push-release-x86",
-            "command": "docker-compose",
+            "command": "docker",
             "type": "process",
             "options": {
                 "env": {
@@ -563,6 +568,7 @@
                 }
             },
             "args": [
+                "compose",
                 "push",
                 "__container__"
             ],
