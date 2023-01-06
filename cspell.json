@@ -3,6 +3,9 @@
     "ignorePaths": [
         "./cspell.json"
     ],
+    "files": [
+        "**/{*,.*}/**/*.ps1"
+    ],
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
@@ -30,7 +33,19 @@
         "inet",
         "psswd",
         "nodeps",
-        "datas"
+        "datas",
+        "sshpass",
+        "pwsh",
+        "armv",
+        "aarch",
+        "riscv",
+        "SSHUSERNAME",
+        "compose",
+        "listenaddress",
+        "connectport",
+        "connectaddress",
+        "runas",
+        "remoteport"
     ],
     "import": [],
     "languageSettings": [

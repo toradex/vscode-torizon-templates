@@ -8,9 +8,7 @@
             "args": [
                 "cspell-cli",
                 "lint",
-                "--relative",
-                "**/*.ps1",
-                "**/**/*.ps1"
+                "--relative"
             ],
             "problemMatcher": [
                 "$gcc"
