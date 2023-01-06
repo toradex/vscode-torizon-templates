@@ -35,11 +35,11 @@ RUN apt-get -q -y update && \
 COPY . /app
 WORKDIR /app
 
-RUN if [ $IMAGE_ARCH == "arm64" ] ; then \
+RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
         make ARCH=. CC=aarch64-linux-gnu-g++ ; \
-    elif [ $IMAGE_ARCH == "arm" ] ; then \
+    elif [ "$IMAGE_ARCH" = "arm" ] ; then \
         make ARCH=. CC=arm-linux-gnueabihf-g++ ; \
-    elif [ $IMAGE_ARCH == "amd64" ] ; then \
+    elif [ "$IMAGE_ARCH" = "amd64" ] ; then \
         make ARCH=. CC=x86_64-linux-gnu-g++ ; \
     fi
 
@@ -61,7 +61,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
-COPY --from=Build /app/debug /app
+COPY --from=Build /app/bin /app
 
 # ADD YOUR ARGUMENTS HERE
 CMD [ "./app/__change__" ]
