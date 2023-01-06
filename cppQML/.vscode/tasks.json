@@ -342,9 +342,10 @@
         },
         {
             "label": "run-qmake-debug-arm64",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
@@ -369,9 +370,10 @@
         },
         {
             "label": "build-container-image-sdk-arm64",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "build",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -391,9 +393,10 @@
         },
         {
             "label": "build-debug-arm64",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
@@ -420,9 +423,10 @@
         },
         {
             "label": "clean-arm64",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
@@ -487,9 +491,10 @@
         },
         {
             "label": "run-qmake-debug-arm",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
@@ -514,9 +519,10 @@
         },
         {
             "label": "build-container-image-sdk-arm",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "build",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -536,9 +542,10 @@
         },
         {
             "label": "build-debug-arm",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
@@ -565,9 +572,10 @@
         },
         {
             "label": "clean-arm",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
@@ -632,9 +640,10 @@
         },
         {
             "label": "run-qmake-debug-x86",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
@@ -659,9 +668,10 @@
         },
         {
             "label": "build-container-image-sdk-x86",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "build",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -681,9 +691,10 @@
         },
         {
             "label": "build-debug-x86",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
@@ -710,9 +721,10 @@
         },
         {
             "label": "clean-x86",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",

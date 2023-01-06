@@ -16,6 +16,8 @@
 )]
 param()
 
+$env:DOCKER_HOST = ""
+
 $_containerRuntime = $args[0]
 $_runArguments = $args[1].Trim("'").Trim('"');
 $_containerName = $args[2]

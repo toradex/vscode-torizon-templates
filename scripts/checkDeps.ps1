@@ -16,6 +16,8 @@
 )]
 param()
 
+$env:DOCKER_HOST = ""
+
 # tested on Ubuntu 22.04
 $_packages = Get-Content .conf/deps.json | ConvertFrom-Json
 

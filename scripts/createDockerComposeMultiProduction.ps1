@@ -3,6 +3,8 @@
 )]
 param()
 
+$env:DOCKER_HOST = ""
+
 # load the workspace file
 $codeWorkspace = Get-Content *.code-workspace | ConvertFrom-Json
 

@@ -54,8 +54,8 @@
         },
         {
             "label": "docker-login",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "${input:dockerLogin}",
@@ -63,6 +63,7 @@
                 }
             },
             "args": [
+                "docker",
                 "login",
                 "--username",
                 "${input:dockerLogin}",
@@ -465,8 +466,8 @@
         {
             "label": "build-container-torizon-debug-arm64",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -479,6 +480,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "build",
                 "--build-arg",
@@ -499,8 +501,8 @@
         {
             "label": "build-container-torizon-debug-arm",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -513,6 +515,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "build",
                 "--build-arg",
@@ -533,8 +536,8 @@
         {
             "label": "build-container-torizon-debug-amd64",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -547,6 +550,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "build",
                 "--build-arg",
@@ -567,8 +571,8 @@
         {
             "label": "build-container-torizon-debug-x86",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -581,6 +585,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "build",
                 "--build-arg",
@@ -601,8 +606,8 @@
         {
             "label": "build-container-torizon-debug-riscv64",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -615,6 +620,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "build",
                 "--build-arg",
@@ -635,8 +641,8 @@
         {
             "label": "push-container-torizon-debug-arm",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -644,6 +650,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "push",
                 "__container__-debug"
@@ -658,8 +665,8 @@
         {
             "label": "push-container-torizon-debug-arm64",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -667,6 +674,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "push",
                 "__container__-debug"
@@ -681,8 +689,8 @@
         {
             "label": "push-container-torizon-debug-amd64",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -690,6 +698,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "push",
                 "__container__-debug"
@@ -704,8 +713,8 @@
         {
             "label": "push-container-torizon-debug-x86",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -713,6 +722,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "push",
                 "__container__-debug"
@@ -727,8 +737,8 @@
         {
             "label": "push-container-torizon-debug-riscv64",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=\"\"",
+            "type": "shell",
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
@@ -736,6 +746,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "push",
                 "__container__-debug"

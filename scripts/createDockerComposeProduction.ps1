@@ -16,6 +16,8 @@
 )]
 param()
 
+$env:DOCKER_HOST = ""
+
 # args are needed
 $compoFilePath  = $args[0]
 $dockerLogin    = $args[1]
@@ -77,7 +79,7 @@ $env:LOCAL_REGISTRY="$($localRegistry):5002"
 $env:TAG="$tag"
 $env:DOCKER_LOGIN="$dockerLogin"
 Set-Location $compoFilePath
-docker-compose build --build-arg IMAGE_ARCH=$imageArch $imageName
+docker compose build --build-arg IMAGE_ARCH=$imageArch $imageName
 Set-Location -
 
 Write-Host -ForegroundColor DarkGreen "✅ Image rebuild and tagged"

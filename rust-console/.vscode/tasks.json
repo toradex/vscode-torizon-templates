@@ -32,9 +32,10 @@
         },
         {
             "label": "build-container-image-sdk-arm64",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "build",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -65,9 +66,10 @@
         },
         {
             "label": "build-debug-arm64",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
@@ -140,9 +142,10 @@
         },
         {
             "label": "build-container-image-sdk-arm",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "build",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -173,9 +176,10 @@
         },
         {
             "label": "build-debug-arm",
-            "command": "docker",
+            "command": "DOCKER_HOST=\"\"",
             "type": "shell",
             "args": [
+                "docker",
                 "run",
                 "--rm",
                 "-it",
