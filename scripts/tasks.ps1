@@ -139,6 +139,32 @@ function checkInput () {
     return $ret
 }
 
+function checkTCBInputs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains("`${tcb:")) {
+            $maches = ($item |
+                            Select-String `
+                                -Pattern "(?<=\`${command:tcb.).*?(?=\s*})" `
+                                -AllMatches
+                        ).Matches
+
+            foreach ($matchValue in $maches) {
+                $matchValue = $matchValue.Value
+                $item = $item.Replace(
+                    "`${command:tcb.${matchValue}}", 
+                    "`${config:tcb.${matchValue}}"
+                )
+            }
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
 function checkConfig ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
@@ -160,12 +186,19 @@ function checkConfig ([System.Collections.ArrayList] $list) {
     return $ret
 }
 
-function replaceWorkspaceFolder ([System.Collections.ArrayList] $list) {
+function checkWorkspaceFolder ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
     foreach ($item in $list) {
-        if ($item.Contains("`${workspaceFolder")) {
-            $item = $item.Replace("`${workspaceFolder}", $global:workspaceFolder)
+        # TODO: Add variable expand recursive
+        if ($item.Contains("workspaceFolder")) {
+            $item = $item.Replace("workspaceFolder", "global:workspaceFolder")
+
+            $value = Invoke-Expression "echo $item"
+
+            if ($value.Contains("`${workspaceFolder")) {
+                $item = $value
+            }
         }
 
         [void]$ret.Add($item)
@@ -206,9 +239,10 @@ function runTask () {
         if ($json.tasks[$i].label -eq $args[0]) {
             $task = $json.tasks[$i]
             $taskCmd = $task.command
-            $taskArgs = checkInput($task.args)
+            $taskArgs = checkWorkspaceFolder($task.args)
+            $taskArgs = checkTCBInputs($taskArgs)
+            $taskArgs = checkInput($taskArgs)
             $taskArgs = checkConfig($taskArgs)
-            $taskArgs = replaceWorkspaceFolder($taskArgs)
             $taskDepends = $task.dependsOn
             $taskEnv = $task.options.env
             $taskCwd = $task.options.cwd
@@ -256,7 +290,18 @@ function runTask () {
             # execute the task
             # use bash as default
             # TODO: be explicit about bash as default on documentation
-            Invoke-Expression "bash -c '$taskCmd $taskArgs'"
+            $_cmd = Invoke-Expression "echo `"$taskCmd $taskArgs`""
+            
+            if ($env:TASKS_DEBUG -eq $true) {
+                Write-Host -ForegroundColor Yellow `
+                    "Command: $taskCmd"
+                Write-Host -ForegroundColor Yellow `
+                    "Args: $taskArgs"
+                Write-Host -ForegroundColor Yellow `
+                    "Parsed Command: $_cmd"
+            }
+
+            Invoke-Expression "bash -c '$_cmd'"
             $exitCode = $LASTEXITCODE
 
             # abort we had a error
