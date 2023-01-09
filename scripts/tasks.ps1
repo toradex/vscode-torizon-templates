@@ -16,6 +16,12 @@
 )]
 param()
 
+$_debug = $false;
+
+if ($env:TASKS_DEBUG -eq $true) {
+    $_debug = $true;
+}
+
 $tasksFileContent = Get-Content $PSScriptRoot/tasks.json
 $settingsFileContent = Get-Content $PSScriptRoot/settings.json
 $json = $tasksFileContent | ConvertFrom-Json
@@ -202,8 +208,10 @@ function runTask () {
                     $value = $task.options.env
                                 | Select-Object -ExpandProperty $env
 
-                    Write-Host -ForegroundColor Yellow `
-                        "Env: $env=$value"
+                    if ($_debug -eq $true) {
+                        Write-Host -ForegroundColor Yellow `
+                            "Env: $env=$value"
+                    }
 
                     $expValue = checkConfig(checkInput($value)).ToString()
 
