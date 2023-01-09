@@ -239,7 +239,9 @@ function runTask () {
             }
 
             # execute the task
-            Invoke-Expression "$taskCmd $taskArgs"
+            # use bash as default
+            # TODO: be explicit about bash as default on documentation
+            Invoke-Expression "bash -c `"$taskCmd $taskArgs`""
             $exitCode = $LASTEXITCODE
 
             # abort we had a error

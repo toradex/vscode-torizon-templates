@@ -45,7 +45,8 @@
         "connectport",
         "connectaddress",
         "runas",
-        "remoteport"
+        "remoteport",
+        "LASTEXITCODE"
     ],
     "import": [],
     "languageSettings": [
