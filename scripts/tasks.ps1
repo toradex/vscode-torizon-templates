@@ -233,7 +233,9 @@ function runTask () {
 
             # we need to change dir if we are setting cwd
             if ($null -ne $taskCwd) {
-                Set-Location $taskCwd
+                # we use invoke-expression because this way it expand the
+                # variables automatically
+                Invoke-Expression "Set-Location $taskCwd"
             }
 
             # execute the task
