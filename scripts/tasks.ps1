@@ -143,19 +143,27 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
     foreach ($item in $list) {
-        if ($item.Contains("`${tcb:")) {
-            $maches = ($item |
+        if ($item.Contains("`${command:tcb")) {
+
+            if ($item.Contains("tcb.getNextPackageVersion")) {
+                $item = $item.Replace(
+                    "`${command:tcb.getNextPackageVersion}", 
+                    "${global:config:tcb.packageVersion +1}"
+                )
+            } else {
+                $maches = ($item |
                             Select-String `
                                 -Pattern "(?<=\`${command:tcb.).*?(?=\s*})" `
                                 -AllMatches
                         ).Matches
 
-            foreach ($matchValue in $maches) {
-                $matchValue = $matchValue.Value
-                $item = $item.Replace(
-                    "`${command:tcb.${matchValue}}", 
-                    "`${config:tcb.${matchValue}}"
-                )
+                foreach ($matchValue in $maches) {
+                    $matchValue = $matchValue.Value
+                    $item = $item.Replace(
+                        "`${command:tcb.${matchValue}}", 
+                        "`${config:tcb.${matchValue}}"
+                    )
+                }
             }
         }
 
