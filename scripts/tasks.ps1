@@ -160,6 +160,20 @@ function checkConfig ([System.Collections.ArrayList] $list) {
     return $ret
 }
 
+function replaceWorkspaceFolder ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains("`${workspaceFolder")) {
+            $item = $item.Replace("`${workspaceFolder}", $global:workspaceFolder)
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
 function taskArgumentExecute ($label, [ScriptBlock]$fnExec, $message) {
     if ($null -eq $label -or $label -eq [String]::Empty) {
         write-error $message 10
@@ -194,6 +208,7 @@ function runTask () {
             $taskCmd = $task.command
             $taskArgs = checkInput($task.args)
             $taskArgs = checkConfig($taskArgs)
+            $taskArgs = replaceWorkspaceFolder($taskArgs)
             $taskDepends = $task.dependsOn
             $taskEnv = $task.options.env
             $taskCwd = $task.options.cwd
@@ -241,7 +256,7 @@ function runTask () {
             # execute the task
             # use bash as default
             # TODO: be explicit about bash as default on documentation
-            Invoke-Expression "bash -c `"$taskCmd $taskArgs`""
+            Invoke-Expression "bash -c '$taskCmd $taskArgs'"
             $exitCode = $LASTEXITCODE
 
             # abort we had a error
@@ -265,7 +280,7 @@ function getCliInputs () {
 
 # main()
 # set the relative workspaceFolder (following the pattern that VS Code expects)
-$Global:workspaceFolder = Join-Path $PSScriptRoot ../
+$Global:workspaceFolder = Join-Path $PSScriptRoot ..
 settingsToGlobal
 
 switch ($args[0]) {
