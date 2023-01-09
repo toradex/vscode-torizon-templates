@@ -25,6 +25,29 @@
             }
         },
         {
+            "img": "aspnetblazor.png",
+            "folder": "aspnetBlazor",
+            "description": "ASP.NET 6 Blazor Application",
+            "runtime": "asp.net 6.0",
+            "language": "C#",
+            "debugSSHPort": "2222",
+            "multiContainer": false,
+            "support": "Toradex",
+            "tests": {
+                "debuggers": [
+                    ".NET Core Launch (web)", 
+                    ".NET Core Attach", 
+                    "Torizon x86",
+                    "Torizon ARMv7",
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": null,
+                "mainFile": "Program.cs",
+                "mainFileBreakpointLine": 35,
+                "successDebugMessage": "Now listening on: http://0.0.0.0:7001"
+            }
+        },
+        {
             "img": "avaloniagtk.png",
             "folder": "dotnetAvalonia",
             "description": ".NET 6 C# Avalonia GTK MVVM",
