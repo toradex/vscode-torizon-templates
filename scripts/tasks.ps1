@@ -146,24 +146,27 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
         if ($item.Contains("`${command:tcb")) {
 
             if ($item.Contains("tcb.getNextPackageVersion")) {
+                $_next = [int] ${global:config:tcb.packageVersion}
+                $_next++
+
                 $item = $item.Replace(
                     "`${command:tcb.getNextPackageVersion}", 
-                    "${global:config:tcb.packageVersion +1}"
+                    "$_next"
                 )
-            } else {
-                $maches = ($item |
-                            Select-String `
-                                -Pattern "(?<=\`${command:tcb.).*?(?=\s*})" `
-                                -AllMatches
-                        ).Matches
+            }
 
-                foreach ($matchValue in $maches) {
-                    $matchValue = $matchValue.Value
-                    $item = $item.Replace(
-                        "`${command:tcb.${matchValue}}", 
-                        "`${config:tcb.${matchValue}}"
-                    )
-                }
+            $maches = ($item |
+                        Select-String `
+                            -Pattern "(?<=\`${command:tcb.).*?(?=\s*})" `
+                            -AllMatches
+                    ).Matches
+
+            foreach ($matchValue in $maches) {
+                $matchValue = $matchValue.Value
+                $item = $item.Replace(
+                    "`${command:tcb.${matchValue}}", 
+                    "`${config:tcb.${matchValue}}"
+                )
             }
         }
 
@@ -265,15 +268,22 @@ function runTask () {
                     $value = $task.options.env
                                 | Select-Object -ExpandProperty $env
 
+                    $expValue = checkWorkspaceFolder($value)
+                    $expValue = checkTCBInputs($expValue)
+                    $expValue  = checkInput($expValue)
+                    $expValue = checkConfig($expValue)
+                    $expValue = $expValue.ToString()
+                    $_env = Invoke-Expression "echo `"$expValue`""
+
                     if ($_debug -eq $true) {
                         Write-Host -ForegroundColor Yellow `
-                            "Env: $env=$value"
+                            "Env: $env=$expValue"
+                        Write-Host -ForegroundColor Yellow `
+                            "Parsed Env: $env=$_env"
                     }
 
-                    $expValue = checkConfig(checkInput($value)).ToString()
-
                     [System.Environment]::SetEnvironmentVariable(
-                        $env, $expValue
+                        $env, $_env
                     )
                 }
             }
@@ -295,9 +305,7 @@ function runTask () {
                 Invoke-Expression "Set-Location $taskCwd"
             }
 
-            # execute the task
-            # use bash as default
-            # TODO: be explicit about bash as default on documentation
+            # parse the variables
             $_cmd = Invoke-Expression "echo `"$taskCmd $taskArgs`""
             
             if ($env:TASKS_DEBUG -eq $true) {
@@ -309,6 +317,9 @@ function runTask () {
                     "Parsed Command: $_cmd"
             }
 
+            # execute the task
+            # use bash as default
+            # TODO: be explicit about bash as default on documentation
             Invoke-Expression "bash -c '$_cmd'"
             $exitCode = $LASTEXITCODE
 
