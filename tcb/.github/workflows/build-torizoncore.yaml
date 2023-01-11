@@ -1,12 +1,12 @@
 name: Build & Deploy TorizonCore
-on: [push]
-
-env:
-  PACKAGE_NAME: custom-torizoncore
+on:
+  push:
+    branches:
+      - "main"
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     name: Build & Deploy TorizonCore
     steps:
       - uses: actions/checkout@v3
@@ -24,12 +24,16 @@ jobs:
           echo $PLATFORM_CREDENTIALS | base64 -d > credentials.zip
 
       - name: Build TorizonCore Image
-        shell: powershell
+        shell: pwsh
         run: |
           ./.vscode/tasks.ps1 run tcb-setup
           ./.vscode/tasks.ps1 run tcb-build
 
       - name: Push OS Package to Platform
+        shell: pwsh
+        env:
+          PLATFORM_CLIENT_ID: ${{ secrets.PLATFORM_CLIENT_ID }}
+          PLATFORM_CLIENT_SECRET: ${{ secrets.PLATFORM_CLIENT_SECRET }}
         run: |
           ./.vscode/tasks.ps1 run tcb-setup
           ./.vscode/tasks.ps1 run tcb-platform-push-ostree
