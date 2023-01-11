@@ -127,6 +127,8 @@ Copy-Item "$templateFolder/../scripts/createDockerComposeProduction.ps1" "$locat
 Copy-Item "$templateFolder/../scripts/torizonPackages.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/tasks.ps1" "$location/.vscode"
 Copy-Item "$templateFolder/../assets/json/torizonPackages.json" "$location/"
+Copy-Item "$templateFolder/../scripts/bash/tcb-env-setup.sh" "$location/.conf"
+Copy-Item "$templateFolder/../scripts/torizonIO.ps1" "$location/.conf"
 
 # create a dot file to store the template that was used
 Write-Output "$template" | Out-File -FilePath "$location/.conf/.template"
