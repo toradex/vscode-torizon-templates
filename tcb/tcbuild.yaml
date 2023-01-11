@@ -1,0 +1,29 @@
+# Documentation https://developer.toradex.com/torizon/os-customization/torizoncore-builder-workflow/#customizing-the-configuration-file
+# Configuration file outline:
+# ⚠️ Mouse hover to the properties to see documentation
+# ⚠️ ctrl+space inside a object or property to get the autocompletion tips
+input:
+  # Input section items (required).
+  # ⚠️ change it for your needs
+  easy-installer:
+    toradex-feed:
+      version: "5.7.2"
+      release: nightly
+      machine: apalis-imx6
+      distro: torizon-upstream
+      variant: torizon-core-docker
+      build-number: 715
+      build-date: 20221231
+
+customization:
+  # Customization section items.
+  splash-screen: splashScreen.png
+
+output:
+  # Output section items (required).
+  # ⚠️ change it for your needs
+  easy-installer:
+    local: folderName
+  ostree:
+    branch: tcb-template
+    commit-subject: template

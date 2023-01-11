@@ -1,0 +1,44 @@
+name: Build & Deploy TorizonCore
+on: [push]
+
+env:
+  PACKAGE_NAME: custom-torizoncore
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-22.04
+    name: Build & Deploy TorizonCore
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: storage/
+          key: tcb
+
+      - name: Initial Setup
+        shell: bash
+        env:
+          PLATFORM_CREDENTIALS: ${{ secrets.PLATFORM_CREDENTIALS }}
+        run: |
+          echo $PLATFORM_CREDENTIALS | base64 -d > credentials.zip
+
+      - name: Build TorizonCore Image
+        shell: powershell
+        run: |
+          ./.vscode/tasks.ps1 run tcb-setup
+          ./.vscode/tasks.ps1 run tcb-build
+
+      - name: Push OS Package to Platform
+        run: |
+          ./.vscode/tasks.ps1 run tcb-setup
+          ./.vscode/tasks.ps1 run tcb-platform-push-ostree
+
+      - name: Deploy to Fleet
+        shell: pwsh
+        env:
+          TASKS_OVERRIDE_ENV: "False"
+          PLATFORM_CLIENT_ID: ${{ secrets.PLATFORM_CLIENT_ID }}
+          PLATFORM_CLIENT_SECRET: ${{ secrets.PLATFORM_CLIENT_SECRET }}
+        run: |
+          ./.vscode/tasks.ps1 run platform-update-fleet
