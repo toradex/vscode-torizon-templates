@@ -255,6 +255,7 @@
             "debugPort": "",
             "debugSSHPort": "",
             "multiContainer": false,
+            "mergeCommon": false,
             "support": "Toradex"
         }
     ]
