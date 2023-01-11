@@ -81,7 +81,7 @@ Write-Host "Container Name ->     $containerName"
 $_metadata = Get-Content "$templateFolder/../templates.json" | ConvertFrom-Json
 $_templateMetadata = 
     $_metadata.Templates |
-        Where-Object { $_.folder -eq $templateFolder }
+        Where-Object { $_.folder -eq $template }
 
 # send telemetry
 if ($_TELEMETRY -eq $true) {
