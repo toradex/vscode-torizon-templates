@@ -23,7 +23,7 @@ output:
   # Output section items (required).
   # ⚠️ change it for your needs
   easy-installer:
-    local: folderName
+    local: __change__-TCB-CUSTOM
   ostree:
-    branch: tcb-template
-    commit-subject: template
+    branch: __container__
+    commit-subject: __change__
