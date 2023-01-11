@@ -23,12 +23,11 @@ if (
     -not ($_mod) -or 
     ($_mod.Version[0].ToString().Contains("0.0.3") -eq $false)
 ) {
-    Write-Host -ForegroundColor Yellow "Installing TorizonPlatformAPI ..."
     Install-Module `
         -Name "TorizonPlatformAPI" `
         -RequiredVersion 0.0.3 `
         -Confirm:$false `
-        -Force
+        -Force | Out-Null
 }
 
 Import-Module -Name "TorizonPlatformAPI" -RequiredVersion 0.0.3  | Out-Null
@@ -147,11 +146,11 @@ function target-latest-version () {
     return $_latestV
 }
 
-function update-fleet () {
+function update-fleet-latest () {
     $_targetName = $args[0]
-    $_targetHash = $args[1]
-    $_fleetName = $args[2]
+    $_fleetName = $args[1]
 
+    $_targetHash = target-latest-hash $_targetName
     $_target = _getTargetByHash($_targetHash)
     $_targetVersion = $_target.custom.version
     $_hardwareId = $_target.custom.hardwareIds[0]
@@ -159,10 +158,10 @@ function update-fleet () {
     $_devices = _getFleetDevices($_fleetName)
 
     $Checksum = 
-        Initialize-Checksum -Method "sha256" -Hash $_targetHash
+        Initialize-TorizonPlatformAPIChecksum -Method "sha256" -Hash $_targetHash
     
     $TargetDescription = 
-        Initialize-TargetDescription `
+        Initialize-TorizonPlatformAPITargetDescription `
             -Target "$_targetName-$_targetVersion" `
             -Checksum $Checksum `
             -TargetLength 0 `
@@ -170,14 +169,14 @@ function update-fleet () {
             -UserDefinedCustom "From ApolloX"
 
     $TargetUpdateRequest = 
-        Initialize-TargetUpdateRequest -To $TargetDescription
+        Initialize-TorizonPlatformAPITargetUpdateRequest -To $TargetDescription
 
     $MultiTargetUpdateRequest = 
-        Initialize-MultiTargetUpdateRequest `
+        Initialize-TorizonPlatformAPIMultiTargetUpdateRequest `
             -Targets @{ "$_hardwareId" = $TargetUpdateRequest }
 
     $CreateUpdateRequest = 
-        Initialize-CreateUpdateRequest `
+        Initialize-TorizonPlatformAPICreateUpdateRequest `
             -Updates $MultiTargetUpdateRequest `
             -Devices $_devices
     Write-Host ($CreateUpdateRequest | ConvertTo-Json -Depth 100)
@@ -216,7 +215,7 @@ if (Get-Command "$_cmd-$_sub" -ErrorAction SilentlyContinue) {
     Write-Host "        target latest version <target name>"
     Write-Host ""
     Write-Host "    Update a fleet with a defined target:"
-    Write-Host "        update fleet <target name> <target hash> <fleet name>"
+    Write-Host "        update fleet latest <target name> <fleet name>"
     Write-Host ""
 
     exit 69
