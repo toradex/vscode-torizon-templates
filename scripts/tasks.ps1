@@ -16,10 +16,16 @@
 )]
 param()
 
+# settings
+$_overrideEnv = $true;
 $_debug = $false;
 
 if ($env:TASKS_DEBUG -eq $true) {
     $_debug = $true;
+}
+
+if ($env:TASKS_OVERRIDE_ENV -eq $false) {
+    $_overrideEnv = $false;
 }
 
 $tasksFileContent = Get-Content $PSScriptRoot/tasks.json
@@ -285,9 +291,20 @@ function runTask () {
                             "Parsed Env: $env=$_env"
                     }
 
-                    [System.Environment]::SetEnvironmentVariable(
-                        $env, $_env
-                    )
+                    if ($_overrideEnv) {
+                        [System.Environment]::SetEnvironmentVariable(
+                            $env, $_env
+                        )
+                    } else {
+                        if (
+                            $null -eq 
+                            [System.Environment]::GetEnvironmentVariable($env)
+                        ) {
+                            [System.Environment]::SetEnvironmentVariable(
+                                $env, $_env
+                            )
+                        }
+                    }
                 }
             }
 
