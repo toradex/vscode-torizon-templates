@@ -146,7 +146,10 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
         if ($item.Contains("`${command:tcb")) {
 
             if ($item.Contains("tcb.getNextPackageVersion")) {
-                $_next = [int] ${global:config:tcb.packageVersion}
+                $_next =  (
+                    ./.conf/torizonIO.ps1 `
+                        target latest version ${global:config:tcb.packageName}
+                )
                 $_next++
 
                 $item = $item.Replace(
