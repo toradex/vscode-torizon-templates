@@ -9,8 +9,10 @@
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
+        "Fleetid",
         "listenport",
         "netsh",
+        "Oster",
         "portproxy"
     ],
     "ignoreWords": [
