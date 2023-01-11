@@ -245,6 +245,17 @@
             "debugSSHPort": "6502",
             "multiContainer": false,
             "support": "Community"
+        },
+        {
+            "img": "tcb.png",
+            "folder": "tcb",
+            "description": "TorizonCore Builder Project",
+            "runtime": "TorizonCore Builder",
+            "language": "YAML",
+            "debugPort": "",
+            "debugSSHPort": "",
+            "multiContainer": false,
+            "support": "Toradex"
         }
     ]
 }
