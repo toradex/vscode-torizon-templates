@@ -3,6 +3,7 @@
     "tasks": [
         {
             "label": "run-docker-registry",
+            "detail": "hide",
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -28,6 +29,7 @@
         },
         {
             "label": "run-torizon-binfmt",
+            "detail": "hide",
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -52,6 +54,7 @@
         },
         {
             "label": "run-share-wsl-ports",
+            "detail": "hide",
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -73,6 +76,7 @@
         },
         {
             "label": "check-deps",
+            "detail": "hide",
             "command": "pwsh",
             "type": "process",
             "presentation": {
