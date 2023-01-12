@@ -187,6 +187,11 @@ Get-ChildItem -Force -File -Recurse * | ForEach-Object {
                 ForEach-Object {
                     $_ -replace "__home__",$env:HOME
                 } | Set-Content $a
+                
+                ( Get-Content $a ) |
+                ForEach-Object {
+                    $_ -replace "__templateFolder__", $template
+                } | Set-Content $a
             }
         } elseif (-not $a.Contains("id_rsa.pub")) {
             chmod 0400 $a
