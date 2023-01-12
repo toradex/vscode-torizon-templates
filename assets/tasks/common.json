@@ -1017,6 +1017,70 @@
                 "id": "flame",
                 "color": "terminal.ansiYellow"
             }
+        },
+        {
+            "label": "show-project-documentation",
+            "command": "${command:markdown.showPreview}",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "dependsOn": [
+                "wget-documentation-file",
+                "open-project-documentation-file",
+                "wait-a-bit"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "open-project-documentation-file",
+            "command": "code",
+            "detail": "hide",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "args": [
+                "__templateFolder__-doc-README.md"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "wget-documentation-file",
+            "command": "wget",
+            "detail": "hide",
+            "type": "process",
+            "args": [
+                "-O",
+                "__templateFolder__-doc-README.md",
+                "https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/main/__templateFolder__/README.md"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
         }
     ]
 }
