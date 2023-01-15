@@ -189,13 +189,13 @@
         },
         {
             "label": "tcb-unpack",
-            "detail": "",
+            "detail": "hide",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "VSCODE_CMD": "--verbose images unpack ${command:tcb.listFolders}"
+                    "VSCODE_CMD": "--verbose images --remove-storage unpack ${command:tcb.listFolders}"
                 }
             },
             "args": [
@@ -205,30 +205,6 @@
                 "${workspaceFolder}/storage",
                 "-t",
                 "${config:tcb.version}"
-            ],
-            "problemMatcher": [
-                "$tsc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-            ]
-        },
-        {
-            "label": "clean-storage-dir",
-            "detail": "hide",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "args": [
-                "rm",
-                "-rf",
-                "storage"
             ],
             "problemMatcher": [
                 "$tsc"
@@ -269,7 +245,6 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "clean-storage-dir",
                 "tcb-unpack"
             ]
         },
