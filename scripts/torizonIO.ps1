@@ -16,6 +16,17 @@ $_VERSION = "0.0.3"
 
 $ErrorActionPreference = "Stop"
 
+# fail fast
+if ($null -eq $env:PLATFORM_CLIENT_ID) {
+    Write-Host -ForegroundColor Red "PLATFORM_CLIENT_ID not set"
+    throw "PLATFORM_CLIENT_ID not set"
+}
+
+if ($null -eq $env:PLATFORM_CLIENT_SECRET) {
+    Write-Host -ForegroundColor Red "PLATFORM_CLIENT_SECRET not set"
+    throw "PLATFORM_CLIENT_SECRET not set"
+}
+
 # check if the TorizonPlatformAPI module is installed
 $_mod = Get-Module -ListAvailable -Name "TorizonPlatformAPI"
 
