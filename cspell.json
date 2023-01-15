@@ -13,6 +13,7 @@
         "listenport",
         "netsh",
         "Oster",
+        "ostree",
         "portproxy"
     ],
     "ignoreWords": [

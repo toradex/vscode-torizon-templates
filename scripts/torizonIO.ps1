@@ -147,8 +147,17 @@ function target-latest-version () {
                 $_propVal = $_targets.signed.targets.($_.Name)
 
                 if ($_propVal.custom.name -eq $_targetName) {
-                    if ($_latestV -lt [int]($_propVal.custom.commitSubject)) {
-                        $_latestV = [int]($_propVal.custom.commitSubject)
+                    $_actualV = $_propVal.custom.commitSubject
+                    if ($null -eq $_actualV) {
+                        # packages are ok
+                        $_actualV = [int]$_propVal.custom.version
+                    } else {
+                        # ostree packages are not ok
+                        $_actualV = [int]$_actualV
+                    }
+
+                    if ($_latestV -lt $_actualV) {
+                        $_latestV = $_actualV
                     }
                 }
             }
