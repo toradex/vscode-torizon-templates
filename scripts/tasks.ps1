@@ -346,7 +346,7 @@ function runTask () {
             # abort we had a error
             if ($exitCode -ne 0) {
                 Write-Host -ForegroundColor Red `
-                    "> TASK $($json.tasks[$i].label) exited with error code <"
+                    "> TASK $($json.tasks[$i].label) exited with error code $($exitCode) <"
                 exit $exitCode
             }
         }
