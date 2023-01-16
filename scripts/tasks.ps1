@@ -158,6 +158,11 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
                 )
                 $_next++
 
+                if ($_debug) {
+                    Write-Host -ForegroundColor Green `
+                        "Next package version: $_next"
+                }
+
                 $item = $item.Replace(
                     "`${command:tcb.getNextPackageVersion}", 
                     "$_next"
