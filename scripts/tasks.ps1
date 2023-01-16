@@ -145,6 +145,61 @@ function checkInput () {
     return $ret
 }
 
+# TODO: refactor to be an generic prefix check
+function checkTorizonInputs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains("`${command:torizon_")) {
+
+            $maches = ($item |
+                        Select-String `
+                            -Pattern "(?<=\`${command:torizon_).*?(?=\s*})" `
+                            -AllMatches
+                    ).Matches
+
+            foreach ($matchValue in $maches) {
+                $matchValue = $matchValue.Value
+                $item = $item.Replace(
+                    "`${command:torizon_${matchValue}}", 
+                    "`${config:torizon_${matchValue}}"
+                )
+            }
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
+function checkDockerInputs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains("`${command:docker_")) {
+
+            $maches = ($item |
+                        Select-String `
+                            -Pattern "(?<=\`${command:docker_).*?(?=\s*})" `
+                            -AllMatches
+                    ).Matches
+
+            foreach ($matchValue in $maches) {
+                $matchValue = $matchValue.Value
+                $item = $item.Replace(
+                    "`${command:docker_${matchValue}}", 
+                    "`${config:docker_${matchValue}}"
+                )
+            }
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
 function checkTCBInputs ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
@@ -259,12 +314,40 @@ function descTask () {
     }
 }
 
+function _parseEnvs () {
+    $env = $args[0]
+    $task = $args[1]
+
+    $value = $task.options.env
+                | Select-Object -ExpandProperty $env
+
+    $expValue = checkWorkspaceFolder($value)
+    $expValue = checkTorizonInputs($expValue)
+    $expValue = checkDockerInputs($expValue)
+    $expValue = checkTCBInputs($expValue)
+    $expValue  = checkInput($expValue)
+    $expValue = checkConfig($expValue)
+    $expValue = $expValue.ToString()
+    $_env = Invoke-Expression "echo `"$expValue`""
+
+    if ($_debug -eq $true) {
+        Write-Host -ForegroundColor Yellow `
+            "Env: $env=$expValue"
+        Write-Host -ForegroundColor Yellow `
+            "Parsed Env: $env=$_env"
+    }
+
+    return $_env
+}
+
 function runTask () {
     for ($i = 0; $i -le $json.tasks.length; $i++) {
         if ($json.tasks[$i].label -eq $args[0]) {
             $task = $json.tasks[$i]
             $taskCmd = $task.command
             $taskArgs = checkWorkspaceFolder($task.args)
+            $taskArgs = checkTorizonInputs($taskArgs)
+            $taskArgs = checkDockerInputs($taskArgs)
             $taskArgs = checkTCBInputs($taskArgs)
             $taskArgs = checkInput($taskArgs)
             $taskArgs = checkConfig($taskArgs)
@@ -279,24 +362,8 @@ function runTask () {
                     | Select-Object -ExpandProperty Name
 
                 foreach ($env in $envs) {
-                    $value = $task.options.env
-                                | Select-Object -ExpandProperty $env
-
-                    $expValue = checkWorkspaceFolder($value)
-                    $expValue = checkTCBInputs($expValue)
-                    $expValue  = checkInput($expValue)
-                    $expValue = checkConfig($expValue)
-                    $expValue = $expValue.ToString()
-                    $_env = Invoke-Expression "echo `"$expValue`""
-
-                    if ($_debug -eq $true) {
-                        Write-Host -ForegroundColor Yellow `
-                            "Env: $env=$expValue"
-                        Write-Host -ForegroundColor Yellow `
-                            "Parsed Env: $env=$_env"
-                    }
-
                     if ($_overrideEnv) {
+                        $_env = _parseEnvs $env $task
                         [System.Environment]::SetEnvironmentVariable(
                             $env, $_env
                         )
@@ -305,6 +372,7 @@ function runTask () {
                             $null -eq 
                             [System.Environment]::GetEnvironmentVariable($env)
                         ) {
+                            $_env = _parseEnvs $env $task
                             [System.Environment]::SetEnvironmentVariable(
                                 $env, $_env
                             )
