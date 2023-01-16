@@ -107,38 +107,16 @@ function _getFleetDevices ($_fleetName) {
     return $_devices.values
 }
 
-function target-latest-hash () {
-    $_targetName = $args[0]
-    $_targets = Get-TorizonPlatformAPITargets
+# TODO: fix me when the metadata be fixed by the platform team
+function _resolvePlatformWrongMetadata () {
+    $_targets = $args[0]
     $_latestV = 0
     $_hash = $null
 
-    Get-Member `
-        -InputObject $_targets.signed.targets `
-        -MemberType NoteProperty |
-            ForEach-Object {
-                $_propVal = $_targets.signed.targets.($_.Name)
-
-                if ($_propVal.custom.name -eq $_targetName) {
-                    if ($_latestV -lt [int]($_propVal.custom.commitSubject)) {
-                        $_latestV = [int]($_propVal.custom.commitSubject)
-                        $_hash = $_propVal.hashes.sha256
-                    }
-                }
-            }
-
-    if ($null -eq $_hash) {
-        Write-Host -ForegroundColor Red "target not found"
-        exit 404
+    $_ret = [PSCustomObject]@{
+        "hash" = $null
+        "version" = $null
     }
-
-    return $_hash
-}
-
-function target-latest-version () {
-    $_targetName = $args[0]
-    $_targets = Get-TorizonPlatformAPITargets
-    $_latestV = 0
 
     Get-Member `
         -InputObject $_targets.signed.targets `
@@ -159,11 +137,42 @@ function target-latest-version () {
                     if ($_latestV -lt $_actualV) {
                         $_latestV = $_actualV
                     }
+
+                    $_hash = $_propVal.hashes.sha256
                 }
             }
 
+    $_ret.hash = $_hash
+    $_ret.version = $_latestV
+
+    return $_ret
+}
+
+function target-latest-hash () {
+    $_targetName = $args[0]
+    $_targets = Get-TorizonPlatformAPITargets
+    $_hash = $null
+
+    $_ret = _resolvePlatformWrongMetadata $_targets
+    $_hash = $_ret.hash
+
+    if ($null -eq $_hash) {
+        Write-Host -ForegroundColor Red "target not found"
+        exit 404
+    }
+
+    return $_hash
+}
+
+function target-latest-version () {
+    $_targetName = $args[0]
+    $_targets = Get-TorizonPlatformAPITargets
+    $_latestV = 0
+
+    $_ret = _resolvePlatformWrongMetadata $_targets
+
     # it's return 0 if not found (we can publish the version 1)
-    return $_latestV
+    return $_ret.version
 }
 
 function update-fleet-latest () {
