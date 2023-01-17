@@ -37,20 +37,142 @@
                 "showReuseMessage": true,
                 "clear": false
             },
+            "options": {
+                "env": {
+                    "DOCKER_PSSWD": "${command:docker_password}",
+                    "TORIZON_ARCH": "${input:archList}"
+                }
+            },
             "args": [
                 "${workspaceFolder}/.conf/createDockerComposeProduction.ps1",
                 "${workspaceFolder}",
-                "${input:dockerImageRegistry}",
-                "${input:dockerImageTag}",
-                "__container__",
-                "${input:archList}",
-                "${input:dockerPsswd}"
+                "${command:docker_registry}",
+                "${command:docker_tag}",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
             }
+        },
+        {
+            "label": "set-platform-fleet-name",
+            "detail": "",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "echo",
+                "\"setting",
+                "${command:tcb.fleetName}\""
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "github-actions-settings",
+            "detail": "",
+            "command": "echo",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "DOCKER_REGISTRY": "${command:docker_registry}",
+                    "DOCKER_PSSWD": "${command:docker_password}",
+                    "DOCKER_TAG": "${command:docker_tag}",
+                    "TCB_CLIENTID": "${command:tcb.clientId}",
+                    "TCB_CLIENTSECRET": "${command:tcb.clientSecret}",
+                    "TCB_PACKAGE": "__change__",
+                    "TCB_FLEET": "${command:tcb.fleetName}"
+                }
+            },
+            "args": [
+                "✅ github-actions-settings done"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "platform-update-fleet",
+            "detail": "",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PLATFORM_CLIENT_ID": "${command:tcb.clientId}",
+                    "PLATFORM_CLIENT_SECRET": "${command:tcb.clientSecret}"
+                }
+            },
+            "args": [
+                "pwsh",
+                "./.conf/torizonIO.ps1",
+                "update",
+                "fleet",
+                "latest",
+                "__change__",
+                "${command:tcb.fleetName}"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "tcb-platform-publish",
+            "detail": "",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} --canonicalize docker-compose.prod.yml"
+                }
+            },
+            "args": [
+                "source",
+                "./.conf/tcb-env-setup.sh",
+                "-s",
+                "${workspaceFolder}/storage",
+                "-t",
+                "${config:tcb.version}"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "create-production-image"
+            ]
         },
         {
             "label": "docker-login",

@@ -31,6 +31,8 @@ $settingsTemplate = [PSCustomObject]@{
     host_ip = ""
     torizon_workspace = "$`{workspaceFolder`}"
     wait_sync = "1"
+    "tcb.version" = "early-access"
+    "tcb.packageName" = "__change__"
 }
 
 # update all the .vscode/settings.json

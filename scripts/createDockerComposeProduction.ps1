@@ -23,47 +23,78 @@ $compoFilePath  = $args[0]
 $dockerLogin    = $args[1]
 $tag            = $args[2]
 $imageName      = $args[3]
-$imageArch      = $args[4]
-$psswd          = $args[5]
 
 # can be null
-$gpu            = $args[6]
+$gpu            = $args[4]
+
+$_iterative = $true
 
 if ($null -eq $gpu) {
     $gpu = ""
 }
 
+if ($null -eq $env:DOCKER_PSSWD) {
+    throw "❌ DOCKER_PSSWD not set"
+} else {
+    $psswd = $env:DOCKER_PSSWD
+}
+
+if ($null -eq $env:TORIZON_ARCH) {
+    throw "❌ TORIZON_ARCH not set"
+} else {
+    $imageArch = $env:TORIZON_ARCH
+}
+
+if ($env:TASKS_ITERATIVE -eq $False) {
+    $_iterative = $False
+}
+
 if ([string]::IsNullOrEmpty($compoFilePath)) {
-    $compoFilePath = Read-Host "docker-compose.yml root file path"
-    if ($compoFilePath -eq "") {
+    if ($_iterative) {
+        $compoFilePath = Read-Host "docker-compose.yml root file path"
+    }
+
+    if ([string]::IsNullOrEmpty($compoFilePath)) {
         throw "❌ docker-compose.yml root file path cannot be empty"
     }
 }
 
 if ([string]::IsNullOrEmpty($dockerLogin)) {
-    $dockerLogin = Read-Host "Image repository"
-    if ($dockerLogin -eq "") {
+    if ($_iterative) {
+        $dockerLogin = Read-Host "Image repository"
+    }
+
+    if ([string]::IsNullOrEmpty($dockerLogin)) {
         throw "❌ Docker image repository cannot be empty"
     }
 }
 
 if ([string]::IsNullOrEmpty($psswd)) {
-    $tag = Read-Host "Docker registry password"
-    if ($tag -eq "") {
+    if ($_iterative) {
+        $tag = Read-Host "Docker registry password"
+    }
+
+    if ([string]::IsNullOrEmpty($psswd)) {
         throw "❌ Docker registry password cannot be empty"
     }
 }
 
 if ([string]::IsNullOrEmpty($imageName)) {
-    $tag = Read-Host "Image name"
-    if ($tag -eq "") {
+    if ($_iterative) {
+        $imageName = Read-Host "Image name"
+    }
+
+    if ([string]::IsNullOrEmpty($imageName)) {
         throw "❌ Docker image name cannot be empty"
     }
 }
 
 if ([string]::IsNullOrEmpty($tag)) {
-    $tag = Read-Host "Image tag"
-    if ($tag -eq "") {
+    if ($_iterative) {
+        $tag = Read-Host "Image tag"
+    }
+
+    if ([string]::IsNullOrEmpty($tag)) {
         throw "❌ Docker image tag cannot be empty"
     }
 }

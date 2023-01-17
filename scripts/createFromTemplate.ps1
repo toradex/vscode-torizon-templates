@@ -144,6 +144,12 @@ Copy-Item "$templateFolder/../assets/json/torizonPackages.json" "$location/"
 Copy-Item "$templateFolder/../scripts/bash/tcb-env-setup.sh" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/torizonIO.ps1" "$location/.conf"
 
+# copy the github actions if not exists
+if (-not (Test-Path "$location/.github")) {
+    New-Item "$location/.github" -ItemType Directory
+    Copy-Item "$templateFolder/../assets/github/workflows" "$location/.github" -Recurse
+}
+
 # create a dot file to store the template that was used
 Write-Output "$template" | Out-File -FilePath "$location/.conf/.template"
 
