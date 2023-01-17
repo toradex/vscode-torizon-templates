@@ -141,9 +141,8 @@ function _resolvePlatformWrongMetadata () {
 
                     if ($_latestV -lt $_actualV) {
                         $_latestV = $_actualV
+                        $_hash = $_propVal.hashes.sha256
                     }
-
-                    $_hash = $_propVal.hashes.sha256
                 }
             }
 
