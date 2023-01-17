@@ -77,6 +77,7 @@ Set-TorizonPlatformAPIConfiguration `
 
 function _getTargetByHash ($_hash) {
     $_targets = Get-TorizonPlatformAPITargets
+    $_found = $false
 
     Get-Member `
         -InputObject $_targets.signed.targets `
@@ -84,7 +85,11 @@ function _getTargetByHash ($_hash) {
             ForEach-Object {
                 $_propVal = $_targets.signed.targets.($_.Name)
 
-                if ($_propVal.hashes.sha256 -eq $_hash) {
+                if (
+                    ($_propVal.hashes.sha256 -eq $_hash) -and 
+                    ($_found -eq $false)
+                ) {
+                    $_found = $true
                     return $_propVal
                 }
             }
