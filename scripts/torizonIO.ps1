@@ -185,6 +185,13 @@ function update-fleet-latest () {
 
     $_targetHash = target-latest-hash $_targetName
     $_target = _getTargetByHash($_targetHash)
+    
+    if ($null -eq $_target) {
+        Write-Host -ForegroundColor Red "target not found"
+        exit 404
+    }
+
+    $_target = $_target[0]
     $_targetVersion = $_target.custom.version
     $_hardwareId = $_target.custom.hardwareIds[0]
 
@@ -197,7 +204,7 @@ function update-fleet-latest () {
         Initialize-TorizonPlatformAPITargetDescription `
             -Target "$_targetName-$_targetVersion" `
             -Checksum $Checksum `
-            -TargetLength 0 `
+            -TargetLength $_target.length `
             -Uri $Null `
             -UserDefinedCustom "From ApolloX"
 
