@@ -116,7 +116,7 @@
             "args": [
                 "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
                 "docker",
-                "'--rm -it --privileged torizon/binfmt'",
+                "'--rm --privileged torizon/binfmt'",
                 "binfmt"
             ],
             "dependsOrder": "sequence",
