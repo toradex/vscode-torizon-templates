@@ -413,7 +413,7 @@ function runTask () {
             # execute the task
             # use bash as default
             # TODO: be explicit about bash as default on documentation
-            Invoke-Expression "bash -c '$_cmd'"
+            Invoke-Expression "bash -c `"$_cmd`""
             $exitCode = $LASTEXITCODE
 
             # abort we had a error
