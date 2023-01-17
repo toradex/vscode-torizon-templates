@@ -18,6 +18,10 @@ param()
 
 $TORIZON_ARCH = $args[0]
 
+if ($TORIZON_ARCH -eq "aarch64") { 
+    $TORIZON_ARCH = "arm64" 
+}
+
 # get the files content
 function _getFileLines ($file) {
     [string[]] $lines = Get-Content -Path $file
