@@ -256,7 +256,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name ${command:tcb.packageName} --package-version ${command:tcb.getNextPackageVersion} ${command:tcb.ostreeBranch}"
+                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} __container__"
                 }
             },
             "args": [
@@ -296,8 +296,8 @@
                 "update",
                 "fleet",
                 "latest",
-                "${command:tcb.packageName}",
-                "${command:tcb.fleetName}"
+                "__change__",
+                "'${command:tcb.fleetName}'"
             ],
             "problemMatcher": [
                 "$tsc"
@@ -311,17 +311,31 @@
             ]
         },
         {
-            "label": "set-platform-fleet-name",
+            "label": "github-actions-settings",
             "detail": "",
-            "command": "DOCKER_HOST=",
+            "command": "echo",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "TCB_CLIENTID": "${command:tcb.clientId}",
+                    "TCB_CLIENTSECRET": "${command:tcb.clientSecret}",
+                    "TCB_PACKAGE": "__change__",
+                    "TCB_OSTREE": "__container__",
+                    "TCB_FLEET": "${command:tcb.fleetName}"
+                }
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
             },
             "args": [
-                "echo",
-                "\"setting",
-                "${command:tcb.fleetName}\""
+                "-e",
+                "\"✅ github-actions-settings done\n packageName: $TCB_PACKAGE\n ostreBranch: $TCB_OSTREE\n fleetName: $TCB_FLEET\n \""
             ],
             "problemMatcher": [
                 "$tsc"

@@ -102,8 +102,12 @@ function _getFleetDevices ($_fleetName) {
 
     $_fleetId = (
         $_fleets.values |
-            Where-Object { $_.name -eq $_fleetName }
+            Where-Object { $_.name -eq "$_fleetName" }
     ).id
+
+    if ($null -eq $_fleetId) {
+        throw "Fleet '$_fleetName' not found"
+    }
 
     $_devices = 
         Get-TorizonPlatformAPIFleetsFleetidDevices `
@@ -235,14 +239,14 @@ $_third = $args[2]
 
 # is duple
 if (Get-Command "$_cmd-$_sub" -ErrorAction SilentlyContinue) {
-    $_args = $args[2..$args.Length] -join " "
+    $_args = '"' + ($args[3..$args.Length] -join '" "') + '"'
 
     (Invoke-Expression "$_cmd-$_sub $_args")
 # is triple
 } elseif (
     Get-Command "$_cmd-$_sub-$_third" -ErrorAction SilentlyContinue
 ) {
-    $_args = $args[3..$args.Length] -join " "
+    $_args = '"' + ($args[3..$args.Length] -join '" "') + '"'
 
     (Invoke-Expression "$_cmd-$_sub-$_third $_args")
 } else {

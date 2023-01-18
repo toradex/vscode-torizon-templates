@@ -130,7 +130,7 @@
                 "fleet",
                 "latest",
                 "__change__",
-                "${command:tcb.fleetName}"
+                "'${command:tcb.fleetName}'"
             ],
             "problemMatcher": [
                 "$tsc"
