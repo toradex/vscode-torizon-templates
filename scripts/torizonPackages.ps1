@@ -22,6 +22,10 @@ if ($TORIZON_ARCH -eq "aarch64") {
     $TORIZON_ARCH = "arm64" 
 }
 
+if ($TORIZON_ARCH -eq "arm") { 
+    $TORIZON_ARCH = "armhf" 
+}
+
 # get the files content
 function _getFileLines ($file) {
     [string[]] $lines = Get-Content -Path $file
