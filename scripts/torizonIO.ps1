@@ -206,9 +206,10 @@ $_cmd = $args[0]
 $_sub = $args[1]
 $_third = $args[2]
 
-# is duple
-if (Get-Command "$_cmd-$_sub" -ErrorAction SilentlyContinue) {
-    $_args = '"' + ($args[3..$args.Length] -join '" "') + '"'
+try {
+    # is duple
+    if (Get-Command "$_cmd-$_sub" -ErrorAction SilentlyContinue) {
+        $_args = '"' + ($args[3..$args.Length] -join '" "') + '"'
 
         (Invoke-Expression "$_cmd-$_sub $_args")
     # is triple
@@ -231,5 +232,17 @@ if (Get-Command "$_cmd-$_sub" -ErrorAction SilentlyContinue) {
         Write-Host "        update fleet latest <package name> <fleet name>"
         Write-Host ""
 
-    exit 69
+        exit 69
+    }
+} catch {
+    Write-Host $_.Exception.Message -Foreground "Red"
+    Write-Host ""
+    $lines = $_.ScriptStackTrace.Split("`n")
+
+    foreach ($line in $lines) {
+        Write-Host "`t$line" -Foreground "DarkGray"
+    }
+
+    Write-Host ""
+    exit 500
 }
