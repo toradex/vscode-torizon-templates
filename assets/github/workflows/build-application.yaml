@@ -29,13 +29,6 @@ jobs:
         run: |
           echo $PLATFORM_CREDENTIALS | base64 -d > credentials.zip
 
-      - name: Build Application
-        shell: pwsh
-        env:
-          TASKS_ITERATIVE: "False"
-        run: |
-          ./.vscode/tasks.ps1 run build-torizon-$env:TORIZON_ARCH
-
       - name: Create and Publish Image
         shell: pwsh
         env:
