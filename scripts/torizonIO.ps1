@@ -29,16 +29,16 @@ $_mod = Get-Module -ListAvailable -Name "TorizonPlatformAPI"
 
 if (
     -not ($_mod) -or 
-    ($_mod.Version[0].ToString().Contains("0.0.3") -eq $false)
+    ($_mod.Version[0].ToString().Contains($_VERSION) -eq $false)
 ) {
     Install-Module `
         -Name "TorizonPlatformAPI" `
-        -RequiredVersion 0.0.3 `
+        -RequiredVersion $_VERSION `
         -Confirm:$false `
         -Force | Out-Null
 }
 
-Import-Module -Name "TorizonPlatformAPI" -RequiredVersion 0.0.3  | Out-Null
+Import-Module -Name "TorizonPlatformAPI" -RequiredVersion $_VERSION  | Out-Null
 #Write-Host -ForegroundColor DarkGreen "✅ TorizonPlatformAPI loaded"
 
 # get the bearer token
@@ -133,28 +133,16 @@ function _resolvePlatformMetadata ([object] $targets, [string] $targetName) {
         "version" = $null
     }
 
-    Get-Member `
-        -InputObject $_targets.signed.targets `
-        -MemberType NoteProperty |
-            ForEach-Object {
-                $_propVal = $_targets.signed.targets.($_.Name)
+    foreach ($_package in $_packages.values) {
+        if ($_package.name -eq $_packageName) {
+            $_actualV = $_package.version
 
-                if ($_propVal.custom.name -eq $_targetName) {
-                    $_actualV = $_propVal.custom.commitSubject
-                    if ($null -eq $_actualV) {
-                        # packages are ok
-                        $_actualV = [int]$_propVal.custom.version
-                    } else {
-                        # ostree packages are not ok
-                        $_actualV = [int]$_actualV
-                    }
-
-                    if ($_latestV -lt $_actualV) {
-                        $_latestV = $_actualV
-                        $_hash = $_propVal.hashes.sha256
-                    }
-                }
+            if ($_latestV -lt $_actualV) {
+                $_latestV = $_actualV
+                $_hash = $_package.hashes.sha256
             }
+        }
+    }
 
     $_ret.hash = $_hash
     $_ret.version = $_latestV
@@ -167,11 +155,11 @@ function package-latest-hash ([string] $packageName) {
     $_targets = Get-TorizonPlatformAPIPackages
     $_hash = $null
 
-    $_ret = _resolvePlatformWrongMetadata $_targets
+    $_ret = _resolvePlatformMetadata $_targets $_targetName
     $_hash = $_ret.hash
 
     if ($null -eq $_hash) {
-        Write-Host -ForegroundColor Red "target not found"
+        Write-Host -ForegroundColor Red "package not found"
         exit 404
     }
 
