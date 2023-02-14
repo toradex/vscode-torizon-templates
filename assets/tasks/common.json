@@ -1,6 +1,57 @@
 {
     "tasks": [
         {
+            "label": "Try Update Template",
+            "command": "echo",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "args": [
+                "✅ merge task finished"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "try-update-template"
+            ],
+            "icon": {
+                "id": "repo-sync",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
+            "label": "try-update-template",
+            "detail": "hide",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "${workspaceFolder}/.conf/projectUpdater.ps1",
+                "${workspaceFolder}",
+                "${workspaceFolderBasename}"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "repo-sync",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
             "label": "Create Production Docker Image",
             "command": "echo",
             "type": "process",
