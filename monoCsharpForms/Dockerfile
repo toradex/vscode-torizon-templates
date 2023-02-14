@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=2-6.0
+ARG BASE_VERSION=3-6.0
 
 ##
 # Application Name
@@ -19,7 +19,7 @@ ARG APP_EXECUTABLE=__change__
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/dotnet-uno-debug:${BASE_VERSION} AS Build
+    torizon/dotnet-uno-debug:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -53,7 +53,7 @@ RUN msbuild
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/dotnet-uno-debug:${BASE_VERSION} AS Deploy
+    torizon/dotnet-uno-debug:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
