@@ -37,7 +37,7 @@ RUN dotnet restore && \
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/aspdotnet-debug:${BASE_VERSION} AS Deploy
+    torizon/aspdotnet:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
