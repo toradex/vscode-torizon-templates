@@ -1,0 +1,6 @@
+[
+    {
+        "source": "__change__.pro",
+        "target": "$projectName.pro"
+    }
+]
