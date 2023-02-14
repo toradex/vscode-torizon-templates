@@ -143,6 +143,7 @@ Copy-Item "$templateFolder/../scripts/tasks.ps1" "$location/.vscode"
 Copy-Item "$templateFolder/../assets/json/torizonPackages.json" "$location/"
 Copy-Item "$templateFolder/../scripts/bash/tcb-env-setup.sh" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/torizonIO.ps1" "$location/.conf"
+Copy-Item "$templateFolder/../scripts/projectUpdater.ps1" "$location/.conf"
 
 # copy the github actions if not exists
 if (-not (Test-Path "$location/.github")) {
@@ -152,6 +153,7 @@ if (-not (Test-Path "$location/.github")) {
 
 # create a dot file to store the template that was used
 Write-Output "$template" | Out-File -FilePath "$location/.conf/.template"
+Write-Output "$containerName" | Out-File -FilePath "$location/.conf/.container"
 
 Write-Host -ForegroundColor DarkGreen "✅ Scripts copy done"
 

@@ -1,0 +1,6 @@
+[
+    {
+        "source": "__change__.csproj",
+        "target": "$projectName.csproj"
+    }
+]
