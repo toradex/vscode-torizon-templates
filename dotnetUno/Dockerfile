@@ -54,6 +54,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # copy the build
 COPY --from=Build /build/__change__.Skia.Gtk/bin/Debug/net6.0/linux-${IMAGE_ARCH}/publish /app
 
+ENV UNO_DISABLE_OPENGL true
+
 # ADD YOUR ARGUMENTS HERE
 CMD [ "./app/__change__.Skia.Gtk" ]
 # DEPLOY -----------------------------------------------------------------------
