@@ -16,6 +16,25 @@ function _checkArg ($_arg) {
     }
 }
 
+function _checkIfFileContentIsEqual ($_file1, $_file2) {
+    $file1 = Get-FileHash $_file1
+    $file2 = Get-FileHash $_file2
+
+    if ($file1.Hash -eq $file2.Hash) {
+        return $true
+    } else {
+        return $false
+    }
+}
+
+function _openMergeWindow ($_path1, $_path2) {
+    if (
+        -not (_checkIfFileContentIsEqual $_path1 $_path2)
+    ) {
+        code --wait --diff $_path1 $_path2
+    }
+}
+
 # check if the args passed are not empty
 _checkArg $projectFolder
 _checkArg $projectName
@@ -23,7 +42,6 @@ _checkArg $projectName
 # copy the new one and make the subs
 $templateName = Get-Content $projectFolder/.conf/.template
 $containerName = Get-Content $projectFolder/.conf/.container
-$updateTable = Get-Content $projectFolder/.conf/update.json | ConvertFrom-Json
 mkdir $projectFolder/.conf/tmp
 
 # ----------------------------------------------------------- ALWAYS ACCEPT NEW
@@ -61,6 +79,9 @@ Write-Host -ForegroundColor DarkGreen "✅ always accept new"
 # ----------------------------------------------------------- ALWAYS ACCEPT NEW
 
 
+# now that we have an updated version we ca read it
+$updateTable = Get-Content $projectFolder/.conf/update.json | ConvertFrom-Json
+
 
 # ----------------------------------------------------------------------- TASKS
 # TASKS.JSON:
@@ -92,8 +113,9 @@ Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
 Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
 
 # read the update table:
-for ($i = 0; $i -gt $updateTable.Count; $i++) {
-    Copy-Item $Env:HOME/.apollox/$templateName/$updateTable[$i].source .
+for ($i = 0; $i -lt $updateTable.Count; $i++) {
+    $_source = $updateTable[$i].source
+    Copy-Item "$Env:HOME/.apollox/$templateName/$_source" .
 }
 
 # change the contents
@@ -142,7 +164,7 @@ Replace-Tasks-Input
 Set-Location -
 
 # open the merge window
-code --wait --diff `
+_openMergeWindow `
     $projectFolder/.conf/tmp/tasks-next.json `
     $projectFolder/.vscode/tasks.json
 
@@ -153,17 +175,17 @@ Write-Host -ForegroundColor DarkGreen "✅ tasks.json"
 
 # ---------------------------------------------------------------------- COMMON
 # DOCKERFILE:
-code --wait --diff `
+_openMergeWindow `
     $projectFolder/.conf/tmp/Dockerfile `
     $projectFolder/Dockerfile
 
 # DOCKERFILE.DEBUG:
-code --wait --diff `
+_openMergeWindow `
     $projectFolder/.conf/tmp/Dockerfile.debug `
     $projectFolder/Dockerfile.debug
 
 # DOCKER-COMPOSE:
-code --wait --diff `
+_openMergeWindow `
     $projectFolder/.conf/tmp/docker-compose.yml `
     $projectFolder/docker-compose.yml
 
@@ -173,10 +195,14 @@ Write-Host -ForegroundColor DarkGreen "✅ common"
 
 
 # -------------------------------------------------------------------- SPECIFIC
-for ($i = 0; $i -gt $updateTable.Count; $i++) {
-    code --wait --diff `
-        $projectFolder/.conf/tmp/$updateTable[$i].source `
-        $projectFolder/$updateTable[$i].target
+for ($i = 0; $i -lt $updateTable.Count; $i++) {
+    $_source = Split-Path $updateTable[$i].source -Leaf
+    $_target = $updateTable[$i].target
+    $_target = (Invoke-Expression "echo `"$_target`"")
+
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/$_source `
+        $projectFolder/$_target
 }
 
 Write-Host -ForegroundColor DarkGreen "✅ specific"
