@@ -42,7 +42,17 @@ _checkArg $projectName
 # copy the new one and make the subs
 $templateName = Get-Content $projectFolder/.conf/.template
 $containerName = Get-Content $projectFolder/.conf/.container
-mkdir $projectFolder/.conf/tmp
+
+# check first if the folder already exists
+if (-not (Test-Path $projectFolder/.conf/tmp)) {
+    mkdir $projectFolder/.conf/tmp
+}
+
+# get the metadata
+$_metadata = Get-Content "$Env:HOME/.apollox/templates.json" | ConvertFrom-Json
+$_templateMetadata = 
+    $_metadata.Templates |
+        Where-Object { $_.folder -eq $templateName }
 
 # ----------------------------------------------------------- ALWAYS ACCEPT NEW
 # UPDATE.JSON:
@@ -56,9 +66,28 @@ Copy-Item `
     $projectFolder/.conf/deps.json
 
 # PROJECT UPDATER:
-Copy-Item `
-    $Env:HOME/.apollox/scripts/projectUpdater.ps1 `
-    $projectFolder/.conf/projectUpdater.ps1
+if (
+    -not (_checkIfFileContentIsEqual `
+            $Env:HOME/.apollox/scripts/projectUpdater.ps1 `
+            $projectFolder/.conf/projectUpdater.ps1)
+) {
+    # in this case we need to update the project updater
+    # and then run it again
+    Copy-Item `
+        $Env:HOME/.apollox/scripts/projectUpdater.ps1 `
+        $projectFolder/.conf/projectUpdater.ps1
+
+    Write-Host `
+        -ForegroundColor DarkYellow `
+        "⚠️  project updater updated, running it again"
+
+    # run the project updater again
+    & $projectFolder/.conf/projectUpdater.ps1 `
+        $projectFolder `
+        $projectName
+
+    exit $LASTEXITCODE
+}
 
 # TORIZON IO:
 Copy-Item `
@@ -88,23 +117,25 @@ $updateTable = Get-Content $projectFolder/.conf/update.json | ConvertFrom-Json
 Copy-Item $Env:HOME/.apollox/$templateName/.vscode/tasks.json `
     $projectFolder/.conf/tmp/tasks-next.json
 
-Write-Host -ForegroundColor Yellow "Applying common tasks ..."
-$commonTasks = 
-    Get-Content "$env:HOME/.apollox/assets/tasks/common.json" | 
-        ConvertFrom-Json
-$commonInputs = 
-    Get-Content "$env:HOME/.apollox/assets/tasks/inputs.json" | 
-        ConvertFrom-Json
-$projTasks = 
-    Get-Content "$projectFolder/.conf/tmp/tasks-next.json" | 
-        ConvertFrom-Json
+if ($_templateMetadata.mergeCommon -ne $False) {
+    Write-Host -ForegroundColor Yellow "Applying common tasks ..."
+    $commonTasks = 
+        Get-Content "$env:HOME/.apollox/assets/tasks/common.json" | 
+            ConvertFrom-Json
+    $commonInputs = 
+        Get-Content "$env:HOME/.apollox/assets/tasks/inputs.json" | 
+            ConvertFrom-Json
+    $projTasks = 
+        Get-Content "$projectFolder/.conf/tmp/tasks-next.json" | 
+            ConvertFrom-Json
 
-$projTasks.tasks += $commonTasks.tasks
-$projTasks.inputs += $commonInputs.inputs
+    $projTasks.tasks += $commonTasks.tasks
+    $projTasks.inputs += $commonInputs.inputs
 
-ConvertTo-Json -Depth 100 -InputObject $projTasks | `
-    Format-Json | `
-    Out-File -FilePath "$projectFolder/.conf/tmp/tasks-next.json"
+    ConvertTo-Json -Depth 100 -InputObject $projTasks | `
+        Format-Json | `
+        Out-File -FilePath "$projectFolder/.conf/tmp/tasks-next.json"
+}
 
 # we need to create a tmp folder to the update files
 Set-Location $projectFolder/.conf/tmp
