@@ -1,0 +1,6 @@
+[
+    {
+        "source": "__change__.Skia.Linux.Framebuffer/__change__.csproj",
+        "target": "$projectName.Skia.Linux.FrameBuffer/$projectName.csproj"
+    }
+]
