@@ -188,6 +188,96 @@
             ]
         },
         {
+            "label": "tcb-bundle",
+            "detail": "",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "VSCODE_CMD": "--verbose bundle ${command:tcb.listDockerComposeFiles}"
+                }
+            },
+            "args": [
+                "source",
+                "./.conf/tcb-env-setup.sh",
+                "-s",
+                "${workspaceFolder}/storage",
+                "-t",
+                "${config:tcb.version}"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "tcb-bundle-platform",
+            "detail": "",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "VSCODE_CMD": "--verbose bundle ${command:tcb.listDockerComposeFiles} --platform ${input:archList}"
+                }
+            },
+            "args": [
+                "source",
+                "./.conf/tcb-env-setup.sh",
+                "-s",
+                "${workspaceFolder}/storage",
+                "-t",
+                "${config:tcb.version}"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "tcb-bundle-platform-dind-param",
+            "detail": "",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "VSCODE_CMD": "--verbose bundle ${command:tcb.listDockerComposeFiles} --platform ${input:archList} --dind-param=\"${input:dindParam}\""
+                }
+            },
+            "args": [
+                "source",
+                "./.conf/tcb-env-setup.sh",
+                "-s",
+                "${workspaceFolder}/storage",
+                "-t",
+                "${config:tcb.version}"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
             "label": "tcb-unpack",
             "detail": "hide",
             "command": "DOCKER_HOST=",
@@ -349,5 +439,20 @@
             ]
         },
     ],
-"inputs": []
+    "inputs": [
+        {
+            "id": "archList",
+            "type": "pickString",
+            "description": "Container architecture",
+            "options": [
+                "linux/arm/v7", 
+                "linux/arm64"
+            ]
+        },
+        {
+            "id": "dindParam",
+            "type": "promptString",
+            "description": "--dind-param arguments"
+        }
+    ]
 }
