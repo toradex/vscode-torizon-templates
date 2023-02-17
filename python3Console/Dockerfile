@@ -9,11 +9,11 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=2.5-bullseye
+ARG BASE_VERSION=3-bookworm
 
 
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/debian:${BASE_VERSION} AS Deploy
+    torizon/debian:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE

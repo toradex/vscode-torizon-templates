@@ -2,8 +2,8 @@
 ##
 # Base container version
 ##
-ARG BASE_VERSION=2
-ARG SDK_BASE_VERSION=2.5-bullseye
+ARG BASE_VERSION=3
+ARG SDK_BASE_VERSION=3
 
 ##
 # Application Name
@@ -20,13 +20,9 @@ ARG IMAGE_ARCH=
 # We will use emulation here
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/debian:${SDK_BASE_VERSION} AS Build
+    torizon/wayland-base:${SDK_BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
-
-# add the backports to get Qt6 packages
-RUN echo "deb http://deb.debian.org/debian bullseye-backports main" >> \
-    /etc/apt/sources.list
 
 # __deps__
 RUN apt-get -q -y update && \
@@ -60,7 +56,7 @@ RUN qmake6 -o build/Makefile && \
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/wayland-base:${BASE_VERSION} AS Deploy
+    torizon/wayland-base:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -72,10 +68,6 @@ ARG SSHUSERNAME=torizon
 
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
-
-# add the backports to get Qt6 packages
-RUN echo "deb http://deb.debian.org/debian bullseye-backports main" >> \
-    /etc/apt/sources.list
 
 # your regular RUN statements here
 # Install required packages
