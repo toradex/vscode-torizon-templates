@@ -1,5 +1,5 @@
-ARG CROSS_SDK_BASE_TAG=2.6-bullseye
-ARG BASE_VERSION=2.5-bullseye
+ARG CROSS_SDK_BASE_TAG=3-bookworm
+ARG BASE_VERSION=3-bookworm
 
 ##
 # Board architecture

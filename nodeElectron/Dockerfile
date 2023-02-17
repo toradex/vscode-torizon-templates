@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=2
+ARG BASE_VERSION=3
 
 ##
 # Application Name
@@ -21,7 +21,7 @@ ARG APP_EXECUTABLE=__change__
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/wayland-base:${BASE_VERSION} AS Build
+    torizon/wayland-base:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -75,7 +75,7 @@ RUN npm install && \
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/wayland-base:${BASE_VERSION} AS Deploy
+    torizon/wayland-base:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE

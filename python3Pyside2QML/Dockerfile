@@ -9,11 +9,11 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=2
+ARG BASE_VERSION=3
 
 
 FROM --platform=linux/${IMAGE_ARCH} \
-     torizon/qt5-wayland:${BASE_VERSION} AS Deploy
+     torizon/wayland-base:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE

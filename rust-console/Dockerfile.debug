@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=2.5-bullseye
+ARG BASE_VERSION=3-bookworm
 
 ##
 # Application Name
