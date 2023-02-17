@@ -1,6 +1,5 @@
-ARG CROSS_SDK_BASE_TAG=2.7-bullseye
-ARG BASE_VERSION=2.5-bullseye
-
+ARG CROSS_SDK_BASE_TAG=3-bookworm
+ARG BASE_VERSION=3-bookworm
 ##
 # Board architecture
 # arm or arm64
@@ -47,7 +46,7 @@ RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
 
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizonextras/debian:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} torizon/debian:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
