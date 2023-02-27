@@ -75,24 +75,14 @@ Set-TorizonPlatformAPIConfiguration `
     -DefaultHeaders @{ "Authorization" = "Bearer $_token" } `
     -ErrorAction Stop
 
-function _getTargetByHash ($_hash) {
-    $_targets = Get-TorizonPlatformAPITargets
-    $_found = $false
+function _getTargetByHash ([string] $_hash) {
+    $_packages = Get-TorizonPlatformAPIPackages
 
-    Get-Member `
-        -InputObject $_targets.signed.targets `
-        -MemberType NoteProperty |
-            ForEach-Object {
-                $_propVal = $_targets.signed.targets.($_.Name)
-
-                if (
-                    ($_propVal.hashes.sha256 -eq $_hash) -and 
-                    ($_found -eq $false)
-                ) {
-                    $_found = $true
-                    return $_propVal
-                }
-            }
+    foreach ($_package in $_packages.values) {
+        if ($_hash -eq $_package.hashes.sha256) {
+            return $_package
+        }
+    }
 
     return $null
 }
@@ -113,12 +103,31 @@ function _getFleetDevices ($_fleetName) {
         Get-TorizonPlatformAPIFleetsFleetidDevices `
             -FleetId $_fleetId
     
+    if ($_devices.total -eq 0) {
+        throw "Fleet '$_fleetName' has no devices"
+    }
+
     return $_devices.values
 }
 
-# TODO: fix me when the metadata be fixed by the platform team
-function _resolvePlatformWrongMetadata () {
-    $_targets = $args[0]
+function _getFleetId ($_fleetName) {
+    $_fleets = Get-TorizonPlatformAPIFleets
+
+    $_fleetId = (
+        $_fleets.values |
+            Where-Object { $_.name -eq "$_fleetName" }
+    ).id
+
+    if ($null -eq $_fleetId) {
+        throw "Fleet '$_fleetName' not found"
+    }
+
+    return $_fleetId
+}
+
+function _resolvePlatformMetadata ([object] $targets, [string] $targetName) {
+    $_packages = $targets
+    $_packageName = $targetName
     $_latestV = 0
     $_hash = $null
 
@@ -183,51 +192,27 @@ function target-latest-version () {
     return $_ret.version
 }
 
-function update-fleet-latest () {
-    $_targetName = $args[0]
-    $_fleetName = $args[1]
+function update-fleet-latest ([string] $targetName, [string] $fleetName) {
+    $_targetName = $targetName
+    $_fleetName = $fleetName
 
-    $_targetHash = target-latest-hash $_targetName
+    $_targetHash = package-latest-hash $_targetName
     $_target = _getTargetByHash($_targetHash)
     
     if ($null -eq $_target) {
-        Write-Host -ForegroundColor Red "target not found"
-        exit 404
+        throw "package $_targetName not found"
     }
 
-    $_target = $_target[0]
-    $_targetVersion = $_target.custom.version
-    $_hardwareId = $_target.custom.hardwareIds[0]
-
-    $_devices = _getFleetDevices($_fleetName)
-
-    $Checksum = 
-        Initialize-TorizonPlatformAPIChecksum -Method "sha256" -Hash $_targetHash
+    $_targetId = $_target.packageId
+    $_fleetId = _getFleetId($_fleetName)
     
-    $TargetDescription = 
-        Initialize-TorizonPlatformAPITargetDescription `
-            -Target "$_targetName-$_targetVersion" `
-            -Checksum $Checksum `
-            -TargetLength $_target.length `
-            -Uri $Null `
-            -UserDefinedCustom "From ApolloX"
-
-    $TargetUpdateRequest = 
-        Initialize-TorizonPlatformAPITargetUpdateRequest -To $TargetDescription
-
-    $MultiTargetUpdateRequest = 
-        Initialize-TorizonPlatformAPIMultiTargetUpdateRequest `
-            -Targets @{ "$_hardwareId" = $TargetUpdateRequest }
-
-    $CreateUpdateRequest = 
-        Initialize-TorizonPlatformAPICreateUpdateRequest `
-            -Updates $MultiTargetUpdateRequest `
-            -Devices $_devices
-    Write-Host ($CreateUpdateRequest | ConvertTo-Json -Depth 100)
+    $_updateRequest = Initialize-TorizonPlatformAPIUpdateRequest `
+        -PackageIds @($_targetId) `
+        -Fleets @($_fleetId)
 
     $Result = 
         Submit-TorizonPlatformAPIUpdate `
-            -CreateUpdateRequest $CreateUpdateRequest
+            -UpdateRequest $_updateRequest
 
     return $Result
 }
@@ -248,19 +233,19 @@ if (Get-Command "$_cmd-$_sub" -ErrorAction SilentlyContinue) {
 ) {
     $_args = '"' + ($args[3..$args.Length] -join '" "') + '"'
 
-    (Invoke-Expression "$_cmd-$_sub-$_third $_args")
-} else {
-    Write-Host ""
-    Write-Host "usage:"
-    Write-Host ""
-    Write-Host "    Get the latest hash pushed by target name:"
-    Write-Host "        target latest hash <target name>"
-    Write-Host "    Get the latest version pushed by target name:"
-    Write-Host "        target latest version <target name>"
-    Write-Host ""
-    Write-Host "    Update a fleet with a defined target:"
-    Write-Host "        update fleet latest <target name> <fleet name>"
-    Write-Host ""
+        (Invoke-Expression "$_cmd-$_sub-$_third $_args")
+    } else {
+        Write-Host ""
+        Write-Host "usage:"
+        Write-Host ""
+        Write-Host "    Get the latest hash pushed by package name:"
+        Write-Host "        package latest hash <package name>"
+        Write-Host "    Get the latest version pushed by package name:"
+        Write-Host "        package latest version <package name>"
+        Write-Host ""
+        Write-Host "    Update a fleet with a defined package:"
+        Write-Host "        update fleet latest <package name> <fleet name>"
+        Write-Host ""
 
     exit 69
 }
