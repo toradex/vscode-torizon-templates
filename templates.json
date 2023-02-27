@@ -85,7 +85,7 @@
                     "Torizon ARMv8"
                 ],
                 "debuggerConsole": null,
-                "mainFile": "App.xaml.cs",
+                "mainFile": "__change__.Shared/App.xaml.cs",
                 "mainFileBreakpointLine": 117,
                 "successDebugMessage": "fps: "
             }
@@ -152,7 +152,7 @@
                     "Torizon ARMv8"
                 ],
                 "debuggerConsole": "cppdbg",
-                "mainFile": "main.cpp",
+                "mainFile": "src/main.cpp",
                 "mainFileBreakpointLine": 4,
                 "successDebugMessage": "Hello Torizon!"
             }
@@ -230,7 +230,7 @@
                     "Torizon ARMv8"
                 ],
                 "debuggerConsole": "Python Debug Console",
-                "mainFile": "main.py",
+                "mainFile": "src/main.py",
                 "mainFileBreakpointLine": 4,
                 "successDebugMessage": "Hello Torizon!"
             }
