@@ -3,16 +3,13 @@
     'PSAvoidUsingWriteHost', ""
 )]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
-    'PSUseDeclaredVarsMoreThanAssignments', ""
-)]
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSUseApprovedVerbs', ""
 )]
 param()
 
 # TODO: we need to work with the offsets and limits
 
-$_VERSION = "0.0.3"
+$_VERSION = "0.0.7"
 
 $ErrorActionPreference = "Stop"
 
@@ -165,9 +162,9 @@ function _resolvePlatformMetadata ([object] $targets, [string] $targetName) {
     return $_ret
 }
 
-function target-latest-hash () {
-    $_targetName = $args[0]
-    $_targets = Get-TorizonPlatformAPITargets
+function package-latest-hash ([string] $packageName) {
+    $_targetName = $packageName
+    $_targets = Get-TorizonPlatformAPIPackages
     $_hash = $null
 
     $_ret = _resolvePlatformWrongMetadata $_targets
@@ -181,12 +178,11 @@ function target-latest-hash () {
     return $_hash
 }
 
-function target-latest-version () {
-    $_targetName = $args[0]
-    $_targets = Get-TorizonPlatformAPITargets
-    $_latestV = 0
+function package-latest-version ([string] $packageName) {
+    $_packageName = $packageName
+    $_packages = Get-TorizonPlatformAPIPackages
 
-    $_ret = _resolvePlatformWrongMetadata $_targets
+    $_ret = _resolvePlatformMetadata $_packages $_packageName
 
     # it's return 0 if not found (we can publish the version 1)
     return $_ret.version
@@ -226,12 +222,12 @@ $_third = $args[2]
 if (Get-Command "$_cmd-$_sub" -ErrorAction SilentlyContinue) {
     $_args = '"' + ($args[3..$args.Length] -join '" "') + '"'
 
-    (Invoke-Expression "$_cmd-$_sub $_args")
-# is triple
-} elseif (
-    Get-Command "$_cmd-$_sub-$_third" -ErrorAction SilentlyContinue
-) {
-    $_args = '"' + ($args[3..$args.Length] -join '" "') + '"'
+        (Invoke-Expression "$_cmd-$_sub $_args")
+    # is triple
+    } elseif (
+        Get-Command "$_cmd-$_sub-$_third" -ErrorAction SilentlyContinue
+    ) {
+        $_args = "`"" + ($args[3..$args.Length] -join "`" `"") + "`""
 
         (Invoke-Expression "$_cmd-$_sub-$_third $_args")
     } else {
