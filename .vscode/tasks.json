@@ -33,6 +33,46 @@
                 "reveal": "always"
             },
             "group": "build"
+        },
+        {
+            "label": "cherry-top-x",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "/usr/bin/bash",
+                    "args": [
+                        "-l"
+                    ]
+                }
+            },
+            "command": "git",
+            "args": [
+                "checkout bullseye",
+                "&&",
+                "git",
+                "cherry-pick",
+                "$(git log --oneline dev -n ${input:cherryTopX} | cut -d ' ' -f1)",
+                "&&",
+                "git",
+                "checkout bookworm",
+                "&&",
+                "git",
+                "cherry-pick",
+                "$(git log --oneline dev -n ${input:cherryTopX} | cut -d ' ' -f1)",
+                "&&",
+                "git",
+                "checkout dev"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "cherryTopX",
+            "type": "promptString",
+            "description": "How many commits to cherry-pick?"
         }
     ]
 }
