@@ -207,11 +207,11 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
         if ($item.Contains("`${command:tcb")) {
 
             if ($item.Contains("tcb.getNextPackageVersion")) {
-                $_next =  (
+                $_ret =  (
                     ./.conf/torizonIO.ps1 `
-                        target latest version ${global:config:tcb.packageName}
+                        package latest version ${global:config:tcb.packageName}
                 )
-                $_next++
+                $_next = [System.Int32]::Parse($_ret) +1
 
                 if ($_debug) {
                     Write-Host -ForegroundColor Green `
@@ -255,7 +255,7 @@ function checkConfig ([System.Collections.ArrayList] $list) {
 
             $value = Invoke-Expression "echo $item"
 
-            if ($value.Contains("`${workspaceFolder")) {
+            if ($null -ne $value -and $value.Contains("`${workspaceFolder")) {
                 $item = $value
             }
         }
@@ -440,32 +440,45 @@ function getCliInputs () {
 $Global:workspaceFolder = Join-Path $PSScriptRoot ..
 settingsToGlobal
 
-switch ($args[0]) {
-    "list" {
-        listTasksLabel
+try {
+    switch ($args[0]) {
+        "list" {
+            listTasksLabel
+        }
+        "desc" {
+            taskArgumentExecute `
+                $args[1] ${function:descTask} "Argument expected desc <task_label>"
+        }
+        "run" {
+            getCliInputs $args
+            taskArgumentExecute `
+                $args[1] ${function:runTask} "Argument expected run <task_label>"
+        }
+        "run-nodeps" {
+            $runDeps = $false;
+            getCliInputs $args
+            taskArgumentExecute `
+                $args[1] ${function:runTask} "Argument expected run <task_label>"
+        }
+        Default {
+            Write-Host "usage:"
+            Write-Host "    list                    : list the tasks.json labels defined"
+            Write-Host "    desc <task_label>       : describe the task <task_label>"
+            Write-Host "    desc <task_index>       : describe the task <task_index>"
+            Write-Host "    run <task_label>        : run the task <task_label>"
+            Write-Host "    run <task_index>        : run the task <task_index>"
+            Write-Host "    run-nodeps <task_label> : run the tasks without dependencies <task_label>"
+        }
     }
-    "desc" {
-        taskArgumentExecute `
-            $args[1] ${function:descTask} "Argument expected desc <task_label>"
+} catch {
+    Write-Host $_.Exception.Message -Foreground "Red"
+    Write-Host ""
+    $lines = $_.ScriptStackTrace.Split("`n")
+
+    foreach ($line in $lines) {
+        Write-Host "`t$line" -Foreground "DarkGray"
     }
-    "run" {
-        getCliInputs $args
-        taskArgumentExecute `
-            $args[1] ${function:runTask} "Argument expected run <task_label>"
-    }
-    "run-nodeps" {
-        $runDeps = $false;
-        getCliInputs $args
-        taskArgumentExecute `
-            $args[1] ${function:runTask} "Argument expected run <task_label>"
-    }
-    Default {
-        Write-Host "usage:"
-        Write-Host "    list                    : list the tasks.json labels defined"
-        Write-Host "    desc <task_label>       : describe the task <task_label>"
-        Write-Host "    desc <task_index>       : describe the task <task_index>"
-        Write-Host "    run <task_label>        : run the task <task_label>"
-        Write-Host "    run <task_index>        : run the task <task_index>"
-        Write-Host "    run-nodeps <task_label> : run the tasks without dependencies <task_label>"
-    }
+
+    Write-Host ""
+    exit 500
 }
