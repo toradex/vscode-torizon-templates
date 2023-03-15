@@ -137,7 +137,7 @@ function _resolvePlatformMetadata ([object] $targets, [string] $targetName) {
         if ($_package.name -eq $_packageName) {
             $_actualV = $_package.version
 
-            if ($_latestV -lt $_actualV) {
+            if (([int]$_latestV) -lt ([int]$_actualV)) {
                 $_latestV = $_actualV
                 $_hash = $_package.hashes.sha256
             }
