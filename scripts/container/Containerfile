@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/powershell:preview-debian-11
+
+
+COPY . /scripts
+WORKDIR /workspace
+
+ENTRYPOINT [ "pwsh", "-c" ]
+
+CMD [ "/scripts/tasks.ps1" ]

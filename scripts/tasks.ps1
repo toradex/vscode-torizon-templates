@@ -16,6 +16,28 @@
 )]
 param()
 
+$ErrorActionPreference = "Stop"
+
+function _usage ($_fdp = 1) {
+    Write-Host "usage:"
+    Write-Host "    list                    : list the tasks.json labels defined"
+    Write-Host "    desc <task_label>       : describe the task <task_label>"
+    Write-Host "    desc <task_index>       : describe the task <task_index>"
+    Write-Host "    run <task_label>        : run the task <task_label>"
+    Write-Host "    run <task_index>        : run the task <task_index>"
+    Write-Host "    run-nodeps <task_label> : run the tasks without dependencies <task_label>"
+
+    if ($_fdp -eq 0) {
+        Write-Host -ForegroundColor Yellow ""
+        Write-Host -ForegroundColor Yellow "⚠️ :: WARNING :: ⚠️"
+        Write-Host -ForegroundColor Yellow "This script depends on tasks.json and settings.json"
+        Write-Host -ForegroundColor Yellow "These files need to be in the same directory as this script."
+        Write-Host -ForegroundColor Yellow ""
+    }
+
+    exit 0
+}
+
 # settings
 $_overrideEnv = $true;
 $_debug = $false;
@@ -28,14 +50,18 @@ if ($env:TASKS_OVERRIDE_ENV -eq $false) {
     $_overrideEnv = $false;
 }
 
-$tasksFileContent = Get-Content $PSScriptRoot/tasks.json
-$settingsFileContent = Get-Content $PSScriptRoot/settings.json
-$json = $tasksFileContent | ConvertFrom-Json
-$settings = $settingsFileContent | ConvertFrom-Json
-$inputs = $json.inputs
-$inputValues = @{}
-$cliInputs = [System.Collections.ArrayList]@()
-$runDeps = $true;
+try {
+    $tasksFileContent = Get-Content $PSScriptRoot/tasks.json
+    $settingsFileContent = Get-Content $PSScriptRoot/settings.json
+    $json = $tasksFileContent | ConvertFrom-Json
+    $settings = $settingsFileContent | ConvertFrom-Json
+    $inputs = $json.inputs
+    $inputValues = @{}
+    $cliInputs = [System.Collections.ArrayList]@()
+    $runDeps = $true;
+} catch {
+    _usage 0
+}
 
 function settingsToGlobal () {
     foreach ($set in $settings | Get-Member -MemberType Properties) {
@@ -461,13 +487,7 @@ try {
                 $args[1] ${function:runTask} "Argument expected run <task_label>"
         }
         Default {
-            Write-Host "usage:"
-            Write-Host "    list                    : list the tasks.json labels defined"
-            Write-Host "    desc <task_label>       : describe the task <task_label>"
-            Write-Host "    desc <task_index>       : describe the task <task_index>"
-            Write-Host "    run <task_label>        : run the task <task_label>"
-            Write-Host "    run <task_index>        : run the task <task_index>"
-            Write-Host "    run-nodeps <task_label> : run the tasks without dependencies <task_label>"
+            _usage
         }
     }
 } catch {
