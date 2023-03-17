@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  ide:
+    build:
+      context: ../
+      dockerfile: container/Containerfile
+    image: torizonextras/ide
