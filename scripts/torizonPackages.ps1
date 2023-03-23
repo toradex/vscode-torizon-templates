@@ -22,7 +22,7 @@ if ($TORIZON_ARCH -eq "aarch64") {
     $TORIZON_ARCH = "arm64" 
 }
 
-if ($TORIZON_ARCH -eq "arm") { 
+if ($TORIZON_ARCH -eq "armv7l") { 
     $TORIZON_ARCH = "armhf" 
 }
 
