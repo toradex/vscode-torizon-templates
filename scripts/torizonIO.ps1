@@ -9,7 +9,7 @@ param()
 
 # TODO: we need to work with the offsets and limits
 
-$_VERSION = "0.0.7"
+$_VERSION = "0.1.0"
 
 $ErrorActionPreference = "Stop"
 
@@ -195,7 +195,7 @@ function update-fleet-latest ([string] $targetName, [string] $fleetName) {
         -Fleets @($_fleetId)
 
     $Result = 
-        Submit-TorizonPlatformAPIUpdate `
+        Submit-TorizonPlatformAPIUpdates `
             -UpdateRequest $_updateRequest
 
     return $Result
