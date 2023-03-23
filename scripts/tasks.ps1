@@ -393,6 +393,9 @@ function runTask () {
 
             # we need to change dir if we are setting cwd
             if ($null -ne $taskCwd) {
+                # store the current location
+                $_cwd = Get-Location
+
                 # we use invoke-expression because this way it expand the
                 # variables automatically
                 Invoke-Expression "Set-Location $taskCwd"
@@ -415,6 +418,12 @@ function runTask () {
             # TODO: be explicit about bash as default on documentation
             Invoke-Expression "bash -c `"$_cmd`""
             $exitCode = $LASTEXITCODE
+
+            # go back to the origin location
+            if ($null -ne $taskCwd) {
+                # restore the current location
+                Set-Location $_cwd
+            }
 
             # abort we had a error
             if ($exitCode -ne 0) {
