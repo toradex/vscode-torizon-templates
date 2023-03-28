@@ -18,6 +18,12 @@ param()
 
 $ErrorActionPreference = "Stop"
 
+if ($Env:GITLAB_CI -eq $true) {
+    Write-Host "ℹ️ :: GITLAB_CI :: ℹ️"
+    # for gitlab-ci we need to set the docker host
+    $Env:DOCKER_HOST = "tcp://docker:2375"
+}
+
 function _usage ($_fdp = 1) {
     Write-Host "usage:"
     Write-Host "    list                    : list the tasks.json labels defined"
