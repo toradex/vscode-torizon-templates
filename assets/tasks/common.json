@@ -61,7 +61,8 @@
                 "focus": true,
                 "panel": "shared",
                 "showReuseMessage": true,
-                "clear": false
+                "clear": false,
+                "group": "create-prod-image"
             },
             "args": [
                 "✅ Successfully Finished"
@@ -86,7 +87,8 @@
                 "focus": true,
                 "panel": "shared",
                 "showReuseMessage": true,
-                "clear": false
+                "clear": false,
+                "group": "create-prod-image"
             },
             "options": {
                 "env": {
