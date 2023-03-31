@@ -118,7 +118,7 @@
         },
         {
             "label": "build-container-image-sdk-arm64",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
                 "docker",
@@ -141,7 +141,7 @@
         },
         {
             "label": "build-debug-arm64",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
                 "docker",
@@ -236,7 +236,7 @@
         },
         {
             "label": "build-container-image-sdk-arm",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
                 "docker",
@@ -259,7 +259,7 @@
         },
         {
             "label": "build-debug-arm",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
                 "docker",
@@ -354,7 +354,7 @@
         },
         {
             "label": "build-container-image-sdk-x86",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
                 "docker",
@@ -377,7 +377,7 @@
         },
         {
             "label": "build-debug-x86",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
                 "docker",
@@ -472,7 +472,7 @@
         },
         {
             "label": "build-container-image-sdk-riscv64",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
                 "docker",
@@ -495,7 +495,7 @@
         },
         {
             "label": "build-debug-riscv64",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
                 "docker",

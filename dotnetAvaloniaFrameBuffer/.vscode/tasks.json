@@ -52,7 +52,7 @@
         {
             "label": "build-release-arm",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -77,7 +77,7 @@
         },
         {
             "label": "push-release-arm",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -359,7 +359,7 @@
         {
             "label": "build-release-arm64",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -384,7 +384,7 @@
         },
         {
             "label": "push-release-arm64",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -538,7 +538,7 @@
         {
             "label": "build-release-amd64",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -563,7 +563,7 @@
         },
         {
             "label": "push-release-amd64",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
