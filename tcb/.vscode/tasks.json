@@ -452,7 +452,7 @@
             ]
         },
         {
-            "label": "github-actions-settings",
+            "label": "fill-pipeline-settings",
             "detail": "",
             "command": "echo",
             "type": "shell",
@@ -476,7 +476,16 @@
             },
             "args": [
                 "-e",
-                "\"✅ github-actions-settings done\n packageName: $TCB_PACKAGE\n ostreBranch: $TCB_OSTREE\n fleetName: $TCB_FLEET\n \""
+                "\"✅ fill-pipeline-settings done\n packageName: $TCB_PACKAGE\n ostreBranch: $TCB_OSTREE\n fleetName: $TCB_FLEET\n \"",
+                "&&",
+                "echo",
+                "-e",
+                "\"✅ github-actions-settings done\n",
+                "\n",
+                "'⚠️ ENV VARIABLES NEED TO BE SET IN CI/CD PLATFORM'\n",
+                "\tPLATFORM_CLIENT_ID\n",
+                "\tPLATFORM_CLIENT_SECRET\n",
+                "\tPLATFORM_CREDENTIALS\n\""
             ],
             "problemMatcher": [
                 "$tsc"
