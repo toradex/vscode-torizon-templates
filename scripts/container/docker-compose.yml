@@ -3,5 +3,11 @@ services:
   ide:
     build:
       context: ../
-      dockerfile: container/Containerfile
+      dockerfile: container/Containerfile.ide
     image: torizonextras/ide
+
+  pwsh-gitlab:
+    build:
+      context: ../
+      dockerfile: container/Containerfile.gitlab
+    image: torizonextras/pwsh-gitlab
