@@ -18,6 +18,11 @@ param()
 
 $env:DOCKER_HOST = ""
 
+if ($Env:GITLAB_CI -eq $true) {
+    Write-Host "ℹ️ :: GITLAB_CI :: ℹ️"
+    $Env:DOCKER_HOST = "tcp://docker:2375"
+}
+
 # tested on Ubuntu 22.04
 $_packages = Get-Content .conf/deps.json | ConvertFrom-Json
 
