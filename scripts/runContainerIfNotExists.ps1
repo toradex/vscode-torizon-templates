@@ -18,6 +18,11 @@ param()
 
 $env:DOCKER_HOST = ""
 
+if ($Env:GITLAB_CI -eq $true) {
+    Write-Host "ℹ️ :: GITLAB_CI :: ℹ️"
+    $Env:DOCKER_HOST = "tcp://docker:2375"
+}
+
 $_containerRuntime = $args[0]
 $_runArguments = $args[1].Trim("'").Trim('"');
 $_containerName = $args[2]

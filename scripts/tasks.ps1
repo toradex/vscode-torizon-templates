@@ -17,6 +17,10 @@
 param()
 
 $ErrorActionPreference = "Stop"
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSUseDeclaredVarsMoreThanAssignments', "Internal PS variable"
+)]
+$PSNativeCommandUseErrorActionPreference = $true
 
 function _usage ($_fdp = 1) {
     Write-Host "usage:"
@@ -41,6 +45,14 @@ function _usage ($_fdp = 1) {
 # settings
 $_overrideEnv = $true;
 $_debug = $false;
+$_gitlab_ci = $false
+
+if ($Env:GITLAB_CI -eq $true) {
+    Write-Host "ℹ️ :: GITLAB_CI :: ℹ️"
+    # for gitlab-ci we need to set the docker host
+    $Env:DOCKER_HOST = "tcp://docker:2375"
+    $_gitlab_ci = $true
+}
 
 if ($env:TASKS_DEBUG -eq $true) {
     $_debug = $true;
@@ -366,6 +378,16 @@ function _parseEnvs () {
     return $_env
 }
 
+function _replaceDockerHost () {
+    $value = $args[0]
+
+    if ($value -match "DOCKER_HOST=") {
+        $value = $value.Replace("DOCKER_HOST=", "DOCKER_HOST=tcp://docker:2375")
+    }
+
+    return $value
+}
+
 function runTask () {
     for ($i = 0; $i -le $json.tasks.length; $i++) {
         if ($json.tasks[$i].label -eq $args[0]) {
@@ -380,6 +402,11 @@ function runTask () {
             $taskDepends = $task.dependsOn
             $taskEnv = $task.options.env
             $taskCwd = $task.options.cwd
+
+            # is gitlab ci
+            if ($_gitlab_ci -eq $true) {
+                $taskCmd = _replaceDockerHost($taskCmd)
+            }
 
             # inject env
             if ($null -ne $taskEnv) {
