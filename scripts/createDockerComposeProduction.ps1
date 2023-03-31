@@ -16,7 +16,18 @@
 )]
 param()
 
+$ErrorActionPreference = "Stop"
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSUseDeclaredVarsMoreThanAssignments', "Internal PS variable"
+)]
+$PSNativeCommandUseErrorActionPreference = $true
+
 $env:DOCKER_HOST = ""
+
+if ($Env:GITLAB_CI -eq $true) {
+    Write-Host "ℹ️ :: GITLAB_CI :: ℹ️"
+    $Env:DOCKER_HOST = "tcp://docker:2375"
+}
 
 # args are needed
 $compoFilePath  = $args[0]

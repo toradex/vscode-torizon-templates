@@ -151,6 +151,11 @@ if (-not (Test-Path "$location/.github")) {
     Copy-Item "$templateFolder/../assets/github/workflows" "$location/.github" -Recurse
 }
 
+# copy the .gitlab ci if not exits
+if (-not (Test-Path "$location/.gitlab-ci.yml")) {
+    Copy-Item "$templateFolder/../assets/gitlab/.gitlab-ci.yml" "$location/.gitlab-ci.yml"
+}
+
 # create a dot file to store the template that was used
 Write-Output "$template" | Out-File -FilePath "$location/.conf/.template"
 Write-Output "$containerName" | Out-File -FilePath "$location/.conf/.container"
