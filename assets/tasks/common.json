@@ -132,7 +132,7 @@
             ]
         },
         {
-            "label": "github-actions-settings",
+            "label": "fill-pipeline-settings",
             "detail": "",
             "command": "echo",
             "type": "shell",
@@ -145,11 +145,27 @@
                     "TCB_CLIENTID": "${command:tcb.clientId}",
                     "TCB_CLIENTSECRET": "${command:tcb.clientSecret}",
                     "TCB_PACKAGE": "__change__",
-                    "TCB_FLEET": "${command:tcb.fleetName}"
+                    "TCB_FLEET": "${command:tcb.fleetName}",
+                    "TORIZON_ARCH": "${command:torizon_arch}"
                 }
             },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
             "args": [
-                "✅ github-actions-settings done"
+                "-e",
+                "\"✅ github-actions-settings done\n",
+                "\n",
+                "'⚠️ ENV VARIABLES NEED TO BE SET IN CI/CD PLATFORM'\n",
+                "\tDOCKER_PSSWD\n",
+                "\tPLATFORM_CLIENT_ID\n",
+                "\tPLATFORM_CLIENT_SECRET\n",
+                "\tPLATFORM_CREDENTIALS\n\""
             ],
             "problemMatcher": [
                 "$tsc"
@@ -227,7 +243,7 @@
         },
         {
             "label": "docker-login",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -639,7 +655,7 @@
         {
             "label": "build-container-torizon-debug-arm64",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -674,7 +690,7 @@
         {
             "label": "build-container-torizon-debug-arm",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -709,7 +725,7 @@
         {
             "label": "build-container-torizon-debug-amd64",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -744,7 +760,7 @@
         {
             "label": "build-container-torizon-debug-x86",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -779,7 +795,7 @@
         {
             "label": "build-container-torizon-debug-riscv64",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -814,7 +830,7 @@
         {
             "label": "push-container-torizon-debug-arm",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -838,7 +854,7 @@
         {
             "label": "push-container-torizon-debug-arm64",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -862,7 +878,7 @@
         {
             "label": "push-container-torizon-debug-amd64",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -886,7 +902,7 @@
         {
             "label": "push-container-torizon-debug-x86",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
@@ -910,7 +926,7 @@
         {
             "label": "push-container-torizon-debug-riscv64",
             "detail": "hide",
-            "command": "DOCKER_HOST=\"\"",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
