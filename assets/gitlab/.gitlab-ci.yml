@@ -78,6 +78,7 @@ push-package-to-platform:
     echo $PLATFORM_CREDENTIALS | base64 -d > credentials.zip
     echo '
 
+      ./.vscode/tasks.ps1 run run-torizon-binfmt
       ./.vscode/tasks.ps1 run tcb-platform-publish
 
     ' | gitlabWrapper.ps1
