@@ -1,6 +1,5 @@
 FROM mcr.microsoft.com/powershell:preview-debian-11
 
-
 COPY . /scripts
 WORKDIR /workspace
 
