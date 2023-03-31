@@ -1,0 +1,83 @@
+image: docker:latest
+
+services:
+    - docker:dind
+
+variables:
+  # This should be set by docker image already, just to be sure...
+  DOCKER_HOST: tcp://docker:2375
+  # Use overlayfs driver for better performance
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
+  DOCKER_BUILDKIT: 1
+
+stages:
+  - build
+  - platform
+
+tcb-build:
+  needs:
+    - initial-setup
+  stage: build
+  image:
+    name: torizonextras/pwsh-gitlab:latest
+
+  variables:
+    TASKS_ITERATIVE: "False"
+    TASKS_OVERRIDE_ENV: "False"
+
+  script: |
+    echo '
+
+      ./.vscode/tasks.ps1 run tcb-setup
+      ./.vscode/tasks.ps1 run tcb-build
+
+    ' | gitlabWrapper.ps1
+
+  cache:
+    policy: pull-push
+    untracked: true
+    when: on_success
+
+push-package-to-platform:
+  needs:
+    - tcb-build
+  stage: platform
+  image:
+    name: torizonextras/pwsh-gitlab:latest
+
+  variables:
+    TASKS_ITERATIVE: "False"
+    TASKS_OVERRIDE_ENV: "False"
+
+  script: |
+    echo $PLATFORM_CREDENTIALS | base64 -d > credentials.zip
+    echo '
+
+      ./.vscode/tasks.ps1 run tcb-setup
+      ./.vscode/tasks.ps1 run tcb-platform-push-ostree
+
+    ' | gitlabWrapper.ps1
+
+# trigger a deployment to the fleet only when pushing to main branch
+update-fleet:
+  needs:
+    - tcb-build
+    - push-package-to-platform
+  stage: platform
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  image:
+    name: torizonextras/pwsh-gitlab:latest
+
+  variables:
+    TASKS_ITERATIVE: "False"
+    TASKS_OVERRIDE_ENV: "False"
+
+  script: |
+    echo $PLATFORM_CREDENTIALS | base64 -d > credentials.zip
+    echo '
+
+      ./.vscode/tasks.ps1 run platform-update-fleet
+
+    ' | gitlabWrapper.ps1
