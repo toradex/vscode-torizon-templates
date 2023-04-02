@@ -16,15 +16,12 @@ stages:
   - platform
 
 tcb-build:
-  needs:
-    - initial-setup
   stage: build
   image:
     name: torizonextras/pwsh-gitlab:latest
 
   variables:
     TASKS_ITERATIVE: "False"
-    TASKS_OVERRIDE_ENV: "False"
 
   script: |
     echo '
@@ -48,7 +45,6 @@ push-package-to-platform:
 
   variables:
     TASKS_ITERATIVE: "False"
-    TASKS_OVERRIDE_ENV: "False"
 
   script: |
     echo $PLATFORM_CREDENTIALS | base64 -d > credentials.zip
