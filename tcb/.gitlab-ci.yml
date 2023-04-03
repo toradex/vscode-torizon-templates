@@ -32,12 +32,15 @@ tcb-build:
     ' | gitlabWrapper.ps1
 
   cache:
-    policy: pull-push
+    key: tcb-build
+    policy: push
     untracked: true
     when: on_success
 
 push-package-to-platform:
   needs:
+    - tcb-build
+  dependencies:
     - tcb-build
   stage: platform
   image:
@@ -54,6 +57,11 @@ push-package-to-platform:
       ./.vscode/tasks.ps1 run tcb-platform-push-ostree
 
     ' | gitlabWrapper.ps1
+
+  cache:
+    key: tcb-build
+    untracked: true
+    policy: pull
 
 # trigger a deployment to the fleet only when pushing to main branch
 update-fleet:
