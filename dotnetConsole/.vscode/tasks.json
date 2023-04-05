@@ -84,7 +84,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
-                "linux-arm"
+                "linux-arm",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -102,7 +103,8 @@
                 "publish",
                 "${workspaceFolder}/__change__.csproj",
                 "-r",
-                "linux-arm"
+                "linux-arm",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -205,7 +207,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
-                "linux-x64"
+                "linux-x64",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -223,7 +226,8 @@
                 "publish",
                 "${workspaceFolder}/__change__.csproj",
                 "-r",
-                "linux-x64"
+                "linux-x64",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -326,7 +330,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
-                "linux-arm64"
+                "linux-arm64",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -344,7 +349,8 @@
                 "publish",
                 "${workspaceFolder}/__change__.csproj",
                 "-r",
-                "linux-arm64"
+                "linux-arm64",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",

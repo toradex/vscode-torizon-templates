@@ -29,8 +29,8 @@ WORKDIR /build/__change__.Skia.Gtk
 # build
 RUN dotnet restore && \
 	dotnet build && \
-	dotnet build -r linux-${IMAGE_ARCH} && \
-	dotnet publish -r linux-${IMAGE_ARCH}
+	dotnet build -r linux-${IMAGE_ARCH} --no-self-contained && \
+	dotnet publish -r linux-${IMAGE_ARCH} --no-self-contained
 # BUILD ------------------------------------------------------------------------
 
 
