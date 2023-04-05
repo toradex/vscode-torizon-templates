@@ -46,7 +46,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
-                "linux-arm"
+                "linux-arm",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -66,7 +67,8 @@
                 "Debug",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
                 "-r",
-                "linux-arm"
+                "linux-arm",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -126,7 +128,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
-                "linux-arm64"
+                "linux-arm64",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -146,7 +149,8 @@
                 "Debug",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
                 "-r",
-                "linux-arm64"
+                "linux-arm64",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -206,7 +210,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
-                "linux-x64"
+                "linux-x64",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -226,7 +231,8 @@
                 "Debug",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
                 "-r",
-                "linux-x64"
+                "linux-x64",
+                "--no-self-contained"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
