@@ -66,6 +66,8 @@
                 "-c",
                 "Debug",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
                 "-r",
                 "linux-arm",
                 "--no-self-contained"
@@ -148,6 +150,8 @@
                 "-c",
                 "Debug",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
                 "-r",
                 "linux-arm64",
                 "--no-self-contained"
@@ -230,6 +234,8 @@
                 "-c",
                 "Debug",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
                 "-r",
                 "linux-x64",
                 "--no-self-contained"
