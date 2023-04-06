@@ -78,6 +78,8 @@
             "args": [
                 "publish",
                 "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
                 "-r",
                 "linux-arm",
                 "--no-self-contained"
@@ -207,6 +209,8 @@
             "args": [
                 "publish",
                 "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
                 "-r",
                 "linux-arm64",
                 "--no-self-contained"
@@ -336,6 +340,8 @@
             "args": [
                 "publish",
                 "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
                 "-r",
                 "linux-x64",
                 "--no-self-contained"
