@@ -8,7 +8,7 @@
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build-torizon-local",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net5.0/__change__.Skia.Linux.FrameBuffer.dll",
             "args": [],

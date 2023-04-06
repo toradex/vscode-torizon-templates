@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-skia-gtk",
+            "label": "build-torizon-local",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -18,7 +18,7 @@
             }
         },
         {
-            "label": "publish-skia-gtk",
+            "label": "publish-torizon-local",
             "command": "dotnet",
             "type": "process",
             "args": [

@@ -8,7 +8,7 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build-torizon-local",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/bin/Debug/net6.0/__change__.dll",
             "args": [],
