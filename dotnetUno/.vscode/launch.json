@@ -11,7 +11,7 @@
       "name": "Skia.GTK openGL",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build-skia-gtk",
+      "preLaunchTask": "build-torizon-local",
       // If you have changed target frameworks, make sure to update the program path.
       "program": "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/__change__.Skia.Gtk.dll",
       "args": [],
@@ -33,7 +33,7 @@
       "name": "Skia.GTK noGL",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build-skia-gtk",
+      "preLaunchTask": "build-torizon-local",
       // If you have changed target frameworks, make sure to update the program path.
       "program": "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/__change__.Skia.Gtk.dll",
       "args": [],
