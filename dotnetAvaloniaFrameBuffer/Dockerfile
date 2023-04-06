@@ -28,9 +28,7 @@ WORKDIR /build
 
 # build
 RUN dotnet restore && \
-	dotnet build && \
-	dotnet build -r linux-${IMAGE_ARCH} --no-self-contained && \
-	dotnet publish -r linux-${IMAGE_ARCH} --no-self-contained
+dotnet publish -c Release -r linux-\$\{IMAGE_ARCH\} --no-self-contained
 # BUILD ------------------------------------------------------------------------
 
 
