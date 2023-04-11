@@ -109,7 +109,7 @@
         },
         {
             "label": "set-platform-fleet-name",
-            "detail": "",
+            "detail": "hide",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -243,6 +243,7 @@
         },
         {
             "label": "docker-login",
+            "detail": "hide",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -361,6 +362,7 @@
         },
         {
             "label": "apply-torizon-packages",
+            "detail": "hide",
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -383,6 +385,7 @@
         },
         {
             "label": "copy-docker-compose",
+            "detail": "hide",
             "command": "sshpass",
             "type": "process",
             "args": [
