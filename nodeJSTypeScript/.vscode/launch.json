@@ -10,7 +10,7 @@
             "outFiles": ["${workspaceFolder}/lib/**/*.js"]
         },
         {
-            "name": "Torizon x86",
+            "name": "Torizon AMD64",
             "type": "node",
             "request": "attach",
             "port": "${config:torizon_debug_port}",

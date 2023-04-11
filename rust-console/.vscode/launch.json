@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch x86",
+            "name": "Launch AMD64",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/target/debug/main",
@@ -25,7 +25,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build-debug-x86"
+            "preLaunchTask": "build-debug-amd64"
         },
         {
             "name": "Torizon ARMv7",

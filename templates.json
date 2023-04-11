@@ -14,7 +14,7 @@
                     ".NET Core Launch (console)", 
                     ".NET Core Attach", 
                     ".NET Attach Torizon arm64",
-                    "Torizon x86",
+                    "Torizon AMD64",
                     "Torizon ARMv7",
                     "Torizon ARMv8"
                 ],
@@ -37,7 +37,7 @@
                 "debuggers": [
                     ".NET Core Launch (web)", 
                     ".NET Core Attach", 
-                    "Torizon x86",
+                    "Torizon AMD64",
                     "Torizon ARMv7",
                     "Torizon ARMv8"
                 ],
@@ -80,7 +80,7 @@
                 "debuggers": [
                     "Skia.GTK openGL", 
                     "Skia.GTK noGL", 
-                    "Torizon x86", 
+                    "Torizon AMD64", 
                     "Torizon ARMv7", 
                     "Torizon ARMv8"
                 ],
@@ -145,9 +145,9 @@
             "support": "Toradex",
             "tests" : {
                 "debuggers": [
-                    "Launch x86", 
+                    "Launch AMD64", 
                     "Torizon riscv64", 
-                    "Torizon x86", 
+                    "Torizon AMD64", 
                     "Torizon ARMv7", 
                     "Torizon ARMv8"
                 ],
@@ -170,8 +170,8 @@
             "support": "Toradex",
             "tests": {
                 "debuggers": [
-                    "Local x86", 
-                    "Torizon x86", 
+                    "Local AMD64", 
+                    "Torizon AMD64", 
                     "Torizon ARMv7", 
                     "Torizon ARMv8"
                 ],
