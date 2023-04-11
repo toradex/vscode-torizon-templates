@@ -50,27 +50,6 @@
             }
         },
         {
-            "label": "build-torizon-arm",
-            "detail": "hide",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary",
-                "-r",
-                "linux-arm",
-                "--no-self-contained"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "publish-torizon-arm",
             "detail": "hide",
             "command": "dotnet",
@@ -114,7 +93,6 @@
                 "validate-arch-arm",
                 "apply-torizon-packages",
                 "pre-cleanup",
-                "build-torizon-arm",
                 "publish-torizon-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
@@ -181,27 +159,6 @@
             }
         },
         {
-            "label": "build-torizon-arm64",
-            "detail": "hide",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary",
-                "-r",
-                "linux-arm64",
-                "--no-self-contained"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "publish-torizon-arm64",
             "detail": "hide",
             "command": "dotnet",
@@ -246,7 +203,6 @@
                 "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
-                "build-torizon-arm64",
                 "publish-torizon-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
@@ -312,27 +268,6 @@
             }
         },
         {
-            "label": "build-torizon-x86",
-            "detail": "hide",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary",
-                "-r",
-                "linux-x64",
-                "--no-self-contained"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "publish-torizon-amd64",
             "detail": "hide",
             "command": "dotnet",
@@ -377,7 +312,6 @@
                 "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup-amd64",
-                "build-torizon-x86",
                 "publish-torizon-amd64",
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
