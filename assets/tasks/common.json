@@ -1215,8 +1215,8 @@
         },
         {
             "label": "push-release-arm",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "${input:dockerLogin}",
@@ -1224,6 +1224,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "push",
                 "__container__"
@@ -1241,8 +1242,8 @@
         },
         {
             "label": "push-release-arm64",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "${input:dockerLogin}",
@@ -1267,8 +1268,8 @@
         },
         {
             "label": "push-release-amd64",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "${input:dockerLogin}",
@@ -1276,6 +1277,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "push",
                 "__container__"
@@ -1294,8 +1296,8 @@
         {
             "label": "build-release-arm",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "${input:dockerLogin}",
@@ -1303,6 +1305,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "build",
                 "--build-arg",
@@ -1319,8 +1322,8 @@
         {
             "label": "build-release-arm64",
             "detail": "hide",
-            "command": "docker",
-            "type": "process",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "${input:dockerLogin}",
@@ -1328,6 +1331,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "build",
                 "--build-arg",
@@ -1344,7 +1348,7 @@
         {
             "label": "build-release-amd64",
             "detail": "hide",
-            "command": "docker",
+            "command": "DOCKER_HOST=",
             "type": "process",
             "options": {
                 "env": {
@@ -1353,6 +1357,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "build",
                 "--build-arg",
