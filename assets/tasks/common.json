@@ -1257,6 +1257,7 @@
                 }
             },
             "args": [
+                "docker",
                 "compose",
                 "push",
                 "__container__"
