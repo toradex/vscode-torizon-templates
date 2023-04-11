@@ -252,6 +252,12 @@
                     "DOCKER_PSSWD": "${input:dockerPsswd}"
                 }
             },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             "args": [
                 "docker",
                 "login",
