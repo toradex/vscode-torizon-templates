@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-makedir-x86-local",
+            "label": "build-makedir-amd64-local",
             "command": "make",
             "type": "shell",
             "args": [
@@ -18,7 +18,7 @@
             }
         },
         {
-            "label": "build-makedir-x86",
+            "label": "build-makedir-amd64",
             "command": "make",
             "type": "shell",
             "args": [
@@ -82,7 +82,7 @@
             }
         },
         {
-            "label": "build-debug-x86-local",
+            "label": "build-debug-amd64-local",
             "command": "make",
             "type": "shell",
             "args": [
@@ -98,7 +98,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-makedir-x86-local"
+                "build-makedir-amd64-local"
             ]
         },
         {
@@ -353,7 +353,7 @@
             }
         },
         {
-            "label": "build-container-image-sdk-x86",
+            "label": "build-container-image-sdk-amd64",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -376,7 +376,7 @@
             }
         },
         {
-            "label": "build-debug-x86",
+            "label": "build-debug-amd64",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -401,11 +401,11 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-container-image-sdk-x86"
+                "build-container-image-sdk-amd64"
             ]
         },
         {
-            "label": "run-container-torizon-debug-x86",
+            "label": "run-container-torizon-debug-amd64",
             "detail": "hide",
             "command": "sshpass",
             "type": "process",
@@ -431,7 +431,7 @@
             }
         },
         {
-            "label": "deploy-torizon-x86",
+            "label": "deploy-torizon-amd64",
             "detail": "hide",
             "command": "scp",
             "type": "process",
@@ -450,16 +450,16 @@
             ],
             "dependsOn": [
                 "validate-settings",
-                "validate-arch-x86",
+                "validate-arch-amd64",
                 "apply-torizon-packages",
                 "copy-docker-compose",
-                "pre-cleanup-x86",
-                "build-makedir-x86",
-                "build-debug-x86",
-                "build-container-torizon-debug-x86",
-                "push-container-torizon-debug-x86",
-                "pull-container-torizon-debug-x86",
-                "run-container-torizon-debug-x86",
+                "pre-cleanup-amd64",
+                "build-makedir-amd64",
+                "build-debug-amd64",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64",
                 "wait-a-bit",
                 "pos-cleanup"
             ],
