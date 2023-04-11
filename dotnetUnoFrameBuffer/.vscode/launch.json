@@ -23,7 +23,7 @@
             "request": "attach"
         },
         {
-            "name": "Torizon x86",
+            "name": "Torizon AMD64",
             "type": "coreclr",
             "request": "launch",
             "program": "~/app/__change__.Skia.Linux.FrameBuffer",
@@ -52,8 +52,8 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "deploy-torizon-x86",
-            "postDebugTask": "stop-torizon-x86"
+            "preLaunchTask": "deploy-torizon-amd64",
+            "postDebugTask": "stop-torizon-amd64"
         },
         {
             "name": "Torizon ARMv7",
