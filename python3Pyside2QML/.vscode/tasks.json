@@ -2,59 +2,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-release-arm",
-            "detail": "hide",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${command:docker_login}",
-                    "TAG": "arm"
-                }
-            },
-            "args": [
-                "compose",
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm",
-                "__container__"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "push-release-arm",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${command:docker_login}",
-                    "TAG": "arm"
-                }
-            },
-            "args": [
-                "docker",
-                "docker",
-                "compose",
-                "push",
-                "__container__"
-            ],
-            "dependsOn": [
-                "docker-login",
-                "build-release-arm"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "deploy-torizon-arm",
             "detail": "hide",
             "command": "scp",
@@ -204,59 +151,6 @@
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
                 "screen -d -m /usr/bin/python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port} --wait-for-client ${config:torizon_app_root}/app/main.py",
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-release-arm64",
-            "detail": "hide",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${command:docker_login}",
-                    "TAG": "arm64"
-                }
-            },
-            "args": [
-                "docker",
-                "compose",
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm64",
-                "__container__"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "push-release-arm64",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${command:docker_login}",
-                    "TAG": "arm64"
-                }
-            },
-            "args": [
-                "docker",
-                "compose",
-                "push",
-                "__container__"
-            ],
-            "dependsOn": [
-                "docker-login",
-                "build-release-arm64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",

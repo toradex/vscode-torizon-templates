@@ -80,59 +80,6 @@
             }
         },
         {
-            "label": "build-release-arm",
-            "detail": "hide",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${input:dockerLogin}",
-                    "TAG": "arm"
-                }
-            },
-            "args": [
-                "docker",
-                "compose",
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm",
-                "__container__"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "push-release-arm",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${input:dockerLogin}",
-                    "TAG": "arm"
-                }
-            },
-            "args": [
-                "docker",
-                "compose",
-                "push",
-                "__container__"
-            ],
-            "dependsOn": [
-                "docker-login",
-                "build-release-arm"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "build-torizon-arm",
             "detail": "hide",
             "command": "msbuild",
@@ -225,58 +172,6 @@
             }
         },
         {
-            "label": "build-release-arm64",
-            "detail": "hide",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${input:dockerLogin}",
-                    "TAG": "arm64"
-                }
-            },
-            "args": [
-                "docker",
-                "compose",
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=arm64",
-                "__container__"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "push-release-arm64",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${input:dockerLogin}",
-                    "TAG": "arm64"
-                }
-            },
-            "args": [
-                "docker",
-                "push",
-                "__container__"
-            ],
-            "dependsOn": [
-                "docker-login",
-                "build-release-arm64"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "run-mono-debug-server-amd64",
             "detail": "hide",
             "command": "ssh",
@@ -308,59 +203,6 @@
                 "pos-cleanup",
                 "deploy-application",
                 "deploy-assets"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-release-amd64",
-            "detail": "hide",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${input:dockerLogin}",
-                    "TAG": "amd64"
-                }
-            },
-            "args": [
-                "docker",
-                "compose",
-                "build",
-                "--build-arg",
-                "IMAGE_ARCH=amd64",
-                "__container__"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "push-release-amd64",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "DOCKER_LOGIN": "${input:dockerLogin}",
-                    "TAG": "amd64"
-                }
-            },
-            "args": [
-                "docker",
-                "compose",
-                "push",
-                "__container__"
-            ],
-            "dependsOn": [
-                "docker-login",
-                "build-release-amd64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
