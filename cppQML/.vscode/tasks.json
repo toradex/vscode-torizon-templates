@@ -19,7 +19,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-x86-local"
+                "build-debug-amd64-local"
             ]
         },
         {
@@ -49,7 +49,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-x86-local"
+                "build-debug-amd64-local"
             ]
         },
         {
@@ -182,7 +182,7 @@
             }
         },
         {
-            "label": "Start GDB Server Remote x86",
+            "label": "Start GDB Server Remote AMD64",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -199,9 +199,9 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "update-qt-ini-x86",
+                "update-qt-ini-amd64",
                 "kill-redirect-qml-debugger",
-                "deploy-torizon-x86",
+                "deploy-torizon-amd64",
                 "redirect-qml-debugger"
             ],
             "problemMatcher": "$msCompile",
@@ -247,7 +247,7 @@
             }
         },
         {
-            "label": "copy-assets-x86-local",
+            "label": "copy-assets-amd64-local",
             "detail": "hide",
             "command": "cp",
             "type": "shell",
@@ -265,7 +265,7 @@
             }
         },
         {
-            "label": "copy-assets-x86",
+            "label": "copy-assets-amd64",
             "detail": "hide",
             "command": "cp",
             "type": "shell",
@@ -283,7 +283,7 @@
             }
         },
         {
-            "label": "run-qmake-debug-x86-local",
+            "label": "run-qmake-debug-amd64-local",
             "command": "qmake6",
             "type": "shell",
             "args": [
@@ -301,7 +301,7 @@
             }
         },
         {
-            "label": "build-debug-x86-local",
+            "label": "build-debug-amd64-local",
             "command": "make",
             "type": "shell",
             "options": {
@@ -318,12 +318,12 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "run-qmake-debug-x86-local",
-                "copy-assets-x86-local"
+                "run-qmake-debug-amd64-local",
+                "copy-assets-amd64-local"
             ]
         },
         {
-            "label": "clean-x86-local",
+            "label": "clean-amd64-local",
             "command": "make",
             "type": "shell",
             "options": {
@@ -639,7 +639,7 @@
             }
         },
         {
-            "label": "run-qmake-debug-x86",
+            "label": "run-qmake-debug-amd64",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -649,7 +649,7 @@
                 "-it",
                 "-v",
                 "${workspaceFolder}:/app",
-                "cross-toolchain-x86-__container__",
+                "cross-toolchain-amd64-__container__",
                 "bash",
                 "-c",
                 "\"qmake6 -o amd64/Makefile CONFIG+=debug CONFIG+=qml_debug\""
@@ -663,11 +663,11 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-container-image-sdk-x86"
+                "build-container-image-sdk-amd64"
             ]
         },
         {
-            "label": "build-container-image-sdk-x86",
+            "label": "build-container-image-sdk-amd64",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -677,7 +677,7 @@
                 "${workspaceFolder}/Dockerfile.sdk",
                 "${workspaceFolder}",
                 "-t",
-                "cross-toolchain-x86-__container__",
+                "cross-toolchain-amd64-__container__",
                 "--build-arg",
                 "IMAGE_ARCH=amd64"
             ],
@@ -690,7 +690,7 @@
             }
         },
         {
-            "label": "build-debug-x86",
+            "label": "build-debug-amd64",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -700,7 +700,7 @@
                 "-it",
                 "-v",
                 "${workspaceFolder}:/app",
-                "cross-toolchain-x86-__container__",
+                "cross-toolchain-amd64-__container__",
                 "bash",
                 "-c",
                 "\"cd amd64 && make -j12\""
@@ -714,13 +714,13 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "run-qmake-debug-x86",
-                "copy-assets-x86"
+                "run-qmake-debug-amd64",
+                "copy-assets-amd64"
                 
             ]
         },
         {
-            "label": "clean-x86",
+            "label": "clean-amd64",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -730,7 +730,7 @@
                 "-it",
                 "-v",
                 "${workspaceFolder}:/app",
-                "cross-toolchain-x86-__change__",
+                "cross-toolchain-amd64-__change__",
                 "bash",
                 "-c",
                 "\"cd amd64 && make clean\""
@@ -744,11 +744,11 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-container-image-sdk-x86"
+                "build-container-image-sdk-amd64"
             ]
         },
         {
-            "label": "deploy-torizon-x86",
+            "label": "deploy-torizon-amd64",
             "detail": "hide",
             "command": "scp",
             "type": "process",
@@ -767,16 +767,15 @@
             ],
             "dependsOn": [
                 "validate-settings",
-                "validate-arch-x86",
+                "validate-arch-amd64",
                 "apply-torizon-packages",
                 "copy-docker-compose",
-                "pre-cleanup-x86",
-                "build-makedir",
-                "build-debug-x86",
-                "build-container-torizon-debug-x86",
-                "push-container-torizon-debug-x86",
-                "pull-container-torizon-debug-x86",
-                "run-container-torizon-debug-x86",
+                "pre-cleanup-amd64",
+                "build-debug-amd64",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64",
                 "wait-a-bit",
                 "pos-cleanup"
             ],
@@ -830,7 +829,7 @@
             }
         },
         {
-            "label": "update-qt-ini-x86",
+            "label": "update-qt-ini-amd64",
             "detail": "hide",
             "command": "pwsh",
             "type": "process",

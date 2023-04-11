@@ -373,7 +373,7 @@
             ],
             "dependsOn": [
                 "validate-settings",
-                "validate-arch-x86",
+                "validate-arch-amd64",
                 "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup-amd64",

@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-debug-x86",
+            "label": "build-debug-amd64",
             "command": "cargo",
             "type": "shell",
             "args": [

@@ -473,7 +473,7 @@
             }
         },
         {
-            "label": "validate-arch-x86",
+            "label": "validate-arch-amd64",
             "detail": "hide",
             "command": "bash",
             "type": "process",
@@ -603,32 +603,6 @@
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
                 "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose down --remove-orphans"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "pre-cleanup-x86",
-            "detail": "hide",
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 GPU=${config:torizon_gpu} docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -772,41 +746,6 @@
             }
         },
         {
-            "label": "build-container-torizon-debug-x86",
-            "detail": "hide",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "x86",
-                    "GPU": "${config:torizon_gpu}",
-                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT": "${config:torizon_debug_port}",
-                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
-                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
-                }
-            },
-            "args": [
-                "docker",
-                "compose",
-                "build",
-                "--build-arg",
-                "SSHUSERNAME=${config:torizon_run_as}",
-                "--build-arg",
-                "IMAGE_ARCH=amd64",
-                "--build-arg",
-                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "build-container-torizon-debug-riscv64",
             "detail": "hide",
             "command": "DOCKER_HOST=",
@@ -898,30 +837,6 @@
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "amd64"
-                }
-            },
-            "args": [
-                "docker",
-                "compose",
-                "push",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "push-container-torizon-debug-x86",
-            "detail": "hide",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "env": {
-                    "LOCAL_REGISTRY": "localhost",
-                    "TAG": "x86"
                 }
             },
             "args": [
@@ -1040,7 +955,7 @@
             }
         },
         {
-            "label": "pull-container-torizon-debug-x86",
+            "label": "pull-container-torizon-debug-amd64",
             "detail": "hide",
             "command": "sshpass",
             "type": "process",
@@ -1053,7 +968,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 docker-compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 docker-compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1170,7 +1085,7 @@
             }
         },
         {
-            "label": "run-container-torizon-debug-x86",
+            "label": "run-container-torizon-debug-amd64",
             "detail": "hide",
             "command": "sshpass",
             "type": "process",
@@ -1183,7 +1098,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=x86 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [

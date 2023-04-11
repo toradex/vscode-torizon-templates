@@ -24,7 +24,7 @@ ApolloX project templates are in their nature VS Code workspaces, with multiple 
 
 This pattern is replicated for each architecture supported by the template:
 
-> ⚠️ Remember to split task groups adding the architecture prefix to the task label: `-arm64`, `-arm`, `-riscv64` and `-x86`
+> ⚠️ Remember to split task groups adding the architecture prefix to the task label: `-arm64`, `-arm`, `-riscv64` and `-amd64`
 
 ![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/vscodeTasksMultiArch.png?raw=true)
 
