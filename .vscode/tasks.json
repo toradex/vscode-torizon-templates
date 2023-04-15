@@ -107,52 +107,26 @@
             ]
         },
         {
-            "label": "cherry-top-x-bullseye",
+            "label": "cherry-hashes-bookworm",
             "type": "shell",
-            "options": {
-                "shell": {
-                    "executable": "/usr/bin/bash",
-                    "args": [
-                        "-l"
-                    ]
-                }
-            },
-            "command": "git",
+            "command": "bash",
             "args": [
-                "checkout bullseye",
-                "&&",
-                "git",
-                "cherry-pick",
-                "$(git log --oneline dev -n ${input:cherryTopX} | cut -d ' ' -f1)",
-                "&&",
-                "git",
-                "checkout dev"
+                "./scripts/bash/cherry-hashes.sh",
+                "${input:cherryHashes}",
+                "bookworm"
             ],
             "problemMatcher": [
                 "$gcc"
             ]
         },
         {
-            "label": "cherry-top-x-bookworm",
+            "label": "cherry-hashes-bullseye",
             "type": "shell",
-            "options": {
-                "shell": {
-                    "executable": "/usr/bin/bash",
-                    "args": [
-                        "-l"
-                    ]
-                }
-            },
-            "command": "git",
+            "command": "bash",
             "args": [
-                "checkout bookworm",
-                "&&",
-                "git",
-                "cherry-pick",
-                "$(git log --oneline dev -n ${input:cherryTopX} | cut -d ' ' -f1)",
-                "&&",
-                "git",
-                "checkout dev"
+                "./scripts/bash/cherry-hashes.sh",
+                "${input:cherryHashes}",
+                "bullseye"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -164,6 +138,11 @@
             "id": "cherryTopX",
             "type": "promptString",
             "description": "How many commits to cherry-pick?"
+        },
+        {
+            "id": "cherryHashes",
+            "type": "promptString",
+            "description": "Enter the hashes to cherry-pick"
         }
     ]
 }
