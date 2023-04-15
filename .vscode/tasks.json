@@ -105,6 +105,32 @@
             "problemMatcher": [
                 "$gcc"
             ]
+        },
+        {
+            "label": "cherry-hashes-bookworm",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "./scripts/bash/cherry-hashes.sh",
+                "${input:cherryHashes}",
+                "bookworm"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "cherry-hashes-bullseye",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "./scripts/bash/cherry-hashes.sh",
+                "${input:cherryHashes}",
+                "bullseye"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
     ],
     "inputs": [
@@ -112,6 +138,11 @@
             "id": "cherryTopX",
             "type": "promptString",
             "description": "How many commits to cherry-pick?"
+        },
+        {
+            "id": "cherryHashes",
+            "type": "promptString",
+            "description": "Enter the hashes to cherry-pick"
         }
     ]
 }
