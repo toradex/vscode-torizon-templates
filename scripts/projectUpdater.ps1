@@ -89,6 +89,26 @@ if (
     exit $LASTEXITCODE
 }
 
+# CHECK DEPS
+Copy-Item `
+    $Env:HOME/.apollox/scripts/checkDeps.ps1 `
+    $projectFolder/.conf/checkDeps.ps1
+
+# RUN CONTAINER IF NOT EXISTS
+Copy-Item `
+    $Env:HOME/.apollox/scripts/runContainerIfNotExists.ps1 `
+    $projectFolder/.conf/runContainerIfNotExists.ps1
+
+# SHARE WSL PORTS
+Copy-Item `
+    $Env:HOME/.apollox/scripts/shareWslPorts.ps1 `
+    $projectFolder/.conf/shareWslPorts.ps1
+
+# TORIZON PACKAGES
+Copy-Item `
+    $Env:HOME/.apollox/scripts/torizonPackages.ps1 `
+    $projectFolder/.conf/torizonPackages.ps1
+
 # TORIZON IO:
 Copy-Item `
     $Env:HOME/.apollox/scripts/torizonIO.ps1 `
