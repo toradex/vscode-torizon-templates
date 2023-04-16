@@ -131,6 +131,22 @@
             "problemMatcher": [
                 "$gcc"
             ]
+        },
+        {
+            "label": "push-all",
+            "type": "shell",
+            "command": "git",
+            "args": [
+                "push", "origin", "dev", "&&",
+                "git", "checkout", "bullseye", "&&",
+                "git", "push", "origin", "bullseye", "&&",
+                "git", "checkout", "bookworm", "&&",
+                "git", "push", "origin", "bookworm", "&&",
+                "git", "checkout", "dev"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
     ],
     "inputs": [
