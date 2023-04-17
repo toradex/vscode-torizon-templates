@@ -163,6 +163,7 @@ Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile .
 Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
 Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
 Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
+Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
 
 # read the update table:
 for ($i = 0; $i -lt $updateTable.Count; $i++) {
@@ -245,6 +246,11 @@ _openMergeWindow `
 _openMergeWindow `
     $projectFolder/.conf/tmp/build-application.yaml `
     $projectFolder/.github/workflows/build-application.yaml
+
+# GITLAB CI:
+_openMergeWindow `
+    $projectFolder/.conf/tmp/.gitlab-ci.yml `
+    $projectFolder/.gitlab-ci.yml
 
 Write-Host -ForegroundColor DarkGreen "✅ common"
 # ---------------------------------------------------------------------- COMMON
