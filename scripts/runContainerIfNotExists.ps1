@@ -32,9 +32,13 @@ $_containerInfo =
     ConvertFrom-Json
 
 if ($null -ne $_containerInfo) {
+    $_containerInfo = $_containerInfo[0]
+}
+
+if ($null -ne $_containerInfo) {
     Write-Host "Container Exists"
 
-    if ($_containerInfo.Running -eq $false) {
+    if ($_containerInfo.State.Running -eq $false) {
         Invoke-Expression "$_containerRuntime start $_containerName"
     } else {
         Write-Host "Container is running"
