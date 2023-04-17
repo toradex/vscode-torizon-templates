@@ -11,6 +11,7 @@ ARG IMAGE_ARCH=
 ##
 ARG BASE_VERSION=3-bookworm
 
+ARG APP_ROOT=/home/torizon
 
 FROM --platform=linux/${IMAGE_ARCH} \
     torizon/debian:${BASE_VERSION} AS Deploy
@@ -34,8 +35,9 @@ RUN apt-get -q -y update && \
 COPY requirements-release.txt /requirements-release.txt
 RUN pip3 install --upgrade pip && pip3 install -r requirements-release.txt && rm requirements-release.txt
 
-# copy the build
-COPY /src /app
-WORKDIR /app
+# copy the source code
+COPY /src ${APP_ROOT}/src
+
+WORKDIR ${APP_ROOT}/src
 
 CMD [ "/usr/bin/python3", "main.py", "--no-sandbox" ]
