@@ -26,10 +26,6 @@ ARG SSH_DEBUG_PORT=
 ##
 ARG SSHUSERNAME=
 
-# BUILD ------------------------------------------------------------------------
-##
-# Deploy Step
-##
 FROM --platform=linux/${IMAGE_ARCH} \
     torizon/debian:${BASE_VERSION} AS Debug
 
