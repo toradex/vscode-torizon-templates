@@ -36,6 +36,8 @@ if ($null -ne $env:WSL_DISTRO_NAME) {
         $superScript = "$($superScript) (netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$addr) -or `$true ; ";
     }
 
+    $superScript = "$($superScript) wsl -e --shell-type standard -- pwsh ./.vscode/tasks.ps1 run run-docker-registry ; "
+
     for( $i = 0; $i -lt $ports.length; $i++ ){
         $port = $ports[$i];
         # cspell:disable-next-line
