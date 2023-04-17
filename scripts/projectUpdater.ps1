@@ -101,8 +101,8 @@ Copy-Item `
 
 # SHARE WSL PORTS
 Copy-Item `
-    $Env:HOME/.apollox/scripts/shareWslPorts.ps1 `
-    $projectFolder/.conf/shareWslPorts.ps1
+    $Env:HOME/.apollox/scripts/shareWSLPorts.ps1 `
+    $projectFolder/.conf/shareWSLPorts.ps1
 
 # TORIZON PACKAGES
 Copy-Item `
