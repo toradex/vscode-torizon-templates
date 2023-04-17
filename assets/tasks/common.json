@@ -1358,6 +1358,38 @@
                 "id": "flame",
                 "color": "terminal.ansiYellow"
             }
+        },
+        {
+            "label": "validate-pipeline-settings",
+            "detail": "hide",
+            "command": "pwsh",
+            "type": "process",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "DOCKER_REGISTRY": "${command:docker_registry}",
+                    "DOCKER_PSSWD": "${command:docker_password}",
+                    "DOCKER_TAG": "${command:docker_tag}",
+                    "TCB_CLIENTID": "${command:tcb.clientId}",
+                    "TCB_CLIENTSECRET": "${command:tcb.clientSecret}",
+                    "TCB_PACKAGE": "__change__",
+                    "TCB_FLEET": "${command:tcb.fleetName}",
+                    "TORIZON_ARCH": "${command:torizon_arch}"
+                }
+            },
+            "args": [
+                ".conf/checkCIEnv.ps1"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
         }
     ]
 }
