@@ -23,6 +23,8 @@ jobs:
           echo "TORIZON_ARCH=$env:TORIZON_ARCH" | `
             Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
+          ./.vscode/tasks.ps1 run validate-pipeline-settings
+
       - name: Decode Credentials
         env:
           PLATFORM_CREDENTIALS: ${{ secrets.PLATFORM_CREDENTIALS }}
