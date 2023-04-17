@@ -22,7 +22,10 @@
         "torizon.io",
         "Torizon",
         "git",
+        "github",
+        "gitlab",
         "ApolloX",
+        "apollox",
         "binfmt",
         "wsl",
         "nmap",
@@ -50,7 +53,12 @@
         "connectaddress",
         "runas",
         "remoteport",
-        "LASTEXITCODE"
+        "LASTEXITCODE",
+        "CLIENTID",
+        "CLIENTSECRET",
+        "isnot",
+        "ascii",
+        "fullname"
     ],
     "import": [],
     "languageSettings": [
