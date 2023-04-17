@@ -32,6 +32,8 @@ initial-setup:
       if ($_torizonArch -eq "aarch64") { $_torizonArch = "arm64" }
       if ($_torizonArch -eq "armhf") { $_torizonArch = "arm" }
       "TORIZON_ARCH=$_torizonArch " | Set-Content -Path "setup.env"
+      
+      ./.vscode/tasks.ps1 run validate-pipeline-settings
 
     ' | gitlabWrapper.ps1
 
