@@ -167,6 +167,7 @@ Set-Location $projectFolder/.conf/tmp
 Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile .
 Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
 Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
+Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
 Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
 Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
 
@@ -256,6 +257,11 @@ _openMergeWindow `
 _openMergeWindow `
     $projectFolder/.conf/tmp/.gitlab-ci.yml `
     $projectFolder/.gitlab-ci.yml
+
+# GITIGNORE:
+_openMergeWindow `
+    $projectFolder/.conf/tmp/.gitignore `
+    $projectFolder/.gitignore
 
 Write-Host -ForegroundColor DarkGreen "✅ common"
 # ---------------------------------------------------------------------- COMMON
