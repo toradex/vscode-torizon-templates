@@ -50,7 +50,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
-COPY --from=Build /build/__change__.Skia.Gtk/bin/Debug/net6.0/linux-${IMAGE_ARCH}/publish /app
+COPY --from=Build /build/__change__.Skia.Gtk/bin/Release/net6.0/linux-${IMAGE_ARCH}/publish /app
 
 ENV UNO_DISABLE_OPENGL true
 
