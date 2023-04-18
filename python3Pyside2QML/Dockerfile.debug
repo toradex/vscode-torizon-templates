@@ -26,6 +26,8 @@ ARG SSH_DEBUG_PORT=
 ##
 ARG SSHUSERNAME=
 
+ARG APP_ROOT=/home/torizon
+
 FROM --platform=linux/${IMAGE_ARCH} \
      torizon/wayland-base:${BASE_VERSION} AS Debug
 
@@ -34,6 +36,7 @@ ARG SSH_DEBUG_PORT
 ARG APP_EXECUTABLE
 ARG SSHUSERNAME
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
@@ -53,7 +56,9 @@ RUN apt-get -q -y update && \
     screen \
     python3-minimal \
     python3-pip \
-    python3-setuptools \  
+    python3-setuptools \
+    python3-venv \
+    python3-debugpy \  
     qml-module-qtquick-controls \
     qml-module-qtquick-controls2 \
     qml-module-qtquick2 \
@@ -67,11 +72,14 @@ RUN apt-get -q -y update && \
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-# RUN pip3 install --upgrade pip  
-# && pip3 install debugpy
+# Create virtualenv
+RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
 
+# Install pip packages on venv
 COPY requirements-debug.txt /requirements-debug.txt
-RUN pip3 install --upgrade pip && pip3 install -r requirements-debug.txt && rm requirements-debug.txt
+RUN . ${APP_ROOT}/.venv/bin/activate && \
+    pip3 install --upgrade pip && pip3 install -r requirements-debug.txt && \
+    rm requirements-debug.txt
 
 # automate for torizonPackages.json
 RUN apt-get -q -y update && \
