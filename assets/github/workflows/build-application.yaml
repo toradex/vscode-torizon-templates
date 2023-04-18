@@ -15,6 +15,10 @@ jobs:
         shell: pwsh
         env:
           TORIZON_ARCH: ""
+          DOCKER_PSSWD: ${{ secrets.DOCKER_PSSWD }}
+          PLATFORM_CLIENT_ID: ${{ secrets.PLATFORM_CLIENT_ID }}
+          PLATFORM_CLIENT_SECRET: ${{ secrets.PLATFORM_CLIENT_SECRET }}
+          PLATFORM_CREDENTIALS: ${{ secrets.PLATFORM_CREDENTIALS }}
         run: |
           $_settings = (Get-Content ./.vscode/settings.json | ConvertFrom-Json)
           $env:TORIZON_ARCH = $_settings.torizon_arch
