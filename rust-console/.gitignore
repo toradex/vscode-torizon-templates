@@ -1,2 +1,4 @@
 /target
 Cargo.lock
+credentials.zip
+*.lock.yml

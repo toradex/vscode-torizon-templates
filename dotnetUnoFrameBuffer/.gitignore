@@ -1,2 +1,5 @@
 */**/bin
 */**/obj
+
+credentials.zip
+*.lock.yml
