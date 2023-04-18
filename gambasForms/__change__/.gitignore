@@ -15,3 +15,6 @@ vgcore.*
 .list
 .info
 #----
+
+credentials.zip
+*.lock.yml

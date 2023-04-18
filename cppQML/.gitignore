@@ -7,3 +7,5 @@ aarch64
 armhf
 amd64
 .qt
+credentials.zip
+*.lock.yml
