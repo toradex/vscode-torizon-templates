@@ -124,6 +124,11 @@ Copy-Item `
     $Env:HOME/.apollox/scripts/bash/tcb-env-setup.sh `
     $projectFolder/.conf/tcb-env-setup.sh
 
+# CHECK CI ENV:
+Copy-Item `
+    $Env:HOME/.apollox/scripts/checkCIEnv.ps1 `
+    $projectFolder/.conf/checkCIEnv.ps1
+
 Write-Host -ForegroundColor DarkGreen "✅ always accept new"
 # ----------------------------------------------------------- ALWAYS ACCEPT NEW
 
