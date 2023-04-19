@@ -257,6 +257,30 @@
             "multiContainer": false,
             "mergeCommon": false,
             "support": "Toradex"
+        },
+        {
+            "img": "slint-logo-small-light-128x128.png",
+            "folder": "cppSlint",
+            "description": "C++ Slint Application",
+            "runtime": "Slint 1.0",
+            "language": "C++",
+            "debugPort": "2232",
+            "debugPort2": "2233",
+            "debugSSHPort": "2231",
+            "multiContainer": false,
+            "support": "Community",
+            "tests": {
+                "debuggers": [
+                    "Local AMD64",
+                    "Torizon AMD64",
+                    "Torizon ARMv7",
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": "cppdbg",
+                "mainFile": "main.cpp",
+                "mainFileBreakpointLine": 19,
+                "successDebugMessage": "Hello Torizon!"
+            }
         }
     ]
 }
