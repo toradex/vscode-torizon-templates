@@ -53,6 +53,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 COPY --from=Build /build/__change__.Skia.Gtk/bin/Release/net6.0/linux-${IMAGE_ARCH}/publish /app
 
 ENV UNO_DISABLE_OPENGL true
+ENV UNO_FULLSCREEN true
 
 # ADD YOUR ARGUMENTS HERE
 CMD [ "./app/__change__.Skia.Gtk" ]
