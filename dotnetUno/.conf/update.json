@@ -1,6 +1,6 @@
 [
     {
-        "source": "__change__.Skia.Gtk/__change__.csproj",
-        "target": "$projectName.Skia.Gtk/$projectName.csproj"
+        "source": "__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+        "target": "$projectName.Skia.Gtk/$projectName.Skia.Gtk.csproj"
     }
 ]
