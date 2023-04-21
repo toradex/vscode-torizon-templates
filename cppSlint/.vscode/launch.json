@@ -37,6 +37,7 @@
             "environment": [],
             "externalConsole": false,
             "sourceFileMap": {
+                "/home/torizon/app": "${workspaceFolder}/build/amd64",
                 "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
@@ -84,6 +85,7 @@
             ],
             "externalConsole": false,
             "sourceFileMap": {
+                "/home/torizon/app": "${workspaceFolder}/build/arm64",
                 "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
@@ -129,6 +131,7 @@
             "environment": [],
             "externalConsole": false,
             "sourceFileMap": {
+                "/home/torizon/app": "${workspaceFolder}/build/armhf",
                 "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
