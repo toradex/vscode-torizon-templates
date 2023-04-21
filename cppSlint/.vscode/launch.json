@@ -37,7 +37,7 @@
             "environment": [],
             "externalConsole": false,
             "sourceFileMap": {
-                "/app/amd64": "${workspaceFolder}/amd64"
+                "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
@@ -84,7 +84,7 @@
             ],
             "externalConsole": false,
             "sourceFileMap": {
-                "/app/aarch64": "${workspaceFolder}/aarch64"
+                "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
@@ -129,7 +129,7 @@
             "environment": [],
             "externalConsole": false,
             "sourceFileMap": {
-                "/app/aarch64": "${workspaceFolder}/aarch64"
+                "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
