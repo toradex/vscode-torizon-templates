@@ -16,6 +16,10 @@ if (NOT Slint_FOUND)
   FetchContent_MakeAvailable(Slint)
 endif (NOT Slint_FOUND)
 
+# Enable referenced images into the binary by default, so that deployment into docker
+# is just copying the application binary.
+set(DEFAULT_SLINT_EMBED_RESOURCES "embed-files")
+
 add_executable(__change__ src/main.cpp)
 target_link_libraries(__change__ PRIVATE Slint::Slint)
 slint_target_sources(__change__ ui/appwindow.slint)
