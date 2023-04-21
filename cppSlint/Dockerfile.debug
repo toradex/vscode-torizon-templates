@@ -173,6 +173,9 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# Default to the Skia backend for best performance
+ENV SLINT_BACKEND=winit-skia
+
 # ⚠️ DEBUG PURPOSES ONLY!!
 # copies RSA key to enable SSH login for user
 COPY .conf/id_rsa.pub /id_rsa.pub

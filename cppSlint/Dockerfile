@@ -133,6 +133,9 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # copy the build
 COPY --from=Build /app/build /app
 
+# Default to the Skia backend for best performance
+ENV SLINT_BACKEND=winit-skia
+
 # ADD YOUR ARGUMENTS HERE
 CMD [ "./__change__" ]
 

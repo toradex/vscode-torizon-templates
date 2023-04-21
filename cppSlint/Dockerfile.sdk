@@ -96,6 +96,9 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# Default to the Skia backend for best performance
+ENV SLINT_BACKEND=winit-skia
+
 USER torizon
 
 WORKDIR /app
