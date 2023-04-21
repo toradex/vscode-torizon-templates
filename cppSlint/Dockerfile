@@ -135,6 +135,8 @@ COPY --from=Build /app/build /app
 
 # Default to the Skia backend for best performance
 ENV SLINT_BACKEND=winit-skia
+# Default to Slint running in fullscreen
+ENV SLINT_FULLSCREEN=1
 
 # ADD YOUR ARGUMENTS HERE
 CMD [ "./__change__" ]
