@@ -1,0 +1,12 @@
+{
+    "packages": [
+        "openssh-client",
+        "sshpass",
+        "cargo",
+        "rustc",
+        "rust-clippy",
+        "rust-lldb",
+        "rust-src",
+        "rust-gdb"
+    ]
+}
