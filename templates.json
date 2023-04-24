@@ -277,8 +277,8 @@
                     "Torizon ARMv8"
                 ],
                 "debuggerConsole": "cppdbg",
-                "mainFile": "main.cpp",
-                "mainFileBreakpointLine": 19,
+                "mainFile": "src/main.cpp",
+                "mainFileBreakpointLine": 13,
                 "successDebugMessage": "Hello Torizon!"
             }
         }
