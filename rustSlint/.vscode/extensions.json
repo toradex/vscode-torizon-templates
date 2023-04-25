@@ -1,5 +1,6 @@
 {
     "recommendations": [
+        "vadimcn.vscode-lldb",
         "ms-vscode.cpptools",
         "rust-lang.rust-analyzer",
         "bungcip.better-toml",

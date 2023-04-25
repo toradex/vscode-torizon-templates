@@ -2,6 +2,43 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable '__change__'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=__change__",
+                    "--package=__change__"
+                ],
+                "filter": {
+                    "name": "__change__",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable '__change__'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=__change__",
+                    "--package=__change__"
+                ],
+                "filter": {
+                    "name": "__change__",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
             "name": "Torizon ARMv7",
             "type": "cppdbg",
             "request": "launch",
