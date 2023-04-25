@@ -2,32 +2,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch AMD64",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/target/debug/__change__",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceRoot}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/rust-gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description":  "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "build-debug-amd64"
-        },
-        {
             "name": "Torizon ARMv7",
             "type": "cppdbg",
             "request": "launch",
@@ -116,6 +90,6 @@
                 }
             ],
             "preLaunchTask": "deploy-torizon-arm64"
-        },
+        }
     ]
 }
