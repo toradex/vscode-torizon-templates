@@ -32,7 +32,7 @@
             "command": "sleep",
             "type": "process",
             "args": [
-                "2",
+                "4",
             ],            
             "dependsOn": [
                 "validate-settings",
@@ -111,7 +111,7 @@
             "command": "sleep",
             "type": "process",
             "args": [
-                "2",
+                "4",
             ],            
             "dependsOn": [
                 "validate-settings",
