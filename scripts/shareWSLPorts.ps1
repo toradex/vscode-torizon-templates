@@ -2,6 +2,7 @@
 # THIS NEED TO BE SUPPORTED ON THE WINDOWS POWERSHELL
 # this only makes sense for WSL
 if ($null -ne $env:WSL_DISTRO_NAME) {
+    $_workspace = $args[0]
     $remoteport = bash -c "ifconfig eth0 | grep 'inet '"
     $found = $remoteport -match '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 
@@ -36,7 +37,7 @@ if ($null -ne $env:WSL_DISTRO_NAME) {
         $superScript = "$($superScript) (netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$addr) -or `$true ; ";
     }
 
-    $superScript = "$($superScript) wsl -e --shell-type standard -- pwsh ./.vscode/tasks.ps1 run run-docker-registry ; "
+    $superScript = "$($superScript) wsl -e pwsh -nop -File $_workspace/.vscode/tasks.ps1 run run-docker-registry-wsl ; "
 
     for( $i = 0; $i -lt $ports.length; $i++ ){
         $port = $ports[$i];
@@ -52,4 +53,6 @@ if ($null -ne $env:WSL_DISTRO_NAME) {
 
     # cspell:disable-next-line
     powershell.exe -NoProfile -C "start-process powershell -verb runas -ArgumentList '-NoProfile -C `"$superScript echo done`"'"
+    # for debug comment the above and uncomment the below
+    #powershell.exe -NoProfile -C "start-process powershell -verb runas -ArgumentList '-NoProfile -C `"$superScript echo done; Read-Host ; `"'"
 }
