@@ -14,7 +14,11 @@
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSAvoidGlobalVars', ""
 )]
-param()
+param(
+    [string] $ContainerRuntime,
+    [string] $RunArguments,
+    [string] $ContainerName
+)
 
 $env:DOCKER_HOST = ""
 
@@ -23,9 +27,14 @@ if ($Env:GITLAB_CI -eq $true) {
     $Env:DOCKER_HOST = "tcp://docker:2375"
 }
 
-$_containerRuntime = $args[0]
-$_runArguments = $args[1].Trim("'").Trim('"');
-$_containerName = $args[2]
+$_containerRuntime = $ContainerRuntime
+$_runArguments = $RunArguments.Trim("'").Trim('"');
+$_containerName = $ContainerName
+
+# debug
+Write-Host "Container Runtime: $_containerRuntime"
+Write-Host "Run Arguments: $_runArguments"
+Write-Host "Container Name: $_containerName"
 
 $_containerInfo = 
     Invoke-Expression "$_containerRuntime container inspect $_containerName" | `

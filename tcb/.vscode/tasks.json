@@ -66,10 +66,14 @@
                 "clear": false
             },
             "args": [
+                "-nop",
                 "-file",
                 "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
+                "-ContainerRuntime",
                 "docker",
-                "'-d -p 5002:5000 --restart=always registry:2'",
+                "-RunArguments",
+                "'\"-d -p 5002:5000 --restart=always registry:2\"'",
+                "-ContainerName",
                 "registry"
             ],
             "dependsOrder": "sequence",
@@ -93,8 +97,11 @@
             },
             "args": [
                 "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
+                "-ContainerRuntime",
                 "docker",
-                "'--rm -it --privileged torizon/binfmt'",
+                "-RunArguments",
+                "'--rm --privileged torizon/binfmt'",
+                "-ContainerName",
                 "binfmt"
             ],
             "dependsOrder": "sequence",
