@@ -62,6 +62,10 @@ if ($env:TASKS_OVERRIDE_ENV -eq $false) {
     $_overrideEnv = $false;
 }
 
+if ($env:TASKS_USE_PWSH_INSTEAD_BASH -eq $true) {
+    $_usePwshInsteadBash = $true;
+}
+
 try {
     $tasksFileContent = Get-Content $PSScriptRoot/tasks.json
     $settingsFileContent = Get-Content $PSScriptRoot/settings.json
@@ -454,7 +458,13 @@ function runTask () {
                 Invoke-Expression "Set-Location $taskCwd"
             }
 
+            # for powershell we need to change the double quotes to `"
+            if ($_usePwshInsteadBash) {
+                $taskArgs = $taskArgs.Replace('"', '`"')
+            }
+
             # parse the variables
+            Write-Host "echo `"$taskCmd $taskArgs`""
             $_cmd = Invoke-Expression "echo `"$taskCmd $taskArgs`""
             
             if ($env:TASKS_DEBUG -eq $true) {
@@ -467,9 +477,14 @@ function runTask () {
             }
 
             # execute the task
-            # use bash as default
-            # TODO: be explicit about bash as default on documentation
-            Invoke-Expression "bash -c `"$_cmd`""
+            if ($_usePwshInsteadBash -eq $false) {
+                # use bash as default
+                # TODO: be explicit about bash as default on documentation
+                Invoke-Expression "bash -c `"$_cmd`""
+            } else {
+                Invoke-Expression "pwsh -nop -c `"$_cmd`""
+            }
+
             $exitCode = $LASTEXITCODE
 
             # go back to the origin location
