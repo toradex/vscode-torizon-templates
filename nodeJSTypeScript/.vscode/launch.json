@@ -6,8 +6,7 @@
             "request": "launch",
             "name": "Node Local",
             "program": "${workspaceFolder}/src/index.ts",
-            "preLaunchTask": "tsc: build - tsconfig.json",
-            "outFiles": ["${workspaceFolder}/lib/**/*.js"]
+            "preLaunchTask": "build-typescript-local"
         },
         {
             "name": "Torizon AMD64",

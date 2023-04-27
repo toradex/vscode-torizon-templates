@@ -2,30 +2,34 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "typescript",
-            "tsconfig": "tsconfig.json",
-            "problemMatcher": [
-                "$tsc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "npm-install",
+            "label": "build-typescript-local",
+            "detail": "hide",
             "command": "npm",
             "type": "process",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
             "args": [
-                "install"
+                "run",
+                "build"
             ],
+            "problemMatcher": ["$tsc"],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOn":[
+                "npm-install"
+            ]
+        },
+        {
+            "label": "npm-install",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "[ ! -d 'node_modules' ] && npm install || true",
             "dependsOrder": "sequence",
             "icon": {
                 "id": "flame",
