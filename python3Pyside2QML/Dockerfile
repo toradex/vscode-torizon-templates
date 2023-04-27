@@ -54,10 +54,13 @@ RUN . ${APP_ROOT}/.venv/bin/activate && \
     pip3 install --upgrade pip && pip3 install -r requirements-release.txt && \
     rm requirements-release.txt
 
+USER torizon
+
 # copy the source code
 COPY /src ${APP_ROOT}/src
 
-WORKDIR ${APP_ROOT}/src
+WORKDIR ${APP_ROOT}
 
+ENV APP_ROOT=${APP_ROOT}
 # Activate and run the code
-CMD . ${APP_ROOT}/.venv/bin/activate && python3 main.py --no-sandbox
+CMD . ${APP_ROOT}/.venv/bin/activate && python3 src/main.py --no-sandbox
