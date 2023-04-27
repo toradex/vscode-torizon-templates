@@ -55,7 +55,21 @@
             "language": "C#",
             "debugSSHPort": "2223",
             "multiContainer": false,
-            "support": "Community"
+            "support": "Community",
+            "tests": {
+                "debuggers": [
+                    ".NET Core Launch (GTK)", 
+                    ".NET Core Attach", 
+                    ".NET Attach Torizon arm64",
+                    "Torizon AMD64",
+                    "Torizon ARMv7",
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": null,
+                "mainFile": "App.axaml.cs",
+                "mainFileBreakpointLine": 26,
+                "successDebugMessage": "System.IO.Compression.dll"
+            }
         },
         {
             "img": "avaloniafbdrm.png",
@@ -121,7 +135,21 @@
             "debugPort2": "9223",
             "debugSSHPort": "2228",
             "multiContainer": false,
-            "support": "Community"
+            "support": "Community",
+            "tests": {
+                "debuggers": [
+                    "Debug Main Process", 
+                    ".NET Core Attach", 
+                    "Torizon Render Process",
+                    "Torizon AMD64",
+                    "Torizon ARMv7",
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": null,
+                "mainFile": "main.js",
+                "mainFileBreakpointLine": 33,
+                "successDebugMessage": "GetVSyncParametersIfAvailable()"
+            }
         },
         {
             "img": "nodejsts.png",
@@ -132,7 +160,19 @@
             "debugPort": "9229",
             "debugSSHPort": "2229",
             "multiContainer": false,
-            "support": "Community"
+            "support": "Community",
+            "tests": {
+                "debuggers": [
+                    "Node Local",  
+                    "Torizon AMD64",
+                    "Torizon ARMv7",
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": null,
+                "mainFile": "src/index.ts",
+                "mainFileBreakpointLine": 3,
+                "successDebugMessage": "Hello Torizon!"
+            }
         },
         {
             "img": "cppconsole.png",
@@ -195,13 +235,24 @@
         },
         {
             "img": "rust-console.png",
-            "folder": "rust-console",
+            "folder": "rustConsole",
             "description": "Rust Console Application",
             "runtime": "libc",
             "language": "Rust",
             "debugSSHPort": "2299",
             "multiContainer": false,
-            "support": "Community"
+            "support": "Community",
+            "tests" : {
+                "debuggers": [
+                    "Launch AMD64",  
+                    "Torizon ARMv7", 
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": null,
+                "mainFile": "src/main.rs",
+                "mainFileBreakpointLine": 2,
+                "successDebugMessage": "Hello Torizon!"
+            }
         },
         {
             "img": "gambasform.png",
@@ -244,7 +295,18 @@
             "debugPort": "6512",
             "debugSSHPort": "6502",
             "multiContainer": false,
-            "support": "Community"
+            "support": "Community",
+            "tests": {
+                "debuggers": [
+                    "Python Local", 
+                    "Torizon ARMv7", 
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": "Python Debug Console",
+                "mainFile": "src/main.py",
+                "mainFileBreakpointLine": 9,
+                "successDebugMessage": "Hello Torizon!"
+            }
         },
         {
             "img": "tcb.png",
