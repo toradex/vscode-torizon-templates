@@ -3,14 +3,11 @@
     "tasks": [
         {
             "label": "npm-install",
-            "command": "npm",
-            "type": "process",
+            "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "args": [
-                "install"
-            ],
+            "command": "[ ! -d 'node_modules' ] && npm install || true",
             "dependsOrder": "sequence",
             "icon": {
                 "id": "flame",
@@ -51,6 +48,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
+                "npm-install",
                 "tunnel-debug-torizon-pre",
                 "wait-a-bit"
             ],

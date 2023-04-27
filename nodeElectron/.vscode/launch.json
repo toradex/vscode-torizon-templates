@@ -13,7 +13,8 @@
             "args": [
                 "."
             ],
-            "outputCapture": "std"
+            "outputCapture": "std",
+            "preLaunchTask": "npm-install"
         },
         {
             "name": "Torizon Render Process",
