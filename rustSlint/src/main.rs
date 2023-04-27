@@ -9,7 +9,7 @@ fn main() -> Result<(), slint::PlatformError> {
         ui.set_counter(ui.get_counter() + 1);
     });
 
-    println!("Hello, Torizon!");
+    println!("Hello Torizon!");
 
     ui.run()
 }

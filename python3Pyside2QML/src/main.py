@@ -6,7 +6,7 @@ from PySide2.QtCore import QUrl, QObject
 from PySide2.QtQuick import QQuickView
 
 if __name__ == "__main__":
-    print("Hello world!")
+    print("Hello Torizon!")
 
     qurlPath = ""
     if(os.path.exists(os.path.expanduser("~/app/mainwindow.qml"))):
