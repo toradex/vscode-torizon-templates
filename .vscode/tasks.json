@@ -139,9 +139,9 @@
             "args": [
                 "push", "origin", "dev", "&&",
                 "git", "checkout", "bullseye", "&&",
-                "git", "push", "origin", "bullseye", "&&",
+                "git", "push", "origin", "bullseye", "-f", "&&",
                 "git", "checkout", "bookworm", "&&",
-                "git", "push", "origin", "bookworm", "&&",
+                "git", "push", "origin", "bookworm", "-f", "&&",
                 "git", "checkout", "dev"
             ],
             "problemMatcher": [
