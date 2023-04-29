@@ -306,6 +306,37 @@
             }
         },
         {
+            "label": "run-docker-registry-wsl",
+            "detail": "hide",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "env": {
+                    "TASKS_USE_PWSH_INSTEAD_BASH": "true"
+                }
+            },
+            "args": [
+                "-nop",
+                "-file",
+                "${workspaceFolder}/.vscode/tasks.ps1",
+                "run",
+                "run-docker-registry"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
             "label": "run-torizon-binfmt",
             "detail": "hide",
             "command": "pwsh",
