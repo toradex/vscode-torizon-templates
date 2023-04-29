@@ -64,6 +64,8 @@ if ($env:TASKS_OVERRIDE_ENV -eq $false) {
 
 if ($env:TASKS_USE_PWSH_INSTEAD_BASH -eq $true) {
     $_usePwshInsteadBash = $true;
+} else {
+    $_usePwshInsteadBash = $false;
 }
 
 try {
