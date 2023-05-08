@@ -26,7 +26,16 @@
         },
         {
             "type": "java",
-            "name": "Torizon armv8",
+            "name": "Torizon ARMv7",
+            "request": "attach",
+            "hostName": "${config:torizon_ip}",
+            "port": "${config:torizon_debug_port}",
+            "preLaunchTask": "deploy-torizon-arm",
+            "postDebugTask": "exterminate-debugger"
+        },
+        {
+            "type": "java",
+            "name": "Torizon ARMv8",
             "request": "attach",
             "hostName": "${config:torizon_ip}",
             "port": "${config:torizon_debug_port}",
