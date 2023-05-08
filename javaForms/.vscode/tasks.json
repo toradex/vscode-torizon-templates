@@ -95,7 +95,11 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "dependsOn": [
+                "build",
+                "generate-jar"
+            ]
         },
         {
             "label": "deploy-application",
@@ -353,6 +357,89 @@
             ],
             "dependsOn": [
                 "run-debugger-arm64",
+                "wait-a-bit"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "run-debugger-arm",
+            "detail": "hide",
+            "command": "ssh",
+            "type": "process",
+            "isBackground": true,
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/app/libs/*:${config:torizon_app_root}/app/__change__.jar __change__.Form1 || true"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm",
+                "apply-torizon-packages",
+                "copy-docker-compose",
+                "pre-cleanup-arm",
+                "build",
+                "generate-jar",
+                "build-container-torizon-debug-arm",
+                "push-container-torizon-debug-arm",
+                "pull-container-torizon-debug-arm",
+                "run-container-torizon-debug-arm",
+                "wait-a-bit",
+                "pos-cleanup",
+                "deploy-application",
+                "deploy-assets",
+                "deploy-libs"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": [
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "line": 1,
+                            "column": 1,
+                            "message": 1
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": {
+                            "regexp": "."
+                        },
+                        "endsPattern": {
+                            "regexp": "."
+                        }
+                    }
+                }
+            ],
+            "icon": {
+                "id": "bug",
+                "color": "terminal.ansiRed"
+            }
+        },
+        {
+            "label": "deploy-torizon-arm64",
+            "detail": "hide",
+            "command": "echo",
+            "type": "process",
+            "args": [
+                "done",
+            ],
+            "dependsOn": [
+                "run-debugger-arm",
                 "wait-a-bit"
             ],
             "dependsOrder": "sequence",
