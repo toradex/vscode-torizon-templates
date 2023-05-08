@@ -259,7 +259,7 @@
             "support": "Toradex"
         },
         {
-            "img": "slint-logo-square-light.svg",
+            "img": "slint-cpp.png",
             "folder": "cppSlint",
             "description": "C++ Slint Application",
             "runtime": "Slint 1.0",
@@ -283,7 +283,7 @@
             }
         },
         {
-            "img": "slint-logo-square-light.svg",
+            "img": "slint-rust.png",
             "folder": "rustSlint",
             "description": "Rust Slint Application",
             "runtime": "Slint 1.0",
