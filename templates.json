@@ -79,7 +79,18 @@
             "language": "C#",
             "debugSSHPort": "2224",
             "multiContainer": false,
-            "support": "Community"
+            "support": "Community",
+            "tests": {
+                "debuggers": [
+                    "Torizon AMD64",
+                    "Torizon ARMv7",
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": null,
+                "mainFile": "App.axaml.cs",
+                "mainFileBreakpointLine": 28,
+                "successDebugMessage": "System.IO.Compression.dll"
+            }
         },
         {
             "img": "unogtk.png",
@@ -231,7 +242,19 @@
             "debugPort": "2235",
             "debugSSHPort": "2234",
             "multiContainer": false,
-            "support": "Community"
+            "support": "Community",
+            "tests" : {
+                "debuggers": [
+                    "Run Local",
+                    "Torizon AMD64", 
+                    "Torizon ARMv7", 
+                    "Torizon ARMv8"
+                ],
+                "debuggerConsole": null,
+                "mainFile": "src/__change__/Form1.java",
+                "mainFileBreakpointLine": 65,
+                "successDebugMessage": ""
+            }
         },
         {
             "img": "rust-console.png",
