@@ -60,7 +60,7 @@ RUN \
     --mount=type=cache,target=/var/cache/apt \
     CROSS_TOOLCHAIN_ARCH=$(cat /cross-toolchain-arch.txt) && \
     apt-get update && \
-    apt-get install --assume-yes libfontconfig1-dev:$CROSS_TOOLCHAIN_ARCH libxcb1-dev:$CROSS_TOOLCHAIN_ARCH libxcb-render0-dev:$CROSS_TOOLCHAIN_ARCH libxcb-shape0-dev:$CROSS_TOOLCHAIN_ARCH libxcb-xfixes0-dev:$CROSS_TOOLCHAIN_ARCH libxkbcommon-dev:$CROSS_TOOLCHAIN_ARCH python3 clang libstdc++-10-dev:$CROSS_TOOLCHAIN_ARCH && \
+    apt-get install --assume-yes libfontconfig1-dev:$CROSS_TOOLCHAIN_ARCH libxcb1-dev:$CROSS_TOOLCHAIN_ARCH libxcb-render0-dev:$CROSS_TOOLCHAIN_ARCH libxcb-shape0-dev:$CROSS_TOOLCHAIN_ARCH libxcb-xfixes0-dev:$CROSS_TOOLCHAIN_ARCH libxkbcommon-dev:$CROSS_TOOLCHAIN_ARCH python3 clang libstdc++-11-dev:$CROSS_TOOLCHAIN_ARCH && \
     rm -rf /var/lib/apt/lists/*
 
 # __deps__
