@@ -7,6 +7,5 @@
         "gdb",
         "gdb-multiarch",
         "g++",
-        "netcat-traditional"
     ]
 }
