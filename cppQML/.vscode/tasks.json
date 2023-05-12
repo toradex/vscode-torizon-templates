@@ -375,6 +375,7 @@
             "args": [
                 "docker",
                 "build",
+                "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
                 "${workspaceFolder}",
@@ -523,6 +524,7 @@
             "args": [
                 "docker",
                 "build",
+                "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
                 "${workspaceFolder}",
@@ -671,6 +673,7 @@
             "args": [
                 "docker",
                 "build",
+                "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
                 "${workspaceFolder}",
