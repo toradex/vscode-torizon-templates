@@ -31,41 +31,6 @@
             "dependsOrder": "sequence"
         },
         {
-            "label": "build-container-image-sdk-arm64",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "args": [
-                "docker",
-                "build",
-                "--pull",
-                "-f",
-                "${workspaceFolder}/Dockerfile.sdk",
-                "${workspaceFolder}",
-                "-t",
-                "cross-toolchain-arm64-__container__",
-            ],
-            "problemMatcher": [
-                {
-                    "owner": "rust",
-                    "fileLocation": ["relative", "${workspaceRoot}"],
-                    "pattern": {
-                        "regexp": "^(.*):(\\d+):(\\d+):\\s+(\\d+):(\\d+)\\s+(warning|error):\\s+(.*)$",
-                        "file": 1,
-                        "line": 2,
-                        "column": 3,
-                        "endLine": 4,
-                        "endColumn": 5,
-                        "severity": 6,
-                        "message": 7
-                    }
-                }
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "build-debug-arm64",
             "command": "DOCKER_HOST=",
             "type": "shell",
@@ -136,41 +101,6 @@
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-container-image-sdk-arm",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "args": [
-                "docker",
-                "build",
-                "--pull",
-                "-f",
-                "${workspaceFolder}/Dockerfile.sdk",
-                "${workspaceFolder}",
-                "-t",
-                "cross-toolchain-arm-__container__"
-            ],
-            "problemMatcher": [
-                {
-                    "owner": "rust",
-                    "fileLocation": ["relative", "${workspaceRoot}"],
-                    "pattern": {
-                        "regexp": "^(.*):(\\d+):(\\d+):\\s+(\\d+):(\\d+)\\s+(warning|error):\\s+(.*)$",
-                        "file": 1,
-                        "line": 2,
-                        "column": 3,
-                        "endLine": 4,
-                        "endColumn": 5,
-                        "severity": 6,
-                        "message": 7
-                    }
-                }
-            ],
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"

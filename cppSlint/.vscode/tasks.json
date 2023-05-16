@@ -184,29 +184,6 @@
             ]
         },
         {
-            "label": "build-container-image-sdk-arm64",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "args": [
-                "docker",
-                "build",
-                "-f",
-                "${workspaceFolder}/Dockerfile.sdk",
-                "${workspaceFolder}",
-                "-t",
-                "cross-toolchain-arm64-__container__",
-                "--build-arg",
-                "IMAGE_ARCH=arm64"
-            ],
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "build-debug-arm64",
             "command": "DOCKER_HOST=",
             "type": "shell",
@@ -330,29 +307,6 @@
             ]
         },
         {
-            "label": "build-container-image-sdk-arm",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "args": [
-                "docker",
-                "build",
-                "-f",
-                "${workspaceFolder}/Dockerfile.sdk",
-                "${workspaceFolder}",
-                "-t",
-                "cross-toolchain-arm-__container__",
-                "--build-arg",
-                "IMAGE_ARCH=arm"
-            ],
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "build-debug-arm",
             "command": "DOCKER_HOST=",
             "type": "shell",
@@ -474,29 +428,6 @@
             "dependsOn": [
                 "build-container-image-sdk-amd64"
             ]
-        },
-        {
-            "label": "build-container-image-sdk-amd64",
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "args": [
-                "docker",
-                "build",
-                "-f",
-                "${workspaceFolder}/Dockerfile.sdk",
-                "${workspaceFolder}",
-                "-t",
-                "cross-toolchain-amd64-__container__",
-                "--build-arg",
-                "IMAGE_ARCH=amd64"
-            ],
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
         },
         {
             "label": "build-debug-amd64",
