@@ -353,7 +353,7 @@
             "debugPort2": "2233",
             "debugSSHPort": "2231",
             "multiContainer": false,
-            "support": "Community",
+            "support": "Partner",
             "tests": {
                 "debuggers": [
                     "Local AMD64",
@@ -377,7 +377,7 @@
             "debugPort2": "2233",
             "debugSSHPort": "2231",
             "multiContainer": false,
-            "support": "Community",
+            "support": "Partner",
             "tests": {
                 "debuggers": [
                     "Local AMD64",
