@@ -26,6 +26,11 @@ ARG SSH_DEBUG_PORT=
 ##
 ARG SSHUSERNAME=
 
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
+
 ARG CROSS_SDK_BASE_TAG=3-bookworm
 
 # BUILD ------------------------------------------------------------------------
@@ -36,6 +41,7 @@ ARG CROSS_SDK_BASE_TAG=3-bookworm
 FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
 
 ARG IMAGE_ARCH
+ARG GPU
 # FIXME: remove?
 #ARG BASE_VERSION
 #ARG APP_EXECUTABLE
@@ -125,9 +131,10 @@ RUN RUST_TOOLCHAIN_ARCH=$(cat /rust-toolchain-arch.txt) && \
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base:${BASE_VERSION} AS Debug
+    torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
+ARG GPU
 ARG SSH_DEBUG_PORT
 ARG APP_EXECUTABLE
 ARG SSHUSERNAME
@@ -137,6 +144,19 @@ ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 EXPOSE ${SSH_DEBUG_PORT}
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
+
+# for vivante GPU we need some "special" sauce
+RUN apt-get -q -y update && \
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgl1 \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
 # your regular RUN statements here
 
