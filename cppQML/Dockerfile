@@ -16,13 +16,19 @@ ARG APP_EXECUTABLE=__change__
 ##
 ARG IMAGE_ARCH=
 
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
+
 # TODO: cross compile x86 to arm
 # We will use emulation here
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base:${SDK_BASE_VERSION} AS Build
+    torizon/wayland-base${GPU}:${SDK_BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
+ARG GPU
 
 # __deps__
 RUN apt-get -q -y update && \
@@ -56,9 +62,10 @@ RUN qmake6 -o build/Makefile && \
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base:${BASE_VERSION} AS Deploy
+    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
+ARG GPU
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
@@ -68,6 +75,19 @@ ARG SSHUSERNAME=torizon
 
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
+
+# for vivante GPU we need some "special" sauce
+RUN apt-get -q -y update && \
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgl1 \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
 # your regular RUN statements here
 # Install required packages
