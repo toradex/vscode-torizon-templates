@@ -4,10 +4,13 @@ ARG BASE_VERSION=3-bookworm
 
 ARG IMAGE_ARCH=
 
+ARG GPU=
+
 # BUILD ------------------------------------------------------------------------
 FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
 
 ARG IMAGE_ARCH
+ARG GPU
 
 # Install an up-to-date cmake as well as ninja and make
 RUN apt-get update && \
