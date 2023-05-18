@@ -13,12 +13,31 @@ ARG BASE_VERSION=3
 
 ARG APP_ROOT=/home/torizon
 
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
+
 FROM --platform=linux/${IMAGE_ARCH} \
-     torizon/wayland-base:${BASE_VERSION} AS Deploy
+     torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
+ARG GPU
 ARG APP_EXECUTABLE
 ARG APP_ROOT
+
+# for vivante GPU we need some "special" sauce
+RUN apt-get -q -y update && \
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgl1 \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
 # your regular RUN statements here
 # Install required packages
