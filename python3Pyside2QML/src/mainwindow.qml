@@ -1,21 +1,35 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.0
+import QtQuick 2.13
+import QtQuick.Window 2.13
 
-Rectangle {
-    width: 200
-    height: 200
-    color: "green"
+Window {
+    id: mainWindow
+    visible: true
+    visibility: "FullScreen"
+    width: 640
+    height: 320
+    title: qsTr("Title")
 
-    Text {
-        id: mytext
-        objectName: "mytext"
-        text: "Hello World"
-        anchors.centerIn: parent
+    OpacityAnimator
+    {
+        id: animator
+        target: mainWindow.contentItem
+        from: 0
+        to: 1
+        duration: 1000
+        running: true
     }
 
-    Button {
-        id: mybutton
-        objectName: "mybutton"
-        text: "Hello"
+    ScaleAnimator {
+        target: mainWindow.contentItem
+        from: 0
+        to: 1
+        duration: 5000
+        running: true
+        easing.type: "Bezier"
+    }
+
+    Scene {
+        id: main
+        anchors.fill: parent
     }
 }
