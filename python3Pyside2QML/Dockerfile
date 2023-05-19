@@ -19,6 +19,25 @@ ARG APP_ROOT=/home/torizon
 ARG GPU=
 
 FROM --platform=linux/${IMAGE_ARCH} \
+     torizon/wayland-base${GPU}:${BASE_VERSION} AS opengles
+
+ARG IMAGE_ARCH
+ARG GPU
+ARG APP_EXECUTABLE
+ARG APP_ROOT
+
+# Make sure we don't get notifications we can't answer during building.
+ENV DEBIAN_FRONTEND="noninteractive"
+
+# Install required packages
+RUN apt-get -q -y update && \
+    apt-get -q -y install \
+    libqt5gui5-gles libqt5quick5-gles \
+    && apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
+
+FROM --platform=linux/${IMAGE_ARCH} \
      torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
@@ -56,6 +75,7 @@ RUN apt-get -q -y update && \
     python3-pyside2.qtquick \
     python3-pyside2.qtnetwork \
     qml-module-qtquick-dialogs \
+    qtwayland5 \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
@@ -63,6 +83,11 @@ RUN apt-get -q -y update && \
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# replace the libs from the opengles image
+COPY --from=opengles /usr/lib/aarch64-linux-gnu /usr2/lib/aarch64-linux-gnu
+# rsync the files
+RUN rsync -a /usr2/lib/aarch64-linux-gnu /usr/lib/aarch64-linux-gnu && \
+    rm -rf /usr2
 
 # Create virtualenv
 RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
@@ -81,5 +106,7 @@ COPY /src ${APP_ROOT}/src
 WORKDIR ${APP_ROOT}
 
 ENV APP_ROOT=${APP_ROOT}
+ENV QT_QPA_PLATFORM="wayland"
+
 # Activate and run the code
 CMD . ${APP_ROOT}/.venv/bin/activate && python3 src/main.py --no-sandbox
