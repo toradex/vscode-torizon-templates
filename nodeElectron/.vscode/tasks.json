@@ -217,6 +217,30 @@
             }
         },
         {
+            "label": "overwrite-libs-vivante",
+            "detail": "hide",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "if [ \"${config:torizon_gpu}\" = \"-vivante\" ]; then cp /usr/lib/aarch64-linux-gnu/libEGL.so ${config:torizon_app_root}/app/ && cp /usr/lib/aarch64-linux-gnu/libGLESv2.so ${config:torizon_app_root}/app/; fi"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "start-torizon-debug-arm64",
             "detail": "hide",
             "command": "ssh",
@@ -231,7 +255,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "${config:torizon_app_root}/app/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} --ozone-platform=wayland >out.log 2>err.log &"
+                "${config:torizon_app_root}/app/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} --ozone-platform=wayland --use-gl=egl --in-process-gpu >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -247,7 +271,8 @@
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
                 "pos-cleanup",
-                "deploy-torizon-arm64"
+                "deploy-torizon-arm64",
+                "overwrite-libs-vivante"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
