@@ -36,6 +36,19 @@ ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 COPY . /build
 WORKDIR /build
 
+# for vivante GPU we need some "special" sauce
+RUN apt-get -q -y update && \
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgl1 \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
 # Install required packages
 RUN apt-get -q -y update && \
     apt-get -q -y install \
@@ -72,8 +85,13 @@ RUN npm config set registry https://registry.npmjs.org/
 RUN npm install -g npm@8.10.0
 
 # build the application
+# overwrite the EGL lib for vivante GPU
 RUN npm install && \
-    npx electron-forge package -a arm64 -p linux
+    npx electron-forge package -a arm64 -p linux && \
+    if [ "${GPU}" = "-vivante" ]; then \
+        cp /usr/lib/aarch64-linux-gnu/libEGL.so /build/out/__change__-linux-${IMAGE_ARCH} && \
+        cp /usr/lib/aarch64-linux-gnu/libGLESv2.so /build/out/__change__-linux-${IMAGE_ARCH}; \
+    fi
 
 # BUILD ------------------------------------------------------------------------
 
