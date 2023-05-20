@@ -4,10 +4,13 @@ ARG BASE_VERSION=3-bookworm
 
 ARG IMAGE_ARCH=
 
+ARG GPU=
+
 # BUILD ------------------------------------------------------------------------
 FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
 
 ARG IMAGE_ARCH
+ARG GPU
 
 RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
         echo aarch64-unknown-linux-gnu > /rust-toolchain-arch.txt; \
