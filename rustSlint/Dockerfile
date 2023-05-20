@@ -11,11 +11,17 @@ ARG IMAGE_ARCH=
 ##
 ARG APP_EXECUTABLE=__change__
 
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
+
 
 # BUILD ------------------------------------------------------------------------
 FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
 
 ARG IMAGE_ARCH
+ARG GPU
 ARG COMPILER_ARCH
 ARG APP_EXECUTABLE
 ENV IMAGE_ARCH ${IMAGE_ARCH}
@@ -75,11 +81,25 @@ RUN TARGET=$(cat /rust-toolchain-arch.txt) && \
     cp target/$TARGET/release/$APP_EXECUTABLE target/deploy
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
+ARG GPU
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+
+# for vivante GPU we need some "special" sauce
+RUN apt-get -q -y update && \
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgl1 \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Slint dependencies
 RUN apt-get update \
