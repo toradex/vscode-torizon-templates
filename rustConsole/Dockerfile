@@ -16,6 +16,10 @@ ARG APP_EXECUTABLE=__change__
 # BUILD ------------------------------------------------------------------------
 FROM rust:1.48 AS Build
 
+ARG IMAGE_ARCH
+ARG APP_EXECUTABLE
+ENV IMAGE_ARCH ${IMAGE_ARCH}
+
 RUN apt-get update && \
     apt-get install -y \
     gcc-arm-linux-gnueabihf \
@@ -25,9 +29,6 @@ RUN apt-get update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-RUN rustup target add aarch64-unknown-linux-gnu && \
-    rustup target add armv7-unknown-linux-gnueabihf
-
 ARG UNAME=rustuser
 ARG UID=1000
 ARG GID=1000
@@ -36,17 +37,24 @@ RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
 
 USER $UNAME
 
+RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
+        echo aarch64-unknown-linux-gnu > ~/rust-toolchain-arch.txt; \
+    elif [ "$IMAGE_ARCH" = "arm" ] ; then \
+        echo armv7-unknown-linux-gnueabihf > ~/rust-toolchain-arch.txt; \
+    elif [ "$IMAGE_ARCH" = "amd64" ] ; then \
+        echo x86_64-unknown-linux-gnu > ~/rust-toolchain-arch.txt; \
+    fi
+
+RUN rustup target add $(cat ~/rust-toolchain-arch.txt)
+
 WORKDIR /app
 
 COPY . /app
 
-RUN mkdir -p output
-
-RUN if [ "$IMAGE_ARCH" == "arm64" ] ; then \
-    cargo build --target aarch64-unknown-linux-gnu; \
-    elif [ "$IMAGE_ARCH" == "arm32" ] ; then \
-    cargo build --target armv7-unknown-linux-gnueabihf; \
-    fi
+RUN TARGET=$(cat ~/rust-toolchain-arch.txt) && \
+    cargo build --release --target $TARGET && \
+    mkdir -p target/deploy && \
+    cp target/$TARGET/release/$APP_EXECUTABLE target/deploy
 
 # BUILD ------------------------------------------------------------------------
 
@@ -63,9 +71,9 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     && apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
-COPY --from=Build /app/debug /app
+COPY --from=Build /app/target/deploy/${APP_EXECUTABLE} /usr/bin/${APP_EXECUTABLE}
 
 # ADD YOUR ARGUMENTS HERE
-CMD [ "./app/main" ]
+CMD ${APP_EXECUTABLE}
 
 # DEPLOY ------------------------------------------------------------------------
