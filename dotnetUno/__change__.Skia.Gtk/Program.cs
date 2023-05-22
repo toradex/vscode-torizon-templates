@@ -15,16 +15,8 @@ namespace __change__.Skia.Gtk
 			};
 
 			var host = new GtkHost(() => new App(), args);
-			
-			if (!Environment.GetEnvironmentVariable("UNO_DISABLE_OPENGL")
-				.Equals("true"))
-			{
-				host.RenderSurfaceType = RenderSurfaceType.OpenGL;
-			}
-			else
-			{
-				host.RenderSurfaceType = RenderSurfaceType.Software;
-			}
+			// FIXME: if your machine supports openGL remove this
+			host.RenderSurfaceType = RenderSurfaceType.Software;
 
 			host.Run();
 		}
