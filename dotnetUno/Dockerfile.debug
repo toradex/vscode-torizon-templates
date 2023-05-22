@@ -58,7 +58,7 @@ RUN apt-get -q -y update && \
             imx-gpu-viv-wayland-dev \
         ; else \
             apt-get -q -y install \
-            libgl1 \
+            libgl1 libgles2 libgl1-mesa-dev \
         ; fi \
     && \
     apt-get clean && apt-get autoremove && \
