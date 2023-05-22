@@ -110,6 +110,57 @@
             }
         },
         {
+            "label": "run-torizon-arm",
+            "detail": "hide",
+            "command": "ssh",
+            "type": "process",
+            "isBackground": true,
+            "presentation": {
+              "echo": true,
+              "reveal": "always",
+              "focus": false,
+              "panel": "dedicated",
+              "showReuseMessage": true,
+              "clear": true
+            },
+            "args": [
+              "-i",
+              "${workspaceFolder}/.conf/id_rsa",
+              "-p",
+              "${config:torizon_debug_ssh_port}",
+              "-o",
+              "UserKnownHostsFile=/dev/null",
+              "-o",
+              "StrictHostKeyChecking=no",
+              "-ttt",
+              "${config:torizon_run_as}@${config:torizon_ip}",
+              "cd ~/app && ./__change__.Skia.Linux.FrameBuffer"
+            ],
+            "dependsOn": [
+              "deploy-torizon-arm"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": {
+              "pattern": {
+                "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                "file": 1,
+                "location": 2,
+                "severity": 3,
+                "code": 4,
+                "message": 5
+              },
+              "background": {
+                "activeOnStart": true,
+                "beginsPattern": "^\\s*",
+                "endsPattern": "^\\s*"
+              }
+            },
+            "icon": {
+              "id": "flame",
+              "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "stop-torizon-arm",
             "detail": "hide",
             "command": "sshpass",
@@ -219,6 +270,57 @@
             }
         },
         {
+            "label": "run-torizon-arm64",
+            "detail": "hide",
+            "command": "ssh",
+            "type": "process",
+            "isBackground": true,
+            "presentation": {
+              "echo": true,
+              "reveal": "always",
+              "focus": false,
+              "panel": "dedicated",
+              "showReuseMessage": true,
+              "clear": true
+            },
+            "args": [
+              "-i",
+              "${workspaceFolder}/.conf/id_rsa",
+              "-p",
+              "${config:torizon_debug_ssh_port}",
+              "-o",
+              "UserKnownHostsFile=/dev/null",
+              "-o",
+              "StrictHostKeyChecking=no",
+              "-ttt",
+              "${config:torizon_run_as}@${config:torizon_ip}",
+              "cd ~/app && ./__change__.Skia.Linux.FrameBuffer"
+            ],
+            "dependsOn": [
+              "deploy-torizon-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": {
+              "pattern": {
+                "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                "file": 1,
+                "location": 2,
+                "severity": 3,
+                "code": 4,
+                "message": 5
+              },
+              "background": {
+                "activeOnStart": true,
+                "beginsPattern": "^\\s*",
+                "endsPattern": "^\\s*"
+              }
+            },
+            "icon": {
+              "id": "flame",
+              "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "stop-torizon-arm64",
             "detail": "hide",
             "command": "sshpass",
@@ -325,6 +427,57 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "run-torizon-amd64",
+            "detail": "hide",
+            "command": "ssh",
+            "type": "process",
+            "isBackground": true,
+            "presentation": {
+              "echo": true,
+              "reveal": "always",
+              "focus": false,
+              "panel": "dedicated",
+              "showReuseMessage": true,
+              "clear": true
+            },
+            "args": [
+              "-i",
+              "${workspaceFolder}/.conf/id_rsa",
+              "-p",
+              "${config:torizon_debug_ssh_port}",
+              "-o",
+              "UserKnownHostsFile=/dev/null",
+              "-o",
+              "StrictHostKeyChecking=no",
+              "-ttt",
+              "${config:torizon_run_as}@${config:torizon_ip}",
+              "cd ~/app && ./__change__.Skia.Linux.FrameBuffer"
+            ],
+            "dependsOn": [
+              "deploy-torizon-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": {
+              "pattern": {
+                "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                "file": 1,
+                "location": 2,
+                "severity": 3,
+                "code": 4,
+                "message": 5
+              },
+              "background": {
+                "activeOnStart": true,
+                "beginsPattern": "^\\s*",
+                "endsPattern": "^\\s*"
+              }
+            },
+            "icon": {
+              "id": "flame",
+              "color": "terminal.ansiYellow"
             }
         },
         {

@@ -4,15 +4,8 @@
         {
             "name": "Torizon AMD64",
             "type": "coreclr",
-            "request": "launch",
-            "program": "~/app/__change__.Skia.Linux.FrameBuffer",
-            "cwd": "~/app/",
-            "stopAtEntry": false,
-            "console": "internalConsole",
-            "env": {
-                "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
-            },
-            "args": [],
+            "request": "attach",
+            "processName": "__change__.Skia.Linux.FrameBuffer",
             "pipeTransport": {
                 "pipeCwd": "${workspaceFolder}",
                 "pipeProgram": "ssh",
@@ -31,21 +24,14 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "deploy-torizon-amd64",
-            "postDebugTask": "stop-torizon-amd64"
+            "preLaunchTask": "run-torizon-amd64",
+            "postDebugTask": "stop-torizon-amd4"
         },
         {
             "name": "Torizon ARMv7",
             "type": "coreclr",
-            "request": "launch",
-            "program": "~/app/__change__.Skia.Linux.FrameBuffer",
-            "cwd": "~/app/",
-            "stopAtEntry": false,
-            "console": "internalConsole",
-            "env": {
-                "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
-            },
-            "args": [],
+            "request": "attach",
+            "processName": "__change__.Skia.Linux.FrameBuffer",
             "pipeTransport": {
                 "pipeCwd": "${workspaceFolder}",
                 "pipeProgram": "ssh",
@@ -64,21 +50,14 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "deploy-torizon-arm",
+            "preLaunchTask": "run-torizon-arm",
             "postDebugTask": "stop-torizon-arm"
         },
         {
             "name": "Torizon ARMv8",
             "type": "coreclr",
-            "request": "launch",
-            "program": "~/app/__change__.Skia.Linux.FrameBuffer",
-            "cwd": "~/app/",
-            "stopAtEntry": false,
-            "console": "internalConsole",
-            "env": {
-                "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
-            },
-            "args": [],
+            "request": "attach",
+            "processName": "__change__.Skia.Linux.FrameBuffer",
             "pipeTransport": {
                 "pipeCwd": "${workspaceFolder}",
                 "pipeProgram": "ssh",
@@ -97,7 +76,7 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "deploy-torizon-arm64",
+            "preLaunchTask": "run-torizon-arm64",
             "postDebugTask": "stop-torizon-arm64"
         },
     ]
