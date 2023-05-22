@@ -7,6 +7,7 @@ services:
     image: ${LOCAL_REGISTRY}:5002/__container__:${TAG}
     # Required to get udev events from host udevd via netlink
     network_mode: host
+    tty: true
     volumes:
       - type: bind
         source: /tmp
@@ -40,6 +41,7 @@ services:
     image: ${DOCKER_LOGIN}/__container__:${TAG}
     # Required to get udev events from host udevd via netlink
     network_mode: host
+    tty: true
     volumes:
       - type: bind
         source: /tmp
