@@ -13,6 +13,11 @@ ARG BASE_VERSION=3-6.0
 # Application Name
 ##
 ARG APP_EXECUTABLE=__change__
+
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
 # ARGUMENTS --------------------------------------------------------------------
 
 
@@ -38,8 +43,23 @@ FROM --platform=linux/${IMAGE_ARCH} \
     torizon/dotnet-uno:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
+ARG GPU
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+
+# for vivante GPU we need some "special" sauce
+RUN apt-get -q -y update && \
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgles2 libgl1-mesa-dev \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # ADD YOUR PACKAGES HERE
