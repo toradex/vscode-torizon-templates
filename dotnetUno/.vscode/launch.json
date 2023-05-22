@@ -8,7 +8,7 @@
       // Use IntelliSense to find out which attributes exist for C# debugging
       // Use hover for the description of the existing attributes
       // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-      "name": "Skia.GTK openGL",
+      "name": "Debug Local",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build-torizon-local",
@@ -18,28 +18,6 @@
       "env": {
         "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
         "GDK_BACKEND": "x11",
-        "UNO_DISABLE_OPENGL": "false",
-        "UNO_FULLSCREEN": "false"
-      },
-      "cwd": "${workspaceFolder}/__change__.Skia.Gtk",
-      // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
-      "console": "internalConsole",
-      "stopAtEntry": false
-    },
-    {
-      // Use IntelliSense to find out which attributes exist for C# debugging
-      // Use hover for the description of the existing attributes
-      // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-      "name": "Skia.GTK noGL",
-      "type": "coreclr",
-      "request": "launch",
-      "preLaunchTask": "build-torizon-local",
-      // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net6.0/__change__.Skia.Gtk.dll",
-      "args": [],
-      "env": {
-        "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
-        "UNO_DISABLE_OPENGL": "true",
         "UNO_FULLSCREEN": "false"
       },
       "cwd": "${workspaceFolder}/__change__.Skia.Gtk",
@@ -58,8 +36,6 @@
       "env": {
         "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
         //"GDK_BACKEND": "x11",
-        //"GDK_GL": "gles",
-        "UNO_DISABLE_OPENGL": "true",
         "UNO_FULLSCREEN": "true"
       },
       "args": [],
@@ -94,7 +70,6 @@
       "env": {
         "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
         // "GDK_BACKEND": "x11",
-        "UNO_DISABLE_OPENGL": "true",
         "UNO_FULLSCREEN": "true"
       },
       "args": [],
@@ -130,7 +105,6 @@
         "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
         //"GDK_BACKEND": "x11",
         //"GDK_GL": "gles",
-        "UNO_DISABLE_OPENGL": "true",
         "UNO_FULLSCREEN": "true"
       },
       "args": [],
