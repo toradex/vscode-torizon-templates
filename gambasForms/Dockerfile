@@ -7,19 +7,24 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=2-6.0
+ARG BASE_VERSION=3
 
 ##
 # Application Name
 ##
 ARG APP_EXECUTABLE=__change__
+
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
 # ARGUMENTS --------------------------------------------------------------------
 
 
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/dotnet-uno-debug:${BASE_VERSION} AS Build
+    torizonextras/wayland-base${GPU}:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -45,11 +50,25 @@ RUN gbc3 /build
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/dotnet-uno-debug:${BASE_VERSION} AS Deploy
+    torizonextras/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
+ARG GPU
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+
+# for vivante GPU we need some "special" sauce
+RUN apt-get -q -y update && \
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgl1 \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # ADD YOUR PACKAGES HERE

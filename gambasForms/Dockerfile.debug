@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=2-6.0
+ARG BASE_VERSION=3
 
 ##
 # Application Name
@@ -26,14 +26,21 @@ ARG SSH_DEBUG_PORT=
 ##
 ARG SSHUSERNAME=
 
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
+
 # BUILD ------------------------------------------------------------------------
 ##
 # Deploy Step .NET Uno
 ##
 # TODO: Add arm support
-FROM matheuscastello/gambas3:${IMAGE_ARCH} AS Debug
+FROM --platform=linux/${IMAGE_ARCH} \
+    torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
+ARG GPU
 ARG SSH_DEBUG_PORT
 ARG APP_EXECUTABLE
 ARG SSHUSERNAME
@@ -45,9 +52,18 @@ EXPOSE ${SSH_DEBUG_PORT}
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
 
-# TODO: use this still we have a new libdrm from feeds
-RUN sed -i '/deb https:\/\/feeds.toradex.com*/d' \
-    /etc/apt/sources.list
+# for vivante GPU we need some "special" sauce
+RUN apt-get -q -y update && \
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgl1 \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
 # your regular RUN statements here
 # Install required packages
@@ -57,6 +73,10 @@ RUN apt-get -q -y update && \
     openssh-server \
     rsync \
     file \
+    gambas3 \
+    gambas3-gb-gui \
+    gambas3-gb-form \
+    gambas3-gb-gtk3-wayland \
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
