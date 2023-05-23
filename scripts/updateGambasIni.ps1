@@ -36,7 +36,7 @@ Write-Host $_deviceHostname
 
 # replace
 $datas.Debug["RemoteServer"] = `
-    "$_deviceHostname"
+    "`"$_deviceHostname`""
 
 $datas.Debug["RemotePort"] = `
     "$_devicePort"
