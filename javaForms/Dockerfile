@@ -1,3 +1,4 @@
+# FIXME: THIS IS NOT EVEN USABLE IS AN COPY FROM MONO
 # ARGUMENTS --------------------------------------------------------------------
 ##
 # Board architecture
@@ -13,13 +14,18 @@ ARG BASE_VERSION=3
 # Application Name
 ##
 ARG APP_EXECUTABLE=__change__
+
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
 # ARGUMENTS --------------------------------------------------------------------
 
 
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base:${BASE_VERSION} AS Build
+    torizon/wayland-base${GPU}:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
