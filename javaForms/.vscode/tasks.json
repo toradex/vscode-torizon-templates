@@ -431,7 +431,7 @@
             }
         },
         {
-            "label": "deploy-torizon-arm64",
+            "label": "deploy-torizon-arm",
             "detail": "hide",
             "command": "echo",
             "type": "process",
