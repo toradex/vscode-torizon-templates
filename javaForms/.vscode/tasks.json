@@ -45,8 +45,9 @@
                 "cwd": "${workspaceFolder}"
             },
             "args": [
-                "-jar",
-                "${workspaceFolder}/dist/__change__.jar"
+                "-cp",
+                "libs/*:dist/__change__.jar",
+                "__change__.Form1"
             ],
             "problemMatcher": [
                 "$gcc"
