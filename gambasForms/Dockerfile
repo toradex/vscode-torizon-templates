@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3
+ARG BASE_VERSION=0.0.1
 
 ##
 # Application Name
@@ -24,7 +24,7 @@ ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/wayland-base${GPU}:${BASE_VERSION} AS Build
+    ghcr.io/microhobby/gambas3${GPU}:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -38,7 +38,6 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
-    gambas3 \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # build
@@ -50,7 +49,7 @@ RUN gbc3 /build
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizonextras/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+    ghcr.io/microhobby/gambas3${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -76,10 +75,6 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
-    gambas3-runtime \
-    gambas3-gb-gui \
-    gambas3-gb-form \
-    gambas3-gb-gtk3-wayland \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
