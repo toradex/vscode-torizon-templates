@@ -56,19 +56,6 @@ ARG GPU
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
-# for vivante GPU we need some "special" sauce
-RUN apt-get -q -y update && \
-        if [ "${GPU}" = "-vivante" ]; then \
-            apt-get -q -y install \
-            imx-gpu-viv-wayland-dev \
-        ; else \
-            apt-get -q -y install \
-            libgl1 \
-        ; fi \
-    && \
-    apt-get clean && apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/*
-
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # ADD YOUR PACKAGES HERE
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
