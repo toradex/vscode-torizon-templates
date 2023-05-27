@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3
+ARG BASE_VERSION=0.0.1
 
 ##
 # Application Name
@@ -37,7 +37,7 @@ ARG GPU=
 ##
 # TODO: Add arm support
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
+    ghcr.io/microhobby/gambas3${GPU}:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -73,10 +73,6 @@ RUN apt-get -q -y update && \
     openssh-server \
     rsync \
     file \
-    gambas3 \
-    gambas3-gb-gui \
-    gambas3-gb-form \
-    gambas3-gb-gtk3-wayland \
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
