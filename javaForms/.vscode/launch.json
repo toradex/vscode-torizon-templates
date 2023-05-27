@@ -1,12 +1,6 @@
 {
     "version": "0.2.0",
     "configurations": [
-        // {
-        //     "type": "java",
-        //     "name": "Run Local",
-        //     "request": "launch",
-        //     "mainClass": "examples.Form1"
-        // },
         {
             "type": "java",
             "name": "Run Local",
