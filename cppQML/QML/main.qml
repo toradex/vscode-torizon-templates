@@ -4,9 +4,9 @@ import QtQuick.Window
 Window {
     id: mainWindow
     visible: true
-    visibility: "FullScreen"
+    visibility: "Windowed"
     width: 640
-    height: 320
+    height: 480
     title: qsTr("Title")
 
     OpacityAnimator
