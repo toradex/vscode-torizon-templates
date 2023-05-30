@@ -1,10 +1,4 @@
-# FIXME: THIS IS NOT EVEN USABLE IS AN COPY FROM MONO
 # ARGUMENTS --------------------------------------------------------------------
-##
-# Board architecture
-##
-ARG IMAGE_ARCH=
-
 ##
 # Base container version
 ##
@@ -16,76 +10,87 @@ ARG BASE_VERSION=3
 ARG APP_EXECUTABLE=__change__
 
 ##
+# Board architecture
+# arm or arm64
+##
+ARG IMAGE_ARCH=
+
+##
 # Board GPU vendor prefix
 ##
 ARG GPU=
-# ARGUMENTS --------------------------------------------------------------------
 
-
-
-# BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
     torizon/wayland-base${GPU}:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
-ARG APP_EXECUTABLE
+ARG GPU
 
-COPY . /build
-WORKDIR /build
-
-# Add the mono preview feed
+# __deps__
 RUN apt-get -q -y update && \
-    apt install apt-transport-https dirmngr gnupg ca-certificates && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
-    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
-    echo "deb https://download.mono-project.com/repo/debian preview-buster main" \
-    | sudo tee /etc/apt/sources.list.d/mono-official-preview.list
-
-RUN apt-get -y update && apt-get install -y --no-install-recommends \
+    apt-get -q -y install \
+    default-jdk \
+    ant \
     # ADD YOUR PACKAGES HERE
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
-    mono-complete \
-	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+# __deps__
 
-# build
-RUN msbuild
+COPY . /app
+WORKDIR /app
 
-# BUILD ------------------------------------------------------------------------
+RUN ant jar
 
-
-
-# DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-uno-debug:${BASE_VERSION} AS Deploy
+    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
+ARG GPU
 ARG APP_EXECUTABLE
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
-# Add the mono preview feed
+# SSH for remote debug
+EXPOSE 2231
+ARG SSHUSERNAME=torizon
+
+# Make sure we don't get notifications we can't answer during building.
+ENV DEBIAN_FRONTEND="noninteractive"
+
+# for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
-    apt install apt-transport-https dirmngr gnupg ca-certificates && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
-    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
-    echo "deb https://download.mono-project.com/repo/debian preview-buster main" \
-    | sudo tee /etc/apt/sources.list.d/mono-official-preview.list
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgl1 \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apt-get -y update && apt-get install -y --no-install-recommends \
-    # ADD YOUR PACKAGES HERE
+# your regular RUN statements here
+# Install required packages
+RUN apt-get -q -y update && \
+    apt-get -q -y install \
+    file \
+    default-jre \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
-    mono-runtime && \
-	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
-# copy the build
-COPY --from=Build /build/bin/Debug /app
 
-# ADD YOUR ARGUMENTS HERE
-CMD [ "mono", "./app/__change__.exe" ]
+COPY libs /app/libs
+USER torizon
+WORKDIR /app
+COPY --from=Build /app /app
 
-# DEPLOY -----------------------------------------------------------------------
+CMD [ "java", "-cp","libs/*:dist/__change__.jar", "__change__.Form1" ]
