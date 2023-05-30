@@ -182,5 +182,6 @@
                 "color": "terminal.ansiYellow"
             }
         }
-    ]
+    ],
+    "inputs": []
 }
