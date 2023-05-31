@@ -32,8 +32,7 @@ COPY . /build
 WORKDIR /build
 
 # build
-RUN dotnet restore && \
-dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained
+RUN dotnet publish __change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj -c Release -r linux-${IMAGE_ARCH} --no-self-contained
 # BUILD ------------------------------------------------------------------------
 
 
