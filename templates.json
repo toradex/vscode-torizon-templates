@@ -103,8 +103,7 @@
             "support": "Toradex",
             "tests": {
                 "debuggers": [
-                    "Skia.GTK openGL", 
-                    "Skia.GTK noGL", 
+                    "Debug Local", 
                     "Torizon AMD64", 
                     "Torizon ARMv7", 
                     "Torizon ARMv8"
@@ -150,7 +149,6 @@
             "tests": {
                 "debuggers": [
                     "Debug Main Process", 
-                    ".NET Core Attach", 
                     "Torizon Render Process",
                     "Torizon AMD64",
                     "Torizon ARMv7",
@@ -159,7 +157,7 @@
                 "debuggerConsole": null,
                 "mainFile": "main.js",
                 "mainFileBreakpointLine": 33,
-                "successDebugMessage": "GetVSyncParametersIfAvailable()"
+                "successDebugMessage": ""
             }
         },
         {
@@ -252,7 +250,7 @@
                 ],
                 "debuggerConsole": null,
                 "mainFile": "src/__change__/Form1.java",
-                "mainFileBreakpointLine": 65,
+                "mainFileBreakpointLine": 80,
                 "successDebugMessage": ""
             }
         },
@@ -271,7 +269,7 @@
                     "Torizon ARMv7", 
                     "Torizon ARMv8"
                 ],
-                "debuggerConsole": null,
+                "debuggerConsole": "cppdbg",
                 "mainFile": "src/main.rs",
                 "mainFileBreakpointLine": 2,
                 "successDebugMessage": "Hello Torizon!"
