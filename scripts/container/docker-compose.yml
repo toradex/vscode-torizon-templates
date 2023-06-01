@@ -1,13 +1,15 @@
 version: "3.9"
 services:
-  ide:
+  tasks:
     build:
       context: ../
-      dockerfile: container/Containerfile.ide
-    image: torizonextras/ide
+      dockerfile: container/Containerfile.tasks
+    image: torizonextras/torizoncore-dev-tasks:${BRANCH}
 
   pwsh-gitlab:
     build:
       context: ../
       dockerfile: container/Containerfile.gitlab
-    image: torizonextras/pwsh-gitlab
+      args:
+        - BRANCH=${BRANCH}
+    image: torizonextras/pwsh-gitlab:${BRANCH}
