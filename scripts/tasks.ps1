@@ -112,9 +112,19 @@ function getTasksLabels () {
 }
 
 function listTasksLabel () {
+    $_noIndex = $false
+
+    if ($null -ne $args[0]) {
+        if ($args[0] -eq "--no-index") {
+            $_noIndex = $true
+        }
+    }
+
     for ($i = 0; $i -le $json.tasks.length; $i++) {
         if ($null -ne $json.tasks[$i].label) {
-            Write-Host -NoNewline "$($i + 1).`t"
+            if ($_noIndex -eq $false) {
+                Write-Host -NoNewline "$($i + 1).`t"
+            }
             Write-Host $json.tasks[$i].label
         }
     }
@@ -522,7 +532,7 @@ settingsToGlobal
 try {
     switch ($args[0]) {
         "list" {
-            listTasksLabel
+            listTasksLabel $args[1]
         }
         "desc" {
             taskArgumentExecute `
