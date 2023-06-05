@@ -19,6 +19,7 @@
     ],
     "ignoreWords": [
         "torizon",
+        "torizoncore",
         "torizon.io",
         "Torizon",
         "git",
@@ -46,6 +47,7 @@
         "armv",
         "aarch",
         "riscv",
+        "vivante",
         "SSHUSERNAME",
         "compose",
         "listenaddress",
@@ -56,9 +58,14 @@
         "LASTEXITCODE",
         "CLIENTID",
         "CLIENTSECRET",
+        "UUSER",
+        "NOPASSWD",
+        "NICCONFIG",
         "isnot",
         "ascii",
-        "fullname"
+        "fullname",
+        "Devs",
+        "wbem"
     ],
     "import": [],
     "languageSettings": [

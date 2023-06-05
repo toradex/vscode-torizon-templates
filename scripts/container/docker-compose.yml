@@ -4,6 +4,9 @@ services:
     build:
       context: ../
       dockerfile: container/Containerfile.tasks
+      args:
+        - BRANCH=${BRANCH}
+        - REPO=microhobby/vscode-torizon-templates
     image: torizonextras/torizoncore-dev-tasks:${BRANCH}
 
   pwsh-gitlab:
@@ -13,3 +16,34 @@ services:
       args:
         - BRANCH=${BRANCH}
     image: torizonextras/pwsh-gitlab:${BRANCH}
+
+  torizoncore-dev:
+    build:
+      context: ../
+      dockerfile: container/Containerfile.dev
+      args:
+        - BRANCH=${BRANCH}
+        - UID=${UUID}
+    image: torizonextras/torizoncore-dev:${BRANCH}
+    privileged: true
+    network_mode: host
+    environment:
+      - APOLLOX_TEMPLATES_GIT_REPO=https://github.com/microhobby/vscode-torizon-templates.git
+      - APOLLOX_TEMPLATES_GIT_REPO_BRANCH=${BRANCH}
+      #- APOLLOX_TEMPLATES_GIT_TAG=
+      - WSL_DISTRO_NAME=${WSL_DISTRO_NAME}
+      - APOLLOX_CONTAINER=1
+      - UUID=${UUID}
+      - UUSER=${USER}
+      - APOLLOX_WORKSPACE=${PWD}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /run/user/${UUID}/wayland-0:/run/user/${UUID}/wayland-0
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${HOME}/.tcd/:/root/.tcd/
+      - ${PWD}:/workspace
+      - ${PWD}:${PWD}
+    container_name: torizoncore-dev-${SHA_DIR}
+    stdin_open: true
+    tty: true
+    pid: host

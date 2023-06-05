@@ -1,21 +1,88 @@
-FROM torizonextras/torizoncore-dev-tasks
+ARG BRANCH=dev
+ARG UID=1000
 
-# we need curl for TCB
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS Build
+
+ARG BRANCH
+ARG UID
+
+COPY ./tui /build
+WORKDIR /build
+
+RUN dotnet restore && \
+dotnet publish -c Release
+
+
+FROM torizonextras/torizoncore-dev-tasks:${BRANCH}
+
+ARG BRANCH
+ARG UID
+
+# we need to install all the ApolloX dependencies
+# powershell wget git curl is already installed in the base image
 RUN apt-get update && \
     apt-get install -y \
-    curl \
-    git \
+    jq \
+    sudo \
+# extension tools
+    iputils-ping \
+    nmap \
+    avahi-utils \
+    file sshpass \
+    net-tools \
+# extension tools
+# graphical tools
+    wayland-protocols \
+    libwayland-dev \
+    libwayland-egl-backend-dev \
+    libegl1-mesa-dev \
+    libgles2-mesa-dev \
+    libncursesw5-dev \
+    libncursesw6 \
+# graphical tools
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
+
+# we also need to install nodejs 18
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
+# to share the graphical interface with the host
+ENV WAYLAND_DISPLAY=wayland-0
+ENV DISPLAY=:0
+ENV XDG_RUNTIME_DIR=/run/user/${UID}
+ENV XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+
+VOLUME /tmp/.X11-unix:/tmp/.X11-unix
+VOLUME /run/user/${UID}/wayland-0:/run/user/${UID}/wayland-0
+# # Set the Wayland socket file permissions
+# RUN chmod 777 /run/user/${UID}/wayland-0
+
+# to share the docker socket with the host
+VOLUME /var/run/docker.sock:/var/run/docker.sock
 
 # use docker tools
 COPY --from=docker:dind /usr/local/bin/docker /usr/local/bin/
 COPY --from=docker:dind /usr/libexec/docker/cli-plugins /usr/local/lib/docker/cli-plugins
 
+# get current scripts
+RUN mv /root/vscode-torizon-templates /root/.apollox
+RUN chmod -R 757 /root && \
+    cd /root/.apollox/scripts/node && \
+    npm install ./apollox-0.0.88.tgz
+
+# from build copy the libraries
+COPY --from=Build /build/bin/Release/net6.0/publish/ /root/.tui/
+
+# inject the zygote
+COPY ./zygote.ps1 /root/.apollox/scripts/zygote.ps1
+RUN chmod +x /root/.apollox/scripts/zygote.ps1 && \
+    ln -s /root/.apollox/scripts/zygote.ps1 /usr/local/bin/zygote
+
 # the workspace will be the mount point for local path
 WORKDIR /workspace
-
-ENTRYPOINT []
 
 CMD [ "pwsh" ]
