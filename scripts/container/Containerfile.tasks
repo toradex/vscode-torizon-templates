@@ -1,6 +1,24 @@
+ARG BRANCH=dev
+ARG REPO=torizonextras/vscode-torizon-templates
+
 FROM mcr.microsoft.com/powershell:preview-debian-11
 
-COPY . /scripts
+ARG BRANCH
+ARG REPO
+
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    wget \
+    git \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /root
+RUN git clone --branch ${BRANCH} \
+    https://github.com/${REPO}.git
+
 WORKDIR /workspace
 
 ENTRYPOINT [ "pwsh", "-c" ]

@@ -61,6 +61,9 @@ if ($_packagesToInstall.Count -gt 0) {
     $_installConfirm = Read-Host `
         "Do you want to try to install the dependencies? <y/N>"
 
+    # make sure to update the list first
+    sudo apt-get update
+
     if ($_installConfirm -eq 'y') {
         foreach ($item in $_packagesToInstall) {
             sudo apt-get install -y $item

@@ -526,7 +526,15 @@ function getCliInputs () {
 
 # main()
 # set the relative workspaceFolder (following the pattern that VS Code expects)
-$Global:workspaceFolder = Join-Path $PSScriptRoot ..
+if (
+    ($null -eq $env:APOLLOX_WORKSPACE) -and 
+    ($env:APOLLOX_CONTAINER -eq 1)
+) {
+    $Global:workspaceFolder = Join-Path $PSScriptRoot ..
+} else {
+    $Global:workspaceFolder = $env:APOLLOX_WORKSPACE
+}
+
 settingsToGlobal
 
 try {
