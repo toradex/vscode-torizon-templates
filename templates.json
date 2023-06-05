@@ -10,14 +10,12 @@
             "multiContainer": false,
             "support": "Toradex",
             "tests": {
-                "debuggers": [
-                    ".NET Core Launch (console)", 
-                    ".NET Core Attach", 
-                    ".NET Attach Torizon arm64",
-                    "Torizon AMD64",
-                    "Torizon ARMv7",
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": [".NET Core Launch (console)"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": null,
                 "mainFile": "Program.cs",
                 "mainFileBreakpointLine": 2,
@@ -34,13 +32,12 @@
             "multiContainer": false,
             "support": "Toradex",
             "tests": {
-                "debuggers": [
-                    ".NET Core Launch (web)", 
-                    ".NET Core Attach", 
-                    "Torizon AMD64",
-                    "Torizon ARMv7",
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": [".NET Core Launch (web)"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": null,
                 "mainFile": "Program.cs",
                 "mainFileBreakpointLine": 35,
@@ -57,14 +54,12 @@
             "multiContainer": false,
             "support": "Community",
             "tests": {
-                "debuggers": [
-                    ".NET Core Launch (GTK)", 
-                    ".NET Core Attach", 
-                    ".NET Attach Torizon arm64",
-                    "Torizon AMD64",
-                    "Torizon ARMv7",
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": [".NET Core Launch (GTK)"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": null,
                 "mainFile": "App.axaml.cs",
                 "mainFileBreakpointLine": 26,
@@ -81,11 +76,11 @@
             "multiContainer": false,
             "support": "Community",
             "tests": {
-                "debuggers": [
-                    "Torizon AMD64",
-                    "Torizon ARMv7",
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": null,
                 "mainFile": "App.axaml.cs",
                 "mainFileBreakpointLine": 28,
@@ -102,12 +97,12 @@
             "multiContainer": false,
             "support": "Toradex",
             "tests": {
-                "debuggers": [
-                    "Debug Local", 
-                    "Torizon AMD64", 
-                    "Torizon ARMv7", 
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Debug Local"], 
+                    "amd64": ["Torizon AMD64"], 
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": null,
                 "mainFile": "__change__.Shared/App.xaml.cs",
                 "mainFileBreakpointLine": 117,
@@ -122,7 +117,18 @@
             "language": "C#",
             "debugSSHPort": "2226",
             "multiContainer": false,
-            "support": "Community"
+            "support": "Community",
+            "tests": {
+                "debuggers": {
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
+                "debuggerConsole": "run-torizon",
+                "mainFile": "__change__.Shared/App.xaml.cs",
+                "mainFileBreakpointLine": 28,
+                "successDebugMessage": "Uno.UI.RemoteControl.RemoteControlClient"
+            }
         },
         {
             "img": "monowinforms.png",
@@ -147,13 +153,12 @@
             "multiContainer": false,
             "support": "Community",
             "tests": {
-                "debuggers": [
-                    "Debug Main Process", 
-                    "Torizon Render Process",
-                    "Torizon AMD64",
-                    "Torizon ARMv7",
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Debug Main Process"], 
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": null,
                 "mainFile": "main.js",
                 "mainFileBreakpointLine": 33,
@@ -171,12 +176,12 @@
             "multiContainer": false,
             "support": "Community",
             "tests": {
-                "debuggers": [
-                    "Node Local",  
-                    "Torizon AMD64",
-                    "Torizon ARMv7",
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Node Local"],  
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": null,
                 "mainFile": "src/index.ts",
                 "mainFileBreakpointLine": 3,
@@ -193,13 +198,13 @@
             "multiContainer": false,
             "support": "Toradex",
             "tests" : {
-                "debuggers": [
-                    "Launch AMD64", 
-                    "Torizon riscv64", 
-                    "Torizon AMD64", 
-                    "Torizon ARMv7", 
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Local AMD64"], 
+                    "riscv": ["Torizon riscv64"], 
+                    "amd64": ["Torizon AMD64"], 
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": "cppdbg",
                 "mainFile": "src/main.cpp",
                 "mainFileBreakpointLine": 4,
@@ -218,12 +223,12 @@
             "multiContainer": false,
             "support": "Toradex",
             "tests": {
-                "debuggers": [
-                    "Local AMD64", 
-                    "Torizon AMD64", 
-                    "Torizon ARMv7", 
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Local AMD64"], 
+                    "amd64": ["Torizon AMD64"], 
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": "cppdbg",
                 "mainFile": "main.cpp",
                 "mainFileBreakpointLine": 19,
@@ -242,12 +247,12 @@
             "multiContainer": false,
             "support": "Community",
             "tests" : {
-                "debuggers": [
-                    "Run Local",
-                    "Torizon AMD64", 
-                    "Torizon ARMv7", 
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Run Local"],
+                    "amd64": ["Torizon AMD64"], 
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": null,
                 "mainFile": "src/__change__/Form1.java",
                 "mainFileBreakpointLine": 80,
@@ -264,11 +269,11 @@
             "multiContainer": false,
             "support": "Community",
             "tests" : {
-                "debuggers": [
-                    "Launch AMD64",  
-                    "Torizon ARMv7", 
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Local AMD64"],  
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": "cppdbg",
                 "mainFile": "src/main.rs",
                 "mainFileBreakpointLine": 2,
@@ -296,11 +301,11 @@
             "multiContainer": false,
             "support": "Toradex",
             "tests": {
-                "debuggers": [
-                    "Python Local", 
-                    "Torizon ARMv7", 
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Python Local"], 
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": "Python Debug Console",
                 "mainFile": "src/main.py",
                 "mainFileBreakpointLine": 4,
@@ -318,11 +323,11 @@
             "multiContainer": false,
             "support": "Community",
             "tests": {
-                "debuggers": [
-                    "Python Local", 
-                    "Torizon ARMv7", 
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Python Local"], 
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": "Python Debug Console",
                 "mainFile": "src/main.py",
                 "mainFileBreakpointLine": 9,
@@ -353,12 +358,12 @@
             "multiContainer": false,
             "support": "Partner",
             "tests": {
-                "debuggers": [
-                    "Local AMD64",
-                    "Torizon AMD64",
-                    "Torizon ARMv7",
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "local": ["Local AMD64"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": "cppdbg",
                 "mainFile": "src/main.cpp",
                 "mainFileBreakpointLine": 13,
@@ -377,12 +382,11 @@
             "multiContainer": false,
             "support": "Partner",
             "tests": {
-                "debuggers": [
-                    "Local AMD64",
-                    "Torizon AMD64",
-                    "Torizon ARMv7",
-                    "Torizon ARMv8"
-                ],
+                "debuggers": {
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
                 "debuggerConsole": "cppdbg",
                 "mainFile": "src/main.rs",
                 "mainFileBreakpointLine": 12,
