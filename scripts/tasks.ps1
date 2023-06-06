@@ -320,6 +320,20 @@ function checkConfig ([System.Collections.ArrayList] $list) {
     return $ret
 }
 
+function checkLongArgs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if ($item.Contains(" ")) {
+            $item = "'$item'"
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
 function checkWorkspaceFolder ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
@@ -415,6 +429,7 @@ function runTask () {
             $taskArgs = checkTCBInputs($taskArgs)
             $taskArgs = checkInput($taskArgs)
             $taskArgs = checkConfig($taskArgs)
+            $taskArgs = checkLongArgs($taskArgs)
             $taskDepends = $task.dependsOn
             $taskEnv = $task.options.env
             $taskCwd = $task.options.cwd
@@ -471,9 +486,7 @@ function runTask () {
             }
 
             # for powershell we need to change the double quotes to `"
-            if ($_usePwshInsteadBash) {
-                $taskArgs = $taskArgs.Replace('"', '`"')
-            }
+            $taskArgs = $taskArgs.Replace('"', '`"')
 
             # parse the variables
             Write-Host "echo `"$taskCmd $taskArgs`""
@@ -489,12 +502,16 @@ function runTask () {
             }
 
             # execute the task
-            if ($_usePwshInsteadBash -eq $false) {
-                # use bash as default
-                # TODO: be explicit about bash as default on documentation
-                Invoke-Expression "bash -c `"$_cmd`""
+            if ($task.type -eq "shell") {
+                if ($_usePwshInsteadBash -eq $false) {
+                    # use bash as default
+                    # TODO: be explicit about bash as default on documentation
+                    Invoke-Expression "bash -c `"$_cmd`""
+                } else {
+                    Invoke-Expression "pwsh -nop -c `"$_cmd`""
+                }
             } else {
-                Invoke-Expression "pwsh -nop -c `"$_cmd`""
+                Invoke-Expression $_cmd
             }
 
             $exitCode = $LASTEXITCODE
