@@ -266,13 +266,13 @@ try {
                 -c "pwsh -nop -f $env:HOME/.apollox/scripts/initWorkspace.ps1"
         }
         "launch" {
-            $_task = $args[2]
+            $_task = $args[1]
 
             # make sure that $_task is a valid launch task
             $_validTasks = $(perl -0777 -pe 's{/\*.*?\*/}{}gs; s{\/\/.*}{}g; s/,\s*([\]}])/$1/g' /workspace/.vscode/launch.json | jq '.configurations[].preLaunchTask')
             $_valid = $false
             foreach ($_validTask in $_validTasks) {
-                if ($_validTask -eq $_task) {
+                if ($_validTask -eq $(Write-Output "`"$_task`"")) {
                     $_valid = $true
                 }
             }
@@ -284,7 +284,7 @@ try {
             }
 
             su $env:UUSER -p `
-                -c "pwsh -nop -f /workspace/.vscode/tasks.ps1 desc $_task"
+                -c "pwsh -nop -f /workspace/.vscode/tasks.ps1 run $_task"
         }
         "new" {
             # the host needs to be able to write and read the project generated
