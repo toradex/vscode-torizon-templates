@@ -67,7 +67,7 @@ _torizoncore-dev_completions() {
             # list all tasks
             opts=$(jq '.tasks[].label' $PWD/.vscode/tasks.json)
         fi
-    elif [[ ${COMP_WORDS[COMP_CWORD-2]} == "launch" ]]; then
+    elif [[ ${COMP_WORDS[COMP_CWORD-1]} == "launch" ]]; then
         opts=$(perl -0777 -pe 's{/\*.*?\*/}{}gs; s{\/\/.*}{}g; s/,\s*([\]}])/$1/g' $PWD/.vscode/launch.json | jq '.configurations[].preLaunchTask')
     fi
 
