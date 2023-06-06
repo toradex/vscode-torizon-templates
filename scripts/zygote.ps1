@@ -29,6 +29,9 @@ function help() {
     Write-Host " ➡️ init"
     Write-Host "`t Initialize the workspace"
     Write-Host ""
+    Write-Host " ➡️ launch"
+    Write-Host "`t Run the preLaunchTask of the chosen launch option"
+    Write-Host ""
     Write-Host " ➡️ new"
     Write-Host "`t Create a new project from a template using TUI"
     Write-Host ""
@@ -261,6 +264,27 @@ try {
         "init" {
             su $env:UUSER -p `
                 -c "pwsh -nop -f $env:HOME/.apollox/scripts/initWorkspace.ps1"
+        }
+        "launch" {
+            $_task = $args[2]
+
+            # make sure that $_task is a valid launch task
+            $_validTasks = $(perl -0777 -pe 's{/\*.*?\*/}{}gs; s{\/\/.*}{}g; s/,\s*([\]}])/$1/g' /workspace/.vscode/launch.json | jq '.configurations[].preLaunchTask')
+            $_valid = $false
+            foreach ($_validTask in $_validTasks) {
+                if ($_validTask -eq $_task) {
+                    $_valid = $true
+                }
+            }
+
+            if (-not $_valid) {
+                Write-Host -ForegroundColor Red "❌ :: Invalid launch task :: ❌"
+                Write-Host ""
+                exit 400
+            }
+
+            su $env:UUSER -p `
+                -c "pwsh -nop -f /workspace/.vscode/tasks.ps1 desc $_task"
         }
         "new" {
             # the host needs to be able to write and read the project generated
