@@ -41,7 +41,8 @@
                 "debuggerConsole": null,
                 "mainFile": "Program.cs",
                 "mainFileBreakpointLine": 35,
-                "successDebugMessage": "Now listening on: http://0.0.0.0:7001"
+                "successDebugMessage": "Now listening on:",
+                "webTemplatePort": 7001
             }
         },
         {
