@@ -4,6 +4,7 @@ TCD_COMP_ARGS_MAIN="
     help
     connect
     init
+    launch
     new
     scan
     target
@@ -66,6 +67,8 @@ _torizoncore-dev_completions() {
             # list all tasks
             opts=$(jq '.tasks[].label' $PWD/.vscode/tasks.json)
         fi
+    elif [[ ${COMP_WORDS[COMP_CWORD-2]} == "launch" ]]; then
+        opts=$(perl -0777 -pe 's{/\*.*?\*/}{}gs; s{\/\/.*}{}g; s/,\s*([\]}])/$1/g' $PWD/.vscode/launch.json | jq '.configurations[].preLaunchTask')
     fi
 
     COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
