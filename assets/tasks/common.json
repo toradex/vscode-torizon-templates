@@ -200,7 +200,7 @@
                 "fleet",
                 "latest",
                 "__change__",
-                "'${command:tcb.fleetName}'"
+                "${command:tcb.fleetName}"
             ],
             "problemMatcher": [
                 "$tsc"
@@ -295,7 +295,7 @@
                 "-ContainerRuntime",
                 "docker",
                 "-RunArguments",
-                "'\"-d -p 5002:5000 --restart=always registry:2\"'",
+                "\"-d -p 5002:5000 --restart=always registry:2\"",
                 "-ContainerName",
                 "registry"
             ],
@@ -354,7 +354,7 @@
                 "-ContainerRuntime",
                 "docker",
                 "-RunArguments",
-                "'--rm --privileged torizon/binfmt'",
+                "--rm --privileged torizon/binfmt",
                 "-ContainerName",
                 "binfmt"
             ],
