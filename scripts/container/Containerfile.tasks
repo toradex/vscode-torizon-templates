@@ -1,7 +1,7 @@
 ARG BRANCH=dev
 ARG REPO=torizonextras/vscode-torizon-templates
 
-FROM mcr.microsoft.com/powershell:preview-debian-11
+FROM torizonextras/pwsh:${BRANCH}
 
 ARG BRANCH
 ARG REPO

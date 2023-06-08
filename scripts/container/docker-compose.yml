@@ -1,5 +1,11 @@
 version: "3.9"
 services:
+  pwsh:
+    build:
+      context: ../
+      dockerfile: container/Containerfile.pwsh
+    image: torizonextras/pwsh:${BRANCH}
+
   tasks:
     build:
       context: ../

@@ -11,6 +11,15 @@ $env:UUID = $(id -u)
 $env:SHA_DIR = 0
 
 # # run the build command
+Write-Host -ForegroundColor Green "🔨 :: PWSH :: 🔨"
+docker compose `
+    -f ./container/docker-compose.yml `
+    build `
+    --no-cache `
+    --push `
+    pwsh
+
+# # run the build command
 Write-Host -ForegroundColor Green "🔨 :: TASKS :: 🔨"
 docker compose `
     -f ./container/docker-compose.yml `
