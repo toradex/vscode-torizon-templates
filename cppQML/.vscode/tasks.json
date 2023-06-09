@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Open in QT Design Studio",
+            "label": "open-in-qt-design-studio",
             "detail": "",
             "command": "qtdesignstudio",
             "type": "process",
@@ -23,7 +23,7 @@
             ]
         },
         {
-            "label": "Open in QT Creator",
+            "label": "open-in-qt-creator",
             "detail": "",
             "command": "qtcreator",
             "type": "process",
@@ -101,7 +101,7 @@
             }
         },
         {
-            "label": "Start GDB Server Remote arm64",
+            "label": "start-gdb-server-remote-arm64",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -130,7 +130,7 @@
             }
         },
         {
-            "label": "Start GDB Server Local",
+            "label": "start-gdb-server-local",
             "command": "gdbserver",
             "type": "process",
             "isBackground": false,
@@ -153,7 +153,7 @@
             }
         },
         {
-            "label": "Start GDB Server Remote arm32",
+            "label": "start-gdb-server-remote-arm",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -182,7 +182,7 @@
             }
         },
         {
-            "label": "Start GDB Server Remote AMD64",
+            "label": "start-gdb-server-remote-amd64",
             "command": "ssh",
             "type": "process",
             "args": [

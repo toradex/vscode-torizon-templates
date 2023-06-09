@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Try Update Template",
+            "label": "try-update-template",
             "command": "echo",
             "type": "process",
             "presentation": {

@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Open Gambas IDE",
+            "label": "open-gambas-ide",
             "command": "${workspaceFolder}/.conf/gambas3.gambas",
             "type": "process",
             "args": [
@@ -78,7 +78,7 @@
             }
         },
         {
-            "label": "Run Container arm32",
+            "label": "run-container-torizon-debug-arm",
             "command": "echo",
             "type": "shell",
             "args": [
@@ -121,7 +121,7 @@
             }
         },
         {
-            "label": "Run Container arm64",
+            "label": "run-container-torizon-debug-arm64",
             "command": "echo",
             "type": "shell",
             "args": [
