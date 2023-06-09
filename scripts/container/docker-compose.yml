@@ -46,6 +46,8 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /run/user/${UUID}/wayland-0:/run/user/${UUID}/wayland-0
       - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/dbus:/var/run/dbus
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
       - ${HOME}/.tcd/:/root/.tcd/
       - ${PWD}:/workspace
       - ${PWD}:${PWD}
