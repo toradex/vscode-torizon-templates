@@ -1,0 +1,490 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "problemMatcher": {
+            "type": "object",
+            "properties": {
+                "base": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "severity": {
+                    "type": "string",
+                    "enum": [
+                        "error",
+                        "warning",
+                        "info"
+                    ]
+                },
+                "fileLocation": {
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "include": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "exclude": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "include"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "pattern": {
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "regexp": {
+                                    "type": "string"
+                                },
+                                "file": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "integer"
+                                },
+                                "location": {
+                                    "type": "integer"
+                                },
+                                "line": {
+                                    "type": "integer"
+                                },
+                                "character": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "regexp": {
+                                                "type": "string"
+                                            },
+                                            "file": {
+                                                "type": "integer"
+                                            },
+                                            "message": {
+                                                "type": "integer"
+                                            },
+                                            "location": {
+                                                "type": "integer"
+                                            },
+                                            "line": {
+                                                "type": "integer"
+                                            },
+                                            "character": {
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "background": {
+                    "type": "object",
+                    "properties": {
+                        "activeOnStart": {
+                            "type": "boolean"
+                        },
+                        "beginsPattern": {
+                            "oneOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "object"
+                                }
+                            ]
+                        },
+                        "endsPattern": {
+                            "oneOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "beginsPattern",
+                        "endsPattern"
+                    ]
+                },
+                "watching": {
+                    "type": "object",
+                    "properties": {
+                        "activeOnStart": {
+                            "type": "boolean"
+                        },
+                        "beginsPattern": {
+                            "oneOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "object"
+                                }
+                            ]
+                        },
+                        "endsPattern": {
+                            "oneOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "beginsPattern",
+                        "endsPattern"
+                    ]
+                },
+                "uri": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "pattern"
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "tasks": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "type": "string",
+                        "pattern": "^[^\\s]+$"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "shell",
+                            "process"
+                        ]
+                    },
+                    "command": {
+                        "type": "string"
+                    },
+                    "isBackground": {
+                        "type": "boolean"
+                    },
+                    "options": {
+                        "type": "object",
+                        "properties": {
+                            "cwd": {
+                                "type": "string"
+                            },
+                            "env": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "shell": {
+                                "type": "object",
+                                "properties": {
+                                    "executable": {
+                                        "type": "string"
+                                    },
+                                    "args": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "executable"
+                                ]
+                            }
+                        }
+                    },
+                    "args": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "presentation": {
+                        "type": "object",
+                        "properties": {
+                            "reveal": {
+                                "type": "string",
+                                "enum": [
+                                    "never",
+                                    "silent",
+                                    "always"
+                                ]
+                            },
+                            "echo": {
+                                "type": "boolean"
+                            },
+                            "focus": {
+                                "type": "boolean"
+                            },
+                            "panel": {
+                                "type": "string",
+                                "enum": [
+                                    "shared",
+                                    "dedicated",
+                                    "new"
+                                ]
+                            },
+                            "showReuseMessage": {
+                                "type": "boolean"
+                            },
+                            "clear": {
+                                "type": "boolean"
+                            },
+                            "group": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "problemMatcher": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "array",
+                                "items": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/definitions/problemMatcher"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "$ref": "#/definitions/problemMatcher"
+                            },
+                            {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "base": {
+                                            "type": "string"
+                                        },
+                                        "owner": {
+                                            "type": "string"
+                                        },
+                                        "source": {
+                                            "type": "string"
+                                        },
+                                        "severity": {
+                                            "type": "string",
+                                            "enum": [
+                                                "error",
+                                                "warning",
+                                                "info"
+                                            ]
+                                        },
+                                        "fileLocation": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "array",
+                                                    "items": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "include": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "exclude": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "include"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        "pattern": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "regexp": {
+                                                            "type": "string"
+                                                        },
+                                                        "file": {
+                                                            "type": "integer"
+                                                        },
+                                                        "message": {
+                                                            "type": "integer"
+                                                        },
+                                                        "location": {
+                                                            "type": "integer"
+                                                        },
+                                                        "line": {
+                                                            "type": "integer"
+                                                        },
+                                                        "character": {
+                                                            "type": "integer"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "background": {
+                                            "type": "object",
+                                            "properties": {
+                                                "activeOnStart": {
+                                                    "type": "boolean"
+                                                },
+                                                "beginsPattern": {
+                                                    "oneOf": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "object"
+                                                        }
+                                                    ]
+                                                },
+                                                "endsPattern": {
+                                                    "oneOf": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "object"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "beginsPattern",
+                                                "endsPattern"
+                                            ]
+                                        },
+                                        "watching": {
+                                            "type": "object",
+                                            "properties": {
+                                                "activeOnStart": {
+                                                    "type": "boolean"
+                                                },
+                                                "beginsPattern": {
+                                                    "oneOf": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "object"
+                                                        }
+                                                    ]
+                                                },
+                                                "endsPattern": {
+                                                    "oneOf": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "object"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "beginsPattern",
+                                                "endsPattern"
+                                            ]
+                                        },
+                                        "uri": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "owner",
+                                        "pattern"
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "type",
+                    "command"
+                ]
+            }
+        }
+    }
+}

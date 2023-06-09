@@ -1,0 +1,12 @@
+{
+    "json.validate.enable": true,
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "*common.json",
+                "*tasks.json"
+            ],
+            "url": "./assets/json/tasks.schema.json"
+        }
+    ]
+}
