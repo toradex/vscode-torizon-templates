@@ -30,6 +30,7 @@ RUN apt-get update && \
     avahi-utils \
     file sshpass \
     net-tools \
+    iproute2 \
 # extension tools
 # graphical tools
     wayland-protocols \
@@ -72,7 +73,7 @@ COPY --from=docker:dind /usr/libexec/docker/cli-plugins /usr/local/lib/docker/cl
 RUN mv /root/vscode-torizon-templates /root/.apollox
 RUN chmod -R 757 /root && \
     cd /root/.apollox/scripts/node && \
-    npm install ./apollox-0.0.88.tgz
+    npm install ./apollox-0.0.90.tgz
 
 # from build copy the libraries
 COPY --from=Build /build/bin/Release/net6.0/publish/ /root/.tui/
