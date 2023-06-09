@@ -27,7 +27,6 @@
             "detail": "",
             "command": "qtcreator",
             "type": "process",
-            "isBackground": true,
             "options": {
                 "env": {
                     "QT_QPA_PLATFORM": "xcb"
@@ -76,11 +75,11 @@
             "isBackground": true,
             "args": [
                 "-vv",
-                "-l", 
-                "-p", 
+                "-l",
+                "-p",
                 "${config:torizon_debug_port3}",
                 "-c",
-                "\"nc.traditional ${config:torizon_ip} ${config:torizon_debug_port3}\"",
+                "nc.traditional ${config:torizon_ip} ${config:torizon_debug_port3}"
             ],
             "problemMatcher": [{
                 "pattern": [{
@@ -101,7 +100,7 @@
             }
         },
         {
-            "label": "start-gdb-server-remote-arm64",
+            "label": "run-gdbserver-remote-arm64",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -354,7 +353,7 @@
                 "cross-toolchain-arm64-__container__",
                 "bash",
                 "-c",
-                "\"qmake6 -o aarch64/Makefile CONFIG+=debug CONFIG+=qml_debug\""
+                "qmake6 -o aarch64/Makefile CONFIG+=debug CONFIG+=qml_debug"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -382,7 +381,7 @@
                 "cross-toolchain-arm64-__container__",
                 "bash",
                 "-c",
-                "\"cd aarch64 && make -j12\""
+                "cd aarch64 && make -j12"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -395,7 +394,6 @@
             "dependsOn": [
                 "run-qmake-debug-arm64",
                 "copy-assets-arm64"
-                
             ]
         },
         {
@@ -520,7 +518,6 @@
             "dependsOn": [
                 "run-qmake-debug-arm",
                 "copy-assets-arm"
-                
             ]
         },
         {
@@ -645,7 +642,6 @@
             "dependsOn": [
                 "run-qmake-debug-amd64",
                 "copy-assets-amd64"
-                
             ]
         },
         {
