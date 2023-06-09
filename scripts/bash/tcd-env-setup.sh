@@ -13,6 +13,12 @@ export UUID=$(id -u)
 # for the store of the device data
 if [ ! -d "$HOME/.tcd" ]; then
     mkdir $HOME/.tcd
+else
+    # remove the files so we can download it again
+    # remove the docker-compose.yml
+    rm -rf $HOME/.tcd/docker-compose.yml
+    # remove the torizoncore-dev-completion.bash
+    rm -rf $HOME/.tcd/torizoncore-dev-completion.bash
 fi
 
 # check if _COMPOSE_FILE exists
@@ -26,6 +32,12 @@ if [ ! -f "$_BASH_COMPLETION_FILE" ]; then
     # download it from github
     wget -q https://raw.githubusercontent.com/$APOLLOX_REPO/$APOLLOX_BRANCH/scripts/bash/torizoncore-dev-completion.bash -O $_BASH_COMPLETION_FILE
 fi
+
+# we pull everytime we source it to get updates
+docker \
+    compose \
+    -f $_COMPOSE_FILE \
+    pull torizoncore-dev
 
 function torizoncore-dev {
     # check if we are in the WSL
@@ -61,4 +73,6 @@ function torizoncore-dev {
     docker exec -it torizoncore-dev-$myhash zygote $@
 }
 
+# FIXME:    we need to also copy the completion file to
+#           /usr/share/bash-completion/completions/torizoncore-dev
 source $_BASH_COMPLETION_FILE
