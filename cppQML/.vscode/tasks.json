@@ -100,7 +100,7 @@
             }
         },
         {
-            "label": "run-gdbserver-remote-arm64",
+            "label": "start-gdb-server-remote-arm64",
             "command": "ssh",
             "type": "process",
             "args": [
