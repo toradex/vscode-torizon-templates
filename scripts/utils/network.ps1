@@ -9,8 +9,8 @@ function GetHostIp() {
 
         return $_out.split("`n")[0]
     } else {
-        $_out = ExecHostCommand -command `
-                    "hostname -I | awk '{print `$1}'"
+        $_out = ExecHostCommand `
+                    hostname -I | awk '{print $1}'
 
         return $_out
     }
