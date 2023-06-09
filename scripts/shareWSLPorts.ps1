@@ -1,7 +1,7 @@
 # DOES NOT ADD THE suppress HERE
 # THIS NEED TO BE SUPPORTED ON THE WINDOWS POWERSHELL
 # this only makes sense for WSL
-if ($null -ne $env:WSL_DISTRO_NAME) {
+if (! [string]::IsNullOrEmpty($env:WSL_DISTRO_NAME)) {
     $_workspace = $args[0]
     $remoteport = bash -c "ifconfig eth0 | grep 'inet '"
     $found = $remoteport -match '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
