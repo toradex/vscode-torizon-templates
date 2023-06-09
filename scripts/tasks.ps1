@@ -299,6 +299,21 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
     return $ret
 }
 
+function scapeArgs ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    # for now only scaping double quotes
+    foreach ($item in $list) {
+        if ($item.Contains("`"")) {
+            $item = $item.Replace("`"", "```"")
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
 function checkConfig ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
@@ -307,7 +322,7 @@ function checkConfig ([System.Collections.ArrayList] $list) {
         if ($item.Contains("config:")) {
             $item = $item.Replace("config:", "global:config:")
 
-            $value = Invoke-Expression "echo $item"
+            $value = Invoke-Expression "echo `"$item`""
 
             if ($null -ne $value -and $value.Contains("`${workspaceFolder")) {
                 $item = $value
@@ -423,7 +438,8 @@ function runTask () {
         if ($json.tasks[$i].label -eq $args[0]) {
             $task = $json.tasks[$i]
             $taskCmd = $task.command
-            $taskArgs = checkWorkspaceFolder($task.args)
+            $taskArgs = scapeArgs($task.args)
+            $taskArgs = checkWorkspaceFolder($taskArgs)
             $taskArgs = checkTorizonInputs($taskArgs)
             $taskArgs = checkDockerInputs($taskArgs)
             $taskArgs = checkTCBInputs($taskArgs)
@@ -434,6 +450,13 @@ function runTask () {
             $taskEnv = $task.options.env
             $taskCwd = $task.options.cwd
 
+            $isBackground = ""
+            if ($task.isBackground -eq $true) {
+                $isBackground = " &"
+            }
+
+            # FIXME: if using powershell instead bash the background will start
+            # a new job, this is was not been well tested
             # is gitlab ci
             if ($_gitlab_ci -eq $true) {
                 $taskCmd = _replaceDockerHost($taskCmd)
@@ -485,13 +508,10 @@ function runTask () {
                 Invoke-Expression "Set-Location $taskCwd"
             }
 
-            # for powershell we need to change the double quotes to `"
-            $taskArgs = $taskArgs.Replace('"', '`"')
-
             # parse the variables
-            Write-Host "echo `"$taskCmd $taskArgs`""
-            $_cmd = Invoke-Expression "echo `"$taskCmd $taskArgs`""
-            
+            Write-Host "echo `"$taskCmd $taskArgs $isBackground`""
+            $_cmd = Invoke-Expression "echo `"$taskCmd $taskArgs $isBackground`""
+
             if ($env:TASKS_DEBUG -eq $true) {
                 Write-Host -ForegroundColor Yellow `
                     "Command: $taskCmd"
