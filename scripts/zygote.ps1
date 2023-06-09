@@ -63,7 +63,7 @@ function _setup_user() {
         getent passwd $env:UUSER | Out-Null
     } catch {
         useradd -u $env:UUID $env:UUSER
-        groupadd docker
+        groupadd -g $env:DGID docker
         usermod -aG docker $env:UUSER
         Write-Output "$env:UUSER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
     }

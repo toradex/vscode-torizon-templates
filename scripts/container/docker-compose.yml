@@ -40,6 +40,7 @@ services:
       - WSL_DISTRO_NAME=${WSL_DISTRO_NAME}
       - APOLLOX_CONTAINER=1
       - UUID=${UUID}
+      - DGID=${DGID}
       - UUSER=${USER}
       - APOLLOX_WORKSPACE=${PWD}
     volumes:
