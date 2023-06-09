@@ -1,7 +1,7 @@
 {
     "tasks": [
         {
-            "label": "try-update-template",
+            "label": ".🔃-Try-Update-Template",
             "command": "echo",
             "type": "process",
             "presentation": {
