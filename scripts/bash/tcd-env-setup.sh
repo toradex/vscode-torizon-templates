@@ -9,6 +9,7 @@ export APOLLOX_REPO="microhobby/vscode-torizon-templates"
 export APOLLOX_BRANCH="rogerio-user"
 export BRANCH="rogerio-user"
 export UUID=$(id -u)
+export DGID=$(getent group docker | cut -d: -f3)
 
 # for the store of the device data
 if [ ! -d "$HOME/.tcd" ]; then
