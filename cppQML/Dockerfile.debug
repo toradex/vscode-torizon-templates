@@ -103,6 +103,11 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# install the pretty printer
+COPY .conf/qtpp /qtpp
+RUN cp /qtpp/.gdbinit /root && \
+    cp /qtpp/.gdbinit /home/torizon
+
 # ⚠️ DEBUG PURPOSES ONLY!!
 # copies RSA key to enable SSH login for user
 COPY .conf/id_rsa.pub /id_rsa.pub
