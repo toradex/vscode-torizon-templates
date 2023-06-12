@@ -43,9 +43,11 @@ services:
       - DGID=${DGID}
       - UUSER=${USER}
       - APOLLOX_WORKSPACE=${PWD}
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - /run/user/${UUID}/wayland-0:/run/user/${UUID}/wayland-0
+      - /run/user/${UUID}:/run/user/${UUID}
+      - /mnt:/mnt
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/run/dbus:/var/run/dbus
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
