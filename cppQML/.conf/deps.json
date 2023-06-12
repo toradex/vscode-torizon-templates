@@ -25,6 +25,9 @@
         "qml6-module-qtquick-controls",
         "qml6-module-qtquick-layouts",
         "qml6-module-qtquick-templates",
+        "qml6-module-qtquick-shapes",
+        "qml6-module-qt-labs-qmlmodels",
+        "qml6-module-qt-labs-platform",
         "qtcreator",
         "designer-qt6"
     ]
