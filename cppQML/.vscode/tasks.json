@@ -773,6 +773,27 @@
                 "id": "symbol-parameter",
                 "color": "terminal.ansiYellow"
             }
+        },
+        {
+            "label": "fix-debugger-helper-qt-creator",
+            "command": "sudo",
+            "type": "shell",
+            "args": [
+                "sed",
+                "-i",
+                "'s/inspect\\.getargspec/inspect.getfullargspec/g'",
+                "/usr/share/qtcreator/debugger/dumper.py"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "alert",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
         }
     ],
     "inputs": []
