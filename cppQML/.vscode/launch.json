@@ -7,39 +7,6 @@
             "request": "launch",
             "program": "${workspaceFolder}/x86_64/debug/__change__",
             "args": [
-                //"-qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
-            ],
-            "stopAtEntry": false,
-            "cwd": "${workspaceRoot}",
-            "environment": [
-                {
-                    "name": "QT_LOGGING_RULES",
-                    "value": "*.debug=true; qt.*.debug=false"
-                }
-            ],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description":  "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "build-debug-amd64-local"
-        },
-        {
-            "name": "Local AMD64 Qt Creator",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/x86_64/debug/__change__",
-            "args": [
-                "-qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
@@ -71,7 +38,6 @@
             "request": "launch",
             "program": "~/app/__change__",
             "args": [
-                //"-qmljsdebugger=port:${config:torizon_debug_port3},host:0.0.0.0,block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "stopAtEntry": false,
             "cwd": "~/app",
@@ -123,7 +89,6 @@
             "request": "launch",
             "program": "~/app/__change__",
             "args": [
-                //"-qmljsdebugger=port:${config:torizon_debug_port3},host:0.0.0.0,block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "stopAtEntry": false,
             "cwd": "~/app",
@@ -131,6 +96,10 @@
                 {
                     "name": "QT_LOGGING_RULES",
                     "value": "*.debug=true; qt.*.debug=false"
+                },
+                {
+                    "name": "QT_QPA_PLATFORM",
+                    "value": "software"
                 }
             ],
             "externalConsole": false,
@@ -175,7 +144,6 @@
             "request": "launch",
             "program": "~/app/__change__",
             "args": [
-                //"-qmljsdebugger=port:${config:torizon_debug_port3},host:0.0.0.0,block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "stopAtEntry": false,
             "cwd": "~/app",
@@ -183,6 +151,10 @@
                 {
                     "name": "QT_LOGGING_RULES",
                     "value": "*.debug=true; qt.*.debug=false"
+                },
+                {
+                    "name": "QT_QPA_PLATFORM",
+                    "value": "software"
                 }
             ],
             "externalConsole": false,
