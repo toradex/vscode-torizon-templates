@@ -299,6 +299,19 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
     return $ret
 }
 
+# check if the string contains special characters
+function _containsSpecialChars ([String] $str) {
+    $ret = $false
+
+    if (
+        $str -match "[^a-zA-Z0-9\.\-_]"
+    ) {
+        $ret = $true
+    }
+
+    return $ret
+}
+
 function scapeArgs ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
@@ -340,6 +353,22 @@ function checkLongArgs ([System.Collections.ArrayList] $list) {
 
     foreach ($item in $list) {
         if ($item.Contains(" ")) {
+            $item = "'$item'"
+        }
+
+        [void]$ret.Add($item)
+    }
+
+    return $ret
+}
+
+function quotingSpecialChars ([System.Collections.ArrayList] $list) {
+    $ret = [System.Collections.ArrayList]@()
+
+    foreach ($item in $list) {
+        if (
+            _containsSpecialChars($item) -and (-not $item.Contains(" "))
+        ) {
             $item = "'$item'"
         }
 
@@ -446,6 +475,7 @@ function runTask () {
             $taskArgs = checkInput($taskArgs)
             $taskArgs = checkConfig($taskArgs)
             $taskArgs = checkLongArgs($taskArgs)
+            $taskArgs = quotingSpecialChars($taskArgs)
             $taskDepends = $task.dependsOn
             $taskEnv = $task.options.env
             $taskCwd = $task.options.cwd
