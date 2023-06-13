@@ -14,7 +14,7 @@
                 "clear": false
             },
             "args": [
-                "✅ merge task finished"
+                "▶️ merge task finished"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
