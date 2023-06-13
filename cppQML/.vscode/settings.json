@@ -1,4 +1,6 @@
 {
+  "qtForPython.rcc.liveExecution.enabled": false,
+  "qtForPython.qmlls.enabled": false,
   "torizon_psswd": "",
   "torizon_login": "",
   "torizon_ip": "",
