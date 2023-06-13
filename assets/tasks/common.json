@@ -13,7 +13,7 @@
                 "clear": false
             },
             "args": [
-                "✅ merge task finished"
+                "▶️ merge task finished"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -65,7 +65,7 @@
                 "group": "create-prod-image"
             },
             "args": [
-                "✅ Successfully Finished"
+                "▶️ Create Production Image task Finished"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
