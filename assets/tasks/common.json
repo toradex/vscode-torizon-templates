@@ -1,7 +1,7 @@
 {
     "tasks": [
         {
-            "label": ".🔃-Try-Update-Template",
+            "label": ".🔃-try-update-template",
             "command": "echo",
             "type": "process",
             "presentation": {
@@ -52,7 +52,7 @@
             }
         },
         {
-            "label": "create-production-image",
+            "label": ".🔨-create-production-image",
             "command": "echo",
             "type": "process",
             "presentation": {
