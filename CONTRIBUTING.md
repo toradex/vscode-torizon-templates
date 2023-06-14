@@ -4,7 +4,7 @@ There are lots of ways to contribute to the ApolloX project templates, and we ap
 
 ## Providing Feedback
 
-You can use the [issues section](https://github.com/microhobby/torizon-templates/issues) from this Github repository to provide feedback on features, ask for new features, discuss issues and ask for help.
+You can use the [issues section](https://github.com/toradex/vscode-torizon-templates/issues) from this Github repository to provide feedback on features, ask for new features, discuss issues and ask for help.
 
 Also feel free to do so in the Toradex community: https://community.toradex.com/
 
@@ -14,7 +14,7 @@ ApolloX project templates are in their nature VS Code workspaces, with multiple 
 
 > ℹ️ The best way to start creating a new project template is taking one of the already published templates as reference. Check the [cppConsole/.vscode/tasks.json](./cppConsole/.vscode/tasks.json) to see an example.
 
-![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/vscodetasksDiagram.png?raw=true&v=6)
+![](https://github.com/toradex/vscode-torizon-templates/blob/dev/assets/img/vscodetasksDiagram.png?raw=true&v=6)
 
 > ⚠️ To trigger the ApolloX `build/deploy start` event the first dependency tasks from the pipeline needs to be labeled `validate-settings-*`.
 > 
@@ -26,7 +26,7 @@ This pattern is replicated for each architecture supported by the template:
 
 > ⚠️ Remember to split task groups adding the architecture prefix to the task label: `-arm64`, `-arm`, `-riscv64` and `-amd64`
 
-![](https://github.com/microhobby/torizon-templates/blob/main/assets/img/vscodeTasksMultiArch.png?raw=true)
+![](https://github.com/toradex/vscode-torizon-templates/blob/dev/assets/img/vscodeTasksMultiArch.png?raw=true)
 
 > ℹ️ Check the [cppConsole/.vscode/tasks.json](./cppConsole/.vscode/tasks.json) to see an example.
 
@@ -154,6 +154,4 @@ For ApolloX project templates we are using [Github platform](https://docs.github
     Signed-off-by: your-e-mail@your-provider.com
     ```
 
-- Create a pull request to the `main` branch of https://github.com/toradex/vscode-torizon-templates
-
-
+- Create a pull request to the `dev` branch of https://github.com/toradex/vscode-torizon-templates
