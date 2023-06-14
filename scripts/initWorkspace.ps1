@@ -75,6 +75,9 @@ if (!(Test-Path ./.conf/.template)) {
     $_settings | ConvertTo-Json -Depth 100 `
         | Set-Content ./.vscode/settings.json
 
+    # enforce 0400 to ./.conf/id_rsa
+    chmod 0400 ./.conf/id_rsa
+
     Write-Host ""
     Write-Host `
         -ForegroundColor Green `
