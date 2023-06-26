@@ -1,0 +1,51 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Main Process",
+            "program": "${workspaceFolder}/src/index.ts",
+            "preLaunchTask": "yarn-dev"
+        },
+        {
+            "name": "Torizon AMD64",
+            "type": "node",
+            "request": "attach",
+            "port": "${config:torizon_debug_port}",
+            "address": "${config:torizon_ip}",
+            "restart": false,
+            "sourceMaps": true,
+            "continueOnAttach": true,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "${config:torizon_app_root}/app/",
+            "preLaunchTask": "start-torizon-debug-amd64"
+        },
+        {
+            "name": "Torizon ARMv7",
+            "type": "node",
+            "request": "attach",
+            "port": "${config:torizon_debug_port}",
+            "address": "${config:torizon_ip}",
+            "restart": false,
+            "sourceMaps": true,
+            "continueOnAttach": true,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "${config:torizon_app_root}/app/",
+            "preLaunchTask": "start-torizon-debug-arm"
+        },
+        {
+            "name": "Torizon ARMv8",
+            "type": "node",
+            "request": "attach",
+            "port": "${config:torizon_debug_port}",
+            "address": "${config:torizon_ip}",
+            "restart": false,
+            "sourceMaps": true,
+            "continueOnAttach": true,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "${config:torizon_app_root}/app/",
+            "preLaunchTask": "start-torizon-debug-arm64"
+        },
+    ]
+}
