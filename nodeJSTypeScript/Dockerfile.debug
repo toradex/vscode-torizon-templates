@@ -28,7 +28,7 @@ ARG SSHUSERNAME=
 
 # BUILD ------------------------------------------------------------------------
 ##
-# Deploy Step .NET Uno
+# Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
     torizon/debian:${BASE_VERSION} AS Debug
