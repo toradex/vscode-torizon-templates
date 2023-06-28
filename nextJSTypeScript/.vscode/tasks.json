@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-typescript-local",
+            "label": "build-nextjs-local",
             "detail": "hide",
             "command": "npm",
             "type": "process",
@@ -13,23 +13,25 @@
                 "run",
                 "build"
             ],
-            "problemMatcher": ["$tsc"],
+            "problemMatcher": [
+                "$tsc"
+            ],
             "dependsOrder": "sequence",
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOn":[
+            "dependsOn": [
                 "npm-install"
             ]
         },
         {
-            "label": "yarn-dev",
+            "label": "npm-install",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "command": "[ ! -d 'node_modules' ] && yarn dev || true",
+            "command": "[ ! -d 'node_modules' ] && npm install || true",
             "dependsOrder": "sequence",
             "icon": {
                 "id": "flame",
@@ -37,7 +39,7 @@
             }
         },
         {
-            "label": "build-typescript-arm",
+            "label": "build-nextjs-arm",
             "detail": "hide",
             "command": "npm",
             "type": "process",
@@ -46,7 +48,7 @@
             },
             "args": [
                 "run",
-                "output-arm64"
+                "output-arm"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -69,7 +71,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/out",
+                "${workspaceFolder}/.next/standalone",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOrder": "sequence",
@@ -94,14 +96,14 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root}/app/ >out.log 2>err.log &"
+                "npm run dev"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
                 "apply-torizon-packages",
                 "npm-install",
-                "build-typescript-arm",
+                "build-nextjs-arm",
                 "copy-docker-compose",
                 "pre-cleanup-arm",
                 "package-torizon-arm",
@@ -121,7 +123,7 @@
             }
         },
         {
-            "label": "build-typescript-arm64",
+            "label": "build-nextjs-arm64",
             "detail": "hide",
             "command": "npm",
             "type": "process",
@@ -153,7 +155,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/out",
+                "${workspaceFolder}/.next/standalone",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOrder": "sequence",
@@ -178,14 +180,14 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root}/app/ >out.log 2>err.log &"
+                "npm run dev"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
                 "apply-torizon-packages",
                 "npm-install",
-                "build-typescript-arm64",
+                "build-nextjs-arm64",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
                 "package-torizon-arm64",
@@ -205,7 +207,7 @@
             }
         },
         {
-            "label": "build-typescript-amd64",
+            "label": "build-nextjs-amd64",
             "detail": "hide",
             "command": "npm",
             "type": "process",
@@ -237,7 +239,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/out",
+                "${workspaceFolder}/.next/standalone",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOrder": "sequence",
@@ -262,14 +264,14 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root}/app/ >out.log 2>err.log &"
+                "npm run dev"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-amd64",
                 "apply-torizon-packages",
                 "npm-install",
-                "build-typescript-amd64",
+                "build-nextjs-amd64",
                 "copy-docker-compose",
                 "pre-cleanup-amd64",
                 "package-torizon-amd64",

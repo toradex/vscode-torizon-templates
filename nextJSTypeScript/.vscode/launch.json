@@ -4,9 +4,9 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug Main Process",
-            "program": "${workspaceFolder}/src/index.ts",
-            "preLaunchTask": "yarn-dev"
+            "name": "Next.js Local",
+            "program": "${workspaceFolder}/pages/index.tsx",
+            "preLaunchTask": "build-nextjs-local"
         },
         {
             "name": "Torizon AMD64",

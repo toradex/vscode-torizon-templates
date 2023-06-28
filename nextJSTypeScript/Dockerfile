@@ -33,9 +33,8 @@ ARG GPU
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
-WORKDIR /app
-
-COPY package.json yarn.lock ./
+COPY . /build
+WORKDIR /build
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
@@ -65,13 +64,21 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-# install the needed packages
-RUN yarn install --frozen-lockfile --network-timeout 1000000000
+# install the node.js v18
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
 
+RUN npm config set registry https://registry.npmjs.org/
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+RUN npm install --target_arch=${IMAGE_ARCH}
 
 # build the application
 # overwrite the EGL lib for vivante GPU
-RUN yarn build && \
+RUN npm run build && \
     if [ "${GPU}" = "-vivante" ]; then \
         cp /usr/lib/aarch64-linux-gnu/libEGL.so /build/out/electron2del-linux-${IMAGE_ARCH} && \
         cp /usr/lib/aarch64-linux-gnu/libGLESv2.so /build/out/electron2del-linux-${IMAGE_ARCH}; \
@@ -90,10 +97,6 @@ ARG GPU
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
-ENV NODE_ENV production
-# Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
-
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
         if [ "${GPU}" = "-vivante" ]; then \
@@ -111,6 +114,7 @@ RUN apt-get -q -y update && \
 # Install required packages
 RUN apt-get -q -y update && \
     apt-get -q -y install \
+    curl \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
@@ -119,32 +123,17 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# install the node.js v18
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
 
-# copy the build
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# You only need to copy next.config.js if you are NOT using the default configuration
-# COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-
-COPY ./start.sh /app/.
-
-RUN chmod +x /app/start.sh
-RUN mkdir /app/redis_log
-
-# Automatically leverage output traces to reduce image size 
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
+# copy the application
+COPY --from=Build .next/standalone ./app
+WORKDIR /app
 
 EXPOSE 3000
-
 ENV PORT 3000
 
-CMD ["/app/start.sh"]
+CMD ["node server.js"]
 
 # DEPLOY -----------------------------------------------------------------------

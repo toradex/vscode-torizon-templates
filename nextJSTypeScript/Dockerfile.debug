@@ -32,6 +32,9 @@ ARG SSHUSERNAME=
 ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
+##
+# Deploy Step
+##
 FROM --platform=linux/${IMAGE_ARCH} \
     torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
 
@@ -92,7 +95,7 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-# install the node js v18
+# install the node.js v18
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
 
@@ -102,10 +105,7 @@ RUN npm config set registry https://registry.npmjs.org/
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
-RUN npm install
-
-# initialize the Next.js project development environment
-RUN npx create-next-app ${APP_EXECUTABLE} --typescript --eslint --tailwind --no-src-dir --no-app --import-alias "@/*"
+RUN npm install --target_arch=${IMAGE_ARCH}
 
 # Next.js port
 EXPOSE 3000

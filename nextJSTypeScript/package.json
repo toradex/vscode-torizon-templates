@@ -7,18 +7,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "output-arm64": "npm run build && rm -rf out && mkdir -p out && cp -r .next/standalone/* ./out && cp package.json ./out && npm i --prefix ./out --omit=dev --target_arch=arm64",
+    "output-arm": "npm run build && rm -rf out && mkdir -p out && cp -r .next/standalone/* ./out && cp package.json ./out && npm i --prefix ./out --omit=dev --target_arch=arm",
+    "output-amd64": "npm run build && rm -rf out && mkdir -p out && cp -r .next/standalone/* ./out && cp package.json ./out && npm i --prefix ./out --omit=dev --target_arch=x64"
   },
   "author": "Escherstair",
   "license": "MIT",
   "devDependencies": {
-  },
-  "dependencies": {
     "@types/node": "20.3.1",
     "@types/react": "18.2.13",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
-    "create-next-app": "^13.4.7",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "next": "13.4.7",
@@ -27,5 +27,7 @@
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.3"
+  },
+  "dependencies": {
   }
 }
