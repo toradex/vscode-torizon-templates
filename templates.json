@@ -393,6 +393,17 @@
                 "mainFileBreakpointLine": 12,
                 "successDebugMessage": "Hello Torizon!"
             }
+        },
+        {
+            "img": "project.png",
+            "folder": "nextJSTypeScript",
+            "description": "NextJS TypeScript Application",
+            "runtime": "NodeJS",
+            "language": "TypeScript",
+            "debugPort": "9229",
+            "debugSSHPort": "9222",
+            "multiContainer": false,
+            "support": "Community"
         }
     ]
 }
