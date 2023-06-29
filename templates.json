@@ -395,7 +395,7 @@
             }
         },
         {
-            "img": "project.png",
+            "img": "nextjs.png",
             "folder": "nextJSTypeScript",
             "description": "NextJS TypeScript Application",
             "runtime": "NodeJS",
