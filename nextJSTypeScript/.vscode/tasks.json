@@ -26,6 +26,71 @@
             ]
         },
         {
+            "label": "run-nextjs-local",
+            "detail": "hide",
+            "command": "npm",
+            "type": "shell",
+            "isBackground": true,
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "run",
+                "dev"
+            ],
+            "problemMatcher": [
+                {
+                    "pattern": [
+                      {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "severity": 3,
+                        "code": 4,
+                        "message": 5
+                      }
+                    ],
+                    "background": {
+                      "activeOnStart": true,
+                      "beginsPattern": ".",
+                      "endsPattern": "for pages should be inspected at port"
+                    }
+                }
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOn": [
+                "npm-install"
+            ]
+        },
+        {
+            "label": "kill-nextjs-local",
+            "detail": "hide",
+            "command": "pkill",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "-9",
+                "npm run dev"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+        },
+        {
             "label": "npm-install",
             "type": "shell",
             "options": {

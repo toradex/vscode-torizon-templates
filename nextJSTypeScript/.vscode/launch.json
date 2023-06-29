@@ -2,11 +2,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Next.js Server",
             "type": "node",
-            "request": "launch",
-            "name": "Next.js Local",
-            "program": "${workspaceFolder}/pages/index.tsx",
-            "preLaunchTask": "build-nextjs-local"
+            "request": "attach",
+            "port": 9229,
+            "cwd": "${workspaceFolder}",
+            "sourceMaps": true,
+            "autoAttachChildProcesses": true,
+            "attachExistingChildren": true,
+            "preLaunchTask": "run-nextjs-local",
+            "postDebugTask": "kill-nextjs-local"
         },
         {
             "name": "Torizon AMD64",
