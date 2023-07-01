@@ -91,6 +91,18 @@
             },
         },
         {
+            "label": "wait-for-run-local",
+            "command": "until $(curl --output /dev/null --silent --head --fail http://localhost:3000); do printf '.'; sleep 1; done",
+            "type": "shell",
+            "args": [
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "watch",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "npm-install",
             "type": "shell",
             "options": {
