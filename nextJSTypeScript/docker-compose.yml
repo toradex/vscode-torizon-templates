@@ -8,9 +8,11 @@ services:
     expose:
       - 3000
     ports:
-      - 9229:9229
-      - 9223:9223
-      - 3000:3000
+      - 9229:9229 # nodejs debug
+      - 9230:9230 # nodejs debug
+      - 9231:9231 # nodejs debug
+      - 3000:3000 # nextjs server
+      - 2229:2229 # ssh
 
   __container__:
     build:
