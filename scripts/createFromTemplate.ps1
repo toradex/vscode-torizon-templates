@@ -95,7 +95,7 @@ if ($_TELEMETRY -eq $true) {
         Invoke-WebRequest `
             -UseBasicParsing `
             -Uri `
-                "http://castello.dev.br/api/template/plus" `
+                "http://tie.switzerlandnorth.cloudapp.azure.com/api/template/plus" `
             -Body $_query `
             -Method Get | Out-Null
     } catch {
