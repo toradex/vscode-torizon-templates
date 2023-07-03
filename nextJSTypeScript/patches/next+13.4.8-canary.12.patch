@@ -1,0 +1,54 @@
+diff --git a/node_modules/next/dist/build/webpack-config.js b/node_modules/next/dist/build/webpack-config.js
+index 209c613..ee7736c 100644
+--- a/node_modules/next/dist/build/webpack-config.js
++++ b/node_modules/next/dist/build/webpack-config.js
+@@ -2141,10 +2141,10 @@ async function getBaseWebpackConfig(dir, { buildId , config , compilerType , dev
+         if (!webpackConfig) {
+             throw new Error(`Webpack config is undefined. You may have forgot to return properly from within the "webpack" method of your ${config.configFileName}.\n` + "See more info here https://nextjs.org/docs/messages/undefined-webpack-config");
+         }
+-        if (dev && originalDevtool !== webpackConfig.devtool) {
+-            webpackConfig.devtool = originalDevtool;
+-            devtoolRevertWarning(originalDevtool);
+-        }
++        // if (dev && originalDevtool !== webpackConfig.devtool) {
++        //     webpackConfig.devtool = originalDevtool;
++        //     devtoolRevertWarning(originalDevtool);
++        // }
+         // eslint-disable-next-line @typescript-eslint/no-shadow
+         const webpack5Config = webpackConfig;
+         // disable lazy compilation of entries as next.js has it's own method here
+diff --git a/node_modules/next/dist/server/lib/utils.js b/node_modules/next/dist/server/lib/utils.js
+index 94ecb4d..3f27367 100644
+--- a/node_modules/next/dist/server/lib/utils.js
++++ b/node_modules/next/dist/server/lib/utils.js
+@@ -82,7 +82,7 @@ function printAndExit(message, code = 1) {
+ }
+ const getDebugPort = ()=>{
+     var _process_execArgv_find, _process_env_NODE_OPTIONS, _process_env_NODE_OPTIONS_match;
+-    const debugPortStr = ((_process_execArgv_find = process.execArgv.find((localArg)=>localArg.startsWith("--inspect") || localArg.startsWith("--inspect-brk"))) == null ? void 0 : _process_execArgv_find.split("=")[1]) ?? ((_process_env_NODE_OPTIONS = process.env.NODE_OPTIONS) == null ? void 0 : _process_env_NODE_OPTIONS.match == null ? void 0 : (_process_env_NODE_OPTIONS_match = _process_env_NODE_OPTIONS.match(/--inspect(-brk)?(=(\S+))?( |$)/)) == null ? void 0 : _process_env_NODE_OPTIONS_match[3]);
++    const debugPortStr = ((_process_execArgv_find = process.execArgv.find((localArg)=>localArg.startsWith("--inspect") || localArg.startsWith("--inspect-brk"))) == null ? void 0 : _process_execArgv_find.split(":")[1]) ?? ((_process_env_NODE_OPTIONS = process.env.NODE_OPTIONS) == null ? void 0 : _process_env_NODE_OPTIONS.match == null ? void 0 : (_process_env_NODE_OPTIONS_match = _process_env_NODE_OPTIONS.match(/(\d+)$/)) == null ? void 0 : _process_env_NODE_OPTIONS_match[0]);
+     return debugPortStr ? parseInt(debugPortStr, 10) : 9229;
+ };
+ const genRouterWorkerExecArgv = async (isNodeDebugging)=>{
+@@ -93,7 +93,7 @@ const genRouterWorkerExecArgv = async (isNodeDebugging)=>{
+         const isDebuggingWithBrk = isNodeDebugging === "brk";
+         let debugPort = getDebugPort() + 1;
+         _log.info(`the --inspect${isDebuggingWithBrk ? "-brk" : ""} option was detected, the Next.js routing server should be inspected at port ${debugPort}.`);
+-        execArgv.push(`--inspect${isNodeDebugging === "brk" ? "-brk" : ""}=${debugPort}`);
++        execArgv.push(`--inspect${isNodeDebugging === "brk" ? "-brk" : ""}=0.0.0.0:${debugPort}`);
+     }
+     return execArgv;
+ };
+diff --git a/node_modules/next/dist/server/lib/worker-utils.js b/node_modules/next/dist/server/lib/worker-utils.js
+index 1135d7b..d6ee934 100644
+--- a/node_modules/next/dist/server/lib/worker-utils.js
++++ b/node_modules/next/dist/server/lib/worker-utils.js
+@@ -93,7 +93,7 @@ const genRenderExecArgv = async (isNodeDebugging, type)=>{
+             let debugPort = (0, _utils.getDebugPort)();
+             debugPort += type === "pages" ? 1 : 2;
+             _log.info(`the --inspect${isDebuggingWithBrk ? "-brk" : ""} option was detected, the Next.js server${type === "pages" ? " for pages" : type === "app" ? " for app" : ""} should be inspected at port ${debugPort}.`);
+-            execArgv.push(`--inspect${isDebuggingWithBrk ? "-brk" : ""}=${debugPort}`);
++            execArgv.push(`--inspect${isDebuggingWithBrk ? "-brk" : ""}=0.0.0.0:${debugPort}`);
+         }
+     }
+     return execArgv;

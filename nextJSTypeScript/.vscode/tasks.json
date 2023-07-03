@@ -91,12 +91,46 @@
             },
         },
         {
+            "label": "wait-for-run-local",
+            "command": "until $(curl --output /dev/null --silent --head --fail http://localhost:3000); do printf '.'; sleep 1; done",
+            "type": "shell",
+            "args": [
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "watch",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "npm-install",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
             "command": "[ ! -d 'node_modules' ] && npm install || true",
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "npm-install-remote",
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "cd ${config:torizon_app_root}/app && npm install"
+            ],
             "dependsOrder": "sequence",
             "icon": {
                 "id": "flame",
@@ -206,6 +240,24 @@
             }
         },
         {
+            "label": "output-nextjs-arm64",
+            "detail": "",
+            "command": "npm",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "run",
+                "output-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "deploy-torizon-arm64",
             "detail": "hide",
             "command": "scp",
@@ -232,9 +284,10 @@
         },
         {
             "label": "start-torizon-debug-arm64",
-            "detail": "hide",
+            "detail": "",
             "command": "ssh",
             "type": "process",
+            "isBackground": true,
             "args": [
                 "-i",
                 "${workspaceFolder}/.conf/id_rsa",
@@ -245,27 +298,47 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "npm run dev"
+                "cd ${config:torizon_app_root}/app && npm run dev"
             ],
+            "problemMatcher": [
+                {
+                    "pattern": [
+                      {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "severity": 3,
+                        "code": 4,
+                        "message": 5
+                      }
+                    ],
+                    "background": {
+                      "activeOnStart": true,
+                      "beginsPattern": ".",
+                      "endsPattern": "for pages should be inspected at port",
+                    }
+                }
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
                 "apply-torizon-packages",
-                "npm-install",
-                "build-nextjs-arm64",
+                "output-nextjs-arm64",
                 "copy-docker-compose",
                 "pre-cleanup-arm64",
-                "package-torizon-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
                 "pos-cleanup",
-                "deploy-torizon-arm64"
+                "deploy-torizon-arm64",
+                "npm-install-remote"
             ],
             "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"

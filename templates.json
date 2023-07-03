@@ -401,7 +401,9 @@
             "runtime": "NodeJS",
             "language": "TypeScript",
             "debugPort": "9229",
-            "debugSSHPort": "9222",
+            "debugSSHPort": "2229",
+            "debugPort2": "9230",
+            "debugPort3": "9231",
             "multiContainer": false,
             "support": "Community"
         }
