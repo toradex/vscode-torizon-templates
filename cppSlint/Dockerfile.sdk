@@ -91,10 +91,10 @@ RUN RUST_TOOLCHAIN_ARCH=$(cat /rust-toolchain-arch.txt) && \
 # automate for torizonPackages.json
 RUN apt-get -q -y update && \
     apt-get -q -y install \
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*

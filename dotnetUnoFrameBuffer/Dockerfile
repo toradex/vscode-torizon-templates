@@ -62,10 +62,10 @@ RUN apt-get -q -y update && \
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # ADD YOUR PACKAGES HERE
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build

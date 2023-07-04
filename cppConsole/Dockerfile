@@ -22,10 +22,10 @@ ENV IMAGE_ARCH ${IMAGE_ARCH}
 # __deps__
 RUN apt-get -q -y update && \
     apt-get -q -y install \
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
@@ -53,10 +53,10 @@ ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
