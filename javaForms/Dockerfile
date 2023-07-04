@@ -32,10 +32,10 @@ RUN apt-get -q -y update && \
     default-jdk \
     ant \
     # ADD YOUR PACKAGES HERE
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
@@ -82,7 +82,7 @@ RUN apt-get -q -y update && \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
-# DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
