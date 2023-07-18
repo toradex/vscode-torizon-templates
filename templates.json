@@ -7,7 +7,7 @@
             "runtime": ".net 6.0",
             "language": "C#",
             "debugSSHPort": "2222",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Toradex",
             "tests": {
                 "debuggers": {
@@ -29,7 +29,7 @@
             "runtime": "asp.net 6.0",
             "language": "C#",
             "debugSSHPort": "2222",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Toradex",
             "tests": {
                 "debuggers": {
@@ -52,7 +52,7 @@
             "runtime": ".net 6.0",
             "language": "C#",
             "debugSSHPort": "2223",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community",
             "tests": {
                 "debuggers": {
@@ -74,7 +74,7 @@
             "runtime": ".net 6.0",
             "language": "C#",
             "debugSSHPort": "2224",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community",
             "tests": {
                 "debuggers": {
@@ -95,7 +95,7 @@
             "runtime": ".net 6.0",
             "language": "C#",
             "debugSSHPort": "2225",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Toradex",
             "tests": {
                 "debuggers": {
@@ -117,7 +117,7 @@
             "runtime": ".net 6.0",
             "language": "C#",
             "debugSSHPort": "2226",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community",
             "tests": {
                 "debuggers": {
@@ -139,7 +139,7 @@
             "language": "C#",
             "debugPort": "55555",
             "debugSSHPort": "2227",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community"
         },
         {
@@ -151,7 +151,7 @@
             "debugPort": "9229",
             "debugPort2": "9223",
             "debugSSHPort": "2228",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community",
             "tests": {
                 "debuggers": {
@@ -174,7 +174,7 @@
             "language": "TypeScript",
             "debugPort": "9229",
             "debugSSHPort": "2229",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community",
             "tests": {
                 "debuggers": {
@@ -196,7 +196,7 @@
             "runtime": "libc",
             "language": "C++",
             "debugSSHPort": "2230",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Toradex",
             "tests" : {
                 "debuggers": {
@@ -221,7 +221,7 @@
             "debugPort": "2232",
             "debugPort2": "2233",
             "debugSSHPort": "2231",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Toradex",
             "tests": {
                 "debuggers": {
@@ -245,7 +245,7 @@
             "language": "Java",
             "debugPort": "2235",
             "debugSSHPort": "2234",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community",
             "tests" : {
                 "debuggers": {
@@ -267,7 +267,7 @@
             "runtime": "libc",
             "language": "Rust",
             "debugSSHPort": "2299",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community",
             "tests" : {
                 "debuggers": {
@@ -288,7 +288,7 @@
             "runtime": "gambas3",
             "language": "Visual Basic",
             "debugSSHPort": "2250",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community"
         },
         {
@@ -299,7 +299,7 @@
             "language": "Python 3",
             "debugPort": "6512",
             "debugSSHPort": "6502",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Toradex",
             "tests": {
                 "debuggers": {
@@ -321,7 +321,7 @@
             "language": "Python 3",
             "debugPort": "6512",
             "debugSSHPort": "6502",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Community",
             "tests": {
                 "debuggers": {
@@ -356,7 +356,7 @@
             "debugPort": "2232",
             "debugPort2": "2233",
             "debugSSHPort": "2231",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Partner",
             "tests": {
                 "debuggers": {
@@ -380,7 +380,7 @@
             "debugPort": "2232",
             "debugPort2": "2233",
             "debugSSHPort": "2231",
-            "multiContainer": false,
+            "multiContainer": true,
             "support": "Partner",
             "tests": {
                 "debuggers": {
