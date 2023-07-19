@@ -129,6 +129,11 @@ Copy-Item `
     $Env:HOME/.apollox/scripts/checkCIEnv.ps1 `
     $projectFolder/.conf/checkCIEnv.ps1
 
+# VALIDATE DEPS RUNNING ENV:
+Copy-Item `
+    $Env:HOME/.apollox/scripts/validateDepsRunning.ps1 `
+    $projectFolder/.conf/validateDepsRunning.ps1
+
 Write-Host -ForegroundColor DarkGreen "✅ always accept new"
 # ----------------------------------------------------------- ALWAYS ACCEPT NEW
 
