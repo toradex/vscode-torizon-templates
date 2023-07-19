@@ -510,7 +510,10 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
-            }
+            },
+            "dependsOn": [
+                "validate-deps-running"
+            ]
         },
         {
             "label": "validate-arch-amd64",
@@ -1527,6 +1530,36 @@
             },
             "args": [
                 ".conf/checkCIEnv.ps1"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ]
+        },
+        {
+            "label": "validate-deps-running",
+            "detail": "hide",
+            "command": "pwsh",
+            "type": "process",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "TORIZON_PSSWD": "${config:torizon_psswd}",
+                    "TORIZON_LOGIN": "${config:torizon_login}",
+                    "HOST_IP": "${config:host_ip}",
+                    "TORIZON_IP": "${config:torizon_ip}",
+                    "TORIZON_ARCH": "${config:torizon_arch}",
+                    "TORIZON_GPU": "${config:torizon_gpu}"
+                }
+            },
+            "args": [
+                ".conf/validateDepsRunning.ps1"
             ],
             "problemMatcher": [
                 "$tsc"
