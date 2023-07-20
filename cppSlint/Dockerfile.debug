@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3
+ARG BASE_VERSION=3.0.9-bookworm
 
 ##
 # Application Name
@@ -31,7 +31,7 @@ ARG SSHUSERNAME=
 ##
 ARG GPU=
 
-ARG CROSS_SDK_BASE_TAG=3-bookworm
+ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm
 
 # BUILD ------------------------------------------------------------------------
 

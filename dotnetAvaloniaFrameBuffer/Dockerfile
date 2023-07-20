@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3
+ARG BASE_VERSION=3.0.9-bookworm
 ARG DOTNET_BASE_VERSION=3-6.0
 
 ##
