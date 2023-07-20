@@ -2,7 +2,7 @@
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3
+ARG BASE_VERSION=3.0.9-bookworm
 
 ##
 # Application Name
