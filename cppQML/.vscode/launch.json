@@ -99,7 +99,7 @@
                 },
                 {
                     "name": "QT_QPA_PLATFORM",
-                    "value": "software"
+                    "value": "wayland"
                 }
             ],
             "externalConsole": false,
@@ -154,7 +154,7 @@
                 },
                 {
                     "name": "QT_QPA_PLATFORM",
-                    "value": "software"
+                    "value": "wayland"
                 }
             ],
             "externalConsole": false,
