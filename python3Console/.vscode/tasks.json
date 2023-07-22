@@ -168,6 +168,7 @@
                 "-m",
                 "pip",
                 "install",
+                "--break-system-packages",
                 "-r",
                 "requirements-debug.txt"
             ],

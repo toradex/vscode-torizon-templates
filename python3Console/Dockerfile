@@ -40,7 +40,7 @@ RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
 # Install pip packages on venv
 COPY requirements-release.txt /requirements-release.txt
 RUN . ${APP_ROOT}/.venv/bin/activate && \
-    pip3 install --upgrade pip && pip3 install -r requirements-release.txt && \
+    pip3 install --upgrade pip && pip3 install --break-system-packages -r requirements-release.txt && \
     rm requirements-release.txt
 
 # copy the source code

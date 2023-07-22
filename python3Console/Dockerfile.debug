@@ -79,7 +79,7 @@ RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
 # Install pip packages on venv
 COPY requirements-debug.txt /requirements-debug.txt
 RUN . ${APP_ROOT}/.venv/bin/activate && \
-    pip3 install --upgrade pip && pip3 install -r requirements-debug.txt && \
+    pip3 install --upgrade pip && pip3 install --break-system-packages -r requirements-debug.txt && \
     rm requirements-debug.txt
 
 # ⚠️ DEBUG PURPOSES ONLY!!
