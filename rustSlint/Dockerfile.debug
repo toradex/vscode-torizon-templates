@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.0.8
+ARG BASE_VERSION=3.0.9-bookworm
 
 ##
 # Application Name
@@ -35,8 +35,7 @@ ARG GPU=
 ##
 # Deploy Step
 ##
-FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
+FROM commontorizon/slint-base-${IMAGE_ARCH}${GPU}:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -44,11 +43,6 @@ ARG SSH_DEBUG_PORT
 ARG APP_EXECUTABLE
 ARG SSHUSERNAME
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
-
-# Install Slint dependencies
-RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install libfontconfig1 libxkbcommon0 fonts-noto-core fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-noto-ui-core fonts-noto-ui-extra \
-    && rm -rf /var/lib/apt/lists/*
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
@@ -70,7 +64,7 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 
 # your regular RUN statements here
-# Install required packages
+# Install required Debug packages
 RUN apt-get -q -y update && \
     apt-get -q -y install \
     openssl \
