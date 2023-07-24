@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3-6.0
+ARG BASE_VERSION=6.12.0
 
 ##
 # Application Name
@@ -31,7 +31,7 @@ ARG SSHUSERNAME=
 # Deploy Step .NET Uno
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-uno-debug:${BASE_VERSION} AS Debug
+    commontorizon/mono-sdk:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG SSH_DEBUG_PORT
@@ -44,26 +44,6 @@ EXPOSE ${SSH_DEBUG_PORT}
 
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
-
-# Add the mono preview feed
-RUN apt-get -q -y update && \
-    apt install apt-transport-https dirmngr gnupg ca-certificates && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
-    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
-    echo "deb https://download.mono-project.com/repo/debian preview-buster main" \
-    | sudo tee /etc/apt/sources.list.d/mono-official-preview.list
-
-# your regular RUN statements here
-# Install required packages
-RUN apt-get -q -y update && \
-    apt-get -q -y install \
-    openssl \
-    openssh-server \
-    rsync \
-    file \
-    mono-complete && \
-    apt-get clean && apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/*
 
 # automate for torizonPackages.json
 RUN apt-get -q -y update && \

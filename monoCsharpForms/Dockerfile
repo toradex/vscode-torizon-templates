@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3-6.0
+ARG BASE_VERSION=6.12.0
 
 ##
 # Application Name
@@ -19,7 +19,7 @@ ARG APP_EXECUTABLE=__change__
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-uno-debug:${BASE_VERSION} AS Build
+    commontorizon/mono-sdk:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -27,21 +27,13 @@ ARG APP_EXECUTABLE
 COPY . /build
 WORKDIR /build
 
-# Add the mono preview feed
-RUN apt-get -q -y update && \
-    apt install apt-transport-https dirmngr gnupg ca-certificates && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
-    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
-    echo "deb https://download.mono-project.com/repo/debian preview-buster main" \
-    | sudo tee /etc/apt/sources.list.d/mono-official-preview.list
-
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # ADD YOUR PACKAGES HERE
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    mono-complete \
+    && \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # build
@@ -53,19 +45,11 @@ RUN msbuild
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-uno:${BASE_VERSION} AS Deploy
+    commontorizon/mono-runtime:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
-
-# Add the mono preview feed
-RUN apt-get -q -y update && \
-    apt install apt-transport-https dirmngr gnupg ca-certificates && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
-    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
-    echo "deb https://download.mono-project.com/repo/debian preview-buster main" \
-    | sudo tee /etc/apt/sources.list.d/mono-official-preview.list
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # ADD YOUR PACKAGES HERE
@@ -73,7 +57,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    mono-runtime && \
+    && \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
