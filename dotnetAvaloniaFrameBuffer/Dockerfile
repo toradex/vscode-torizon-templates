@@ -56,6 +56,9 @@ ENV PATH=$PATH:/dotnet
 
 COPY --from=Dotnet /dotnet /dotnet
 
+# stick to bookworm on /etc/apt/sources.list.d
+RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
+
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
         if [ "${GPU}" = "-vivante" ]; then \

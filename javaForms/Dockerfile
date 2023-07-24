@@ -26,6 +26,9 @@ FROM --platform=linux/${IMAGE_ARCH} \
 ARG IMAGE_ARCH
 ARG GPU
 
+# stick to bookworm on /etc/apt/sources.list.d
+RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
+
 # __deps__
 RUN apt-get -q -y update && \
     apt-get -q -y install \
@@ -59,6 +62,9 @@ ARG SSHUSERNAME=torizon
 
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
+
+# stick to bookworm on /etc/apt/sources.list.d
+RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
