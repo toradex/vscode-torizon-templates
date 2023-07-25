@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=0.0.2
+ARG BASE_VERSION=3.17.90
 
 ##
 # Application Name
@@ -24,7 +24,7 @@ ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    ghcr.io/microhobby/gambas3${GPU}:${BASE_VERSION} AS Build
+    commontorizon/gambas3${GPU}:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
