@@ -13,8 +13,7 @@ $_envVarsSettings = @(
     "TORIZON_LOGIN",
     "HOST_IP",
     "TORIZON_IP",
-    "TORIZON_ARCH",
-    "TORIZON_GPU"
+    "TORIZON_ARCH"
 )
 
 Write-Host -ForegroundColor DarkYellow `
