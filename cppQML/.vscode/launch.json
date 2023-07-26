@@ -159,7 +159,7 @@
             ],
             "externalConsole": false,
             "sourceFileMap": {
-                "/app/aarch64": "${workspaceFolder}/aarch64"
+                "/app/armhf": "${workspaceFolder}/armhf"
             },
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
