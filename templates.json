@@ -213,6 +213,29 @@
             }
         },
         {
+            "img": "cconsole.png",
+            "folder": "cConsole",
+            "description": "C Console Application",
+            "runtime": "libc",
+            "language": "C",
+            "debugSSHPort": "2230",
+            "multiContainer": true,
+            "support": "Community",
+            "tests" : {
+                "debuggers": {
+                    "local": ["Local AMD64"], 
+                    "riscv": ["Torizon riscv64"], 
+                    "amd64": ["Torizon AMD64"], 
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
+                "debuggerConsole": "cppdbg",
+                "mainFile": "src/main.c",
+                "mainFileBreakpointLine": 5,
+                "successDebugMessage": "Hello Torizon!"
+            }
+        },
+        {
             "img": "qt6qml.png",
             "folder": "cppQML",
             "description": "C++ Qt 6 QML Application",
