@@ -58,6 +58,7 @@ RUN apt-get -q -y update && \
     gcc \
     g++ \
     make \
+    git \
     libatspi2.0-0 \
     libgconf-2-4 \
     libglib2.0-bin \

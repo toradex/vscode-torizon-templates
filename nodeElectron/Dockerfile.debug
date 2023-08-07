@@ -72,6 +72,7 @@ RUN apt-get -q -y update && \
     gcc \
     g++ \
     make \
+    git \
     openssl \
     openssh-server \
     rsync \
