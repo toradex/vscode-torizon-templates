@@ -42,6 +42,8 @@ $_iterative = $true
 
 if ($null -eq $gpu) {
     $gpu = ""
+} else {
+    $env:GPU = $gpu
 }
 
 if ($null -eq $env:DOCKER_PSSWD) {
@@ -121,7 +123,12 @@ $env:LOCAL_REGISTRY="$($localRegistry):5002"
 $env:TAG="$tag"
 $env:DOCKER_LOGIN="$dockerLogin"
 Set-Location $compoFilePath
-docker compose build --build-arg IMAGE_ARCH=$imageArch $imageName
+
+docker compose build `
+    --build-arg IMAGE_ARCH=$imageArch `
+    --build-arg GPU=$gpu `
+    $imageName
+
 Set-Location -
 
 Write-Host -ForegroundColor DarkGreen "✅ Image rebuild and tagged"
