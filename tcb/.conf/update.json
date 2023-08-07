@@ -1,2 +1,10 @@
 [
+    {
+        "source": ".github/workflows/build-torizoncore.yaml",
+        "target": ".github/workflows/build-torizoncore.yaml"
+    },
+    {
+        "source": ".gitlab-ci.yml",
+        "target": ".gitlab-ci.yml"
+    }
 ]

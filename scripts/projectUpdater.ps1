@@ -169,12 +169,17 @@ if ($_templateMetadata.mergeCommon -ne $False) {
 
 # we need to create a tmp folder to the update files
 Set-Location $projectFolder/.conf/tmp
-Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile .
-Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
-Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
+
+# tcb does not have the common Docker files
+if ($templateName -ne "tcb") {
+    Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile .
+    Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
+    Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
+    Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
+    Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
+}
+
 Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
-Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
-Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
 
 # read the update table:
 for ($i = 0; $i -lt $updateTable.Count; $i++) {
@@ -238,30 +243,34 @@ Write-Host -ForegroundColor DarkGreen "✅ tasks.json"
 
 
 # ---------------------------------------------------------------------- COMMON
-# DOCKERFILE:
-_openMergeWindow `
-    $projectFolder/.conf/tmp/Dockerfile `
-    $projectFolder/Dockerfile
 
-# DOCKERFILE.DEBUG:
-_openMergeWindow `
-    $projectFolder/.conf/tmp/Dockerfile.debug `
-    $projectFolder/Dockerfile.debug
+# TCB does not have the common application Docker files
+if ($templateName -ne "tcb") {
+    # DOCKERFILE:
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/Dockerfile `
+        $projectFolder/Dockerfile
 
-# DOCKER-COMPOSE:
-_openMergeWindow `
-    $projectFolder/.conf/tmp/docker-compose.yml `
-    $projectFolder/docker-compose.yml
+    # DOCKERFILE.DEBUG:
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/Dockerfile.debug `
+        $projectFolder/Dockerfile.debug
 
-# GITHUB ACTIONS:
-_openMergeWindow `
-    $projectFolder/.conf/tmp/build-application.yaml `
-    $projectFolder/.github/workflows/build-application.yaml
+    # DOCKER-COMPOSE:
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/docker-compose.yml `
+        $projectFolder/docker-compose.yml
 
-# GITLAB CI:
-_openMergeWindow `
-    $projectFolder/.conf/tmp/.gitlab-ci.yml `
-    $projectFolder/.gitlab-ci.yml
+    # GITHUB ACTIONS:
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/build-application.yaml `
+        $projectFolder/.github/workflows/build-application.yaml
+
+    # GITLAB CI:
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/.gitlab-ci.yml `
+        $projectFolder/.gitlab-ci.yml
+}
 
 # GITIGNORE:
 _openMergeWindow `
