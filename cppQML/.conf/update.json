@@ -2,5 +2,9 @@
     {
         "source": "__change__.pro",
         "target": "$projectName.pro"
-    }
+    },
+    {
+        "source": ".vscode/launch.json",
+        "target": ".vscode/launch.json"
+    }    
 ]
