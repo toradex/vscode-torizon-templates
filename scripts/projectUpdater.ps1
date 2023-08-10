@@ -288,9 +288,16 @@ for ($i = 0; $i -lt $updateTable.Count; $i++) {
     $_target = $updateTable[$i].target
     $_target = (Invoke-Expression "echo `"$_target`"")
 
-    _openMergeWindow `
-        $projectFolder/.conf/tmp/$_source `
-        $projectFolder/$_target
+    # check if the file exists, if not simple copy it
+    if (
+        (Test-Path $projectFolder/$_target) -eq $True
+    ) {
+        _openMergeWindow `
+            $projectFolder/.conf/tmp/$_source `
+            $projectFolder/$_target
+    } else {
+        cp $projectFolder/.conf/tmp/$_source $projectFolder/$_target
+    }
 }
 
 Write-Host -ForegroundColor DarkGreen "✅ specific"
