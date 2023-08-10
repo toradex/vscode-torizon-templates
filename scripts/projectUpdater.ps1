@@ -89,6 +89,11 @@ if (
     exit $LASTEXITCODE
 }
 
+# TASKS.PS1:
+Copy-Item `
+    $Env:HOME/.apollox/scripts/tasks.ps1 `
+    $projectFolder/.vscode/tasks.ps1
+
 # CHECK DEPS
 Copy-Item `
     $Env:HOME/.apollox/scripts/checkDeps.ps1 `
