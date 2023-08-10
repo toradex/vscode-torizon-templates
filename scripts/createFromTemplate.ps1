@@ -143,7 +143,6 @@ Copy-Item "$templateFolder/../scripts/tasks.ps1" "$location/.vscode"
 Copy-Item "$templateFolder/../assets/json/torizonPackages.json" "$location/"
 Copy-Item "$templateFolder/../scripts/bash/tcb-env-setup.sh" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/torizonIO.ps1" "$location/.conf"
-Copy-Item "$templateFolder/../scripts/projectUpdater.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/checkCIEnv.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/validateDepsRunning.ps1" "$location/.conf"
 
@@ -213,6 +212,9 @@ Get-ChildItem -Force -File -Recurse * | ForEach-Object {
         }
     }
 }
+
+# the project updater does not need to change the contents
+Copy-Item "$templateFolder/../scripts/projectUpdater.ps1" "$location/.conf"
 
 # if from vscode we need to replace the inputs
 if (-not [string]::IsNullOrEmpty($vscode)) {
