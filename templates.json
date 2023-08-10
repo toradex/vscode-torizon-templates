@@ -458,6 +458,27 @@
                 "mainFileBreakpointLine": 12,
                 "successDebugMessage": "Hello Torizon!"
             }
+        },
+        {
+            "img": "zig-console.png",
+            "folder": "zigConsole",
+            "description": "Zig Console Application",
+            "runtime": "no-libc",
+            "language": "Zig",
+            "debugSSHPort": "2320",
+            "multiContainer": true,
+            "support": "Community",
+            "tests" : {
+                "debuggers": {
+                    "local": ["Local AMD64"],  
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
+                "debuggerConsole": "cppdbg",
+                "mainFile": "src/main.zig",
+                "mainFileBreakpointLine": 9,
+                "successDebugMessage": "info(toradex): Hello Torizon!"
+            }
         }
     ]
 }
