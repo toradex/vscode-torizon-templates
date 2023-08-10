@@ -540,7 +540,6 @@ function runTask () {
             }
 
             # parse the variables
-            Write-Host "echo `"$taskCmd $taskArgs $isBackground`""
             $_cmd = Invoke-Expression "echo `"$taskCmd $taskArgs $isBackground`""
 
             if ($env:TASKS_DEBUG -eq $true) {
