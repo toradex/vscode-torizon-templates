@@ -366,9 +366,10 @@ function quotingSpecialChars ([System.Collections.ArrayList] $list) {
     $ret = [System.Collections.ArrayList]@()
 
     foreach ($item in $list) {
-        if (
-            _containsSpecialChars($item) -and (-not $item.Contains(" "))
-        ) {
+        $_specialChar = _containsSpecialChars($item)
+        $_space = $item.Contains(" ")
+
+        if ($_specialChar -and -not $_space) {
             $item = "'$item'"
         }
 
