@@ -16,7 +16,8 @@
         },
         {
             "label": "stop-torizon-debug",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -40,7 +41,8 @@
         },
         {
             "label": "tunnel-debug-torizon",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "echo",
             "type": "process",
             "args": [
@@ -60,7 +62,8 @@
         },
         {
             "label": "tunnel-debug-torizon-pre",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -84,7 +87,8 @@
         },
         {
             "label": "package-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "npx",
             "type": "process",
             "options": {
@@ -106,7 +110,8 @@
         },
         {
             "label": "deploy-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -131,7 +136,8 @@
         },
         {
             "label": "start-torizon-debug-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -171,7 +177,8 @@
         },
         {
             "label": "package-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "npx",
             "type": "process",
             "options": {
@@ -193,7 +200,8 @@
         },
         {
             "label": "deploy-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -218,7 +226,8 @@
         },
         {
             "label": "overwrite-libs-vivante",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -242,7 +251,8 @@
         },
         {
             "label": "start-torizon-debug-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -283,7 +293,8 @@
         },
         {
             "label": "package-torizon-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "npx",
             "type": "process",
             "options": {
@@ -305,7 +316,8 @@
         },
         {
             "label": "deploy-torizon-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -330,7 +342,8 @@
         },
         {
             "label": "start-torizon-debug-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [

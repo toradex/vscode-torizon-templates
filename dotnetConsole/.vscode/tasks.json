@@ -51,7 +51,8 @@
         },
         {
             "label": "pos-cleanup",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -75,7 +76,8 @@
         },
         {
             "label": "publish-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -96,7 +98,8 @@
         },
         {
             "label": "deploy-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -135,7 +138,8 @@
         },
         {
             "label": "deploy-launch-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -159,7 +163,8 @@
         },
         {
             "label": "deploy-run-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sleep",
             "type": "process",
             "args": [
@@ -178,7 +183,8 @@
         },
         {
             "label": "publish-torizon-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -199,7 +205,8 @@
         },
         {
             "label": "deploy-torizon-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -238,7 +245,8 @@
         },
         {
             "label": "deploy-launch-torizon-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -262,7 +270,8 @@
         },
         {
             "label": "deploy-run-torizon-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sleep",
             "type": "process",
             "args": [
@@ -281,7 +290,8 @@
         },
         {
             "label": "publish-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -302,7 +312,8 @@
         },
         {
             "label": "deploy-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -341,7 +352,8 @@
         },
         {
             "label": "deploy-launch-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -365,7 +377,8 @@
         },
         {
             "label": "deploy-run-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sleep",
             "type": "process",
             "args": [

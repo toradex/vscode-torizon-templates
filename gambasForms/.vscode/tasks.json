@@ -43,7 +43,8 @@
         },
         {
             "label": "update-settings-ini",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "args": [
@@ -64,7 +65,8 @@
         },
         {
             "label": "build-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "echo",
             "type": "process",
             "args": [
@@ -108,7 +110,8 @@
         },
         {
             "label": "deploy-torizon-fake",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "echo",
             "type": "shell",
             "args": [
