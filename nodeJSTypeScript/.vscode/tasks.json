@@ -3,7 +3,8 @@
     "tasks": [
         {
             "label": "build-typescript-local",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "npm",
             "type": "process",
             "options": {
@@ -38,7 +39,8 @@
         },
         {
             "label": "build-typescript-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "npm",
             "type": "process",
             "options": {
@@ -56,7 +58,8 @@
         },
         {
             "label": "deploy-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -81,7 +84,8 @@
         },
         {
             "label": "start-torizon-debug-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -122,7 +126,8 @@
         },
         {
             "label": "build-typescript-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "npm",
             "type": "process",
             "options": {
@@ -140,7 +145,8 @@
         },
         {
             "label": "deploy-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -165,7 +171,8 @@
         },
         {
             "label": "start-torizon-debug-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -206,7 +213,8 @@
         },
         {
             "label": "build-typescript-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "npm",
             "type": "process",
             "options": {
@@ -224,7 +232,8 @@
         },
         {
             "label": "deploy-torizon-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -249,7 +258,8 @@
         },
         {
             "label": "start-torizon-debug-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [

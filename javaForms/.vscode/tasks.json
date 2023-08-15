@@ -104,7 +104,8 @@
         },
         {
             "label": "deploy-application",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -129,7 +130,8 @@
         },
         {
             "label": "deploy-assets",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -154,7 +156,8 @@
         },
         {
             "label": "deploy-libs",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -179,7 +182,8 @@
         },
         {
             "label": "exterminate-debugger",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -203,7 +207,8 @@
         },
         {
             "label": "run-debugger-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "isBackground": true,
@@ -267,7 +272,8 @@
         },
         {
             "label": "deploy-torizon-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "echo",
             "type": "process",
             "args": [
@@ -286,7 +292,8 @@
         },
         {
             "label": "run-debugger-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "isBackground": true,
@@ -350,7 +357,8 @@
         },
         {
             "label": "deploy-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "echo",
             "type": "process",
             "args": [
@@ -369,7 +377,8 @@
         },
         {
             "label": "run-debugger-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "isBackground": true,
@@ -433,7 +442,8 @@
         },
         {
             "label": "deploy-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "echo",
             "type": "process",
             "args": [

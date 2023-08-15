@@ -27,7 +27,8 @@
         },
         {
             "label": "try-update-template",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -54,7 +55,8 @@
         },
         {
             "label": "run-docker-registry",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -84,7 +86,8 @@
         },
         {
             "label": "run-torizon-binfmt",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -112,7 +115,8 @@
         },
         {
             "label": "run-share-wsl-ports",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -134,7 +138,8 @@
         },
         {
             "label": "check-deps",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -156,7 +161,8 @@
         },
         {
             "label": "create-storage-dir",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -183,7 +189,8 @@
         },
         {
             "label": "tcb-setup",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "runOptions": {
@@ -337,7 +344,8 @@
         },
         {
             "label": "tcb-unpack",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {

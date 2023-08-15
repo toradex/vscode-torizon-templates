@@ -211,7 +211,8 @@
         },
         {
             "label": "copy-assets-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "cp",
             "type": "shell",
             "args": [
@@ -229,7 +230,8 @@
         },
         {
             "label": "copy-assets-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "cp",
             "type": "shell",
             "args": [
@@ -247,7 +249,8 @@
         },
         {
             "label": "copy-assets-amd64-local",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "cp",
             "type": "shell",
             "args": [
@@ -265,7 +268,8 @@
         },
         {
             "label": "copy-assets-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "cp",
             "type": "shell",
             "args": [
@@ -426,7 +430,8 @@
         },
         {
             "label": "deploy-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -550,7 +555,8 @@
         },
         {
             "label": "deploy-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -674,7 +680,8 @@
         },
         {
             "label": "deploy-torizon-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -713,7 +720,8 @@
         },
         {
             "label": "update-qt-ini-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "args": [
@@ -734,7 +742,8 @@
         },
         {
             "label": "update-qt-ini-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "args": [
@@ -755,7 +764,8 @@
         },
         {
             "label": "update-qt-ini-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "args": [

@@ -74,7 +74,8 @@
         },
         {
             "label": "deploy-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -150,7 +151,8 @@
         },
         {
             "label": "deploy-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [

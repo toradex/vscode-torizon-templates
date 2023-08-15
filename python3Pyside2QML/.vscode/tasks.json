@@ -3,7 +3,8 @@
     "tasks": [
         {
             "label": "deploy-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -28,7 +29,8 @@
         },
         {
             "label": "wait-debugpy-start-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sleep",
             "type": "process",
             "args": [
@@ -58,7 +60,8 @@
         },
         {
             "label": "start-torizon-debug-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -82,7 +85,8 @@
         },
         {
             "label": "deploy-torizon-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -107,7 +111,8 @@
         },
         {
             "label": "wait-debugpy-start-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sleep",
             "type": "process",
             "args": [
@@ -137,7 +142,8 @@
         },
         {
             "label": "start-torizon-debug-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -161,7 +167,8 @@
         },
         {
             "label": "host-install-pip-requirements",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "${command:python.interpreterPath}",
             "type": "process",
             "args": [
