@@ -31,7 +31,8 @@
         },
         {
             "label": "deploy-application",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -56,7 +57,8 @@
         },
         {
             "label": "deploy-assets",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "scp",
             "type": "process",
             "args": [
@@ -81,7 +83,8 @@
         },
         {
             "label": "build-torizon-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "msbuild",
             "type": "process",
         "args": [],
@@ -94,7 +97,8 @@
         },
         {
             "label": "run-mono-debug-server-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -133,7 +137,8 @@
         },
         {
             "label": "run-mono-debug-server-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -173,7 +178,8 @@
         },
         {
             "label": "run-mono-debug-server-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [

@@ -26,7 +26,8 @@
         },
         {
             "label": "try-update-template",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -78,7 +79,8 @@
         },
         {
             "label": "create-production-image",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -112,7 +114,8 @@
         },
         {
             "label": "set-platform-fleet-name",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -248,7 +251,8 @@
         },
         {
             "label": "docker-login",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -279,7 +283,8 @@
         },
         {
             "label": "run-docker-registry",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -309,7 +314,8 @@
         },
         {
             "label": "run-docker-registry-wsl",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -340,7 +346,8 @@
         },
         {
             "label": "run-torizon-binfmt",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -368,7 +375,8 @@
         },
         {
             "label": "run-share-wsl-ports",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -412,7 +420,8 @@
         },
         {
             "label": "apply-torizon-packages",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -435,7 +444,8 @@
         },
         {
             "label": "copy-docker-compose",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -461,7 +471,8 @@
         },
         {
             "label": "wait-a-bit",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sleep",
             "type": "process",
             "args": [
@@ -476,7 +487,8 @@
         },
         {
             "label": "pos-cleanup",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -500,7 +512,8 @@
         },
         {
             "label": "validate-settings",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "bash",
             "type": "process",
             "args": [
@@ -519,7 +532,8 @@
         },
         {
             "label": "validate-arch-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "bash",
             "type": "process",
             "args": [
@@ -535,7 +549,8 @@
         },
         {
             "label": "validate-arch-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "bash",
             "type": "process",
             "args": [
@@ -551,7 +566,8 @@
         },
         {
             "label": "validate-arch-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "bash",
             "type": "process",
             "args": [
@@ -567,7 +583,8 @@
         },
         {
             "label": "validate-arch-riscv64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "bash",
             "type": "process",
             "args": [
@@ -583,7 +600,8 @@
         },
         {
             "label": "pre-cleanup-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -609,7 +627,8 @@
         },
         {
             "label": "pre-cleanup-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -635,7 +654,8 @@
         },
         {
             "label": "pre-cleanup-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -661,7 +681,8 @@
         },
         {
             "label": "pre-cleanup-riscv64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -687,7 +708,8 @@
         },
         {
             "label": "build-container-torizon-debug-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -725,7 +747,8 @@
         },
         {
             "label": "build-container-torizon-debug-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -763,7 +786,8 @@
         },
         {
             "label": "build-container-torizon-debug-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -801,7 +825,8 @@
         },
         {
             "label": "build-container-torizon-debug-riscv64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -935,7 +960,8 @@
         },
         {
             "label": "push-container-torizon-debug-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -959,7 +985,8 @@
         },
         {
             "label": "push-container-torizon-debug-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -983,7 +1010,8 @@
         },
         {
             "label": "push-container-torizon-debug-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1007,7 +1035,8 @@
         },
         {
             "label": "push-container-torizon-debug-riscv64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1031,7 +1060,8 @@
         },
         {
             "label": "pull-container-torizon-debug-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1057,7 +1087,8 @@
         },
         {
             "label": "pull-container-torizon-debug-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1083,7 +1114,8 @@
         },
         {
             "label": "pull-container-torizon-debug-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1109,7 +1141,8 @@
         },
         {
             "label": "pull-container-torizon-debug-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1135,7 +1168,8 @@
         },
         {
             "label": "pull-container-torizon-debug-riscv64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1161,7 +1195,8 @@
         },
         {
             "label": "run-container-torizon-debug-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1187,7 +1222,8 @@
         },
         {
             "label": "run-container-torizon-debug-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1213,7 +1249,8 @@
         },
         {
             "label": "run-container-torizon-debug-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1239,7 +1276,8 @@
         },
         {
             "label": "run-container-torizon-debug-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1265,7 +1303,8 @@
         },
         {
             "label": "run-container-torizon-debug-riscv64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "sshpass",
             "type": "process",
             "args": [
@@ -1372,7 +1411,8 @@
         },
         {
             "label": "build-release-arm",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1398,7 +1438,8 @@
         },
         {
             "label": "build-release-arm64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1424,7 +1465,8 @@
         },
         {
             "label": "build-release-amd64",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "process",
             "options": {
@@ -1475,7 +1517,8 @@
         {
             "label": "open-project-documentation-file",
             "command": "code",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "type": "process",
             "presentation": {
                 "echo": false,
@@ -1498,7 +1541,8 @@
         {
             "label": "wget-documentation-file",
             "command": "wget",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "type": "process",
             "args": [
                 "-O",
@@ -1514,7 +1558,8 @@
         },
         {
             "label": "validate-pipeline-settings",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "options": {
@@ -1546,7 +1591,8 @@
         },
         {
             "label": "validate-deps-running",
-            "detail": "hide",
+            "detail": "",
+            "hide": true,
             "command": "pwsh",
             "type": "process",
             "options": {
