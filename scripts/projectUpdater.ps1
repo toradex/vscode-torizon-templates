@@ -9,6 +9,7 @@ $errorActionPreference = "Stop"
 
 $projectFolder = $args[0]
 $projectName = $args[1]
+$acceptAll = $args[2]
 
 function _checkArg ($_arg) {
     if ([string]::IsNullOrEmpty($_arg)) {
@@ -28,6 +29,11 @@ function _checkIfFileContentIsEqual ($_file1, $_file2) {
 }
 
 function _openMergeWindow ($_path1, $_path2) {
+    if ($acceptAll -eq $true) {
+        cp $_path1 $_path2
+        return
+    }
+
     if (
         -not (_checkIfFileContentIsEqual $_path1 $_path2)
     ) {
@@ -38,6 +44,26 @@ function _openMergeWindow ($_path1, $_path2) {
 # check if the args passed are not empty
 _checkArg $projectFolder
 _checkArg $projectName
+
+# the accept all is optional
+if ([string]::IsNullOrEmpty($acceptAll)) {
+    $acceptAll = $false
+} else {
+    if ($acceptAll -eq "1") {
+        # ask for confirmation
+        Write-Host -ForegroundColor Yellow "You are about to accept all changes"
+        Write-Host -ForegroundColor Yellow "If the project is not versioned there is no way back"
+        $_sure = Read-Host -Prompt "Accept all changes? [y/n]"
+
+        if ($_sure -ne "y") {
+            exit 0
+        }
+
+        $acceptAll = $true
+    } else {
+        $acceptAll = $false
+    }
+}
 
 # copy the new one and make the subs
 $templateName = Get-Content $projectFolder/.conf/.template
@@ -84,7 +110,8 @@ if (
     # run the project updater again
     & $projectFolder/.conf/projectUpdater.ps1 `
         $projectFolder `
-        $projectName
+        $projectName `
+        $acceptAll
 
     exit $LASTEXITCODE
 }
