@@ -19,7 +19,36 @@
             "args": [
                 "${workspaceFolder}/.conf/projectUpdater.ps1",
                 "${workspaceFolder}",
-                "${workspaceFolderBasename}"
+                "${workspaceFolderBasename}",
+                "0"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "repo-sync",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
+            "label": "try-update-template-accepting-all",
+            "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "${workspaceFolder}/.conf/projectUpdater.ps1",
+                "${workspaceFolder}",
+                "${workspaceFolderBasename}",
+                "1"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -135,7 +164,7 @@
         },
         {
             "label": "platform-update-fleet",
-            "detail": "This task will trigger the update of the fleet in the Torizon Platform with the latest version of the application published to the platform.",
+            "detail": "This task will trigger the update of the fleet in the\nTorizon Platform with the latest version\nof the application published to the platform.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -167,7 +196,7 @@
         },
         {
             "label": "tcb-platform-publish",
-            "detail": "This task will build the production image based on the Dockerfile and push it to the Torizon Platform creating a new docker-compose package.",
+            "detail": "This task will build the production image based on the\nDockerfile and push it to the Torizon\nPlatform creating a new docker-compose package.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -348,7 +377,7 @@
         },
         {
             "label": "check-deps",
-            "detail": "This task will check if the dependencies needed to run the project are installed in the host machine.",
+            "detail": "This task will check if the dependencies needed to run\nthe project are installed in the host machine.",
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -1288,7 +1317,7 @@
         },
         {
             "label": "push-release-arm",
-            "detail": "These tasks will build the application based in the production Dockerfile and push the image to the DockerHub.",
+            "detail": "These tasks will build the application based in the\nproduction Dockerfile and push the image to the DockerHub.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1316,7 +1345,7 @@
         },
         {
             "label": "push-release-arm64",
-            "detail": "These tasks will build the application based in the production Dockerfile and push the image to the DockerHub.",
+            "detail": "These tasks will build the application based in the\nproduction Dockerfile and push the image to the DockerHub.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1344,7 +1373,7 @@
         },
         {
             "label": "push-release-amd64",
-            "detail": "These tasks will build the application based in the production Dockerfile and push the image to the DockerHub.",
+            "detail": "These tasks will build the application based in the\nproduction Dockerfile and push the image to the DockerHub.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
