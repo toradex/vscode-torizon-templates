@@ -2,33 +2,8 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": ".🔃-try-update-template",
-            "command": "echo",
-            "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "args": [
-                "▶️ merge task finished"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "try-update-template"
-            ],
-            "icon": {
-                "id": "repo-sync",
-                "color": "terminal.ansiCyan"
-            }
-        },
-        {
             "label": "try-update-template",
-            "detail": "",
-            "hide": true,
+            "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -45,7 +20,36 @@
             "args": [
                 "${workspaceFolder}/.conf/projectUpdater.ps1",
                 "${workspaceFolder}",
-                "${workspaceFolderBasename}"
+                "${workspaceFolderBasename}",
+                "0"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "repo-sync",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
+            "label": "try-update-template-accepting-all",
+            "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "${workspaceFolder}/.conf/projectUpdater.ps1",
+                "${workspaceFolder}",
+                "${workspaceFolderBasename}",
+                "1"
             ],
             "dependsOrder": "sequence",
             "icon": {
