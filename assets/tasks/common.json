@@ -1,33 +1,8 @@
 {
     "tasks": [
         {
-            "label": ".🔃-try-update-template",
-            "command": "echo",
-            "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "args": [
-                "▶️ merge task finished"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "try-update-template"
-            ],
-            "icon": {
-                "id": "repo-sync",
-                "color": "terminal.ansiCyan"
-            }
-        },
-        {
             "label": "try-update-template",
-            "detail": "",
-            "hide": true,
+            "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -53,34 +28,8 @@
             }
         },
         {
-            "label": ".🔨-create-production-image",
-            "command": "echo",
-            "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false,
-                "group": "create-prod-image"
-            },
-            "args": [
-                "▶️ Create Production Image task Finished"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "create-production-image"
-            ],
-            "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
-            }
-        },
-        {
             "label": "create-production-image",
-            "detail": "",
-            "hide": true,
+            "detail": "This task has automation steps to build the production\nDocker image. The production Docker image\nis based in the Dockerfile file.",
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -108,7 +57,7 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "layers",
+                "id": "package",
                 "color": "terminal.ansiCyan"
             }
         },
@@ -139,7 +88,7 @@
         },
         {
             "label": "fill-pipeline-settings",
-            "detail": "",
+            "detail": "This task will fill the properties that are needed to be\nset in the .vscode/settings.json to correctly\nrun the GitHub Actions or GitLab CI pipelines.",
             "command": "echo",
             "type": "shell",
             "options": {
@@ -177,7 +126,7 @@
                 "$tsc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "notebook-edit",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -186,7 +135,7 @@
         },
         {
             "label": "platform-update-fleet",
-            "detail": "",
+            "detail": "This task will trigger the update of the fleet in the Torizon Platform with the latest version of the application published to the platform.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -209,7 +158,7 @@
                 "$tsc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "cloud-upload",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -218,7 +167,7 @@
         },
         {
             "label": "tcb-platform-publish",
-            "detail": "",
+            "detail": "This task will build the production image based on the Dockerfile and push it to the Torizon Platform creating a new docker-compose package.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -241,7 +190,7 @@
                 "$tsc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "cloud-upload",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -399,6 +348,7 @@
         },
         {
             "label": "check-deps",
+            "detail": "This task will check if the dependencies needed to run the project are installed in the host machine.",
             "command": "pwsh",
             "type": "process",
             "presentation": {
@@ -864,6 +814,8 @@
         },
         {
             "label": "build-container-image-sdk-arm64",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -888,6 +840,8 @@
         },
         {
             "label": "build-container-image-sdk-arm",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -912,6 +866,8 @@
         },
         {
             "label": "build-container-image-sdk-amd64",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -936,6 +892,8 @@
         },
         {
             "label": "build-container-image-sdk-riscv64",
+            "detail": "",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -1330,6 +1288,7 @@
         },
         {
             "label": "push-release-arm",
+            "detail": "These tasks will build the application based in the production Dockerfile and push the image to the DockerHub.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1351,12 +1310,13 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-push",
                 "color": "terminal.ansiYellow"
             }
         },
         {
             "label": "push-release-arm64",
+            "detail": "These tasks will build the application based in the production Dockerfile and push the image to the DockerHub.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1378,12 +1338,13 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-push",
                 "color": "terminal.ansiYellow"
             }
         },
         {
             "label": "push-release-amd64",
+            "detail": "These tasks will build the application based in the production Dockerfile and push the image to the DockerHub.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1405,7 +1366,7 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-push",
                 "color": "terminal.ansiYellow"
             }
         },
@@ -1492,6 +1453,7 @@
         },
         {
             "label": "show-project-documentation",
+            "detail": "This task will open the project specific documentation\nin a new tab.",
             "command": "${command:markdown.showPreview}",
             "type": "process",
             "presentation": {
@@ -1510,7 +1472,7 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "book",
                 "color": "terminal.ansiYellow"
             }
         },
