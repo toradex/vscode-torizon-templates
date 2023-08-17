@@ -177,8 +177,26 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "dependsOn": [
+                "host-upgrade-pip"
+            ]
+        },
+        {
+            "label": "host-upgrade-pip",
+            "detail": "",
+            "hide": true,
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "[ $(${command:python.interpreterPath} -m pip --version | awk '{print $2}' | cut -d'.' -f1) -lt 23 ] && ${command:python.interpreterPath} -m pip install --upgrade pip || true",
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
             }
-        }
+        },
     ],
     "inputs": []
 }
