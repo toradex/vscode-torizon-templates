@@ -3,6 +3,7 @@
     "tasks": [
         {
             "label": "open-gambas-ide",
+            "detail": "Open the project on the Gambas IDE",
             "command": "${workspaceFolder}/.conf/gambas3.gambas",
             "type": "process",
             "args": [
@@ -15,12 +16,13 @@
             "isBackground": true,
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "eye",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
             }
         },
         {
             "label": "build-application",
+            "detail": "Builds the project using the gbc3 (Gambas Compiler)",
             "command": "",
             "type": "shell",
             "options": {
@@ -81,6 +83,7 @@
         },
         {
             "label": "launch-container-torizon-debug-arm",
+            "detail": "Deploy and run the debug container for armhf on the target device.\nThis task is usefull to remote debug application on the\ntarget device using the Gambas IDE.",
             "command": "echo",
             "type": "shell",
             "args": [
@@ -104,7 +107,7 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "run",
                 "color": "terminal.ansiYellow"
             }
         },
@@ -126,6 +129,7 @@
         },
         {
             "label": "launch-container-torizon-debug-arm64",
+            "detail": "Deploy and run the debug container for arm64 on the target device.\nThis task is usefull to remote debug the application on the\ntarget device using the Gambas IDE.",
             "command": "echo",
             "type": "shell",
             "args": [
@@ -149,7 +153,7 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "run",
                 "color": "terminal.ansiYellow"
             }
         }

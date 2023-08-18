@@ -3,6 +3,7 @@
     "tasks": [
         {
             "label": "build-torizon-local",
+            "detail": "Builds the project for the local machine execution",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -19,6 +20,7 @@
         },
         {
             "label": "publish-torizon-local",
+            "detail": "Publishes the project for the local machine execution",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -29,12 +31,13 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "package",
                 "color": "terminal.ansiYellow"
             }
         },
         {
             "label": "watch",
+            "hide": true,
             "command": "dotnet",
             "type": "process",
             "args": [
