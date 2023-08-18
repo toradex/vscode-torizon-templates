@@ -3,6 +3,7 @@
     "tasks": [
         {
             "label": "build-makedir-amd64-local",
+            "hide": true,
             "command": "make",
             "type": "shell",
             "args": [
@@ -19,6 +20,7 @@
         },
         {
             "label": "build-makedir-amd64",
+            "hide": true,
             "command": "make",
             "type": "shell",
             "args": [
@@ -35,6 +37,7 @@
         },
         {
             "label": "build-makedir-arm",
+            "hide": true,
             "command": "make",
             "type": "shell",
             "args": [
@@ -51,6 +54,7 @@
         },
         {
             "label": "build-makedir-arm64",
+            "hide": true,
             "command": "make",
             "type": "shell",
             "args": [
@@ -67,6 +71,7 @@
         },
         {
             "label": "build-makedir-riscv64",
+            "hide": true,
             "command": "make",
             "type": "shell",
             "args": [
@@ -83,6 +88,7 @@
         },
         {
             "label": "build-debug-amd64-local",
+            "detail": "Build a debug version of the application for amd64 using\nthe toolchain installed in the host.",
             "command": "make",
             "type": "shell",
             "args": [
@@ -103,6 +109,7 @@
         },
         {
             "label": "clean",
+            "detail": "Clean the application build directory. `make clean`",
             "command": "make",
             "type": "shell",
             "args": [
@@ -118,6 +125,7 @@
         },
         {
             "label": "build-debug-arm64",
+            "detail": "Build a debug version of the application for arm64 using\nthe toolchain from the SDK container.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -188,6 +196,7 @@
         },
         {
             "label": "build-debug-arm",
+            "detail": "Build a debug version of the application for armhf using\nthe toolchain from the SDK container.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -258,6 +267,7 @@
         },
         {
             "label": "build-debug-amd64",
+            "detail": "Build a debug version of the application for amd64 using\nthe toolchain from the SDK container.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -328,6 +338,7 @@
         },
         {
             "label": "build-debug-riscv64",
+            "detail": "Build a debug version of the application for riscv64 using\nthe toolchain from the SDK container.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [

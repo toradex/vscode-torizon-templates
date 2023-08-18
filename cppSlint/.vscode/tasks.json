@@ -3,6 +3,7 @@
     "tasks": [
         {
             "label": "start-gdb-server-remote-arm64",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -29,6 +30,7 @@
         },
         {
             "label": "start-gdb-server-local",
+            "hide": true,
             "command": "gdbserver",
             "type": "process",
             "isBackground": false,
@@ -49,6 +51,7 @@
         },
         {
             "label": "start-gdb-server-remote-arm",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -75,6 +78,7 @@
         },
         {
             "label": "start-gdb-server-remote-amd64",
+            "hide": true,
             "command": "ssh",
             "type": "process",
             "args": [
@@ -101,6 +105,7 @@
         },
         {
             "label": "run-cmake-debug-amd64-local",
+            "hide": true,
             "command": "cmake",
             "type": "shell",
             "args": [
@@ -117,6 +122,7 @@
         },
         {
             "label": "build-debug-amd64-local",
+            "detail": "Build the application debug for amd64 using the\ndevelopment host toolchain.",
             "command": "cmake",
             "type": "shell",
             "options": {
@@ -139,6 +145,7 @@
         },
         {
             "label": "clean-amd64-local",
+            "detail": "Clean the application debug for amd64 using the\ndevelopment host toolchain.",
             "command": "cmake",
             "type": "shell",
             "options": {
@@ -151,12 +158,13 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             }
         },
         {
             "label": "run-cmake-debug-arm64",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -185,6 +193,7 @@
         },
         {
             "label": "build-debug-arm64",
+            "detail": "Build the application debug for arm64 using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -213,6 +222,7 @@
         },
         {
             "label": "clean-arm64",
+            "detail": "Clean the application debug for arm64 using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -231,7 +241,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -281,6 +291,7 @@
         },
         {
             "label": "run-cmake-debug-arm",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -309,6 +320,7 @@
         },
         {
             "label": "build-debug-arm",
+            "detail": "Build the application debug for armhf using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -337,6 +349,7 @@
         },
         {
             "label": "clean-arm",
+            "detail": "Clean the application debug for armhf using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -355,7 +368,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -405,6 +418,7 @@
         },
         {
             "label": "run-cmake-debug-amd64",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -433,6 +447,7 @@
         },
         {
             "label": "build-debug-amd64",
+            "detail": "Build the application debug for amd64 using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -461,6 +476,7 @@
         },
         {
             "label": "clean-amd64",
+            "detail": "Clean the application debug for amd64 using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -479,7 +495,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",

@@ -3,6 +3,7 @@
     "tasks": [
         {
             "label": "build-debug-amd64",
+            "detail": "Builds the project for the remote amd64 target",
             "command": "cargo",
             "type": "shell",
             "args": [
@@ -32,6 +33,7 @@
         },
         {
             "label": "build-debug-arm64",
+            "detail": "Builds the project for the remote arm64 target",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -109,6 +111,7 @@
         },
         {
             "label": "build-debug-arm",
+            "detail": "Builds the project for the remote arm target",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [

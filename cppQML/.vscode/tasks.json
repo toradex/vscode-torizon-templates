@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "open-in-qt-design-studio",
-            "detail": "",
+            "detail": "This task first builds the project and then opens it in Qt Design Studio.\nNeed to have the Qt Design Studio installed on your system.",
             "command": "qtdesignstudio",
             "type": "process",
             "isBackground": true,
@@ -24,7 +24,7 @@
         },
         {
             "label": "open-in-qt-creator",
-            "detail": "",
+            "detail": "This task first builds the project and then opens it in Qt Creator.\nNeed to have the Qt Creator installed on your system.",
             "command": "qtcreator",
             "type": "process",
             "options": {
@@ -54,6 +54,7 @@
         {
             "label": "kill-redirect-qml-debugger",
             "detail": "",
+            "hide": true,
             "command": "pkill",
             "type": "shell",
             "isBackground": true,
@@ -70,6 +71,7 @@
         {
             "label": "redirect-qml-debugger",
             "detail": "",
+            "hide": true,
             "command": "nc.traditional",
             "type": "shell",
             "isBackground": true,
@@ -101,6 +103,7 @@
         },
         {
             "label": "start-gdb-server-remote-arm64",
+            "detail": "Deploy and run the application for arm64 on the remote\ntarget by using gdbserver.",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -130,6 +133,7 @@
         },
         {
             "label": "start-gdb-server-local",
+            "detail": "Deploy and run the application for amd64 on the\ndevelopment host by using gdbserver.",
             "command": "gdbserver",
             "type": "process",
             "isBackground": false,
@@ -153,6 +157,7 @@
         },
         {
             "label": "start-gdb-server-remote-arm",
+            "detail": "Deploy and run the application for armhf on the remote\ntarget by using gdbserver.",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -182,6 +187,7 @@
         },
         {
             "label": "start-gdb-server-remote-amd64",
+            "detail": "Deploy and run the application for amd64 on the remote\ntarget by using gdbserver.",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -287,6 +293,7 @@
         },
         {
             "label": "run-qmake-debug-amd64-local",
+            "hide": true,
             "command": "qmake6",
             "type": "shell",
             "args": [
@@ -305,6 +312,7 @@
         },
         {
             "label": "build-debug-amd64-local",
+            "detail": "Build the application debug for amd64 using the\ndevelopment host toolchain.",
             "command": "make",
             "type": "shell",
             "options": {
@@ -339,12 +347,13 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             }
         },
         {
             "label": "run-qmake-debug-arm64",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -373,6 +382,7 @@
         },
         {
             "label": "build-debug-arm64",
+            "detail": "Build the application debug for arm64 using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -402,6 +412,7 @@
         },
         {
             "label": "clean-arm64",
+            "detail": "Clean the build folder for arm64 using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -420,7 +431,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -470,6 +481,7 @@
         },
         {
             "label": "run-qmake-debug-arm",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -498,6 +510,7 @@
         },
         {
             "label": "build-debug-arm",
+            "detail": "Build the application debug for armhf using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -527,6 +540,7 @@
         },
         {
             "label": "clean-arm",
+            "detail": "Clean the build folder for armhf using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -545,7 +559,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -595,6 +609,7 @@
         },
         {
             "label": "run-qmake-debug-amd64",
+            "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -623,6 +638,7 @@
         },
         {
             "label": "build-debug-amd64",
+            "detail": "Build the application debug for amd64 using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -652,6 +668,7 @@
         },
         {
             "label": "clean-amd64",
+            "detail": "Clean the build folder for amd64 using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -670,7 +687,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
