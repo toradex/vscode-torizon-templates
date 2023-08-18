@@ -26,6 +26,7 @@
         },
         {
             "label": "npm-install",
+            "detail": "Install the node packages dependencies",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}"

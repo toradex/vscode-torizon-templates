@@ -3,6 +3,7 @@
     "tasks": [
         {
             "label": "build",
+            "detail": "Build the project using the ant command",
             "command": "ant",
             "type": "shell",
             "options": {
@@ -21,6 +22,7 @@
         },
         {
             "label": "generate-jar",
+            "detail": "Generate the .jar file using the ant command",
             "command": "ant",
             "type": "shell",
             "options": {
@@ -39,6 +41,7 @@
         },
         {
             "label": "run-jar",
+            "detail": "Run the .jar file using the java command",
             "command": "java",
             "type": "shell",
             "options": {
@@ -53,12 +56,13 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "run",
                 "color": "terminal.ansiYellow"
             }
         },
         {
             "label": "run-debugger-local",
+            "hide": true,
             "command": "java",
             "type": "shell",
             "options": {
@@ -94,7 +98,7 @@
                 }
             ],
             "icon": {
-                "id": "flame",
+                "id": "run",
                 "color": "terminal.ansiYellow"
             },
             "dependsOn": [

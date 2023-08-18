@@ -3,6 +3,7 @@
     "tasks": [
         {
             "label": "open-mono-designer",
+            "detail": "Open the project on the Mono Designer (experimental and buggy)",
             "command": "mono",
             "type": "process",
             "args": [
@@ -19,9 +20,10 @@
         },
         {
             "label": "build-application",
+            "detail": "Builds the project using the msbuild",
             "command": "msbuild",
             "type": "process",
-        "args": [],
+            "args": [],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {

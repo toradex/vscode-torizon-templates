@@ -228,7 +228,7 @@
         },
         {
             "label": "tcb-build",
-            "detail": "",
+            "detail": "Build the tcbuild.yaml file and generate the custom image",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -258,7 +258,7 @@
         },
         {
             "label": "tcb-bundle",
-            "detail": "",
+            "detail": "Run the torizoncore-builder bundle command",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -288,7 +288,7 @@
         },
         {
             "label": "tcb-bundle-platform",
-            "detail": "",
+            "detail": "Run the torizoncore-builder bundle command with --platform argument",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -318,7 +318,7 @@
         },
         {
             "label": "tcb-bundle-platform-dind-param",
-            "detail": "",
+            "detail": "Run the torizoncore-builder bundle command with --platform and --dind-param arguments",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -379,7 +379,7 @@
         },
         {
             "label": "tcb-deploy",
-            "detail": "",
+            "detail": "Run the torizoncore-builder deploy command to the default target device",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -410,7 +410,7 @@
         },
         {
             "label": "tcb-platform-push-ostree",
-            "detail": "",
+            "detail": "Run the torizoncore-builder platform push command to torizon.io cloud",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -442,7 +442,7 @@
         },
         {
             "label": "platform-update-fleet",
-            "detail": "",
+            "detail": "Trigger a fleet update on torizon.io cloud",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -474,7 +474,7 @@
         },
         {
             "label": "fill-pipeline-settings",
-            "detail": "",
+            "detail": "This task will fill the properties that are needed to be\nset in the .vscode/settings.json to correctly\nrun the GitHub Actions or GitLab CI pipelines.",
             "command": "echo",
             "type": "shell",
             "options": {
