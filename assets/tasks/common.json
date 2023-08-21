@@ -1317,7 +1317,7 @@
         },
         {
             "label": "push-release-arm",
-            "detail": "These tasks will build the application based in the\nproduction Dockerfile and push the image to the DockerHub.",
+            "detail": "This task will build the application based in the\nproduction Dockerfile and push the image to DockerHub.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1345,7 +1345,7 @@
         },
         {
             "label": "push-release-arm64",
-            "detail": "These tasks will build the application based in the\nproduction Dockerfile and push the image to the DockerHub.",
+            "detail": "This task will build the application based in the\nproduction Dockerfile and push the image to DockerHub.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -1373,7 +1373,7 @@
         },
         {
             "label": "push-release-amd64",
-            "detail": "These tasks will build the application based in the\nproduction Dockerfile and push the image to the DockerHub.",
+            "detail": "This task will build the application based in the\nproduction Dockerfile and push the image to DockerHub.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {

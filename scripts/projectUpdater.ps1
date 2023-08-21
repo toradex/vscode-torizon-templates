@@ -51,7 +51,7 @@ if ([string]::IsNullOrEmpty($acceptAll)) {
 } else {
     if ($acceptAll -eq "1") {
         # ask for confirmation
-        Write-Host -ForegroundColor Yellow "You are about to accept all changes"
+        Write-Host -ForegroundColor Yellow "You are about to accept all incoming changes from the updated template"
         Write-Host -ForegroundColor Yellow "If the project is not versioned there is no way back"
         $_sure = Read-Host -Prompt "Accept all changes? [y/n]"
 
