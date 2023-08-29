@@ -67,13 +67,13 @@ VOLUME /var/run/docker.sock:/var/run/docker.sock
 
 # use docker tools
 COPY --from=docker:dind /usr/local/bin/docker /usr/local/bin/
-COPY --from=docker:dind /usr/libexec/docker/cli-plugins /usr/local/lib/docker/cli-plugins
+COPY --from=docker:dind /usr/local/libexec/docker/cli-plugins /usr/local/lib/docker/cli-plugins
 
 # get current scripts
 RUN mv /root/vscode-torizon-templates /root/.apollox
 RUN chmod -R 757 /root && \
     cd /root/.apollox/scripts/node && \
-    npm install ./apollox-0.0.91.tgz
+    npm install ./apollox-0.0.99.tgz
 
 # from build copy the libraries
 COPY --from=Build /build/bin/Release/net6.0/publish/ /root/.tui/
