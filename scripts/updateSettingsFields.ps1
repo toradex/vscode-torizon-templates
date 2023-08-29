@@ -31,7 +31,7 @@ $settingsTemplate = [PSCustomObject]@{
     host_ip = ""
     torizon_workspace = "$`{workspaceFolder`}"
     wait_sync = "1"
-    "tcb.version" = "early-access"
+    "tcb.version" = "3.8.1"
     "tcb.packageName" = "__change__"
 }
 
