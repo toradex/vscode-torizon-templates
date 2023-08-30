@@ -2,6 +2,7 @@
     "packages": [
         "openssh-client",
         "sshpass",
-        "dotnet-sdk-6.0"
+        "dotnet-sdk-6.0",
+        "dotnet-sdk-7.0"
     ]
 }

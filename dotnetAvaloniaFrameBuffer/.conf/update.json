@@ -2,5 +2,37 @@
     {
         "source": "__change__.csproj",
         "target": "$projectName.csproj"
+    },
+    {
+        "source": ".vscode/settings.json",
+        "target": ".vscode/settings.json"
+    },
+    {
+        "source": "global.json",
+        "target": "global.json"
+    },
+    {
+        "source": "app.manifest",
+        "target": "app.manifest"
+    },
+    {
+        "source": "ViewLocator.cs",
+        "target": "ViewLocator.cs"
+    },
+    {
+        "source": "Program.cs",
+        "target": "Program.cs"
+    },
+    {
+        "source": "App.axaml",
+        "target": "App.axaml"
+    },
+    {
+        "source": "Views/MainWindow.axaml.cs",
+        "target": "Views/MainWindow.axaml.cs"
+    },
+    {
+        "source": "Views/MainWindow.axaml",
+        "target": "Views/MainWindow.axaml"
     }
 ]
