@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="460"
         x:Class="__change__.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
         Width="600"
         Height="460"
         Title="__change__">

@@ -7,7 +7,7 @@ namespace __change__
 {
     public class ViewLocator : IDataTemplate
     {
-        public IControl Build(object data)
+        public Control Build(object data)
         {
             var name = data.GetType().FullName!.Replace("ViewModel", "View");
             var type = Type.GetType(name);
@@ -16,10 +16,8 @@ namespace __change__
             {
                 return (Control)Activator.CreateInstance(type)!;
             }
-            else
-            {
-                return new TextBlock { Text = "Not Found: " + name };
-            }
+            
+            return new TextBlock { Text = "Not Found: " + name };
         }
 
         public bool Match(object data)

@@ -1,12 +1,12 @@
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 
-namespace __change__.Views
+namespace __change__.Views;
+
+public partial class MainWindow : Window
 {
-    public partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
