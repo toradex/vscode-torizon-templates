@@ -2,15 +2,13 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-torizon-local",
+            "label": "build-local",
             "detail": "Builds the project for the local machine execution",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/__change__.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "${workspaceFolder}/__change__.csproj"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -19,15 +17,28 @@
             }
         },
         {
-            "label": "publish-torizon-local",
+            "label": "clean-local",
+            "detail": "Clean the project for the local machine execution",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/__change__.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "chrome-close",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "publish-local",
             "detail": "Publishes the project for the local machine execution",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/__change__.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "${workspaceFolder}/__change__.csproj"
             ],
             "problemMatcher": "$msCompile",
             "icon": {

@@ -3,6 +3,7 @@
         "openssh-client",
         "sshpass",
         "dotnet-sdk-6.0",
+        "dotnet-sdk-7.0",
         "libgtk-3-dev"
     ]
 }
