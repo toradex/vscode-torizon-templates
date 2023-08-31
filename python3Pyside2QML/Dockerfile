@@ -82,6 +82,7 @@ RUN apt-get -q -y update && \
     python3-pyside2.qtnetwork \
     qml-module-qtquick-dialogs \
     qtwayland5 \
+    rsync \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
