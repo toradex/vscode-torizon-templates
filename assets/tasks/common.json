@@ -204,7 +204,7 @@
                 "env": {
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "DOCKER_LOGIN": "${command:docker_login}",
-                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} --login ${env:DOCKER_LOGIN} ${env:DOCKER_PSSWD} --canonicalize docker-compose.prod.yml"
+                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} --login $DOCKER_LOGIN $DOCKER_PSSWD --canonicalize docker-compose.prod.yml"
                 }
             },
             "args": [
