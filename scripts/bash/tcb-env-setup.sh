@@ -294,5 +294,8 @@ tcb_env_setup_cleanup
 unset -f tcb_env_setup_cleanup 2>/dev/null
 
 if [[ ! -z "${VSCODE_CMD}" ]]; then
+    # solve any environment variable
+    VSCODE_CMD=$(eval echo $VSCODE_CMD)
+    # execute it
     torizoncore-builder $VSCODE_CMD
 fi
