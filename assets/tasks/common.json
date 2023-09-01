@@ -686,6 +686,45 @@
             }
         },
         {
+            "label": "build-container-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm64",
+                    "GPU": "${config:torizon_gpu}",
+                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
+                }
+            },
+            "args": [
+                "docker",
+                "compose",
+                "build",
+                "--pull",
+                "--build-arg",
+                "SSHUSERNAME=${config:torizon_run_as}",
+                "--build-arg",
+                "IMAGE_ARCH=arm64",
+                "--build-arg",
+                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "--build-arg",
+                "GPU=${config:torizon_gpu}",
+                "__container__"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "build-container-torizon-debug-arm64",
             "detail": "",
             "hide": true,
@@ -716,6 +755,45 @@
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-container-torizon-arm",
+            "detail": "",
+            "hide": true,
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "arm",
+                    "GPU": "${config:torizon_gpu}",
+                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
+                }
+            },
+            "args": [
+                "docker",
+                "compose",
+                "build",
+                "--pull",
+                "--build-arg",
+                "SSHUSERNAME=${config:torizon_run_as}",
+                "--build-arg",
+                "IMAGE_ARCH=arm",
+                "--build-arg",
+                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "--build-arg",
+                "GPU=${config:torizon_gpu}",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -764,6 +842,45 @@
             }
         },
         {
+            "label": "build-container-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "amd64",
+                    "GPU": "${config:torizon_gpu}",
+                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
+                }
+            },
+            "args": [
+                "docker",
+                "compose",
+                "build",
+                "--pull",
+                "--build-arg",
+                "SSHUSERNAME=${config:torizon_run_as}",
+                "--build-arg",
+                "IMAGE_ARCH=amd64",
+                "--build-arg",
+                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "--build-arg",
+                "GPU=${config:torizon_gpu}",
+                "__container__"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "build-container-torizon-debug-amd64",
             "detail": "",
             "hide": true,
@@ -794,6 +911,45 @@
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-container-torizon-riscv64",
+            "detail": "",
+            "hide": true,
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "options": {
+                "env": {
+                    "LOCAL_REGISTRY": "localhost",
+                    "TAG": "riscv64",
+                    "GPU": "${config:torizon_gpu}",
+                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
+                }
+            },
+            "args": [
+                "docker",
+                "compose",
+                "build",
+                "--pull",
+                "--build-arg",
+                "SSHUSERNAME=${config:torizon_run_as}",
+                "--build-arg",
+                "IMAGE_ARCH=riscv64",
+                "--build-arg",
+                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "--build-arg",
+                "GPU=${config:torizon_gpu}",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
