@@ -35,6 +35,9 @@ function help() {
     Write-Host " ➡️ new"
     Write-Host "`t Create a new project from a template using TUI"
     Write-Host ""
+    Write-Host " ➡️ new-cli"
+    Write-Host "`t Create a new project from a template using CLI"
+    Write-Host ""
     Write-Host " ➡️ scan"
     Write-Host "`t Scan for network devices"
     Write-Host ""
@@ -290,6 +293,20 @@ try {
             # the host needs to be able to write and read the project generated
             su $env:UUSER -p `
                 -c "pwsh -nop -f $env:HOME/.apollox/scripts/createFromTemplateTUI.ps1"
+        }
+        "new-cli" {
+            $_templateFolder = $args[1]
+            $_projectName = $args[2]
+            $_containerName = $args[3]
+            $_location = "/workspace/"
+            $_isVscode = "false"
+            $_telemetryOn = "false"
+
+            # the host needs to be able to write and read the project generated
+            # this is intended to be used by automation only, so vscode and the
+            # telemetry are disabled
+            su $env:UUSER -p `
+                -c "pwsh -nop -f $env:HOME/.apollox/scripts/createFromTemplate.ps1 ${env:HOME}/.apollox/$_templateFolder $_projectName $_containerName $_location $_templateFolder $_isVscode $_telemetryOn" 
         }
         "scan" {
             switch ($args[1]) {
