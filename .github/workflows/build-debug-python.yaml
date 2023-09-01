@@ -1,0 +1,40 @@
+name: Python Debug Containers
+on:
+  - push
+
+jobs:
+  python3-debug:
+    runs-on: ubuntu-latest
+    name: Python3 Container Debug
+    strategy:
+      matrix:
+        project:
+          - folder: python3Console
+            container: python3-console
+            arch: arm64
+
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build ${{ matrix.project.folder }} Dockerfile.debug
+        shell: pwsh
+        env:
+          PROJECT_FOLDER: ${{ matrix.project.folder }}
+          PROJECT_CONTAINER: ${{ matrix.project.container }}
+          PROJECT_ARCH: ${{ matrix.project.arch }}
+
+        run: |
+          docker run --rm --privileged torizon/binfmt
+
+          scripts/createFromTemplate.ps1 `
+            $env:GITHUB_WORKSPACE/$env:PROJECT_FOLDER `
+            "${env:PROJECT_FOLDER}CITest" `
+            "${env:PROJECT_CONTAINER}-ci-test" `
+            $env:GITHUB_WORKSPACE `
+            $env:PROJECT_FOLDER `
+            false `
+            false
+
+          cd "${env:GITHUB_WORKSPACE}/${env:PROJECT_FOLDER}CITest"
+          ./.vscode/tasks.ps1 run build-container-torizon-debug-${env:PROJECT_ARCH}
