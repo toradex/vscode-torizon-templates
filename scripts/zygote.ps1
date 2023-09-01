@@ -48,7 +48,7 @@ function help() {
     Write-Host "`t`t show the help for the target command"
     Write-Host ""
     Write-Host " ➡️ tasks"
-    Write-Host "`t Show the connected target device"
+    Write-Host "`t Run the commands for the tasks defined in the workspace"
     Write-Host ""
     Write-Host "`t ➡️ help"
     Write-Host "`t`t show the help for the tasks command"
