@@ -3,7 +3,7 @@
 # Base container version
 ##
 ARG BASE_VERSION=3.0.8
-ARG SDK_BASE_VERSION=3.0.8-bookworm
+ARG SDK_BASE_VERSION=3.0.8
 
 ##
 # Application Name
