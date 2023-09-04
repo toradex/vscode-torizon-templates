@@ -1,0 +1,45 @@
+name: Rust Containers
+on:
+  - push
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    name: Rust Container
+    strategy:
+      matrix:
+        project:
+          - folder: rustConsole
+            container: rust-console
+            arch: arm64
+
+          - folder: rustSlint
+            container: rust-slint
+            arch: arm64
+
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build ${{ matrix.project.folder }} Dockerfile
+        shell: pwsh
+        env:
+          PROJECT_FOLDER: ${{ matrix.project.folder }}
+          PROJECT_CONTAINER: ${{ matrix.project.container }}
+          PROJECT_ARCH: ${{ matrix.project.arch }}
+          DOCKER_LOGIN: localhost:5002
+
+        run: |
+          docker run --rm --privileged torizon/binfmt
+
+          scripts/createFromTemplate.ps1 `
+            $env:GITHUB_WORKSPACE/$env:PROJECT_FOLDER `
+            "${env:PROJECT_FOLDER}CITest" `
+            "${env:PROJECT_CONTAINER}-ci-test" `
+            $env:GITHUB_WORKSPACE `
+            $env:PROJECT_FOLDER `
+            false `
+            false
+
+          cd "${env:GITHUB_WORKSPACE}/${env:PROJECT_FOLDER}CITest"
+          ./.vscode/tasks.ps1 run build-container-torizon-${env:PROJECT_ARCH}
