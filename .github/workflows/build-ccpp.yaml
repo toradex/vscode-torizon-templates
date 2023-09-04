@@ -3,7 +3,7 @@ on:
   - push
 
 jobs:
-  python3-debug:
+  ccpp:
     runs-on: ubuntu-latest
     name: C/C++ Container
     strategy:

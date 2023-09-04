@@ -3,7 +3,7 @@ on:
   - push
 
 jobs:
-  python3-debug:
+  python3:
     runs-on: ubuntu-latest
     name: Python3 Container
     strategy:
