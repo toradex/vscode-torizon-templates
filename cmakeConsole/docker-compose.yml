@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  __container__-debug:
+    build:
+      context: .
+      dockerfile: Dockerfile.debug
+    image: ${LOCAL_REGISTRY}:5002/__container__-debug:${TAG}
+    ports:
+      - 2230:2230
+
+  __container__:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_LOGIN}/__container__:${TAG}
