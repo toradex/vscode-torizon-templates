@@ -5,7 +5,7 @@
             "name": "Local AMD64",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/x86_64/debug/__change__",
+            "program": "${workspaceFolder}/build-local/debug/__change__",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",

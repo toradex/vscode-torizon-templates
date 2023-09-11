@@ -223,6 +223,28 @@
             }
         },
         {
+            "img": "cmakeconsole.png",
+            "folder": "cmakeConsole",
+            "description": "C++ CMake Console Application",
+            "runtime": "cmake",
+            "language": "C++",
+            "debugSSHPort": "2230",
+            "multiContainer": true,
+            "support": "Toradex",
+            "deprecated": false,
+            "tests" : {
+                "debuggers": {
+                    "local": ["Local AMD64"], 
+                    "arm": ["Torizon ARMv7"], 
+                    "arm64": ["Torizon ARMv8"]
+                },
+                "debuggerConsole": "cppdbg",
+                "mainFile": "src/main.cpp",
+                "mainFileBreakpointLine": 4,
+                "successDebugMessage": "Hello Torizon!"
+            }
+        },
+        {
             "img": "cconsole.png",
             "folder": "cConsole",
             "description": "C Console Application",

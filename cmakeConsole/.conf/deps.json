@@ -3,7 +3,7 @@
         "openssh-client",
         "sshpass",
         "build-essential",
-        "make",
+        "cmake",
         "gdb",
         "g++"
     ]

@@ -22,6 +22,7 @@ ENV IMAGE_ARCH ${IMAGE_ARCH}
 # __deps__
 RUN apt-get -q -y update && \
     apt-get -q -y install \
+    cmake \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
@@ -35,12 +36,12 @@ COPY . /app
 WORKDIR /app
 
 RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
-        make ARCH=. CC=aarch64-linux-gnu-g++ ; \
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -Bbuild ; \
     elif [ "$IMAGE_ARCH" = "arm" ] ; then \
-        make ARCH=. CC=arm-linux-gnueabihf-g++ ; \
-    elif [ "$IMAGE_ARCH" = "amd64" ] ; then \
-        make ARCH=. CC=x86_64-linux-gnu-g++ ; \
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++ -Bbuild ; \
     fi
+
+RUN cmake --build build
 
 # BUILD ------------------------------------------------------------------------
 
@@ -60,7 +61,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
-COPY --from=Build /app/bin /app
+COPY --from=Build /app/build/debug /app
 
 # ADD YOUR ARGUMENTS HERE
 CMD [ "./app/__change__" ]
