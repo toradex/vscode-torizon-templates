@@ -2,13 +2,13 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-makedir-amd64-local",
+            "label": "build-configure-amd64-local",
             "hide": true,
-            "command": "make",
+            "command": "cmake",
             "type": "shell",
             "args": [
-                "ARCH=x86_64",
-                "makedir"
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-B${workspaceFolder}/build-local"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -19,81 +19,22 @@
             }
         },
         {
-            "label": "build-makedir-amd64",
+            "label": "build-configure-arm",
             "hide": true,
-            "command": "make",
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
-                "ARCH=amd64",
-                "makedir"
-            ],
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-makedir-arm",
-            "hide": true,
-            "command": "make",
-            "type": "shell",
-            "args": [
-                "ARCH=armhf",
-                "makedir"
-            ],
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-makedir-arm64",
-            "hide": true,
-            "command": "make",
-            "type": "shell",
-            "args": [
-                "ARCH=aarch64",
-                "makedir"
-            ],
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-makedir-riscv64",
-            "hide": true,
-            "command": "make",
-            "type": "shell",
-            "args": [
-                "ARCH=riscv64",
-                "makedir"
-            ],
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-debug-amd64-local",
-            "detail": "Build a debug version of the application for amd64 using\nthe toolchain installed in the host.",
-            "command": "make",
-            "type": "shell",
-            "args": [
-                "ARCH=x86_64",
-                "debug"
+                "docker",
+                "run",
+                "--rm",
+                "-it",
+                "-v",
+                "${workspaceFolder}:/app",
+                "cross-toolchain-arm-__container__",
+                "cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++",
+                "-Bbuild-armhf"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -104,16 +45,26 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-makedir-amd64-local"
+                "build-container-image-sdk-arm"
             ]
         },
         {
-            "label": "clean",
-            "detail": "Clean the application build directory. `make clean`",
-            "command": "make",
+            "label": "build-configure-arm64",
+            "hide": true,
+            "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
-                "clean"
+                "docker",
+                "run",
+                "--rm",
+                "-it",
+                "-v",
+                "${workspaceFolder}:/app",
+                "cross-toolchain-arm64-__container__",
+                "cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++",
+                "-Bbuild-arm64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -121,7 +72,32 @@
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
-            }
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-container-image-sdk-arm64"
+            ]
+        },
+        {
+            "label": "build-debug-amd64-local",
+            "detail": "Build a debug version of the application for amd64 using\nthe toolchain installed in the host.",
+            "command": "cmake",
+            "type": "shell",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build-local"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-configure-amd64-local"
+            ]
         },
         {
             "label": "build-debug-arm64",
@@ -136,10 +112,9 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm64-__container__",
-                "make",
-                "ARCH=aarch64",
-                "CC=aarch64-linux-gnu-g++",
-                "debug"
+                "cmake",
+                "--build",
+                "build-arm64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -150,7 +125,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-container-image-sdk-arm64"
+                "build-configure-arm64"
             ]
         },
         {
@@ -169,7 +144,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/aarch64/debug",
+                "${workspaceFolder}/build-arm64/debug",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -178,7 +153,7 @@
                 "copy-docker-compose",
                 "apply-torizon-packages",
                 "pre-cleanup-arm64",
-                "build-makedir-arm64",
+                "build-configure-arm64",
                 "build-debug-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
@@ -207,10 +182,9 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm-__container__",
-                "make",
-                "ARCH=armhf",
-                "CC=arm-linux-gnueabihf-g++",
-                "debug"
+                "cmake",
+                "--build",
+                "build-armhf"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -221,7 +195,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-container-image-sdk-arm"
+                "build-configure-arm"
             ]
         },
         {
@@ -240,7 +214,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/armhf/debug",
+                "${workspaceFolder}/build-armhf/debug",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -249,7 +223,7 @@
                 "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup-arm",
-                "build-makedir-arm",
+                "build-configure-arm",
                 "build-debug-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
@@ -266,8 +240,27 @@
             }
         },
         {
-            "label": "build-debug-amd64",
-            "detail": "Build a debug version of the application for amd64 using\nthe toolchain from the SDK container.",
+            "label": "clean-local",
+            "detail": "Clean the application build directory.",
+            "command": "make",
+            "type": "shell",
+            "args": [
+                "--build",
+                "build-arm64",
+                "--target",
+                "clean"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "clean-arm",
+            "detail": "Clean the application build directory.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -277,11 +270,12 @@
                 "-it",
                 "-v",
                 "${workspaceFolder}:/app",
-                "cross-toolchain-amd64-__container__",
-                "make",
-                "ARCH=amd64",
-                "CC=x86_64-linux-gnu-g++",
-                "debug"
+                "cross-toolchain-arm-__container__",
+                "cmake",
+                "--build",
+                "build-armhf",
+                "--target",
+                "clean"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -292,53 +286,12 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-container-image-sdk-amd64"
+                "build-container-image-sdk-arm"
             ]
         },
         {
-            "label": "deploy-torizon-amd64",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/amd64/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
-            ],
-            "dependsOn": [
-                "validate-settings",
-                "validate-arch-amd64",
-                "apply-torizon-packages",
-                "copy-docker-compose",
-                "pre-cleanup-amd64",
-                "build-makedir-amd64",
-                "build-debug-amd64",
-                "build-container-torizon-debug-amd64",
-                "push-container-torizon-debug-amd64",
-                "pull-container-torizon-debug-amd64",
-                "run-container-torizon-debug-amd64",
-                "wait-a-bit",
-                "pos-cleanup"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "build-debug-riscv64",
-            "detail": "Build a debug version of the application for riscv64 using\nthe toolchain from the SDK container.",
+            "label": "clean-arm64",
+            "detail": "Clean the application build directory.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -348,11 +301,12 @@
                 "-it",
                 "-v",
                 "${workspaceFolder}:/app",
-                "cross-toolchain-riscv64-__container__",
-                "make",
-                "ARCH=riscv64",
-                "CC=riscv64-linux-gnu-g++",
-                "debug"
+                "cross-toolchain-arm64-__container__",
+                "cmake",
+                "--build",
+                "build-arm64",
+                "--target",
+                "clean"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -363,49 +317,8 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-container-image-sdk-riscv64"
+                "build-container-image-sdk-arm64"
             ]
-        },
-        {
-            "label": "deploy-torizon-riscv64",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/riscv64/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
-            ],
-            "dependsOn": [
-                "validate-settings",
-                "validate-arch-riscv64",
-                "apply-torizon-packages",
-                "copy-docker-compose",
-                "pre-cleanup-riscv64",
-                "build-makedir-riscv64",
-                "build-debug-riscv64",
-                "build-container-torizon-debug-riscv64",
-                "push-container-torizon-debug-riscv64",
-                "pull-container-torizon-debug-riscv64",
-                "run-container-torizon-debug-riscv64",
-                "wait-a-bit",
-                "pos-cleanup"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
         },
     ],
 "inputs": []

@@ -14,6 +14,7 @@ FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG}
 # __deps__
 RUN apt-get -q -y update && \
     apt-get -q -y install \
+    cmake \
     # ADD YOUR PACKAGES HERE
     && \
     apt-get clean && apt-get autoremove && \
