@@ -155,3 +155,17 @@ For ApolloX project templates we are using [Github platform](https://docs.github
     ```
 
 - Create a pull request to the `dev` branch of https://github.com/toradex/vscode-torizon-templates
+
+## Maintainence Policy
+
+The project templates labeled with `"support": "Toradex",` are maintained by the IDE Torizon team from Toradex and accept contributions from the community. The templates must be updated to support new versions of the TorizonCore OS and new versions of the application frameworks. The release cycle is monthly.
+
+The project templates labeled with `"support": "Partner",` are maintained by Toradex partners and accept contributions from the IDE Torizon team from Toradex and community. The templates must be updated to support new versions of the TorizonCore OS and new versions of the application frameworks. The release cycle is monthly.
+
+The project templates labeled with `"support": "Community",` are maintained by the community and accept contributions from the IDE Torizon team from Toradex. The templates must be updated to support new versions of the TorizonCore OS and new versions of the application frameworks. The release cycle is not fixed and depends on the community main contributors.
+
+### Deprecation Policy
+
+For Toradex and Partner maintained project templates, the deprecation policy is to keep the template working for the last long term supported TorizonCore OS, from the date that the template was released. After the TorizonCore OS end of life, the template is considered deprecated if it's not working anymore in the latest TorizonCore OS version and no maintainence effort is being done to fix it in the next release cycle.
+
+A community maintained project template is not commited to keep working until the EOF of the last LTS. It will be considered deprecated when it's known that is not working anymore in the latest LTS TorizonCore OS version and no maintainence effort is being done to fix it in the last 3 release cycles.
