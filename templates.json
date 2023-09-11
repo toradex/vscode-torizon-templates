@@ -9,6 +9,7 @@
             "debugSSHPort": "2222",
             "multiContainer": true,
             "support": "Toradex",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": [".NET Core Launch (console)"],
@@ -31,6 +32,7 @@
             "debugSSHPort": "2222",
             "multiContainer": true,
             "support": "Toradex",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": [".NET Core Launch (web)"],
@@ -54,6 +56,7 @@
             "debugSSHPort": "2223",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": [".NET Core Launch (GTK)"],
@@ -76,6 +79,7 @@
             "debugSSHPort": "2224",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "amd64": ["Torizon AMD64"],
@@ -97,6 +101,7 @@
             "debugSSHPort": "2225",
             "multiContainer": true,
             "support": "Toradex",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": ["Debug Local"], 
@@ -119,6 +124,7 @@
             "debugSSHPort": "2226",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "amd64": ["Torizon AMD64"],
@@ -140,6 +146,7 @@
             "debugPort": "55555",
             "debugSSHPort": "2227",
             "multiContainer": true,
+            "deprecated": false,
             "support": "Community"
         },
         {
@@ -153,6 +160,7 @@
             "debugSSHPort": "2228",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": ["Debug Main Process"], 
@@ -176,6 +184,7 @@
             "debugSSHPort": "2229",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": ["Node Local"],  
@@ -198,6 +207,7 @@
             "debugSSHPort": "2230",
             "multiContainer": true,
             "support": "Toradex",
+            "deprecated": false,
             "tests" : {
                 "debuggers": {
                     "local": ["Local AMD64"], 
@@ -221,6 +231,7 @@
             "debugSSHPort": "2230",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests" : {
                 "debuggers": {
                     "local": ["Local AMD64"], 
@@ -246,6 +257,7 @@
             "debugSSHPort": "2231",
             "multiContainer": true,
             "support": "Toradex",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": ["Local AMD64"], 
@@ -270,6 +282,7 @@
             "debugSSHPort": "2234",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests" : {
                 "debuggers": {
                     "local": ["Run Local"],
@@ -292,6 +305,7 @@
             "debugSSHPort": "2299",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests" : {
                 "debuggers": {
                     "local": ["Local AMD64"],  
@@ -312,7 +326,8 @@
             "language": "Visual Basic",
             "debugSSHPort": "2250",
             "multiContainer": true,
-            "support": "Community"
+            "support": "Community",
+            "deprecated": false
         },
         {
             "img": "python3console.png",
@@ -324,6 +339,7 @@
             "debugSSHPort": "6502",
             "multiContainer": true,
             "support": "Toradex",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": ["Python Local"], 
@@ -346,6 +362,7 @@
             "debugSSHPort": "6502",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": ["Python Local"], 
@@ -368,7 +385,8 @@
             "debugSSHPort": "",
             "multiContainer": false,
             "mergeCommon": false,
-            "support": "Toradex"
+            "support": "Toradex",
+            "deprecated": false
         },
         {
             "img": "slint-cpp.png",
@@ -381,6 +399,7 @@
             "debugSSHPort": "2231",
             "multiContainer": true,
             "support": "Partner",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "local": ["Local AMD64"],
@@ -405,6 +424,7 @@
             "debugSSHPort": "2231",
             "multiContainer": true,
             "support": "Partner",
+            "deprecated": false,
             "tests": {
                 "debuggers": {
                     "amd64": ["Torizon AMD64"],
