@@ -26,7 +26,7 @@ ARG SSH_DEBUG_PORT=
 ##
 ARG SSHUSERNAME=
 
-ARG APP_ROOT=/home/torizon
+ARG APP_ROOT=
 
 ##
 # Board GPU vendor prefix

@@ -11,7 +11,7 @@ ARG IMAGE_ARCH=
 ##
 ARG BASE_VERSION=3.0.8
 
-ARG APP_ROOT=/home/torizon
+ARG APP_ROOT=
 
 ##
 # Board GPU vendor prefix
