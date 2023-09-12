@@ -1,6 +1,6 @@
 # VS Code Torizon Templates
 
-This repository maintains the templates used in conjunction with the [VS Code Torizon Integrated Development Environment ApolloX Labs Project](https://labs.toradex.com/projects/torizon-vs-code-v2-apollo-x). Focusing in the VS Code for automation between the development environment for remote debug, remote deploy of containerized applications for Toradex TorizonCore easy-to-use Industrial Linux Software Platform.
+This repository maintains the templates used in conjunction with the [VS Code Torizon Integrated Development Environment Labs Project](https://labs.toradex.com/projects/torizon-vs-code-v2-apollo-x). Focusing in the VS Code for automation between the development environment for remote debug, remote deploy of containerized applications for Toradex TorizonCore easy-to-use Industrial Linux Software Platform.
 
 ## Toradex Supported Templates
 
@@ -32,7 +32,7 @@ Partner templates are contributions that come from [Toradex partner network](htt
 
 # Contributing
 
-We encourage you to also contribute templates. The community supported templates can also be used in the [VS Code Torizon Integrated Development Environment ApolloX Labs Project](https://labs.toradex.com/projects/torizon-vs-code-v2-apollo-x):
+We encourage you to also contribute templates. The community supported templates can also be used in the [VS Code Torizon Integrated Development Environment Torizon IDE Extension Labs Project](https://labs.toradex.com/projects/torizon-vs-code-v2-apollo-x):
 
 - [Code of Conduct](./CODE_OF_CONDUCT.md)
 

@@ -1,6 +1,6 @@
 # How To Contribute
 
-There are lots of ways to contribute to the ApolloX project templates, and we appreciate the help from the community. You can provide feedback, report bugs, give suggestions, contribute templates, and participate in the platform discussions.
+There are lots of ways to contribute to the Torizon IDE Extension (formerly codenamed ApolloX) project templates, and we appreciate the help from the community. You can provide feedback, report bugs, give suggestions, contribute templates, and participate in the platform discussions.
 
 ## Providing Feedback
 
@@ -10,17 +10,17 @@ Also feel free to do so in the Toradex community: https://community.toradex.com/
 
 ## Contributing Templates
 
-ApolloX project templates are in their nature VS Code workspaces, with multiple [VS Code tasks](https://code.visualstudio.com/docs/editor/tasks) predefined in their `.vscode` folder. In summary the tasks execute the follow:
+Torizon IDE Extension project templates are in their nature VS Code workspaces, with multiple [VS Code tasks](https://code.visualstudio.com/docs/editor/tasks) predefined in their `.vscode` folder. In summary the tasks execute the follow:
 
 > ℹ️ The best way to start creating a new project template is taking one of the already published templates as reference. Check the [cppConsole/.vscode/tasks.json](./cppConsole/.vscode/tasks.json) to see an example.
 
 ![](https://github.com/toradex/vscode-torizon-templates/blob/dev/assets/img/vscodetasksDiagram.png?raw=true&v=6)
 
-> ⚠️ To trigger the ApolloX `build/deploy start` event the first dependency tasks from the pipeline needs to be labeled `validate-settings-*`.
+> ⚠️ To trigger the Torizon IDE Extension `build/deploy start` event the first dependency tasks from the pipeline needs to be labeled `validate-settings-*`.
 > 
 > Check the common tasks to use the right validate settings task for the architecture that is being added  [assets/tasks/common.json](./assets/tasks/common.json)
 
-> ⚠️ To trigger the ApolloX `build/deploy end` event the last task to be executed from the pipeline needs to be labeled `deploy-torizon-*`.
+> ⚠️ To trigger the Torizon IDE Extension `build/deploy end` event the last task to be executed from the pipeline needs to be labeled `deploy-torizon-*`.
 
 This pattern is replicated for each architecture supported by the template:
 
@@ -36,11 +36,11 @@ Some tasks are exceptions and are common to all architectures, the identified ta
 
 ### Docker/Container Files
 
-ApolloX projects templates were designed to automate creation and development of containerized applications. So a project template must have 3 types of Docker/Container files in their root:
+Torizon IDE Extension projects templates were designed to automate creation and development of containerized applications. So a project template must have 3 types of Docker/Container files in their root:
 
 - [Dockerfile](./cppConsole/Dockerfile): Dockerfile with instructions to generate production ready image;
 
-- [Dockerfile.debug](./cppConsole/Dockerfile.debug): Dockerfile with instructions to generate development image for ApolloX tasks;
+- [Dockerfile.debug](./cppConsole/Dockerfile.debug): Dockerfile with instructions to generate development image for Torizon IDE Extension tasks;
 
 - [Dockerfile.sdk](./cppConsole/Dockerfile.sdk): Dockerfile to  create a cross toolchain image;
 
@@ -70,7 +70,7 @@ The idea is that the project created from the template should be independent of 
 
 #### Substitution tags
 
-Substitution tags can be used inside files and as folders names to rename stuff needed by the project template. There are two substitution tags used by ApolloX:
+Substitution tags can be used inside files and as folders names to rename stuff needed by the project template. There are two substitution tags used by Torizon IDE Extension:
 
 - `__change__`: that will be substituted to the project name;
 
@@ -116,7 +116,7 @@ In the `.conf` folder the following files are expected:
 
 - `id_rsa.pub`: public key used for debug purposes, to remote deploy/debug the application inside a container;
 
-- `deps.json`: define an array with the Debian/Ubuntu packages that are dependency for compile and/or run the application locally. ApolloX extension will check and will try to install it if they are not installed:
+- `deps.json`: define an array with the Debian/Ubuntu packages that are dependency for compile and/or run the application locally. Torizon IDE Extension extension will check and will try to install it if they are not installed:
   
   - ```json
     {
@@ -131,11 +131,11 @@ In the `.conf` folder the following files are expected:
     }
     ```
 
-> ⚠️ The "private" and public keys used on ApolloX projects are only for debug purposes!
+> ⚠️ The "private" and public keys used on Torizon IDE Extension projects are only for debug purposes!
 
 ## Creating a Pull Request
 
-For ApolloX project templates we are using [Github platform](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+For Torizon IDE Extension project templates we are using [Github platform](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
 ### Pull Request Guidelines:
 
