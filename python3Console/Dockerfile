@@ -11,7 +11,7 @@ ARG IMAGE_ARCH=
 ##
 ARG BASE_VERSION=3.0.8-bookworm
 
-ARG APP_ROOT=/home/torizon
+ARG APP_ROOT=
 
 FROM --platform=linux/${IMAGE_ARCH} \
     torizon/debian:${BASE_VERSION} AS Deploy
