@@ -17,7 +17,7 @@ try {
     [Terminal.Gui.Application]::Init()
 
     $_win = [tui.Tui]::new()
-    $_win.Title = "ApolloX TUI"
+    $_win.Title = "Torizon IDE Extension TUI"
     $env:__tgui_cancel = $true
 
     # get the metadata from repo
