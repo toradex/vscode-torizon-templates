@@ -201,7 +201,7 @@
         {
             "img": "cppconsole.png",
             "folder": "cppConsole",
-            "description": "C++ Console Application",
+            "description": "C++ Makefile Console Application",
             "runtime": "libc",
             "language": "C++",
             "debugSSHPort": "2230",
