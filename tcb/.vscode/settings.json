@@ -14,7 +14,7 @@
   "wait_sync": "1",
   "torizon_run_as": "torizon",
   "torizon_app_root": "/home/torizon",
-  "tcb.version": "3.7.0",
+  "tcb.version": "3.8.1",
   "tcb.packageName": "__change__",
   "tcb.fleetName": ""
 }
