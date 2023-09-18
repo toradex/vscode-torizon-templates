@@ -34,6 +34,7 @@
                 "cmake",
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++",
+                "-DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc",
                 "-Bbuild-armhf"
             ],
             "problemMatcher": [
@@ -64,6 +65,7 @@
                 "cmake",
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++",
+                "-DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc",
                 "-Bbuild-arm64"
             ],
             "problemMatcher": [
