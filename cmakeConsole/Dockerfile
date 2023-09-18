@@ -36,9 +36,9 @@ COPY . /app
 WORKDIR /app
 
 RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
-        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -Bbuild ; \
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -Bbuild ; \
     elif [ "$IMAGE_ARCH" = "arm" ] ; then \
-        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++ -Bbuild ; \
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++ -DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc -Bbuild ; \
     fi
 
 RUN cmake --build build
