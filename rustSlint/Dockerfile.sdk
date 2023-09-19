@@ -1,7 +1,7 @@
 # ARGUMENTS --------------------------------------------------------------------
 ## Using Slint v1.1.1 base images
-ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm-1.2.0
-ARG BASE_VERSION=3.0.9-bookworm-1.2.0
+ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm-1.2.1
+ARG BASE_VERSION=3.0.9-bookworm-1.2.1
 
 ARG IMAGE_ARCH=
 
