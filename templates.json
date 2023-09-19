@@ -530,6 +530,29 @@
                 "mainFileBreakpointLine": 9,
                 "successDebugMessage": "info(toradex): Hello Torizon!"
             }
+        },
+        {
+            "img": "dotnetslint.png",
+            "folder": "dotnetSlint",
+            "description": ".NET Slint Application",
+            "runtime": ".net 6.0 / Slint 1.2",
+            "language": "C#",
+            "debugSSHPort": "2222",
+            "multiContainer": true,
+            "support": "Community",
+            "deprecated": false,
+            "tests": {
+                "debuggers": {
+                    "local": [".NET Core Launch (console)"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
+                "debuggerConsole": null,
+                "mainFile": "Program.cs",
+                "mainFileBreakpointLine": 2,
+                "successDebugMessage": "Hello Torizon!"
+            }
         }
     ]
 }
