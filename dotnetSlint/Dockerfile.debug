@@ -9,7 +9,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=4-6.0-rc
+ARG SDK_BASE_VERSION=4-6.0-rc
+ARG BASE_VERSION=3.0.9-bookworm-1.2.0
 
 ##
 # Application Name
@@ -31,7 +32,7 @@ ARG SSHUSERNAME=
 # Get the debugger
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-debug:${BASE_VERSION} AS dotnet
+    torizon/dotnet-debug:${SDK_BASE_VERSION} AS dotnet
 
 # BUILD ------------------------------------------------------------------------
 ##
