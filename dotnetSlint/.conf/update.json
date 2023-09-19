@@ -1,0 +1,10 @@
+[
+    {
+        "source": "__change__.csproj",
+        "target": "$projectName.csproj"
+    },
+    {
+        "source": ".vscode/launch.json",
+        "target": ".vscode/launch.json"
+    }
+]

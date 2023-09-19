@@ -1,0 +1,403 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-torizon-local",
+            "detail": "Builds the project for the local machine execution",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/__change__.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "publish-torizon-local",
+            "detail": "Publishes the project for the local machine execution",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/__change__.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "package",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "watch",
+            "hide": true,
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/__change__.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "pos-cleanup",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "rm -rf ~/app"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "publish-torizon-arm",
+            "detail": "",
+            "hide": true,
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/__change__.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-arm",
+                "--no-self-contained"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-arm",
+            "detail": "",
+            "hide": true,
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}",
+                "-pr",
+                "${workspaceFolder}/bin/Debug/net6.0/linux-arm/publish",
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm",
+                "apply-torizon-packages",
+                "copy-docker-compose",
+                "pre-cleanup-arm",
+                "publish-torizon-arm",
+                "build-container-torizon-debug-arm",
+                "push-container-torizon-debug-arm",
+                "pull-container-torizon-debug-arm",
+                "run-container-torizon-debug-arm",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-launch-torizon-arm",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_app_root}/app/__change__ >out.log 2>err.log &"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-run-torizon-arm",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "2"
+            ],
+            "dependsOn": [
+                "deploy-torizon-arm",
+                "deploy-launch-torizon-arm"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "publish-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/__change__.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-x64",
+                "--no-self-contained"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}",
+                "-pr",
+                "${workspaceFolder}/bin/Debug/net6.0/linux-x64/publish",
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-amd64",
+                "apply-torizon-packages",
+                "copy-docker-compose",
+                "pre-cleanup-amd64",
+                "publish-torizon-amd64",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-launch-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_app_root}/app/__change__ >out.log 2>err.log &"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-run-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "2"
+            ],
+            "dependsOn": [
+                "deploy-torizon-amd64",
+                "deploy-launch-torizon-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "publish-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/__change__.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-arm64",
+                "--no-self-contained"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}",
+                "-pr",
+                "${workspaceFolder}/bin/Debug/net6.0/linux-arm64/publish",
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm64",
+                "apply-torizon-packages",
+                "copy-docker-compose",
+                "pre-cleanup-arm64",
+                "publish-torizon-arm64",
+                "build-container-torizon-debug-arm64",
+                "push-container-torizon-debug-arm64",
+                "pull-container-torizon-debug-arm64",
+                "run-container-torizon-debug-arm64",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-launch-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_app_root}/app/__change__ >out.log 2>err.log &"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-run-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "2"
+            ],
+            "dependsOn": [
+                "deploy-torizon-arm64",
+                "deploy-launch-torizon-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        }
+    ],
+"inputs": []
+}
