@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="SlintDotnet" Version="1.2.14" />
+        <PackageReference Include="SlintDotnet" Version="1.2.19" />
     </ItemGroup>
 
 </Project>
