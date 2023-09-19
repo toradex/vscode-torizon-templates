@@ -89,8 +89,7 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
-                "linux-arm",
-                "--no-self-contained"
+                "linux-arm"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -196,8 +195,7 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
-                "linux-x64",
-                "--no-self-contained"
+                "linux-x64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -303,8 +301,7 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "-r",
-                "linux-arm64",
-                "--no-self-contained"
+                "linux-arm64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
