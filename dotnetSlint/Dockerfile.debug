@@ -10,7 +10,7 @@ ARG IMAGE_ARCH=
 # Base container version
 ##
 ARG SDK_BASE_VERSION=4-6.0-rc
-ARG BASE_VERSION=3.0.9-bookworm-1.2.0
+ARG BASE_VERSION=3.0.9-bookworm-1.2.1
 
 ##
 # Application Name
