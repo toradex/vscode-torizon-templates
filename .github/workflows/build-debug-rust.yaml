@@ -8,6 +8,7 @@ on:
 jobs:
   rust-debug:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/bookworm' || github.ref == 'refs/heads/dev'
     name: Rust Container Debug
     strategy:
       matrix:

@@ -8,6 +8,7 @@ on:
 jobs:
   ccpp:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/bookworm' || github.ref == 'refs/heads/dev'
     name: C/C++ Container
     strategy:
       matrix:
