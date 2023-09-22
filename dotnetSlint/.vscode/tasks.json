@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-torizon-local",
+            "label": "build-local",
             "detail": "Builds the project for the local machine execution",
             "command": "dotnet",
             "type": "process",
@@ -19,7 +19,7 @@
             }
         },
         {
-            "label": "publish-torizon-local",
+            "label": "publish-local",
             "detail": "Publishes the project for the local machine execution",
             "command": "dotnet",
             "type": "process",
