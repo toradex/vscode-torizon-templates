@@ -83,6 +83,17 @@ RUN apt-get -q -y update && \
 # get the .NET debugger
 COPY --from=dotnet /vsdbg /vsdbg
 
+# automate for torizonPackages.json
+RUN apt-get -q -y update && \
+    apt-get -q -y install \
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
+    # __torizon_packages_dev_start__
+    # __torizon_packages_dev_end__
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
 # Default to the Skia backend for best performance
 ENV SLINT_BACKEND=winit-skia
 # Default to Slint running in fullscreen
