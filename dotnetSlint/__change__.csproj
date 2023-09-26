@@ -7,6 +7,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <!-- copy the ui folder -->
+    <ItemGroup>
+        <None Update="ui\**\*.*">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
     <!-- Slint files need to be added to the project -->
     <ItemGroup>
         <AdditionalFiles Include="./ui/AppWindow.slint">
@@ -15,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="SlintDotnet" Version="1.2.20" />
+        <PackageReference Include="SlintDotnet" Version="1.2.21" />
     </ItemGroup>
 
 </Project>
