@@ -8,9 +8,9 @@ ARG IMAGE_ARCH=
 
 ##
 # Base container version
-# Using the Slint v1.2.1 base images
+# Using the Slint v1.2.2 base images
 ##
-ARG BASE_VERSION=3.0.9-bookworm-1.2.1
+ARG BASE_VERSION=3.0.9-bookworm-1.2.2
 
 ##
 # Application Name
