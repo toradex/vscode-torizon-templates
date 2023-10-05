@@ -9,5 +9,8 @@
             ],
             "url": "./assets/json/tasks.schema.json"
         }
+    ],
+    "tasksLabel.includeFiles": [
+        "assets/tasks/common.json"
     ]
 }
