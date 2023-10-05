@@ -1659,7 +1659,7 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "run",
                 "color": "terminal.ansiYellow"
             }
         },
@@ -1693,7 +1693,7 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "run",
                 "color": "terminal.ansiYellow"
             }
         },
@@ -1727,7 +1727,7 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "run",
                 "color": "terminal.ansiYellow"
             }
         },
@@ -1761,7 +1761,7 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "run",
                 "color": "terminal.ansiYellow"
             }
         },

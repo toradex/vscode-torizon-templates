@@ -256,7 +256,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             }
         },
@@ -283,7 +283,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
@@ -314,7 +314,7 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
