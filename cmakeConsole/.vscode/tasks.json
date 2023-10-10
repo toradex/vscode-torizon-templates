@@ -243,12 +243,12 @@
         },
         {
             "label": "clean-local",
-            "detail": "Clean the application build directory.",
-            "command": "make",
+            "detail": "Clean the local application build directory.",
+            "command": "cmake",
             "type": "shell",
             "args": [
                 "--build",
-                "build-arm64",
+                "build-local",
                 "--target",
                 "clean"
             ],
@@ -262,7 +262,7 @@
         },
         {
             "label": "clean-arm",
-            "detail": "Clean the application build directory.",
+            "detail": "Clean the build folder for armhf using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -293,7 +293,7 @@
         },
         {
             "label": "clean-arm64",
-            "detail": "Clean the application build directory.",
+            "detail": "Clean the build folder for arm64 using the\ncontainer SDK toolchain.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
