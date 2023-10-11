@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.0.8
+ARG BASE_VERSION=3
 
 ##
 # Application Name
@@ -36,7 +36,7 @@ ARG GPU=
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
+    torizon/qt6-wayland${GPU}:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -50,9 +50,6 @@ EXPOSE ${SSH_DEBUG_PORT}
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
 
-# stick to bookworm on /etc/apt/sources.list.d
-RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
-
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
         if [ "${GPU}" = "-vivante" ]; then \
@@ -61,6 +58,7 @@ RUN apt-get -q -y update && \
         ; else \
             apt-get -q -y install \
             libgl1 \
+            libgles-dev \
         ; fi \
     && \
     apt-get clean && apt-get autoremove && \
