@@ -1,9 +1,12 @@
 # ARGUMENTS --------------------------------------------------------------------
 ##
+# SDK container version
+##
+ARG SDK_BASE_VERSION=3
+##
 # Base container version
 ##
-ARG BASE_VERSION=3.0.8
-ARG SDK_BASE_VERSION=3.0.8
+ARG BASE_VERSION=3
 
 ##
 # Application Name
@@ -21,27 +24,51 @@ ARG IMAGE_ARCH=
 ##
 ARG GPU=
 
+# BUILD ------------------------------------------------------------------------
 # TODO: cross compile x86 to arm
 # We will use emulation here
-# BUILD ------------------------------------------------------------------------
+##
+# Build Step
+##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${SDK_BASE_VERSION} AS Build
+    torizon/qt6-wayland${GPU}:${SDK_BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
 ARG GPU
 
-# stick to bookworm on /etc/apt/sources.list.d
-RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
+# for vivante GPU we need some "special" sauce
+RUN apt-get -q -y update && \
+        if [ "${GPU}" = "-vivante" ]; then \
+            apt-get -q -y install \
+            imx-gpu-viv-wayland-dev \
+        ; else \
+            apt-get -q -y install \
+            libgl1 \
+            libgles-dev \
+        ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
 # __deps__
 RUN apt-get -q -y update && \
     apt-get -q -y install \
     build-essential \
-    qmake6 \
+    cmake \
     qt6-base-private-dev \
     qt6-base-dev \
+    qt6-wayland \
+    qt6-wayland-dev \
     qt6-declarative-dev \
     qt6-declarative-private-dev \
+    qml6-module-qtqml \
+    qml6-module-qtqml-workerscript \
+    qml6-module-qtcore \
+    qml6-module-qtquick \
+    qml6-module-qtquick-window \
+    qml6-module-qtquick-controls \
+    qml6-module-qtquick-layouts \
+    qml6-module-qtquick-templates \
     libqt6opengl6-dev \
     # ADD YOUR PACKAGES HERE
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
@@ -56,16 +83,20 @@ RUN apt-get -q -y update && \
 COPY . /app
 WORKDIR /app
 
-RUN qmake6 -o build/Makefile && \
-    cd build && \
-    make
+RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -Bbuild ; \
+    elif [ "$IMAGE_ARCH" = "arm" ] ; then \
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++ -DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc -Bbuild ; \
+    fi
 
-# Deploy ------------------------------------------------------------------------
+RUN cmake --build build
+
+# DEPLOY ------------------------------------------------------------------------
 ##
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+    torizon/qt6-wayland${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -79,9 +110,6 @@ ARG SSHUSERNAME=torizon
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
 
-# stick to bookworm on /etc/apt/sources.list.d
-RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
-
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
         if [ "${GPU}" = "-vivante" ]; then \
@@ -90,6 +118,7 @@ RUN apt-get -q -y update && \
         ; else \
             apt-get -q -y install \
             libgl1 \
+            libgles-dev \
         ; fi \
     && \
     apt-get clean && apt-get autoremove && \

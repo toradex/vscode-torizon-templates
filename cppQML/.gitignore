@@ -9,3 +9,4 @@ amd64
 .qt
 credentials.zip
 *.lock.yml
+build-*

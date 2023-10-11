@@ -5,7 +5,7 @@
             "name": "Local AMD64",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/x86_64/debug/__change__",
+            "program": "${workspaceFolder}/build-local/debug/__change__",
             "args": [
             ],
             "stopAtEntry": false,
@@ -49,7 +49,7 @@
             ],
             "externalConsole": false,
             "sourceFileMap": {
-                "/app/amd64": "${workspaceFolder}/amd64"
+                "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
@@ -104,7 +104,7 @@
             ],
             "externalConsole": false,
             "sourceFileMap": {
-                "/app/aarch64": "${workspaceFolder}/aarch64"
+                "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
@@ -159,7 +159,7 @@
             ],
             "externalConsole": false,
             "sourceFileMap": {
-                "/app/armhf": "${workspaceFolder}/armhf"
+                "/app": "${workspaceFolder}"
             },
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/gdb",
