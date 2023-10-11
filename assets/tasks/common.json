@@ -865,7 +865,9 @@
                 "-t",
                 "cross-toolchain-arm64-__container__",
                 "--build-arg",
-                "IMAGE_ARCH=arm64"
+                "IMAGE_ARCH=arm64",
+                "--build-arg",
+                "GPU=${config:torizon_gpu}"
             ],
             "problemMatcher": [
                 "$gcc"
