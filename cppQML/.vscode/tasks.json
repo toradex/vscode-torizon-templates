@@ -292,15 +292,13 @@
             }
         },
         {
-            "label": "run-qmake-debug-amd64-local",
+            "label": "build-configure-amd64-local",
             "hide": true,
-            "command": "qmake6",
+            "command": "cmake",
             "type": "shell",
             "args": [
-                "-o",
-                "x86_64/Makefile",
-                "CONFIG+=debug",
-                "CONFIG+=qml_debug"
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-B${workspaceFolder}/build-local"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -312,13 +310,12 @@
         },
         {
             "label": "build-debug-amd64-local",
-            "detail": "Build the application debug for amd64 using the\ndevelopment host toolchain.",
-            "command": "make",
+            "detail": "Build a debug version of the application for amd64 using\nthe toolchain installed in the host.",
+            "command": "cmake",
             "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}/x86_64"
-            },
             "args": [
+                "--build",
+                "${workspaceFolder}/build-local"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -329,18 +326,18 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "run-qmake-debug-amd64-local",
-                "copy-assets-amd64-local"
+                "build-configure-amd64-local"
             ]
-        },
+        }, 
         {
-            "label": "clean-amd64-local",
-            "command": "make",
+            "label": "clean-local",
+            "detail": "Clean the local application build directory.",
+            "command": "cmake",
             "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}/x86_64"
-            },
             "args": [
+                "--build",
+                "build-local",
+                "--target",
                 "clean"
             ],
             "problemMatcher": [
@@ -352,7 +349,7 @@
             }
         },
         {
-            "label": "run-qmake-debug-arm64",
+            "label": "build-configure-arm64",
             "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
@@ -364,9 +361,11 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm64-__container__",
-                "bash",
-                "-c",
-                "qmake6 -o aarch64/Makefile CONFIG+=debug CONFIG+=qml_debug"
+                "cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++",
+                "-DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc",
+                "-Bbuild-arm64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -382,7 +381,7 @@
         },
         {
             "label": "build-debug-arm64",
-            "detail": "Build the application debug for arm64 using the\ncontainer SDK toolchain.",
+            "detail": "Build a debug version of the application for arm64 using\nthe toolchain from the SDK container.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -393,9 +392,9 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm64-__container__",
-                "bash",
-                "-c",
-                "cd aarch64 && make -j12"
+                "cmake",
+                "--build",
+                "build-arm64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -406,8 +405,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "run-qmake-debug-arm64",
-                "copy-assets-arm64"
+                "build-configure-arm64"
             ]
         },
         {
@@ -423,9 +421,11 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm64-__container__",
-                "bash",
-                "-c",
-                "\"cd aarch64 && make clean\""
+                "cmake",
+                "--build",
+                "build-arm64",
+                "--target",
+                "clean"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -455,7 +455,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/aarch64/debug",
+                "${workspaceFolder}/build-arm64/debug",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -480,7 +480,7 @@
             }
         },
         {
-            "label": "run-qmake-debug-arm",
+            "label": "build-configure-arm",
             "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
@@ -492,9 +492,11 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm-__container__",
-                "bash",
-                "-c",
-                "\"qmake6 -o armhf/Makefile CONFIG+=debug CONFIG+=qml_debug\""
+                "cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++",
+                "-DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc",
+                "-Bbuild-armhf"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -510,7 +512,7 @@
         },
         {
             "label": "build-debug-arm",
-            "detail": "Build the application debug for armhf using the\ncontainer SDK toolchain.",
+            "detail": "Build a debug version of the application for armhf using\nthe toolchain from the SDK container.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -521,9 +523,9 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm-__container__",
-                "bash",
-                "-c",
-                "\"cd armhf && make -j12\""
+                "cmake",
+                "--build",
+                "build-armhf"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -534,8 +536,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "run-qmake-debug-arm",
-                "copy-assets-arm"
+                "build-configure-arm"
             ]
         },
         {
@@ -551,9 +552,11 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-arm-__container__",
-                "bash",
-                "-c",
-                "\"cd armhf && make clean\""
+                "cmake",
+                "--build",
+                "build-armhf",
+                "--target",
+                "clean"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -583,7 +586,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/armhf/debug",
+                "${workspaceFolder}/build-armhf/debug",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -608,7 +611,7 @@
             }
         },
         {
-            "label": "run-qmake-debug-amd64",
+            "label": "build-configure-amd64",
             "hide": true,
             "command": "DOCKER_HOST=",
             "type": "shell",
@@ -620,9 +623,9 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-amd64-__container__",
-                "bash",
-                "-c",
-                "\"qmake6 -o amd64/Makefile CONFIG+=debug CONFIG+=qml_debug\""
+                "cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-Bbuild-amd64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -638,7 +641,7 @@
         },
         {
             "label": "build-debug-amd64",
-            "detail": "Build the application debug for amd64 using the\ncontainer SDK toolchain.",
+            "detail": "Build a debug version of the application for arm64 using\nthe toolchain from the SDK container.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -649,9 +652,9 @@
                 "-v",
                 "${workspaceFolder}:/app",
                 "cross-toolchain-amd64-__container__",
-                "bash",
-                "-c",
-                "\"cd amd64 && make -j12\""
+                "cmake",
+                "--build",
+                "build-amd64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -662,8 +665,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "run-qmake-debug-amd64",
-                "copy-assets-amd64"
+                "build-configure-amd64"
             ]
         },
         {
@@ -678,10 +680,12 @@
                 "-it",
                 "-v",
                 "${workspaceFolder}:/app",
-                "cross-toolchain-amd64-__change__",
-                "bash",
-                "-c",
-                "\"cd amd64 && make clean\""
+                "cross-toolchain-amd64-__container__",
+                "cmake",
+                "--build",
+                "build-amd64",
+                "--target",
+                "clean"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -711,7 +715,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/amd64/debug",
+                "${workspaceFolder}/build-amd64/debug",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
