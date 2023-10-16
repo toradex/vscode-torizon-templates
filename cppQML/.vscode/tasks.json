@@ -755,7 +755,7 @@
                 "${workspaceFolder}",
                 "${config:torizon_ip}:${config:torizon_debug_port2}",
                 "__change__",
-                "aarch64"
+                "arm64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
