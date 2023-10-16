@@ -116,7 +116,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ~/app && export QT_QUICK_BACKEND=\"software\" && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+                "cd ~/app && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -144,7 +144,7 @@
             },
             "args": [
                 "localhost:${config:torizon_debug_port2}",
-                "${workspaceFolder}/x86_64/debug/__change__",
+                "${workspaceFolder}/build-local/debug/__change__",
                 "-qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "problemMatcher": [
@@ -153,7 +153,10 @@
             "icon": {
                 "id": "tools",
                 "color": "terminal.ansiGreen"
-            }
+            },
+            "dependsOn": [
+                "update-qt-ini-amd64-local"
+            ],
         },
         {
             "label": "start-gdb-server-remote-arm",
@@ -797,6 +800,28 @@
                 "${config:torizon_ip}:${config:torizon_debug_port2}",
                 "__change__",
                 "amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "symbol-parameter",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "update-qt-ini-amd64-local",
+            "detail": "",
+            "hide": true,
+            "command": "pwsh",
+            "type": "process",
+            "args": [
+                "-nop",
+                "-c",
+                "${env:HOME}/.apollox/scripts/updateQtCreatorIni.ps1",
+                "${workspaceFolder}",
+                "localhost:${config:torizon_debug_port2}",
+                "__change__",
+                "local"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",

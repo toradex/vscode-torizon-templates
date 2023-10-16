@@ -39,10 +39,10 @@ $datas.DebugMode["StartApplication\2\LastServerAddress"] = `
     "$_deviceHostname"
 
 $datas.DebugMode["StartApplication\2\LastExternalExecutable"] = `
-    "$_path/$_deviceArch/debug/$_projectName"
+    "$_path/build-$_deviceArch/debug/$_projectName"
 
 $datas.DebugMode["StartApplication\2\LastExternalWorkingDirectory"] = `
-    "$_path/$_deviceArch/debug"
+    "$_path/build-$_deviceArch/debug"
 
 # write
 New-IniContent $datas | Out-File -FilePath "$_path/.qt/QtProject/QtCreator.ini"
