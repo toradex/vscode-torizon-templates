@@ -6,6 +6,7 @@
         "make",
         "gdb",
         "gdb-multiarch",
+        "gdbserver",
         "g++",
         "cmake",
         "qt6-base-dev",
