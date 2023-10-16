@@ -1,81 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorQtVersions>
-<!-- Written by QtCreator 8.0.0, 2022-08-06T02:03:09. -->
+<!-- Written by QtCreator 9.0.2, 2023-10-16T18:01:12. -->
 <qtcreator>
  <data>
   <variable>QtVersion.0</variable>
   <valuemap type="QVariantMap">
-   <value type="int" key="Id">2</value>
-   <value type="QString" key="Name">Qt %{Qt:Version} GCC 64bit</value>
-   <value type="QString" key="QMakePath">__home__/Qt/6.2.4/gcc_64/bin/qmake</value>
-   <value type="QString" key="QtVersion.Type">Qt4ProjectManager.QtVersion.Desktop</value>
-   <value type="QString" key="autodetectionSource">SDK.qt.qt6.624.gcc_64</value>
-   <value type="bool" key="isAutodetected">true</value>
-  </valuemap>
- </data>
- <data>
-  <variable>QtVersion.1</variable>
-  <valuemap type="QVariantMap">
-   <value type="int" key="Id">5</value>
-   <value type="QString" key="QMakePath">/mnt/d/Programs/Qt/6.3.1/mingw_64/bin/qmake6.exe</value>
+   <value type="int" key="Id">1</value>
+   <value type="QString" key="QMakePath">/usr/bin/qmake6</value>
    <value type="QString" key="QtVersion.Type">Qt4ProjectManager.QtVersion.Desktop</value>
    <value type="QString" key="autodetectionSource">PATH</value>
    <value type="bool" key="isAutodetected">false</value>
   </valuemap>
  </data>
  <data>
-  <variable>QtVersion.2</variable>
+  <variable>QtVersion.1</variable>
   <valuemap type="QVariantMap">
-   <value type="int" key="Id">6</value>
-   <value type="QString" key="Name">Qt %{Qt:Version} for Android ARMv7</value>
-   <value type="QString" key="QMakePath">__home__/Qt/6.2.4/android_armv7/bin/qmake</value>
-   <value type="QString" key="QtVersion.Type">Qt4ProjectManager.QtVersion.Android</value>
-   <value type="QString" key="autodetectionSource">SDK.qt.qt6.624.android_armv7</value>
-   <value type="bool" key="isAutodetected">true</value>
-  </valuemap>
- </data>
- <data>
-  <variable>QtVersion.3</variable>
-  <valuemap type="QVariantMap">
-   <value type="int" key="Id">7</value>
-   <value type="QString" key="Name">Qt %{Qt:Version} for Android ARM64-v8a</value>
-   <value type="QString" key="QMakePath">__home__/Qt/6.2.4/android_arm64_v8a/bin/qmake</value>
-   <value type="QString" key="QtVersion.Type">Qt4ProjectManager.QtVersion.Android</value>
-   <value type="QString" key="autodetectionSource">SDK.qt.qt6.624.android_arm64_v8a</value>
-   <value type="bool" key="isAutodetected">true</value>
-  </valuemap>
- </data>
- <data>
-  <variable>QtVersion.4</variable>
-  <valuemap type="QVariantMap">
-   <value type="int" key="Id">8</value>
-   <value type="QString" key="Name">Qt %{Qt:Version} for Android x86_64</value>
-   <value type="QString" key="QMakePath">__home__/Qt/6.2.4/android_x86_64/bin/qmake</value>
-   <value type="QString" key="QtVersion.Type">Qt4ProjectManager.QtVersion.Android</value>
-   <value type="QString" key="autodetectionSource">SDK.qt.qt6.624.android_x86_64</value>
-   <value type="bool" key="isAutodetected">true</value>
-  </valuemap>
- </data>
- <data>
-  <variable>QtVersion.5</variable>
-  <valuemap type="QVariantMap">
-   <value type="int" key="Id">9</value>
-   <value type="QString" key="Name">Qt %{Qt:Version} for Android x86</value>
-   <value type="QString" key="QMakePath">__home__/Qt/6.2.4/android_x86/bin/qmake</value>
-   <value type="QString" key="QtVersion.Type">Qt4ProjectManager.QtVersion.Android</value>
-   <value type="QString" key="autodetectionSource">SDK.qt.qt6.624.android_x86</value>
-   <value type="bool" key="isAutodetected">true</value>
-  </valuemap>
- </data>
- <data>
-  <variable>QtVersion.6</variable>
-  <valuemap type="QVariantMap">
-   <value type="int" key="Id">10</value>
-   <value type="QString" key="Name">Qt %{Qt:Version} WebAssembly</value>
-   <value type="QString" key="QMakePath">__home__/Qt/6.2.4/wasm_32/bin/qmake</value>
-   <value type="QString" key="QtVersion.Type">Qt4ProjectManager.QtVersion.WebAssembly</value>
-   <value type="QString" key="autodetectionSource">SDK.qt.qt6.624.wasm_32</value>
-   <value type="bool" key="isAutodetected">true</value>
+   <value type="int" key="Id">3</value>
+   <value type="QString" key="QMakePath">/usr/lib/qt6/bin/qmake6</value>
+   <value type="QString" key="QtVersion.Type">Qt4ProjectManager.QtVersion.Desktop</value>
+   <value type="QString" key="autodetectionSource"></value>
+   <value type="bool" key="isAutodetected">false</value>
   </valuemap>
  </data>
  <data>
