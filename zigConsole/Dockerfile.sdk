@@ -1,34 +1,18 @@
-# ARGUMENTS --------------------------------------------------------------------
-ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm
+FROM kassany/bookworm-ziglang:0.11.0
 
-##
-# Board architecture
-# arm or arm64
-##
-ARG IMAGE_ARCH=
-
-
-# BUILD ------------------------------------------------------------------------
-FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG}
-
-# __deps__
-RUN apt-get -q -y update && \
-    apt-get -q -y install \
+RUN apt-get update && \
+    apt-get install -y \
     # ADD YOUR PACKAGES HERE
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
-# __deps__
 
-# automate for torizonPackages.json
-RUN apt-get -q -y update && \
-    apt-get -q -y install \
-# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    # __torizon_packages_dev_start__
-    # __torizon_packages_dev_end__
-# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    && \
-    apt-get clean && apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/*
+ARG UNAME=ziguana
+ARG UID=1000
+ARG GID=1000
+RUN groupadd -g $GID -o $UNAME
+RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
+
+USER $UNAME
 
 WORKDIR /app
