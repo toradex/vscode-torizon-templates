@@ -5,7 +5,7 @@
             "name": "Local AMD64",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/zig-deploy/x86_64-linux-gnu/debug/bin/__change__",
+            "program": "${workspaceFolder}/zig-out/bin/__change__",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
@@ -25,7 +25,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build-debug-amd64-local"
+            "preLaunchTask": "build-debug-amd64"
         },
         {
             "name": "Torizon riscv64",
