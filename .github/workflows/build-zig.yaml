@@ -38,4 +38,4 @@ jobs:
             false
 
           cd "${env:GITHUB_WORKSPACE}/${env:PROJECT_FOLDER}CITest"
-          ./.vscode/tasks.ps1 run build-container-torizon-${env:PROJECT_ARCH}
+          ./.vscode/tasks.ps1 run build-container-torizon-release-${env:PROJECT_ARCH}
