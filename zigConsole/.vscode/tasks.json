@@ -89,7 +89,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/zig-deploy/aarch64-linux-gnu/debug/bin",
+                "${workspaceFolder}/zig-out/bin",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -166,7 +166,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/zig-deploy/arm-linux-gnu/debug/bin",
+                "${workspaceFolder}/zig-out/bin",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [

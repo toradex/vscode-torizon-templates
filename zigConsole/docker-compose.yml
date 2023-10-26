@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5002/__container__-debug:${TAG}
     ports:
-      - 2230:2230
+      - 2320:2320
 
   __container__:
     build:
