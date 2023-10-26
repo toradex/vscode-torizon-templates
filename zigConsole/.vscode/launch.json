@@ -5,7 +5,7 @@
             "name": "Local AMD64",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/zig-out/bin/__change__",
+            "program": "${workspaceFolder}/zig-out/x86_64/Debug/bin/__change__",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",

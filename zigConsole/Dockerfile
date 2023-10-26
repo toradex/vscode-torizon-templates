@@ -86,6 +86,15 @@ RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
 
 # BUILD ------------------------------------------------------------------------
 
+RUN mkdir -p target/deploy && \
+    if [ "$IMAGE_ARCH" = "arm64" ] ; then \
+        cp zig-out/aarch64/ReleaseSmall/bin/$APP_EXECUTABLE target/deploy ; \
+    elif [ "$IMAGE_ARCH" = "arm" ] ; then \
+        cp zig-out/arm/ReleaseSmall/bin/$APP_EXECUTABLE target/deploy ; \
+    elif [ "$IMAGE_ARCH" = "amd64" ] ; then \
+        cp zig-out/x86_64/ReleaseSmall/bin/$APP_EXECUTABLE target/deploy ; \
+    fi
+
 # DEPLOY ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} torizon/debian:${BASE_VERSION} AS Deploy
 
@@ -101,7 +110,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
-COPY --from=Build /app/zig-out/bin/${APP_EXECUTABLE} /usr/bin/${APP_EXECUTABLE}
+COPY --from=Build /app/target/deploy/${APP_EXECUTABLE} /usr/bin/${APP_EXECUTABLE}
 
 # ADD YOUR ARGUMENTS HERE
 CMD ${APP_EXECUTABLE}
