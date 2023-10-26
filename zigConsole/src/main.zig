@@ -6,7 +6,7 @@ pub const std_options = struct {
     pub const log_level = .info;
 };
 pub fn main() void {
-    log.info("Hello {s}!\n", .{"Torizon"});
+    log.info("Hello {s}!", .{"Torizon"});
     // output:
     // info(toradex): Hello Torizon!
 }
