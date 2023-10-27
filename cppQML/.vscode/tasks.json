@@ -24,6 +24,36 @@
         },
         {
             "label": "open-in-qt-creator",
+            "detail": "This task first builds the project and then opens it in Qt Creator (for local development/debug).\nNeed to have the Qt Creator installed on your system.",
+            "command": "qtcreator",
+            "type": "process",
+            "options": {
+                "env": {
+                    "QT_QPA_PLATFORM": "xcb"
+                }
+            },
+            "args": [
+                "${workspaceFolder}",
+                "-settingspath",
+                "${workspaceFolder}/.qt",
+                "-theme",
+                "dark"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiGreen"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-amd64-local",
+                "update-qt-ini-amd64-local"
+            ]
+        },
+        {
+            "label": "open-in-qt-creator-debug-arm64",
             "detail": "This task first builds the project and then opens it in Qt Creator.\nNeed to have the Qt Creator installed on your system.",
             "command": "qtcreator",
             "type": "process",
@@ -48,7 +78,68 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-amd64-local"
+                "build-debug-arm64",
+                "update-qt-ini-arm64"
+            ]
+        },
+        {
+            "label": "open-in-qt-creator-debug-arm",
+            "detail": "This task first builds the project and then opens it in Qt Creator.\nNeed to have the Qt Creator installed on your system.",
+            "command": "qtcreator",
+            "type": "process",
+            "options": {
+                "env": {
+                    "QT_QPA_PLATFORM": "xcb"
+                }
+            },
+            "args": [
+                "${workspaceFolder}",
+                "-settingspath",
+                "${workspaceFolder}/.qt",
+                "-theme",
+                "dark"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiGreen"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-arm",
+                "update-qt-ini-arm"
+            ]
+        },
+        {
+            "label": "open-in-qt-creator-debug-amd64",
+            "detail": "This task first builds the project and then opens it in Qt Creator.\nNeed to have the Qt Creator installed on your system.",
+            "command": "qtcreator",
+            "type": "process",
+            "options": {
+                "env": {
+                    "QT_QPA_PLATFORM": "xcb"
+                }
+            },
+            "args": [
+                "${workspaceFolder}",
+                "-settingspath",
+                "${workspaceFolder}/.qt",
+                "-theme",
+                "dark"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiGreen"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-amd64",
+                "update-qt-ini-amd64"
             ]
         },
         {
@@ -120,7 +211,6 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "update-qt-ini-arm64",
                 "kill-redirect-qml-debugger",
                 "deploy-torizon-arm64",
                 "redirect-qml-debugger"
@@ -155,7 +245,6 @@
                 "color": "terminal.ansiGreen"
             },
             "dependsOn": [
-                "update-qt-ini-amd64-local"
             ],
         },
         {
@@ -177,7 +266,6 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "update-qt-ini-arm",
                 "kill-redirect-qml-debugger",
                 "deploy-torizon-arm",
                 "redirect-qml-debugger"
@@ -207,7 +295,6 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "update-qt-ini-amd64",
                 "kill-redirect-qml-debugger",
                 "deploy-torizon-amd64",
                 "redirect-qml-debugger"
