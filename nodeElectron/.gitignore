@@ -4,3 +4,6 @@ out/
 
 credentials.zip
 *.lock.yml
+
+.conf/.depok
+.conf/.docok
