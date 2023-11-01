@@ -1781,9 +1781,7 @@
                 "clear": false
             },
             "dependsOn": [
-                "wget-documentation-file",
-                "open-project-documentation-file",
-                "wait-a-bit"
+                "open-project-documentation-file"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -1807,25 +1805,7 @@
                 "clear": true
             },
             "args": [
-                "__templateFolder__-doc-README.md"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "wget-documentation-file",
-            "command": "wget",
-            "detail": "",
-            "hide": true,
-            "type": "process",
-            "args": [
-                "-O",
-                "__templateFolder__-doc-README.md",
-                "https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/main/__templateFolder__/README.md"
+                ".doc/README.md"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
