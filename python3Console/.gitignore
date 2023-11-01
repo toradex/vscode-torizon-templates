@@ -161,3 +161,6 @@ cython_debug/
 
 credentials.zip
 *.lock.yml
+
+.conf/.depok
+.conf/.docok

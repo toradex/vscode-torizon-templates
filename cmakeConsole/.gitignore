@@ -83,3 +83,6 @@ credentials.zip
 
 #Build directories
 /build-*
+
+.conf/.depok
+.conf/.docok
