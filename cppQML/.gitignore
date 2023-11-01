@@ -6,7 +6,10 @@ x86_64
 aarch64
 armhf
 amd64
-.qt
 credentials.zip
 *.lock.yml
 build-*
+# After commiting it once, to stop having modifications every time you do 
+# anything on Qt Creator (like dragging the window, literally almost anything),
+# uncomment the line below
+# .qt
