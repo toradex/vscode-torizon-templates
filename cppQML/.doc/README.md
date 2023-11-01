@@ -20,15 +20,15 @@ Also, it is possible to debug the application (including the QML part) on Qt Cre
  - Open the project on Qt Creator, through the **open-in-qt-creator-debug\${architecture}** task (**open-in-qt-creator** for local debug). It is necessary to open Qt Creator through this task.
  - Run the **start-gdb-server-\<remote or local>-\${architecture}** task. This task takes a while to run, and the message shown on the VSCode terminal when it is ready is `Listening port 2232`. You should wait for this message.
 
-    ![](https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/main/cppQML/startGDBServerTaskMessage.png)
+    ![](https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/bookworm/cppQML/startGDBServerTaskMessage.png)
 
  - On Qt Creator, **Attach to Running Debug Server** (or **Attach to QML Port** for debugging the QML):
 
-    ![](https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/main/cppQML/attachDebug.png)
+    ![](https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/bookworm/cppQML/attachDebug.png)
 
  - Confirm the debugging information and press **Ok**:
 
-    ![](https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/main/cppQML/checkInfoAttachDebug.png)
+    ![](https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/bookworm/cppQML/checkInfoAttachDebug.png)
 
 ## .gitignore and the .qt directory
 
