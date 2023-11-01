@@ -209,6 +209,7 @@ if ($templateName -ne "tcb") {
     Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
     Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
     Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
+    Copy-Item $Env:HOME/.apollox/$templateName/.doc/README.md .
 }
 
 Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
@@ -302,6 +303,17 @@ if ($templateName -ne "tcb") {
     _openMergeWindow `
         $projectFolder/.conf/tmp/.gitlab-ci.yml `
         $projectFolder/.gitlab-ci.yml
+
+    # TEMPLATE SPECIFIC DOCUMENTATION:
+    # check if the folder already exists, if not create else open merge window
+    if (-not (Test-Path $projectFolder/.doc)) {
+        mkdir $projectFolder/.doc
+        Copy-Item $Env:HOME/.apollox/$templateName/.doc/README.md .doc
+    } else {
+        _openMergeWindow `
+            $projectFolder/.conf/tmp/README.md `
+            $projectFolder/.doc/README.md
+    }
 }
 
 # GITIGNORE:
