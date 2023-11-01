@@ -133,6 +133,17 @@ In the `.conf` folder the following files are expected:
 
 > ⚠️ The "private" and public keys used on Torizon IDE Extension projects are only for debug purposes!
 
+#### Dot Doc Folder
+
+In the `.doc` folder is present the documentation specific of each template. 
+
+This documentation should give some explanation of how the code is being built and deployed to the application, how it is being debugged and where did its source code come from. Also, there should be present any information specific from that template, warnings, recommendations and tasks specific from that template and how to use them. You can add any information that you believe is relevant to the template there. The file containing this information has to be the `README.md` file. 
+
+> ℹ️ Check the [cppQML/.doc/README.md](./cppQML/.doc/README.md) to see an example.
+
+The media (images, videos, GIFs and so on) of the template documentation should be stored on the [toradex/vscode-torizon-templates-documentation](https://github.com/toradex/vscode-torizon-templates-documentation/]) Github repository
+
+
 ## Creating a Pull Request
 
 For Torizon IDE Extension project templates we are using [Github platform](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
