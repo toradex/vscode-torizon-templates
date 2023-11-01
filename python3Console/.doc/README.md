@@ -39,10 +39,10 @@ on the **requirements.release.txt** file)
 For more details, please watch the demonstration video below:
 
 <video controls width="90%">
-  <source src="https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/main/common/python3/createEnvPython3-v2.mp4" type="video/mp4">
+  <source src="https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/bookworm/common/python3/createEnvPython3-v2.mp4" type="video/mp4">
 </video>
 
-[](https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/main/common/python3/createEnvPython3-v2.mp4)
+[](https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/bookworm/common/python3/createEnvPython3-v2.mp4)
 
 [The line above renders the video on GitHub but not on VSCode ]:<>
 
