@@ -6,7 +6,7 @@ jobs:
   spell-check:
     runs-on: ubuntu-latest
     container:
-      image: node:16
+      image: node:18
     name: Spell Check
     steps:
       - uses: actions/checkout@v3
