@@ -78,7 +78,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-arm64",
+                "build-debug-amd64-local",
                 "update-qt-ini-arm64"
             ]
         },
@@ -108,7 +108,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-arm",
+                "build-debug-amd64-local",
                 "update-qt-ini-arm"
             ]
         },
@@ -138,7 +138,7 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-amd64",
+                "build-debug-amd64-local",
                 "update-qt-ini-amd64"
             ]
         },
