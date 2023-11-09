@@ -9,10 +9,6 @@ jobs:
     strategy:
       matrix:
         project:
-          - folder: rustConsole
-            container: rust-console
-            arch: arm64
-
           - folder: rustSlint
             container: rust-slint
             arch: arm64
