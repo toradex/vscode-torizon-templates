@@ -17,6 +17,7 @@
                 "cwd": "${workspaceFolder}"
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/projectUpdater.ps1",
                 "${workspaceFolder}",
                 "${workspaceFolderBasename}",
@@ -45,6 +46,7 @@
                 "cwd": "${workspaceFolder}"
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/projectUpdater.ps1",
                 "${workspaceFolder}",
                 "${workspaceFolderBasename}",
@@ -77,6 +79,7 @@
                 }
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/createDockerComposeProduction.ps1",
                 "${workspaceFolder}",
                 "${command:docker_registry}",
@@ -176,6 +179,7 @@
             },
             "args": [
                 "pwsh",
+                "-nop",
                 "./.conf/torizonIO.ps1",
                 "update",
                 "fleet",
@@ -366,6 +370,7 @@
                 "clear": false
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/shareWSLPorts.ps1",
                 "${workspaceFolder}"
             ],
@@ -389,6 +394,7 @@
                 "clear": false
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/checkDeps.ps1"
             ],
             "dependsOrder": "sequence",
@@ -412,6 +418,7 @@
                 "clear": false
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/torizonPackages.ps1",
                 "${config:torizon_arch}"
             ],
@@ -1834,6 +1841,7 @@
                 }
             },
             "args": [
+                "-nop",
                 ".conf/checkCIEnv.ps1"
             ],
             "problemMatcher": [
@@ -1865,6 +1873,7 @@
                 }
             },
             "args": [
+                "-nop",
                 ".conf/validateDepsRunning.ps1"
             ],
             "problemMatcher": [

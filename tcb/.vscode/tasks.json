@@ -18,6 +18,7 @@
                 "cwd": "${workspaceFolder}"
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/projectUpdater.ps1",
                 "${workspaceFolder}",
                 "${workspaceFolderBasename}",
@@ -46,6 +47,7 @@
                 "cwd": "${workspaceFolder}"
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/projectUpdater.ps1",
                 "${workspaceFolder}",
                 "${workspaceFolderBasename}",
@@ -103,6 +105,7 @@
                 "clear": false
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
                 "-ContainerRuntime",
                 "docker",
@@ -132,6 +135,7 @@
                 "clear": false
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/shareWSLPorts.ps1"
             ],
             "dependsOrder": "sequence",
@@ -155,6 +159,7 @@
                 "clear": false
             },
             "args": [
+                "-nop",
                 "${workspaceFolder}/.conf/checkDeps.ps1"
             ],
             "dependsOrder": "sequence",
@@ -454,6 +459,7 @@
             },
             "args": [
                 "pwsh",
+                "-nop",
                 "./.conf/torizonIO.ps1",
                 "update",
                 "fleet",
@@ -526,7 +532,7 @@
             "type": "pickString",
             "description": "Container architecture",
             "options": [
-                "linux/arm/v7", 
+                "linux/arm/v7",
                 "linux/arm64"
             ]
         },
