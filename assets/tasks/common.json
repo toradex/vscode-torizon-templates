@@ -1641,18 +1641,15 @@
         {
             "label": "run-container-torizon-release-arm64",
             "detail": "This task will build the application based in the production Dockerfile, push it to the local registry (localhost:5002), pull it on the board and run it on the board, showing the result in the VSCode terminal",
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm64 GPU=${config:torizon_gpu} docker-compose up __container__"
+                "DOCKER_LOGIN=${config:host_ip}:5002",
+                "TAG=arm64",
+                "GPU=${config:torizon_gpu}",
+                "docker-compose",
+                "up",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1675,18 +1672,15 @@
         {
             "label": "run-container-torizon-release-arm",
             "detail": "This task will build the application based in the production Dockerfile, push it to the local registry (localhost:5002), pull it on the board and run it on the board, showing the result in the VSCode terminal",
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm GPU=${config:torizon_gpu} docker-compose up __container__"
+                "DOCKER_LOGIN=${config:host_ip}:5002",
+                "TAG=arm",
+                "GPU=${config:torizon_gpu}",
+                "docker-compose",
+                "up",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1709,18 +1703,15 @@
         {
             "label": "run-container-torizon-release-amd64",
             "detail": "This task will build the application based in the production Dockerfile, push it to the local registry (localhost:5002), pull it on the board and run it on the board, showing the result in the VSCode terminal",
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=amd64 GPU=${config:torizon_gpu} docker-compose up __container__"
+                "DOCKER_LOGIN=${config:host_ip}:5002",
+                "TAG=amd64",
+                "GPU=${config:torizon_gpu}",
+                "docker-compose",
+                "up",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1743,18 +1734,15 @@
         {
             "label": "run-container-torizon-release-riscv64",
             "detail": "This task will build the application based in the production Dockerfile, push it to the local registry (localhost:5002), pull it on the board and run it on the board, showing the result in the VSCode terminal",
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=riscv64 GPU=${config:torizon_gpu} docker-compose up __container__"
+                "DOCKER_LOGIN=${config:host_ip}:5002",
+                "TAG=riscv64",
+                "GPU=${config:torizon_gpu}",
+                "docker-compose",
+                "up",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
