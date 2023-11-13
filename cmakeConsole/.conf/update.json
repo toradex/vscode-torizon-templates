@@ -1,6 +1,6 @@
 [
     {
-        "source": "Makefile",
-        "target": "Makefile"
+        "source": "CMakelists.txt",
+        "target": "CMakelists.txt"
     }
 ]
