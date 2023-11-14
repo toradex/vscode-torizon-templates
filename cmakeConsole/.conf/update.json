@@ -1,6 +1,6 @@
 [
     {
-        "source": "CMakelists.txt",
-        "target": "CMakelists.txt"
+        "source": "CMakeLists.txt",
+        "target": "CMakeLists.txt"
     }
 ]
