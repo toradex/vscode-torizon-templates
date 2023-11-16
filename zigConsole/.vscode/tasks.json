@@ -94,7 +94,7 @@
             ],
             "dependsOn": [
                 "copy-docker-compose",
-                "pre-cleanup-arm64",
+                "pre-cleanup",
                 "build-debug-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
@@ -171,7 +171,7 @@
             ],
             "dependsOn": [
                 "copy-docker-compose",
-                "pre-cleanup-arm",
+                "pre-cleanup",
                 "build-debug-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
