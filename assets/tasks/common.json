@@ -585,102 +585,17 @@
             }
         },
         {
-            "label": "pre-cleanup-arm64",
+            "label": "pre-cleanup",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
+                "docker-compose",
                 "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose down --remove-orphans"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "pre-cleanup-arm",
-            "detail": "",
-            "hide": true,
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose down --remove-orphans"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "pre-cleanup-amd64",
-            "detail": "",
-            "hide": true,
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose down --remove-orphans"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "pre-cleanup-riscv64",
-            "detail": "",
-            "hide": true,
-            "command": "sshpass",
-            "type": "process",
-            "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=riscv64 GPU=${config:torizon_gpu} docker-compose down --remove-orphans"
+                "torizon",
+                "down",
+                "--remove-orphans"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1174,18 +1089,18 @@
             "label": "run-container-torizon-debug-arm64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=arm64",
+                "GPU=${config:torizon_gpu}",
+                "docker-compose",
                 "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
+                "torizon",
+                "up",
+                "-d",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1201,18 +1116,18 @@
             "label": "run-container-torizon-debug-arm",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=arm",
+                "GPU=${config:torizon_gpu}",
+                "docker-compose",
                 "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
+                "torizon",
+                "up",
+                "-d",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1228,18 +1143,18 @@
             "label": "run-container-torizon-debug-amd64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=amd64",
+                "GPU=${config:torizon_gpu}",
+                "docker-compose",
                 "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
+                "torizon",
+                "up",
+                "-d",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1255,18 +1170,18 @@
             "label": "run-container-torizon-debug-riscv64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=riscv64",
+                "GPU=${config:torizon_gpu}",
+                "docker-compose",
                 "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=riscv64 GPU=${config:torizon_gpu} docker-compose up -d __container__-debug"
+                "torizon",
+                "up",
+                "-d",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1648,6 +1563,8 @@
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
                 "docker-compose",
+                "-p",
+                "torizon",
                 "up",
                 "__container__"
             ],
@@ -1657,7 +1574,7 @@
                 "validate-arch-arm64",
                 "apply-torizon-packages",
                 "copy-docker-compose",
-                "pre-cleanup-arm64",
+                "pre-cleanup",
                 "build-container-torizon-release-arm64",
                 "push-container-torizon-release-arm64",
                 "pull-container-torizon-release-arm64",
@@ -1679,6 +1596,8 @@
                 "TAG=arm",
                 "GPU=${config:torizon_gpu}",
                 "docker-compose",
+                "-p",
+                "torizon",
                 "up",
                 "__container__"
             ],
@@ -1688,7 +1607,7 @@
                 "validate-arch-arm",
                 "apply-torizon-packages",
                 "copy-docker-compose",
-                "pre-cleanup-arm",
+                "pre-cleanup",
                 "build-container-torizon-release-arm",
                 "push-container-torizon-release-arm",
                 "pull-container-torizon-release-arm",
@@ -1710,6 +1629,8 @@
                 "TAG=amd64",
                 "GPU=${config:torizon_gpu}",
                 "docker-compose",
+                "-p",
+                "torizon",
                 "up",
                 "__container__"
             ],
@@ -1719,7 +1640,7 @@
                 "validate-arch-amd64",
                 "apply-torizon-packages",
                 "copy-docker-compose",
-                "pre-cleanup-amd64",
+                "pre-cleanup",
                 "build-container-torizon-release-amd64",
                 "push-container-torizon-release-amd64",
                 "pull-container-torizon-release-amd64",
@@ -1741,6 +1662,8 @@
                 "TAG=riscv64",
                 "GPU=${config:torizon_gpu}",
                 "docker-compose",
+                "-p",
+                "torizon",
                 "up",
                 "__container__"
             ],
@@ -1750,7 +1673,7 @@
                 "validate-arch-riscv64",
                 "apply-torizon-packages",
                 "copy-docker-compose",
-                "pre-cleanup-riscv64",
+                "pre-cleanup",
                 "build-container-torizon-release-riscv64",
                 "push-container-torizon-release-riscv64",
                 "pull-container-torizon-release-riscv64",
