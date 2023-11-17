@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.0.8-bookworm
+ARG BASE_VERSION=3.1.0-bookworm
 
 ARG APP_ROOT=
 
