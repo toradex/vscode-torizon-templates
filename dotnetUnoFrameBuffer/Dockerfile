@@ -29,10 +29,10 @@ ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
 
 COPY . /build
-WORKDIR /build
+WORKDIR /build/__change__.Skia.Linux.FrameBuffer
 
 # build
-RUN dotnet publish __change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj -c Release -r linux-${IMAGE_ARCH} --no-self-contained
+RUN dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained
 # BUILD ------------------------------------------------------------------------
 
 
@@ -72,5 +72,5 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 COPY --from=Build /build/__change__.Skia.Linux.FrameBuffer/bin/Release/net6.0/linux-${IMAGE_ARCH}/publish /app
 
 # ADD YOUR ARGUMENTS HERE
-CMD [ "./app/__change__" ]
+CMD [ "./app/__change__.Skia.Linux.FrameBuffer" ]
 # DEPLOY -----------------------------------------------------------------------
