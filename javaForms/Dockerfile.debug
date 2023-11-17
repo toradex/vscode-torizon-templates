@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.0.8
+ARG BASE_VERSION=3.1.0
 
 ##
 # Application Name

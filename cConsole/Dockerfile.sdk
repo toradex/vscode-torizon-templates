@@ -1,5 +1,5 @@
 # ARGUMENTS --------------------------------------------------------------------
-ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm
+ARG CROSS_SDK_BASE_TAG=3.1.0-bookworm
 
 ##
 # Board architecture
