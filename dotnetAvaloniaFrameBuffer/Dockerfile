@@ -7,8 +7,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.0.8
-ARG DOTNET_BASE_VERSION=3-6.0
+ARG BASE_VERSION=3.1.0
+ARG DOTNET_BASE_VERSION=3.0.0-6.0
 
 ##
 # Application Name
