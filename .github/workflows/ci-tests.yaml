@@ -1,6 +1,9 @@
 name: Sanity Check
 on:
-  - push
+  push:
+    branches:
+      - dev
+      - bookworm
 
 jobs:
   spell-check:
@@ -18,4 +21,3 @@ jobs:
         run: |
           npm install git+https://github.com/streetsidesoftware/cspell-cli
           npx cspell-cli lint --relative
-          
