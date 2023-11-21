@@ -6,13 +6,6 @@ MinimumVisualStudioVersion = 15.0.26124.0
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "__change__.Shared", "__change__.Shared\__change__.Shared.shproj", "{6279C845-92F8-4333-AB99-3D213163593C}"
 EndProject
 
-
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "__change__.Uwp", "__change__.UWP\__change__.Uwp.csproj", "{270B27DB-1DD0-4EC6-95FF-F83D0A3A1CDB}"
-EndProject
-
-
-
-
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__change__.Skia.Linux.FrameBuffer", "__change__.Skia.Linux.FrameBuffer\__change__.Skia.Linux.FrameBuffer.csproj", "{761D821E-9905-4444-9ADF-76C995FE5427}"
 EndProject
 

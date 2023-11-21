@@ -7,10 +7,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "__change__.Shared", "__chan
 EndProject
 
 
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "__change__.Uwp", "__change__.UWP\__change__.Uwp.csproj", "{04063425-E8F7-45C4-A45B-0D2B111F4AA4}"
-EndProject
-
-
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "__change__.Skia.Gtk", "__change__.Skia.Gtk\__change__.Skia.Gtk.csproj", "{A5B8155A-118F-4794-B551-C6F3CF7E5411}"
 EndProject
 
