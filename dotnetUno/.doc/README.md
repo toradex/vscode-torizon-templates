@@ -1,5 +1,7 @@
 # .NET6 C# Uno Platform Skia.GTK Template Specific Documentation
 
+> ⚠️ **WARNING**: The [Uno Platform VS Code extension]() does not work with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit). Check the [Uno Platform documentation](https://platform.uno/docs/articles/get-started-vscode.html?tabs=windows%2Candroiddebug#c-dev-kit-compatibility) for more information.
+
 All projects follow the pipeline of tasks described in the [common contributing documentation](https://github.com/toradex/vscode-torizon-templates/blob/bookworm/CONTRIBUTING.md#contributing-templates). However, each project has its own specificities in terms of technologies and methods used to compile, deploy, and debug the code. Therefore, each of them has their own specific tasks in the **tasks.json** file.
 
 This .NET C# Uno Platform Skia GTK template uses **dotnet publish** CLI command to compile the source code and create a deployable package, with tasks named **publish-torizon-\${architecture}**. However, for local debugging it is not necessary to create a deployable package so just the **dotnet build** task is enough in this case(please note that the **preLaunchTask** of local debug is **build-torizon-local** and not **publish-torizon-local**, but the publish local task is there just for you to use if for any specific reason you need this local publish).
