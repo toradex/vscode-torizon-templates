@@ -104,15 +104,15 @@
             "deprecated": false,
             "tests": {
                 "debuggers": {
-                    "local": ["Debug Local"], 
-                    "amd64": ["Torizon AMD64"], 
-                    "arm": ["Torizon ARMv7"], 
+                    "local": ["Debug Local"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": null,
                 "mainFile": "__change__.Shared/App.xaml.cs",
-                "mainFileBreakpointLine": 117,
-                "successDebugMessage": "fps: "
+                "mainFileBreakpointLine": 113,
+                "successDebugMessage": "Hello Torizon!"
             }
         },
         {
@@ -163,7 +163,7 @@
             "deprecated": false,
             "tests": {
                 "debuggers": {
-                    "local": ["Debug Main Process"], 
+                    "local": ["Debug Main Process"],
                     "amd64": ["Torizon AMD64"],
                     "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
@@ -187,7 +187,7 @@
             "deprecated": false,
             "tests": {
                 "debuggers": {
-                    "local": ["Node Local"],  
+                    "local": ["Node Local"],
                     "amd64": ["Torizon AMD64"],
                     "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
@@ -210,10 +210,10 @@
             "deprecated": false,
             "tests" : {
                 "debuggers": {
-                    "local": ["Local AMD64"], 
-                    "riscv": ["Torizon riscv64"], 
-                    "amd64": ["Torizon AMD64"], 
-                    "arm": ["Torizon ARMv7"], 
+                    "local": ["Local AMD64"],
+                    "riscv": ["Torizon riscv64"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": "cppdbg",
@@ -234,8 +234,8 @@
             "deprecated": false,
             "tests" : {
                 "debuggers": {
-                    "local": ["Local AMD64"], 
-                    "arm": ["Torizon ARMv7"], 
+                    "local": ["Local AMD64"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": "cppdbg",
@@ -256,10 +256,10 @@
             "deprecated": false,
             "tests" : {
                 "debuggers": {
-                    "local": ["Local AMD64"], 
-                    "riscv": ["Torizon riscv64"], 
-                    "amd64": ["Torizon AMD64"], 
-                    "arm": ["Torizon ARMv7"], 
+                    "local": ["Local AMD64"],
+                    "riscv": ["Torizon riscv64"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": "cppdbg",
@@ -282,16 +282,16 @@
             "deprecated": false,
             "tests": {
                 "debuggers": {
-                    "local": ["Local AMD64"], 
-                    "amd64": ["Torizon AMD64"], 
-                    "arm": ["Torizon ARMv7"], 
+                    "local": ["Local AMD64"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": "cppdbg",
                 "mainFile": "main.cpp",
                 "mainFileBreakpointLine": 19,
                 "successDebugMessage": "Hello Torizon!"
-            
+
             }
         },
         {
@@ -308,8 +308,8 @@
             "tests" : {
                 "debuggers": {
                     "local": ["Run Local"],
-                    "amd64": ["Torizon AMD64"], 
-                    "arm": ["Torizon ARMv7"], 
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": null,
@@ -330,8 +330,8 @@
             "deprecated": false,
             "tests" : {
                 "debuggers": {
-                    "local": ["Local AMD64"],  
-                    "arm": ["Torizon ARMv7"], 
+                    "local": ["Local AMD64"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": "cppdbg",
@@ -364,8 +364,8 @@
             "deprecated": false,
             "tests": {
                 "debuggers": {
-                    "local": ["Python Local"], 
-                    "arm": ["Torizon ARMv7"], 
+                    "local": ["Python Local"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": "Python Debug Console",
@@ -387,8 +387,8 @@
             "deprecated": false,
             "tests": {
                 "debuggers": {
-                    "local": ["Python Local"], 
-                    "arm": ["Torizon ARMv7"], 
+                    "local": ["Python Local"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": "Python Debug Console",
@@ -470,8 +470,8 @@
             "support": "Community",
             "tests" : {
                 "debuggers": {
-                    "local": ["Local AMD64"],  
-                    "arm": ["Torizon ARMv7"], 
+                    "local": ["Local AMD64"],
+                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": "cppdbg",
