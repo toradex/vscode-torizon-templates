@@ -1,6 +1,9 @@
 name: Rust Debug Containers
 on:
-  - push
+  push:
+    branches:
+      - dev
+      - bookworm
 
 jobs:
   rust-debug:

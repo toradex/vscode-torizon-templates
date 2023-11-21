@@ -1,6 +1,9 @@
 name: C/C++ Containers
 on:
-  - push
+  push:
+    branches:
+      - dev
+      - bookworm
 
 jobs:
   ccpp:

@@ -1,6 +1,9 @@
 name: Rust Containers
 on:
-  - push
+  push:
+    branches:
+      - dev
+      - bookworm
 
 jobs:
   rust:

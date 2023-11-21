@@ -1,6 +1,9 @@
 name: Python Debug Containers
 on:
-  - push
+  push:
+    branches:
+      - dev
+      - bookworm
 
 jobs:
   python3-debug:
