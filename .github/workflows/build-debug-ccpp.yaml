@@ -1,6 +1,9 @@
 name: C/C++ Debug Containers
 on:
-  - push
+  push:
+    branches:
+      - dev
+      - bookworm
 
 jobs:
   ccpp-debug:

@@ -1,6 +1,9 @@
 name: Python Containers
 on:
-  - push
+  push:
+    branches:
+      - dev
+      - bookworm
 
 jobs:
   python3:
