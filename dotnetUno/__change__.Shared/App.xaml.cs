@@ -108,6 +108,9 @@ namespace __change__
             {
                 GtkHost.Window.Resize(600, 400);
             }
+
+            // for the Torizon automated tests
+            Console.WriteLine("Hello Torizon!");
 #endif
         }
 
