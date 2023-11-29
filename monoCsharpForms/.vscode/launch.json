@@ -2,11 +2,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to Mono",
-            "request": "attach",
+            "name": "Mono Local",
+            "request": "launch",
             "type": "mono",
-            "address": "localhost",
-            "port": "${config:torizon_debug_port}"
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/bin/Debug/__change__.exe",
+            "preLaunchTask": "build-application"
         },
         {
             "name": "Torizon AMD64",
