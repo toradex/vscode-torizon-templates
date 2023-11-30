@@ -215,7 +215,43 @@
                 "id": "flame",
                 "color": "terminal.ansiYellow"
             }
+        },
+        {
+            "label": "intall-nuget",
+            "detail": "This task will install the Nuget package from https://www.nuget.org/. Please input the name and version.",
+            "hide": false,
+            "command": "nuget",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "install",
+                "${input:nuget-name}",
+                "-Version",
+                "${input:nuget-version}",
+                "-Framework", "netstandard2.0",
+                "-OutputDirectory", "libs"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "icon": {
+                "id": "insert",
+                "color": "terminal.ansiYellow"
+            }
         }
     ],
-"inputs": []
+    "inputs": [
+        {
+            "id": "nuget-name",
+            "type": "promptString",
+            "description": "Nuget package name"
+        },
+        {
+            "id": "nuget-version",
+            "type": "promptString",
+            "description": "Nuget package version"
+        }
+    ]
 }
