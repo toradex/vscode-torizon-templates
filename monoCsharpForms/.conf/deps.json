@@ -5,6 +5,7 @@
         "mono-complete",
         "mono-roslyn",
         "mono-dbg",
-        "msbuild"
+        "msbuild",
+        "nuget"
     ]
 }
