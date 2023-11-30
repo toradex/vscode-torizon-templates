@@ -204,8 +204,11 @@ Set-Location $projectFolder/.conf/tmp
 
 # tcb does not have the common Docker files
 if ($templateName -ne "tcb") {
+    # The generic project doesn't have a Dockerfile.debug
+    if ($templateName -ne "genericProject") {
+        Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
+    }
     Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile .
-    Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
     Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
     Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
     Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
@@ -279,16 +282,17 @@ Write-Host -ForegroundColor DarkGreen "✅ tasks.json"
 
 # TCB does not have the common application Docker files
 if ($templateName -ne "tcb") {
+    # DOCKERFILE.DEBUG:
+    # The generic project doesn't have a Dockerfile.debug
+    if ($templateName -ne "genericProject") {
+        _openMergeWindow `
+            $projectFolder/.conf/tmp/Dockerfile.debug `
+            $projectFolder/Dockerfile.debug
+    }
     # DOCKERFILE:
     _openMergeWindow `
         $projectFolder/.conf/tmp/Dockerfile `
         $projectFolder/Dockerfile
-
-    # DOCKERFILE.DEBUG:
-    _openMergeWindow `
-        $projectFolder/.conf/tmp/Dockerfile.debug `
-        $projectFolder/Dockerfile.debug
-
     # DOCKER-COMPOSE:
     _openMergeWindow `
         $projectFolder/.conf/tmp/docker-compose.yml `
