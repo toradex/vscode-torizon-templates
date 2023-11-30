@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  __container__:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_LOGIN}/__container__:${TAG}

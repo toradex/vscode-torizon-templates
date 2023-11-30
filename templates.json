@@ -1,6 +1,16 @@
 {
     "Templates": [
         {
+            "img": "genericTemplate.png",
+            "folder": "genericTemplate",
+            "description": "Generic Dockerfile Template (Without Language)",
+            "runtime": "None",
+            "language": "None",
+            "multiContainer": true,
+            "support": "Toradex",
+            "deprecated": false
+        },
+        {
             "img": "dotnetconsole.png",
             "folder": "dotnetConsole",
             "description": ".NET 6 C# Console Application",

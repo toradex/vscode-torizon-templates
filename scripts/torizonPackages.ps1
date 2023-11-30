@@ -92,14 +92,17 @@ function _ReplaceSection ([string[]]$fileLines, [string]$section) {
 Write-Host "Applying torizonPackages.json ..."
 
 # Dockerfile.debug
-Write-Host "Applying to Dockerfile.debug ..."
-$debugDockerfile = _getFileLines "Dockerfile.debug"
+# The generic project doesn't have a Dockerfile.debug, so check if it exists
+# before applying it
+if (Test-Path -Path "Dockerfile.debug") {
+    Write-Host "Applying to Dockerfile.debug ..."
+    $debugDockerfile = _getFileLines "Dockerfile.debug"
 
-_ReplaceSection $debugDockerfile "torizon_packages_dev" `
-    | Out-File -FilePath "Dockerfile.debug"
+    _ReplaceSection $debugDockerfile "torizon_packages_dev" `
+        | Out-File -FilePath "Dockerfile.debug"
 
-Write-Host -ForegroundColor DarkGreen "✅ Dockerfile.debug"
-
+    Write-Host -ForegroundColor DarkGreen "✅ Dockerfile.debug"
+}
 # Dockerfile.sdk
 # is not all templates that's need the Dockerfile.sdk
 if (Test-Path -Path "Dockerfile.sdk") {
