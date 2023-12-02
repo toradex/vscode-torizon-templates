@@ -76,7 +76,7 @@ if (-not (Test-Path $projectFolder/.conf/tmp)) {
 
 # get the metadata
 $_metadata = Get-Content "$Env:HOME/.apollox/templates.json" | ConvertFrom-Json
-$_templateMetadata = 
+$_templateMetadata =
     $_metadata.Templates |
         Where-Object { $_.folder -eq $templateName }
 
@@ -181,14 +181,14 @@ Copy-Item $Env:HOME/.apollox/$templateName/.vscode/tasks.json `
 
 if ($_templateMetadata.mergeCommon -ne $False) {
     Write-Host -ForegroundColor Yellow "Applying common tasks ..."
-    $commonTasks = 
-        Get-Content "$env:HOME/.apollox/assets/tasks/common.json" | 
+    $commonTasks =
+        Get-Content "$env:HOME/.apollox/assets/tasks/common.json" |
             ConvertFrom-Json
-    $commonInputs = 
-        Get-Content "$env:HOME/.apollox/assets/tasks/inputs.json" | 
+    $commonInputs =
+        Get-Content "$env:HOME/.apollox/assets/tasks/inputs.json" |
             ConvertFrom-Json
-    $projTasks = 
-        Get-Content "$projectFolder/.conf/tmp/tasks-next.json" | 
+    $projTasks =
+        Get-Content "$projectFolder/.conf/tmp/tasks-next.json" |
             ConvertFrom-Json
 
     $projTasks.tasks += $commonTasks.tasks
@@ -250,7 +250,7 @@ Get-ChildItem -Force -File -Recurse * | ForEach-Object {
                 ForEach-Object {
                     $_ -replace "__home__",$env:HOME
                 } | Set-Content $a
-                
+
                 ( Get-Content $a ) |
                 ForEach-Object {
                     $_ -replace "__templateFolder__", $templateName
@@ -309,15 +309,15 @@ if ($templateName -ne "tcb") {
         $projectFolder/.gitlab-ci.yml
 
     # TEMPLATE SPECIFIC DOCUMENTATION:
-    # check if the folder already exists, if not create else open merge window
+    # check if the folder already exists, if not create it
+    # and always accept the new one
     if (-not (Test-Path $projectFolder/.doc)) {
         mkdir $projectFolder/.doc
-        Copy-Item $Env:HOME/.apollox/$templateName/.doc/README.md .doc
-    } else {
-        _openMergeWindow `
-            $projectFolder/.conf/tmp/README.md `
-            $projectFolder/.doc/README.md
     }
+
+    Copy-Item `
+        $Env:HOME/.apollox/$templateName/.doc/README.md `
+        $projectFolder/.doc/README.md
 }
 
 # GITIGNORE:
