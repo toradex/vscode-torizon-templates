@@ -2,5 +2,141 @@
     {
         "source": "__change__.csproj",
         "target": "$projectName.csproj"
+    },
+    {
+        "source": ".vscode/settings.json",
+        "target": ".vscode/settings.json"
+    },
+    {
+        "source": ".vscode/launch.json",
+        "target": ".vscode/launch.json"
+    },
+    {
+        "source": "_Imports.razor",
+        "target": "_Imports.razor"
+    },
+    {
+        "source": "App.razor",
+        "target": "App.razor"
+    },
+    {
+        "source": "appsettings.Development.json",
+        "target": "appsettings.Development.json"
+    },
+    {
+        "source": "appsettings.json",
+        "target": "appsettings.json"
+    },
+    {
+        "source": "Program.cs",
+        "target": "Program.cs"
+    },
+    {
+        "source": "wwwroot/favicon.png",
+        "target": "wwwroot/favicon.png"
+    },
+    {
+        "source": "wwwroot/css/site.css",
+        "target": "wwwroot/css/site.css"
+    },
+    {
+        "source": "wwwroot/css/bootstrap/bootstrap.min.css",
+        "target": "wwwroot/css/bootstrap/bootstrap.min.css"
+    },
+    {
+        "source": "wwwroot/css/bootstrap/bootstrap.min.css.map",
+        "target": "wwwroot/css/bootstrap/bootstrap.min.css.map"
+    },
+    {
+        "source": "wwwroot/css/open-iconic/FONT-LICENSE",
+        "target": "wwwroot/css/open-iconic/FONT-LICENSE"
+    },
+    {
+        "source": "wwwroot/css/open-iconic/ICON-LICENSE",
+        "target": "wwwroot/css/open-iconic/ICON-LICENSE"
+    },
+    {
+        "source": "wwwroot/css/open-iconic/README.md",
+        "target": "wwwroot/css/open-iconic/README.md"
+    },
+    {
+        "source": "wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css",
+        "target": "wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css"
+    },
+    {
+        "source": "wwwroot/css/open-iconic/font/fonts/open-iconic.eot",
+        "target": "wwwroot/css/open-iconic/font/fonts/open-iconic.eot"
+    },
+    {
+        "source": "wwwroot/css/open-iconic/font/fonts/open-iconic.otf",
+        "target": "wwwroot/css/open-iconic/font/fonts/open-iconic.otf"
+    },
+    {
+        "source": "wwwroot/css/open-iconic/font/fonts/open-iconic.svg",
+        "target": "wwwroot/css/open-iconic/font/fonts/open-iconic.svg"
+    },
+    {
+        "source": "wwwroot/css/open-iconic/font/fonts/open-iconic.ttf",
+        "target": "wwwroot/css/open-iconic/font/fonts/open-iconic.ttf"
+    },
+    {
+        "source": "wwwroot/css/open-iconic/font/fonts/open-iconic.woff",
+        "target": "wwwroot/css/open-iconic/font/fonts/open-iconic.woff"
+    },
+    {
+        "source": "Shared/MainLayout.razor",
+        "target": "Shared/MainLayout.razor"
+    },
+    {
+        "source": "Shared/MainLayout.razor.css",
+        "target": "Shared/MainLayout.razor.css"
+    },
+    {
+        "source": "Shared/NavMenu.razor",
+        "target": "Shared/NavMenu.razor"
+    },
+    {
+        "source": "Shared/NavMenu.razor.css",
+        "target": "Shared/NavMenu.razor.css"
+    },
+    {
+        "source": "Shared/SurveyPrompt.razor",
+        "target": "Shared/SurveyPrompt.razor"
+    },
+    {
+        "source": "Properties/launchSettings.json",
+        "target": "Properties/launchSettings.json"
+    },
+    {
+        "source": "Pages/_Host.cshtml",
+        "target": "Pages/_Host.cshtml"
+    },
+    {
+        "source": "Pages/Counter.razor",
+        "target": "Pages/Counter.razor"
+    },
+    {
+        "source": "Pages/Error.cshtml",
+        "target": "Pages/Error.cshtml"
+    },
+    {
+        "source": "Pages/Error.cshtml.cs",
+        "target": "Pages/Error.cshtml.cs"
+    },
+    {
+        "source": "Pages/FetchData.razor",
+        "target": "Pages/FetchData.razor"
+    },
+    {
+        "source": "Pages/Index.razor",
+        "target": "Pages/Index.razor"
+    },
+    {
+        "source": "Data/WeatherForecast.cs",
+        "target": "Data/WeatherForecast.cs"
+    },
+    {
+        "source": "Data/WeatherForecastService.cs",
+        "target": "Data/WeatherForecastService.cs"
     }
 ]
