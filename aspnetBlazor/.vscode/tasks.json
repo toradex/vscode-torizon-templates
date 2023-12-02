@@ -2,7 +2,8 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-torizon-local",
+            "label": "build-application",
+            "detail": "dotnet build command to build the application locally",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -11,10 +12,15 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "color": "terminal.ansiYellow",
+                "id": "flame"
+            }
         },
         {
-            "label": "publish-torizon-local",
+            "label": "publish-application",
+            "detail": "dotnet publish command to publish the application locally",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -23,10 +29,15 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "color": "terminal.ansiYellow",
+                "id": "package"
+            }
         },
         {
             "label": "watch",
+            "detail": "dotnet watch command, watch the changes on the application, compile it and reload automatically",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -35,7 +46,11 @@
                 "--project",
                 "${workspaceFolder}/__change__.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "color": "terminal.ansiYellow",
+                "id": "eye-watch"
+            }
         },
         {
             "label": "publish-torizon-arm",
