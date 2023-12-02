@@ -75,7 +75,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/bin/Debug/net6.0/linux-arm/publish",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-arm/publish",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -182,7 +182,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/bin/Debug/net6.0/linux-x64/publish",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-x64/publish",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -289,7 +289,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/bin/Debug/net6.0/linux-arm64/publish",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-arm64/publish",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
