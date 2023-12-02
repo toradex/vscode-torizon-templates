@@ -220,7 +220,7 @@
             }
         },
         {
-            "label": "intall-nuget",
+            "label": "install-nuget",
             "detail": "This task will install the Nuget package from https://www.nuget.org/. Please input the name and version.",
             "hide": false,
             "command": "nuget",
@@ -233,7 +233,7 @@
                 "${input:nuget-name}",
                 "-Version",
                 "${input:nuget-version}",
-                "-Framework", "netstandard2.0",
+                "-Framework", "${input:target-framework}",
                 "-OutputDirectory", "libs"
             ],
             "problemMatcher": [
@@ -255,6 +255,21 @@
             "id": "nuget-version",
             "type": "promptString",
             "description": "Nuget package version"
+        },
+        {
+            "id": "target-framework",
+            "type": "pickString",
+            "description": "Choose the target framework",
+            "default": "",
+            "options": [
+                "netstandard2.0",
+                "net472",
+                "net471",
+                "net47",
+                "net463",
+                "net462",
+                "net461"
+            ]
         }
     ]
 }

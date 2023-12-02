@@ -2,6 +2,7 @@
 */**/obj
 bin
 obj
+libs
 
 credentials.zip
 *.lock.yml
