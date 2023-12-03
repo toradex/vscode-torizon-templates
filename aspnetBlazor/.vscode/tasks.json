@@ -63,6 +63,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
+                "-c", "Debug",
                 "-r",
                 "linux-arm",
                 "--no-self-contained"
@@ -169,6 +170,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
+                "-c", "Debug",
                 "-r",
                 "linux-x64",
                 "--no-self-contained"
@@ -275,6 +277,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
+                "-c", "Debug",
                 "-r",
                 "linux-arm64",
                 "--no-self-contained"
