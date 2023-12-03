@@ -1,0 +1,160 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "open-skia-gtk-csproj",
+      "command": "echo",
+      "type": "shell",
+      "args": [
+        "${command:o.pickProjectAndStart}"
+      ],
+      "problemMatcher": "$msCompile",
+      "icon": {
+          "id": "selection",
+          "color": "terminal.ansiYellow"
+      },
+      "runOptions": {
+          "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "reload-skia-gtk-csproj",
+      "command": "echo",
+      "type": "shell",
+      "args": [
+          "${command:o.restart}"
+      ],
+      "problemMatcher": "$msCompile",
+      "icon": {
+          "id": "loading",
+          "color": "terminal.ansiYellow"
+      }
+    },
+    {
+      "label": "build-skia-gtk",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "icon": {
+        "id": "flame",
+        "color": "terminal.ansiYellow"
+      }
+    },
+    {
+      "label": "publish-skia-gtk",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+        "-c", "Debug",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "icon": {
+        "id": "package",
+        "color": "terminal.ansiYellow"
+      }
+    },
+    {
+      "label": "config-hot-reload-address",
+      "detail": "This task configure the __change__.Skia.Gtk project to\nhave remote XAML hot reload. It's good run it everytime you\nopen the project.",
+      "command": "pwsh",
+      "type": "process",
+      "presentation": {
+          "echo": false,
+          "reveal": "always",
+          "focus": true,
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": false
+      },
+      "options": {
+          "cwd": "${workspaceFolder}"
+      },
+      "args": [
+          "-nop",
+          "${env:HOME}/.apollox/scripts/configUnoHotReload.ps1",
+          "-workspaceFolder",
+          "${workspaceFolder}"
+      ],
+      "dependsOrder": "sequence",
+      "icon": {
+          "id": "debug-disconnect",
+          "color": "terminal.ansiCyan"
+      }
+    },
+    {
+      "label": "publish-torizon-arm64",
+      "detail": "",
+      "hide": true,
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+          "publish",
+          "-c",
+          "Debug",
+          "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary",
+          "-r",
+          "linux-arm64",
+          "--no-self-contained"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": "$msCompile",
+      "icon": {
+          "id": "flame",
+          "color": "terminal.ansiYellow"
+      }
+    },
+    {
+      "label": "deploy-torizon-arm64",
+      "detail": "",
+      "hide": true,
+      "command": "scp",
+      "type": "process",
+      "args": [
+          "-i",
+          "${workspaceFolder}/.conf/id_rsa",
+          "-o",
+          "UserKnownHostsFile=/dev/null",
+          "-o",
+          "StrictHostKeyChecking=no",
+          "-P",
+          "${config:torizon_debug_ssh_port}",
+          "-pr",
+          "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net8.0/linux-arm64/publish",
+          "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+      ],
+      "dependsOn": [
+          "validate-settings",
+          "validate-arch-arm64",
+          "apply-torizon-packages",
+          "copy-docker-compose",
+          "pre-cleanup",
+          "publish-torizon-arm64",
+          "build-container-torizon-debug-arm64",
+          "push-container-torizon-debug-arm64",
+          "pull-container-torizon-debug-arm64",
+          "run-container-torizon-debug-arm64",
+          "wait-a-bit",
+          "pos-cleanup"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": "$msCompile",
+      "icon": {
+          "id": "flame",
+          "color": "terminal.ansiYellow"
+      }
+    },
+  ],
+  "inputs": []
+}

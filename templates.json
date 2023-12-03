@@ -116,6 +116,27 @@
             }
         },
         {
+            "img": "unogtk5.png",
+            "folder": "dotnetUno5",
+            "description": ".NET 8 C# Uno Platform 5.x Skia.GTK",
+            "runtime": ".net 8.0",
+            "language": "C#",
+            "debugSSHPort": "2225",
+            "multiContainer": true,
+            "support": "Community",
+            "deprecated": false,
+            "tests": {
+                "debuggers": {
+                    "local": ["Debug Local"],
+                    "arm64": ["Torizon ARMv8"]
+                },
+                "debuggerConsole": null,
+                "mainFile": "__change__/App.cs",
+                "mainFileBreakpointLine": 66,
+                "successDebugMessage": "Hello Torizon!"
+            }
+        },
+        {
             "img": "unofbdrm.png",
             "folder": "dotnetUnoFrameBuffer",
             "description": ".NET 6 C# Uno Platform Frame Buffer",
