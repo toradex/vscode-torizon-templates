@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace __change__.ViewModels;
 
-namespace __change__.ViewModels
+public class MainWindowViewModel : ViewModelBase
 {
-    public class MainWindowViewModel : ViewModelBase
-    {
-        public string Greeting => "Welcome to Avalonia with Torizon!";
-    }
+#pragma warning disable CA1822 // Mark members as static
+    public string Greeting => "Welcome to Avalonia with Torizon!";
+#pragma warning restore CA1822 // Mark members as static
 }

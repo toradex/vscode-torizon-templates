@@ -4,10 +4,10 @@ using Avalonia.Markup.Xaml;
 using __change__.ViewModels;
 using __change__.Views;
 
-namespace __change__
+namespace __change__;
+
+public partial class App : Application
 {
-    public partial class App : Application
-    {
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
@@ -25,5 +25,4 @@ namespace __change__
 
             base.OnFrameworkInitializationCompleted();
         }
-    }
 }

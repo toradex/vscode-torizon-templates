@@ -7,8 +7,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.1.0
-ARG DOTNET_BASE_VERSION=3.0.0-6.0
+ARG BASE_VERSION=4-rc
+ARG DOTNET_BASE_VERSION=rc-8.0
 
 ##
 # Application Name
@@ -23,7 +23,7 @@ ARG GPU=
 # ARGUMENTS --------------------------------------------------------------------
 
 # BUILD ------------------------------------------------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -100,7 +100,7 @@ RUN printf "{\n  \"device\": \"/dev/dri/card1\",\n  \"outputs\": [ { \"name\": \
     && ln -s /etc/kms-imx8.conf /etc/kms-imx7.conf
 
 # copy the build
-COPY --from=Build /build/bin/Release/net6.0/linux-${IMAGE_ARCH}/publish /app
+COPY --from=Build /build/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish /app
 
 # ADD YOUR ARGUMENTS HERE
 CMD [ "./app/__change__" ]

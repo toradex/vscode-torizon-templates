@@ -16,27 +16,43 @@
         "target": "global.json"
     },
     {
-        "source": "app.manifest",
-        "target": "app.manifest"
+        "source": "App.axaml",
+        "target": "App.axaml"
     },
     {
-        "source": "ViewLocator.cs",
-        "target": "ViewLocator.cs"
+        "source": "App.axaml.cs",
+        "target": "App.axaml.cs"
+    },
+    {
+        "source": "app.manifest",
+        "target": "app.manifest"
     },
     {
         "source": "Program.cs",
         "target": "Program.cs"
     },
     {
-        "source": "App.axaml",
-        "target": "App.axaml"
+        "source": "ViewLocator.cs",
+        "target": "ViewLocator.cs"
+    },
+    {
+        "source": "Views/MainWindow.axaml",
+        "target": "Views/MainWindow.axaml"
     },
     {
         "source": "Views/MainWindow.axaml.cs",
         "target": "Views/MainWindow.axaml.cs"
     },
     {
-        "source": "Views/MainWindow.axaml",
-        "target": "Views/MainWindow.axaml"
+        "source": "ViewModels/MainWindowViewModel.cs",
+        "target": "ViewModels/MainWindowViewModel.cs"
+    },
+    {
+        "source": "ViewModels/ViewModelBase.cs",
+        "target": "ViewModels/ViewModelBase.cs"
+    },
+    {
+        "source": "Assets/avalonia-logo.ico",
+        "target": "Assets/avalonia-logo.ico"
     }
 ]
