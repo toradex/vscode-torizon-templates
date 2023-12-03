@@ -50,8 +50,8 @@
         {
             "img": "avaloniagtk.png",
             "folder": "dotnetAvalonia",
-            "description": ".NET 6 C# Avalonia GTK MVVM",
-            "runtime": ".net 6.0",
+            "description": ".NET 8 C# Avalonia GTK MVVM",
+            "runtime": ".net 8.0",
             "language": "C#",
             "debugSSHPort": "2223",
             "multiContainer": true,

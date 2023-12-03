@@ -1,4 +1,4 @@
-# .NET6 C# Avalonia GTK MVVM template specific documentation
+# .NET 8 C# Avalonia GTK MVVM template specific documentation
 
 All projects follow the pipeline of tasks described in the [common contributing documentation](https://github.com/toradex/vscode-torizon-templates/blob/bookworm/CONTRIBUTING.md#contributing-templates). However, each project has its own specificities in terms of technologies and methods used to compile, deploy, and debug the code. Therefore, each of them has their own specific tasks in the **tasks.json** file.
 

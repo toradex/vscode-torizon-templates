@@ -38,6 +38,7 @@
             "type": "process",
             "args": [
                 "publish",
+                "-c", "Debug",
                 "${workspaceFolder}/__change__.csproj"
             ],
             "problemMatcher": "$msCompile",
@@ -75,6 +76,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
+                "-c", "Debug",
                 "-r",
                 "linux-arm",
                 "--no-self-contained"
@@ -102,7 +104,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/bin/Debug/net6.0/linux-arm/publish",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-arm/publish",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -137,6 +139,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
+                "-c", "Debug",
                 "-r",
                 "linux-arm64",
                 "--no-self-contained"
@@ -164,7 +167,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/bin/Debug/net6.0/linux-arm64/publish",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-arm64/publish",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
@@ -199,6 +202,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
+                "-c", "Debug",
                 "-r",
                 "linux-x64",
                 "--no-self-contained"
@@ -226,7 +230,7 @@
                 "-P",
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
-                "${workspaceFolder}/bin/Debug/net6.0/linux-x64/publish",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-x64/publish",
                 "${config:torizon_run_as}@${config:torizon_ip}:~/app"
             ],
             "dependsOn": [
