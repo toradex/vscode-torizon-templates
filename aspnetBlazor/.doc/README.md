@@ -13,3 +13,9 @@ Finally, remote debugging is performed by attaching to the Visual Studio Debugge
 The source code of the template is inspired by the one created following the [instructions from the VSCode Blazor app creation](https://dotnet.microsoft.com/en-us/learn/aspnet/blazor-tutorial/create) (without including the **obj** folder and without passing the **--no-https** and **-f net7.0** arguments. Also, the ports numbers on the **launchSettings.json** file, inside the **Properties** directory, were modified).
 
 > ⚠️ **WARNING**: although the template is created with the `-f net7.0` argument, the target framework used in `.csproj` is `net8.0`. In .NET 8 the Blazor template is an unified web app with options to run it on the server or on the client with WebAssembly. Since the Blazor Server template will continue to be supported in .NET 8, we considered just update the template from .NET 7 and bump the target framework. For further information, please refer to the [New Blazor Web App template](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-8.0?view=aspnetcore-7.0#new-blazor-web-app-template). If you need new features from the new Blazor Web App template please reach to us with your use case and we will consider to add a new template.
+
+## Running Blazor GUI in Kiosk Mode
+
+The Blazor is a web application that needs a browser to show the GUI. If you want to show the GUI in a screen connected to the board you can launch the `Torizon Browser ARMv8` debug session. This will run the Blazor application and also a [Cog](https://github.com/Igalia/cog) browser to open the GUI in the board connected screen.
+
+The Docker compose service to run for production that have the Cog browser is `__change__-browser`.
