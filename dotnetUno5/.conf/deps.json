@@ -1,0 +1,8 @@
+{
+    "packages": [
+        "openssh-client",
+        "sshpass",
+        "dotnet-sdk-8.0",
+        "libgtk-3-dev"
+    ]
+}
