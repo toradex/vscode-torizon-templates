@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3-6.0
+ARG BASE_VERSION=rc-8.0
 
 ##
 # Application Name
@@ -18,7 +18,7 @@ ARG APP_EXECUTABLE=__change__
 
 
 # BUILD ------------------------------------------------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE

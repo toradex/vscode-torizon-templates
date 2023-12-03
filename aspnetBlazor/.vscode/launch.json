@@ -117,5 +117,34 @@
             },
             "preLaunchTask": "deploy-torizon-arm64"
         },
+        {
+            "name": "Torizon Browser ARMv8",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "~/app/__change__",
+            "cwd": "~/app/",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "args": [],
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "ssh",
+                "pipeArgs": [
+                    "-T",
+                    "-q",
+                    "-p",
+                    "${config:torizon_debug_ssh_port}",
+                    "-i",
+                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
+                    "-o",
+                    "StrictHostKeyChecking=no",
+                    "-o",
+                    "UserKnownHostsFile /dev/null",
+                    "${config:torizon_run_as}@${config:torizon_ip}" // user@device
+                ],
+                "debuggerPath": "/vsdbg/vsdbg"
+            },
+            "preLaunchTask": "deploy-browser-torizon-arm64"
+        },
     ]
 }
