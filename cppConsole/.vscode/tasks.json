@@ -404,23 +404,6 @@
             }
         },
         {
-            "label": "clean-arm64",
-            "detail": "Clean the application build directory. `make clean`",
-            "command": "make",
-            "type": "shell",
-            "args": [
-                "clean",
-                "ARCH=x86_64"
-            ],
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "clean-local",
             "detail": "Clean the local application build directory. `make clean`",
             "command": "make",
