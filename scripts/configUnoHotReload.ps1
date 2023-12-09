@@ -8,7 +8,7 @@ $errorActionPreference = "Stop"
 # get the path of the xml file
 $_files = `
     Get-ChildItem `
-        -Path $workspaceFolder/*.Skia.Gtk `
+        -Path $workspaceFolder/*.Skia.* `
         -Recurse `
         -Filter *.csproj
 
