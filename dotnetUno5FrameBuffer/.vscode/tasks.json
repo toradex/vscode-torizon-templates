@@ -1,0 +1,317 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "open-skia-fb-csproj",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+              "${command:o.pickProjectAndStart}"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "selection",
+                "color": "terminal.ansiYellow"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "reload-skia-fb-csproj",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "${command:o.restart}"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "loading",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "config-hot-reload-address",
+            "detail": "This task configure the __change__.Skia.Linux.FrameBuffer project to\nhave remote XAML hot reload. It's good run it everytime you\nopen the project.",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "-nop",
+                "${env:HOME}/.apollox/scripts/configUnoHotReload.ps1",
+                "-workspaceFolder",
+                "${workspaceFolder}"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "debug-disconnect",
+                "color": "terminal.ansiCyan"
+            }
+          },
+        {
+            "label": "build-skia-fb",
+            "detail": "Builds the project for the local machine execution",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "publish-skia-fb",
+            "detail": "Publishes the project for the local machine execution",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "-c", "Debug",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "package",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "publish-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Debug",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-arm64",
+                "--no-self-contained"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "scp",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-P",
+                "${config:torizon_debug_ssh_port}",
+                "-pr",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net8.0/linux-arm64/publish",
+                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm64",
+                "apply-torizon-packages",
+                "copy-docker-compose",
+                "pre-cleanup",
+                "publish-torizon-arm64",
+                "build-container-torizon-debug-arm64",
+                "push-container-torizon-debug-arm64",
+                "pull-container-torizon-debug-arm64",
+                "run-container-torizon-debug-arm64",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "run-skia-fb-torizon-arm64",
+            "detail": "Run the application without attach to the debugger. Util\n when you want to run the hot reload in the remote device.",
+            "hide": false,
+            "command": "ssh",
+            "type": "process",
+            "isBackground": true,
+            "presentation": {
+              "echo": true,
+              "reveal": "always",
+              "focus": false,
+              "panel": "dedicated",
+              "showReuseMessage": true,
+              "clear": true
+            },
+            "args": [
+              "-i",
+              "${workspaceFolder}/.conf/id_rsa",
+              "-p",
+              "${config:torizon_debug_ssh_port}",
+              "-o",
+              "UserKnownHostsFile=/dev/null",
+              "-o",
+              "StrictHostKeyChecking=no",
+              "-ttt",
+              "${config:torizon_run_as}@${config:torizon_ip}",
+              "cd ~/app && DOTNET_MODIFIABLE_ASSEMBLIES=debug ./__change__.Skia.Linux.FrameBuffer"
+            ],
+            "dependsOn": [
+              "deploy-torizon-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": {
+              "pattern": {
+                "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                "file": 1,
+                "location": 2,
+                "severity": 3,
+                "code": 4,
+                "message": 5
+              },
+              "background": {
+                "activeOnStart": true,
+                "beginsPattern": "^\\s*",
+                "endsPattern": "^\\s*"
+              }
+            },
+            "icon": {
+              "id": "flame",
+              "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "run-torizon-arm64-debug",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "isBackground": true,
+            "presentation": {
+              "echo": true,
+              "reveal": "always",
+              "focus": false,
+              "panel": "dedicated",
+              "showReuseMessage": true,
+              "clear": true
+            },
+            "args": [
+              "-i",
+              "${workspaceFolder}/.conf/id_rsa",
+              "-p",
+              "${config:torizon_debug_ssh_port}",
+              "-o",
+              "UserKnownHostsFile=/dev/null",
+              "-o",
+              "StrictHostKeyChecking=no",
+              "-ttt",
+              "${config:torizon_run_as}@${config:torizon_ip}",
+              "cd ~/app && DOTNET_MODIFIABLE_ASSEMBLIES=debug ./__change__.Skia.Linux.FrameBuffer -debug"
+            ],
+            "dependsOn": [
+              "deploy-torizon-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": {
+              "pattern": {
+                "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                "file": 1,
+                "location": 2,
+                "severity": 3,
+                "code": 4,
+                "message": 5
+              },
+              "background": {
+                "activeOnStart": true,
+                "beginsPattern": "^\\s*",
+                "endsPattern": "^\\s*"
+              }
+            },
+            "icon": {
+              "id": "flame",
+              "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "stop-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "dd if=/dev/zero count=1200 bs=1024 > /dev/fb0"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "stop-container-torizon-arm64"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "stop-container-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "sshpass",
+            "type": "process",
+            "args": [
+                "-p",
+                "${config:torizon_psswd}",
+                "ssh",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "torizon@${config:torizon_ip}",
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down --remove-orphans"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        }
+    ],
+"inputs": []
+}
