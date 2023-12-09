@@ -169,6 +169,26 @@
             }
         },
         {
+            "img": "unofbdrm5.png",
+            "folder": "dotnetUno5FrameBuffer",
+            "description": ".NET 8 C# Uno Platform 5 Frame Buffer",
+            "runtime": ".net 8.0",
+            "language": "C#",
+            "debugSSHPort": "2226",
+            "multiContainer": true,
+            "support": "Community",
+            "deprecated": false,
+            "tests": {
+                "debuggers": {
+                    "arm64": ["Torizon ARMv8"]
+                },
+                "debuggerConsole": "run-torizon",
+                "mainFile": "__change__/App.cs",
+                "mainFileBreakpointLine": 50,
+                "successDebugMessage": "Hello Torizon!"
+            }
+        },
+        {
             "img": "monowinforms.png",
             "folder": "monoCsharpForms",
             "description": "Mono 4.7 C# Windows Forms Application",
