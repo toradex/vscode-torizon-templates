@@ -39,7 +39,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
-                "apply-torizon-packages",
                 "host-install-pip-requirements",
                 "copy-docker-compose",
                 "pre-cleanup",
@@ -121,7 +120,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
-                "apply-torizon-packages",
                 "host-install-pip-requirements",
                 "copy-docker-compose",
                 "pre-cleanup",
