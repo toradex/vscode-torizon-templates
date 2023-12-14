@@ -3,8 +3,8 @@
 # Board architecture
 ##
 ARG IMAGE_ARCH=
-# For armv7 use:
-#ARG IMAGE_ARCH=arm
+
+
 
 ##
 # Base container version
@@ -58,7 +58,7 @@ RUN apt-get -q -y update && \
     python3-pip \
     python3-setuptools \
     python3-venv \
-    python3-debugpy \    
+    python3-debugpy \
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
