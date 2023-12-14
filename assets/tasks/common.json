@@ -642,6 +642,9 @@
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -683,6 +686,9 @@
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -724,6 +730,9 @@
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -765,6 +774,9 @@
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -790,6 +802,10 @@
                 "IMAGE_ARCH=arm64",
                 "--build-arg",
                 "GPU=${config:torizon_gpu}"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -817,6 +833,10 @@
                 "--build-arg",
                 "IMAGE_ARCH=arm"
             ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": [
                 "$gcc"
             ],
@@ -843,6 +863,10 @@
                 "--build-arg",
                 "IMAGE_ARCH=amd64"
             ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": [
                 "$gcc"
             ],
@@ -868,6 +892,10 @@
                 "cross-toolchain-riscv64-__container__",
                 "--build-arg",
                 "IMAGE_ARCH=riscv64"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -1222,6 +1250,9 @@
                 "__container__"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -1257,6 +1288,9 @@
                 "__container__"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -1292,6 +1326,9 @@
                 "__container__"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -1327,6 +1364,9 @@
                 "__container__"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "apply-torizon-packages"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -1572,7 +1612,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
-                "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-container-torizon-release-arm64",
@@ -1605,7 +1644,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
-                "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-container-torizon-release-arm",
@@ -1638,7 +1676,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-amd64",
-                "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-container-torizon-release-amd64",
@@ -1671,7 +1708,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-riscv64",
-                "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-container-torizon-release-riscv64",
