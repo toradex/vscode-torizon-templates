@@ -3,8 +3,8 @@
 # Board architecture
 ##
 ARG IMAGE_ARCH=
-# For armv7 use:
-#ARG IMAGE_ARCH=arm
+
+
 
 ##
 # Base container version
@@ -86,7 +86,7 @@ RUN apt-get -q -y update && \
     openssl \
     openssh-server \
     rsync \
-    file \ 
+    file \
     libice6 \
     libsm6 \
     libicu72 \

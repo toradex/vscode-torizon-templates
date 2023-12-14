@@ -3,8 +3,8 @@
 # Board architecture
 ##
 ARG IMAGE_ARCH=
-# For armv7 use:
-#ARG IMAGE_ARCH=arm
+
+
 
 ##
 # Base container version
