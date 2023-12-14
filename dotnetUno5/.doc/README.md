@@ -32,7 +32,7 @@ This task reloads the `<project-name>.Skia.Gtk.csproj` project.
 
 ### config-hot-reload-address
 
-For the XAML Hot Reload feature to work remotly, running on the Torizon device, the Uno Platform framework needs to know the IP address of the development PC. This task automatically configures the IP address of the development PC in the `<project-name>.Skia.Gtk.csproj`. It's good to run this task always when opening the project.
+For the XAML Hot Reload feature to work remotely, running on the Torizon device, the Uno Platform framework needs to know the IP address of the development PC. This task automatically configures the IP address of the development PC in the `<project-name>.Skia.Gtk.csproj`. It's good to run this task always when opening the project.
 
 ![config-hot-reload-address task](https://github.com/toradex/vscode-torizon-templates-documentation/blob/bookworm/dotnetUno5/config-hot-reload-address.jpg?raw=true)
 

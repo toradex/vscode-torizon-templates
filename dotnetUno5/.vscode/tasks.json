@@ -65,7 +65,7 @@
     },
     {
       "label": "config-hot-reload-address",
-      "detail": "This task configure the __change__.Skia.Gtk project to\nhave remote XAML hot reload. It's good run it everytime you\nopen the project.",
+      "detail": "This task configures the __change__.Skia.Gtk project to\nhave remote XAML hot reload. It's good run it everytime you\nopen the project.",
       "command": "pwsh",
       "type": "process",
       "presentation": {
