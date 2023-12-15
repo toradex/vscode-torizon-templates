@@ -1,7 +1,4 @@
 {
-  "java.project.referencedLibraries": [
-    "libs/**/*.jar"
-  ],
   "torizon_psswd": "1234",
   "torizon_login": "torizon",
   "torizon_ip": "raspberrypi4-64-100000008c7e0024.local",
@@ -17,5 +14,9 @@
   "torizon_run_as": "torizon",
   "torizon_app_root": "/home/torizon",
   "tcb.packageName": "__change__",
-  "tcb.version": "3.8.1"
+  "tcb.version": "3.8.1",
+  "torizon.gpuPrefixRC": true,
+  "java.project.referencedLibraries": [
+    "libs/**/*.jar"
+  ]
 }

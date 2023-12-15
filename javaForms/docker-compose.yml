@@ -35,9 +35,8 @@ services:
       weston
     ]
 
-# TODO: we are using bullseye here because an issue with xwayland on bookworm
   weston:
-    image: torizon/weston${GPU}:2
+    image: torizon/weston${GPU}:4-rc
     environment:
       - ACCEPT_FSL_EULA=1
     # Required to get udev events from host udevd via netlink
