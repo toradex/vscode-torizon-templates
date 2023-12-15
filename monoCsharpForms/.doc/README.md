@@ -11,7 +11,7 @@ the package and their dependencies in the `libs` folder.
 
 ## Open MWF Designer
 
-If you don't have access to Visual Studio, for example if you are using bare Linux OS instead WSL 2, you can use `Mono Windows Forms Designer` to help you edit a `Form` in graphical mode. To open the designer use the `open-mono-designer` task. This task will use the `Form` class in focus from the VS Code editor as reference to open it on the designer:
+If you don't have access to Visual Studio, for example if you are using bare Linux OS instead of WSL 2, you can use `Mono Windows Forms Designer` to help you edit a `Form` in graphical mode. To open the designer use the `open-mono-designer` task. This task will use the `Form` class in focus from the VS Code editor as reference to open it on the designer:
 
 > ⚠️ Make sure you have a `Form` class in focus in the VS Code editor before running the task.
 

@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-application",
+            "label": "build-application-local",
             "detail": "dotnet build command to build the application locally",
             "command": "dotnet",
             "type": "process",
@@ -19,7 +19,7 @@
             }
         },
         {
-            "label": "publish-application",
+            "label": "publish-application-local",
             "detail": "dotnet publish command to publish the application locally",
             "command": "dotnet",
             "type": "process",
@@ -36,7 +36,7 @@
             }
         },
         {
-            "label": "watch",
+            "label": "watch-local",
             "detail": "dotnet watch command, watch the changes on the application, compile it and reload automatically",
             "command": "dotnet",
             "type": "process",
