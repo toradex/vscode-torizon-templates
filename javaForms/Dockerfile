@@ -2,7 +2,7 @@
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.1.0
+ARG BASE_VERSION=4-rc
 
 ##
 # Application Name
@@ -29,11 +29,16 @@ ARG GPU
 # stick to bookworm on /etc/apt/sources.list.d
 RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
 
+# add the Microsoft OpenJDK repo
+RUN apt-get install wget lsb-release -y && \
+    wget https://packages.microsoft.com/config/debian/${lsb_release -rs}/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb
+
 # __deps__
 RUN apt-get -q -y update && \
     apt-get -q -y install \
-    default-jdk \
     ant \
+    msopenjdk-21 \
     # ADD YOUR PACKAGES HERE
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
@@ -79,12 +84,25 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# add the Microsoft OpenJDK repo
+# TODO: we are using the release of the Debian 10
+# TODO: we need to check for updates on the repo
+RUN apt-get install wget lsb-release -y && \
+    wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb
+
 # your regular RUN statements here
 # Install required packages
 RUN apt-get -q -y update && \
     apt-get -q -y install \
     file \
-    default-jre \
+    tzdata \
+    locales \
+    fontconfig \
+    libxrender1 \
+    libxtst6 \
+    libxi6 \
+    msopenjdk-jre \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
@@ -92,7 +110,6 @@ RUN apt-get -q -y update && \
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
-
 
 COPY libs /app/libs
 USER torizon
