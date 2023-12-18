@@ -158,7 +158,7 @@
                 "$tsc"
             ],
             "icon": {
-                "id": "notebook-edit",
+                "id": "notebook",
                 "color": "terminal.ansiYellow"
             },
             "dependsOrder": "sequence",
