@@ -13,8 +13,8 @@
         {
             "img": "dotnetconsole.png",
             "folder": "dotnetConsole",
-            "description": ".NET 6 C# Console Application",
-            "runtime": ".net 6.0",
+            "description": ".NET 8 C# Console Application",
+            "runtime": ".net 8.0",
             "language": "C#",
             "debugSSHPort": "2222",
             "multiContainer": true,
