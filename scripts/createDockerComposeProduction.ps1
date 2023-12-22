@@ -33,10 +33,11 @@ if ($Env:GITLAB_CI -eq $true) {
 $compoFilePath  = $args[0]
 $dockerLogin    = $args[1]
 $tag            = $args[2]
-$imageName      = $args[3]
+$registry       = $args[3]
+$imageName      = $args[4]
 
 # can be null
-$gpu            = $args[4]
+$gpu            = $args[5]
 
 $_iterative = $true
 
@@ -127,7 +128,11 @@ $localRegistry = $objSettings.host_ip
 
 $env:LOCAL_REGISTRY="$($localRegistry):5002"
 $env:TAG="$tag"
-$env:DOCKER_LOGIN="$dockerLogin"
+if ([string]::IsNullOrEmpty($registry)) {
+    $env:DOCKER_LOGIN="$dockerLogin"
+} else {
+    $env:DOCKER_LOGIN="$registry/$dockerLogin"
+}
 Set-Location $compoFilePath
 
 docker compose build `
@@ -143,8 +148,8 @@ Write-Host -ForegroundColor DarkGreen "✅ Image rebuild and tagged"
 # push it
 Write-Host "Pushing it $dockerLogin/$($imageName):$tag ..."
 
-docker login --username $dockerLogin --password $psswd
-docker push $dockerLogin/$($imageName):$tag
+Write-Output "$psswd" | docker login $registry -u $dockerLogin --password-stdin
+docker push $env:DOCKER_LOGIN/$($imageName):$tag
 
 Write-Host -ForegroundColor DarkGreen "✅ Image push OK"
 

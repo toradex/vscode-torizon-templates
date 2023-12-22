@@ -110,10 +110,11 @@
                 "-nop",
                 "${workspaceFolder}/.conf/createDockerComposeProduction.ps1",
                 "${workspaceFolder}",
-                "${command:docker_registry}",
+                "${command:docker_login}",
                 "${command:docker_tag}",
+                "${command:docker_registry}",
                 "__container__",
-                "${command:torizon_gpu}"
+                "${config:torizon_gpu}"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -155,6 +156,7 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "DOCKER_REGISTRY": "${command:docker_registry}",
+                    "DOCKER_LOGIN": "${command:docker_login}",
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "DOCKER_TAG": "${command:docker_tag}",
                     "TCB_CLIENTID": "${command:tcb.clientId}",
@@ -236,7 +238,8 @@
                 "env": {
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "DOCKER_LOGIN": "${command:docker_login}",
-                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} --login $DOCKER_LOGIN $DOCKER_PSSWD --canonicalize docker-compose.prod.yml"
+                    "DOCKER_REGISTRY": "${command:docker_registry}",
+                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} --login-to $DOCKER_REGISTRY $DOCKER_LOGIN $DOCKER_PSSWD --canonicalize docker-compose.prod.yml"
                 }
             },
             "args": [
@@ -1825,6 +1828,7 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "DOCKER_REGISTRY": "${command:docker_registry}",
+                    "DOCKER_LOGIN": "${command:docker_login}",
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "DOCKER_TAG": "${command:docker_tag}",
                     "TCB_CLIENTID": "${command:tcb.clientId}",
