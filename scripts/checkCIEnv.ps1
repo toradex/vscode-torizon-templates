@@ -3,6 +3,7 @@ param()
 
 $_envVarsSettings = @(
     "DOCKER_REGISTRY",
+    "DOCKER_LOGIN",
     "DOCKER_TAG",
     "TCB_CLIENTID",
     "TCB_CLIENTSECRET",
