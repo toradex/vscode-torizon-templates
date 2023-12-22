@@ -16,6 +16,11 @@ ARG BASE_VERSION=3
 ##
 ARG GPU=
 
+##
+# Application root directory inside the container
+##
+ARG APP_ROOT=
+
 # TODO: cross compile x86 to arm
 # Qt 6 cross toolchain
 # We will use emulation here
@@ -28,6 +33,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG GPU
+ARG APP_ROOT
 
 
 # for vivante GPU we need some "special" sauce
@@ -83,4 +89,4 @@ RUN apt-get -q -y update && \
 
 USER torizon
 
-WORKDIR /app
+WORKDIR ${APP_ROOT}

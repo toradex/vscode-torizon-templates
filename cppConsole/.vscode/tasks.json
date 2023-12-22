@@ -7,7 +7,7 @@
             "command": "make",
             "type": "shell",
             "args": [
-                "ARCH=x86_64",
+                "ARCH=local",
                 "makedir"
             ],
             "problemMatcher": [
@@ -44,7 +44,7 @@
             "command": "make",
             "type": "shell",
             "args": [
-                "ARCH=armhf",
+                "ARCH=arm",
                 "makedir"
             ],
             "problemMatcher": [
@@ -64,7 +64,7 @@
             "command": "make",
             "type": "shell",
             "args": [
-                "ARCH=aarch64",
+                "ARCH=arm64",
                 "makedir"
             ],
             "problemMatcher": [
@@ -92,7 +92,7 @@
             ],
             "icon": {
                 "id": "flame",
-                "color": "terminal.ansiYellow",
+                "color": "terminal.ansiYellow"
             },
             "dependsOn": [
                 "build-container-image-sdk-riscv64"
@@ -104,7 +104,7 @@
             "command": "make",
             "type": "shell",
             "args": [
-                "ARCH=x86_64",
+                "ARCH=local",
                 "debug"
             ],
             "problemMatcher": [
@@ -130,10 +130,10 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
                 "make",
-                "ARCH=aarch64",
+                "ARCH=arm64",
                 "CC=aarch64-linux-gnu-g++",
                 "debug"
             ],
@@ -153,34 +153,21 @@
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/aarch64/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-makedir-arm64",
                 "build-debug-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
-                "run-container-torizon-debug-arm64",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -191,7 +178,7 @@
         },
         {
             "label": "build-debug-arm",
-            "detail": "Build a debug version of the application for armhf using\nthe toolchain from the SDK container.",
+            "detail": "Build a debug version of the application for arm using\nthe toolchain from the SDK container.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "args": [
@@ -200,10 +187,10 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
                 "make",
-                "ARCH=armhf",
+                "ARCH=arm",
                 "CC=arm-linux-gnueabihf-g++",
                 "debug"
             ],
@@ -223,34 +210,21 @@
             "label": "deploy-torizon-arm",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/armhf/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-makedir-arm",
                 "build-debug-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
-                "run-container-torizon-debug-arm",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-arm"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -270,7 +244,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-amd64-__container__",
                 "make",
                 "ARCH=amd64",
@@ -293,34 +267,21 @@
             "label": "deploy-torizon-amd64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/amd64/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-amd64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-makedir-amd64",
                 "build-debug-amd64",
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",
-                "run-container-torizon-debug-amd64",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-amd64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -340,7 +301,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-riscv64-__container__",
                 "make",
                 "ARCH=riscv64",
@@ -363,34 +324,21 @@
             "label": "deploy-torizon-riscv64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/riscv64/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-riscv64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-makedir-riscv64",
                 "build-debug-riscv64",
                 "build-container-torizon-debug-riscv64",
                 "push-container-torizon-debug-riscv64",
                 "pull-container-torizon-debug-riscv64",
-                "run-container-torizon-debug-riscv64",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-riscv64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -406,7 +354,7 @@
             "type": "shell",
             "args": [
                 "clean",
-                "ARCH=x86_64"
+                "ARCH=local"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -423,7 +371,7 @@
             "type": "shell",
             "args": [
                 "clean",
-                "ARCH=aarch64"
+                "ARCH=arm64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -443,7 +391,7 @@
             "type": "shell",
             "args": [
                 "clean",
-                "ARCH=armhf"
+                "ARCH=arm"
             ],
             "problemMatcher": [
                 "$gcc"

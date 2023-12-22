@@ -29,13 +29,13 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
                 "cmake",
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++",
                 "-DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc",
-                "-Bbuild-armhf"
+                "-Bbuild-arm"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -60,7 +60,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
                 "cmake",
                 "-DCMAKE_BUILD_TYPE=Debug",
@@ -112,7 +112,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
                 "cmake",
                 "--build",
@@ -134,34 +134,21 @@
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/build-arm64/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-configure-arm64",
                 "build-debug-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
-                "run-container-torizon-debug-arm64",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -181,11 +168,11 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
                 "cmake",
                 "--build",
-                "build-armhf"
+                "build-arm"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -203,34 +190,21 @@
             "label": "deploy-torizon-arm",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/build-armhf/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-configure-arm",
                 "build-debug-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
-                "run-container-torizon-debug-arm",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-arm"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -269,11 +243,11 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
                 "cmake",
                 "--build",
-                "build-armhf",
+                "build-arm",
                 "--target",
                 "clean"
             ],
@@ -300,7 +274,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
                 "cmake",
                 "--build",

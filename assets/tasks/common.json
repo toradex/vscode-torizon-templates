@@ -75,7 +75,8 @@
             "options": {
                 "env": {
                     "DOCKER_PSSWD": "${command:docker_password}",
-                    "TORIZON_ARCH": "${input:archList}"
+                    "TORIZON_ARCH": "${input:archList}",
+                    "APP_ROOT": "${config:torizon_app_root}"
                 }
             },
             "args": [
@@ -595,7 +596,9 @@
                 "-p",
                 "torizon",
                 "down",
-                "--remove-orphans"
+                "--remove-orphans",
+                "--rmi",
+                "local"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -801,7 +804,9 @@
                 "--build-arg",
                 "IMAGE_ARCH=arm64",
                 "--build-arg",
-                "GPU=${config:torizon_gpu}"
+                "GPU=${config:torizon_gpu}",
+                "--build-arg",
+                "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -831,7 +836,9 @@
                 "-t",
                 "cross-toolchain-arm-__container__",
                 "--build-arg",
-                "IMAGE_ARCH=arm"
+                "IMAGE_ARCH=arm",
+                "--build-arg",
+                "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -861,7 +868,9 @@
                 "-t",
                 "cross-toolchain-amd64-__container__",
                 "--build-arg",
-                "IMAGE_ARCH=amd64"
+                "IMAGE_ARCH=amd64",
+                "--build-arg",
+                "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -891,7 +900,9 @@
                 "-t",
                 "cross-toolchain-riscv64-__container__",
                 "--build-arg",
-                "IMAGE_ARCH=riscv64"
+                "IMAGE_ARCH=riscv64",
+                "--build-arg",
+                "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [

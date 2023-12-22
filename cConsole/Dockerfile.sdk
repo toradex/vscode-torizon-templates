@@ -7,9 +7,15 @@ ARG CROSS_SDK_BASE_TAG=3.1.0-bookworm
 ##
 ARG IMAGE_ARCH=
 
+##
+# Application root directory inside the container
+##
+ARG APP_ROOT=
 
 # BUILD ------------------------------------------------------------------------
 FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG}
+
+ARG APP_ROOT
 
 # __deps__
 RUN apt-get -q -y update && \
@@ -31,4 +37,4 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+WORKDIR ${APP_ROOT}

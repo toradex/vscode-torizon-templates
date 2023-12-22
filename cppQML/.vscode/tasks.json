@@ -207,7 +207,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ~/app && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+                "cd ${config:torizon_app_root} && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -234,7 +234,7 @@
             },
             "args": [
                 "localhost:${config:torizon_debug_port2}",
-                "${workspaceFolder}/build-local/debug/__change__",
+                "${workspaceFolder}/build-local/bin/__change__",
                 "-qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "problemMatcher": [
@@ -249,7 +249,7 @@
         },
         {
             "label": "start-gdb-server-remote-arm",
-            "detail": "Deploy and run the application for armhf on the remote\ntarget by using gdbserver.",
+            "detail": "Deploy and run the application for arm on the remote\ntarget by using gdbserver.",
             "command": "ssh",
             "type": "process",
             "args": [
@@ -262,7 +262,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ~/app && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+                "cd ${config:torizon_app_root} && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -291,7 +291,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ~/app && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+                "cd ${config:torizon_app_root} && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -314,7 +314,7 @@
             "args": [
                 "-r",
                 "QML",
-                "${workspaceFolder}/aarch64/debug"
+                "${workspaceFolder}/build-arm64/bin"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -333,7 +333,7 @@
             "args": [
                 "-r",
                 "QML",
-                "${workspaceFolder}/armhf/debug"
+                "${workspaceFolder}/build-arm/bin"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -352,7 +352,7 @@
             "args": [
                 "-r",
                 "QML",
-                "${workspaceFolder}/x86_64/debug"
+                "${workspaceFolder}/build-local/bin"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -371,7 +371,7 @@
             "args": [
                 "-r",
                 "QML",
-                "${workspaceFolder}/amd64/debug"
+                "${workspaceFolder}/build-amd644/bin"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -449,7 +449,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
                 "cmake",
                 "-DCMAKE_BUILD_TYPE=Debug",
@@ -480,7 +480,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
                 "cmake",
                 "--build",
@@ -509,7 +509,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
                 "cmake",
                 "--build",
@@ -533,20 +533,10 @@
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/build-arm64/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -557,9 +547,7 @@
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
-                "run-container-torizon-debug-arm64",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -579,13 +567,13 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
                 "cmake",
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++",
                 "-DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc",
-                "-Bbuild-armhf"
+                "-Bbuild-arm"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -610,11 +598,11 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
                 "cmake",
                 "--build",
-                "build-armhf"
+                "build-arm"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -639,11 +627,11 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
                 "cmake",
                 "--build",
-                "build-armhf",
+                "build-arm",
                 "--target",
                 "clean"
             ],
@@ -663,20 +651,10 @@
             "label": "deploy-torizon-arm",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/build-armhf/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -687,9 +665,7 @@
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
-                "run-container-torizon-debug-arm",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-arm"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -709,7 +685,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-amd64-__container__",
                 "cmake",
                 "-DCMAKE_BUILD_TYPE=Debug",
@@ -738,7 +714,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-amd64-__container__",
                 "cmake",
                 "--build",
@@ -767,7 +743,7 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-amd64-__container__",
                 "cmake",
                 "--build",
@@ -791,20 +767,10 @@
             "label": "deploy-torizon-amd64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/build-amd64/debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -815,9 +781,7 @@
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",
-                "run-container-torizon-debug-amd64",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-amd64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -861,7 +825,7 @@
                 "${workspaceFolder}",
                 "${config:torizon_ip}:${config:torizon_debug_port2}",
                 "__change__",
-                "armhf"
+                "arm"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
