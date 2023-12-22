@@ -9,11 +9,6 @@ ARG SDK_BASE_VERSION=3
 ARG BASE_VERSION=3
 
 ##
-# Application Name
-##
-ARG APP_EXECUTABLE=__change__
-
-##
 # Board architecture
 # arm or arm64
 ##
@@ -23,6 +18,11 @@ ARG IMAGE_ARCH=
 # Board GPU vendor prefix
 ##
 ARG GPU=
+
+##
+# Directory of the application inside container
+##
+ARG APP_ROOT=
 
 # BUILD ------------------------------------------------------------------------
 # TODO: cross compile x86 to arm
@@ -35,6 +35,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG GPU
+ARG APP_ROOT
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
@@ -80,18 +81,20 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 # __deps__
 
-COPY . /app
-WORKDIR /app
+COPY . ${APP_ROOT}
+WORKDIR ${APP_ROOT}
 
 RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
-        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -Bbuild ; \
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -Bbuild-${IMAGE_ARCH} ; \
     elif [ "$IMAGE_ARCH" = "arm" ] ; then \
-        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++ -DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc -Bbuild ; \
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++ -DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc -Bbuild-${IMAGE_ARCH} ; \
     fi
 
-RUN cmake --build build
+RUN cmake --build build-${IMAGE_ARCH}
 
-# DEPLOY ------------------------------------------------------------------------
+# BUILD ------------------------------------------------------------------------
+
+# DEPLOY -----------------------------------------------------------------------
 ##
 # Deploy Step
 ##
@@ -100,8 +103,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG APP_EXECUTABLE
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
 
 # SSH for remote debug
 EXPOSE 2231
@@ -152,8 +154,20 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-COPY --from=Build /app/build /app
 USER torizon
-WORKDIR /app/debug
 
-CMD [ "./__change__" ]
+# Copy the application compiled in the build step to the $APP_ROOT directory 
+# path inside the container, where $APP_ROOT is the torizon_app_root 
+# configuration defined in settings.json.
+# If there are libraries or archives also compiled with the application
+# COPY --from=Build ${APP_ROOT}/build-${IMAGE_ARCH}/lib ${APP_ROOT}
+COPY --from=Build ${APP_ROOT}/build-${IMAGE_ARCH}/bin ${APP_ROOT}
+
+
+# Set the aplication executable path 
+ENV APP_EXECUTABLE_PATH ${APP_ROOT}/__change__
+
+# Command executed in runtime when the container starts
+CMD ["sh", "-c", "${APP_EXECUTABLE_PATH}"]
+
+# DEPLOY -----------------------------------------------------------------------

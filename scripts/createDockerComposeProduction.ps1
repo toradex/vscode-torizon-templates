@@ -58,6 +58,12 @@ if ($null -eq $env:TORIZON_ARCH) {
     $imageArch = $env:TORIZON_ARCH
 }
 
+if ($null -eq $env:APP_ROOT) {
+    throw "❌ APP_ROOT not set"
+} else {
+    $appRoot = $env:APP_ROOT
+}
+
 if ($env:TASKS_ITERATIVE -eq $False) {
     $_iterative = $False
 }
@@ -125,6 +131,7 @@ $env:DOCKER_LOGIN="$dockerLogin"
 Set-Location $compoFilePath
 
 docker compose build `
+    --build-arg APP_ROOT=$appRoot `
     --build-arg IMAGE_ARCH=$imageArch `
     --build-arg GPU=$gpu `
     $imageName

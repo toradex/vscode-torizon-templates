@@ -12,11 +12,6 @@ ARG IMAGE_ARCH=
 ARG BASE_VERSION=3
 
 ##
-# Application Name
-##
-ARG APP_EXECUTABLE=__change__
-
-##
 # Debug port
 ##
 ARG SSH_DEBUG_PORT=
@@ -31,7 +26,13 @@ ARG SSHUSERNAME=
 ##
 ARG GPU=
 
-# BUILD ------------------------------------------------------------------------
+##
+# Application root directory inside the container
+##
+ARG APP_ROOT=
+
+
+# DEPLOY -----------------------------------------------------------------------
 ##
 # Deploy Step
 ##
@@ -41,9 +42,8 @@ FROM --platform=linux/${IMAGE_ARCH} \
 ARG IMAGE_ARCH
 ARG GPU
 ARG SSH_DEBUG_PORT
-ARG APP_EXECUTABLE
 ARG SSHUSERNAME
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
@@ -130,5 +130,12 @@ RUN mkdir /var/run/sshd && \
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
+
+# Copy the compiled application to the $APP_ROOT directory path inside the 
+# container, where $APP_ROOT is the torizon_app_root configuration defined 
+# in settings.json.
+# If there are libraries or archives also compiled with the application
+# COPY build-${IMAGE_ARCH}/lib ${APP_ROOT}
+COPY build-${IMAGE_ARCH}/bin ${APP_ROOT}
 
 CMD [ "/usr/sbin/sshd", "-D" ]
