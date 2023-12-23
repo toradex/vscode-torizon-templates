@@ -18,12 +18,16 @@ param()
 
 $TORIZON_ARCH = $args[0]
 
-if ($TORIZON_ARCH -eq "aarch64") { 
-    $TORIZON_ARCH = "arm64" 
+if ($TORIZON_ARCH -eq "aarch64") {
+    $TORIZON_ARCH = "arm64"
 }
 
-if ($TORIZON_ARCH -eq "armv7l") { 
-    $TORIZON_ARCH = "armhf" 
+if ($TORIZON_ARCH -eq "armv7l") {
+    $TORIZON_ARCH = "armhf"
+}
+
+if ($TORIZON_ARCH -eq "x86_64") {
+    $TORIZON_ARCH = "amd64"
 }
 
 # get the files content
