@@ -68,7 +68,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
-COPY --from=Build /build/bin/Release/net6.0/linux-${IMAGE_ARCH}/publish /app
+COPY --from=Build /build/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish /app
 
 # Default to the Skia backend for best performance
 ENV SLINT_BACKEND=winit-skia
