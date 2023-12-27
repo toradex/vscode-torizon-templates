@@ -16,5 +16,5 @@
   "tcb.packageName": "__change__",
   "tcb.version": "3.8.1",
   "omnisharp.useModernNet": true,
-  "dotnet.server.useOmnisharp": true,
+  "dotnet.server.useOmnisharp": true
 }
