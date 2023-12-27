@@ -377,7 +377,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
-                "apply-torizon-packages",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "publish-torizon-arm64",

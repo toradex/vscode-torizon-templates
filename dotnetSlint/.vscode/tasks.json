@@ -120,9 +120,8 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
-                "apply-torizon-packages",
                 "copy-docker-compose",
-                "pre-cleanup-arm",
+                "pre-cleanup",
                 "publish-torizon-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
@@ -226,9 +225,8 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-amd64",
-                "apply-torizon-packages",
                 "copy-docker-compose",
-                "pre-cleanup-amd64",
+                "pre-cleanup",
                 "publish-torizon-amd64",
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
@@ -332,9 +330,8 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
-                "apply-torizon-packages",
                 "copy-docker-compose",
-                "pre-cleanup-arm64",
+                "pre-cleanup",
                 "publish-torizon-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
