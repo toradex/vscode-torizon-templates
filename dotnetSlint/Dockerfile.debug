@@ -27,6 +27,10 @@ ARG SSH_DEBUG_PORT=
 ##
 ARG SSHUSERNAME=
 
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
 
 ##
 # Get the debugger
