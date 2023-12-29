@@ -442,7 +442,7 @@
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
-                "${config:torizon_workspace}/docker-compose.yml",
+                "${command:torizon_workspace}/docker-compose.yml",
                 "torizon@${config:torizon_ip}:~/"
             ],
             "dependsOrder": "sequence",
