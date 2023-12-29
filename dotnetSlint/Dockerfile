@@ -7,8 +7,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG SDK_BASE_VERSION=4-6.0-rc
-ARG BASE_VERSION=3.0.9-bookworm-1.2.1
+ARG SDK_BASE_VERSION=4-8.0-rc
+ARG BASE_VERSION=4-rc
 
 ##
 # Application Name
@@ -19,7 +19,7 @@ ARG APP_EXECUTABLE=__change__
 
 
 # BUILD ------------------------------------------------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
