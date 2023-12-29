@@ -41,7 +41,7 @@ RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
-        if [ "${GPU}" = "-vivante" ]; then \
+        if [ "${GPU}" = "-vivante" ] || [ "${GPU}" = "-imx8" ]; then \
             apt-get -q -y install \
             imx-gpu-viv-wayland-dev \
         ; else \
@@ -92,7 +92,7 @@ RUN npm install -g npm@8.10.0
 # overwrite the EGL lib for vivante GPU
 RUN npm install && \
     npx electron-forge package -a arm64 -p linux && \
-    if [ "${GPU}" = "-vivante" ]; then \
+    if [ "${GPU}" = "-vivante" ] || [ "${GPU}" = "-imx8" ]; then \
         cp /usr/lib/aarch64-linux-gnu/libEGL.so /build/out/__change__-linux-${IMAGE_ARCH} && \
         cp /usr/lib/aarch64-linux-gnu/libGLESv2.so /build/out/__change__-linux-${IMAGE_ARCH}; \
     fi
@@ -115,7 +115,7 @@ RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
-        if [ "${GPU}" = "-vivante" ]; then \
+        if [ "${GPU}" = "-vivante" ] || [ "${GPU}" = "-imx8" ]; then \
             apt-get -q -y install \
             imx-gpu-viv-wayland-dev \
         ; else \
