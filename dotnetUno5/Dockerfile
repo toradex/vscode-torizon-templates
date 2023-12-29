@@ -51,7 +51,7 @@ ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
-        if [ "${GPU}" = "-vivante" ]; then \
+        if [ "${GPU}" = "-vivante" ] || [ "${GPU}" = "-imx8" ]; then \
             apt-get -q -y install \
             imx-gpu-viv-wayland-dev \
         ; else \
