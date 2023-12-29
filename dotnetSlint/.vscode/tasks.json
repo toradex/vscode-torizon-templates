@@ -85,6 +85,8 @@
             "type": "process",
             "args": [
                 "publish",
+                "-c",
+                "Debug",
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
@@ -190,6 +192,8 @@
             "type": "process",
             "args": [
                 "publish",
+                "-c",
+                "Debug",
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
@@ -295,6 +299,8 @@
             "type": "process",
             "args": [
                 "publish",
+                "-c",
+                "Debug",
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
