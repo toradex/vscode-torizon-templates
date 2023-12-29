@@ -8,7 +8,7 @@ ARG IMAGE_ARCH=
 # Base container version
 ##
 ARG SDK_BASE_VERSION=4-8.0-rc
-ARG BASE_VERSION=4-rc
+ARG BASE_VERSION=4-bookworm-rc-1.2.2
 
 ##
 # Application Name
@@ -35,7 +35,7 @@ dotnet publish -c Release -r linux-${IMAGE_ARCH}
 
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+FROM commontorizon/slint-base-${IMAGE_ARCH}${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
