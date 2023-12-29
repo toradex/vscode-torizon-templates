@@ -14,6 +14,12 @@ ARG BASE_VERSION=4-bookworm-rc-1.2.2
 # Application Name
 ##
 ARG APP_EXECUTABLE=__change__
+
+##
+# Board GPU vendor prefix
+##
+ARG GPU=
+
 # ARGUMENTS --------------------------------------------------------------------
 
 
