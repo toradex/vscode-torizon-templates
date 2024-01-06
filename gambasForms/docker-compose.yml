@@ -35,7 +35,7 @@ services:
     ]
 
   weston:
-    image: torizon/weston${GPU}:3
+    image: commontorizon/weston${GPU}:4-rc
     environment:
       - ACCEPT_FSL_EULA=1
       #- WESTON_ARGS=--continue-without-input
