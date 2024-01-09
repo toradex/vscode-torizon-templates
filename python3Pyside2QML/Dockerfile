@@ -4,12 +4,10 @@
 ##
 ARG IMAGE_ARCH=
 
-
-
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.1.0
+ARG BASE_VERSION=3.2.1
 
 ARG APP_ROOT=
 
@@ -18,38 +16,14 @@ ARG APP_ROOT=
 ##
 ARG GPU=
 
+
 FROM --platform=linux/${IMAGE_ARCH} \
-     torizon/wayland-base${GPU}:${BASE_VERSION} AS opengles
+     torizon/qt5-wayland${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
 ARG APP_EXECUTABLE
 ARG APP_ROOT
-
-# Make sure we don't get notifications we can't answer during building.
-ENV DEBIAN_FRONTEND="noninteractive"
-
-# stick to bookworm on /etc/apt/sources.list.d
-RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
-
-# Install required packages
-RUN apt-get -q -y update && \
-    apt-get -q -y install \
-    libqt5gui5-gles libqt5quick5-gles \
-    && apt-get clean && apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/*
-
-
-FROM --platform=linux/${IMAGE_ARCH} \
-     torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
-
-ARG IMAGE_ARCH
-ARG GPU
-ARG APP_EXECUTABLE
-ARG APP_ROOT
-
-# stick to bookworm on /etc/apt/sources.list.d
-RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
@@ -82,19 +56,12 @@ RUN apt-get -q -y update && \
     python3-pyside2.qtnetwork \
     qml-module-qtquick-dialogs \
     qtwayland5 \
-    rsync \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
-
-# replace the libs from the opengles image
-COPY --from=opengles /usr/lib/aarch64-linux-gnu /usr2/lib/aarch64-linux-gnu
-# rsync the files
-RUN rsync -a /usr2/lib/aarch64-linux-gnu /usr/lib/aarch64-linux-gnu && \
-    rm -rf /usr2
 
 # Create virtualenv
 RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
