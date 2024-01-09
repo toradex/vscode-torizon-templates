@@ -1,5 +1,5 @@
-# DOES NOT ADD THE suppress HERE
-# THIS NEED TO BE SUPPORTED ON THE WINDOWS POWERSHELL
+# DO NOT ADD THE suppress HERE
+# THIS NEEDS TO BE SUPPORTED ON THE WINDOWS POWERSHELL
 # this only makes sense for WSL
 if (! [string]::IsNullOrEmpty($env:WSL_DISTRO_NAME)) {
     $_workspace = $args[0]

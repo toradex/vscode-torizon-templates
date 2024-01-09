@@ -164,7 +164,7 @@ USER torizon
 COPY --from=Build ${APP_ROOT}/build-${IMAGE_ARCH}/bin ${APP_ROOT}
 
 
-# Set the aplication executable path 
+# Set the application executable path 
 ENV APP_EXECUTABLE_PATH ${APP_ROOT}/__change__
 
 # Command executed in runtime when the container starts
