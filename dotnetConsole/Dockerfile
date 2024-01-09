@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.0.0-6.0
+ARG BASE_VERSION=3.0.0-8.0
 
 ##
 # Application Name
@@ -18,7 +18,7 @@ ARG APP_EXECUTABLE=__change__
 
 
 # BUILD ------------------------------------------------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS Build
 
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
@@ -50,7 +50,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # copy the build
-COPY --from=Build /build/bin/Release/net6.0/linux-${IMAGE_ARCH}/publish /app
+COPY --from=Build /build/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish /app
 
 # ADD YOUR ARGUMENTS HERE
 CMD [ "./app/__change__" ]
