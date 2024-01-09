@@ -24,13 +24,13 @@ fi
 
 # check if _COMPOSE_FILE exists
 if [ ! -f "$_COMPOSE_FILE" ]; then
-    # download it from github
+    # download it from GitHub
     wget -q https://raw.githubusercontent.com/$APOLLOX_REPO/$APOLLOX_BRANCH/scripts/container/docker-compose.yml -O $_COMPOSE_FILE
 fi
 
 # check if _BASH_COMPLETION_FILE exists
 if [ ! -f "$_BASH_COMPLETION_FILE" ]; then
-    # download it from github
+    # download it from GitHub
     wget -q https://raw.githubusercontent.com/$APOLLOX_REPO/$APOLLOX_BRANCH/scripts/bash/torizoncore-dev-completion.bash -O $_BASH_COMPLETION_FILE
 fi
 

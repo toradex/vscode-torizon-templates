@@ -1,7 +1,7 @@
 # Documentation https://developer.toradex.com/torizon/os-customization/torizoncore-builder-workflow/#customizing-the-configuration-file
 # Configuration file outline:
 # ⚠️ Mouse hover to the properties to see documentation
-# ⚠️ ctrl+space inside a object or property to get the autocompletion tips
+# ⚠️ ctrl+space inside an object or property to get the autocompletion tips
 input:
   # Input section items (required).
   # ⚠️ change it for your needs

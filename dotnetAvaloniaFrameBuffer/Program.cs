@@ -27,7 +27,7 @@ class Program
             return builder.StartLinuxDrm(args, "/dev/dri/card1", 1);
         }
 
-        throw new Exception("Please set AVALONIA_FB or AVALONIA_DRM environmnet variables to true");
+        throw new Exception("Please set AVALONIA_FB or AVALONIA_DRM environment variables to true");
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.
