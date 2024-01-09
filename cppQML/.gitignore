@@ -12,7 +12,7 @@ credentials.zip
 
 build-*
 
-# After commiting it once, to stop having modifications every time you do 
+# After committing it once, to stop having modifications every time you do 
 # anything on Qt Creator (like dragging the window, literally almost anything),
 # uncomment the line below
 # .qt

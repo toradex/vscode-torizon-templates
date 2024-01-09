@@ -4,7 +4,7 @@ There are lots of ways to contribute to the Torizon IDE Extension (formerly code
 
 ## Providing Feedback
 
-You can use the [issues section](https://github.com/toradex/vscode-torizon-templates/issues) from this Github repository to provide feedback on features, ask for new features, discuss issues and ask for help.
+You can use the [issues section](https://github.com/toradex/vscode-torizon-templates/issues) from this GitHub repository to provide feedback on features, ask for new features, discuss issues and ask for help.
 
 Also feel free to do so in the Toradex community: https://community.toradex.com/
 
@@ -95,7 +95,7 @@ In the `.vscode` folder the following files are expected:
       "torizon_debug_ssh_port": "2230", // ssh port used by debug container
       "torizon_debug_port2": "", // second port used by the framework
       "torizon_debug_port3": "", // third port used by the framework
-      "torizon_gpu": "", // remote device specific gpu vendor
+      "torizon_gpu": "", // remote device specific GPU vendor
       "torizon_arch": "" // remote device machine architecture
     }
     ```
@@ -141,12 +141,12 @@ This documentation should give some explanation of how the code is being built a
 
 > ℹ️ Check the [cppQML/.doc/README.md](./cppQML/.doc/README.md) to see an example.
 
-The media (images, videos, GIFs and so on) of the template documentation should be stored on the [toradex/vscode-torizon-templates-documentation](https://github.com/toradex/vscode-torizon-templates-documentation/]) Github repository
+The media (images, videos, GIFs and so on) of the template documentation should be stored on the [toradex/vscode-torizon-templates-documentation](https://github.com/toradex/vscode-torizon-templates-documentation/]) GitHub repository
 
 
 ## Creating a Pull Request
 
-For Torizon IDE Extension project templates we are using [Github platform](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+For Torizon IDE Extension project templates we are using [GitHub platform](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
 ### Pull Request Guidelines:
 
@@ -167,7 +167,7 @@ For Torizon IDE Extension project templates we are using [Github platform](https
 
 - Create a pull request to the `dev` branch of https://github.com/toradex/vscode-torizon-templates
 
-## Maintainence Policy
+## Maintenance Policy
 
 The project templates labeled with `"support": "Toradex",` are maintained by the IDE Torizon team from Toradex and accept contributions from the community. The templates must be updated to support new versions of the TorizonCore OS and new versions of the application frameworks. The release cycle is monthly.
 
@@ -177,6 +177,6 @@ The project templates labeled with `"support": "Community",` are maintained by t
 
 ### Deprecation Policy
 
-For Toradex and Partner maintained project templates, the deprecation policy is to keep the template working for the last long term supported TorizonCore OS, from the date that the template was released. After the TorizonCore OS end of life, the template is considered deprecated if it's not working anymore in the latest TorizonCore OS version and no maintainence effort is being done to fix it in the next release cycle.
+For Toradex and Partner maintained project templates, the deprecation policy is to keep the template working for the last long term supported TorizonCore OS, from the date that the template was released. After the TorizonCore OS end of life, the template is considered deprecated if it's not working anymore in the latest TorizonCore OS version and no maintenance effort is being done to fix it in the next release cycle.
 
-A community maintained project template is not commited to keep working until the EOF of the last LTS. It will be considered deprecated when it's known that is not working anymore in the latest LTS TorizonCore OS version and no maintainence effort is being done to fix it in the last 3 release cycles.
+A community maintained project template is not committed to keep working until the EOF of the last LTS. It will be considered deprecated when it's known that is not working anymore in the latest LTS TorizonCore OS version and no maintenance effort is being done to fix it in the last 3 release cycles.

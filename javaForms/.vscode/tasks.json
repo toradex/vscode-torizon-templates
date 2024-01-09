@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "open-in-netbeans",
-            "detail": "Open the project in NetBeans. Usefull to edit the GUI.",
+            "detail": "Open the project in NetBeans. Useful to edit the GUI.",
             "command": "netbeans",
             "type": "shell",
             "options": {

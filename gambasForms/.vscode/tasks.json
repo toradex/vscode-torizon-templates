@@ -83,7 +83,7 @@
         },
         {
             "label": "launch-container-torizon-debug-arm",
-            "detail": "Deploy and run the debug container for armhf on the target device.\nThis task is usefull to remote debug application on the\ntarget device using the Gambas IDE.",
+            "detail": "Deploy and run the debug container for armhf on the target device.\nThis task is useful to remote debug application on the\ntarget device using the Gambas IDE.",
             "command": "echo",
             "type": "shell",
             "args": [
@@ -128,7 +128,7 @@
         },
         {
             "label": "launch-container-torizon-debug-arm64",
-            "detail": "Deploy and run the debug container for arm64 on the target device.\nThis task is usefull to remote debug the application on the\ntarget device using the Gambas IDE.",
+            "detail": "Deploy and run the debug container for arm64 on the target device.\nThis task is useful to remote debug the application on the\ntarget device using the Gambas IDE.",
             "command": "echo",
             "type": "shell",
             "args": [
