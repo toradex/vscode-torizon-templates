@@ -12,6 +12,12 @@ Finally, remote debugging is performed by attaching to the GDB on the running co
 
 The source code of the template is a simple Hello World (Hello Torizon, actually) in C, using Makefile as build system.
 
+## Makefile Tools (Extension) Pop-up Message
+
+If the project is stuck when trying to debug it, check if the pop-up message below is shown on the bottom-right corner of VSCode. If it doesn't, press `F1` and type `Developer: Reload Window`, and then it will be shown. If it does, click on the `Yes (don't show again)` option.
+
+  ![](https://raw.githubusercontent.com/toradex/vscode-torizon-templates-documentation/bookworm/cppConsole/dryRunPopUp.png)
+
 
 ## Adding And Debugging Extra Files
 
