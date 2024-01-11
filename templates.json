@@ -77,7 +77,7 @@
                 "debuggerConsole": null,
                 "mainFile": "App.axaml.cs",
                 "mainFileBreakpointLine": 26,
-                "successDebugMessage": "System.IO.Compression.dll"
+                "successDebugMessage": "System.Runtime.Intrinsics.dll"
             }
         },
         {
