@@ -444,7 +444,7 @@
                 },
                 "debuggerConsole": "Python Debug Console",
                 "mainFile": "src/main.py",
-                "mainFileBreakpointLine": 9,
+                "mainFileBreakpointLine": 12,
                 "successDebugMessage": "Hello Torizon!"
             }
         },
