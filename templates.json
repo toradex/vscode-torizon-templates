@@ -543,14 +543,14 @@
             "deprecated": false,
             "tests": {
                 "debuggers": {
-                    "local": [".NET Core Launch (console)"],
+                    "local": [".NET Slint Local"],
                     "amd64": ["Torizon AMD64"],
                     "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": null,
                 "mainFile": "Program.cs",
-                "mainFileBreakpointLine": 2,
+                "mainFileBreakpointLine": 9,
                 "successDebugMessage": "Hello Torizon!"
             }
         }
