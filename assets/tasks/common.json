@@ -627,14 +627,33 @@
                 "-p",
                 "torizon",
                 "down",
-                "--remove-orphans",
-                "--rmi",
-                "local"
+                "--remove-orphans"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
+                "remove-dangling-images",
                 "wait-a-bit"
             ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "remove-dangling-images",
+            "detail": "",
+            "hide": true,
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
+            "args": [
+                "docker",
+                "image",
+                "prune",
+                "-f",
+                "--filter=dangling=true"
+            ],
+            "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
