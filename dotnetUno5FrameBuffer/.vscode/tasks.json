@@ -94,9 +94,8 @@
             }
         },
         {
-            "label": "publish-torizon-arm64",
+            "label": "publish-debug-arm64",
             "detail": "",
-            "hide": true,
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -141,7 +140,7 @@
                 "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "publish-torizon-arm64",
+                "publish-debug-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
@@ -310,7 +309,26 @@
                 "id": "flame",
                 "color": "terminal.ansiYellow"
             }
-        }
+        },
+        {
+            "label": "clean-debug-arm64",
+            "detail": "dotnet clean command for cleaning the application build for the arm64 target",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/__change__.csproj",
+                "-c", 
+                "Debug",
+                "-r",
+                "linux-arm64"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            }
+        },
     ],
 "inputs": []
 }

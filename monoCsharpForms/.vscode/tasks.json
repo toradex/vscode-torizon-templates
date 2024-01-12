@@ -19,7 +19,7 @@
             }
         },
         {
-            "label": "build-application",
+            "label": "build-debug",
             "detail": "Builds the project using the msbuild",
             "command": "msbuild",
             "type": "process",
@@ -84,7 +84,7 @@
             }
         },
         {
-            "label": "build-torizon-arm",
+            "label": "build-debug-arm",
             "detail": "",
             "hide": true,
             "command": "msbuild",
@@ -120,7 +120,7 @@
                 "validate-arch-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-application",
+                "build-debug",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
@@ -159,7 +159,7 @@
                 "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-application",
+                "build-debug",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
@@ -199,7 +199,7 @@
                 "validate-arch-amd64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "build-application",
+                "build-debug",
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",

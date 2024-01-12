@@ -8,7 +8,7 @@
             "name": ".NET Slint Local",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build-local",
+            "preLaunchTask": "build-debug-local",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/bin/Debug/net8.0/linux-x64/__change__.dll",
             "args": [],
