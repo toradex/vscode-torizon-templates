@@ -2,13 +2,15 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-local",
-            "detail": "Builds the project for the local machine execution",
+            "label": "build-debug-local",
+            "detail": "dotnet build command for debugging the application locally",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/__change__.csproj"
+                "${workspaceFolder}/__change__.csproj",
+                "-c", 
+                "Debug"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -17,33 +19,76 @@
             }
         },
         {
-            "label": "clean-local",
-            "detail": "Clean the project for the local machine execution",
+            "label": "clean-debug-local",
+            "detail": "dotnet clean command for cleaning the local application debug build",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "clean",
-                "${workspaceFolder}/__change__.csproj"
+                "${workspaceFolder}/__change__.csproj",
+                "-c", 
+                "Debug"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "chrome-close",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             }
         },
         {
-            "label": "publish-local",
-            "detail": "Publishes the project for the local machine execution",
+            "label": "clean-debug-arm",
+            "detail": "dotnet clean command for cleaning the application build for the armhf target",
             "command": "dotnet",
             "type": "process",
             "args": [
-                "publish",
-                "-c", "Debug",
-                "${workspaceFolder}/__change__.csproj"
+                "clean",
+                "${workspaceFolder}/__change__.csproj",
+                "-c", 
+                "Debug",
+                "-r",
+                "linux-arm"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "package",
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "clean-debug-arm64",
+            "detail": "dotnet clean command for cleaning the application build for the arm64 target",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/__change__.csproj",
+                "-c", 
+                "Debug",
+                "-r",
+                "linux-arm64"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "clean-debug-amd64",
+            "detail": "dotnet clean command for cleaning the application build for the amd64 target",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/__change__.csproj",
+                "-c", 
+                "Debug",
+                "-r",
+                "linux-x64"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             }
         },
@@ -66,9 +111,8 @@
             }
         },
         {
-            "label": "publish-torizon-arm",
-            "detail": "",
-            "hide": true,
+            "label": "publish-debug-arm",
+            "detail": "dotnet build command for debugging the application on an armhf target",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -76,7 +120,8 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c", "Debug",
+                "-c", 
+                "Debug",
                 "-r",
                 "linux-arm",
                 "--no-self-contained"
@@ -112,7 +157,7 @@
                 "validate-arch-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "publish-torizon-arm",
+                "publish-debug-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
@@ -128,9 +173,8 @@
             }
         },
         {
-            "label": "publish-torizon-arm64",
-            "detail": "",
-            "hide": true,
+            "label": "publish-debug-arm64",
+            "detail": "dotnet build command for debugging the application on an arm64 target",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -138,7 +182,8 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c", "Debug",
+                "-c", 
+                "Debug",
                 "-r",
                 "linux-arm64",
                 "--no-self-contained"
@@ -174,7 +219,7 @@
                 "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "publish-torizon-arm64",
+                "publish-debug-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
@@ -190,9 +235,8 @@
             }
         },
         {
-            "label": "publish-torizon-amd64",
-            "detail": "",
-            "hide": true,
+            "label": "publish-debug-amd64",
+            "detail": "dotnet build command for debugging the application on an amd64 target",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -200,7 +244,8 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c", "Debug",
+                "-c", 
+                "Debug",
                 "-r",
                 "linux-x64",
                 "--no-self-contained"
@@ -236,7 +281,7 @@
                 "validate-arch-amd64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "publish-torizon-amd64",
+                "publish-debug-amd64",
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",

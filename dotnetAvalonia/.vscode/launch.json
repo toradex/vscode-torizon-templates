@@ -8,7 +8,7 @@
             "name": ".NET Core Launch (GTK)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build-local",
+            "preLaunchTask": "build-debug-local",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/bin/Debug/net8.0/__change__.dll",
             "args": [],

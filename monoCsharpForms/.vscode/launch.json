@@ -7,7 +7,7 @@
             "type": "mono",
             "cwd": "${workspaceRoot}",
             "program": "${workspaceRoot}/bin/Debug/__change__.exe",
-            "preLaunchTask": "build-application"
+            "preLaunchTask": "build-debug"
         },
         {
             "name": "Torizon AMD64",

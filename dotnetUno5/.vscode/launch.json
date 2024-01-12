@@ -11,7 +11,7 @@
       "name": "Debug Local",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build-skia-gtk",
+      "preLaunchTask": "build-debug-local",
       // If you have changed target frameworks, make sure to update the program path.
       "program": "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net8.0/__change__.Skia.Gtk.dll",
       "args": [],
