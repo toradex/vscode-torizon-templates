@@ -13,4 +13,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ${DOCKER_LOGIN}__container__:${TAG}
+    image: ${DOCKER_LOGIN}/__container__:${TAG}
