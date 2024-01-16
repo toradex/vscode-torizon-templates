@@ -1,20 +1,20 @@
 # ARGUMENTS --------------------------------------------------------------------
 ##
-# Board architecture
-##
-ARG IMAGE_ARCH=
-
-
-
-##
 # Base container version
 ##
 ARG BASE_VERSION=3.1.0-bookworm
 
 ##
-# Application Name
+# Board architecture
+# arm or arm64
 ##
-ARG APP_EXECUTABLE=__change__
+ARG IMAGE_ARCH=
+
+##
+# Directory of the application inside container
+##
+ARG APP_ROOT=
+
 # ARGUMENTS --------------------------------------------------------------------
 
 
@@ -24,11 +24,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
     torizon/debian:${BASE_VERSION} AS Build
 
 ARG IMAGE_ARCH
-ARG APP_EXECUTABLE
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
-
-COPY . /build
-WORKDIR /build
+ARG APP_ROOT
 
 # Install required packages
 RUN apt-get -q -y update && \
@@ -36,6 +32,23 @@ RUN apt-get -q -y update && \
     gcc \
     g++ \
     make \
+    curl && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
+# install the latest node js
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
+
+# install npm and typescript
+RUN npm config set registry https://registry.npmjs.org/
+RUN npm install -g npm@8.10.0
+RUN npm install -g typescript
+RUN npm install -g ts-node
+
+# Install required packages
+RUN apt-get -q -y update && \
+    apt-get -q -y install \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
@@ -44,14 +57,18 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-# install the latest node js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs
 
-RUN npm config set registry https://registry.npmjs.org/
-RUN npm install -g npm@8.10.0
+COPY . ${APP_ROOT}
+WORKDIR ${APP_ROOT}
 
-RUN npm install --omit=dev
+RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
+        npm run output-arm64; \
+    elif [ "$IMAGE_ARCH" = "arm" ] ; then \
+        npm run output-arm; \
+    elif [ "$IMAGE_ARCH" = "amd64" ] ; then \
+        npm run output-amd64; \
+    fi
+
 
 # BUILD ------------------------------------------------------------------------
 
@@ -62,10 +79,22 @@ FROM --platform=linux/${IMAGE_ARCH} \
     torizon/debian:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
-ARG APP_EXECUTABLE
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
+
+# Install required packages
+RUN apt-get -q -y update && \
+    apt-get -q -y install \
+    curl && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
+# install the latest node js
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
 
 # your regular RUN statements here
+
+
 # Install required packages
 RUN apt-get -q -y update && \
     apt-get -q -y install \
@@ -76,14 +105,16 @@ RUN apt-get -q -y update && \
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-# install the latest node js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs
 
-# copy the build
-COPY --from=Build /build /app
-WORKDIR /app
+# Copy the application compiled in the build step to the $APP_ROOT directory 
+# path inside the container, where $APP_ROOT is the torizon_app_root 
+# configuration defined in settings.json
+# If there are libraries or archives also compiled with the application
+# COPY --from=Build ${APP_ROOT}/build-${IMAGE_ARCH}/lib ${APP_ROOT}
+COPY --from=Build ${APP_ROOT}/out ${APP_ROOT}/out
+WORKDIR ${APP_ROOT}
 
-CMD [ "__change__", "--no-sandbox" ]
+# Command executed in runtime when the container starts
+CMD [ "node", "out/lib/index.js" ]
 
 # DEPLOY -----------------------------------------------------------------------
