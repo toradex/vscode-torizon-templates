@@ -74,7 +74,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/out",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -99,7 +99,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root}/app/ >out.log 2>err.log &"
+                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root} >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -108,7 +108,6 @@
                 "build-typescript-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "package-torizon-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
@@ -160,7 +159,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/out",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -185,7 +184,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root}/app/ >out.log 2>err.log &"
+                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root} >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -194,7 +193,6 @@
                 "build-typescript-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "package-torizon-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
@@ -246,7 +244,7 @@
                 "${config:torizon_debug_ssh_port}",
                 "-pr",
                 "${workspaceFolder}/out",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -271,7 +269,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root}/app/ >out.log 2>err.log &"
+                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root} >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -280,7 +278,6 @@
                 "build-typescript-amd64",
                 "copy-docker-compose",
                 "pre-cleanup",
-                "package-torizon-amd64",
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",

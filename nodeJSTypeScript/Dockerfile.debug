@@ -4,17 +4,11 @@
 ##
 ARG IMAGE_ARCH=
 
-
-
 ##
 # Base container version
 ##
 ARG BASE_VERSION=3.1.0-bookworm
 
-##
-# Application Name
-##
-ARG APP_EXECUTABLE=__change__
 
 ##
 # Debug port
@@ -26,6 +20,11 @@ ARG SSH_DEBUG_PORT=
 ##
 ARG SSHUSERNAME=
 
+##
+# Application root directory inside the container
+##
+ARG APP_ROOT=
+
 # BUILD ------------------------------------------------------------------------
 ##
 # Deploy Step
@@ -35,9 +34,8 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG SSH_DEBUG_PORT
-ARG APP_EXECUTABLE
 ARG SSHUSERNAME
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
@@ -46,7 +44,10 @@ EXPOSE 9229
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
 
+
 # your regular RUN statements here
+
+
 # Install required packages
 RUN apt-get -q -y update && \
     apt-get -q -y install \
@@ -61,6 +62,16 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# install the latest
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
+
+# install npm and typescript
+RUN npm config set registry https://registry.npmjs.org/
+RUN npm install -g npm@8.10.0
+RUN npm install -g typescript
+RUN npm install -g ts-node
+
 # automate for torizonPackages.json
 RUN apt-get -q -y update && \
     apt-get -q -y install \
@@ -72,14 +83,6 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-# install the latest
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs
-
-RUN npm config set registry https://registry.npmjs.org/
-RUN npm install -g npm@8.10.0
-RUN npm install -g typescript
-RUN npm install -g ts-node
 
 # ⚠️ DEBUG PURPOSES ONLY!!
 # copies RSA key to enable SSH login for user
