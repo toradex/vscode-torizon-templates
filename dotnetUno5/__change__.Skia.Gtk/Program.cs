@@ -15,7 +15,9 @@ public class Program
         };
 
         var host = new GtkHost(() => new AppHead());
-
+        // FIXME: if your machine supports openGL remove this
+        host.RenderSurfaceType = RenderSurfaceType.Software;
+        
         host.Run();
     }
 }
