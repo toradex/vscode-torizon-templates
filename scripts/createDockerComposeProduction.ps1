@@ -119,9 +119,6 @@ if ([string]::IsNullOrEmpty($tag)) {
     }
 }
 
-# rebuild and tag
-Write-Host "Rebuilding $dockerLogin/$($imageName):$tag ..."
-
 $objSettings = Get-Content ("$compoFilePath/.vscode/settings.json") | `
     Out-String | ConvertFrom-Json
 $localRegistry = $objSettings.host_ip
@@ -135,6 +132,9 @@ if ([string]::IsNullOrEmpty($registry)) {
 }
 Set-Location $compoFilePath
 
+# rebuild and tag
+Write-Host "Rebuilding $env:DOCKER_LOGIN/${imageName}:$tag ..."
+
 docker compose build `
     --build-arg APP_ROOT=$appRoot `
     --build-arg IMAGE_ARCH=$imageArch `
@@ -146,10 +146,10 @@ Set-Location -
 Write-Host -ForegroundColor DarkGreen "✅ Image rebuild and tagged"
 
 # push it
-Write-Host "Pushing it $dockerLogin/$($imageName):$tag ..."
+Write-Host "Pushing it $env:DOCKER_LOGIN/${imageName}:$tag ..."
 
 Write-Output "$psswd" | docker login $registry -u $dockerLogin --password-stdin
-docker push $env:DOCKER_LOGIN/$($imageName):$tag
+docker push $env:DOCKER_LOGIN/${imageName}:$tag
 
 Write-Host -ForegroundColor DarkGreen "✅ Image push OK"
 
