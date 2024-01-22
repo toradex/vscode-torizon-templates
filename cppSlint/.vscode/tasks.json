@@ -109,8 +109,11 @@
             "command": "cmake",
             "type": "shell",
             "args": [
-                "-B", "build/x86_64",
-                "-S", "."
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-B", 
+                "build/x86_64",
+                "-S", 
+                "."
             ],
             "problemMatcher": [
                 "$gcc"
