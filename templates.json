@@ -500,6 +500,7 @@
             "deprecated": false,
             "tests": {
                 "debuggers": {
+                    "local": ["Debug executable "],
                     "amd64": ["Torizon AMD64"],
                     "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
