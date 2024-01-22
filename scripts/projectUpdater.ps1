@@ -204,8 +204,8 @@ Set-Location $projectFolder/.conf/tmp
 
 # tcb does not have the common Docker files
 if ($templateName -ne "tcb") {
-    # The generic project doesn't have a Dockerfile.debug
-    if ($templateName -ne "genericProject") {
+    # The generic template doesn't have a Dockerfile.debug
+    if ($templateName -ne "genericTemplate") {
         Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
     }
     Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile .
@@ -283,8 +283,8 @@ Write-Host -ForegroundColor DarkGreen "✅ tasks.json"
 # TCB does not have the common application Docker files
 if ($templateName -ne "tcb") {
     # DOCKERFILE.DEBUG:
-    # The generic project doesn't have a Dockerfile.debug
-    if ($templateName -ne "genericProject") {
+    # The generic template doesn't have a Dockerfile.debug
+    if ($templateName -ne "genericTemplate") {
         _openMergeWindow `
             $projectFolder/.conf/tmp/Dockerfile.debug `
             $projectFolder/Dockerfile.debug
