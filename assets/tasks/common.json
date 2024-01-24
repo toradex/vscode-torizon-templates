@@ -1081,7 +1081,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1108,7 +1108,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker-compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1135,7 +1135,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 docker-compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 docker compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1162,7 +1162,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=riscv64 docker-compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip} TAG=riscv64 docker compose pull __container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1565,7 +1565,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm64 docker-compose pull __container__"
+                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm64 docker compose pull __container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1592,7 +1592,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm docker-compose pull __container__"
+                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm docker compose pull __container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1619,7 +1619,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=amd64 docker-compose pull __container__"
+                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=amd64 docker compose pull __container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1646,7 +1646,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=riscv64 docker-compose pull __container__"
+                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=riscv64 docker compose pull __container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
