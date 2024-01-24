@@ -4,17 +4,15 @@
 ##
 ARG IMAGE_ARCH=
 
-
-
 ##
 # Base container version
 ##
 ARG BASE_VERSION=6.12.0-rc
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__
+ARG APP_ROOT=
 
 ##
 # Debug port
@@ -34,10 +32,9 @@ FROM --platform=linux/${IMAGE_ARCH} \
     commontorizon/mono-sdk:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
+ARG APP_ROOT
 ARG SSH_DEBUG_PORT
-ARG APP_EXECUTABLE
 ARG SSHUSERNAME
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
@@ -48,6 +45,8 @@ ENV DEBIAN_FRONTEND="noninteractive"
 # automate for torizonPackages.json
 RUN apt-get -q -y update && \
     apt-get -q -y install \
+    screen \
+    libgtk2.0 \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
@@ -77,5 +76,13 @@ RUN mkdir /var/run/sshd && \
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
+
+
+COPY ./assets ${APP_ROOT}/assets
+ 
+# Copy the compiled application to the $APP_ROOT directory path inside the 
+# container, where $APP_ROOT is the torizon_app_root configuration defined 
+# in settings.json.
+COPY ./bin/Debug ${APP_ROOT}
 
 CMD [ "/usr/sbin/sshd", "-D" ]
