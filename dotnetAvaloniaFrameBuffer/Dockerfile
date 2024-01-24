@@ -11,9 +11,9 @@ ARG BASE_VERSION=3.2.1
 ARG DOTNET_BASE_VERSION=3.1.1-6.0
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__
+ARG APP_ROOT=
 
 ##
 # Board GPU vendor prefix
@@ -27,10 +27,10 @@ ARG GPU=
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS Build
 
 ARG IMAGE_ARCH
-ARG APP_EXECUTABLE
+ARG APP_ROOT
 
-COPY . /build
-WORKDIR /build
+COPY . ${APP_ROOT}
+WORKDIR ${APP_ROOT}
 
 # build
 RUN dotnet restore && \
@@ -48,8 +48,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG APP_EXECUTABLE
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
 
 ENV DOTNET_ROOT=/dotnet
 ENV PATH=$PATH:/dotnet
@@ -95,9 +94,15 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     libssl3 \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
-# copy the build
-COPY --from=Build /build/bin/Release/net6.0/linux-${IMAGE_ARCH}/publish /app
 
-# ADD YOUR ARGUMENTS HERE
-CMD [ "./app/__change__" ]
+# Copy the application compiled in the build step to the $APP_ROOT directory 
+# path inside the container, where $APP_ROOT is the torizon_app_root 
+# configuration defined in settings.json
+COPY --from=Build ${APP_ROOT}/bin/Release/net6.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
+
+# Set the application executable path 
+ENV APP_EXECUTABLE_PATH ${APP_ROOT}/__change__
+
+# Command executed in runtime when the container starts
+CMD ["sh", "-c", "${APP_EXECUTABLE_PATH}"]
 # DEPLOY -----------------------------------------------------------------------

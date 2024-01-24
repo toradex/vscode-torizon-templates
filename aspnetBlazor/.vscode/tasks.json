@@ -138,20 +138,10 @@
             "label": "deploy-torizon-arm",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/bin/Debug/net8.0/linux-arm/publish",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -162,54 +152,7 @@
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
-                "run-container-torizon-debug-arm",
-                "wait-a-bit",
-                "pos-cleanup"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-launch-torizon-arm",
-            "detail": "",
-            "hide": true,
-            "command": "ssh",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
-                "${config:torizon_app_root}/app/__change__ >out.log 2>err.log &"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-run-torizon-arm",
-            "detail": "",
-            "hide": true,
-            "command": "sleep",
-            "type": "process",
-            "args": [
-                "2"
-            ],
-            "dependsOn": [
-                "deploy-torizon-arm",
-                "deploy-launch-torizon-arm"
+                "run-container-torizon-debug-arm"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -231,7 +174,7 @@
                 "-c", 
                 "Debug",
                 "-r",
-                "linux-x64",
+                "linux-amd64",
                 "--no-self-contained"
             ],
             "dependsOrder": "sequence",
@@ -245,20 +188,10 @@
             "label": "deploy-torizon-amd64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/bin/Debug/net8.0/linux-x64/publish",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -269,54 +202,7 @@
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",
-                "run-container-torizon-debug-amd64",
-                "wait-a-bit",
-                "pos-cleanup"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-launch-torizon-amd64",
-            "detail": "",
-            "hide": true,
-            "command": "ssh",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
-                "${config:torizon_app_root}/app/__change__ >out.log 2>err.log &"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-run-torizon-amd64",
-            "detail": "",
-            "hide": true,
-            "command": "sleep",
-            "type": "process",
-            "args": [
-                "2"
-            ],
-            "dependsOn": [
-                "deploy-torizon-amd64",
-                "deploy-launch-torizon-amd64"
+                "run-container-torizon-debug-amd64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -380,20 +266,10 @@
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/bin/Debug/net8.0/linux-arm64/publish",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -404,9 +280,7 @@
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
-                "run-container-torizon-debug-arm64",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -419,20 +293,10 @@
             "label": "deploy-browser-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/bin/Debug/net8.0/linux-arm64/publish",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -443,9 +307,7 @@
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
-                "run-container-cog-torizon-debug-arm64",
-                "wait-a-bit",
-                "pos-cleanup"
+                "run-container-cog-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -454,51 +316,6 @@
                 "color": "terminal.ansiYellow"
             }
         },
-        {
-            "label": "deploy-launch-torizon-arm64",
-            "detail": "",
-            "hide": true,
-            "command": "ssh",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
-                "${config:torizon_app_root}/app/__change__ >out.log 2>err.log &"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-run-torizon-arm64",
-            "detail": "",
-            "hide": true,
-            "command": "sleep",
-            "type": "process",
-            "args": [
-                "2"
-            ],
-            "dependsOn": [
-                "deploy-torizon-arm64",
-                "deploy-launch-torizon-arm64"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        }
     ],
 "inputs": []
 }
