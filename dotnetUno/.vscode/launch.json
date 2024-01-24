@@ -29,8 +29,8 @@
       "name": "Torizon AMD64",
       "type": "coreclr",
       "request": "launch",
-      "program": "~/app/__change__.Skia.Gtk",
-      "cwd": "~/app/",
+      "program": "${config:torizon_app_root}/__change__.Skia.Gtk",
+      "cwd": "${config:torizon_app_root}",
       "stopAtEntry": false,
       "console": "internalConsole",
       "env": {
@@ -63,8 +63,8 @@
       "name": "Torizon ARMv7",
       "type": "coreclr",
       "request": "launch",
-      "program": "~/app/__change__.Skia.Gtk",
-      "cwd": "~/app/",
+      "program": "${config:torizon_app_root}/__change__.Skia.Gtk",
+      "cwd": "${config:torizon_app_root}",
       "stopAtEntry": false,
       "console": "internalConsole",
       "env": {
@@ -97,8 +97,8 @@
       "name": "Torizon ARMv8",
       "type": "coreclr",
       "request": "launch",
-      "program": "~/app/__change__.Skia.Gtk",
-      "cwd": "~/app/",
+      "program": "${config:torizon_app_root}/__change__.Skia.Gtk",
+      "cwd": "${config:torizon_app_root}",
       "stopAtEntry": false,
       "console": "internalConsole",
       "env": {

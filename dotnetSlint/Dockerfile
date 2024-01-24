@@ -11,9 +11,9 @@ ARG SDK_BASE_VERSION=4-8.0-rc
 ARG BASE_VERSION=4-rc
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__
+ARG APP_ROOT=
 
 ##
 # Board GPU vendor prefix
@@ -28,15 +28,15 @@ ARG GPU=
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS Build
 
 ARG IMAGE_ARCH
-ARG APP_EXECUTABLE
+ARG APP_ROOT
 
 # this is needed for the build to work witht he libslint
 RUN apt-get -q -y update && \
     apt-get -q -y install \
     libfontconfig1
 
-COPY . /build
-WORKDIR /build
+COPY . ${APP_ROOT}
+WORKDIR ${APP_ROOT}
 
 # build
 RUN dotnet restore && \
@@ -51,8 +51,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG APP_EXECUTABLE
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
@@ -90,9 +89,6 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
-# copy the build
-COPY --from=Build /build/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish /app
-
 # Default to the Skia backend for best performance
 ENV SLINT_BACKEND=winit-skia
 # Default to Slint running in fullscreen
@@ -100,9 +96,15 @@ ENV SLINT_FULLSCREEN=1
 # Default style to fluent
 ENV SLINT_STYLE=fluent
 
-WORKDIR /app
+# Copy the application compiled in the build step to the $APP_ROOT directory 
+# path inside the container, where $APP_ROOT is the torizon_app_root 
+# configuration defined in settings.json
+COPY --from=Build ${APP_ROOT}/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
 
-# ADD YOUR ARGUMENTS HERE
-CMD [ "./__change__" ]
+# Set the application executable path 
+ENV APP_EXECUTABLE_PATH ${APP_ROOT}/__change__
+
+# Command executed in runtime when the container starts
+CMD ["sh", "-c", "${APP_EXECUTABLE_PATH}"]
 
 # DEPLOY ------------------------------------------------------------------------
