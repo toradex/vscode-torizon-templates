@@ -104,20 +104,10 @@
       "label": "deploy-torizon-arm64",
       "detail": "",
       "hide": true,
-      "command": "scp",
+      "command": "sleep",
       "type": "process",
       "args": [
-          "-i",
-          "${workspaceFolder}/.conf/id_rsa",
-          "-o",
-          "UserKnownHostsFile=/dev/null",
-          "-o",
-          "StrictHostKeyChecking=no",
-          "-P",
-          "${config:torizon_debug_ssh_port}",
-          "-pr",
-          "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net8.0/linux-arm64/publish",
-          "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+          "1"
       ],
       "dependsOn": [
           "validate-settings",
@@ -128,9 +118,7 @@
           "build-container-torizon-debug-arm64",
           "push-container-torizon-debug-arm64",
           "pull-container-torizon-debug-arm64",
-          "run-container-torizon-debug-arm64",
-          "wait-a-bit",
-          "pos-cleanup"
+          "run-container-torizon-debug-arm64"
       ],
       "dependsOrder": "sequence",
       "problemMatcher": "$msCompile",

@@ -12,9 +12,9 @@ ARG IMAGE_ARCH=
 ARG BASE_VERSION=3.0.0-8.0
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__.Skia.Linux.FrameBuffer
+ARG APP_ROOT=
 
 ##
 # Debug port
@@ -41,9 +41,8 @@ FROM --platform=linux/${IMAGE_ARCH} \
 ARG IMAGE_ARCH
 ARG GPU
 ARG SSH_DEBUG_PORT
-ARG APP_EXECUTABLE
+ARG APP_ROOT
 ARG SSHUSERNAME
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
@@ -107,5 +106,11 @@ RUN mkdir /var/run/sshd && \
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
+
+# Copy the compiled application to the $APP_ROOT directory path inside the 
+# container, where $APP_ROOT is the torizon_app_root configuration defined 
+# in settings.json.
+COPY ./__change__.Skia.Linux.FrameBuffer/bin/Debug/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
+
 
 CMD [ "/usr/sbin/sshd", "-D" ]

@@ -10,9 +10,9 @@ ARG IMAGE_ARCH=
 ARG BASE_VERSION=3.0.0-8.0
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__.Skia.Gtk
+ARG APP_ROOT=
 
 ##
 # Board GPU vendor prefix
@@ -28,10 +28,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS Build
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG APP_EXECUTABLE
+ARG APP_ROOT
 
-COPY . /build
-WORKDIR /build/__change__.Skia.Gtk
+COPY . ${APP_ROOT}
+WORKDIR ${APP_ROOT}/__change__.Skia.Gtk
 
 # build
 RUN dotnet restore && \
@@ -46,8 +46,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG APP_EXECUTABLE
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
@@ -70,11 +69,16 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
-# copy the build
-COPY --from=Build /build/__change__.Skia.Gtk/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish /app
-
 ENV UNO_FULLSCREEN true
 
-# ADD YOUR ARGUMENTS HERE
-CMD [ "./app/__change__.Skia.Gtk" ]
+# Copy the application compiled in the build step to the $APP_ROOT directory 
+# path inside the container, where $APP_ROOT is the torizon_app_root 
+# configuration defined in settings.json
+COPY --from=Build ${APP_ROOT}/__change__.Skia.Gtk/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
+
+# Set the application executable path 
+ENV APP_EXECUTABLE_PATH ${APP_ROOT}/__change__.Skia.Gtk
+
+# Command executed in runtime when the container starts
+CMD ["sh", "-c", "${APP_EXECUTABLE_PATH}"]
 # DEPLOY -----------------------------------------------------------------------
