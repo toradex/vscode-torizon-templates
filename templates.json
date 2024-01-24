@@ -198,7 +198,19 @@
             "debugSSHPort": "2227",
             "multiContainer": true,
             "deprecated": false,
-            "support": "Community"
+            "support": "Community",
+            "tests" : {
+                "debuggers": {
+                    "local": ["Mono Local"],
+                    "amd64": ["Torizon AMD64"],
+                    "arm": ["Torizon ARMv7"],
+                    "arm64": ["Torizon ARMv8"]
+                },
+                "debuggerConsole": null,
+                "mainFile": "Form1.cs",
+                "mainFileBreakpointLine": 23,
+                "successDebugMessage": ""
+            }
         },
         {
             "img": "electronjs.png",
