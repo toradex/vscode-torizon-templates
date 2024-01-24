@@ -91,7 +91,7 @@ if ([string]::IsNullOrEmpty($dockerLogin)) {
 
 if ([string]::IsNullOrEmpty($psswd)) {
     if ($_iterative) {
-        $tag = Read-Host "Docker registry password"
+        $psswd = Read-Host -MaskInput "Docker registry password"
     }
 
     if ([string]::IsNullOrEmpty($psswd)) {
