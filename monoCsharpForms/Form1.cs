@@ -25,7 +25,7 @@ namespace __change__
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Eita Torizon!");
+            Console.WriteLine("Hello Torizon!");
             label1.Text = "YEAHHHH!";
         }
     }

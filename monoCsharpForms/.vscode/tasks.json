@@ -32,58 +32,6 @@
             }
         },
         {
-            "label": "deploy-application",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/bin/Debug",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-assets",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/assets",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/assets"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "build-debug-arm",
             "detail": "",
             "hide": true,
@@ -113,7 +61,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} ~/app/__change__.exe > out.log 2> err.log &"
+                "cd ${config:torizon_app_root} && screen -d -m mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} __change__.exe"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -125,9 +73,6 @@
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
-                "wait-a-bit",
-                "pos-cleanup",
-                "deploy-application"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -152,7 +97,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} ~/app/__change__.exe > out.log 2> err.log &"
+                "cd ${config:torizon_app_root} && screen -d -m mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} __change__.exe"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -164,10 +109,6 @@
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
-                "wait-a-bit",
-                "pos-cleanup",
-                "deploy-application",
-                "deploy-assets"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -192,7 +133,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} ~/app/__change__.exe > out.log 2> err.log &"
+                "cd ${config:torizon_app_root} && screen -d -m mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port} __change__.exe"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -204,10 +145,6 @@
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",
                 "run-container-torizon-debug-amd64",
-                "wait-a-bit",
-                "pos-cleanup",
-                "deploy-application",
-                "deploy-assets"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
