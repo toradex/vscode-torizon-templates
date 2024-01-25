@@ -33,6 +33,10 @@ RUN apt-get -q -y update && \
     g++ \
     make \
     curl && \
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
+    # __torizon_packages_dev_start__
+    # __torizon_packages_dev_end__
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
@@ -45,18 +49,6 @@ RUN npm config set registry https://registry.npmjs.org/
 RUN npm install -g npm@8.10.0
 RUN npm install -g typescript
 RUN npm install -g ts-node
-
-# Install required packages
-RUN apt-get -q -y update && \
-    apt-get -q -y install \
-# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    # __torizon_packages_dev_start__
-    # __torizon_packages_dev_end__
-# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    && \
-    apt-get clean && apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/*
-
 
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
@@ -85,6 +77,10 @@ ARG APP_ROOT
 RUN apt-get -q -y update && \
     apt-get -q -y install \
     curl && \
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
+    # __torizon_packages_prod_start__
+    # __torizon_packages_prod_end__
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
@@ -94,20 +90,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 
 # your regular RUN statements here
 
-
-# Install required packages
-RUN apt-get -q -y update && \
-    apt-get -q -y install \
-# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    # __torizon_packages_prod_start__
-    # __torizon_packages_prod_end__
-# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    && apt-get clean && apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/*
-
-
-# Copy the application compiled in the build step to the $APP_ROOT directory 
-# path inside the container, where $APP_ROOT is the torizon_app_root 
+# Copy the application compiled in the build step to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
 # If there are libraries or archives also compiled with the application
 # COPY --from=Build ${APP_ROOT}/build-${IMAGE_ARCH}/lib ${APP_ROOT}
