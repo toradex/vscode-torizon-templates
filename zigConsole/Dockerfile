@@ -1,5 +1,5 @@
-ARG CROSS_SDK_BASE_TAG=3.1.0-bookworm
-ARG BASE_VERSION=3.1.0-bookworm
+ARG CROSS_SDK_BASE_TAG=3.2.1-bookworm
+ARG BASE_VERSION=3.2.1-bookworm
 ##
 # Board architecture
 # arm or arm64
