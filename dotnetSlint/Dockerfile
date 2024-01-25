@@ -8,7 +8,7 @@ ARG IMAGE_ARCH=
 # Base container version
 ##
 ARG SDK_BASE_VERSION=4-8.0-rc
-ARG BASE_VERSION=4-bookworm-rc-1.2.2
+ARG BASE_VERSION=4-rc
 
 ##
 # Application Name
@@ -30,18 +30,24 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS Build
 ARG IMAGE_ARCH
 ARG APP_EXECUTABLE
 
+# this is needed for the build to work witht he libslint
+RUN apt-get -q -y update && \
+    apt-get -q -y install \
+    libfontconfig1
+
 COPY . /build
 WORKDIR /build
 
 # build
 RUN dotnet restore && \
-dotnet publish -c Release -r linux-${IMAGE_ARCH}
+    dotnet publish -c Release -r linux-${IMAGE_ARCH}
 # BUILD ------------------------------------------------------------------------
 
 
 
 # DEPLOY ------------------------------------------------------------------------
-FROM commontorizon/slint-base-${IMAGE_ARCH}${GPU}:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} \
+    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -62,8 +68,19 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Slint dependencies
+# Install Slint and .net dependencies
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install libfontconfig1 libxkbcommon0 fonts-noto-core fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-noto-ui-core fonts-noto-ui-extra \
+    && DEBIAN_FRONTEND=noninteractive \
+    apt-get install \
+    libfontconfig1 \
+    libxkbcommon0 \
+    fonts-noto-core \
+    fonts-noto-cjk \
+    fonts-noto-cjk-extra \
+    fonts-noto-color-emoji \
+    fonts-noto-ui-core \
+    fonts-noto-ui-extra \
+    libicu72 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
@@ -83,7 +100,9 @@ ENV SLINT_FULLSCREEN=1
 # Default style to fluent
 ENV SLINT_STYLE=fluent
 
+WORKDIR /app
+
 # ADD YOUR ARGUMENTS HERE
-CMD [ "./app/__change__" ]
+CMD [ "./__change__" ]
 
 # DEPLOY ------------------------------------------------------------------------
