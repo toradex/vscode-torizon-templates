@@ -1,5 +1,8 @@
 # C++ CMake Template Specific Documentation
 
+
+> ⚠️ **WARNING:**  This is just the documentation part specific of this template. **For the complete and general Torizon IDE documentation, check the [developer website documentation](https://developer.toradex.com/torizon/application-development/ide-extension/)** ⚠️
+
 All projects follow the pipeline of tasks described in the [common contributing documentation](https://github.com/toradex/vscode-torizon-templates/blob/bookworm/CONTRIBUTING.md#contributing-templates). However, each project has its own specificities in terms of technologies and methods used to compile, deploy, and debug the code. Therefore, each of them has their own specific tasks in the `tasks.json` file.
 
 This C++ console template uses `cmake` and `make` to compile the code, with tasks named `build-configure-\${architecture}` (creates the destination directory for the future compiled code and generates the Makefile, using `cmake`) and `build-debug-\${architecture}` (compiles the code). It also uses an SDK container to cross-compile the code. This container image is built using the `Dockerfile.sdk` file, and the tasks that build the containers are named `build-container-image-sdk-\${architecture}`.
