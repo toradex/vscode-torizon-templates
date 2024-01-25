@@ -4,20 +4,20 @@
 ##
 ARG IMAGE_ARCH=
 
-
-
 ##
 # Base container version
 ##
 ARG BASE_VERSION=3.1.0-bookworm
 
+##
+# Directory of the application inside container
+##
 ARG APP_ROOT=
 
 FROM --platform=linux/${IMAGE_ARCH} \
     torizon/debian:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
-ARG APP_EXECUTABLE
 ARG APP_ROOT
 
 # your regular RUN statements here
@@ -43,8 +43,10 @@ RUN . ${APP_ROOT}/.venv/bin/activate && \
     pip3 install --upgrade pip && pip3 install --break-system-packages -r requirements-release.txt && \
     rm requirements-release.txt
 
-# copy the source code
-COPY /src ${APP_ROOT}/src
+# Copy the application source code in the workspace to the $APP_ROOT directory 
+# path inside the container, where $APP_ROOT is the torizon_app_root 
+# configuration defined in settings.json
+COPY ./src ${APP_ROOT}/src
 
 WORKDIR ${APP_ROOT}
 
