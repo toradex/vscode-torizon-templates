@@ -2,32 +2,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "deploy-torizon-arm",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/src",
-                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/src"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "wait-debugpy-start-arm",
             "detail": "",
             "hide": true,
@@ -47,8 +21,6 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "pos-cleanup",
-                "deploy-torizon-arm",
                 "start-torizon-debug-arm"
             ],
             "dependsOrder": "sequence",
@@ -83,32 +55,6 @@
             }
         },
         {
-            "label": "deploy-torizon-arm64",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/src",
-                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/src"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "wait-debugpy-start-arm64",
             "detail": "",
             "hide": true,
@@ -128,8 +74,6 @@
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
-                "pos-cleanup",
-                "deploy-torizon-arm64",
                 "start-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
