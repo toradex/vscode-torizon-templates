@@ -78,10 +78,12 @@ RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
 
 
+USER $SSHUSERNAME
+
 COPY ./assets ${APP_ROOT}/assets
- 
-# Copy the compiled application to the $APP_ROOT directory path inside the 
-# container, where $APP_ROOT is the torizon_app_root configuration defined 
+
+# Copy the compiled application to the $APP_ROOT directory path inside the
+# container, where $APP_ROOT is the torizon_app_root configuration defined
 # in settings.json.
 COPY ./bin/Debug ${APP_ROOT}
 
