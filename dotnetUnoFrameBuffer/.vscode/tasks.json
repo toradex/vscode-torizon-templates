@@ -8,7 +8,7 @@
             "type": "process",
             "args": [
                 "clean",
-                "${workspaceFolder}/__change__.csproj",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
                 "-c", 
                 "Debug",
                 "-r",
@@ -27,7 +27,7 @@
             "type": "process",
             "args": [
                 "clean",
-                "${workspaceFolder}/__change__.csproj",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
                 "-c", 
                 "Debug",
                 "-r",
@@ -46,7 +46,7 @@
             "type": "process",
             "args": [
                 "clean",
-                "${workspaceFolder}/__change__.csproj",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
                 "-c", 
                 "Debug",
                 "-r",

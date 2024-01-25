@@ -134,7 +134,7 @@
       "type": "process",
       "args": [
           "clean",
-          "${workspaceFolder}/__change__.csproj",
+          "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
           "-c", 
           "Debug"
       ],
@@ -151,7 +151,7 @@
       "type": "process",
       "args": [
           "clean",
-          "${workspaceFolder}/__change__.csproj",
+          "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
           "-c", 
           "Debug",
           "-r",
