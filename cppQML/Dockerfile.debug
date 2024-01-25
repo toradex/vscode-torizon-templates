@@ -134,8 +134,6 @@ RUN rm -r /etc/ssh/ssh*key && \
 # Copy the compiled application to the $APP_ROOT directory path inside the 
 # container, where $APP_ROOT is the torizon_app_root configuration defined 
 # in settings.json.
-# If there are libraries or archives also compiled with the application
-# COPY build-${IMAGE_ARCH}/lib ${APP_ROOT}
 COPY build-${IMAGE_ARCH}/bin ${APP_ROOT}
 
 CMD [ "/usr/sbin/sshd", "-D" ]

@@ -93,8 +93,6 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-# If there are libraries or archives also compiled with the application
-# COPY --from=Build ${APP_ROOT}/build-${IMAGE_ARCH}/lib ${APP_ROOT}
 COPY --from=Build ${APP_ROOT}/out ${APP_ROOT}/out
 WORKDIR ${APP_ROOT}
 
