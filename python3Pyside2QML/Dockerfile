@@ -9,6 +9,9 @@ ARG IMAGE_ARCH=
 ##
 ARG BASE_VERSION=3.2.1
 
+##
+# Directory of the application inside container
+##
 ARG APP_ROOT=
 
 ##
@@ -22,7 +25,6 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG APP_EXECUTABLE
 ARG APP_ROOT
 
 # for vivante GPU we need some "special" sauce
@@ -74,8 +76,10 @@ RUN . ${APP_ROOT}/.venv/bin/activate && \
 
 USER torizon
 
-# copy the source code
-COPY /src ${APP_ROOT}/src
+# Copy the application source code in the workspace to the $APP_ROOT directory 
+# path inside the container, where $APP_ROOT is the torizon_app_root 
+# configuration defined in settings.json
+COPY ./src ${APP_ROOT}/src
 
 WORKDIR ${APP_ROOT}
 
