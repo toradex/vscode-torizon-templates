@@ -1,4 +1,7 @@
-# .NET 6 C# Uno Platform Frame Buffer template specific documentation
+# .NET 6 C# Uno Platform Frame Buffer Template Specific Documentation
+
+
+> ⚠️ **WARNING:**  This is just the documentation part specific of this template. **For the complete and general Torizon IDE documentation, check the [developer website documentation](https://developer.toradex.com/torizon/application-development/ide-extension/)** ⚠️
 
 > ⚠️ **WARNING**: The [Uno Platform VS Code extension]() does not work with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit). Check the [Uno Platform documentation](https://platform.uno/docs/articles/get-started-vscode.html?tabs=windows%2Candroiddebug#c-dev-kit-compatibility) for more information.
 

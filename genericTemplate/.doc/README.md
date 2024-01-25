@@ -1,5 +1,8 @@
 # Generic Dockerfile Template Specific Documentation
 
+
+> ⚠️ **WARNING:**  This is just the documentation part specific of this template. **For the complete and general Torizon IDE documentation, check the [developer website documentation](https://developer.toradex.com/torizon/application-development/ide-extension/)** ⚠️
+
 In general, all projects follow the pipeline of tasks described in the [common contributing documentation](https://github.com/toradex/vscode-torizon-templates/blob/bookworm/CONTRIBUTING.md#contributing-templates). However, this is a special kind of generic template that is not made for any specific language and therefore does not have any debugging tasks, just the release ones (which uses the **Dockerfile** instead of the **Dockerfile.debug**).
 
 Scenarios that this generic Dockerfile template can be useful include:

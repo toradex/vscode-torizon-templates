@@ -1,5 +1,7 @@
 # .NET6 C# Uno Platform Skia.GTK Template Specific Documentation
 
+
+> ⚠️ **WARNING:**  This is just the documentation part specific of this template. **For the complete and general Torizon IDE documentation, check the [developer website documentation](https://developer.toradex.com/torizon/application-development/ide-extension/)** ⚠️
 > ⚠️ **WARNING**: The [Uno Platform VS Code extension]() does not work with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit). Check the [Uno Platform documentation](https://platform.uno/docs/articles/get-started-vscode.html?tabs=windows%2Candroiddebug#c-dev-kit-compatibility) for more information.
 
 All projects follow the pipeline of tasks described in the [common contributing documentation](https://github.com/toradex/vscode-torizon-templates/blob/bookworm/CONTRIBUTING.md#contributing-templates). However, each project has its own specificities in terms of technologies and methods used to compile, deploy, and debug the code. Therefore, each of them has their own specific tasks in the **tasks.json** file.
@@ -13,3 +15,5 @@ The deployable package is then copied into the running debug container using **s
 Finally, remote debugging is performed by attaching to the Visual Studio Debugger (vsdbg) on the running container on the device using a [VSCode feature called Pipe Transport](https://code.visualstudio.com/docs/cpp/pipe-transport). For local debugging, the method used is the one described in the [VSCode documentation for .NET Debugging](https://learn.microsoft.com/en-us/dotnet/core/tutorials/debugging-with-visual-studio-code?pivots=dotnet-8-0) is used. However, it has two methods for local debugging, one using OpenGL and the other without using it. The tasks that perform the debugging are those present in the **launch.json** file.
 
 The source code of the template is inspired by the one created following the [instructions from the Uno Platform documentation](https://platform.uno/docs/articles/get-started-vscode.html?tabs=linux) (using just the Skia GTK template).
+
+> ⚠️ **WARNING:**  This is just the documentation part specific of this template. **For the complete and general Torizon IDE documentation, check the [developer website documentation](https://developer.toradex.com/torizon/application-development/ide-extension/)** ⚠️
