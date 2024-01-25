@@ -37,6 +37,9 @@
             "cwd": "~/app",
             "environment": [],
             "externalConsole": false,
+            "logging": {
+                "engineLogging": true,
+            },
             "sourceFileMap": {
                 "/app": "${workspaceFolder}"
             },
@@ -82,6 +85,9 @@
             "cwd": "~/app",
             "environment": [],
             "externalConsole": false,
+            "logging": {
+                "engineLogging": true,
+            },
             "sourceFileMap": {
                 "/app": "${workspaceFolder}"
             },
@@ -127,6 +133,9 @@
             "cwd": "~/app",
             "environment": [],
             "externalConsole": false,
+            "logging": {
+                "engineLogging": true,
+            },
             "sourceFileMap": {
                 "/app": "${workspaceFolder}"
             },
@@ -172,6 +181,9 @@
             "cwd": "~/app",
             "environment": [],
             "externalConsole": false,
+            "logging": {
+                "engineLogging": true,
+            },
             "sourceFileMap": {
                 "/app": "${workspaceFolder}"
             },
