@@ -32,12 +32,12 @@ RUN apt-get -q -y update && \
     gcc \
     g++ \
     make \
-    curl && \
+    curl \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    apt-get clean && apt-get autoremove && \
+    && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
 # install the latest node js
@@ -76,12 +76,12 @@ ARG APP_ROOT
 # Install required packages
 RUN apt-get -q -y update && \
     apt-get -q -y install \
-    curl && \
+    curl \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    apt-get clean && apt-get autoremove && \
+    && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
 # install the latest node js
