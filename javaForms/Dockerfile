@@ -30,8 +30,8 @@ ARG GPU
 RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
 
 # add the Microsoft OpenJDK repo
-RUN apt-get install wget lsb-release -y && \
-    wget https://packages.microsoft.com/config/debian/${lsb_release -rs}/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+RUN apt-get install wget -y && \
+    wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb
 
 # __deps__
@@ -87,7 +87,7 @@ RUN apt-get -q -y update && \
 # add the Microsoft OpenJDK repo
 # TODO: we are using the release of the Debian 10
 # TODO: we need to check for updates on the repo
-RUN apt-get install wget lsb-release -y && \
+RUN apt-get install wget -y && \
     wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb
 
@@ -102,7 +102,8 @@ RUN apt-get -q -y update && \
     libxrender1 \
     libxtst6 \
     libxi6 \
-    msopenjdk-jre \
+    # TODO: use JLINK instead
+    msopenjdk-21 \
 # DOES NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
