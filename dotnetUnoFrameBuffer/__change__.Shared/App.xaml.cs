@@ -85,6 +85,10 @@ namespace __change__
                 // Ensure the current window is active
                 _window.Activate();
             }
+
+        // for the Torizon automated tests
+        Console.WriteLine("Hello Torizon!");
+
         }
 
         /// <summary>
@@ -119,7 +123,7 @@ namespace __change__
 #if DEBUG
 			// Logging is disabled by default for release builds, as it incurs a significant
 			// initialization cost from Microsoft.Extensions.Logging setup. If startup performance
-			// is a concern for your application, keep this disabled. If you're running on web or 
+			// is a concern for your application, keep this disabled. If you're running on web or
 			// desktop targets, you can use url or command line parameters to enable it.
 			//
 			// For more performance documentation: https://platform.uno/docs/articles/Uno-UI-Performance.html
