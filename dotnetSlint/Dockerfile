@@ -96,15 +96,17 @@ ENV SLINT_FULLSCREEN=1
 # Default style to fluent
 ENV SLINT_STYLE=fluent
 
-# Copy the application compiled in the build step to the $APP_ROOT directory 
-# path inside the container, where $APP_ROOT is the torizon_app_root 
+# Copy the application compiled in the build step to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
 COPY --from=Build ${APP_ROOT}/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
 
-# Set the application executable path 
+# Set the application executable path
 ENV APP_EXECUTABLE_PATH ${APP_ROOT}/__change__
 
+WORKDIR ${APP_ROOT}
+
 # Command executed in runtime when the container starts
-CMD ["sh", "-c", "${APP_EXECUTABLE_PATH}"]
+CMD ["sh", "-c", "./__change__"]
 
 # DEPLOY ------------------------------------------------------------------------
