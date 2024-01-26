@@ -33,9 +33,6 @@ ARG GPU
 ARG APP_EXECUTABLE
 ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
-COPY . /build
-WORKDIR /build
-
 # stick to bookworm on /etc/apt/sources.list.d
 RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
 
@@ -87,6 +84,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 
 RUN npm config set registry https://registry.npmjs.org/
 RUN npm install -g npm@8.10.0
+
+COPY . /build
+WORKDIR /build
 
 # build the application
 # overwrite the EGL lib for vivante GPU
@@ -160,6 +160,6 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 COPY --from=Build /build/out/__change__-linux-${IMAGE_ARCH} /app
 WORKDIR /app
 
-CMD [ "__change__", "--no-sandbox" ]
+CMD [ "./__change__", "--no-sandbox", "--ozone-platform=wayland", "--use-gl=egl", "--in-process-gpu" ]
 
 # DEPLOY -----------------------------------------------------------------------
