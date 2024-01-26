@@ -142,7 +142,7 @@ RUN rm -r /etc/ssh/ssh*key && \
 # Copy the compiled application to the $APP_ROOT directory path inside the 
 # container, where $APP_ROOT is the torizon_app_root configuration defined 
 # in settings.json.
-COPY ./bin/Debug/net6.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
+COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./bin/Debug/net6.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
 
 
 CMD [ "/usr/sbin/sshd", "-D" ]
