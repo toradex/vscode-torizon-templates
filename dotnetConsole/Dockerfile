@@ -48,14 +48,15 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
-# Copy the application compiled in the build step to the $APP_ROOT directory 
-# path inside the container, where $APP_ROOT is the torizon_app_root 
+# Copy the application compiled in the build step to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
 COPY --from=Build ${APP_ROOT}/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
 
-# Set the application executable path 
-ENV APP_EXECUTABLE_PATH ${APP_ROOT}/__change__
+# "cd" (enter) into the APP_ROOT directory
+WORKDIR ${APP_ROOT}
 
 # Command executed in runtime when the container starts
-CMD ["sh", "-c", "${APP_EXECUTABLE_PATH}"]
+CMD ["./__change__"]
+
 # DEPLOY -----------------------------------------------------------------------
