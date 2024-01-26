@@ -3,6 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using __change__.ViewModels;
 using __change__.Views;
+using System;
 
 namespace __change__;
 
@@ -23,6 +24,7 @@ public partial class App : Application
                 };
             }
 
+            Console.WriteLine("Hello Torizon!");
             base.OnFrameworkInitializationCompleted();
         }
 }
