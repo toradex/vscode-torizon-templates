@@ -164,8 +164,8 @@
                 },
                 "debuggerConsole": "run-torizon",
                 "mainFile": "__change__.Shared/App.xaml.cs",
-                "mainFileBreakpointLine": 28,
-                "successDebugMessage": "Uno.UI.RemoteControl.RemoteControlClient"
+                "mainFileBreakpointLine": 90,
+                "successDebugMessage": "Hello Torizon!"
             }
         },
         {
