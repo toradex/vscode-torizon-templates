@@ -103,12 +103,13 @@ RUN printf "{\n  \"device\": \"/dev/dri/card1\",\n  \"outputs\": [ { \"name\": \
 # configuration defined in settings.json
 COPY --from=Build ${APP_ROOT}/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
 
-# Set the application executable path
-ENV APP_EXECUTABLE_PATH ${APP_ROOT}/__change__
-
 # TODO: if you need to run as root user, you can remove this line
 USER torizon
 
+# "cd" (enter) into the APP_ROOT directory
+WORKDIR ${APP_ROOT}
+
 # Command executed in runtime when the container starts
-CMD ["sh", "-c", "${APP_EXECUTABLE_PATH}"]
+CMD ["./__change__"]
+
 # DEPLOY -----------------------------------------------------------------------

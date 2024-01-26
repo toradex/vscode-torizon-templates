@@ -67,11 +67,12 @@ USER torizon
 
 COPY ./assets ${APP_ROOT}/assets
 
-# Copy the application compiled in the build step to the $APP_ROOT directory 
-# path inside the container, where $APP_ROOT is the torizon_app_root 
+# Copy the application compiled in the build step to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
 COPY --from=Build ${APP_ROOT}/bin/Debug ${APP_ROOT}
 
+# "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}
 
 # Command executed in runtime when the container starts
