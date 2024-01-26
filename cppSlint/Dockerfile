@@ -105,6 +105,6 @@ ENV SLINT_BACKEND=winit-skia
 ENV SLINT_FULLSCREEN=1
 
 # ADD YOUR ARGUMENTS HERE
-CMD [ "./__change__" ]
+CMD [ "./app/__change__" ]
 
 # DEPLOY ------------------------------------------------------------------------
