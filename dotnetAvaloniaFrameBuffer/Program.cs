@@ -23,7 +23,8 @@ class Program
             // avalonia direct to framebuffer
             return builder.StartLinuxFbDev(args, "/dev/fb0", 1);
         } else if (Environment.GetEnvironmentVariable("AVALONIA_DRM") == "true") {
-            // let's use the DRM with EGL (torizon uses card1)
+            // let's use the DRM with EGL
+            // FIXME: the index of the /dev/dri/cardX is not always 1 (it's depending on the hardware)
             return builder.StartLinuxDrm(args, "/dev/dri/card1", 1);
         }
 

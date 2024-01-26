@@ -15,6 +15,7 @@
   "torizon_app_root": "/home/torizon/app",
   "tcb.packageName": "__change__",
   "tcb.version": "3.8.1",
+  "torizon.gpuPrefixRC": true,
   "omnisharp.useModernNet": true,
   "dotnet.server.useOmnisharp": true
 }
