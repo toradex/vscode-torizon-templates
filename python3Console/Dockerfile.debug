@@ -102,6 +102,6 @@ RUN rm -r /etc/ssh/ssh*key && \
 # Copy the application source code in the workspace to the $APP_ROOT directory 
 # path inside the container, where $APP_ROOT is the torizon_app_root 
 # configuration defined in settings.json
-COPY ./src ${APP_ROOT}/src
+COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./src ${APP_ROOT}/src
 
 CMD [ "/usr/sbin/sshd", "-D" ]
