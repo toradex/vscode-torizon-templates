@@ -4,7 +4,6 @@ using Avalonia.Markup.Xaml;
 using __change__.ViewModels;
 using __change__.Views;
 using Avalonia.LinuxFramebuffer;
-
 using System;
 
 namespace __change__
@@ -25,6 +24,7 @@ namespace __change__
                 };
             }
 
+            Console.WriteLine("Hello Torizon!");
             base.OnFrameworkInitializationCompleted();
         }
     }

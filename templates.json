@@ -76,8 +76,8 @@
                 },
                 "debuggerConsole": null,
                 "mainFile": "App.axaml.cs",
-                "mainFileBreakpointLine": 26,
-                "successDebugMessage": "System.Runtime.Intrinsics.dll"
+                "mainFileBreakpointLine": 27,
+                "successDebugMessage": "Hello Torizon!"
             }
         },
         {
@@ -98,8 +98,8 @@
                 },
                 "debuggerConsole": null,
                 "mainFile": "App.axaml.cs",
-                "mainFileBreakpointLine": 28,
-                "successDebugMessage": "System.IO.Compression.dll"
+                "mainFileBreakpointLine": 27,
+                "successDebugMessage": "Hello Torizon!"
             }
         },
         {
