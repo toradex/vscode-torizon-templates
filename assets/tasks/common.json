@@ -619,15 +619,19 @@
             "label": "pre-cleanup",
             "detail": "",
             "hide": true,
-            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "command": "if",
             "type": "shell",
             "args": [
+                "[", "${command:cleanLock}", "==", "false", "];" , "then",
+                "DOCKER_HOST=${config:torizon_ip}:2375",
                 "docker",
                 "compose",
                 "-p",
                 "torizon",
                 "down",
-                "--remove-orphans"
+                "--remove-orphans",
+                ";",
+                "fi"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
