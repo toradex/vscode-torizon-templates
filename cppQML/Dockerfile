@@ -10,7 +10,6 @@ ARG BASE_VERSION=3
 
 ##
 # Board architecture
-# arm or arm64
 ##
 ARG IMAGE_ARCH=
 

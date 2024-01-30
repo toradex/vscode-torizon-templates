@@ -4,8 +4,6 @@
 ##
 ARG IMAGE_ARCH=
 
-
-
 ##
 # Base container version
 ##
