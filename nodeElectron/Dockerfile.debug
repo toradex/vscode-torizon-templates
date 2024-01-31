@@ -12,9 +12,9 @@ ARG IMAGE_ARCH=
 ARG BASE_VERSION=3.2.1
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__
+ARG APP_ROOT=
 
 ##
 # Debug port
@@ -38,9 +38,8 @@ FROM --platform=linux/${IMAGE_ARCH} \
 ARG IMAGE_ARCH
 ARG GPU
 ARG SSH_DEBUG_PORT
-ARG APP_EXECUTABLE
+ARG APP_ROOT
 ARG SSHUSERNAME
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
@@ -133,5 +132,17 @@ RUN mkdir /var/run/sshd && \
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
+
+
+# Copy the application compiled in the build step to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
+# configuration defined in settings.json
+COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./out/__change__-linux-${IMAGE_ARCH} ${APP_ROOT}
+
+# Copy the EGL lib inside the project's directory for vivante GPU
+RUN if [ "${GPU}" = "-vivante" ] || [ "${GPU}" = "-imx8" ]; then \
+        cp /usr/lib/aarch64-linux-gnu/libEGL.so ${APP_ROOT} && \
+        cp /usr/lib/aarch64-linux-gnu/libGLESv2.so ${APP_ROOT}; \
+    fi
 
 CMD [ "/usr/sbin/sshd", "-D" ]

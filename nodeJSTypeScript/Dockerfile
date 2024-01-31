@@ -77,6 +77,7 @@ ARG APP_ROOT
 RUN apt-get -q -y update && \
     apt-get -q -y install \
     curl \
+    libatomic1 \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
@@ -94,9 +95,11 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
 COPY --from=Build ${APP_ROOT}/out ${APP_ROOT}/out
+
+# "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}
 
 # Command executed in runtime when the container starts
-CMD [ "node", "out/lib/index.js" ]
+CMD [ "node", "out" ]
 
 # DEPLOY -----------------------------------------------------------------------
