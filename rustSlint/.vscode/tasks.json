@@ -42,12 +42,21 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
                 "cargo",
                 "build",
                 "--target",
-                "aarch64-unknown-linux-gnu"
+                "aarch64-unknown-linux-gnu",
+                "&&",
+                "mkdir",
+                "-p",
+                "executable-arm64",
+                "&&",
+                "cp",
+                "target/aarch64-unknown-linux-gnu/debug/__change__",
+                "executable-arm64"
+
             ],
             "problemMatcher": [
                 {
@@ -78,22 +87,14 @@
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/target/aarch64-unknown-linux-gnu/debug/__change__",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-debug-arm64",
@@ -120,12 +121,20 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
                 "cargo",
                 "build",
                 "--target",
-                "armv7-unknown-linux-gnueabihf"
+                "armv7-unknown-linux-gnueabihf",
+                "&&",
+                "mkdir",
+                "-p",
+                "executable-arm",
+                "&&",
+                "cp",
+                "target/armv7-unknown-linux-gnueabihf/debug/__change__",
+                "executable-arm"
             ],
             "problemMatcher": [
                 {
@@ -156,22 +165,14 @@
             "label": "deploy-torizon-arm",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/target/armv7-unknown-linux-gnueabihf/debug/__change__",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-debug-arm",

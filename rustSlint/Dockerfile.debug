@@ -4,8 +4,6 @@
 ##
 ARG IMAGE_ARCH=
 
-
-
 ##
 # Base container version
 # Using Slint v1.4.1 base images
@@ -13,9 +11,9 @@ ARG IMAGE_ARCH=
 ARG BASE_VERSION=3.0.9-bookworm-1.4.1
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=app
+ARG APP_ROOT=
 
 ##
 # Debug port
@@ -41,9 +39,8 @@ FROM commontorizon/slint-base-${IMAGE_ARCH}${GPU}:${BASE_VERSION} AS Debug
 ARG IMAGE_ARCH
 ARG GPU
 ARG SSH_DEBUG_PORT
-ARG APP_EXECUTABLE
+ARG APP_ROOT
 ARG SSHUSERNAME
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
@@ -79,6 +76,17 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# automate for torizonPackages.json
+RUN apt-get -q -y update && \
+    apt-get -q -y install \
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
+    # __torizon_packages_dev_start__
+    # __torizon_packages_dev_end__
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
 # Default to the Skia backend for best performance
 ENV SLINT_BACKEND=winit-skia
 # Default to Slint running in fullscreen
@@ -105,5 +113,10 @@ RUN mkdir /var/run/sshd && \
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
+
+# Copy the compiled application to the $APP_ROOT directory path inside the
+# container, where $APP_ROOT is the torizon_app_root configuration defined
+# in settings.json.
+COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./executable-${IMAGE_ARCH} ${APP_ROOT}
 
 CMD [ "/usr/sbin/sshd", "-D" ]

@@ -1,16 +1,20 @@
-## Using Slint v1.4.1 base images
+# ARGUMENTS --------------------------------------------------------------------
+##
+# Base container version
+# Using Slint v1.4.1 base images
+##
 ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm-1.4.1
 ARG BASE_VERSION=3.2.1
+
 ##
 # Board architecture
-# arm or arm64
 ##
 ARG IMAGE_ARCH=
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__
+ARG APP_ROOT=
 
 ##
 # Board GPU vendor prefix
@@ -24,7 +28,7 @@ FROM commontorizon/slint-sdk-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
 ARG IMAGE_ARCH
 ARG GPU
 ARG COMPILER_ARCH
-ARG APP_EXECUTABLE
+ARG APP_ROOT
 ENV IMAGE_ARCH ${IMAGE_ARCH}
 
 RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
@@ -55,23 +59,22 @@ RUN apt-get -q -y update && \
 # Don't require font-config when the compiler runs
 ENV RUST_FONTCONFIG_DLOPEN=on
 
-COPY . /app
-WORKDIR /app
+COPY . ${APP_ROOT}
+WORKDIR ${APP_ROOT}
 
 # BUILD ------------------------------------------------------------------------
 
 RUN TARGET=$(cat /rust-toolchain-arch.txt) && \
     cargo build --release --target $TARGET && \
-    mkdir -p target/deploy && \
-    cp target/$TARGET/release/$APP_EXECUTABLE target/deploy
+    mkdir -p build && \
+    cp -r target/$TARGET/release build
 
 # DEPLOY ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG APP_EXECUTABLE
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
@@ -98,15 +101,22 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
-# copy the build
-COPY --from=Build /app/target/deploy/${APP_EXECUTABLE} /app
 
 # Default to the Skia backend for best performance
 ENV SLINT_BACKEND=winit-skia
 # Default to Slint running in fullscreen
 ENV SLINT_FULLSCREEN=1
 
+# Copy the application compiled in the build step to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
+# configuration defined in settings.json
+COPY --from=Build ${APP_ROOT}/build/release/__change__ ${APP_ROOT}/__change__
+
+# "cd" (enter) into the APP_ROOT directory
+WORKDIR ${APP_ROOT}
+
+
 # ADD YOUR ARGUMENTS HERE
-CMD [ "./app" ]
+CMD [ "./__change__" ]
 
 # DEPLOY ------------------------------------------------------------------------
