@@ -126,84 +126,6 @@
             ]
         },
         {
-            "label": "deploy-application",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/dist",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-assets",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/assets",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app/assets"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-libs",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/libs",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app/libs"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "exterminate-debugger",
             "detail": "",
             "hide": true,
@@ -245,7 +167,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/app/libs/*:${config:torizon_app_root}/app/__change__.jar __change__.Form1 || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/libs/*:${config:torizon_app_root}/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -259,10 +181,6 @@
                 "pull-container-torizon-debug-amd64",
                 "run-container-torizon-debug-amd64",
                 "wait-a-bit",
-                "pos-cleanup",
-                "deploy-application",
-                "deploy-assets",
-                "deploy-libs"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": [
@@ -329,7 +247,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/app/libs/*:${config:torizon_app_root}/app/__change__.jar __change__.Form1 || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/libs/*:${config:torizon_app_root}/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -343,10 +261,6 @@
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
-                "pos-cleanup",
-                "deploy-application",
-                "deploy-assets",
-                "deploy-libs"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": [
@@ -413,7 +327,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/app/libs/*:${config:torizon_app_root}/app/__change__.jar __change__.Form1 || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/libs/*:${config:torizon_app_root}/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -427,10 +341,6 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "pos-cleanup",
-                "deploy-application",
-                "deploy-assets",
-                "deploy-libs"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": [
