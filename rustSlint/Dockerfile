@@ -1,5 +1,5 @@
-## Using Slint v1.3.2 base images
-ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm-1.3.2
+## Using Slint v1.4.1 base images
+ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm-1.4.1
 ARG BASE_VERSION=3.2.1
 ##
 # Board architecture
