@@ -2,6 +2,7 @@
     "packages": [
         "openssh-client",
         "sshpass",
+        "rsync",
         "nodejs",
         "npm",
         "libatspi2.0-0",

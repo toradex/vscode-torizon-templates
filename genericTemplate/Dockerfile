@@ -11,6 +11,11 @@ ARG IMAGE_ARCH=
 ##
 ARG GPU=
 
+##
+# Directory of the application inside container
+##
+ARG APP_ROOT=
+
 # DEPLOY ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} torizon/debian:${BASE_VERSION}
 
@@ -24,6 +29,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
+# "cd" (enter) into the APP_ROOT directory
+WORKDIR ${APP_ROOT}
 
 # Command executed when starting the container
 CMD [ "echo", "Generic", "Dockerfile", "Template", "successfully", "executed" ]

@@ -5,13 +5,12 @@
 ARG BASE_VERSION=4-rc
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__
+ARG APP_ROOT=
 
 ##
 # Board architecture
-# arm or arm64
 ##
 ARG IMAGE_ARCH=
 
@@ -25,6 +24,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG GPU
+ARG APP_ROOT
 
 # stick to bookworm on /etc/apt/sources.list.d
 RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
@@ -49,8 +49,8 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 # __deps__
 
-COPY . /app
-WORKDIR /app
+COPY . ${APP_ROOT}
+WORKDIR ${APP_ROOT}
 
 RUN ant jar
 
@@ -59,7 +59,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG APP_EXECUTABLE
+ARG APP_ROOT
 
 # SSH for remote debug
 EXPOSE 2231
@@ -112,9 +112,19 @@ RUN apt-get -q -y update && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-COPY libs /app/libs
-USER torizon
-WORKDIR /app
-COPY --from=Build /app /app
 
+USER torizon
+
+COPY ./libs ${APP_ROOT}/libs
+COPY ./assets ${APP_ROOT}/assets
+
+# Copy the application compiled in the build step to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
+# configuration defined in settings.json
+COPY --from=Build ${APP_ROOT} ${APP_ROOT}
+
+# "cd" (enter) into the APP_ROOT directory
+WORKDIR ${APP_ROOT}
+
+# Command executed in runtime when the container starts
 CMD [ "java", "-cp","libs/*:dist/__change__.jar", "__change__.Form1" ]

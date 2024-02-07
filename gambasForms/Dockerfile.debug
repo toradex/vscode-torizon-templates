@@ -12,9 +12,9 @@ ARG IMAGE_ARCH=
 ARG BASE_VERSION=3.17.90-4-rc
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__
+ARG APP_ROOT=
 
 ##
 # Debug port
@@ -42,9 +42,8 @@ FROM --platform=linux/${IMAGE_ARCH} \
 ARG IMAGE_ARCH
 ARG GPU
 ARG SSH_DEBUG_PORT
-ARG APP_EXECUTABLE
+ARG APP_ROOT
 ARG SSHUSERNAME
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}

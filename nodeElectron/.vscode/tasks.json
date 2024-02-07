@@ -77,7 +77,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "ssh -i ${config:torizon_app_root}/app/resources/app/.conf/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${config:torizon_debug_ssh_port} -L 0.0.0.0:${config:torizon_debug_port2}:localhost:${config:torizon_debug_port3} localhost -N >out2.log 2>err2.log &"
+                "ssh -i ${config:torizon_app_root}/resources/app/.conf/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${config:torizon_debug_ssh_port} -L 0.0.0.0:${config:torizon_debug_port2}:localhost:${config:torizon_debug_port3} localhost -N >out2.log 2>err2.log &"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -91,7 +91,7 @@
             "detail": "",
             "hide": true,
             "command": "npx",
-            "type": "process",
+            "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -101,35 +101,14 @@
                 "-a",
                 "armv7l",
                 "-p",
-                "linux"
+                "linux",
+                "&&",
+                "rsync",
+                "-a",
+                "${workspaceFolder}/out/__change__-linux-armv7l/",
+                "${workspaceFolder}/out/__change__-linux-arm",
             ],
             "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-torizon-arm",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/out/__change__-linux-armv7l",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
@@ -151,7 +130,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "${config:torizon_app_root}/app/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} --ozone-platform=wayland >out.log 2>err.log &"
+                "${config:torizon_app_root}/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} --ozone-platform=wayland >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -165,8 +144,6 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "pos-cleanup",
-                "deploy-torizon-arm"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -199,57 +176,6 @@
             }
         },
         {
-            "label": "deploy-torizon-arm64",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/out/__change__-linux-arm64",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "overwrite-libs-vivante",
-            "detail": "",
-            "hide": true,
-            "command": "ssh",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
-                "if [ \"${config:torizon_gpu}\" = \"-vivante\" ]; then cp /usr/lib/aarch64-linux-gnu/libEGL.so ${config:torizon_app_root}/app/ && cp /usr/lib/aarch64-linux-gnu/libGLESv2.so ${config:torizon_app_root}/app/; fi"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "start-torizon-debug-arm64",
             "detail": "",
             "hide": true,
@@ -265,7 +191,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "${config:torizon_app_root}/app/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} --ozone-platform=wayland --use-gl=egl --in-process-gpu >out.log 2>err.log &"
+                "${config:torizon_app_root}/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} --ozone-platform=wayland --use-gl=egl --in-process-gpu >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -278,10 +204,7 @@
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
-                "wait-a-bit",
-                "pos-cleanup",
-                "deploy-torizon-arm64",
-                "overwrite-libs-vivante"
+                "wait-a-bit"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -314,32 +237,6 @@
             }
         },
         {
-            "label": "deploy-torizon-amd64",
-            "detail": "",
-            "hide": true,
-            "command": "scp",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/out/__change__-linux-x64",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "start-torizon-debug-amd64",
             "detail": "",
             "hide": true,
@@ -355,7 +252,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "${config:torizon_app_root}/app/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} --ozone-platform=wayland >out.log 2>err.log &"
+                "${config:torizon_app_root}/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port} --ozone-platform=wayland >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -369,8 +266,6 @@
                 "pull-container-torizon-debug-amd64",
                 "run-container-torizon-debug-amd64",
                 "wait-a-bit",
-                "pos-cleanup",
-                "deploy-torizon-amd64"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",

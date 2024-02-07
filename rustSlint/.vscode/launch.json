@@ -42,14 +42,14 @@
             "name": "Torizon ARMv7",
             "type": "cppdbg",
             "request": "launch",
-            "program": "~/app",
+            "program": "${config:torizon_app_root}/__change__",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "~/",
+            "cwd": "${config:torizon_app_root}",
             "environment": [],
             "externalConsole": false,
             "sourceFileMap": {
-                "/app": "${workspaceFolder}"
+                "${config:torizon_app_root}": "${workspaceFolder}"
             },
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/rust-gdb",
@@ -87,14 +87,14 @@
             "name": "Torizon ARMv8",
             "type": "cppdbg",
             "request": "launch",
-            "program": "~/app",
+            "program": "${config:torizon_app_root}/__change__",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "~/",
+            "cwd": "${config:torizon_app_root}",
             "environment": [],
             "externalConsole": false,
             "sourceFileMap": {
-                "/app": "${workspaceFolder}"
+                "${config:torizon_app_root}": "${workspaceFolder}"
             },
             "pipeTransport": {
                 "debuggerPath": "/usr/bin/rust-gdb",

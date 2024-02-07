@@ -24,7 +24,7 @@
             "port": "${config:torizon_debug_port2}",
             "webRoot": "${workspaceFolder}",
             "pathMapping": {
-                "file://${config:torizon_app_root}/app/resources/app/": "${workspaceFolder}/./",
+                "file://${config:torizon_app_root}/resources/app/": "${workspaceFolder}/./",
             },
             "enableContentValidation": true,
             "trace": true,
@@ -41,7 +41,7 @@
             "sourceMaps": false,
             "continueOnAttach": true,
             "localRoot": "${workspaceFolder}",
-            "remoteRoot": "${config:torizon_app_root}/app/resources/app/",
+            "remoteRoot": "${config:torizon_app_root}/resources/app/",
             "preLaunchTask": "start-torizon-debug-amd64",
             "postDebugTask": "stop-torizon-debug"
         },
@@ -55,7 +55,7 @@
             "sourceMaps": false,
             "continueOnAttach": true,
             "localRoot": "${workspaceFolder}",
-            "remoteRoot": "${config:torizon_app_root}/app/resources/app/",
+            "remoteRoot": "${config:torizon_app_root}/resources/app/",
             "preLaunchTask": "start-torizon-debug-arm",
             "postDebugTask": "stop-torizon-debug"
         },
@@ -69,7 +69,7 @@
             "sourceMaps": false,
             "continueOnAttach": true,
             "localRoot": "${workspaceFolder}",
-            "remoteRoot": "${config:torizon_app_root}/app/resources/app/",
+            "remoteRoot": "${config:torizon_app_root}/resources/app/",
             "preLaunchTask": "start-torizon-debug-arm64",
             "postDebugTask": "stop-torizon-debug"
         },

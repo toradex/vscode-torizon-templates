@@ -42,11 +42,20 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
                 "zig",
                 "build",
-                "-Dtarget=aarch64-linux-gnu"
+                "-Dtarget=aarch64-linux-gnu",
+                "&&",
+                "mkdir",
+                "-p",
+                "executable-arm64",
+                "&&",
+                "cp",
+                "-r",
+                "zig-out/aarch64/Debug/bin/*",
+                "executable-arm64"
             ],
             "problemMatcher": [
                 {
@@ -77,22 +86,14 @@
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/zig-out/aarch64/Debug/bin",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-debug-arm64",
@@ -119,11 +120,20 @@
                 "--rm",
                 "-it",
                 "-v",
-                "${workspaceFolder}:/app",
+                "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
                 "zig",
                 "build",
-                "-Dtarget=arm-linux-gnu"
+                "-Dtarget=arm-linux-gnu",
+                "&&",
+                "mkdir",
+                "-p",
+                "executable-arm",
+                "&&",
+                "cp",
+                "-r",
+                "zig-out/arm/Debug/bin/*",
+                "executable-arm"
             ],
             "problemMatcher": [
                 {
@@ -154,22 +164,14 @@
             "label": "deploy-torizon-arm",
             "detail": "",
             "hide": true,
-            "command": "scp",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-P",
-                "${config:torizon_debug_ssh_port}",
-                "-pr",
-                "${workspaceFolder}/zig-out/arm/Debug/bin",
-                "${config:torizon_run_as}@${config:torizon_ip}:~/app"
+                "1"
             ],
             "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-debug-arm",

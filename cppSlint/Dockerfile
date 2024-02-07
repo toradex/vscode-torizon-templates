@@ -1,16 +1,20 @@
-## using Slint v1.2.2 base images
+# ARGUMENTS --------------------------------------------------------------------
+##
+# Base container version
+# Using Slint v1.4.1 base images
+##
 ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm-1.4.1
 ARG BASE_VERSION=3.2.1
+
 ##
 # Board architecture
-# arm or arm64
 ##
 ARG IMAGE_ARCH=
 
 ##
-# Application Name
+# Directory of the application inside container
 ##
-ARG APP_EXECUTABLE=__change__
+ARG APP_ROOT=
 
 ##
 # Board GPU vendor prefix
@@ -23,8 +27,7 @@ FROM commontorizon/slint-sdk-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG COMPILER_ARCH
-ENV IMAGE_ARCH ${IMAGE_ARCH}
+ARG APP_ROOT
 
 # Rust
 ENV RUSTUP_HOME=/rust
@@ -49,8 +52,8 @@ ENV RUST_FONTCONFIG_DLOPEN=on
 # Default to Ninja
 ENV CMAKE_GENERATOR=Ninja
 
-COPY . /app
-WORKDIR /app
+COPY . ${APP_ROOT}
+WORKDIR ${APP_ROOT}
 
 RUN mkdir -p build \
     && cd build \
@@ -65,8 +68,7 @@ FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base${GPU}:${BASE_VERSION} A
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG APP_EXECUTABLE
-ENV APP_EXECUTABLE ${APP_EXECUTABLE}
+ARG APP_ROOT
 
 # Install Slint dependencies
 RUN apt-get update \
@@ -96,15 +98,19 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
-# copy the build
-COPY --from=Build /app/build /app
-
 # Default to the Skia backend for best performance
 ENV SLINT_BACKEND=winit-skia
 # Default to Slint running in fullscreen
 ENV SLINT_FULLSCREEN=1
 
-# ADD YOUR ARGUMENTS HERE
-CMD [ "./app/__change__" ]
+# Copy the application compiled in the build step to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
+# configuration defined in settings.json
+COPY --from=Build ${APP_ROOT}/build/${IMAGE_ARCH} ${APP_ROOT}
 
+# "cd" (enter) into the APP_ROOT directory
+WORKDIR ${APP_ROOT}
+
+# Command executed in runtime when the container starts
+CMD ["./__change__"]
 # DEPLOY ------------------------------------------------------------------------

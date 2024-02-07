@@ -1,8 +1,31 @@
-FROM kassany/bookworm-ziglang:0.11.0
+# ARGUMENTS --------------------------------------------------------------------
+##
+# Board architecture
+##
+ARG IMAGE_ARCH=
+
+##
+# Base container version
+##
+ARG SDK_BASE_VERSION=0.11.0
+
+##
+# Directory of the application inside container
+##
+ARG APP_ROOT=
+
+# BUILD ------------------------------------------------------------------------
+FROM kassany/bookworm-ziglang:${SDK_BASE_VERSION}
+
+ARG APP_ROOT
 
 RUN apt-get update && \
     apt-get install -y \
     # ADD YOUR PACKAGES HERE
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
+    # __torizon_packages_dev_start__
+    # __torizon_packages_dev_end__
+# DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
@@ -15,4 +38,4 @@ RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
 
 USER $UNAME
 
-WORKDIR /app
+WORKDIR ${APP_ROOT}
