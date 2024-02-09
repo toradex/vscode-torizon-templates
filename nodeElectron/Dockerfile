@@ -84,8 +84,11 @@ RUN npm install -g npm@8.10.0
 
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
-# Remove the out directory, that has the debug build
+
+# Remove the code from the debug builds, inside this container, to build the
+# release version from a clean build
 RUN rm -rf ${APP_ROOT}/out
+
 
 RUN npm install
 

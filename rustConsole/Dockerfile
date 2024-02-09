@@ -48,6 +48,11 @@ RUN rustup target add $(cat ~/rust-toolchain-arch.txt)
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
+# Remove the code from the debug builds, inside this container, to build the
+# release version from a clean build
+RUN rm -rf ${APP_ROOT}/target
+
+
 RUN TARGET=$(cat ~/rust-toolchain-arch.txt) && \
     cargo build --release --target $TARGET && \
     mkdir -p build && \

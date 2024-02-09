@@ -55,10 +55,12 @@ ENV CMAKE_GENERATOR=Ninja
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
-RUN mkdir -p build \
-    && cd build \
-    && cmake .. \
-    && cmake --build .
+# Remove the code from the debug builds, inside this container, to build the
+# release version from a clean build
+RUN rm -rf ${APP_ROOT}/build
+
+RUN cmake -DCMAKE_BUILD_TYPE=Release -B build/${IMAGE_ARCH} -S . \
+    && cmake --build build/${IMAGE_ARCH}
 
 # BUILD ------------------------------------------------------------------------
 
@@ -107,6 +109,10 @@ ENV SLINT_FULLSCREEN=1
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
 COPY --from=Build ${APP_ROOT}/build/${IMAGE_ARCH} ${APP_ROOT}
+
+# Remove the CMakeFiles directory, that is just needed for the build and not
+# for the execution
+RUN rm -rf ${APP_ROOT}/CMakeFiles
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}
