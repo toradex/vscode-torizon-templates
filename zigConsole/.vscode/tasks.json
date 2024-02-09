@@ -46,15 +46,6 @@
                 "zig",
                 "build",
                 "-Dtarget=aarch64-linux-gnu",
-                "&&",
-                "mkdir",
-                "-p",
-                "executable-arm64",
-                "&&",
-                "cp",
-                "-r",
-                "zig-out/aarch64/Debug/bin/*",
-                "executable-arm64"
             ],
             "problemMatcher": [
                 {
@@ -94,7 +85,7 @@
                 "cp",
                 "-r",
                 "zig-out/aarch64/Debug/bin/*",
-                "executable-arm64"
+                "executable-arm64",
             ],
             "icon": {
                 "id": "flame",
@@ -120,7 +111,7 @@
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-debug-arm64",
-                "copy-executable-arm64"
+                "copy-debug-executable-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
@@ -148,15 +139,6 @@
                 "zig",
                 "build",
                 "-Dtarget=arm-linux-gnu",
-                "&&",
-                "mkdir",
-                "-p",
-                "executable-arm",
-                "&&",
-                "cp",
-                "-r",
-                "zig-out/arm/Debug/bin/*",
-                "executable-arm"
             ],
             "problemMatcher": [
                 {
@@ -196,7 +178,7 @@
                 "cp",
                 "-r",
                 "zig-out/arm/Debug/bin/*",
-                "executable-arm"
+                "executable-arm",
             ],
             "icon": {
                 "id": "flame",
@@ -222,7 +204,7 @@
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-debug-arm",
-                "copy-executable-arm",
+                "copy-debug-executable-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
