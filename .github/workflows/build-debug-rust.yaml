@@ -45,4 +45,5 @@ jobs:
           chmod 777 . -R
 
           ./.vscode/tasks.ps1 run build-debug-${env:PROJECT_ARCH}
+          ./.vscode/tasks.ps1 run copy-debug-executable-${env:PROJECT_ARCH}
           ./.vscode/tasks.ps1 run build-container-torizon-debug-${env:PROJECT_ARCH}
