@@ -62,6 +62,11 @@ ENV RUST_FONTCONFIG_DLOPEN=on
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
+# Remove the code from the debug builds, inside this container, to build the
+# release version from a clean build
+RUN rm -rf ${APP_ROOT}/target
+
+
 # BUILD ------------------------------------------------------------------------
 
 RUN TARGET=$(cat /rust-toolchain-arch.txt) && \

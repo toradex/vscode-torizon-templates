@@ -33,6 +33,10 @@ RUN apt-get -q -y update && \
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
+# Remove the code from the debug builds, inside this container, to build the
+# release version from a clean build
+RUN rm -rf ${APP_ROOT}/build-${IMAGE_ARCH}
+
 # Compile the application
 RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
         make ARCH=${IMAGE_ARCH} CC=aarch64-linux-gnu-gcc ; \

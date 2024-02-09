@@ -83,6 +83,10 @@ RUN apt-get -q -y update && \
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
+# Remove the code from the debug builds, inside this container, to build the
+# release version from a clean build
+RUN rm -rf ${APP_ROOT}/build-${IMAGE_ARCH}
+
 RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
         cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -Bbuild-${IMAGE_ARCH} ; \
     elif [ "$IMAGE_ARCH" = "arm" ] ; then \

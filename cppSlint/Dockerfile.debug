@@ -118,4 +118,8 @@ RUN rm -r /etc/ssh/ssh*key && \
 # in settings.json.
 COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./build/${IMAGE_ARCH} ${APP_ROOT}
 
+# Remove the CMakeFiles directory, that is just needed for the build and not
+# for the execution
+RUN rm -rf ${APP_ROOT}/CMakeFiles
+
 CMD [ "/usr/sbin/sshd", "-D" ]

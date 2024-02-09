@@ -53,6 +53,11 @@ RUN npm install -g ts-node
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
+# Remove the code from the debug builds, inside this container, to build the
+# release version from a clean build
+RUN rm -rf ${APP_ROOT}/out
+
+
 RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
         npm run output-arm64; \
     elif [ "$IMAGE_ARCH" = "arm" ] ; then \

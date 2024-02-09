@@ -41,4 +41,9 @@ jobs:
             false
 
           cd "${env:GITHUB_WORKSPACE}/${env:PROJECT_FOLDER}CITest"
+          # TODO: this is bad, but it's the only way to make it work for now
+          chmod 777 . -R
+
+          ./.vscode/tasks.ps1 run build-debug-${env:PROJECT_ARCH}
+          ./.vscode/tasks.ps1 run copy-debug-executable-${env:PROJECT_ARCH}
           ./.vscode/tasks.ps1 run build-container-torizon-debug-${env:PROJECT_ARCH}

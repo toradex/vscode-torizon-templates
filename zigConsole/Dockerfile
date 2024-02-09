@@ -70,6 +70,10 @@ RUN chmod +x ${ZIG_PATH}/zig
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
+# Remove the code from the debug builds, inside this container, to build the
+# release version from a clean build
+RUN rm -rf ${APP_ROOT}/target
+
 # zig optimizers:
 # (Debug | ReleaseSafe) w/ dbg-info + runtime stacktrace (compiler safety),
 # (ReleaseSmall | ReleaseFast) no runtime stacktrace (undefined & fast)

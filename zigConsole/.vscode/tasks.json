@@ -40,7 +40,6 @@
                 "docker",
                 "run",
                 "--rm",
-                "-it",
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
@@ -83,6 +82,30 @@
             ]
         },
         {
+            "label": "copy-debug-executable-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "mkdir",
+            "type": "shell",
+            "args": [
+                "-p",
+                "executable-arm64",
+                "&&",
+                "cp",
+                "-r",
+                "zig-out/aarch64/Debug/bin/*",
+                "executable-arm64"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-arm64"
+            ]
+        },
+        {
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
@@ -97,6 +120,7 @@
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-debug-arm64",
+                "copy-executable-arm64"
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
@@ -118,7 +142,6 @@
                 "docker",
                 "run",
                 "--rm",
-                "-it",
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
@@ -161,6 +184,30 @@
             ]
         },
         {
+            "label": "copy-debug-executable-arm",
+            "detail": "",
+            "hide": true,
+            "command": "mkdir",
+            "type": "shell",
+            "args": [
+                "-p",
+                "executable-arm",
+                "&&",
+                "cp",
+                "-r",
+                "zig-out/arm/Debug/bin/*",
+                "executable-arm"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-arm"
+            ]
+        },
+        {
             "label": "deploy-torizon-arm",
             "detail": "",
             "hide": true,
@@ -175,6 +222,7 @@
                 "copy-docker-compose",
                 "pre-cleanup",
                 "build-debug-arm",
+                "copy-executable-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",

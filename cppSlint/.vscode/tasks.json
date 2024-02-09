@@ -177,9 +177,12 @@
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
-                "bash",
-                "-c",
-                "\"cmake -DCMAKE_BUILD_TYPE=Debug -B build/arm64 -S .\""
+                "cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-B",
+                "build/arm64",
+                "-S",
+                "."
             ],
             "problemMatcher": [
                 "$gcc"
@@ -205,9 +208,9 @@
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
-                "bash",
-                "-c",
-                "\"cmake --build build/arm64\""
+                "cmake",
+                "--build",
+                "build/arm64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -233,9 +236,11 @@
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm64-__container__",
-                "bash",
-                "-c",
-                "\"cmake --build build/arm64 --target clean\""
+                "cmake",
+                "--build",
+                "build/arm64",
+                "--target",
+                "clean"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -288,9 +293,12 @@
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
-                "bash",
-                "-c",
-                "\"cmake -DCMAKE_BUILD_TYPE=Debug -B build/arm -S .\""
+                "cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-B",
+                "build/arm",
+                "-S",
+                "."
             ],
             "problemMatcher": [
                 "$gcc"
@@ -316,9 +324,9 @@
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
-                "bash",
-                "-c",
-                "\"cmake --build build/arm\""
+                "cmake",
+                "--build",
+                "build/arm"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -344,9 +352,11 @@
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-arm-__container__",
-                "bash",
-                "-c",
-                "\"cmake --build build/arm --target clean\""
+                "cmake",
+                "--build",
+                "build/arm",
+                "--target",
+                "clean"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -399,9 +409,12 @@
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-amd64-__container__",
-                "bash",
-                "-c",
-                "\"cmake -DCMAKE_BUILD_TYPE=Debug -B build/amd64 -S .\""
+                "cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-B",
+                "build/amd64",
+                "-S",
+                "."
             ],
             "problemMatcher": [
                 "$gcc"
@@ -427,9 +440,9 @@
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-amd64-__container__",
-                "bash",
-                "-c",
-                "\"cmake --build build/amd64\""
+                "cmake",
+                "--build",
+                "build/amd64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -455,9 +468,11 @@
                 "-v",
                 "${workspaceFolder}:${config:torizon_app_root}",
                 "cross-toolchain-amd64-__change__",
-                "bash",
-                "-c",
-                "\"cmake --build build/amd64 --target clean\""
+                "cmake",
+                "--build",
+                "build/amd64",
+                "--target",
+                "clean"
             ],
             "problemMatcher": [
                 "$gcc"
