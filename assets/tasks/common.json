@@ -412,6 +412,36 @@
             }
         },
         {
+            "label": "run-share-wsl-ports-debug",
+            "detail": "",
+            "hide": true,
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "env": {
+                    "DEBUG_SHARED_PORTS": "true"
+                }
+            },
+            "args": [
+                "-nop",
+                "${workspaceFolder}/.conf/shareWSLPorts.ps1",
+                "${workspaceFolder}"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
             "label": "check-deps",
             "detail": "This task will check if the dependencies needed to run\nthe project are installed in the host machine.",
             "command": "pwsh",
