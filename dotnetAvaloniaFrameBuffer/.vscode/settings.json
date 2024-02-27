@@ -16,6 +16,7 @@
   "tcb.packageName": "__change__",
   "tcb.version": "3.8.1",
   "torizon.gpuPrefixRC": true,
+  "dotnet.preferCSharpExtension": true,
   "omnisharp.useModernNet": true,
   "dotnet.server.useOmnisharp": true
 }
