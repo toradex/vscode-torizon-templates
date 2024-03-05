@@ -20,6 +20,11 @@ $_envVarsSecrets = @(
     "PLATFORM_CREDENTIALS"
 )
 
+# List of environment variables that are allowed to be empty
+$_envVarEmptyAllowed = @(
+    "DOCKER_REGISTRY"
+)
+
 function _gotoError {
     Write-Host -ForegroundColor DarkYellow `
         "`n⚠️ THESE ENV VARIABLES NEED TO BE SET IN YOUR CI/CD ENVIRONMENT`n"
@@ -36,7 +41,10 @@ if (
 ) {
     # validate the environment variables
     foreach ($var in $_envVarsSettings) {
-        if ((Test-Path "Env:$var") -eq $false) {
+        if (
+            ((Test-Path "Env:$var") -eq $false) -and
+            $_envVarEmptyAllowed.contains($var) -eq $false
+        ) {
             Write-Host -ForegroundColor DarkRed `
                 "❌ $var is not set"
             $_missingEnvVarSettings = $true
