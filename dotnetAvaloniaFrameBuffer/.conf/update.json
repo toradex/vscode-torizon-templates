@@ -34,5 +34,9 @@
     {
         "source": "Views/MainWindow.axaml",
         "target": "Views/MainWindow.axaml"
+    },
+    {
+        "source": ".gitignore",
+        "target": ".gitignore"
     }
 ]
