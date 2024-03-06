@@ -7,9 +7,8 @@
 )]
 param()
 
-# TODO: we need to work with the offsets and limits
-
-$_VERSION = "0.2.0"
+# FIXME: ONLY CHANGE THIS WHEN UPDATING THE https://www.powershellgallery.com/packages/TorizonPlatformAPI
+$_VERSION = "0.1.0"
 
 $ErrorActionPreference = "Stop"
 
