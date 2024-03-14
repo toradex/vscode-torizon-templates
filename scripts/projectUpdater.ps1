@@ -86,10 +86,6 @@ Copy-Item `
     $Env:HOME/.apollox/$templateName/.conf/update.json `
     $projectFolder/.conf/update.json
 
-# DEPS.JSON:
-Copy-Item `
-    $Env:HOME/.apollox/$templateName/.conf/deps.json `
-    $projectFolder/.conf/deps.json
 
 # PROJECT UPDATER:
 if (
@@ -217,6 +213,43 @@ if ($templateName -ne "tcb") {
 
 Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
 
+
+# DEPS.JSON:
+Copy-Item $Env:HOME/.apollox/$templateName/.conf/deps.json .
+
+# Check if there are scripts defined in the .conf/deps.json of the template and, if so,
+# copy them to the .conf of the project
+$_deps = Get-Content  ./deps.json | ConvertFrom-Json
+
+# If there are installation scripts listed on the .conf/deps.json of the template
+if (($_deps.installDepsScripts.Count -gt 0)) {
+    # Create the install-deps-scripts dir on the .conf/tmp dir
+    if (-not (Test-Path -Path ./install-deps-scripts )){
+        New-Item -ItemType Directory -Path ./install-deps-scripts
+    }
+    # If there is no script in the .conf/install-deps-scripts of the template, but there is some script defined in the
+    # installDepsScripts with the .conf/install-deps-scripts path, then it comes from the scripts/install-deps-scripts
+    # folder of the vscode-torizon-templates repo. This is useful when there are scripts that are common for many
+    # templates, like the install-dotnet-sdk-8.sh one for example.
+    foreach ($script in $_deps.installDepsScripts) {
+
+        if ((-not (Test-Path -Path $Env:HOME/.apollox/$templateName/$script )) -and
+            $script -match  ".conf/install-deps-scripts") {
+            # Copy the script from the scripts/install-deps-scripts folder to the .conf/install-deps-scripts folder of the template
+            $scriptSource = $script.Replace(".conf","scripts")
+            $scriptDest = $script.Replace(".conf/","")
+            Copy-Item $Env:HOME/.apollox/$scriptSource ./$scriptDest
+        } else {
+            $scriptDest = $script.Replace(".conf/","")
+            Copy-Item $Env:HOME/.apollox/$templateName/$script ./$scriptDest
+        }
+    }
+}
+
+
+
+
+
 # read the update table:
 for ($i = 0; $i -lt $updateTable.Count; $i++) {
     $_source = $updateTable[$i].source
@@ -324,6 +357,19 @@ if ($templateName -ne "tcb") {
 _openMergeWindow `
     $projectFolder/.conf/tmp/.gitignore `
     $projectFolder/.gitignore
+
+# DEPS.JSON:
+_openMergeWindow `
+    $projectFolder/.conf/tmp/deps.json `
+    $projectFolder/.conf/deps.json
+
+# Install dependencies scripts
+foreach ($script in $_deps.installDepsScripts) {
+    $scriptSource = $script.Replace(".conf/","")
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/$scriptSource `
+        $projectFolder/$script
+}
 
 Write-Host -ForegroundColor DarkGreen "✅ common"
 # ---------------------------------------------------------------------- COMMON

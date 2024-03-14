@@ -2,8 +2,10 @@
     "packages": [
         "openssh-client",
         "sshpass",
-        "dotnet-sdk-7.0",
-        "dotnet-sdk-8.0",
         "libgtk-3-dev"
+    ],
+    "installDepsScripts": [
+        ".conf/install-deps-scripts/install-dotnet-sdk-7.sh",
+        ".conf/install-deps-scripts/install-dotnet-sdk-8.sh"
     ]
 }
