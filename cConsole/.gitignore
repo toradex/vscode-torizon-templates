@@ -72,9 +72,8 @@ dkms.conf
 # Compiled Static libraries
 *.lai
 
-/bin
-/obj
-/debug
+#Build directories
+build-*
 
 # End of https://www.gitignore.io/api/c,c++,cmake
 
