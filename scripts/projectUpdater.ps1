@@ -18,6 +18,7 @@ function _checkArg ($_arg) {
 }
 
 function _checkIfFileContentIsEqual ($_file1, $_file2) {
+
     $file1 = Get-FileHash $_file1
     $file2 = Get-FileHash $_file2
 
@@ -28,16 +29,35 @@ function _checkIfFileContentIsEqual ($_file1, $_file2) {
     }
 }
 
-function _openMergeWindow ($_path1, $_path2) {
+function _openMergeWindow ($_updatedFile, $_currentFile) {
     if ($acceptAll -eq $true) {
-        cp $_path1 $_path2
+        # If the source doesn't exist anymore on the .apollox repo of the
+        # template, remove it from the project being updated
+        if (-not (Test-Path -Path $_updatedFile )) {
+            Remove-Item -Path $_currentFile
+        } else {
+            Copy-Item $_updatedFile $_currentFile
+        }
         return
     }
 
+    # If one of the files doesn't exist create an empty one
+    if (-not (Test-Path -Path $_updatedFile )) {
+        New-Item -Path $_updatedFile -ItemType File
+    } elseif (-not (Test-Path -Path $_currentFile )) {
+        New-Item -Path $_currentFile -ItemType File
+    }
+
     if (
-        -not (_checkIfFileContentIsEqual $_path1 $_path2)
+        -not (_checkIfFileContentIsEqual $_updatedFile $_currentFile)
     ) {
-        code --wait --diff $_path1 $_path2
+        code --wait --diff $_updatedFile $_currentFile
+        # If after the code diff the file is still empty, that means that
+        # this file should not be added to the project, so let's remove this
+        # empty file that we have just created above
+        if ($null -eq (Get-Content $_currentFile)) {
+            Remove-Item -Path $_currentFile
+        }
     }
 }
 
