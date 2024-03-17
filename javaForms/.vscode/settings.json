@@ -2,6 +2,7 @@
   "torizon_psswd": "1234",
   "torizon_login": "torizon",
   "torizon_ip": "raspberrypi4-64-100000008c7e0024.local",
+  "torizon_ssh_port": "",
   "host_ip": "192.168.15.98",
   "torizon_workspace": "${workspaceFolder}",
   "torizon_debug_port": "2235",

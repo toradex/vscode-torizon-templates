@@ -2,6 +2,7 @@
   "torizon_psswd": "",
   "torizon_login": "",
   "torizon_ip": "",
+  "torizon_ssh_port": "",
   "host_ip": "",
   "torizon_workspace": "${workspaceFolder}",
   "torizon_debug_port": "",
