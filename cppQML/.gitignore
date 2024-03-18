@@ -10,9 +10,11 @@ amd64
 credentials.zip
 *.lock.yml
 
+#Build directories
 build-*
 
-# After committing it once, to stop having modifications every time you do 
+
+# After committing it once, to stop having modifications every time you do
 # anything on Qt Creator (like dragging the window, literally almost anything),
 # uncomment the line below
 # .qt

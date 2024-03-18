@@ -2,10 +2,10 @@
     "packages": [
         "openssh-client",
         "sshpass",
-        "mono-complete",
-        "mono-roslyn",
-        "mono-dbg",
         "msbuild",
         "nuget"
+    ],
+    "installDepsScripts": [
+        ".conf/installDepsScripts/install-mono-devel.sh"
     ]
 }
