@@ -70,32 +70,48 @@ foreach ($script in $_deps.installDepsScripts) {
 
     if ($scriptInstalled -eq $false) {
         $_scriptsToInstall.Add($script)
-        Write-Host -ForegroundColor DarkRed "😵 $script dependency installation script not executed before for this project on this machine"
+        Write-Host -ForegroundColor DarkRed "😵 $script dependency installation script not executed before for this project"
     } else {
-        Write-Host -ForegroundColor DarkGreen "👍 $script dependency installation script executed before for this project on this machine"
+        Write-Host -ForegroundColor DarkGreen "👍 $script dependency installation script executed before for this project"
     }
 }
 
 # Check if there are any packages to be installed or scripts to be executed
-if ($_packagesToInstall.Count -eq 0 -and $_scriptsToInstall.Count -eq 0) {
-    Write-Host -ForegroundColor DarkGreen "✅ All packages already installed and installation script executed before for this project on this machine"
+if (
+    ($_packagesToInstall.Count -eq 0) -and
+    ($_scriptsToInstall.Count -eq 0)
 
-    # we need to ran the check deps only if it's not ran yet
-    New-Item -Path .conf/ -Name .depok -ItemType File 2>&1 | out-null
+) {
+    Write-Host -ForegroundColor DarkGreen "✅ All packages already installed and installation scripts executed before for this project"
+
+    # all packages installed and installation scripts executed before create dep ok if it doesn't already exist
+    if ( -not (Test-Path ./.conf/.depok)){
+        New-Item -Path .conf/ -Name .depok -ItemType File 2>&1 | out-null
+    }
 } else {
 
-    $_packagesInstalledOk = $true
-    $_scriptsInstalledOk = $true
-
-    # ask if the user want to install the packages that are not installed
+    # Check if there are packages to be installed and/or scripts to be executed
     if ($_packagesToInstall.Count -gt 0) {
+        $_packagesInstalledOk = $false
+    } else {
+        $_packagesInstalledOk = $true
+    }
 
-    $_packagesInstalledOk = $false
+    if ($_scriptsToInstall.Count -gt 0) {
+        $_scriptsInstalledOk = $false
+    } else {
+        $_scriptsInstalledOk = $true
+    }
+
 
     $_installConfirm = Read-Host `
-        "Do you want to try to install the missing debian package dependencies? <y/N>"
+    "Try to install the missing debian packages and execute the missing installation scripts? <y/N>"
 
-        if ($_installConfirm -eq 'y') {
+    if ($_installConfirm -eq 'y') {
+
+        # ask if the user want to install the packages that are not installed
+        if ($_packagesToInstall.Count -gt 0) {
+
             # make sure to update the list first
             sudo apt-get update
 
@@ -116,45 +132,38 @@ if ($_packagesToInstall.Count -eq 0 -and $_scriptsToInstall.Count -eq 0) {
             $_packagesInstalledOk = $true
 
         }
-    }
-    # ask if the user want to execute the installation scripts that have not been executed before for this project on this machine
-    if ($_scriptsToInstall.Count -gt 0) {
+        # ask if the user want to execute the installation scripts that have not been executed before for this project on this machine
+        if ($_scriptsToInstall.Count -gt 0) {
 
-        $_scriptsInstalledOk = $false
+            $_installedScrips = New-Object Collections.Generic.List[string]
 
-        $_installConfirm = Read-Host `
-            "Do you want to try to install the missing debian package dependencies? <y/N>"
-
-            if ($_installConfirm -eq 'y') {
-
-                $_installedScrips = New-Object Collections.Generic.List[string]
-
-                # Try to execute the installation scripts
-                foreach ($item in $_scriptsToInstall) {
-                    if ($item.EndsWith('.sh')) {
-                        chmod +x $item
-                    }
-
-                    $_installedScrips.Add($item)
-                    & ./$item 2>&1
-
-                    if ($? -eq $false) {
-                        Write-Host -ForegroundColor DarkRed "❌ error trying to execute the dependency installation script $item"
-                        exit 69
-                    }
+            # Try to execute the installation scripts
+            foreach ($item in $_scriptsToInstall) {
+                if ($item.EndsWith('.sh')) {
+                    chmod +x $item
                 }
 
-                Write-Host -ForegroundColor DarkGreen "✅ All packages dependency installation scripts executed successfully"
+                $_installedScrips.Add($item)
+                & ./$item 2>&1
 
-                $_scriptsInstalledOk = $true
-
+                if ($? -eq $false) {
+                    Write-Host -ForegroundColor DarkRed "❌ error trying to execute the dependency installation script $item"
+                    exit 69
+                }
             }
+
+            Write-Host -ForegroundColor DarkGreen "✅ All dependency installation scripts executed successfully"
+
+            $_scriptsInstalledOk = $true
         }
 
+    }
     if ($_packagesInstalledOk -eq $true -and $_scriptsInstalledOk -eq $true) {
 
-        # all packages installed then dep ok
-        New-Item -Path .conf/ -Name .depok -ItemType File 2>&1 | out-null
+        # all packages installed and installation scripts executed before create dep ok if it doesn't already exist
+        if ( -not (Test-Path ./.conf/.depok)){
+            New-Item -Path .conf/ -Name .depok -ItemType File 2>&1 | out-null
+        }
 
         # Add the name of the scripts to the .conf/.depok to know that it has
         # already been executed for this project on this machine

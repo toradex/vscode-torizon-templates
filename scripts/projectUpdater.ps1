@@ -243,19 +243,19 @@ $_deps = Get-Content  ./deps.json | ConvertFrom-Json
 
 # If there are installation scripts listed on the .conf/deps.json of the template
 if (($_deps.installDepsScripts.Count -gt 0)) {
-    # Create the install-deps-scripts dir on the .conf/tmp dir
-    if (-not (Test-Path -Path ./install-deps-scripts )){
-        New-Item -ItemType Directory -Path ./install-deps-scripts
+    # Create the installDepsScripts dir on the .conf/tmp dir
+    if (-not (Test-Path -Path ./installDepsScripts )){
+        New-Item -ItemType Directory -Path ./installDepsScripts
     }
-    # If there is no script in the .conf/install-deps-scripts of the template, but there is some script defined in the
-    # installDepsScripts with the .conf/install-deps-scripts path, then it comes from the scripts/install-deps-scripts
+    # If there is no script in the .conf/installDepsScripts of the template, but there is some script defined in the
+    # installDepsScripts with the .conf/installDepsScripts path, then it comes from the scripts/installDepsScripts
     # folder of the vscode-torizon-templates repo. This is useful when there are scripts that are common for many
-    # templates, like the install-dotnet-sdk-8.sh one for example.
+    # templates, like the installDotnetSDK8.sh one for example.
     foreach ($script in $_deps.installDepsScripts) {
 
         if ((-not (Test-Path -Path $Env:HOME/.apollox/$templateName/$script )) -and
-            $script -match  ".conf/install-deps-scripts") {
-            # Copy the script from the scripts/install-deps-scripts folder to the .conf/install-deps-scripts folder of the template
+            $script -match  ".conf/installDepsScripts") {
+            # Copy the script from the scripts/installDepsScripts folder to the .conf/installDepsScripts folder of the template
             $scriptSource = $script.Replace(".conf","scripts")
             $scriptDest = $script.Replace(".conf/","")
             Copy-Item $Env:HOME/.apollox/$scriptSource ./$scriptDest

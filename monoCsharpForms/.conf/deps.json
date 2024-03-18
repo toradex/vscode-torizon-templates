@@ -6,6 +6,6 @@
         "nuget"
     ],
     "installDepsScripts": [
-        ".conf/install-deps-scripts/install-mono-devel.sh"
+        ".conf/installDepsScripts/install-mono-devel.sh"
     ]
 }

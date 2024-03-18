@@ -4,6 +4,6 @@
         "sshpass"
     ],
     "installDepsScripts": [
-        ".conf/install-deps-scripts/install-dotnet-sdk-6.sh"
+        ".conf/installDepsScripts/installDotnetSDK6.sh"
     ]
 }
