@@ -65,7 +65,8 @@
         "ascii",
         "fullname",
         "Devs",
-        "wbem"
+        "wbem",
+        "depok"
     ],
     "import": [],
     "languageSettings": [
