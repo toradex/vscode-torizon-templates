@@ -37,6 +37,7 @@
             "cwd": "${config:torizon_app_root}",
             "environment": [],
             "externalConsole": false,
+            "internalConsoleOptions": "openOnSessionStart",
             "sourceFileMap": {
                 "${config:torizon_app_root}": "${workspaceFolder}"
             },
@@ -82,6 +83,7 @@
             "cwd": "${config:torizon_app_root}",
             "environment": [],
             "externalConsole": false,
+            "internalConsoleOptions": "openOnSessionStart",
             "sourceFileMap": {
                 "${config:torizon_app_root}": "${workspaceFolder}"
             },
@@ -127,6 +129,7 @@
             "cwd": "${config:torizon_app_root}",
             "environment": [],
             "externalConsole": false,
+            "internalConsoleOptions": "openOnSessionStart",
             "sourceFileMap": {
                 "${config:torizon_app_root}": "${workspaceFolder}"
             },
@@ -172,6 +175,7 @@
             "cwd": "${config:torizon_app_root}",
             "environment": [],
             "externalConsole": false,
+            "internalConsoleOptions": "openOnSessionStart",
             "sourceFileMap": {
                 "${config:torizon_app_root}": "${workspaceFolder}"
             },

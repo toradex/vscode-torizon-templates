@@ -37,6 +37,7 @@
             "cwd": "${config:torizon_app_root}",
             "environment": [],
             "externalConsole": false,
+            "internalConsoleOptions": "openOnSessionStart",
             "logging": {
                 "engineLogging": true,
             },
@@ -85,6 +86,7 @@
             "cwd": "${config:torizon_app_root}",
             "environment": [],
             "externalConsole": false,
+            "internalConsoleOptions": "openOnSessionStart",
             "logging": {
                 "engineLogging": true,
             },
