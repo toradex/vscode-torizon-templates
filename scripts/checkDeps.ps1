@@ -127,8 +127,6 @@ if (
                 }
             }
 
-            Write-Host -ForegroundColor DarkGreen "✅ All packages installed successfully"
-
             $_packagesInstalledOk = $true
 
         }
@@ -152,13 +150,13 @@ if (
                 }
             }
 
-            Write-Host -ForegroundColor DarkGreen "✅ All dependency installation scripts executed successfully"
-
             $_scriptsInstalledOk = $true
         }
 
     }
     if ($_packagesInstalledOk -eq $true -and $_scriptsInstalledOk -eq $true) {
+
+        Write-Host -ForegroundColor DarkGreen "✅ All packages installed and installation scripts executed successfully"
 
         # all packages installed and installation scripts executed before create dep ok if it doesn't already exist
         if ( -not (Test-Path ./.conf/.depok)){
