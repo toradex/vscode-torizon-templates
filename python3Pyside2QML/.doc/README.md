@@ -15,7 +15,12 @@ The deployable package is then copied into the running debug container using **s
 
 Remote debugging is performed by running **debugpy** inside the running container on the device, in a task named **start-torizon-debug\${architecture}**, and then attaching to this running container, as described at [VSCode Python remote debugging](https://code.visualstudio.com/docs/python/debugging#_remote-script-debugging-with-ssh). For local debugging, the method used is the one described in the [VSCode documentation for Python Debugging](https://code.visualstudio.com/docs/python/debugging) is used. The tasks that perform the debugging are those present in the **launch.json** file.
 
-The dependencies of the project that should be installed using **pip** should be defined on the **requirements-debug.txt** file (remote Debug image and local host dependencies) and on the **requirements-release.txt** file (remote Release image dependencies). 
+The python packages of the project that should be installed using **pip** should be defined on:
+- **requirements-local.txt** file for host/local debugging packages
+- **requirements-debug.txt** file for remote debugging image package (installed on **Dockerfile.debug** file)
+- **requirements-release.txt** file for production (release) image packages (installed on **Dockerfile** file)
+
+The source code of the template is a simple Hello World (Hello Torizon, actually) in Python.
 
 ## Create a Python Virtual Environment
 
@@ -25,17 +30,14 @@ How to create a virtual environment on this template:
 
       `python -m venv .venv --system-site-packages`
 
-      If you do not want to use Python packages installed with **apt** on your host remove the **--system-site-packages** argument. In this case, you have to include **debugpy** on the **requirements-debug.txt** file.
+      If you do not want to use Python packages installed with **apt** on your host remove the **--system-site-packages** argument.
 
  - Press **F1**
  - Select the command **Python: Select Interpreter**
- - Select the Python interpreter of your **.venv** 
+ - Select the Python interpreter of your **.venv**
  - If it doesn't select the Python from the venv, press F1 and select the command
  **Developer: Reload Window**)
 
-To install a Python package on the venv (and also on the Debug image), put it 
-on the **requirements-debug.txt** file (to install it on the Release image put it
-on the **requirements.release.txt** file)
 
 For more details, please watch the demonstration video below:
 
