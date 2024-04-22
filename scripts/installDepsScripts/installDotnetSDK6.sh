@@ -26,15 +26,23 @@ if [ "$source" != "https://packages.microsoft.com/ubuntu/$repo_version/prod" ]; 
     rm packages-microsoft-prod.deb
 
     # Remove the dotnet-sdk installation that doesn't come from the Microsoft source
-    sudo apt-get remove $package -y
+    sudo apt-get remove --purge $package -y
 
     sudo apt-get autoremove -y
+
+    # Enforce the preference for the dotnet and aspnet packages comming from the Microsoft source
+    if [ ! -f /etc/apt/preferences ] || ! grep -q "Package: dotnet\* aspnet\* netstandard\*" /etc/apt/preferences
+    then
+        echo "Package: dotnet* aspnet* netstandard*" | sudo tee -a /etc/apt/preferences
+        echo "Pin: origin packages.microsoft.com" | sudo tee -a /etc/apt/preferences
+        echo "Pin-Priority: 1001" | sudo tee -a /etc/apt/preferences
+
+    fi
 
 fi
 
 # Update packages
-sudo apt update -y
-
+sudo apt-get update -y
 
 # Install the dotnet-sdk that come from the Microsoft source
 sudo apt-get install $package -y
