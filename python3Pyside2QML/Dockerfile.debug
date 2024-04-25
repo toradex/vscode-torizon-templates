@@ -74,7 +74,6 @@ RUN apt-get -q -y update && \
     python3-pip \
     python3-setuptools \
     python3-venv \
-    python3-debugpy \
     qml-module-qtquick-controls \
     qml-module-qtquick-controls2 \
     qml-module-qtquick2 \
@@ -106,7 +105,7 @@ RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
 # Install pip packages on venv
 COPY requirements-debug.txt /requirements-debug.txt
 RUN . ${APP_ROOT}/.venv/bin/activate && \
-    pip3 install --upgrade pip && pip3 install --break-system-packages -r requirements-debug.txt && \
+    pip3 install --upgrade pip && pip3 install -r requirements-debug.txt && \
     rm requirements-debug.txt
 
 # ⚠️ DEBUG PURPOSES ONLY!!
@@ -131,8 +130,8 @@ RUN mkdir /var/run/sshd && \
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
 
-# Copy the application source code in the workspace to the $APP_ROOT directory 
-# path inside the container, where $APP_ROOT is the torizon_app_root 
+# Copy the application source code in the workspace to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
 COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./src ${APP_ROOT}/src
 
