@@ -1,9 +1,9 @@
 # ARGUMENTS --------------------------------------------------------------------
 ##
 # Base container version
-# Using Slint v1.5.1 base images
+# Using Slint v1.6.0 base images
 ##
-ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm-1.5.1
+ARG CROSS_SDK_BASE_TAG=3.3.0-bookworm-1.6.0
 ARG BASE_VERSION=3.2.1
 
 ##
