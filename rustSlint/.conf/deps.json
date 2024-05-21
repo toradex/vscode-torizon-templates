@@ -1,12 +1,9 @@
 {
     "packages": [
         "openssh-client",
-        "sshpass",
-        "cargo",
-        "rustc",
-        "rust-clippy",
-        "rust-lldb",
-        "rust-src",
-        "rust-gdb"
+        "sshpass"
+    ],
+    "installDepsScripts": [
+        ".conf/installDepsScripts/installRustDeps.sh"
     ]
 }

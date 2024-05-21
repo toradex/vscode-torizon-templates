@@ -7,5 +7,9 @@
         "gdb",
         "gdb-multiarch",
         "g++",
+        "cmake"
+    ],
+    "installDepsScripts": [
+        ".conf/installDepsScripts/installRustDeps.sh"
     ]
 }

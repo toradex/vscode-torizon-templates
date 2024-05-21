@@ -12,7 +12,6 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/rust-gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
