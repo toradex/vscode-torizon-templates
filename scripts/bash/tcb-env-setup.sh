@@ -43,6 +43,7 @@ tcb_env_setup_cleanup () {
     unset under_windows
     unset user_tag
     unset storage
+    unset working_directory
     unset volumes
     unset network
     unset remote_tags
@@ -95,6 +96,11 @@ tcb_env_setup_usage () {
     echo "      It must be an absolute directory or a Docker volume name. If this"
     echo "      flag is not set, the \"storage\" Docker volume will be used."
     echo ""
+    echo "  -wd: select working directory for docker mount to /workdir"
+    echo "      Pass the directory explicitly for docker run torizon/torizoncore-builder"
+    echo "      to mount as /workdir."
+    echo "      It must be an absolute directory. If this is not set, \$(pwd) with be used"
+    echo ""
     echo "  -n: do not enable \"host\" network mode."
     echo "      Under Linux the tool runs in \"host\" network mode by default allowing"
     echo "      it to operate as a server without explicit port publishing. Under"
@@ -133,6 +139,7 @@ fi
 # Parse flags
 volumes=" -v /deploy "
 storage="storage"
+working_directory="working_directory"
 network=" --network=host "
 if [ $under_windows = "1" ]; then
     # Do not use "host" network mode under Windows/WSL
@@ -144,6 +151,7 @@ do
         -a) source=$2;[ "$2" ]||source="empty"; shift; shift;;
         -t) user_tag="$2";[ "$2" ]||user_tag="empty"; shift; shift;;
         -s) storage="$2";[ "$2" ]||storage="empty"; shift; shift;;
+        -wd) working_directory="$2";[ "$2" ]||working_directory=$(pwd); shift; shift;;
         -d) volumes=" "; shift;;
         -n) network=" "; shift;;
         --) shift; break;;
@@ -162,7 +170,7 @@ then
   tcb_env_setup_check_updated $SCRIPT_PATH
 fi
 
-if [[ $source = "empty" ]] || [[ $user_tag = "empty" ]] || [[ $storage = "empty" ]]
+if [[ $source = "empty" ]] || [[ $user_tag = "empty" ]] || [[ $storage = "empty" ]] || [[ $working_directory = "empty" ]]
 then
     tcb_env_setup_usage
     tcb_env_setup_cleanup
@@ -293,7 +301,7 @@ function tcb_dynamic_params() {
 # TODO Not compatible with ZSH
 export -f tcb_dynamic_params
 
-alias torizoncore-builder='docker run --rm'"$volumes"'-v "$(pwd)":/workdir -v '"$storage"':/storage -v /var/run/docker.sock:/var/run/docker.sock'"$network"'$(tcb_dynamic_params) '"$*"' torizon/torizoncore-builder:'"$chosen_tag"
+alias torizoncore-builder='docker run --rm'"$volumes"' -v '"$working_directory"':/workdir -v '"$storage"':/storage -v /var/run/docker.sock:/var/run/docker.sock'"$network"' '"$(tcb_dynamic_params)"' '"$*"' torizon/torizoncore-builder:'"$chosen_tag"
 
 [[ $storage =~ ^[a-zA-Z][a-zA-Z0-9_.-]*$ ]] && storage="Docker volume named '$storage'"
 
