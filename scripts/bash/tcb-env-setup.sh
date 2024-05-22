@@ -170,7 +170,7 @@ then
   tcb_env_setup_check_updated $SCRIPT_PATH
 fi
 
-if [[ $source = "empty" ]] || [[ $user_tag = "empty" ]] || [[ $storage = "empty" ]] || [[ $working_directory = "empty" ]]
+if [[ $source = "empty" ]] || [[ $user_tag = "empty" ]] || [[ $storage = "empty" ]] || [[ $working_directory ]]
 then
     tcb_env_setup_usage
     tcb_env_setup_cleanup

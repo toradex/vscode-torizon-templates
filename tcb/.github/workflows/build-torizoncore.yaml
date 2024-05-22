@@ -6,7 +6,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     name: Build & Deploy TorizonCore
-    container: ubuntu:23.04
+    container: ubuntu:23.10
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
