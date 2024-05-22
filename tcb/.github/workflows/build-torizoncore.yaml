@@ -6,6 +6,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     name: Build & Deploy TorizonCore
+    container: ubuntu:23.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
@@ -13,6 +14,10 @@ jobs:
         with:
           path: storage/
           key: tcb
+      - name: Set abs-path file
+        run: |
+          echo "${{ github.workspace }}" >> abs-path
+          cat abs-path
 
       - name: Initial Setup
         shell: bash

@@ -649,9 +649,20 @@ function getCliInputs () {
 # set the relative workspaceFolder (following the pattern that VS Code expects)
 if (
     ($null -eq $env:APOLLOX_WORKSPACE) -and 
-    ($env:APOLLOX_CONTAINER -ne 1)
+    ($env:APOLLOX_CONTAINER -ne 1) -and
+    (!$env:GITHUB_WORKSPACE)
 ) {
     $Global:workspaceFolder = Join-Path $PSScriptRoot ..
+} 
+elseif (
+    $env:GITHUB_WORKSPACE
+) {
+    # If running in a github action, this ENV is set automatically,
+    # github actions sandboxes runners by re-writing their ABS path,
+    # so when we do a docker-in-docker build, the mount point for workdir is not found.
+    # This sets the ABS path from a file called abs-path
+    $Global:workspaceFolder = Join-Path $PSScriptRoot ..
+    $Global:working_directory = Get-Content -Path abs-path -ReadCount 1
 } else {
     $Global:workspaceFolder = $env:APOLLOX_WORKSPACE
 }
