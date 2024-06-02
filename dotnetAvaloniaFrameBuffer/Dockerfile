@@ -7,8 +7,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=4-rc
-ARG DOTNET_BASE_VERSION=rc-8.0
+ARG BASE_VERSION=next
+ARG DOTNET_BASE_VERSION=next-8.0
 
 ##
 # Directory of the application inside container

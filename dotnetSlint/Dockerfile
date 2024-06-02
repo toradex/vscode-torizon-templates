@@ -7,8 +7,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG SDK_BASE_VERSION=4-8.0-rc
-ARG BASE_VERSION=4-rc
+ARG SDK_BASE_VERSION=next-8.0
+ARG BASE_VERSION=next
 
 ##
 # Directory of the application inside container

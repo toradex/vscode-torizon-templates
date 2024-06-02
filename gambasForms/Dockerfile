@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.17.90-4-rc
+ARG BASE_VERSION=3.17.90-next
 
 ##
 # Directory of the application inside container
@@ -49,7 +49,7 @@ RUN gbc3 /build
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    ghcr.io/microhobby/gambas3${GPU}:${BASE_VERSION} AS Deploy
+    commontorizon/gambas3${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU

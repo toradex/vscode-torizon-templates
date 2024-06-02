@@ -2,8 +2,7 @@
 ##
 # Base container version
 ##
-ARG BASE_VERSION=4-rc
-
+ARG BASE_VERSION=next
 ##
 # Directory of the application inside container
 ##

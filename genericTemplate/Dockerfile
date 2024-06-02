@@ -1,4 +1,4 @@
-ARG BASE_VERSION=3.3.0-bookworm
+ARG BASE_VERSION=next-bookworm
 
 ##
 # Board architecture
