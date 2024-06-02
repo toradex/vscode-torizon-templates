@@ -154,6 +154,35 @@
                 "id": "run",
                 "color": "terminal.ansiYellow"
             }
+        },
+        {
+            "label": "launch-container-torizon-debug-amd64",
+            "detail": "Deploy and run the debug container for amd64 on the target device.\nThis task is useful to remote debug the application on the\ntarget device using the Gambas IDE.",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "OK"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-amd64",
+                "copy-docker-compose",
+                "pre-cleanup",
+                "build-debug",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64",
+                "wait-a-bit",
+                "update-settings-ini",
+                "deploy-torizon-fake"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "run",
+                "color": "terminal.ansiYellow"
+            }
         }
     ],
 "inputs": []
