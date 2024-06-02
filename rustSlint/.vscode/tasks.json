@@ -126,6 +126,57 @@
             }
         },
         {
+            "label": "copy-debug-executable-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "mkdir",
+            "type": "shell",
+            "args": [
+                "-p",
+                "executable-amd64",
+                "&&",
+                "cp",
+                "target/x86-64-unknown-linux-gnu/debug/__change__",
+                "executable-amd64",
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-amd64"
+            ]
+        },
+        {
+            "label": "deploy-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "1"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-amd64",
+                "copy-docker-compose",
+                "pre-cleanup",
+                "build-debug-amd64",
+                "copy-debug-executable-amd64",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "build-debug-arm",
             "detail": "Builds the project for the remote arm target",
             "command": "DOCKER_HOST=",
