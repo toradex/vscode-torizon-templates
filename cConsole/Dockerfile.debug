@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.2.1-bookworm
+ARG BASE_VERSION=3.3.0-bookworm
 
 ##
 # Debug port
@@ -90,8 +90,8 @@ RUN mkdir /var/run/sshd && \
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
 
-# Copy the compiled application to the $APP_ROOT directory path inside the 
-# container, where $APP_ROOT is the torizon_app_root configuration defined 
+# Copy the compiled application to the $APP_ROOT directory path inside the
+# container, where $APP_ROOT is the torizon_app_root configuration defined
 # in settings.json
 COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./build-${IMAGE_ARCH}/debug ${APP_ROOT}
 

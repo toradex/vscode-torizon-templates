@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.2.1-bookworm
+ARG BASE_VERSION=3.3.0-bookworm
 
 ##
 # Directory of the application inside container
