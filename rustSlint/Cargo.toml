@@ -7,7 +7,7 @@ build = "build.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-slint = { version = "1.0", features = ["renderer-winit-skia"] }
+slint = { version = "1.5.*", features = ["renderer-winit-skia"] }
 
 [build-dependencies]
-slint-build = { version = "1.0" }
+slint-build = { version = "1.5.*" }
