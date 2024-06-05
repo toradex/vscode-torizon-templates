@@ -2,7 +2,7 @@
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.2.1-bookworm
+ARG BASE_VERSION=3.3.0-bookworm
 
 ##
 # Board architecture

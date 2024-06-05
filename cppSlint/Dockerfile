@@ -4,7 +4,7 @@
 # Using Slint v1.5.1 base images
 ##
 ARG CROSS_SDK_BASE_TAG=3.3.0-bookworm-1.5.1
-ARG BASE_VERSION=3.2.1
+ARG BASE_VERSION=3.3.0
 
 ##
 # Board architecture
@@ -74,7 +74,7 @@ ARG APP_ROOT
 
 # Install Slint dependencies
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install libfontconfig1 libxkbcommon0 fonts-noto-core fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-noto-ui-core fonts-noto-ui-extra \
+    && DEBIAN_FRONTEND=noninteractive apt-get install libfontconfig1 libxkbcommon0 libinput10 fonts-noto-core fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-noto-ui-core fonts-noto-ui-extra \
     && rm -rf /var/lib/apt/lists/*
 
 # copy Slint library
