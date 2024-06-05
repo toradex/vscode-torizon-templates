@@ -9,7 +9,7 @@
             "type": "process",
             "args": [
                 "4",
-            ],            
+            ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
@@ -62,7 +62,7 @@
             "type": "process",
             "args": [
                 "4",
-            ],            
+            ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
@@ -117,9 +117,8 @@
                 "-m",
                 "pip",
                 "install",
-                "--break-system-packages",
                 "-r",
-                "requirements-debug.txt"
+                "requirements-local.txt"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",

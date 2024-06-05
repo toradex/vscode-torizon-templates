@@ -2,11 +2,12 @@
   "torizon_psswd": "",
   "torizon_login": "",
   "torizon_ip": "",
+  "torizon_ssh_port": "",
   "host_ip": "",
   "torizon_workspace": "${workspaceFolder}",
   "torizon_debug_port": "9229",
-  "torizon_debug_port2": "9223",
   "torizon_debug_ssh_port": "2228",
+  "torizon_debug_port2": "9223",
   "torizon_debug_port3": "9222",
   "torizon_gpu": "",
   "torizon_arch": "",
@@ -14,5 +15,6 @@
   "torizon_run_as": "torizon",
   "torizon_app_root": "/home/torizon/app",
   "tcb.packageName": "__change__",
-  "tcb.version": "3.8.1"
+  "tcb.version": "3.8.1",
+  "torizon.gpuPrefixRC": false
 }

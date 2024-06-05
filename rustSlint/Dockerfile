@@ -1,10 +1,10 @@
 # ARGUMENTS --------------------------------------------------------------------
 ##
 # Base container version
-# Using Slint v1.4.1 base images
+# Using Slint v1.5.1 base images
 ##
-ARG CROSS_SDK_BASE_TAG=3.0.9-bookworm-1.4.1
-ARG BASE_VERSION=3.2.1
+ARG CROSS_SDK_BASE_TAG=3.3.0-bookworm-1.5.1
+ARG BASE_VERSION=3.3.0
 
 ##
 # Board architecture
@@ -96,7 +96,7 @@ RUN apt-get -q -y update && \
 
 # Install Slint dependencies
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install libfontconfig1 libxkbcommon0 fonts-noto-core fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-noto-ui-core fonts-noto-ui-extra \
+    && DEBIAN_FRONTEND=noninteractive apt-get install libfontconfig1 libxkbcommon0 libinput10 fonts-noto-core fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-noto-ui-core fonts-noto-ui-extra \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \

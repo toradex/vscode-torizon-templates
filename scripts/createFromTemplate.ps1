@@ -79,7 +79,7 @@ Write-Host "Container Name ->     $containerName"
 
 # get the metadata
 $_metadata = Get-Content "$templateFolder/../templates.json" | ConvertFrom-Json
-$_templateMetadata = 
+$_templateMetadata =
     $_metadata.Templates |
         Where-Object { $_.folder -eq $template }
 
@@ -113,14 +113,14 @@ Write-Host -ForegroundColor DarkGreen "✅ Folder copy done"
 # apply the common tasks and inputs
 if ($_templateMetadata.mergeCommon -ne $False) {
     Write-Host -ForegroundColor Yellow "Applying common tasks ..."
-    $commonTasks = 
-        Get-Content "$templateFolder/../assets/tasks/common.json" | 
+    $commonTasks =
+        Get-Content "$templateFolder/../assets/tasks/common.json" |
             ConvertFrom-Json
-    $commonInputs = 
-        Get-Content "$templateFolder/../assets/tasks/inputs.json" | 
+    $commonInputs =
+        Get-Content "$templateFolder/../assets/tasks/inputs.json" |
             ConvertFrom-Json
-    $projTasks = 
-        Get-Content "$location/.vscode/tasks.json" | 
+    $projTasks =
+        Get-Content "$location/.vscode/tasks.json" |
             ConvertFrom-Json
 
     $projTasks.tasks += $commonTasks.tasks
@@ -145,6 +145,32 @@ Copy-Item "$templateFolder/../scripts/bash/tcb-env-setup.sh" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/torizonIO.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/checkCIEnv.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/validateDepsRunning.ps1" "$location/.conf"
+
+# Check if there are scripts defined in the .conf/deps.json of the template and, if so,
+# copy them to the .conf of the project
+$_deps = Get-Content "$templateFolder/.conf/deps.json" | ConvertFrom-Json
+
+# If there are installation scripts listed on the .conf/deps.json of the template
+if (($_deps.installDepsScripts.Count -gt 0)) {
+    # Create the .conf/installDepsScripts if it doesn't exist and there are
+    # installation scripts that have the path .conf/installDepsScripts
+    if (-not (Test-Path -Path "$location/.conf/installDepsScripts" )){
+        New-Item -ItemType Directory -Path "$location/.conf/installDepsScripts"
+    }
+
+    # If there is no script in the .conf/installDepsScripts of the template, but there is some script defined in the
+    # installDepsScripts with the .conf/installDepsScripts path, then it comes from the scripts/installDepsScripts
+    # folder of the vscode-torizon-templates repo. This is useful when there are scripts that are common for many
+    # templates, like the installDotnetSDK8.sh one for example.
+    foreach ($script in $_deps.installDepsScripts) {
+        if ((-not (Test-Path -Path "$location/$script" )) -and
+            $script -match  ".conf/installDepsScripts") {
+            # Copy the script from the scripts/installDepsScripts folder to the .conf/installDepsScripts folder of the template
+            $scriptSource = $script.Replace(".conf","scripts")
+            Copy-Item "$templateFolder/../$scriptSource" "$location/$script"
+        }
+    }
+}
 
 # copy the github actions if not exists
 if (-not (Test-Path "$location/.github")) {
@@ -201,7 +227,7 @@ Get-ChildItem -Force -File -Recurse * | ForEach-Object {
                 ForEach-Object {
                     $_ -replace "__home__",$env:HOME
                 } | Set-Content $a
-                
+
                 ( Get-Content $a ) |
                 ForEach-Object {
                     $_ -replace "__templateFolder__", $template

@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.2.1
+ARG BASE_VERSION=3.3.0
 
 ##
 # Directory of the application inside container
@@ -71,13 +71,13 @@ RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
 # Install pip packages on venv
 COPY requirements-release.txt /requirements-release.txt
 RUN . ${APP_ROOT}/.venv/bin/activate && \
-    pip3 install --upgrade pip && pip3 install --break-system-packages -r requirements-release.txt && \
+    pip3 install --upgrade pip && pip3 install -r requirements-release.txt && \
     rm requirements-release.txt
 
 USER torizon
 
-# Copy the application source code in the workspace to the $APP_ROOT directory 
-# path inside the container, where $APP_ROOT is the torizon_app_root 
+# Copy the application source code in the workspace to the $APP_ROOT directory
+# path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
 COPY ./src ${APP_ROOT}/src
 

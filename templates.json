@@ -83,8 +83,8 @@
         {
             "img": "avaloniafbdrm.png",
             "folder": "dotnetAvaloniaFrameBuffer",
-            "description": ".NET 6 C# Avalonia Frame Buffer DRM",
-            "runtime": ".net 6.0",
+            "description": ".NET 8 C# Avalonia Frame Buffer DRM",
+            "runtime": ".net 8.0",
             "language": "C#",
             "debugSSHPort": "2224",
             "multiContainer": true,

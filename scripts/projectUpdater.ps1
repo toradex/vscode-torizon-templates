@@ -18,6 +18,7 @@ function _checkArg ($_arg) {
 }
 
 function _checkIfFileContentIsEqual ($_file1, $_file2) {
+
     $file1 = Get-FileHash $_file1
     $file2 = Get-FileHash $_file2
 
@@ -28,16 +29,35 @@ function _checkIfFileContentIsEqual ($_file1, $_file2) {
     }
 }
 
-function _openMergeWindow ($_path1, $_path2) {
+function _openMergeWindow ($_updatedFile, $_currentFile) {
     if ($acceptAll -eq $true) {
-        cp $_path1 $_path2
+        # If the source doesn't exist anymore on the .apollox repo of the
+        # template, remove it from the project being updated
+        if (-not (Test-Path -Path $_updatedFile )) {
+            Remove-Item -Path $_currentFile
+        } else {
+            Copy-Item $_updatedFile $_currentFile
+        }
         return
     }
 
+    # If one of the files doesn't exist create an empty one
+    if (-not (Test-Path -Path $_updatedFile )) {
+        New-Item -Path $_updatedFile -ItemType File
+    } elseif (-not (Test-Path -Path $_currentFile )) {
+        New-Item -Path $_currentFile -ItemType File
+    }
+
     if (
-        -not (_checkIfFileContentIsEqual $_path1 $_path2)
+        -not (_checkIfFileContentIsEqual $_updatedFile $_currentFile)
     ) {
-        code --wait --diff $_path1 $_path2
+        code --wait --diff $_updatedFile $_currentFile
+        # If after the code diff the file is still empty, that means that
+        # this file should not be added to the project, so let's remove this
+        # empty file that we have just created above
+        if ($null -eq (Get-Content $_currentFile)) {
+            Remove-Item -Path $_currentFile
+        }
     }
 }
 
@@ -86,10 +106,6 @@ Copy-Item `
     $Env:HOME/.apollox/$templateName/.conf/update.json `
     $projectFolder/.conf/update.json
 
-# DEPS.JSON:
-Copy-Item `
-    $Env:HOME/.apollox/$templateName/.conf/deps.json `
-    $projectFolder/.conf/deps.json
 
 # PROJECT UPDATER:
 if (
@@ -217,6 +233,43 @@ if ($templateName -ne "tcb") {
 
 Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
 
+
+# DEPS.JSON:
+Copy-Item $Env:HOME/.apollox/$templateName/.conf/deps.json .
+
+# Check if there are scripts defined in the .conf/deps.json of the template and, if so,
+# copy them to the .conf of the project
+$_deps = Get-Content  ./deps.json | ConvertFrom-Json
+
+# If there are installation scripts listed on the .conf/deps.json of the template
+if (($_deps.installDepsScripts.Count -gt 0)) {
+    # Create the installDepsScripts dir on the .conf/tmp dir
+    if (-not (Test-Path -Path ./installDepsScripts )){
+        New-Item -ItemType Directory -Path ./installDepsScripts
+    }
+    # If there is no script in the .conf/installDepsScripts of the template, but there is some script defined in the
+    # installDepsScripts with the .conf/installDepsScripts path, then it comes from the scripts/installDepsScripts
+    # folder of the vscode-torizon-templates repo. This is useful when there are scripts that are common for many
+    # templates, like the installDotnetSDK8.sh one for example.
+    foreach ($script in $_deps.installDepsScripts) {
+
+        if ((-not (Test-Path -Path $Env:HOME/.apollox/$templateName/$script )) -and
+            $script -match  ".conf/installDepsScripts") {
+            # Copy the script from the scripts/installDepsScripts folder to the .conf/installDepsScripts folder of the template
+            $scriptSource = $script.Replace(".conf","scripts")
+            $scriptDest = $script.Replace(".conf/","")
+            Copy-Item $Env:HOME/.apollox/$scriptSource ./$scriptDest
+        } else {
+            $scriptDest = $script.Replace(".conf/","")
+            Copy-Item $Env:HOME/.apollox/$templateName/$script ./$scriptDest
+        }
+    }
+}
+
+
+
+
+
 # read the update table:
 for ($i = 0; $i -lt $updateTable.Count; $i++) {
     $_source = $updateTable[$i].source
@@ -324,6 +377,19 @@ if ($templateName -ne "tcb") {
 _openMergeWindow `
     $projectFolder/.conf/tmp/.gitignore `
     $projectFolder/.gitignore
+
+# DEPS.JSON:
+_openMergeWindow `
+    $projectFolder/.conf/tmp/deps.json `
+    $projectFolder/.conf/deps.json
+
+# Install dependencies scripts
+foreach ($script in $_deps.installDepsScripts) {
+    $scriptSource = $script.Replace(".conf/","")
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/$scriptSource `
+        $projectFolder/$script
+}
 
 Write-Host -ForegroundColor DarkGreen "✅ common"
 # ---------------------------------------------------------------------- COMMON

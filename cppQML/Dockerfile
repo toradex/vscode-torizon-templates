@@ -2,11 +2,11 @@
 ##
 # SDK container version
 ##
-ARG SDK_BASE_VERSION=3
+ARG SDK_BASE_VERSION=3.2.0
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3
+ARG BASE_VERSION=3.2.0
 
 ##
 # Board architecture

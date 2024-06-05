@@ -198,7 +198,7 @@ Write-Host "Replacing variables ..."
 foreach ($key in $prodKeys) {
     $composeServices[$key].Remove("build")
     $composeServices[$key].image = `
-        $composeServices[$key].image.replace("`${DOCKER_LOGIN}", $dockerLogin)
+        $composeServices[$key].image.replace("`${DOCKER_LOGIN}", $env:DOCKER_LOGIN)
     $composeServices[$key].image = `
         $composeServices[$key].image.replace("`${TAG}", $tag)
     $composeServices[$key].image = `
