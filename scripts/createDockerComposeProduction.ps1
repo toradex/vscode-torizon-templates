@@ -166,7 +166,7 @@ Write-Host -ForegroundColor DarkGreen "✅ powershell-yaml loaded"
 # read the yaml file
 Write-Host "Reading docker-compose.yml file ..."
 $composeContent = Get-Content ("$compoFilePath/docker-compose.yml") | Out-String
-$composeLoad = ConvertFrom-Yaml $composeContent -AllDocuments
+$composeLoad = ConvertFrom-Yaml $composeContent -AllDocuments -Ordered
 $composeServices = $composeLoad.Services
 $removeKeys = New-Object Collections.Generic.List[String]
 $prodKeys = New-Object Collections.Generic.List[String]

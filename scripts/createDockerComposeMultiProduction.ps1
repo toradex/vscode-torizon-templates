@@ -39,7 +39,7 @@ foreach ($project in $codeWorkspace.folders) {
         "Reading $path/docker-compose.prod.yml"
 
         $yamlFile = Get-Content ("$path/docker-compose.prod.yml") | Out-String
-        $yamlObj = ConvertFrom-Yaml $yamlFile -AllDocuments
+        $yamlObj = ConvertFrom-Yaml $yamlFile -AllDocuments -Ordered
 
         if ($null -eq $retYaml) {
             $retYaml = $yamlObj
