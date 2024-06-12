@@ -97,7 +97,7 @@ tcb_env_setup_usage () {
     echo "      flag is not set, the \"storage\" Docker volume will be used."
     echo ""
     echo "  -wd: select working directory for docker mount to /workdir"
-    echo "      Pass the directory explicitly for docker run torizon/torizoncore-builder"
+    echo "      (Optional) Pass the directory explicitly for docker run torizon/torizoncore-builder"
     echo "      to mount as /workdir."
     echo "      It must be an absolute directory. If this is not set, \$(pwd) with be used"
     echo ""
@@ -170,7 +170,7 @@ then
   tcb_env_setup_check_updated $SCRIPT_PATH
 fi
 
-if [[ $source = "empty" ]] || [[ $user_tag = "empty" ]] || [[ $storage = "empty" ]] || [[ $working_directory ]]
+if [[ $source = "empty" ]] || [[ $user_tag = "empty" ]] || [[ $storage = "empty" ]]
 then
     tcb_env_setup_usage
     tcb_env_setup_cleanup

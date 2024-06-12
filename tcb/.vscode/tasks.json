@@ -543,7 +543,9 @@
                 "-s",
                 "${workspaceFolder}/storage",
                 "-t",
-                "${config:tcb.version}"
+                "${config:tcb.version}",
+                "-wd",
+                "${working_directory}"
             ],
             "problemMatcher": [
                 "$tsc"
