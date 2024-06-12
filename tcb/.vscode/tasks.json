@@ -433,7 +433,9 @@
                 "-s",
                 "${workspaceFolder}/storage",
                 "-t",
-                "${config:tcb.version}"
+                "${config:tcb.version}",
+                "-wd",
+                "${working_directory}"
             ],
             "problemMatcher": [
                 "$tsc"
@@ -444,6 +446,9 @@
             },
             "dependsOrder": "sequence",
             "dependsOn": [
+                // "tcb-unpack" // This will only run the unpack task, 
+                                // and exit without running platform push
+            
             ]
         },
         {
