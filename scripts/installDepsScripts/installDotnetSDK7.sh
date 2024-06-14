@@ -6,8 +6,32 @@ set -e
 
 package='dotnet-sdk-7.0'
 
-# Get Ubuntu version
-declare repo_version=$(if command -v lsb_release &> /dev/null; then lsb_release -r -s; else grep -oP '(?<=^VERSION_ID=).+' /etc/os-release | tr -d '"'; fi)
+# Check if we are running on the LTS Ubuntu or Debian
+if [ -f /etc/os-release ]; then
+    # unset the exit with error
+    set +e
+    . /etc/os-release
+    set -e
+
+    if [ "$ID" = "ubuntu" ]; then
+        repo="ubuntu"
+        repo_version="24.04"
+    elif [ "$ID" = "debian" ]; then
+        repo="debian"
+        repo_version="12"
+    elif [ "$ID" = "torizon" ]; then
+        repo="debian"
+        repo_version="12"
+    else
+        echo "🔴 Unsupported distribution"
+        echo "Please use the latest LTS of Debian or Ubuntu"
+        echo "If you are using WSL 2 check the Torizon OS environment for WSL 2: https://bit.ly/4b2T1hd"
+        exit 69
+    fi
+else
+    echo "Unsupported distribution"
+    exit 69
+fi
 
 # Get the source URL of the dotnet-sdk package installed
 source=$(apt policy $package | awk '/ \*/{getline; print $2}')
