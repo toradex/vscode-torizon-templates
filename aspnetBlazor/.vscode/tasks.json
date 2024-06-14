@@ -28,7 +28,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug"
             ],
             "problemMatcher": "$msCompile",
@@ -45,7 +45,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm"
@@ -64,7 +64,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm64"
@@ -83,7 +83,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-x64"
@@ -121,7 +121,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm",
@@ -171,7 +171,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-amd64",
@@ -183,6 +183,19 @@
                 "id": "flame",
                 "color": "terminal.ansiYellow"
             }
+        },
+        {
+            "label": "fixup-donet-arch-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "mv",
+            "type": "shell",
+            "args": [
+                "bin/Debug/net8.0/linux-x64",
+                "bin/Debug/net8.0/linux-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile"
         },
         {
             "label": "deploy-torizon-amd64",
@@ -221,7 +234,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm64",
@@ -251,6 +264,34 @@
                 "up",
                 "-d",
                 "__container__-browser-debug"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "wait-a-bit"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "run-container-cog-torizon-debug-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
+            "args": [
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=amd64",
+                "GPU=${config:torizon_gpu}",
+                "docker",
+                "compose",
+                "-p",
+                "torizon",
+                "up",
+                "-d",
+                "blazorzin-browser-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -316,6 +357,34 @@
                 "color": "terminal.ansiYellow"
             }
         },
+        {
+            "label": "deploy-browser-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "1"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-amd64",
+                "copy-docker-compose",
+                "pre-cleanup",
+                "publish-debug-amd64",
+                "fixup-donet-arch-amd64",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-cog-torizon-debug-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        }
     ],
 "inputs": []
 }
