@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "ms-python.python",
-        "seanwu.vscode-qt-for-python"
+        "seanwu.vscode-qt-for-python",
+        "derevin.qml-ls-client"
     ]
 }
