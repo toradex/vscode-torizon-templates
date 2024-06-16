@@ -16,8 +16,12 @@
   "torizon_app_root": "/home/torizon/app",
   "tcb.packageName": "__change__",
   "tcb.version": "3.8.1",
-  "torizon.gpuPrefixRC": false,
+  "torizon.gpuPrefixRC": true,
   "qtForPython.rcc.liveExecution.enabled": false,
-  "qtForPython.qmlls.enabled": false,
-  "terminal.integrated.defaultProfile.linux": "bash"
+  "qtForPython.qmlls.path": "/usr/lib/qt6/bin/qmlls",
+  "qtForPython.qmlls.enabled": true,
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "files.associations": {
+    "*.pro": "makefile",
+  }
 }
