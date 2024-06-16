@@ -55,6 +55,59 @@
             }
         },
         {
+            "label": "wait-debugpy-start-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "4"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-amd64",
+                "host-install-pip-requirements",
+                "copy-docker-compose",
+                "pre-cleanup",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64",
+                "wait-a-bit",
+                "start-torizon-debug-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "start-torizon-debug-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port} --wait-for-client src/main.py"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "wait-debugpy-start-arm64",
             "detail": "",
             "hide": true,

@@ -65,6 +65,17 @@ RUN apt-get -q -y update && \
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# edge case for amd64
+# this prevent the error: texture atlas allocation failed
+RUN apt-get -q -y update && \
+    if [ "${IMAGE_ARCH}" = "amd64" ]; then \
+        apt-get -q -y install \
+        libqt5quick5 \
+    ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
 # Create virtualenv
 RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
 
