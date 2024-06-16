@@ -29,7 +29,8 @@
             "type": "process",
             "options": {
                 "env": {
-                    "QT_QPA_PLATFORM": "xcb"
+                    "QT_QPA_PLATFORM": "xcb",
+                    "QT_QUICK_BACKEND": "software"
                 }
             },
             "args": [
@@ -59,7 +60,8 @@
             "type": "process",
             "options": {
                 "env": {
-                    "QT_QPA_PLATFORM": "xcb"
+                    "QT_QPA_PLATFORM": "xcb",
+                    "QT_QUICK_BACKEND": "software"
                 }
             },
             "args": [
@@ -89,7 +91,8 @@
             "type": "process",
             "options": {
                 "env": {
-                    "QT_QPA_PLATFORM": "xcb"
+                    "QT_QPA_PLATFORM": "xcb",
+                    "QT_QUICK_BACKEND": "software"
                 }
             },
             "args": [
@@ -119,7 +122,8 @@
             "type": "process",
             "options": {
                 "env": {
-                    "QT_QPA_PLATFORM": "xcb"
+                    "QT_QPA_PLATFORM": "xcb",
+                    "QT_QUICK_BACKEND": "software"
                 }
             },
             "args": [
