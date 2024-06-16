@@ -1,2 +1,3 @@
 debugpy
 PySide2
+PySide6
