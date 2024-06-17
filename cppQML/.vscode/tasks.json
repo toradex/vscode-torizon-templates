@@ -188,7 +188,7 @@
                 "background": {
                     "activeOnStart": true,
                     "beginsPattern": ".",
-                    "endsPattern": ".",
+                    "endsPattern": "."
                 }
             }],
             "icon": {
@@ -249,7 +249,7 @@
                 "color": "terminal.ansiGreen"
             },
             "dependsOn": [
-            ],
+            ]
         },
         {
             "label": "start-gdb-server-remote-arm",
