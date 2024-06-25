@@ -7,7 +7,7 @@ _COMPOSE_FILE="$HOME/.tcd/docker-compose.yml"
 _BASH_COMPLETION_FILE="$HOME/.tcd/torizoncore-dev-completion.bash"
 export APOLLOX_REPO="toradex/vscode-torizon-templates"
 export APOLLOX_BRANCH="dev"
-export BRANCH="dev"
+export BRANCH="next"
 export UUID=$(id -u)
 export DGID=$(getent group docker | cut -d: -f3)
 

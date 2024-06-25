@@ -12,7 +12,7 @@ services:
       dockerfile: container/Containerfile.tasks
       args:
         - BRANCH=${BRANCH}
-        - REPO=microhobby/vscode-torizon-templates
+        - REPO=toradex/vscode-torizon-templates
     image: torizonextras/torizoncore-dev-tasks:${BRANCH}
 
   pwsh-gitlab:
@@ -34,7 +34,7 @@ services:
     privileged: true
     network_mode: host
     environment:
-      - APOLLOX_TEMPLATES_GIT_REPO=https://github.com/microhobby/vscode-torizon-templates.git
+      - APOLLOX_TEMPLATES_GIT_REPO=https://github.com/toradex/vscode-torizon-templates.git
       - APOLLOX_TEMPLATES_GIT_REPO_BRANCH=${BRANCH}
       #- APOLLOX_TEMPLATES_GIT_TAG=
       - WSL_DISTRO_NAME=${WSL_DISTRO_NAME}
