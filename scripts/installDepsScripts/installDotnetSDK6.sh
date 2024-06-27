@@ -38,10 +38,10 @@ source=$(apt policy $package | awk '/ \*/{getline; print $2}')
 
 
 # Check if the dotnet-sdk installed package comes from the Microsoft source
-if [ "$source" != "https://packages.microsoft.com/ubuntu/$repo_version/prod" ]; then
+if [ "$source" != "https://packages.microsoft.com/$repo/$repo_version/prod" ]; then
 
     # Download Microsoft signing key and repository
-    wget https://packages.microsoft.com/config/ubuntu/$repo_version/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    wget https://packages.microsoft.com/config/$repo/$repo_version/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 
     # Install Microsoft signing key and repository
     sudo dpkg -i packages-microsoft-prod.deb
