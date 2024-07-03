@@ -6,7 +6,7 @@ shopt -s expand_aliases
 _COMPOSE_FILE="$HOME/.tcd/docker-compose.yml"
 _BASH_COMPLETION_FILE="$HOME/.tcd/torizoncore-dev-completion.bash"
 export APOLLOX_REPO="toradex/vscode-torizon-templates"
-export APOLLOX_BRANCH="dev"
+export APOLLOX_BRANCH="next"
 export BRANCH="next"
 export UUID=$(id -u)
 export DGID=$(getent group docker | cut -d: -f3)
