@@ -16,12 +16,25 @@ async function main() {
     let id = 0
     for (const net of nets) {
         if (id == args[0]) {
+            // disable console.log
+            const _clTmp = console.log;
+            console.log = function() {
+                // write to the /home/user/.tcd/connect.log
+                fs.appendFileSync(
+                    `${process.env.HOME}/.tcd/connect.log`,
+                    `${JSON.stringify(arguments)}\n`
+                );
+            };
+
             const td = await DeviceDetection.ConnectToDevice(
                 net,
                 args[1], // login
                 args[2], // password
                 args[3]  // host ip
             );
+
+            // enable console.log
+            console.log = _clTmp;
 
             console.log(
                 JSON.stringify(td)
@@ -30,6 +43,8 @@ async function main() {
             exit(0);
             break;
         }
+
+        id++;
     }
 
     // not found
