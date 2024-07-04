@@ -20,14 +20,15 @@ $TORIZON_ARCH = $args[0]
 
 if ($TORIZON_ARCH -eq "aarch64") {
     $TORIZON_ARCH = "arm64"
-}
-
-if ($TORIZON_ARCH -eq "armv7l") {
+} elseif ($TORIZON_ARCH -eq "armv7l") {
     $TORIZON_ARCH = "armhf"
-}
-
-if ($TORIZON_ARCH -eq "x86_64") {
+} elseif ($TORIZON_ARCH -eq "x86_64") {
     $TORIZON_ARCH = "amd64"
+} elseif ($TORIZON_ARCH -eq "riscv") {
+    $TORIZON_ARCH = "riscv"
+} else {
+    Write-Host -ForegroundColor DarkRed "❌ undefined target device architecture, Set Default the device before applying packages"
+    exit 69
 }
 
 # get the files content
@@ -35,6 +36,17 @@ function _getFileLines ($file) {
     [string[]] $lines = Get-Content -Path $file
 
     return $lines
+}
+
+function _addDepString ([string]$value) {
+
+    # If the arch of the package has been explicitly specified, don't add the
+    # target arch in the end
+    if ($value.Contains(":")) {
+        return "`t    ${value} \"
+    } else {
+        return "`t    ${value}:${TORIZON_ARCH} \"
+    }
 }
 
 # replace the dev and prod sections
@@ -65,16 +77,34 @@ function _ReplaceSection ([string[]]$fileLines, [string]$section) {
             $_stopAdd = $true
 
             $_json = Get-Content -Path "torizonPackages.json" | ConvertFrom-Json
-            $_devPacks = $_json.devDeps
-            $_prodPacks = $_json.deps
 
-            if ($section.Contains("dev")) {
+            $_buildPacks = $_json.buildDeps
+
+            # Adding this if to maintain backwards compatibility
+            if ( $_json.PSobject.Properties.name -match "devRuntimeDeps") {
+                $_devPacks = $_json.devRuntimeDeps
+            } else {
+                $_devPacks = $_json.devDeps
+            }
+
+            # Adding this if to maintain backwards compatibility
+            if ( $_json.PSobject.Properties.name -match "prodRuntimeDeps") {
+                $_prodPacks = $_json.prodRuntimeDeps
+            } else {
+                $_prodPacks = $_json.deps
+            }
+
+            if ($section.Contains("build")) {
+                foreach ($pack in $_buildPacks) {
+                    $_newFileContent.Add($(_addDepString $pack))
+                }
+            } elseif ($section.Contains("dev")) {
                 foreach ($pack in $_devPacks) {
-                    $_newFileContent.Add("`t${pack}:${TORIZON_ARCH} \")
+                    $_newFileContent.Add($(_addDepString $pack))
                 }
             } elseif ($section.Contains("prod")) {
                 foreach ($pack in $_prodPacks) {
-                    $_newFileContent.Add("`t${pack}:${TORIZON_ARCH} \")
+                    $_newFileContent.Add($(_addDepString $pack))
                 }
             }
         }
@@ -101,9 +131,9 @@ Write-Host "Applying torizonPackages.json ..."
 if (Test-Path -Path "Dockerfile.debug") {
     Write-Host "Applying to Dockerfile.debug ..."
     $debugDockerfile = _getFileLines "Dockerfile.debug"
-
-    _ReplaceSection $debugDockerfile "torizon_packages_dev" `
-        | Out-File -FilePath "Dockerfile.debug"
+    $debugDockerfile = `
+        _ReplaceSection $debugDockerfile "torizon_packages_dev" `
+            | Out-File -FilePath "Dockerfile.debug"
 
     Write-Host -ForegroundColor DarkGreen "✅ Dockerfile.debug"
 }
@@ -113,18 +143,19 @@ if (Test-Path -Path "Dockerfile.sdk") {
     Write-Host "Applying to Dockerfile.sdk ..."
     $debugDockerfileSDK = _getFileLines "Dockerfile.sdk"
     $debugDockerfileSDK = `
-        _ReplaceSection $debugDockerfileSDK "torizon_packages_prod"
-    _ReplaceSection $debugDockerfileSDK "torizon_packages_dev" `
-        | Out-File -FilePath "Dockerfile.sdk"
+        _ReplaceSection $debugDockerfileSDK "torizon_packages_build" `
+            | Out-File -FilePath "Dockerfile.sdk"
     Write-Host -ForegroundColor DarkGreen "✅ Dockerfile.sdk"
 }
 
 # Dockerfile
 Write-Host "Applying to Dockerfile ..."
 $Dockerfile = _getFileLines "Dockerfile"
-$Dockerfile = _ReplaceSection $Dockerfile "torizon_packages_prod"
-_ReplaceSection $Dockerfile "torizon_packages_dev" `
-    | Out-File -FilePath "Dockerfile"
+$Dockerfile = `
+    _ReplaceSection $Dockerfile "torizon_packages_prod"
+$Dockerfile = `
+    _ReplaceSection $Dockerfile "torizon_packages_build" `
+        | Out-File -FilePath "Dockerfile"
 Write-Host -ForegroundColor DarkGreen "✅ Dockerfile"
 
 Write-Host "torizonPackages.json applied"

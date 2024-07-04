@@ -140,11 +140,30 @@ Copy-Item "$templateFolder/../scripts/shareWSLPorts.ps1" "$location/.conf/"
 Copy-Item "$templateFolder/../scripts/createDockerComposeProduction.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/torizonPackages.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/tasks.ps1" "$location/.vscode"
-Copy-Item "$templateFolder/../assets/json/torizonPackages.json" "$location/"
 Copy-Item "$templateFolder/../scripts/bash/tcb-env-setup.sh" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/torizonIO.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/checkCIEnv.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/validateDepsRunning.ps1" "$location/.conf"
+
+
+$_torPackagesJson = Get-Content -Path "$templateFolder/../assets/json/torizonPackages.json" | ConvertFrom-Json
+
+# Check also the build part of Dockerfile, for the presence of torizon_packages_build
+$dockerfileLines = Get-Content -Path "$templateFolder/Dockerfile"
+
+$buildDepDockerfile = $false
+foreach ($line in $dockerfileLines) {
+    if ($line.Contains("torizon_packages_build")) {
+        $buildDepDockerfile = $true
+        break
+    }
+}
+
+if ((Test-Path -Path "$templateFolder/Dockerfile.sdk") -Or ($buildDepDockerfile)) {
+    $_torPackagesJson | Add-Member -NotePropertyName buildDeps -NotePropertyValue @()
+}
+# Save the modified JSON object to a file
+Set-Content -Path "$location/torizonPackages.json" -Value ($_torPackagesJson | ConvertTo-Json) -Encoding UTF8
 
 # Check if there are scripts defined in the .conf/deps.json of the template and, if so,
 # copy them to the .conf of the project
