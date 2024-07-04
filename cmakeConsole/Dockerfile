@@ -49,8 +49,16 @@ RUN cmake --build build-${IMAGE_ARCH}
 # BUILD ------------------------------------------------------------------------
 
 
-# DEPLOY -----------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/debian:${BASE_VERSION} AS Deploy
+##
+# Deploy Step
+#
+# This is using commontorizon/debian only by the ease of the use of the
+# same image tags for x86_64 architectures:
+#    - AMD64 -> torizon/debian-upstream:3 == commontorizon/debian:3.3.0-bookworm
+#    - ARM64 -> torizon/debian:3          == commontorizon/debian:3.3.0-bookworm
+#    - ARM   -> torizon/debian:3          == commontorizon/debian:3.3.0-bookworm
+##
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/debian:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
