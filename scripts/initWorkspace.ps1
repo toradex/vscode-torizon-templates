@@ -14,12 +14,20 @@ $PSNativeCommandUseErrorActionPreference = $true
 function _get_GpuVendor() {
     param(
         [Parameter(Mandatory=$true)]
-        [string] $hostname
+        [string] $model,
+        [boolean] $rcPrefix=$false
     )
 
-    if ($hostname.Contains("imx8")) {
-        return "-vivante"
+    $_modelLower = $model.ToLower()
+
+    if ($_modelLower.Contains("am62")) {
+        return $rcPrefix ? "-am62" : "-am62"
+    } elseif ($_modelLower.Contains("beagleplay")) {
+        return $rcPrefix ? "-am62" : "-am62"
+    } elseif ($_modelLower.Contains("imx8")) {
+        return $rcPrefix ? "-imx8" : "-vivante"
     } else {
+        # generic non gpu specific
         return ""
     }
 }
@@ -63,6 +71,11 @@ if (!(Test-Path ./.conf/.template)) {
         Get-Content $env:HOME/.tcd/target.json -Raw `
             | ConvertFrom-Json -Depth 100
 
+    $_rcPrefix = $_settings.torizon.gpuPrefixRC;
+    if ($null -eq $_rcPrefix) {
+        $_rcPrefix = $false
+    }
+
     $_hostName = $_target.Hostname
     $_settings.torizon_psswd = $_target.__pass__
     $_settings.torizon_ip = $_target.Ip
@@ -70,7 +83,7 @@ if (!(Test-Path ./.conf/.template)) {
     $_settings.torizon_login = $_target.Login
     $_settings.host_ip = GetHostIp
     $_settings.torizon_arch = $_target.Arch
-    $_settings.torizon_gpu = _get_GpuVendor -hostname $_hostName
+    $_settings.torizon_gpu = _get_GpuVendor -model $_target.Model -rcPrefix $_rcPrefix
 
     # dump the object back to the file
     $_settings | ConvertTo-Json -Depth 100 `
