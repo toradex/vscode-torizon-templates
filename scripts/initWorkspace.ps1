@@ -56,16 +56,17 @@ if (!(Test-Path ./.conf/.template)) {
     ./.vscode/tasks.ps1 run check-deps
 
     # set the target device to the settings.json
-    $_settings = 
+    $_settings =
         Get-Content ./.vscode/settings.json -Raw `
             | ConvertFrom-Json -Depth 100
-    $_target = 
+    $_target =
         Get-Content $env:HOME/.tcd/target.json -Raw `
             | ConvertFrom-Json -Depth 100
 
     $_hostName = $_target.Hostname
     $_settings.torizon_psswd = $_target.__pass__
     $_settings.torizon_ip = $_target.Ip
+    $_settings.torizon_ssh_port = "$($_target.SshPort)"
     $_settings.torizon_login = $_target.Login
     $_settings.host_ip = GetHostIp
     $_settings.torizon_arch = $_target.Arch
