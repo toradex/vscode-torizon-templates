@@ -2,5 +2,17 @@
     {
         "source": ".vscode/launch.json",
         "target": ".vscode/launch.json"
+    },
+    {
+        "source": "requirements-local.txt",
+        "target": "requirements-local.txt"
+    },
+    {
+        "source": "requirements-debug.txt",
+        "target": "requirements-debug.txt"
+    },
+    {
+        "source": "requirements-release.txt",
+        "target": "requirements-release.txt"
     }
 ]

@@ -288,6 +288,121 @@
                 "build-container-image-sdk-arm64"
             ]
         },
+        {
+            "label": "build-configure-amd64",
+            "hide": true,
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "args": [
+                "docker",
+                "run",
+                "--rm",
+                "-v",
+                "${workspaceFolder}:${config:torizon_app_root}",
+                "cross-toolchain-amd64-__container__",
+                "cmake",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_CXX_COMPILER=x86_64-linux-gnu-g++",
+                "-DCMAKE_C_COMPILER=x86_64-linux-gnu-gcc",
+                "-Bbuild-amd64"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-container-image-sdk-amd64"
+            ]
+        },
+        {
+            "label": "build-debug-amd64",
+            "detail": "Build a debug version of the application for amd64 using\nthe toolchain from the SDK container.",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "args": [
+                "docker",
+                "run",
+                "--rm",
+                "-v",
+                "${workspaceFolder}:${config:torizon_app_root}",
+                "cross-toolchain-amd64-__container__",
+                "cmake",
+                "--build",
+                "build-amd64"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-configure-amd64"
+            ]
+        },
+        {
+            "label": "deploy-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "1"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-amd64",
+                "copy-docker-compose",
+                "pre-cleanup",
+                "build-debug-amd64",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "clean-amd64",
+            "detail": "Clean the build folder for amd64 using the\ncontainer SDK toolchain.",
+            "command": "DOCKER_HOST=",
+            "type": "shell",
+            "args": [
+                "docker",
+                "run",
+                "--rm",
+                "-v",
+                "${workspaceFolder}:${config:torizon_app_root}",
+                "cross-toolchain-amd64-__container__",
+                "cmake",
+                "--build",
+                "build-amd64",
+                "--target",
+                "clean"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-container-image-sdk-arm64"
+            ]
+        },
     ],
 "inputs": []
 }
