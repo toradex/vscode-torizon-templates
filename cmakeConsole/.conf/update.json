@@ -2,5 +2,9 @@
     {
         "source": "CMakeLists.txt",
         "target": "CMakeLists.txt"
+    },
+    {
+        "source": "Dockerfile.sdk",
+        "target": "Dockerfile.sdk"
     }
 ]

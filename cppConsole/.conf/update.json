@@ -2,5 +2,9 @@
     {
         "source": "Makefile",
         "target": "Makefile"
+    },
+    {
+        "source": "Dockerfile.sdk",
+        "target": "Dockerfile.sdk"
     }
 ]
