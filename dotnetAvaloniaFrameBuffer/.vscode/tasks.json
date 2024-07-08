@@ -2,6 +2,21 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "build",
+            "detail": "dotnet build command for building the application \n(only to resolve the assemblies and have the proper intellisense)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/__change__.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "watch",
             "hide": true,
             "command": "dotnet",
