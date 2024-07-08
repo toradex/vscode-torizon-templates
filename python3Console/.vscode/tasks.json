@@ -2,6 +2,27 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "create-venv",
+            "detail": "",
+            "hide": true,
+            "command": "/usr/bin/python3",
+            "type": "process",
+            "args": [
+                "-m",
+                "venv",
+                ".venv"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
             "label": "wait-debugpy-start-arm",
             "detail": "",
             "hide": true,
