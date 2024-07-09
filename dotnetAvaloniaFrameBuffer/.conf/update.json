@@ -8,6 +8,10 @@
         "target": ".vscode/settings.json"
     },
     {
+        "source": ".vscode/extensions.json",
+        "target": ".vscode/extensions.json"
+    },
+    {
         "source": "global.json",
         "target": "global.json"
     },
