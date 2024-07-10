@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "microhobby.vscode-avalonia-community",
-        "ms-dotnettools.csharp"
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit"
     ]
 }
