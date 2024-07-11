@@ -9,7 +9,7 @@
             "args": [
                 "build",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug"
             ],
             "problemMatcher": "$msCompile",
@@ -26,7 +26,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug"
             ],
             "problemMatcher": "$msCompile",
@@ -43,7 +43,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm"
@@ -62,7 +62,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm64"
@@ -81,7 +81,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-x64"
@@ -120,7 +120,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm",
@@ -170,7 +170,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm64",
@@ -220,7 +220,7 @@
                 "${workspaceFolder}/__change__.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-amd64",
