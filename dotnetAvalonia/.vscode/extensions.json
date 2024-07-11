@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "AvaloniaTeam.vscode-avalonia",
-        "ms-dotnettools.csharp"
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit"
     ]
 }
