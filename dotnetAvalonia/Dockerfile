@@ -7,8 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next
-ARG DOTNET_BASE_VERSION=next-8.0
+ARG BASE_VERSION=3-8.0
 
 ##
 # Directory of the application inside container
@@ -36,14 +35,10 @@ RUN dotnet restore && \
 dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained
 # BUILD ------------------------------------------------------------------------
 
-# DOTNET -----------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet:${DOTNET_BASE_VERSION} AS Dotnet
-
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+    commontorizon/dotnet-x-gtk:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -76,27 +71,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     # __torizon_packages_prod_start__
     # __torizon_packages_prod_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    libice6 \
-    libsm6 \
-    libicu72 \
-    curl \
-    gettext \
-    apt-transport-https \
-    libx11-6 \
-	libunwind-13 \
-    icu-devtools \
-	libfontconfig1 \
-	libgtk-3-0 \
-    libgtk-3-bin \
-    libgtk-3-common \
-	libdrm2 \
-	libinput10 \
-    libssl3 \
 	&& apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
-
-RUN printf "{\n  \"device\": \"/dev/dri/card1\",\n  \"outputs\": [ { \"name\": \"HDMI1\" } ],\n  \"hwcursor\": false\n}" > /etc/kms-imx6.conf \
-    && printf "{\n  \"hwcursor\": false\n}" > /etc/kms-imx8.conf \
-    && ln -s /etc/kms-imx8.conf /etc/kms-imx7.conf
 
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root

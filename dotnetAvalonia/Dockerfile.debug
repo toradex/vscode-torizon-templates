@@ -9,8 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next
-ARG DOTNET_BASE_VERSION=next-8.0
+ARG BASE_VERSION=3-8.0
 
 ##
 # Directory of the application inside container
@@ -32,17 +31,12 @@ ARG SSHUSERNAME=
 ##
 ARG GPU=
 
-# DOTNET -----------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-debug:${DOTNET_BASE_VERSION} AS Dotnet
-
-
 # BUILD ------------------------------------------------------------------------
 ##
 # Deploy Step .NET Uno
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
+    commontorizon/dotnet-x-gtk-debug:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -86,23 +80,6 @@ RUN apt-get -q -y update && \
     openssh-server \
     rsync \
     file \
-    libice6 \
-    libsm6 \
-    libicu72 \
-    curl \
-    gettext \
-    apt-transport-https \
-    apt-utils \
-    libx11-6 \
-	libunwind-13 \
-    icu-devtools \
-	libfontconfig1 \
-	libgtk-3-0 \
-    libgtk-3-bin \
-    libgtk-3-common \
-	libdrm2 \
-	libinput10 \
-    libssl3 \
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
