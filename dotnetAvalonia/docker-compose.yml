@@ -24,9 +24,9 @@ services:
       - "c 199:* rmw"
       # ... for /dev/dri devices
       - "c 226:* rmw"
-    depends_on: [
-      xfce
-    ]
+    depends_on:
+      xfce:
+        condition: service_healthy
 
   __container__:
     build:
@@ -50,9 +50,9 @@ services:
       - "c 199:* rmw"
       # ... for /dev/dri devices
       - "c 226:* rmw"
-    depends_on: [
-      xfce
-    ]
+    depends_on:
+      xfce:
+        condition: service_healthy
 
   xfce:
     image: commontorizon/xfce:3.3.0

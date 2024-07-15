@@ -44,11 +44,6 @@ ARG IMAGE_ARCH
 ARG GPU
 ARG APP_ROOT
 
-ENV DOTNET_ROOT=/dotnet
-ENV PATH=$PATH:/dotnet
-
-COPY --from=Dotnet /dotnet /dotnet
-
 # stick to bookworm on /etc/apt/sources.list.d
 RUN sed -i 's/sid/bookworm/g' /etc/apt/sources.list.d/debian.sources
 

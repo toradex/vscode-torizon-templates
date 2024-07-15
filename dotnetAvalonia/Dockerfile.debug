@@ -44,12 +44,6 @@ ARG SSH_DEBUG_PORT
 ARG APP_ROOT
 ARG SSHUSERNAME
 
-ENV DOTNET_ROOT=/dotnet
-ENV PATH=$PATH:/dotnet
-
-COPY --from=Dotnet /vsdbg /vsdbg
-COPY --from=Dotnet /dotnet /dotnet
-
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
 
@@ -80,6 +74,8 @@ RUN apt-get -q -y update && \
     openssh-server \
     rsync \
     file \
+    libice6 \
+    libsm6 \
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
