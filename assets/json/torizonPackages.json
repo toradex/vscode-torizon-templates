@@ -1,6 +1,6 @@
 {
-    "deps": [
+    "prodRuntimeDeps": [
     ],
-    "devDeps": [
+    "devRuntimeDeps": [
     ]
 }

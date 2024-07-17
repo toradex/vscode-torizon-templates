@@ -15,20 +15,24 @@ jobs:
         project:
           - folder: rustSlint
             container: rust-slint
-            arch: arm64
-
+            vendor: "{ arch: 'arm64', torizon_arch: 'aarch64' }"
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build ${{ matrix.project.folder }} Dockerfile.debug
+      - name: Build ${{ matrix.project.folder }} Dockerfile
         shell: pwsh
         env:
           PROJECT_FOLDER: ${{ matrix.project.folder }}
           PROJECT_CONTAINER: ${{ matrix.project.container }}
-          PROJECT_ARCH: ${{ matrix.project.arch }}
+          VENDOR: ${{ matrix.project.vendor }}
+          DOCKER_LOGIN: localhost:5002
 
         run: |
+          $_vendor = ($env:VENDOR | ConvertFrom-Json)
+          $env:TORIZON_ARCH = $_vendor.torizon_arch
+          $env:PROJECT_ARCH = $_vendor.arch
+
           docker run --rm --privileged torizon/binfmt
 
           scripts/createFromTemplate.ps1 `
@@ -41,6 +45,11 @@ jobs:
             false
 
           cd "${env:GITHUB_WORKSPACE}/${env:PROJECT_FOLDER}CITest"
+
+          $_settingsJson = Get-Content -Path ".vscode/settings.json" | ConvertFrom-Json
+          $_settingsJson.torizon_arch = $env:TORIZON_ARCH
+          Set-Content -Path ".vscode/settings.json" -Value ($_settingsJson | ConvertTo-Json) -Encoding UTF8
+
           # TODO: this is bad, but it's the only way to make it work for now
           chmod 777 . -R
 

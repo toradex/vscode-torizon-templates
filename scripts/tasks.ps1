@@ -68,9 +68,16 @@ if ($env:TASKS_USE_PWSH_INSTEAD_BASH -eq $true) {
     $_usePwshInsteadBash = $false;
 }
 
+if ($null -eq $env:TASKS_CUSTOM_SETTINGS_JSON) {
+    $env:TASKS_CUSTOM_SETTINGS_JSON = "settings.json"
+} else {
+    Write-Host "ℹ️ :: CUSTOM SETTINGS :: ℹ️"
+    Write-Host "Using custom settings file: $env:TASKS_CUSTOM_SETTINGS_JSON"
+}
+
 try {
     $tasksFileContent = Get-Content $PSScriptRoot/tasks.json
-    $settingsFileContent = Get-Content $PSScriptRoot/settings.json
+    $settingsFileContent = Get-Content $PSScriptRoot/$env:TASKS_CUSTOM_SETTINGS_JSON
     $json = $tasksFileContent | ConvertFrom-Json
     $settings = $settingsFileContent | ConvertFrom-Json
     $inputs = $json.inputs
@@ -215,7 +222,7 @@ function checkTorizonInputs ([System.Collections.ArrayList] $list) {
             foreach ($matchValue in $maches) {
                 $matchValue = $matchValue.Value
                 $item = $item.Replace(
-                    "`${command:torizon_${matchValue}}", 
+                    "`${command:torizon_${matchValue}}",
                     "`${config:torizon_${matchValue}}"
                 )
             }
@@ -242,7 +249,7 @@ function checkDockerInputs ([System.Collections.ArrayList] $list) {
             foreach ($matchValue in $maches) {
                 $matchValue = $matchValue.Value
                 $item = $item.Replace(
-                    "`${command:docker_${matchValue}}", 
+                    "`${command:docker_${matchValue}}",
                     "`${config:docker_${matchValue}}"
                 )
             }
@@ -273,7 +280,7 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
                 }
 
                 $item = $item.Replace(
-                    "`${command:tcb.getNextPackageVersion}", 
+                    "`${command:tcb.getNextPackageVersion}",
                     "$_next"
                 )
             }
@@ -287,7 +294,7 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
             foreach ($matchValue in $maches) {
                 $matchValue = $matchValue.Value
                 $item = $item.Replace(
-                    "`${command:tcb.${matchValue}}", 
+                    "`${command:tcb.${matchValue}}",
                     "`${config:tcb.${matchValue}}"
                 )
             }
@@ -379,7 +386,7 @@ function bashVariables ([System.Collections.ArrayList] $list) {
             # then we continue because these are meant to be expanded
             if (
                 $item.Contains("`$global:") -or
-                $item.Contains("`$env:") -or 
+                $item.Contains("`$env:") -or
                 $item.Contains("`${")
             ) {
                 [void]$ret.Add($item)
@@ -544,7 +551,7 @@ function runTask () {
                         )
                     } else {
                         if (
-                            $null -eq 
+                            $null -eq
                             [System.Environment]::GetEnvironmentVariable($env)
                         ) {
                             $_env = _parseEnvs $env $task
@@ -648,7 +655,7 @@ function getCliInputs () {
 # main()
 # set the relative workspaceFolder (following the pattern that VS Code expects)
 if (
-    ($null -eq $env:APOLLOX_WORKSPACE) -and 
+    ($null -eq $env:APOLLOX_WORKSPACE) -and
     ($env:APOLLOX_CONTAINER -ne 1)
 ) {
     $Global:workspaceFolder = Join-Path $PSScriptRoot ..

@@ -119,7 +119,14 @@ if ([string]::IsNullOrEmpty($tag)) {
     }
 }
 
-$objSettings = Get-Content ("$compoFilePath/.vscode/settings.json") | `
+if ($null -eq $env:TASKS_CUSTOM_SETTINGS_JSON) {
+    $env:TASKS_CUSTOM_SETTINGS_JSON = "settings.json"
+} else {
+    Write-Host "ℹ️ :: CUSTOM SETTINGS :: ℹ️"
+    Write-Host "Using custom settings file: $env:TASKS_CUSTOM_SETTINGS_JSON"
+}
+
+$objSettings = Get-Content ("$compoFilePath/.vscode/$env:TASKS_CUSTOM_SETTINGS_JSON") | `
     Out-String | ConvertFrom-Json
 $localRegistry = $objSettings.host_ip
 

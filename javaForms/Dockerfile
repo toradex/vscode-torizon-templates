@@ -41,8 +41,8 @@ RUN apt-get -q -y update && \
     msopenjdk-21 \
     # ADD YOUR PACKAGES HERE
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    # __torizon_packages_dev_start__
-    # __torizon_packages_dev_end__
+    # __torizon_packages_build_start__
+    # __torizon_packages_build_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
