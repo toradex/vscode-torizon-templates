@@ -239,8 +239,11 @@ function _target_list_builtin_dto () {
 }
 
 function _target_apply_dto () {
-    # TODO: make it more CLI friendly, without the read-host
-    $_overlays = Read-Host "Overlays list (comma separated)"
+    param(
+        [Parameter(Mandatory = $true, HelpMessage="The overlays to apply (comma separated)")]
+        [string] $overlays
+    )
+
     Write-Host ""
 
     $_targetDev = _get_target
@@ -250,7 +253,7 @@ function _target_apply_dto () {
             -login $_targetDev.Login `
             -pass $_targetDev.__pass__ `
             -ip $_targetDev.Ip `
-            -overlays $_overlays
+            -overlays $overlays
 }
 
 function _target_list_applied_dto () {
@@ -414,7 +417,7 @@ try {
                 }
                 "apply-dto" {
                     try {
-                        _target_apply_dto
+                        _target_apply_dto $args[2]
                     } catch {
                         # ignore the error
                     }
