@@ -29,6 +29,9 @@ TCD_COMP_ARGS_TARGET="
     console
     reboot
     shutdown
+    list-builtin-dto
+    list-applied-dto
+    apply-dto
 "
 
 TCD_COMP_ARGS_TASKS="
