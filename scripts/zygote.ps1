@@ -427,7 +427,12 @@ try {
                     }
                 }
                 Default {
-                    _show_target_device
+                    if ($args[1] -eq "") {
+                        _show_target_device
+                    } else {
+                        Write-Host -ForegroundColor Red "❌ :: Command not found :: ❌"
+                        exit 404
+                    }
                 }
             }
         }
