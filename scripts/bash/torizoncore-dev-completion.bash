@@ -40,14 +40,14 @@ TCD_COMP_ARGS_TASKS="
     run
 "
 
-_torizoncore-dev_completions() {
+_torizon-dev_completions() {
     local cur prev opts
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-    # if the previous word is torizoncore-dev
-    if [[ ${COMP_WORDS[COMP_CWORD-1]} == "torizoncore-dev" ]]; then
+    # if the previous word is torizon-dev
+    if [[ ${COMP_WORDS[COMP_CWORD-1]} == "torizon-dev" ]]; then
         opts="${TCD_COMP_ARGS_MAIN}"
     # if the previous word is scan
     elif [[ ${COMP_WORDS[COMP_CWORD-1]} == "scan" ]]; then
@@ -78,4 +78,4 @@ _torizoncore-dev_completions() {
     return 0
 }
 
-complete -o bashdefault -F _torizoncore-dev_completions torizoncore-dev
+complete -o bashdefault -F _torizon-dev_completions torizon-dev

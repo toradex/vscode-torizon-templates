@@ -4,7 +4,7 @@
 shopt -s expand_aliases
 
 _COMPOSE_FILE="$HOME/.tcd/docker-compose.yml"
-_BASH_COMPLETION_FILE="$HOME/.tcd/torizoncore-dev-completion.bash"
+_BASH_COMPLETION_FILE="$HOME/.tcd/torizon-dev-completion.bash"
 export APOLLOX_REPO="toradex/vscode-torizon-templates"
 export APOLLOX_BRANCH="next"
 export BRANCH="next"
@@ -18,8 +18,8 @@ else
     # remove the files so we can download it again
     # remove the docker-compose.yml
     rm -rf $HOME/.tcd/docker-compose.yml
-    # remove the torizoncore-dev-completion.bash
-    rm -rf $HOME/.tcd/torizoncore-dev-completion.bash
+    # remove the torizon-dev-completion.bash
+    rm -rf $HOME/.tcd/torizon-dev-completion.bash
 fi
 
 # check if _COMPOSE_FILE exists
@@ -31,16 +31,16 @@ fi
 # check if _BASH_COMPLETION_FILE exists
 if [ ! -f "$_BASH_COMPLETION_FILE" ]; then
     # download it from GitHub
-    wget -q https://raw.githubusercontent.com/$APOLLOX_REPO/$APOLLOX_BRANCH/scripts/bash/torizoncore-dev-completion.bash -O $_BASH_COMPLETION_FILE
+    wget -q https://raw.githubusercontent.com/$APOLLOX_REPO/$APOLLOX_BRANCH/scripts/bash/torizon-dev-completion.bash -O $_BASH_COMPLETION_FILE
 fi
 
 # we pull everytime we source it to get updates
 docker \
     compose \
     -f $_COMPOSE_FILE \
-    pull torizoncore-dev
+    pull torizon-dev
 
-function torizoncore-dev {
+function torizon-dev {
     # check if we are in the WSL
     if [ -n "$WSL_DISTRO_NAME" ]; then
         # check if the APOLLOX_PORTS_SHARED is already set
@@ -57,23 +57,23 @@ function torizoncore-dev {
     export SHA_DIR=$myhash
 
     # check if the container name already exists
-    if [ "$(docker ps -aq -f name=torizoncore-dev-$myhash)" ]; then
+    if [ "$(docker ps -aq -f name=torizon-dev-$myhash)" ]; then
         # start the container
-        docker start torizoncore-dev-$myhash > /dev/null
+        docker start torizon-dev-$myhash > /dev/null
     # else then run it
     else
         docker \
             compose \
             -f $_COMPOSE_FILE \
             run \
-            --name torizoncore-dev-$myhash \
-            -d torizoncore-dev > /dev/null
+            --name torizon-dev-$myhash \
+            -d torizon-dev > /dev/null
     fi
 
     # exec the zygote with the args
-    docker exec -it torizoncore-dev-$myhash zygote $@
+    docker exec -it torizon-dev-$myhash zygote $@
 }
 
 # FIXME:    we need to also copy the completion file to
-#           /usr/share/bash-completion/completions/torizoncore-dev
+#           /usr/share/bash-completion/completions/torizon-dev
 source $_BASH_COMPLETION_FILE

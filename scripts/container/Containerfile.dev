@@ -13,7 +13,7 @@ RUN dotnet restore && \
 dotnet publish -c Release
 
 
-FROM torizonextras/torizoncore-dev-tasks:${BRANCH}
+FROM torizonextras/torizon-dev-tasks:${BRANCH}
 
 ARG BRANCH
 ARG UID

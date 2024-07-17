@@ -13,7 +13,7 @@ services:
       args:
         - BRANCH=${BRANCH}
         - REPO=toradex/vscode-torizon-templates
-    image: torizonextras/torizoncore-dev-tasks:${BRANCH}
+    image: torizonextras/torizon-dev-tasks:${BRANCH}
 
   pwsh-gitlab:
     build:
@@ -23,14 +23,14 @@ services:
         - BRANCH=${BRANCH}
     image: torizonextras/pwsh-gitlab:${BRANCH}
 
-  torizoncore-dev:
+  torizon-dev:
     build:
       context: ../
       dockerfile: container/Containerfile.dev
       args:
         - BRANCH=${BRANCH}
         - UID=${UUID}
-    image: torizonextras/torizoncore-dev:${BRANCH}
+    image: torizonextras/torizon-dev:${BRANCH}
     privileged: true
     network_mode: host
     environment:
@@ -54,7 +54,7 @@ services:
       - ${HOME}/.tcd/:/root/.tcd/
       - ${PWD}:/workspace
       - ${PWD}:${PWD}
-    container_name: torizoncore-dev-${SHA_DIR}
+    container_name: torizon-dev-${SHA_DIR}
     stdin_open: true
     tty: true
     pid: host

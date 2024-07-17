@@ -57,7 +57,7 @@ function help() {
     Write-Host "`t`t show the help for the tasks command"
     Write-Host ""
     Write-Host " ➡️ version | --version"
-    Write-Host "`t Show the torizoncore-dev version"
+    Write-Host "`t Show the torizon-dev version"
     Write-Host ""
 }
 
@@ -224,6 +224,8 @@ function _target_console() {
         -o UserKnownHostsFile=/dev/null `
         -o StrictHostKeyChecking=no `
         $_user@$_ip $cmd
+
+    Write-Host ""
 }
 
 function _target_list_builtin_dto () {
@@ -370,6 +372,15 @@ try {
                     Write-Host ""
                     Write-Host " ➡️ shutdown"
                     Write-Host "`t Shutdown the target device"
+                    Write-Host ""
+                    Write-Host " ➡️ list-builtin-dto"
+                    Write-Host "`t See a list of available pre-built overlays that can be applied to the target device"
+                    Write-Host ""
+                    Write-Host " ➡️ list-applied-dto"
+                    Write-Host "`t See the list of the overlays applied to the target device"
+                    Write-Host ""
+                    Write-Host " ➡️ apply-dto"
+                    Write-Host "`t Apply a list of overlays to the target device"
                     Write-Host ""
                     exit 0
                 }
