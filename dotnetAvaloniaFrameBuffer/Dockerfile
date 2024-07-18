@@ -104,8 +104,8 @@ COPY --from=Build ${APP_ROOT}/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${A
 WORKDIR ${APP_ROOT}
 
 # FIXME: change this depending on your hardware
-ENV AVALONIA_DRM=true
-#ENV AVALONIA_FB=true
+# ENV AVALONIA_DRM=true
+ENV AVALONIA_FB=true
 
 # Command executed in runtime when the container starts
 CMD ["./__change__"]
