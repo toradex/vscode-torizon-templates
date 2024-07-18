@@ -367,7 +367,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "dd if=/dev/zero count=1200 bs=1024 > /dev/fb0"
+                "cat /dev/zero > /dev/fb0"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [

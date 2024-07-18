@@ -7,8 +7,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next
-ARG DOTNET_BASE_VERSION=next-8.0
+ARG BASE_VERSION=3.3.0
+ARG DOTNET_BASE_VERSION=3-8.0
 
 ##
 # Directory of the application inside container
@@ -39,12 +39,12 @@ dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained
 
 # DOTNET -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet:${DOTNET_BASE_VERSION} AS Dotnet
+    commontorizon/dotnet:${DOTNET_BASE_VERSION} AS Dotnet
 
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU

@@ -9,8 +9,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next
-ARG DOTNET_BASE_VERSION=next-8.0
+ARG BASE_VERSION=3.3.0
+ARG DOTNET_BASE_VERSION=3-8.0
 
 ##
 # Directory of the application inside container
@@ -34,7 +34,7 @@ ARG GPU=
 
 # DOTNET -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-debug:${DOTNET_BASE_VERSION} AS Dotnet
+    commontorizon/dotnet-debug:${DOTNET_BASE_VERSION} AS Dotnet
 
 
 # BUILD ------------------------------------------------------------------------
@@ -42,7 +42,7 @@ FROM --platform=linux/${IMAGE_ARCH} \
 # Deploy Step .NET Uno
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG GPU
