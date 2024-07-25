@@ -7,11 +7,11 @@ services:
     image: ${LOCAL_REGISTRY}:5002/__container__-debug:${TAG}
     ports:
       # SSH debug
-      - 2231:2231
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
       # gdbserver
-      - 2232:2232
+      - ${DEBUG_PORT1}:${DEBUG_PORT1}
       # qml debug
-      - 2233:2233
+      - ${DEBUG_PORT2}:${DEBUG_PORT2}
     volumes:
       - type: bind
         source: /tmp
