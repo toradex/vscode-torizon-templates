@@ -174,9 +174,9 @@
                 "-vv",
                 "-l",
                 "-p",
-                "${config:torizon_debug_port3}",
+                "${config:torizon_debug_port2}",
                 "-c",
-                "nc.traditional ${config:torizon_ip} ${config:torizon_debug_port3}"
+                "nc.traditional ${config:torizon_ip} ${config:torizon_debug_port2}"
             ],
             "problemMatcher": [{
                 "pattern": [{
@@ -211,7 +211,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+                "cd ${config:torizon_app_root} && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port1} __change__ -qmljsdebugger=port:${config:torizon_debug_port2},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -237,9 +237,9 @@
                 }
             },
             "args": [
-                "localhost:${config:torizon_debug_port2}",
+                "localhost:${config:torizon_debug_port1}",
                 "${workspaceFolder}/build-local/bin/__change__",
-                "-qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+                "-qmljsdebugger=port:${config:torizon_debug_port2},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -266,7 +266,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+                "cd ${config:torizon_app_root} && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port1} __change__ -qmljsdebugger=port:${config:torizon_debug_port2},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -295,7 +295,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port2} __change__ -qmljsdebugger=port:${config:torizon_debug_port3},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
+                "cd ${config:torizon_app_root} && export QT_LOGGING_RULES=\"*.debug=true; qt.*.debug=false\" && gdbserver localhost:${config:torizon_debug_port1} __change__ -qmljsdebugger=port:${config:torizon_debug_port2},block,services:DebugMessages,QmlDebugger,V8Debugger,QmlInspector,DebugTranslation"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -796,7 +796,7 @@
                 "-c",
                 "${env:HOME}/.apollox/scripts/updateQtCreatorIni.ps1",
                 "${workspaceFolder}",
-                "${config:torizon_ip}:${config:torizon_debug_port2}",
+                "${config:torizon_ip}:${config:torizon_debug_port1}",
                 "__change__",
                 "arm64"
             ],
@@ -818,7 +818,7 @@
                 "-c",
                 "${env:HOME}/.apollox/scripts/updateQtCreatorIni.ps1",
                 "${workspaceFolder}",
-                "${config:torizon_ip}:${config:torizon_debug_port2}",
+                "${config:torizon_ip}:${config:torizon_debug_port1}",
                 "__change__",
                 "arm"
             ],
@@ -840,7 +840,7 @@
                 "-c",
                 "${env:HOME}/.apollox/scripts/updateQtCreatorIni.ps1",
                 "${workspaceFolder}",
-                "${config:torizon_ip}:${config:torizon_debug_port2}",
+                "${config:torizon_ip}:${config:torizon_debug_port1}",
                 "__change__",
                 "amd64"
             ],
@@ -862,7 +862,7 @@
                 "-c",
                 "${env:HOME}/.apollox/scripts/updateQtCreatorIni.ps1",
                 "${workspaceFolder}",
-                "localhost:${config:torizon_debug_port2}",
+                "localhost:${config:torizon_debug_port1}",
                 "__change__",
                 "local"
             ],
