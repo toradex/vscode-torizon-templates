@@ -5,7 +5,7 @@
   "torizon_ssh_port": "",
   "host_ip": "",
   "torizon_workspace": "${workspaceFolder}",
-  "torizon_debug_port": "6512",
+  "torizon_debug_port1": "6512",
   "torizon_debug_ssh_port": "6502",
   "torizon_debug_port2": "",
   "torizon_debug_port3": "",

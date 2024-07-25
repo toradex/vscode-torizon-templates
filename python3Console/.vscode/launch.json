@@ -32,7 +32,7 @@
             "justMyCode": false,
             "connect": {
                 "host": "${config:torizon_ip}",
-                "port": "${config:torizon_debug_port}"
+                "port": "${config:torizon_debug_port1}"
             },
             "pathMappings": [
                 {
@@ -49,7 +49,7 @@
             "justMyCode": false,
             "connect": {
                 "host": "${config:torizon_ip}",
-                "port": "${config:torizon_debug_port}"
+                "port": "${config:torizon_debug_port1}"
             },
             "pathMappings": [
                 {

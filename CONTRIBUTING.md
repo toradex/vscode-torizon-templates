@@ -17,7 +17,7 @@ Torizon IDE Extension project templates are in their nature VS Code workspaces, 
 ![](https://github.com/toradex/vscode-torizon-templates/blob/dev/assets/img/vscodetasksDiagram.png?raw=true&v=6)
 
 > ⚠️ To trigger the Torizon IDE Extension `build/deploy start` event the first dependency tasks from the pipeline needs to be labeled `validate-settings-*`.
-> 
+>
 > Check the common tasks to use the right validate settings task for the architecture that is being added  [assets/tasks/common.json](./assets/tasks/common.json)
 
 > ⚠️ To trigger the Torizon IDE Extension `build/deploy end` event the last task to be executed from the pipeline needs to be labeled `deploy-torizon-*`.
@@ -83,7 +83,7 @@ Substitution tags can be used inside files and as folders names to rename stuff 
 In the `.vscode` folder the following files are expected:
 
 - `settings.json`: define configurations about the host and the target device;
-  
+
   - ```json
     {
       "torizon_psswd": "", // remote device psswd
@@ -91,7 +91,7 @@ In the `.vscode` folder the following files are expected:
       "torizon_ip": "", // remote device hostname or ip address
       "host_ip": "", // development pc ip address
       "torizon_workspace": "${workspaceFolder}",
-      "torizon_debug_port": "", // debug port used by the framework
+      "torizon_debug_port1": "", // debug port used by the framework
       "torizon_debug_ssh_port": "2230", // ssh port used by debug container
       "torizon_debug_port2": "", // second port used by the framework
       "torizon_debug_port3": "", // third port used by the framework
@@ -117,7 +117,7 @@ In the `.conf` folder the following files are expected:
 - `id_rsa.pub`: public key used for debug purposes, to remote deploy/debug the application inside a container;
 
 - `deps.json`: define an array with the Debian/Ubuntu packages that are dependency for compile and/or run the application locally. Torizon IDE Extension extension will check and will try to install it if they are not installed:
-  
+
   - ```json
     {
         "packages": [
@@ -135,9 +135,9 @@ In the `.conf` folder the following files are expected:
 
 #### Dot Doc Folder
 
-In the `.doc` folder is present the documentation specific of each template. 
+In the `.doc` folder is present the documentation specific of each template.
 
-This documentation should give some explanation of how the code is being built and deployed to the application, how it is being debugged and where did its source code come from. Also, there should be present any information specific from that template, warnings, recommendations and tasks specific from that template and how to use them. You can add any information that you believe is relevant to the template there. The file containing this information has to be the `README.md` file. 
+This documentation should give some explanation of how the code is being built and deployed to the application, how it is being debugged and where did its source code come from. Also, there should be present any information specific from that template, warnings, recommendations and tasks specific from that template and how to use them. You can add any information that you believe is relevant to the template there. The file containing this information has to be the `README.md` file.
 
 > ℹ️ Check the [cppQML/.doc/README.md](./cppQML/.doc/README.md) to see an example.
 
@@ -155,13 +155,13 @@ For Torizon IDE Extension project templates we are using [GitHub platform](https
 - Create a new development branch for your contributions;
 
 - Follow this commits format:
-  
+
   - ```git
     <template Folder>: <description>
-    
+
     [optional body] <detailed description>
-    
-    
+
+
     Signed-off-by: your-e-mail@your-provider.com
     ```
 
