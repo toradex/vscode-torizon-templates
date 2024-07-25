@@ -242,6 +242,7 @@
             "type": "shell",
             "args": [
                 "LOCAL_REGISTRY=${config:host_ip}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
                 "docker",
