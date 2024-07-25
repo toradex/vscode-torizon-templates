@@ -5,14 +5,10 @@ services:
       context: .
       dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5002/__container__:${TAG}
-    expose:
-      - 2228
-      - 9229
-      - 9223
     ports:
-      - 2228:2228
-      - 9229:9229
-      - 9223:9223
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
+      - ${DEBUG_PORT1}:${DEBUG_PORT1}
+      - ${DEBUG_PORT2}:${DEBUG_PORT2}
     volumes:
       - type: bind
         source: /tmp

@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5002/__container__:${TAG}
     ports:
-      - 2234:2234
-      - 2235:2235
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
+      - ${DEBUG_PORT1}:${DEBUG_PORT1}
     volumes:
       - type: bind
         source: /tmp

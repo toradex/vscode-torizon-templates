@@ -9,9 +9,9 @@ services:
       - ACCEPT_FSL_EULA=1
     ports:
       # SSH debug
-      - 2231:2231
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
       # gdbserver
-      - 2232:2232
+      - ${DEBUG_PORT1}:${DEBUG_PORT1}
     volumes:
       - type: bind
         source: /tmp

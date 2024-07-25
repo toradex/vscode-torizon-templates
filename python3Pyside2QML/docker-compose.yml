@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5002/__container__-debug:${TAG}
     ports:
-      - 6502:6502
-      - 6512:6512
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
+      - ${DEBUG_PORT1}:${DEBUG_PORT1}
     volumes:
       - type: bind
         source: /tmp
@@ -28,7 +28,7 @@ services:
     depends_on: [
       weston
     ]
-    
+
   __container__:
     build:
       context: .
