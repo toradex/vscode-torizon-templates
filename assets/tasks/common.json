@@ -763,7 +763,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm64",
                     "GPU": "${config:torizon_gpu}",
-                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
                     "DEBUG_PORT": "${config:torizon_debug_port}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
@@ -781,7 +781,7 @@
                 "--build-arg",
                 "IMAGE_ARCH=arm64",
                 "--build-arg",
-                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"
@@ -807,7 +807,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm",
                     "GPU": "${config:torizon_gpu}",
-                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
                     "DEBUG_PORT": "${config:torizon_debug_port}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
@@ -825,7 +825,7 @@
                 "--build-arg",
                 "IMAGE_ARCH=arm",
                 "--build-arg",
-                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"
@@ -851,7 +851,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "amd64",
                     "GPU": "${config:torizon_gpu}",
-                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
                     "DEBUG_PORT": "${config:torizon_debug_port}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
@@ -869,7 +869,7 @@
                 "--build-arg",
                 "IMAGE_ARCH=amd64",
                 "--build-arg",
-                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"
@@ -895,7 +895,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "riscv64",
                     "GPU": "${config:torizon_gpu}",
-                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
                     "DEBUG_PORT": "${config:torizon_debug_port}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
@@ -913,7 +913,7 @@
                 "--build-arg",
                 "IMAGE_ARCH=riscv64",
                 "--build-arg",
-                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"

@@ -17,7 +17,7 @@ ARG APP_ROOT=
 ##
 # Debug port
 ##
-ARG SSH_DEBUG_PORT=
+ARG DEBUG_SSH_PORT=
 
 ##
 # Run as
@@ -32,12 +32,12 @@ FROM --platform=linux/${IMAGE_ARCH} \
     torizon/debian:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
-ARG SSH_DEBUG_PORT
+ARG DEBUG_SSH_PORT
 ARG APP_ROOT
 ARG SSHUSERNAME
 
 # SSH for remote debug
-EXPOSE ${SSH_DEBUG_PORT}
+EXPOSE ${DEBUG_SSH_PORT}
 
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
@@ -82,7 +82,7 @@ RUN mkdir /var/run/sshd && \
         then cp /id_rsa.pub /home/$SSHUSERNAME/.ssh/authorized_keys ; \
         else cp /id_rsa.pub /root/.ssh/authorized_keys ; fi && \
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
-    echo "Port ${SSH_DEBUG_PORT}" >> /etc/ssh/sshd_config && \
+    echo "Port ${DEBUG_SSH_PORT}" >> /etc/ssh/sshd_config && \
     su -c "env" $SSHUSERNAME > /etc/environment
 
 RUN rm -r /etc/ssh/ssh*key && \
