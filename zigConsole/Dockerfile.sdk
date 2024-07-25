@@ -18,6 +18,7 @@ ARG APP_ROOT=
 FROM kassany/bookworm-ziglang:${SDK_BASE_VERSION}
 
 ARG APP_ROOT
+ARG IMAGE_ARCH
 
 RUN apt-get update && \
     apt-get install -y \

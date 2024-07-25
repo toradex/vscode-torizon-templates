@@ -19,6 +19,7 @@ ARG APP_ROOT=
 FROM rust:${SDK_BASE_VERSION}
 
 ARG APP_ROOT
+ARG IMAGE_ARCH
 
 RUN apt-get update && \
     apt-get install -y \
