@@ -16,7 +16,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && gdbserver localhost:${config:torizon_debug_port2} __change__"
+                "cd ${config:torizon_app_root} && gdbserver localhost:${config:torizon_debug_port1} __change__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -38,7 +38,7 @@
                 "env": {}
             },
             "args": [
-                "localhost:${config:torizon_debug_port2}",
+                "localhost:${config:torizon_debug_port1}",
                 "${workspaceFolder}/build/x86_64/__change__",
             ],
             "problemMatcher": [
@@ -64,7 +64,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && gdbserver localhost:${config:torizon_debug_port2} __change__"
+                "cd ${config:torizon_app_root} && gdbserver localhost:${config:torizon_debug_port1} __change__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -91,7 +91,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && gdbserver localhost:${config:torizon_debug_port2} __change__"
+                "cd ${config:torizon_app_root} && gdbserver localhost:${config:torizon_debug_port1} __change__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
