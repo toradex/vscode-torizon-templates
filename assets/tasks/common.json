@@ -708,7 +708,7 @@
                     "TAG": "arm64",
                     "GPU": "${config:torizon_gpu}",
                     "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -752,7 +752,7 @@
                     "TAG": "arm",
                     "GPU": "${config:torizon_gpu}",
                     "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -796,7 +796,7 @@
                     "TAG": "amd64",
                     "GPU": "${config:torizon_gpu}",
                     "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -840,7 +840,7 @@
                     "TAG": "riscv64",
                     "GPU": "${config:torizon_gpu}",
                     "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }

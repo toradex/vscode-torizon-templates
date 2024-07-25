@@ -89,7 +89,7 @@
             },
             "isBackground": true,
             "args": [
-                "-agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n",
+                "-agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1},suspend=n",
                 "-cp",
                 "${workspaceFolder}/libs/*:${workspaceFolder}/dist/__change__.jar",
                 "__change__.Form1"
@@ -167,7 +167,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/libs/*:${config:torizon_app_root}/__change__.jar __change__.Form1 || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1},suspend=n -cp ${config:torizon_app_root}/libs/*:${config:torizon_app_root}/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -247,7 +247,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/libs/*:${config:torizon_app_root}/__change__.jar __change__.Form1 || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1},suspend=n -cp ${config:torizon_app_root}/libs/*:${config:torizon_app_root}/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -327,7 +327,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port},suspend=n -cp ${config:torizon_app_root}/libs/*:${config:torizon_app_root}/__change__.jar __change__.Form1 || true"
+                "java -agentlib:jdwp=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1},suspend=n -cp ${config:torizon_app_root}/libs/*:${config:torizon_app_root}/__change__.jar __change__.Form1 || true"
             ],
             "dependsOn": [
                 "validate-settings",
