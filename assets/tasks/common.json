@@ -1067,7 +1067,12 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm"
+                    "TAG": "arm",
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
@@ -1092,7 +1097,12 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64"
+                    "TAG": "arm64",
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
@@ -1117,7 +1127,12 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "amd64"
+                    "TAG": "amd64",
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
@@ -1142,7 +1157,12 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "riscv64"
+                    "TAG": "riscv64",
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
@@ -1162,20 +1182,20 @@
             "label": "pull-container-torizon-debug-arm64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=arm64",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "pull",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1191,20 +1211,20 @@
             "label": "pull-container-torizon-debug-arm",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=arm",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "pull",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1220,20 +1240,20 @@
             "label": "pull-container-torizon-debug-amd64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 docker compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=amd64",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "pull",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1249,20 +1269,20 @@
             "label": "pull-container-torizon-debug-riscv64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=riscv64 docker compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=riscv64",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "pull",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1284,6 +1304,10 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1312,6 +1336,10 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=arm",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1340,6 +1368,10 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=amd64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1368,6 +1400,10 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=riscv64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1654,20 +1690,16 @@
             "label": "pull-container-torizon-release-arm64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm64 docker compose pull __container__"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=arm64",
+                "GPU=${config:torizon_gpu}",
+                "docker",
+                "compose",
+                "pull",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1683,20 +1715,16 @@
             "label": "pull-container-torizon-release-arm",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm docker compose pull __container__"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=arm",
+                "GPU=${config:torizon_gpu}",
+                "docker",
+                "compose",
+                "pull",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1712,20 +1740,16 @@
             "label": "pull-container-torizon-release-amd64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=amd64 docker compose pull __container__"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=amd64",
+                "GPU=${config:torizon_gpu}",
+                "docker",
+                "compose",
+                "pull",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1741,20 +1765,16 @@
             "label": "pull-container-torizon-release-riscv64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=riscv64 docker compose pull __container__"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=riscv64",
+                "GPU=${config:torizon_gpu}",
+                "docker",
+                "compose",
+                "pull",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
