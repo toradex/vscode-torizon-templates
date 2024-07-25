@@ -2,7 +2,6 @@ ARG CROSS_SDK_BASE_TAG=3.3.0
 ARG BASE_VERSION=3.3.0-bookworm
 ##
 # Board architecture
-# arm or arm64
 ##
 ARG IMAGE_ARCH=
 

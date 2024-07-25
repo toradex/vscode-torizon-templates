@@ -6,7 +6,6 @@ ARG BASE_VERSION=next-bookworm
 
 ##
 # Board architecture
-# arm or arm64
 ##
 ARG IMAGE_ARCH=
 
