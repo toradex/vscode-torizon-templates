@@ -211,8 +211,9 @@
             }
         },
         {
-            "label": "publish-debug-amd64",
-            "detail": "dotnet build command for debugging the application on an amd64 target",
+            "label": "build-debug-amd64",
+            "detail": "",
+            "hide": true,
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -227,6 +228,30 @@
                 "--no-self-contained"
             ],
             "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "publish-debug-amd64",
+            "detail": "dotnet build command for debugging the application on an amd64 target",
+            "hide": false,
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-amd64",
+                "&&",
+                "mv",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-x64",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-amd64"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",

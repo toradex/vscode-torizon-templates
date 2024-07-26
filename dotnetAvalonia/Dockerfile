@@ -32,7 +32,11 @@ WORKDIR ${APP_ROOT}
 
 # build
 RUN dotnet restore && \
-dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained
+dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained && \
+if [ "${IMAGE_ARCH}" = "amd64" ]; then \
+    mv ./bin/Release/net8.0/linux-x64 ./bin/Release/net8.0/linux-amd64 ; \
+fi
+
 # BUILD ------------------------------------------------------------------------
 
 
