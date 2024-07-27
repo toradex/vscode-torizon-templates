@@ -157,7 +157,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "cat /dev/zero > /dev/fb0"
+                "cat /dev/zero > /dev/fb0 ; true"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -262,7 +262,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "cat /dev/zero > /dev/fb0"
+                "cat /dev/zero > /dev/fb0 ; true"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -391,7 +391,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "cat /dev/zero > /dev/fb0"
+                "cat /dev/zero > /dev/fb0 ; true"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
