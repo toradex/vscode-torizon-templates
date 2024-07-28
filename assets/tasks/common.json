@@ -1845,7 +1845,7 @@
         {
             "label": "show-project-documentation",
             "detail": "This task will open the project specific documentation\nin a new tab.",
-            "command": "${command:markdown.showPreview}",
+            "command": "${command:torizon.openTemplateDocumentation}",
             "type": "process",
             "presentation": {
                 "echo": false,
@@ -1855,37 +1855,10 @@
                 "showReuseMessage": true,
                 "clear": false
             },
-            "dependsOn": [
-                "open-project-documentation-file"
-            ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "book",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "open-project-documentation-file",
-            "command": "code",
-            "detail": "",
-            "hide": true,
-            "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "never",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": false,
-                "clear": true
-            },
-            "args": [
-                ".doc/README.md"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
                 "color": "terminal.ansiYellow"
             }
         },
