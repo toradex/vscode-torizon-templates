@@ -28,7 +28,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug"
             ],
             "problemMatcher": "$msCompile",
@@ -45,7 +45,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm"
@@ -64,7 +64,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm64"
@@ -83,7 +83,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-x64"
@@ -146,7 +146,7 @@
                 "validate-settings",
                 "validate-arch-arm",
                 "copy-docker-compose",
-                "pre-cleanup",
+                "pre-cleanup-debug",
                 "publish-debug-arm",
                 "build-container-torizon-debug-arm",
                 "push-container-torizon-debug-arm",
@@ -195,7 +195,7 @@
                 "validate-settings",
                 "validate-arch-amd64",
                 "copy-docker-compose",
-                "pre-cleanup",
+                "pre-cleanup-debug",
                 "publish-debug-amd64",
                 "build-container-torizon-debug-amd64",
                 "push-container-torizon-debug-amd64",
@@ -244,7 +244,7 @@
                 "validate-settings",
                 "validate-arch-arm64",
                 "copy-docker-compose",
-                "pre-cleanup",
+                "pre-cleanup-debug",
                 "publish-debug-arm64",
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
