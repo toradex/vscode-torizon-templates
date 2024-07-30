@@ -648,9 +648,9 @@
             }
         },
         {
-            "label": "pre-cleanup",
-            "detail": "",
-            "hide": true,
+            "label": "containers-cleanup",
+            "detail": "Docker compose down on the target (default device)",
+            "hide": false,
             "command": "if",
             "type": "shell",
             "args": [
@@ -664,6 +664,31 @@
                 "--remove-orphans",
                 ";",
                 "fi"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "remove-dangling-images",
+                "wait-a-bit"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "pre-cleanup",
+            "detail": "Clean the service of the application on the target (default device)(does not down the dependencies)",
+            "hide": true,
+            "command": "docker",
+            "type": "shell",
+            "args": [
+                "compose",
+                "-p",
+                "torizon",
+                "rm",
+                "-f",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
