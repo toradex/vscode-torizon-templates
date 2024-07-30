@@ -2,6 +2,16 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "create-preview-assets",
+            "hide": true,
+            "command": "${command:avalonia.createPreviewerAssets}",
+            "type": "process",
+            "isBuildCommand": true,
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
             "label": "build",
             "detail": "dotnet build command for building the application \n(only to resolve the assemblies and have the proper intellisense)",
             "command": "dotnet",
