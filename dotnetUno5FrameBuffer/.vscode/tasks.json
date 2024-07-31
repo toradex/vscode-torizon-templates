@@ -94,6 +94,29 @@
             }
         },
         {
+            "label": "publish-debug-amd64",
+            "detail": "",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Debug",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-x64",
+                "--no-self-contained"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "publish-debug-arm64",
             "detail": "",
             "command": "dotnet",
@@ -108,6 +131,39 @@
                 "-r",
                 "linux-arm64",
                 "--no-self-contained"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "rsync",
+            "type": "process",
+            "args": [
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net8.0/linux-x64/publish/",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-amd64",
+                "copy-docker-compose",
+                "pre-cleanup-debug",
+                "publish-debug-amd64",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64",
+                "wait-a-bit",
+                "pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -202,6 +258,58 @@
             }
         },
         {
+            "label": "run-torizon-amd64-debug",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "isBackground": true,
+            "presentation": {
+              "echo": true,
+              "reveal": "always",
+              "focus": false,
+              "panel": "dedicated",
+              "showReuseMessage": true,
+              "clear": true
+            },
+            "args": [
+              "-i",
+              "${workspaceFolder}/.conf/id_rsa",
+              "-p",
+              "${config:torizon_debug_ssh_port}",
+              "-o",
+              "UserKnownHostsFile=/dev/null",
+              "-o",
+              "StrictHostKeyChecking=no",
+              "-ttt",
+              "${config:torizon_run_as}@${config:torizon_ip}",
+              "cd ${config:torizon_app_root} && DOTNET_MODIFIABLE_ASSEMBLIES=debug ./__change__.Skia.Linux.FrameBuffer -debug"
+            ],
+            "dependsOn": [
+              "deploy-torizon-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": {
+              "pattern": {
+                "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                "file": 1,
+                "location": 2,
+                "severity": 3,
+                "code": 4,
+                "message": 5
+              },
+              "background": {
+                "activeOnStart": true,
+                "beginsPattern": "^\\s*",
+                "endsPattern": "^\\s*"
+              }
+            },
+            "icon": {
+              "id": "flame",
+              "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "run-torizon-arm64-debug",
             "detail": "",
             "hide": true,
@@ -254,7 +362,7 @@
             }
         },
         {
-            "label": "stop-torizon-arm64",
+            "label": "stop-torizon-and-clean-framebuffer",
             "detail": "",
             "hide": true,
             "command": "sshpass",
@@ -270,11 +378,11 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "dd if=/dev/zero count=1200 bs=1024 > /dev/fb0"
+                "cat /dev/zero > /dev/fb0 | true"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "stop-container-torizon-arm64"
+                "stop-containers"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -283,7 +391,7 @@
             }
         },
         {
-            "label": "stop-container-torizon-arm64",
+            "label": "stop-containers",
             "detail": "",
             "hide": true,
             "command": "sshpass",
@@ -299,7 +407,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down --remove-orphans"
+                "docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -320,6 +428,25 @@
                 "Debug",
                 "-r",
                 "linux-arm64"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "clean-debug-amd64",
+            "detail": "dotnet clean command for cleaning the application build for the x86-64 target",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "-c",
+                "Debug",
+                "-r",
+                "linux-x64"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
