@@ -89,6 +89,7 @@ RUN apt-get -q -y update && \
 # automate for torizonPackages.json
 RUN apt-get -q -y update && \
     apt-get -q -y install \
+    libfontconfig1 \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_dev_start__
     # __torizon_packages_dev_end__

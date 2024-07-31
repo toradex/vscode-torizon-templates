@@ -62,6 +62,7 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
+    libfontconfig1 \
     # ADD YOUR PACKAGES HERE
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     # __torizon_packages_prod_start__
