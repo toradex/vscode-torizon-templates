@@ -9,7 +9,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next-8.0
+ARG BASE_VERSION=3-8.0
+ARG DOTNET_BASE_VERSION=3-8.0
 
 ##
 # Directory of the application inside container
@@ -31,18 +32,29 @@ ARG SSHUSERNAME=
 ##
 ARG GPU=
 
+# DOTNET -----------------------------------------------------------------------
+    FROM --platform=linux/${IMAGE_ARCH} \
+    commontorizon/dotnet-debug:${DOTNET_BASE_VERSION} AS Dotnet
+
+
 # BUILD ------------------------------------------------------------------------
 ##
 # Deploy Step .NET Uno
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-uno-debug:${BASE_VERSION} AS Debug
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG GPU
 ARG SSH_DEBUG_PORT
 ARG APP_ROOT
 ARG SSHUSERNAME
+
+ENV DOTNET_ROOT=/dotnet
+ENV PATH=$PATH:/dotnet
+
+COPY --from=Dotnet /vsdbg /vsdbg
+COPY --from=Dotnet /dotnet /dotnet
 
 # SSH for remote debug
 EXPOSE ${SSH_DEBUG_PORT}
@@ -106,11 +118,5 @@ RUN mkdir /var/run/sshd && \
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
-
-# Copy the compiled application to the $APP_ROOT directory path inside the
-# container, where $APP_ROOT is the torizon_app_root configuration defined
-# in settings.json.
-COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./__change__.Skia.Linux.FrameBuffer/bin/Debug/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
-
 
 CMD [ "/usr/sbin/sshd", "-D" ]
