@@ -454,6 +454,96 @@
                 "color": "terminal.ansiYellow"
             }
         },
+        {
+            "label": "launch-torizon-debug-hot-reload",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "isBackground": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-ttt",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "cd ${config:torizon_app_root} && DOTNET_MODIFIABLE_ASSEMBLIES=debug ./unozinFrame.Skia.Linux.FrameBuffer"
+            ],
+            "dependsOn": [
+                "deploy-torizon-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 3,
+                    "code": 4,
+                    "message": 5
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^\\s*",
+                    "endsPattern": "^\\s*"
+                }
+            },
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "launch-hot-reload-amd64",
+            "detail": "This task will launch the application on the board, without\nattach the debugger, this will allow the application to\nuse the Uno Platform hot reload feature.",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "✅"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "deploy-torizon-amd64",
+                "launch-torizon-debug-hot-reload",
+                "stop-torizon-and-clean-framebuffer"
+            ],
+            "icon": {
+                "id": "vm-connect",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "launch-hot-reload-arm64",
+            "detail": "This task will launch the application on the board, without\nattach the debugger, this will allow the application to\nuse the Uno Platform hot reload feature.",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "✅"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "deploy-torizon-arm64",
+                "launch-torizon-debug-hot-reload",
+                "stop-torizon-and-clean-framebuffer"
+            ],
+            "icon": {
+                "id": "vm-connect",
+                "color": "terminal.ansiYellow"
+            }
+        }
     ],
 "inputs": []
 }
