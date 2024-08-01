@@ -460,7 +460,7 @@
             "hide": true,
             "command": "ssh",
             "type": "process",
-            "isBackground": true,
+            "isBackground": false,
             "presentation": {
                 "echo": true,
                 "reveal": "always",
