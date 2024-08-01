@@ -516,6 +516,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
+                "config-hot-reload-address",
                 "deploy-torizon-amd64",
                 "launch-torizon-debug-hot-reload",
                 "stop-torizon-and-clean-framebuffer"
@@ -535,6 +536,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
+                "config-hot-reload-address",
                 "deploy-torizon-arm64",
                 "launch-torizon-debug-hot-reload",
                 "stop-torizon-and-clean-framebuffer"
