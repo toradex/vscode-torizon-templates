@@ -482,9 +482,6 @@
                 "${config:torizon_run_as}@${config:torizon_ip}",
                 "cd ${config:torizon_app_root} && DOTNET_MODIFIABLE_ASSEMBLIES=debug ./unozinFrame.Skia.Linux.FrameBuffer"
             ],
-            "dependsOn": [
-                "deploy-torizon-amd64"
-            ],
             "dependsOrder": "sequence",
             "problemMatcher": {
                 "pattern": {
