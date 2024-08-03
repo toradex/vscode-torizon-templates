@@ -19,6 +19,7 @@
   "torizon.gpuPrefixRC": true,
   "omnisharp.useModernNet": true,
   "dotnet.server.useOmnisharp": true,
+  "dotnet.preferCSharpExtension": true,
   "omnisharp.projectFilesExcludePattern": "**/__change__/*.csproj,**/__change__.DataContracts/*.csproj,**/__change__.Shared/*.csproj,**/__change__.Tests/*.csproj,**/__change__.UITests/*.csproj",
   "unoplatform.rc.host.port": 8090,
   "explorer.fileNesting.enabled": true,
