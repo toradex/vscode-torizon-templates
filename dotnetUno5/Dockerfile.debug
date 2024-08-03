@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next-8.0
+ARG BASE_VERSION=3-8.0
 
 ##
 # Directory of the application inside container
@@ -36,7 +36,7 @@ ARG GPU=
 # Deploy Step .NET Uno
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-uno-debug:${BASE_VERSION} AS Debug
+    commontorizon/dotnet-gtk-debug${GPU}:${BASE_VERSION} AS Debug
 
 ARG IMAGE_ARCH
 ARG GPU
