@@ -47,6 +47,9 @@
       "icon": {
         "id": "flame",
         "color": "terminal.ansiYellow"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
       }
     },
     {
