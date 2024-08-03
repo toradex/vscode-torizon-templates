@@ -19,5 +19,10 @@
   "torizon.gpuPrefixRC": true,
   "dotnet.preferCSharpExtension": false,
   "omnisharp.useModernNet": true,
-  "dotnet.server.useOmnisharp": false
+  "dotnet.server.useOmnisharp": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.axaml": "$(capture).axaml.cs"
+  }
 }
