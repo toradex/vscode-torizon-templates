@@ -163,6 +163,74 @@
           "color": "terminal.ansiYellow"
       }
   },
+  {
+    "label": "run-app-for-hot-reload",
+    "hide": true,
+    "type": "shell",
+    "command": "ssh",
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": true,
+        "clear": true
+    },
+    "args": [
+        "-i",
+        "${workspaceFolder}/.conf/id_rsa",
+        "-p",
+        "${config:torizon_debug_ssh_port}",
+        "-o",
+        "UserKnownHostsFile=/dev/null",
+        "-o",
+        "StrictHostKeyChecking=no",
+        "-ttt",
+        "${config:torizon_run_as}@${config:torizon_ip}",
+        "cd ${config:torizon_app_root} && DOTNET_MODIFIABLE_ASSEMBLIES=debug UNO_FULLSCREEN=true ./__change__.Skia.Gtk",
+        "||",
+        "true"
+    ],
+    "dependsOrder": "sequence",
+    "problemMatcher": {
+        "pattern": {
+            "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+            "file": 1,
+            "location": 2,
+            "severity": 3,
+            "code": 4,
+            "message": 5
+        },
+        "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^\\s*",
+            "endsPattern": "^\\s*"
+        }
+    },
+    "icon": {
+        "id": "flame",
+        "color": "terminal.ansiYellow"
+    }
+  },
+  {
+      "label": "launch-hot-reload-arm64",
+      "detail": "This task will launch the application on the board, without\nattach the debugger, this will allow the application to\nuse the Uno Platform hot reload feature.",
+      "command": "echo",
+      "type": "shell",
+      "args": [
+          "✅"
+      ],
+      "dependsOrder": "sequence",
+      "dependsOn": [
+          "config-hot-reload-address",
+          "deploy-torizon-arm64",
+          "run-app-for-hot-reload"
+      ],
+      "icon": {
+          "id": "vm-connect",
+          "color": "terminal.ansiYellow"
+      }
+  }
   ],
   "inputs": []
 }
