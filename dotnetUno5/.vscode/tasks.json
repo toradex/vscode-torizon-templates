@@ -184,6 +184,22 @@
       }
   },
   {
+    "label": "run-app-for-hot-reload-local",
+    "hide": true,
+    "type": "shell",
+    "command": "dotnet",
+    "options": {
+      "env": {
+        "DOTNET_MODIFIABLE_ASSEMBLIES": "debug"
+      }
+    },
+    "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+    ],
+  },
+  {
     "label": "run-app-for-hot-reload",
     "hide": true,
     "type": "shell",
@@ -229,6 +245,25 @@
     },
     "icon": {
         "id": "flame",
+        "color": "terminal.ansiYellow"
+    }
+  },
+  {
+    "label": "launch-hot-reload-local",
+    "detail": "This task will launch the application on the board, without\nattach the debugger, this will allow the application to\nuse the Uno Platform hot reload feature.",
+    "command": "echo",
+    "type": "shell",
+    "args": [
+        "✅"
+    ],
+    "dependsOrder": "sequence",
+    "dependsOn": [
+        "config-hot-reload-address",
+        "build-debug-local",
+        "run-app-for-hot-reload-local"
+    ],
+    "icon": {
+        "id": "vm-connect",
         "color": "terminal.ansiYellow"
     }
   },
