@@ -16,7 +16,8 @@
       "program": "${workspaceFolder}/__change__.Skia.Gtk/bin/Debug/net8.0/__change__.Skia.Gtk.dll",
       "args": [],
       "env": {
-        "DOTNET_MODIFIABLE_ASSEMBLIES": "debug"
+        "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
+        "GDK_BACKEND": "x11"
       },
       "cwd": "${workspaceFolder}/__change__.Skia.Gtk",
       // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console

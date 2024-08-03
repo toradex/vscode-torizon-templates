@@ -191,7 +191,7 @@
     "options": {
       "env": {
         "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
-        "GDK_BACKEND": "X11"
+        "GDK_BACKEND": "x11"
       }
     },
     "args": [
