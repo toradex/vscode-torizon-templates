@@ -190,7 +190,8 @@
     "command": "dotnet",
     "options": {
       "env": {
-        "DOTNET_MODIFIABLE_ASSEMBLIES": "debug"
+        "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
+        "GDK_BACKEND": "X11"
       }
     },
     "args": [
