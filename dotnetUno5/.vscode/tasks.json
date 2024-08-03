@@ -12,9 +12,29 @@
       "icon": {
           "id": "selection",
           "color": "terminal.ansiYellow"
+      }
+    },
+    {
+      "label": "build-and-reload-on-open",
+      "hide": true,
+      "command": "echo",
+      "type": "shell",
+      "args": [
+          "✅"
+      ],
+      "problemMatcher": "$msCompile",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "open-skia-gtk-csproj",
+        "build-debug-local",
+        "reload-skia-gtk-csproj"
+      ],
+      "icon": {
+          "id": "loading",
+          "color": "terminal.ansiYellow"
       },
       "runOptions": {
-          "runOn": "folderOpen"
+        "runOn": "folderOpen"
       }
     },
     {
@@ -47,9 +67,6 @@
       "icon": {
         "id": "flame",
         "color": "terminal.ansiYellow"
-      },
-      "runOptions": {
-        "runOn": "folderOpen"
       }
     },
     {
