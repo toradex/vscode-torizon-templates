@@ -5,12 +5,11 @@
     <PackageVersion Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.8" />
     <PackageVersion Include="Uno.Core.Extensions.Logging.Singleton" Version="4.1.1" />
     <PackageVersion Include="Uno.Resizetizer" Version="1.5.2" />
-    <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.1.104" />
+    <PackageVersion Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="5.3.114" />
     <PackageVersion Include="Uno.UniversalImageLoader" Version="1.9.37" />
-    <!-- FIXME: here we are using a old version because this version is the latest one that works with GTK IME onboard keyboard -->
-    <PackageVersion Include="Uno.WinUI" Version="5.1.104" />
-    <PackageVersion Include="Uno.WinUI.Lottie" Version="5.1.104" />
-    <PackageVersion Include="Uno.WinUI.DevServer" Version="5.1.104" />
-    <PackageVersion Include="Uno.WinUI.Skia.Gtk" Version="5.1.104" />
+    <PackageVersion Include="Uno.WinUI" Version="5.3.114" />
+    <PackageVersion Include="Uno.WinUI.Lottie" Version="5.3.114" />
+    <PackageVersion Include="Uno.WinUI.DevServer" Version="5.3.114" />
+    <PackageVersion Include="Uno.WinUI.Skia.Gtk" Version="5.3.114" />
   </ItemGroup>
 </Project>
