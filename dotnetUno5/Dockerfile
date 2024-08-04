@@ -42,7 +42,7 @@ dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/dotnet-gtk:${BASE_VERSION} AS Deploy
+    commontorizon/dotnet-gtk${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
