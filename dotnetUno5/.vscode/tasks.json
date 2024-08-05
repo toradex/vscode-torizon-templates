@@ -346,6 +346,25 @@
           "id": "vm-connect",
           "color": "terminal.ansiYellow"
       }
+  },
+  {
+      "label": "launch-hot-reload-amd64",
+      "detail": "This task will launch the application on the board, without\nattach the debugger, this will allow the application to\nuse the Uno Platform hot reload feature.",
+      "command": "echo",
+      "type": "shell",
+      "args": [
+          "✅"
+      ],
+      "dependsOrder": "sequence",
+      "dependsOn": [
+          "config-hot-reload-address",
+          "deploy-torizon-amd64",
+          "run-app-for-hot-reload"
+      ],
+      "icon": {
+          "id": "vm-connect",
+          "color": "terminal.ansiYellow"
+      }
   }
   ],
   "inputs": []
