@@ -158,7 +158,7 @@
                 "-av",
                 "-e",
                 "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
-                "${workspaceFolder}/build-arm64/debug",
+                "${workspaceFolder}/build-arm64/debug/",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOn": [
@@ -219,7 +219,7 @@
                 "-av",
                 "-e",
                 "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
-                "${workspaceFolder}/build-arm/debug",
+                "${workspaceFolder}/build-arm/debug/",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOn": [
@@ -280,7 +280,7 @@
                 "-av",
                 "-e",
                 "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
-                "${workspaceFolder}/build-amd64/debug",
+                "${workspaceFolder}/build-amd64/debug/",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOn": [
@@ -341,7 +341,7 @@
                 "-av",
                 "-e",
                 "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
-                "${workspaceFolder}/build-riscv64/debug",
+                "${workspaceFolder}/build-riscv64/debug/",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOn": [
