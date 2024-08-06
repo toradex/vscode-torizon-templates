@@ -16,8 +16,17 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "window",
-                "color": "terminal.ansiYellow"
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -35,8 +44,17 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug"
             }
         },
         {
@@ -54,8 +72,17 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug"
             }
         },
         {
@@ -75,8 +102,17 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "run",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt-small",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -116,14 +152,23 @@
                     }
                 }
             ],
-            "icon": {
-                "id": "run",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOn": [
                 "build",
                 "generate-jar"
-            ]
+            ],
+            "icon": {
+                "id": "debug-alt-small",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
+            }
         },
         {
             "label": "exterminate-debugger",
@@ -146,8 +191,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt-small",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -206,8 +260,17 @@
                 }
             ],
             "icon": {
-                "id": "bug",
+                "id": "debug-alt",
                 "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -226,8 +289,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -286,8 +358,17 @@
                 }
             ],
             "icon": {
-                "id": "bug",
+                "id": "debug-alt",
                 "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -306,8 +387,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -366,8 +456,17 @@
                 }
             ],
             "icon": {
-                "id": "bug",
+                "id": "debug-alt",
                 "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -386,8 +485,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         }
     ],

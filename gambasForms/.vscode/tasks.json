@@ -16,8 +16,17 @@
             "isBackground": true,
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "tools",
-                "color": "terminal.ansiYellow"
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -39,8 +48,17 @@
             },
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug"
             }
         },
         {
@@ -63,6 +81,15 @@
             "icon": {
                 "id": "symbol-parameter",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -77,8 +104,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -106,8 +142,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "run",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -122,8 +167,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug"
             }
         },
         {
@@ -151,8 +205,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "run",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         }
     ],
