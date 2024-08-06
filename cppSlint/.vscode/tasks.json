@@ -104,7 +104,7 @@
             }
         },
         {
-            "label": "run-cmake-debug-amd64-local",
+            "label": "run-cmake-debug-local",
             "hide": true,
             "command": "cmake",
             "type": "shell",
@@ -119,12 +119,21 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
             }
         },
         {
-            "label": "build-debug-amd64-local",
+            "label": "build-debug-local",
             "detail": "Build the application debug for amd64 using the\ndevelopment host toolchain.",
             "command": "cmake",
             "type": "shell",
@@ -137,17 +146,26 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "run-cmake-debug-amd64-local"
-            ]
+                "run-cmake-debug-local"
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
+            }
         },
         {
-            "label": "clean-amd64-local",
+            "label": "clean-local",
             "detail": "Clean the application debug for amd64 using the\ndevelopment host toolchain.",
             "command": "cmake",
             "type": "shell",
@@ -162,7 +180,16 @@
             ],
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
             }
         },
         {
@@ -187,14 +214,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
+            }
         },
         {
             "label": "build-debug-arm64",
@@ -215,14 +251,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "run-cmake-debug-arm64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
+            }
         },
         {
             "label": "clean-arm64",
@@ -245,14 +290,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "trash",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm64"
-            ]
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
+            }
         },
         {
             "label": "deploy-torizon-arm64",
@@ -281,8 +335,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -307,14 +370,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
+            }
         },
         {
             "label": "build-debug-arm",
@@ -335,14 +407,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "run-cmake-debug-arm"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
+            }
         },
         {
             "label": "clean-arm",
@@ -365,14 +446,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "trash",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm"
-            ]
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
+            }
         },
         {
             "label": "deploy-torizon-arm",
@@ -401,8 +491,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -427,14 +526,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-amd64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
+            }
         },
         {
             "label": "build-debug-amd64",
@@ -455,14 +563,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "run-cmake-debug-amd64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
+            }
         },
         {
             "label": "clean-amd64",
@@ -485,14 +602,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "trash",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-amd64"
-            ]
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
+            }
         },
         {
             "label": "deploy-torizon-amd64",
@@ -521,8 +647,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
     ],
