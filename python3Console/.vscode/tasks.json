@@ -22,7 +22,7 @@
                 "panel": "shared",
                 "showReuseMessage": false,
                 "clear": false,
-                "group": "python"
+                "group": "python-related"
             },
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -49,16 +49,14 @@
                 "id": "layers",
                 "color": "terminal.ansiCyan"
             },
-            "runOptions": {
-                "runOn": "folderOpen"
-            },
             "presentation": {
                 "echo": true,
                 "reveal": "silent",
                 "focus": false,
-                "panel": "dedicated",
+                "panel": "shared",
                 "showReuseMessage": true,
-                "clear": false
+                "clear": false,
+                "group": "python-related"
             }
         },
         {
@@ -130,8 +128,17 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -155,8 +162,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -184,8 +200,17 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -209,8 +234,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -293,7 +327,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "python"
+                "group": "python-related"
             }
         },
         {
@@ -310,8 +344,17 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "python-related"
             }
         },
     ],
