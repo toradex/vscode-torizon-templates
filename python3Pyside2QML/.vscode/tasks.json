@@ -2,6 +2,64 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "create-prepare-venv",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "0"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "python"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "create-venv",
+                "host-install-pip-requirements"
+            ],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "create-venv",
+            "detail": "Create Python virtual environment at .venv, if it doesn't already exist in the workspace",
+            "hide": true,
+            "command": "/usr/bin/python3",
+            "type": "process",
+            "args": [
+                "-m",
+                "venv",
+                ".venv"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "python"
+            }
+        },
+        {
             "label": "wait-debugpy-start-arm",
             "detail": "",
             "hide": true,
@@ -13,7 +71,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
-                "host-install-pip-requirements",
                 "copy-docker-compose",
                 "pre-cleanup-debug",
                 "build-container-torizon-debug-arm",
@@ -119,7 +176,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
-                "host-install-pip-requirements",
                 "copy-docker-compose",
                 "pre-cleanup-debug",
                 "build-container-torizon-debug-arm64",
@@ -162,8 +218,7 @@
         },
         {
             "label": "host-install-pip-requirements",
-            "detail": "",
-            "hide": true,
+            "detail": "Install pip requirements on the host",
             "command": "${command:python.interpreterPath}",
             "type": "process",
             "args": [
@@ -179,23 +234,41 @@
                 "id": "layers",
                 "color": "terminal.ansiCyan"
             },
-            "dependsOn": [
-                "host-upgrade-pip"
-            ]
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "python"
+            }
         },
         {
             "label": "host-upgrade-pip",
-            "detail": "",
-            "hide": true,
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "command": "[ $(${command:python.interpreterPath} -m pip --version | awk '{print $2}' | cut -d'.' -f1) -lt 23 ] && ${command:python.interpreterPath} -m pip install --upgrade pip || true",
+            "detail": "Upgrade pip in the host",
+            "command": "${command:python.interpreterPath}",
+            "type": "process",
+            "args": [
+                "-m",
+                "pip",
+                "install",
+                "--upgrade",
+                "pip"
+            ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "python"
             }
         },
     ],
