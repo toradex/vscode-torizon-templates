@@ -470,14 +470,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "dedicated",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "${workspaceFolder}/.conf/torizonPackages.ps1",
