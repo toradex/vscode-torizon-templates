@@ -57,7 +57,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "pkill python3"
+                "pkill python3 || true"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
