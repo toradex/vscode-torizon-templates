@@ -23,7 +23,7 @@
             }
         },
         {
-            "label": "wait-debugpy-start-arm",
+            "label": "deploy-torizon-arm",
             "detail": "",
             "hide": true,
             "command": "rsync",
@@ -46,8 +46,7 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "start-torizon-debug-arm",
-                "pos-cleanup"
+                "start-torizon-debug-arm"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -81,7 +80,7 @@
             }
         },
         {
-            "label": "wait-debugpy-start-arm64",
+            "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
             "command": "rsync",
@@ -104,8 +103,7 @@
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
-                "start-torizon-debug-arm64",
-                "pos-cleanup"
+                "start-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -164,7 +162,7 @@
             }
         },
         {
-            "label": "wait-debugpy-start-amd64",
+            "label": "deploy-torizon-amd64",
             "detail": "",
             "hide": true,
             "command": "rsync",
@@ -187,8 +185,7 @@
                 "pull-container-torizon-debug-amd64",
                 "run-container-torizon-debug-amd64",
                 "wait-a-bit",
-                "start-torizon-debug-amd64",
-                "pos-cleanup"
+                "start-torizon-debug-amd64"
             ],
             "dependsOrder": "sequence",
             "icon": {
