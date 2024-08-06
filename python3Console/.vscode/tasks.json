@@ -23,7 +23,7 @@
             }
         },
         {
-            "label": "deploy-torizon-arm",
+            "label": "rsync-torizon-generic",
             "detail": "",
             "hide": true,
             "command": "rsync",
@@ -34,6 +34,46 @@
                 "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
                 "${workspaceFolder}/src",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "stop-torizon-debug-generic",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "pkill python3"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-arm",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "4"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -46,6 +86,8 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
+                "stop-torizon-debug-generic",
+                "rsync-torizon-generic",
                 "start-torizon-debug-arm"
             ],
             "dependsOrder": "sequence",
@@ -83,14 +125,10 @@
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "rsync",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-av",
-                "-e",
-                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
-                "${workspaceFolder}/src",
-                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/"
+                "4"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -103,6 +141,8 @@
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
+                "stop-torizon-debug-generic",
+                "rsync-torizon-generic",
                 "start-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
@@ -165,14 +205,10 @@
             "label": "deploy-torizon-amd64",
             "detail": "",
             "hide": true,
-            "command": "rsync",
+            "command": "sleep",
             "type": "process",
             "args": [
-                "-av",
-                "-e",
-                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
-                "${workspaceFolder}/src",
-                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/"
+                "4"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -185,6 +221,8 @@
                 "pull-container-torizon-debug-amd64",
                 "run-container-torizon-debug-amd64",
                 "wait-a-bit",
+                "stop-torizon-debug-generic",
+                "rsync-torizon-generic",
                 "start-torizon-debug-amd64"
             ],
             "dependsOrder": "sequence",
