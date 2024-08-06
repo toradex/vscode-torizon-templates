@@ -74,7 +74,8 @@ RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
 COPY requirements-debug.txt /requirements-debug.txt
 RUN . ${APP_ROOT}/.venv/bin/activate && \
     pip3 install --upgrade pip && pip3 install -r requirements-debug.txt && \
-    rm requirements-debug.txt
+    rm requirements-debug.txt && \
+    chown -R ${SSHUSERNAME}:${SSHUSERNAME} ${APP_ROOT}
 
 # ⚠️ DEBUG PURPOSES ONLY!!
 # copies RSA key to enable SSH login for user
