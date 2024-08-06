@@ -23,7 +23,7 @@
                 "remoteRoot": "${config:torizon_app_root}"
                 }
             ],
-            "preLaunchTask": "deploy-torizon-amd64"
+            "preLaunchTask": "wait-debugpy-start-amd64"
         },
         {
             "name": "Torizon ARMv7",
@@ -40,7 +40,7 @@
                 "remoteRoot": "${config:torizon_app_root}"
                 }
             ],
-            "preLaunchTask": "deploy-torizon-arm"
+            "preLaunchTask": "wait-debugpy-start-arm"
         },
         {
             "name": "Torizon ARMv8",
@@ -57,7 +57,7 @@
                 "remoteRoot": "${config:torizon_app_root}"
                 }
             ],
-            "preLaunchTask": "deploy-torizon-arm64"
+            "preLaunchTask": "wait-debugpy-start-arm64"
         }
     ]
 }

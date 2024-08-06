@@ -46,9 +46,8 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "pos-cleanup",
-                "copy-requirements",
-                "install-pip-requirements"
+                "start-torizon-debug-arm",
+                "pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -82,25 +81,6 @@
             }
         },
         {
-            "label": "deploy-torizon-arm",
-            "detail": "",
-            "hide": true,
-            "command": "echo",
-            "type": "shell",
-            "args": [
-                "✅"
-            ],
-            "dependsOn": [
-                "wait-debugpy-start-arm",
-                "start-torizon-debug-arm"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "wait-debugpy-start-arm64",
             "detail": "",
             "hide": true,
@@ -124,28 +104,8 @@
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
-                "pos-cleanup",
-                "copy-requirements",
-                "install-pip-requirements"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-torizon-arm64",
-            "detail": "",
-            "hide": true,
-            "command": "echo",
-            "type": "shell",
-            "args": [
-                "✅"
-            ],
-            "dependsOn": [
-                "wait-debugpy-start-arm64",
-                "start-torizon-debug-arm64"
+                "start-torizon-debug-arm64",
+                "pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -227,74 +187,10 @@
                 "pull-container-torizon-debug-amd64",
                 "run-container-torizon-debug-amd64",
                 "wait-a-bit",
-                "pos-cleanup",
-                "copy-requirements",
-                "install-pip-requirements"
+                "start-torizon-debug-amd64",
+                "pos-cleanup"
             ],
             "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "deploy-torizon-amd64",
-            "detail": "",
-            "hide": true,
-            "command": "echo",
-            "type": "shell",
-            "args": [
-                "✅"
-            ],
-            "dependsOn": [
-                "wait-debugpy-start-amd64",
-                "start-torizon-debug-amd64"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "copy-requirements",
-            "detail": "",
-            "hide": true,
-            "command": "rsync",
-            "type": "process",
-            "args": [
-                "-av",
-                "-e",
-                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
-                "${workspaceFolder}/requirements-*",
-                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "install-pip-requirements",
-            "detail": "",
-            "hide": true,
-            "command": "ssh",
-            "type": "process",
-            "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && python3 -m venv .venv --system-site-packages && . ./.venv/bin/activate && pip3 install --upgrade pip && pip3 install -r requirements-debug.txt",
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
                 "color": "terminal.ansiYellow"
