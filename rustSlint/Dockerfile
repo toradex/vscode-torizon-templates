@@ -1,9 +1,9 @@
 # ARGUMENTS --------------------------------------------------------------------
 ##
 # Base container version
-# Using Slint v1.5.1 base images
+# Using Slint v1.7.0 base images
 ##
-ARG CROSS_SDK_BASE_TAG=3.3.0-bookworm-1.5.1
+ARG CROSS_SDK_BASE_TAG=3.3.0-bookworm-1.7.0
 ARG BASE_VERSION=3.3.0
 
 ##
@@ -108,7 +108,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 
 
 # Default to the Skia backend for best performance
-ENV SLINT_BACKEND=winit-skia
+ENV SLINT_BACKEND=linuxkms-skia
 # Default to Slint running in fullscreen
 ENV SLINT_FULLSCREEN=1
 
