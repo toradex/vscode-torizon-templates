@@ -5,14 +5,29 @@
             "label": "npm-install",
             "detail": "Install the node packages dependencies",
             "type": "shell",
+            "command": "npm",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "command": "[ ! -d 'node_modules' ] && npm install || true",
+            "args": [
+                "install"
+            ],
             "dependsOrder": "sequence",
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "desktop-download",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -36,8 +51,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug"
             }
         },
         {
@@ -57,8 +81,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt-small",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -82,8 +115,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt-small",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -109,9 +151,21 @@
                 "${workspaceFolder}/out/__change__-linux-arm",
             ],
             "dependsOrder": "sequence",
+            "dependsOn":[
+                "npm-install"
+            ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -135,7 +189,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
-                "npm-install",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "package-torizon-arm",
@@ -148,8 +201,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -170,9 +232,21 @@
                 "linux"
             ],
             "dependsOrder": "sequence",
+            "dependsOn":[
+                "npm-install"
+            ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -196,7 +270,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
-                "npm-install",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "package-torizon-arm64",
@@ -209,8 +282,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -231,9 +313,21 @@
                 "linux"
             ],
             "dependsOrder": "sequence",
+            "dependsOn":[
+                "npm-install"
+            ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -257,7 +351,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-amd64",
-                "npm-install",
                 "copy-docker-compose",
                 "pre-cleanup",
                 "package-torizon-amd64",
@@ -270,8 +363,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         }
     ],

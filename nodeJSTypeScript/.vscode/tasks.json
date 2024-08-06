@@ -16,26 +16,50 @@
             ],
             "problemMatcher": ["$tsc"],
             "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOn":[
                 "npm-install"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
+            }
         },
         {
             "label": "npm-install",
             "detail": "Install the node packages dependencies",
             "type": "shell",
+            "command": "npm",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "command": "[ ! -d 'node_modules' ] && npm install || true",
+            "args": [
+                "install"
+            ],
             "dependsOrder": "sequence",
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "desktop-download",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -52,9 +76,21 @@
                 "output-arm64"
             ],
             "dependsOrder": "sequence",
+            "dependsOn":[
+                "npm-install"
+            ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -78,7 +114,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
-                "npm-install",
                 "build-typescript-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
@@ -91,8 +126,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -109,9 +153,21 @@
                 "output-arm64"
             ],
             "dependsOrder": "sequence",
+            "dependsOn":[
+                "npm-install"
+            ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -135,7 +191,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
-                "npm-install",
                 "build-typescript-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
@@ -148,8 +203,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -166,9 +230,21 @@
                 "output-amd64"
             ],
             "dependsOrder": "sequence",
+            "dependsOn":[
+                "npm-install"
+            ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -192,7 +268,6 @@
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-amd64",
-                "npm-install",
                 "build-typescript-amd64",
                 "copy-docker-compose",
                 "pre-cleanup",
@@ -205,8 +280,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         }
     ],
