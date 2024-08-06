@@ -26,10 +26,14 @@
             "label": "wait-debugpy-start-arm",
             "detail": "",
             "hide": true,
-            "command": "sleep",
+            "command": "rsync",
             "type": "process",
             "args": [
-                "4",
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/src",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -42,7 +46,8 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
-                "start-torizon-debug-arm"
+                "start-torizon-debug-arm",
+                "pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -79,10 +84,14 @@
             "label": "wait-debugpy-start-arm64",
             "detail": "",
             "hide": true,
-            "command": "sleep",
+            "command": "rsync",
             "type": "process",
             "args": [
-                "4",
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/src",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -95,7 +104,8 @@
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
-                "start-torizon-debug-arm64"
+                "start-torizon-debug-arm64",
+                "pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -157,10 +167,14 @@
             "label": "wait-debugpy-start-amd64",
             "detail": "",
             "hide": true,
-            "command": "sleep",
+            "command": "rsync",
             "type": "process",
             "args": [
-                "4"
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/src",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -173,7 +187,8 @@
                 "pull-container-torizon-debug-amd64",
                 "run-container-torizon-debug-amd64",
                 "wait-a-bit",
-                "start-torizon-debug-amd64"
+                "start-torizon-debug-amd64",
+                "pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "icon": {

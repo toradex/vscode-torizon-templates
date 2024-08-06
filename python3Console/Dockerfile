@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next-bookworm
+ARG BASE_VERSION=3.3.0-bookworm
 
 ##
 # Directory of the application inside container
@@ -15,7 +15,7 @@ ARG BASE_VERSION=next-bookworm
 ARG APP_ROOT=
 
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Deploy
+    commontorizon/debian:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
