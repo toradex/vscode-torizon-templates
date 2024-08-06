@@ -13,14 +13,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "tools",
-                "color": "terminal.ansiGreen"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-amd64-local"
-            ]
+                "build-debug-local"
+            ],
+            "icon": {
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
+            }
         },
         {
             "label": "open-in-qt-creator",
@@ -42,15 +51,24 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "tools",
-                "color": "terminal.ansiGreen"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-amd64-local",
-                "update-qt-ini-amd64-local"
-            ]
+                "build-debug-local",
+                "update-qt-ini-local"
+            ],
+            "icon": {
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
+            }
         },
         {
             "label": "open-in-qt-creator-debug-arm64",
@@ -72,15 +90,24 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "tools",
-                "color": "terminal.ansiGreen"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-amd64-local",
+                "build-debug-local",
                 "update-qt-ini-arm64"
-            ]
+            ],
+            "icon": {
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
+            }
         },
         {
             "label": "open-in-qt-creator-debug-arm",
@@ -102,15 +129,24 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "tools",
-                "color": "terminal.ansiGreen"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-amd64-local",
+                "build-debug-local",
                 "update-qt-ini-arm"
-            ]
+            ],
+            "icon": {
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
+            }
         },
         {
             "label": "open-in-qt-creator-debug-amd64",
@@ -132,15 +168,24 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "tools",
-                "color": "terminal.ansiGreen"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-debug-amd64-local",
+                "build-debug-local",
                 "update-qt-ini-amd64"
-            ]
+            ],
+            "icon": {
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
+            }
         },
         {
             "label": "kill-redirect-qml-debugger",
@@ -155,8 +200,17 @@
                 "true"
             ],
             "icon": {
-                "id": "tools",
-                "color": "terminal.ansiGreen"
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -188,8 +242,17 @@
                 }
             }],
             "icon": {
-                "id": "tools",
-                "color": "terminal.ansiGreen"
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -217,8 +280,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "debug-alt-small",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -240,12 +312,21 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "tools",
-                "color": "terminal.ansiGreen"
-            },
             "dependsOn": [
             ],
+            "icon": {
+                "id": "debug-alt-small",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
+            }
         },
         {
             "label": "start-gdb-server-remote-arm",
@@ -272,8 +353,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "debug-alt-small",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -301,8 +391,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "debug-alt-small",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -344,7 +443,7 @@
             }
         },
         {
-            "label": "copy-assets-amd64-local",
+            "label": "copy-assets-local",
             "detail": "",
             "hide": true,
             "command": "cp",
@@ -382,7 +481,7 @@
             }
         },
         {
-            "label": "build-configure-amd64-local",
+            "label": "build-configure-local",
             "hide": true,
             "command": "cmake",
             "type": "shell",
@@ -394,12 +493,21 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
             }
         },
         {
-            "label": "build-debug-amd64-local",
+            "label": "build-debug-local",
             "detail": "Build a debug version of the application for amd64 using\nthe toolchain installed in the host.",
             "command": "cmake",
             "type": "shell",
@@ -410,14 +518,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "build-configure-amd64-local"
-            ]
+                "build-configure-local"
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
+            }
         },
         {
             "label": "clean-local",
@@ -435,7 +552,16 @@
             ],
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
             }
         },
         {
@@ -459,14 +585,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
+            }
         },
         {
             "label": "build-debug-arm64",
@@ -487,14 +622,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-configure-arm64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
+            }
         },
         {
             "label": "clean-arm64",
@@ -517,14 +661,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "trash",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm64"
-            ]
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
+            }
         },
         {
             "label": "deploy-torizon-arm64",
@@ -549,8 +702,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -574,14 +736,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
+            }
         },
         {
             "label": "build-debug-arm",
@@ -602,14 +773,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-configure-arm"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
+            }
         },
         {
             "label": "clean-arm",
@@ -632,14 +812,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "trash",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm"
-            ]
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
+            }
         },
         {
             "label": "deploy-torizon-arm",
@@ -664,8 +853,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -687,14 +885,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-amd64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
+            }
         },
         {
             "label": "build-debug-amd64",
@@ -715,14 +922,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-configure-amd64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
+            }
         },
         {
             "label": "clean-amd64",
@@ -745,14 +961,23 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "trash",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-amd64"
-            ]
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
+            }
         },
         {
             "label": "deploy-torizon-amd64",
@@ -777,8 +1002,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -800,7 +1034,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "symbol-parameter",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -822,7 +1065,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "symbol-parameter",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -844,11 +1096,20 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "symbol-parameter",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
-            "label": "update-qt-ini-amd64-local",
+            "label": "update-qt-ini-local",
             "detail": "",
             "hide": true,
             "command": "pwsh",
@@ -866,7 +1127,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "symbol-parameter",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
             }
         },
         {
@@ -882,13 +1152,22 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "icon": {
-                "id": "alert",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false,
+                "group": "build-execution"
+            }
         }
     ],
     "inputs": []
