@@ -1,168 +1,213 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "open-skia-gtk-csproj",
-      "command": "echo",
-      "type": "shell",
-      "args": [
-        "${command:o.pickProjectAndStart}"
-      ],
-      "problemMatcher": "$msCompile",
-      "icon": {
-          "id": "selection",
-          "color": "terminal.ansiYellow"
-      },
-      "runOptions": {
-          "runOn": "folderOpen"
-      }
-    },
-    {
-      "label": "reload-skia-gtk-csproj",
-      "command": "echo",
-      "type": "shell",
-      "args": [
-          "${command:o.restart}"
-      ],
-      "problemMatcher": "$msCompile",
-      "icon": {
-          "id": "loading",
-          "color": "terminal.ansiYellow"
-      }
-    },
-    {
-      "label": "build-debug-local",
-      "detail": "dotnet build command for debugging the application locally",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary",
-        "-c",
-        "Debug"
-      ],
-      "problemMatcher": "$msCompile",
-      "icon": {
-        "id": "flame",
-        "color": "terminal.ansiYellow"
-      }
-    },
-    {
-      "label": "config-hot-reload-address",
-      "detail": "This task configures the __change__.Skia.Gtk project to\nhave remote XAML hot reload. It's good run it everytime you\nopen the project.",
-      "command": "pwsh",
-      "type": "process",
-      "presentation": {
-          "echo": false,
-          "reveal": "always",
-          "focus": true,
-          "panel": "shared",
-          "showReuseMessage": true,
-          "clear": false
-      },
-      "options": {
-          "cwd": "${workspaceFolder}"
-      },
-      "args": [
-          "-nop",
-          "${env:HOME}/.apollox/scripts/configUnoHotReload.ps1",
-          "-workspaceFolder",
-          "${workspaceFolder}"
-      ],
-      "dependsOrder": "sequence",
-      "icon": {
-          "id": "debug-disconnect",
-          "color": "terminal.ansiCyan"
-      }
-    },
-    {
-      "label": "publish-debug-arm64",
-      "detail": "",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-          "publish",
-          "-c",
-          "Debug",
-          "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-          "/property:GenerateFullPaths=true",
-          "/consoleloggerparameters:NoSummary",
-          "-r",
-          "linux-arm64",
-          "--no-self-contained"
-      ],
-      "dependsOrder": "sequence",
-      "problemMatcher": "$msCompile",
-      "icon": {
-          "id": "flame",
-          "color": "terminal.ansiYellow"
-      }
-    },
-    {
-      "label": "deploy-torizon-arm64",
-      "detail": "",
-      "hide": true,
-      "command": "sleep",
-      "type": "process",
-      "args": [
-          "1"
-      ],
-      "dependsOn": [
-          "validate-settings",
-          "validate-arch-arm64",
-          "copy-docker-compose",
-          "pre-cleanup",
-          "publish-debug-arm64",
-          "build-container-torizon-debug-arm64",
-          "push-container-torizon-debug-arm64",
-          "pull-container-torizon-debug-arm64",
-          "run-container-torizon-debug-arm64"
-      ],
-      "dependsOrder": "sequence",
-      "problemMatcher": "$msCompile",
-      "icon": {
-          "id": "flame",
-          "color": "terminal.ansiYellow"
-      }
-    },
-    {
-      "label": "clean-debug-local",
-      "detail": "dotnet clean command for cleaning the local application debug build",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-          "clean",
-          "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-          "-c", 
-          "Debug"
-      ],
-      "problemMatcher": "$msCompile",
-      "icon": {
-          "id": "trash",
-          "color": "terminal.ansiYellow"
-      }
-  },
-  {
-      "label": "clean-debug-arm64",
-      "detail": "dotnet clean command for cleaning the application build for the arm64 target",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-          "clean",
-          "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-          "-c", 
-          "Debug",
-          "-r",
-          "linux-arm64"
-      ],
-      "problemMatcher": "$msCompile",
-      "icon": {
-          "id": "trash",
-          "color": "terminal.ansiYellow"
-      }
-  },
-  ],
-  "inputs": []
-}
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "open-skia-gtk-csproj",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "${command:o.pickProjectAndStart}"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "selection",
+                "color": "terminal.ansiYellow"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "reload-skia-gtk-csproj",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "${command:o.restart}"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "loading",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "build-debug-local",
+            "detail": "dotnet build command for debugging the application locally",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-c",
+                "Debug"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
+            }
+        },
+        {
+            "label": "config-hot-reload-address",
+            "detail": "This task configures the __change__.Skia.Gtk project to\nhave remote XAML hot reload. It's good run it everytime you\nopen the project.",
+            "command": "pwsh",
+            "type": "process",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "-nop",
+                "${env:HOME}/.apollox/scripts/configUnoHotReload.ps1",
+                "-workspaceFolder",
+                "${workspaceFolder}"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "debug-disconnect",
+                "color": "terminal.ansiCyan"
+            }
+        },
+        {
+            "label": "publish-debug-arm64",
+            "detail": "",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Debug",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-arm64",
+                "--no-self-contained"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
+            }
+        },
+        {
+            "label": "deploy-torizon-arm64",
+            "detail": "",
+            "hide": true,
+            "command": "sleep",
+            "type": "process",
+            "args": [
+                "1"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-arm64",
+                "copy-docker-compose",
+                "pre-cleanup",
+                "publish-debug-arm64",
+                "build-container-torizon-debug-arm64",
+                "push-container-torizon-debug-arm64",
+                "pull-container-torizon-debug-arm64",
+                "run-container-torizon-debug-arm64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
+            }
+        },
+        {
+            "label": "clean-debug-local",
+            "detail": "dotnet clean command for cleaning the local application debug build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "-c",
+                "Debug"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
+            }
+        },
+        {
+            "label": "clean-debug-arm64",
+            "detail": "dotnet clean command for cleaning the application build for the arm64 target",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
+                "-c",
+                "Debug",
+                "-r",
+                "linux-arm64"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
+            }
+        }
+    ],
+"inputs": []
+  }

@@ -16,8 +16,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
             }
         },
         {
@@ -28,13 +37,22 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-                "-c", 
+                "-c",
                 "Debug"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
             }
         },
         {
@@ -45,7 +63,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm"
@@ -53,7 +71,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -64,15 +91,23 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-arm64"
             ],
-            "problemMatcher": "$msCompile",
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -83,7 +118,7 @@
             "args": [
                 "clean",
                 "${workspaceFolder}/__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
-                "-c", 
+                "-c",
                 "Debug",
                 "-r",
                 "linux-x64"
@@ -91,7 +126,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -113,8 +157,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -140,8 +193,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -163,8 +225,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -190,8 +261,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -213,8 +293,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -240,8 +329,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         }
     ],

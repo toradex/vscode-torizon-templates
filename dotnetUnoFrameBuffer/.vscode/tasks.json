@@ -17,7 +17,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -36,7 +45,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -55,24 +73,42 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
-            "label": "watch",
-            "hide": true,
+            "label": "watch-local",
+            "detail": "dotnet watch command, watch the changes on the application, compile it and reload automatically",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj"
+                "${workspaceFolder}/__change__.csproj"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "eye-watch",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-local"
             }
         },
         {
@@ -94,8 +130,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -121,8 +166,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -132,14 +186,6 @@
             "command": "ssh",
             "type": "process",
             "isBackground": true,
-            "presentation": {
-              "echo": true,
-              "reveal": "always",
-              "focus": false,
-              "panel": "dedicated",
-              "showReuseMessage": true,
-              "clear": true
-            },
             "args": [
               "-i",
               "${workspaceFolder}/.conf/id_rsa",
@@ -173,8 +219,17 @@
               }
             },
             "icon": {
-              "id": "flame",
-              "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -251,8 +306,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -278,8 +342,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -289,14 +362,6 @@
             "command": "ssh",
             "type": "process",
             "isBackground": true,
-            "presentation": {
-              "echo": true,
-              "reveal": "always",
-              "focus": false,
-              "panel": "dedicated",
-              "showReuseMessage": true,
-              "clear": true
-            },
             "args": [
               "-i",
               "${workspaceFolder}/.conf/id_rsa",
@@ -330,8 +395,17 @@
               }
             },
             "icon": {
-              "id": "flame",
-              "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -408,8 +482,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -435,8 +518,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -446,14 +538,6 @@
             "command": "ssh",
             "type": "process",
             "isBackground": true,
-            "presentation": {
-              "echo": true,
-              "reveal": "always",
-              "focus": false,
-              "panel": "dedicated",
-              "showReuseMessage": true,
-              "clear": true
-            },
             "args": [
               "-i",
               "${workspaceFolder}/.conf/id_rsa",
@@ -487,8 +571,17 @@
               }
             },
             "icon": {
-              "id": "flame",
-              "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
