@@ -16,27 +16,28 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "git-branch",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "git-branch",
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "update-template"
+            }
         },
         {
             "label": "try-update-template",
             "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -53,7 +54,16 @@
             ],
             "icon": {
                 "id": "repo-sync",
-                "color": "terminal.ansiCyan"
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "update-template"
             }
         },
         {
@@ -61,14 +71,6 @@
             "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -80,9 +82,21 @@
                 "1"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "fetch-templates-repo"
+            ],
             "icon": {
                 "id": "repo-sync",
-                "color": "terminal.ansiCyan"
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "update-template"
             }
         },
         {
@@ -90,15 +104,6 @@
             "detail": "This task has automation steps to build the production\nDocker image. The production Docker image\nis based in the Dockerfile file.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false,
-                "group": "create-prod-image"
-            },
             "options": {
                 "env": {
                     "DOCKER_PSSWD": "${command:docker_password}",
@@ -119,7 +124,16 @@
             "dependsOrder": "sequence",
             "icon": {
                 "id": "package",
-                "color": "terminal.ansiCyan"
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "cloud-related"
             }
         },
         {
@@ -166,14 +180,6 @@
                     "TORIZON_ARCH": "${command:torizon_arch}"
                 }
             },
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": true
-            },
             "args": [
                 "-e",
                 "\"✅ github-actions-settings done\n",
@@ -187,13 +193,22 @@
             "problemMatcher": [
                 "$tsc"
             ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ],
             "icon": {
                 "id": "notebook",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-            ]
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "cloud-related"
+            }
         },
         {
             "label": "platform-update-fleet",
@@ -220,13 +235,22 @@
             "problemMatcher": [
                 "$tsc"
             ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ],
             "icon": {
                 "id": "cloud-upload",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-            ]
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "cloud-related"
+            }
         },
         {
             "label": "tcb-platform-publish",
@@ -253,14 +277,23 @@
             "problemMatcher": [
                 "$tsc"
             ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "create-production-image"
+            ],
             "icon": {
                 "id": "cloud-upload",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "create-production-image"
-            ]
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "cloud-related"
+            }
         },
         {
             "label": "docker-login",
@@ -300,14 +333,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "-file",
@@ -323,6 +348,14 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
             }
         },
         {
@@ -331,14 +364,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "env": {
                     "TASKS_USE_PWSH_INSTEAD_BASH": "true"
@@ -355,6 +380,14 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
             }
         },
         {
@@ -363,14 +396,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
                 "-ContainerRuntime",
@@ -384,6 +409,14 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
             }
         },
         {
@@ -392,14 +425,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "${workspaceFolder}/.conf/shareWSLPorts.ps1",
@@ -409,6 +434,14 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
             }
         },
         {
@@ -417,14 +450,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "env": {
                     "DEBUG_SHARED_PORTS": "true"
@@ -439,6 +464,14 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
             }
         },
         {
@@ -446,14 +479,6 @@
             "detail": "This task will check if the dependencies needed to run\nthe project are installed in the host machine.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "dedicated",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "${workspaceFolder}/.conf/checkDeps.ps1"
@@ -462,6 +487,14 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
             }
         },
         {
@@ -470,14 +503,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "dedicated",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "${workspaceFolder}/.conf/torizonPackages.ps1",
@@ -485,8 +510,17 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
             }
         },
         {
@@ -514,8 +548,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
             }
         },
         {
@@ -530,8 +573,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
             }
         },
         {
@@ -571,13 +623,22 @@
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
-            },
             "dependsOn": [
                 "validate-deps-running"
-            ]
+            ],
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
+            }
         },
         {
             "label": "validate-arch-amd64",
@@ -592,8 +653,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
             }
         },
         {
@@ -609,8 +679,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
             }
         },
         {
@@ -626,8 +705,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
             }
         },
         {
@@ -643,8 +731,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
             }
         },
         {
@@ -672,8 +769,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
             }
         },
         {
@@ -692,8 +798,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
             }
         },
         {
@@ -736,8 +851,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -780,8 +904,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -824,8 +957,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -868,8 +1010,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-riscv64"
             }
         },
         {
@@ -902,8 +1053,17 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -934,8 +1094,17 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -966,8 +1135,17 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -998,8 +1176,17 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-riscv64"
             }
         },
         {
@@ -1028,8 +1215,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-push",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -1058,8 +1254,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-push",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -1088,8 +1293,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-push",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -1118,8 +1332,17 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-push",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-riscv64"
             }
         },
         {
@@ -1147,8 +1370,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-pull",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -1176,8 +1408,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-pull",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -1205,8 +1446,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-pull",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -1234,8 +1484,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-pull",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-riscv64"
             }
         },
         {
@@ -1266,8 +1525,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm64"
             }
         },
         {
@@ -1298,8 +1566,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-arm"
             }
         },
         {
@@ -1330,8 +1607,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-amd64"
             }
         },
         {
@@ -1362,8 +1648,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-riscv64"
             }
         },
         {
@@ -1400,8 +1695,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-arm64"
             }
         },
         {
@@ -1438,8 +1742,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-arm"
             }
         },
         {
@@ -1476,8 +1789,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-amd64"
             }
         },
         {
@@ -1514,8 +1836,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "tools",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "debug-riscv64"
             }
         },
         {
@@ -1543,7 +1874,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-arm64"
             }
         },
         {
@@ -1571,7 +1911,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-arm"
             }
         },
         {
@@ -1599,7 +1948,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-amd64"
             }
         },
         {
@@ -1627,7 +1985,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-riscv64"
             }
         },
         {
@@ -1651,8 +2018,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-pull",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-arm64"
             }
         },
         {
@@ -1676,8 +2052,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-pull",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-arm"
             }
         },
         {
@@ -1701,8 +2086,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-pull",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-amd64"
             }
         },
         {
@@ -1726,8 +2120,17 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "repo-pull",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-riscv64"
             }
         },
         {
@@ -1760,7 +2163,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "run",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-arm64"
             }
         },
         {
@@ -1793,7 +2205,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "run",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-arm"
             }
         },
         {
@@ -1826,7 +2247,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "run",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-amd64"
             }
         },
         {
@@ -1859,7 +2289,16 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "run",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "release-riscv64"
             }
         },
         {
@@ -1868,12 +2307,13 @@
             "command": "${command:markdown.showPreview}",
             "type": "process",
             "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
                 "panel": "shared",
                 "showReuseMessage": true,
-                "clear": false
+                "clear": false,
+                "group": "show-documentation"
             },
             "dependsOn": [
                 "open-project-documentation-file"
@@ -1882,7 +2322,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "book",
-                "color": "terminal.ansiYellow"
+                "color": "terminal.ansiCyan"
             }
         },
         {
@@ -1892,12 +2332,13 @@
             "hide": true,
             "type": "process",
             "presentation": {
-                "echo": false,
-                "reveal": "never",
+                "echo": true,
+                "reveal": "silent",
                 "focus": false,
                 "panel": "shared",
                 "showReuseMessage": false,
-                "clear": true
+                "clear": true,
+                "group": "show-documentation"
             },
             "args": [
                 ".doc/README.md"
@@ -1905,8 +2346,8 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+                "id": "book",
+                "color": "terminal.ansiCyan"
             }
         },
         {
@@ -1936,13 +2377,21 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "notebook",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": false
+            }
         },
         {
             "label": "validate-deps-running",
@@ -1968,13 +2417,22 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "pre-run"
+            }
         }
     ]
 }
