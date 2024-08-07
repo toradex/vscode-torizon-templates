@@ -58,7 +58,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug"
+                "group": "build-execution"
             }
         },
         {
@@ -114,7 +114,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -152,7 +152,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -177,7 +177,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug"
+                "group": "build-execution"
             }
         },
         {
@@ -215,7 +215,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm64"
+                "group": "build-execution"
             }
         }
     ],
