@@ -30,7 +30,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-local"
+                "group": "build-execution"
             }
         },
         {
@@ -90,7 +90,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -136,7 +136,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -167,7 +167,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -213,7 +213,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -244,7 +244,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -290,7 +290,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-amd64"
+                "group": "build-execution"
             }
         }
     ],

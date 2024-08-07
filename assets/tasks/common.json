@@ -520,7 +520,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -558,7 +558,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -583,7 +583,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -637,7 +637,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -663,7 +663,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -689,7 +689,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -715,7 +715,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -741,7 +741,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -779,7 +779,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -945,7 +945,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         },
         {
@@ -998,7 +998,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -1051,7 +1051,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -1104,7 +1104,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -1157,7 +1157,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-riscv64"
+                "group": "build-execution"
             }
         },
         {
@@ -1200,7 +1200,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -1241,7 +1241,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -1282,7 +1282,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -1323,7 +1323,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-riscv64"
+                "group": "build-execution"
             }
         },
         {
@@ -1362,7 +1362,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -1401,7 +1401,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -1440,7 +1440,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -1479,7 +1479,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-riscv64"
+                "group": "build-execution"
             }
         },
         {
@@ -1517,7 +1517,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -1555,7 +1555,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -1593,7 +1593,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -1631,7 +1631,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-riscv64"
+                "group": "build-execution"
             }
         },
         {
@@ -1672,7 +1672,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -1713,7 +1713,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -1754,7 +1754,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -1795,7 +1795,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-riscv64"
+                "group": "build-execution"
             }
         },
         {
@@ -1842,7 +1842,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -1889,7 +1889,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -1936,7 +1936,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -1983,7 +1983,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "debug-riscv64"
+                "group": "build-execution"
             }
         },
         {
@@ -2020,7 +2020,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -2057,7 +2057,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -2094,7 +2094,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -2131,7 +2131,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-riscv64"
+                "group": "build-execution"
             }
         },
         {
@@ -2165,7 +2165,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -2199,7 +2199,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -2233,7 +2233,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -2267,7 +2267,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-riscv64"
+                "group": "build-execution"
             }
         },
         {
@@ -2309,7 +2309,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-arm64"
+                "group": "build-execution"
             }
         },
         {
@@ -2351,7 +2351,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-arm"
+                "group": "build-execution"
             }
         },
         {
@@ -2393,7 +2393,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-amd64"
+                "group": "build-execution"
             }
         },
         {
@@ -2435,7 +2435,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "release-riscv64"
+                "group": "build-execution"
             }
         },
         {
@@ -2540,7 +2540,7 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false,
-                "group": "pre-run"
+                "group": "build-execution"
             }
         }
     ]
