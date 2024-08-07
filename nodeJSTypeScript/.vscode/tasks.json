@@ -28,7 +28,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -57,7 +57,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "node-related"
             }
@@ -88,7 +88,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -134,7 +134,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -165,7 +165,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -211,7 +211,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -242,7 +242,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -288,7 +288,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
