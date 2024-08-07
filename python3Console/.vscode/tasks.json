@@ -53,7 +53,7 @@
                 "reveal": "silent",
                 "focus": false,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "python-related"
             }
@@ -89,7 +89,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -123,7 +123,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -159,7 +159,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -193,7 +193,7 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "build-execution"
             }
@@ -221,7 +221,7 @@
                 "reveal": "silent",
                 "focus": false,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "python-related"
             }
@@ -248,7 +248,7 @@
                 "reveal": "silent",
                 "focus": false,
                 "panel": "shared",
-                "showReuseMessage": true,
+                "showReuseMessage": false,
                 "clear": false,
                 "group": "python-related"
             }
