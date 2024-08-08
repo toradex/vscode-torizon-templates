@@ -1,5 +1,5 @@
-ARG CROSS_SDK_BASE_TAG=next-bookworm
-ARG BASE_VERSION=next-bookworm
+ARG CROSS_SDK_BASE_TAG=3.3.0
+ARG BASE_VERSION=3.3.0-bookworm
 ##
 # Board architecture
 # arm or arm64
@@ -13,7 +13,7 @@ ARG APP_ROOT=
 
 
 # BUILD ------------------------------------------------------------------------
-FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
+FROM commontorizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
 
 ARG APP_ROOT
 ARG IMAGE_ARCH
