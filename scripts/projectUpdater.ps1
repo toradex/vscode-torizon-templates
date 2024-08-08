@@ -152,11 +152,6 @@ Copy-Item `
     $Env:HOME/.apollox/scripts/shareWSLPorts.ps1 `
     $projectFolder/.conf/shareWSLPorts.ps1
 
-# TORIZON PACKAGES
-Copy-Item `
-    $Env:HOME/.apollox/scripts/torizonPackages.ps1 `
-    $projectFolder/.conf/torizonPackages.ps1
-
 # TORIZON IO:
 Copy-Item `
     $Env:HOME/.apollox/scripts/torizonIO.ps1 `
@@ -190,7 +185,19 @@ Write-Host -ForegroundColor DarkGreen "✅ always accept new"
 $updateTable = Get-Content $projectFolder/.conf/update.json | ConvertFrom-Json
 
 
-# ----------------------------------------------------------------------- TASKS
+# ----------------------------------------------------------------------- .VSCODE
+# tcb does not have the launch.json
+if ($templateName -ne "tcb") {
+    Copy-Item $Env:HOME/.apollox/$templateName/.vscode/launch.json `
+        $projectFolder/.conf/tmp/launch-next.json
+}
+
+Copy-Item $Env:HOME/.apollox/$templateName/.vscode/settings.json `
+$projectFolder/.conf/tmp/settings-next.json
+
+Copy-Item $Env:HOME/.apollox/$templateName/.vscode/extensions.json `
+$projectFolder/.conf/tmp/extensions-next.json
+
 # TASKS.JSON:
 Copy-Item $Env:HOME/.apollox/$templateName/.vscode/tasks.json `
     $projectFolder/.conf/tmp/tasks-next.json
@@ -214,6 +221,7 @@ if ($_templateMetadata.mergeCommon -ne $False) {
         Format-Json | `
         Out-File -FilePath "$projectFolder/.conf/tmp/tasks-next.json"
 }
+# ----------------------------------------------------------------------- .VSCODE
 
 # we need to create a tmp folder to the update files
 Set-Location $projectFolder/.conf/tmp
@@ -221,18 +229,44 @@ Set-Location $projectFolder/.conf/tmp
 # tcb does not have the common Docker files
 if ($templateName -ne "tcb") {
     # The generic template doesn't have a Dockerfile.debug
-    if ($templateName -ne "genericTemplate") {
+    if (Test-Path -Path $Env:HOME/.apollox/$templateName/Dockerfile.debug) {
         Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
+    }
+    # If there is a Dockerfile.sdk, also include it
+    if (Test-Path -Path $Env:HOME/.apollox/$templateName/Dockerfile.sdk) {
+        Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.sdk .
     }
     Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile .
     Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
     Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
     Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
     Copy-Item $Env:HOME/.apollox/$templateName/.doc/README.md .
+    Copy-Item $Env:HOME/.apollox/$templateName/.dockerignore .
+
+    # ----------------------------------------------------------------- TORIZONPACKAGES.JSON
+    $_torPackagesJson = Get-Content -Path "$Env:HOME/.apollox/assets/json/torizonPackages.json" | ConvertFrom-Json
+
+    # Check also the build part of Dockerfile, for the presence of torizon_packages_build
+    $dockerfileLines = Get-Content -Path "$Env:HOME/.apollox/$templateName/Dockerfile"
+
+    $buildDepDockerfile = $false
+    foreach ($line in $dockerfileLines) {
+        if ($line.Contains("torizon_packages_build")) {
+            $buildDepDockerfile = $true
+            break
+        }
+    }
+
+    if ((Test-Path -Path "$Env:HOME/.apollox/$templateName/Dockerfile.sdk") -Or ($buildDepDockerfile)) {
+        $_torPackagesJson | Add-Member -NotePropertyName buildDeps -NotePropertyValue @()
+    }
+    # Save the modified JSON object to a file
+    Set-Content -Path "./torizonPackages.json" -Value ($_torPackagesJson | ConvertTo-Json) -Encoding UTF8
+    # ----------------------------------------------------------------- TORIZONPACKAGES.JSON
+
 }
 
 Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
-
 
 # DEPS.JSON:
 Copy-Item $Env:HOME/.apollox/$templateName/.conf/deps.json .
@@ -265,10 +299,6 @@ if (($_deps.installDepsScripts.Count -gt 0)) {
         }
     }
 }
-
-
-
-
 
 # read the update table:
 for ($i = 0; $i -lt $updateTable.Count; $i++) {
@@ -321,15 +351,40 @@ Replace-Tasks-Input
 # and back to the project folder
 Set-Location -
 
+# ---------------------------------------------------------------------- .VSCODE
 # open the merge window
 _openMergeWindow `
     $projectFolder/.conf/tmp/tasks-next.json `
     $projectFolder/.vscode/tasks.json
 
 Write-Host -ForegroundColor DarkGreen "✅ tasks.json"
-# ----------------------------------------------------------------------- TASKS
 
+# LAUNCH.JSON
 
+# tcb does not have the launch.json
+if ($templateName -ne "tcb") {
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/launch-next.json `
+        $projectFolder/.vscode/launch.json
+
+    Write-Host -ForegroundColor DarkGreen "✅ launch.json"
+}
+
+# SETTINGS.JSON
+_openMergeWindow `
+    $projectFolder/.conf/tmp/settings-next.json `
+    $projectFolder/.vscode/settings.json
+
+Write-Host -ForegroundColor DarkGreen "✅ settings.json"
+
+# EXTENSIONS.JSON
+_openMergeWindow `
+    $projectFolder/.conf/tmp/extensions-next.json `
+    $projectFolder/.vscode/extensions.json
+
+Write-Host -ForegroundColor DarkGreen "✅ extensions.json"
+
+# ---------------------------------------------------------------------- .VSCODE
 
 # ---------------------------------------------------------------------- COMMON
 
@@ -337,10 +392,17 @@ Write-Host -ForegroundColor DarkGreen "✅ tasks.json"
 if ($templateName -ne "tcb") {
     # DOCKERFILE.DEBUG:
     # The generic template doesn't have a Dockerfile.debug
-    if ($templateName -ne "genericTemplate") {
+    if (Test-Path -Path $projectFolder/.conf/tmp/Dockerfile.debug) {
         _openMergeWindow `
             $projectFolder/.conf/tmp/Dockerfile.debug `
             $projectFolder/Dockerfile.debug
+    }
+    # DOCKERFILE.SDK:
+    # If there is a Dockerfile.sdk, also include it
+    if (Test-Path -Path $projectFolder/.conf/tmp/Dockerfile.sdk) {
+        _openMergeWindow `
+            $projectFolder/.conf/tmp/Dockerfile.sdk `
+            $projectFolder/Dockerfile.sdk
     }
     # DOCKERFILE:
     _openMergeWindow `
@@ -368,6 +430,16 @@ if ($templateName -ne "tcb") {
         mkdir $projectFolder/.doc
     }
 
+    # DOCKERIGNORE:
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/.dockerignore `
+        $projectFolder/.dockerignore
+
+    # TORIZONPACKAGES.JSON:
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/torizonPackages.json `
+        $projectFolder/torizonPackages.json
+
     Copy-Item `
         $Env:HOME/.apollox/$templateName/.doc/README.md `
         $projectFolder/.doc/README.md
@@ -377,6 +449,7 @@ if ($templateName -ne "tcb") {
 _openMergeWindow `
     $projectFolder/.conf/tmp/.gitignore `
     $projectFolder/.gitignore
+
 
 # DEPS.JSON:
 _openMergeWindow `
