@@ -130,9 +130,4 @@ RUN rm -r /etc/ssh/ssh*key && \
 COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./assets ${APP_ROOT}/assets
 COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./libs ${APP_ROOT}/libs
 
-# Copy the compiled application to the $APP_ROOT directory path inside the
-# container, where $APP_ROOT is the torizon_app_root configuration defined
-# in settings.json.
-COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./dist ${APP_ROOT}
-
 CMD [ "/usr/sbin/sshd", "-D" ]

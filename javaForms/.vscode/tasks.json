@@ -126,6 +126,25 @@
             ]
         },
         {
+            "label": "rsync-debug-dist",
+            "detail": "",
+            "hide": true,
+            "command": "rsync",
+            "type": "shell",
+            "args": [
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/dist/",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "sync",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "exterminate-debugger",
             "detail": "",
             "hide": true,
@@ -220,6 +239,7 @@
                 "done",
             ],
             "dependsOn": [
+                "rsync-debug-dist",
                 "run-debugger-amd64",
                 "wait-a-bit"
             ],
@@ -300,6 +320,7 @@
                 "done",
             ],
             "dependsOn": [
+                "rsync-debug-dist",
                 "run-debugger-arm64",
                 "wait-a-bit"
             ],
@@ -380,6 +401,7 @@
                 "done",
             ],
             "dependsOn": [
+                "rsync-debug-dist",
                 "run-debugger-arm",
                 "wait-a-bit"
             ],
