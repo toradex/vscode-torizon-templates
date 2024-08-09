@@ -58,9 +58,5 @@
     {
         "source": "Assets/avalonia-logo.ico",
         "target": "Assets/avalonia-logo.ico"
-    },
-    {
-        "source": ".gitignore",
-        "target": ".gitignore"
     }
 ]

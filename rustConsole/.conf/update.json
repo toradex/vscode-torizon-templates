@@ -1,6 +1,10 @@
 [
     {
-        "source": ".vscode/launch.json",
-        "target": ".vscode/launch.json"
+        "source": ".cargo/config.toml",
+        "target": ".cargo/config.toml"
+    },
+    {
+        "source": "Cargo.toml",
+        "target": "Cargo.toml"
     }
 ]
