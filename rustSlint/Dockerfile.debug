@@ -8,7 +8,7 @@ ARG IMAGE_ARCH=
 # Base container version
 # Using Slint v1.7.0 base images
 ##
-ARG BASE_VERSION=3.3.0-bookworm-1.7.0
+ARG BASE_VERSION=3.3.0-bookworm-1.7.1
 
 ##
 # Directory of the application inside container
