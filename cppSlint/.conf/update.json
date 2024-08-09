@@ -1,6 +1,18 @@
 [
     {
-        "source": ".vscode/launch.json",
-        "target": ".vscode/launch.json"
+        "source": ".vscode/c_cpp_properties.json",
+        "target": ".vscode/c_cpp_properties.json"
+    },
+    {
+        "source": "CMakeLists.txt",
+        "target": "CMakeLists.txt"
+    },
+    {
+        "source": "arm64-toolchain.cmake",
+        "target": "arm64-toolchain.cmake"
+    },
+    {
+        "source": "armhf-toolchain.cmake",
+        "target": "armhf-toolchain.cmake"
     }
 ]
