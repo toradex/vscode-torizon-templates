@@ -46,7 +46,7 @@
             }
         },
         {
-            "label": "run-mono-debug-server-arm",
+            "label": "deploy-torizon-mono-debug-server-arm",
             "detail": "",
             "hide": true,
             "command": "ssh",
@@ -73,6 +73,7 @@
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
+                "rsync-torizon-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -82,7 +83,7 @@
             }
         },
         {
-            "label": "run-mono-debug-server-arm64",
+            "label": "deploy-torizon-mono-debug-server-arm64",
             "detail": "",
             "hide": true,
             "command": "ssh",
@@ -109,6 +110,7 @@
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
+                "rsync-torizon-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -118,7 +120,26 @@
             }
         },
         {
-            "label": "run-mono-debug-server-amd64",
+            "label": "rsync-torizon-debug",
+            "detail": "",
+            "hide": true,
+            "type": "shell",
+            "command": "rsync",
+            "args": [
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/bin/Debug/",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-mono-debug-server-amd64",
             "detail": "",
             "hide": true,
             "command": "ssh",
@@ -145,6 +166,7 @@
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",
                 "run-container-torizon-debug-amd64",
+                "rsync-torizon-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",

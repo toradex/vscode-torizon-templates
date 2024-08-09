@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next-6.12.0
+ARG BASE_VERSION=3-6.12.0
 
 ##
 # Directory of the application inside container
@@ -80,9 +80,5 @@ RUN rm -r /etc/ssh/ssh*key && \
 
 COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./assets ${APP_ROOT}/assets
 
-# Copy the compiled application to the $APP_ROOT directory path inside the
-# container, where $APP_ROOT is the torizon_app_root configuration defined
-# in settings.json.
-COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./bin/Debug ${APP_ROOT}
 
 CMD [ "/usr/sbin/sshd", "-D" ]
