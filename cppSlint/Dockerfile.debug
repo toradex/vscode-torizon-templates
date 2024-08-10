@@ -31,6 +31,11 @@ ARG SSHUSERNAME=
 ARG GPU=
 
 ##
+# Get debug libraries
+##
+FROM commontorizon/slint-sdk-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
+
+##
 # Deploy Step
 ##
 FROM commontorizon/slint-base-${IMAGE_ARCH}${GPU}:${BASE_VERSION} AS Debug
@@ -112,14 +117,5 @@ RUN mkdir /var/run/sshd && \
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
-
-# Copy the compiled application to the $APP_ROOT directory path inside the
-# container, where $APP_ROOT is the torizon_app_root configuration defined
-# in settings.json.
-COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./build/${IMAGE_ARCH} ${APP_ROOT}
-
-# Remove the CMakeFiles directory, that is just needed for the build and not
-# for the execution
-RUN rm -rf ${APP_ROOT}/CMakeFiles
 
 CMD [ "/usr/sbin/sshd", "-D" ]

@@ -46,6 +46,10 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 # __deps__
 
+# get the arch and copy the /usr/lib to /usr/lib/${ARCH_TRIPLET}
+RUN ARCH_TRIPLET=$(dpkg-architecture -qDEB_HOST_MULTIARCH) && \
+    cp -r /usr/lib/libslint_cpp.so /usr/lib/${ARCH_TRIPLET}/libslint_cpp.so
+
 # Don't require font-config when the compiler runs
 ENV RUST_FONTCONFIG_DLOPEN=on
 
@@ -66,7 +70,7 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release -B build/${IMAGE_ARCH} -S . \
 
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
