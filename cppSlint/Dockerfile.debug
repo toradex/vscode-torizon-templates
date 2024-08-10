@@ -31,11 +31,6 @@ ARG SSHUSERNAME=
 ARG GPU=
 
 ##
-# Get debug libraries
-##
-FROM commontorizon/slint-sdk-${IMAGE_ARCH}:${BASE_VERSION} As Build
-
-##
 # Deploy Step
 ##
 FROM commontorizon/slint-base-${IMAGE_ARCH}${GPU}:${BASE_VERSION} AS Debug
