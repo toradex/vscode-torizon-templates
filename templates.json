@@ -548,7 +548,7 @@
             "img": "dotnetslint.png",
             "folder": "dotnetSlint",
             "description": ".NET Slint Application",
-            "runtime": ".net 8.0 / Slint 1.2",
+            "runtime": ".net 8.0 / Slint 1.7",
             "language": "C#",
             "debugSSHPort": "2222",
             "multiContainer": true,
