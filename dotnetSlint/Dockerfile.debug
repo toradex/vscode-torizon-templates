@@ -7,8 +7,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG SDK_BASE_VERSION=next-8.0
-ARG BASE_VERSION=3.3.0-bookworm-1.5.1
+ARG SDK_BASE_VERSION=3-8.0
+ARG BASE_VERSION=3.3.0-bookworm-1.7.1
 
 ##
 # Directory of the application inside container
@@ -35,7 +35,7 @@ ARG GPU=
 # Get the debugger
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/dotnet-debug:${SDK_BASE_VERSION} AS dotnet
+    commontorizon/dotnet-debug:${SDK_BASE_VERSION} AS dotnet
 
 # BUILD ------------------------------------------------------------------------
 ##

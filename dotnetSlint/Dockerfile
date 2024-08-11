@@ -7,8 +7,8 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG SDK_BASE_VERSION=next-8.0
-ARG BASE_VERSION=next
+ARG SDK_BASE_VERSION=3.3.0-8.0
+ARG BASE_VERSION=3.3.0
 
 ##
 # Directory of the application inside container
@@ -47,7 +47,7 @@ RUN dotnet restore && \
 
 # DEPLOY ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
 
 ARG IMAGE_ARCH
 ARG GPU
