@@ -2,6 +2,19 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "refresh-code-generator",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "${command:o.restart}"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "symbol-event",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
             "label": "build-debug-local",
             "detail": "dotnet build command for debugging the application locally",
             "command": "dotnet",
