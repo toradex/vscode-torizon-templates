@@ -2,6 +2,29 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "check-deps",
+            "detail": "This task will check if the dependencies needed to run\nthe project are installed in the host machine.",
+            "command": "pwsh",
+            "type": "process",
+            "args": [
+                "-nop",
+                "${workspaceFolder}/.conf/checkDeps.ps1"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
             "label": "fetch-templates-repo",
             "detail": "",
             "hide": true,
