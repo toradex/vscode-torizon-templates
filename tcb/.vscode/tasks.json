@@ -19,9 +19,7 @@
                 "echo": false,
                 "reveal": "always",
                 "focus": true,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false
+                "panel": "dedicated"
             }
         },
         {
@@ -52,8 +50,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "update-template"
             }
         },
@@ -85,8 +81,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "update-template"
             }
         },
@@ -118,8 +112,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "update-template"
             }
         },
@@ -149,9 +141,7 @@
                 "echo": true,
                 "reveal": "silent",
                 "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false
+                "panel": "dedicated"
             }
         },
         {
@@ -181,9 +171,7 @@
                 "echo": false,
                 "reveal": "silent",
                 "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false
+                "panel": "dedicated"
             }
         },
         {
@@ -210,9 +198,7 @@
                 "echo": true,
                 "reveal": "silent",
                 "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false
+                "panel": "dedicated"
             }
         },
         {
@@ -235,9 +221,7 @@
                 "echo": true,
                 "reveal": "silent",
                 "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false
+                "panel": "dedicated"
             }
         },
         {
@@ -555,8 +539,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "cloud-related"
             }
         },
@@ -604,8 +586,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "cloud-related"
             }
         },
