@@ -32,8 +32,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -58,8 +56,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -86,8 +82,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -114,8 +108,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -142,8 +134,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -168,8 +158,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -200,8 +188,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -241,8 +227,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -273,8 +257,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -314,8 +296,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -347,8 +327,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         },
@@ -412,8 +390,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false,
                 "group": "build-execution"
             }
         }
