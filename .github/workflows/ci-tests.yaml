@@ -24,3 +24,16 @@ jobs:
         run: |
           npm install git+https://github.com/streetsidesoftware/cspell-cli
           npx cspell-cli lint --relative
+
+  check-eof-new-line:
+    runs-on: ubuntu-latest
+    name: Check EOF New Line
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check EOF New Line
+
+        shell: powershell
+
+        run: |
+          ./scripts/validNewLine.ps1
