@@ -11,7 +11,9 @@ $Global:_ERROR_REACH = $false
 $ignoreFolders = @(
     ".git",
     "node_modules",
-    "id_rsa"
+    "id_rsa",
+    "css",
+    "obj"
 )
 
 Get-ChildItem -Path . -Force -Recurse | ForEach-Object {
@@ -52,4 +54,7 @@ Get-ChildItem -Path . -Force -Recurse | ForEach-Object {
 if ($Global:_ERROR_REACH) {
     Write-Host -ForegroundColor Red "❌ :: Files are missing new line at the end"
     exit 404
+} else {
+    Write-Host -ForegroundColor Green "✅ :: All files have new line at the end"
+    exit 0
 }
