@@ -29,9 +29,9 @@ function AddValue ($list, $name, $settingName, $value) {
     }
 }
 
-function FixDuplicates ($passedlist) {
+function FixDuplicates ($settingsList) {
     $duplicated = $false
-    $list = $passedlist
+    $list = $settingsList
     $i = 0
     while ($i -lt $list.Count -1) {
 
@@ -135,10 +135,10 @@ if ($debugPortDuplicated -or $waitSyncDuplicated) {
                     Out-File -FilePath "$projectName/.vscode/settings.json"
             }
         }
-        Write-Host -ForegroundColor DarkGreen "✅ Debug port and wait_sync settings conflics solved (new setting values applied)"
+        Write-Host -ForegroundColor DarkGreen "✅ Debug port and wait_sync settings conflicts solved (new setting values applied)"
     }   else {
         Write-Host -ForegroundColor DarkRed "❌ Please solve debug port and wait_sync settings conflicts before running the commands"
     }
 } else {
-    Write-Host -ForegroundColor DarkGreen "✅ No debug port or wait_sync settings conflics"
+    Write-Host -ForegroundColor DarkGreen "✅ No debug port or wait_sync settings conflicts"
 }
