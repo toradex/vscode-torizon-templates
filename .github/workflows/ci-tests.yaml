@@ -10,7 +10,6 @@ on:
 jobs:
   spell-check:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/bookworm' || github.ref == 'refs/heads/dev'
     container:
       image: node:18
     name: Spell Check
@@ -33,7 +32,7 @@ jobs:
 
       - name: Check EOF New Line
 
-        shell: powershell
+        shell: pwsh
 
         run: |
           ./scripts/validNewLine.ps1
