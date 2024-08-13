@@ -10,12 +10,14 @@
     "dictionaries": [],
     "words": [
         "armhf",
+        "beagleplay",
         "Fleetid",
         "listenport",
         "netsh",
         "Oster",
         "ostree",
-        "portproxy"
+        "portproxy",
+        "TORIZONPACKAGES"
     ],
     "ignoreWords": [
         "torizon",
