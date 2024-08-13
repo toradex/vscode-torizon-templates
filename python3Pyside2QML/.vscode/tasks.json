@@ -79,7 +79,7 @@
             "dependsOrder": "sequence",
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -111,7 +111,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -198,7 +198,7 @@
             "dependsOrder": "sequence",
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -230,7 +230,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,

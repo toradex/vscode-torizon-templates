@@ -134,7 +134,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -207,7 +207,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -258,7 +258,7 @@
             },
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -361,7 +361,7 @@
             },
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -442,7 +442,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "trash",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,

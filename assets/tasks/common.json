@@ -485,7 +485,7 @@
             "dependsOrder": "sequence",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -521,7 +521,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -544,7 +544,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -596,7 +596,7 @@
             ],
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -620,7 +620,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -644,7 +644,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -668,7 +668,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -692,7 +692,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -728,7 +728,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -799,7 +799,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -892,7 +892,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -943,7 +943,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -994,7 +994,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1045,7 +1045,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1096,7 +1096,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1137,7 +1137,7 @@
             ],
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1176,7 +1176,7 @@
             ],
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1215,7 +1215,7 @@
             ],
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1254,7 +1254,7 @@
             ],
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1291,7 +1291,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1328,7 +1328,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1365,7 +1365,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1402,7 +1402,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1438,7 +1438,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-pull",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1474,7 +1474,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-pull",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1510,7 +1510,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-pull",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1546,7 +1546,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-pull",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1585,7 +1585,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1624,7 +1624,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1663,7 +1663,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1702,7 +1702,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "debug-alt",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1747,7 +1747,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1792,7 +1792,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1837,7 +1837,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1882,7 +1882,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "tools",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1917,7 +1917,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1952,7 +1952,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -1987,7 +1987,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2022,7 +2022,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-push",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2054,7 +2054,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-pull",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2086,7 +2086,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-pull",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2118,7 +2118,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-pull",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2150,7 +2150,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "repo-pull",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2190,7 +2190,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "run",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2230,7 +2230,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "run",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2270,7 +2270,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "run",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2310,7 +2310,7 @@
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "run",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
@@ -2409,7 +2409,7 @@
             ],
             "icon": {
                 "id": "gear",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
