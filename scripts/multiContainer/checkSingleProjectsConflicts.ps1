@@ -1,4 +1,3 @@
-
 # suppress warnings that we need to use
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSAvoidOverwritingBuiltInCmdlets', ""
@@ -21,9 +20,14 @@ param(
     [bool] $acceptAll
 )
 
+$scriptDir = Split-Path $MyInvocation.MyCommand.Path
+$workspaceDir = Split-Path -Parent $scriptDir
+
+Push-Location $workspaceDir
+
 $projectName = $objMetadata.multiContainerProjectName
 
-$objCodeWorkspaces = Get-Content ("*.code-workspace") | `
+$objCodeWorkspaces = Get-Content ("./*.code-workspace") | `
     Out-String | ConvertFrom-Json
 
 function AddValue ($list, $name, $settingName, $value) {
@@ -61,7 +65,7 @@ function FixDuplicates ($settingsList) {
 }
 
 
-$dockerComposeYaml = Get-Content ("docker-compose.yml") | Out-String | ConvertFrom-Yaml
+$dockerComposeYaml = Get-Content ("./docker-compose.yml") | Out-String | ConvertFrom-Yaml
 
 $dockerComposePorts = New-Object System.Collections.ArrayList
 
@@ -149,3 +153,5 @@ if ($debugPortDuplicated -or $waitSyncDuplicated) {
 } else {
     Write-Host -ForegroundColor DarkGreen "✅ No debug port or wait_sync settings conflicts"
 }
+
+Pop-Location
