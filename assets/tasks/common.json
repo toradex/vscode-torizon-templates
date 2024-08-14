@@ -102,7 +102,11 @@
                 "env": {
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "TORIZON_ARCH": "${input:archList}",
-                    "APP_ROOT": "${config:torizon_app_root}"
+                    "APP_ROOT": "${config:torizon_app_root}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
