@@ -1,4 +1,3 @@
-
 # suppress warnings that we need to use
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSAvoidOverwritingBuiltInCmdlets', ""
@@ -15,12 +14,20 @@
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
     'PSAvoidGlobalVars', ""
 )]
-param()
 
+param(
+    [Parameter(Mandatory=$false)]
+    [bool] $acceptAll
+)
+
+$scriptDir = Split-Path $MyInvocation.MyCommand.Path
+$workspaceDir = Split-Path -Parent $scriptDir
+
+Push-Location $workspaceDir
 
 $projectName = $objMetadata.multiContainerProjectName
 
-$objCodeWorkspaces = Get-Content ("*.code-workspace") | `
+$objCodeWorkspaces = Get-Content ("./*.code-workspace") | `
     Out-String | ConvertFrom-Json
 
 function AddValue ($list, $name, $settingName, $value) {
@@ -58,7 +65,7 @@ function FixDuplicates ($settingsList) {
 }
 
 
-$dockerComposeYaml = Get-Content ("docker-compose.yml") | Out-String | ConvertFrom-Yaml
+$dockerComposeYaml = Get-Content ("./docker-compose.yml") | Out-String | ConvertFrom-Yaml
 
 $dockerComposePorts = New-Object System.Collections.ArrayList
 
@@ -108,8 +115,12 @@ $newWaitSyncSettings, $waitSyncDuplicated = FixDuplicates $sortedWaitSyncSetting
 
 if ($debugPortDuplicated -or $waitSyncDuplicated) {
 
-    $_updateConfirm = Read-Host `
-    "Do you want to update the debug ports and wait_syncs to the suggested values? <y/N>"
+    if ($acceptAll -eq $true) {
+        $_updateConfirm = 'y'
+    } else {
+        $_updateConfirm = Read-Host `
+            "Do you want to update the debug ports and wait_syncs to the suggested values? <y/N>"
+    }
 
     if ($_updateConfirm -eq 'y') {
 
@@ -142,3 +153,5 @@ if ($debugPortDuplicated -or $waitSyncDuplicated) {
 } else {
     Write-Host -ForegroundColor DarkGreen "✅ No debug port or wait_sync settings conflicts"
 }
+
+Pop-Location

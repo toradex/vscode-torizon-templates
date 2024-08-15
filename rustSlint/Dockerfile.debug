@@ -34,7 +34,7 @@ ARG GPU=
 ##
 # Deploy Step
 ##
-FROM commontorizon/slint-base-${IMAGE_ARCH}${GPU}:${BASE_VERSION} AS Debug
+FROM commontorizon/slint-base-${IMAGE_ARCH}${GPU}:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG GPU

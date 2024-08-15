@@ -27,7 +27,7 @@ ARG APP_ROOT=
 # BUild Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/qt6-wayland${GPU}:${BASE_VERSION} AS Build
+    torizon/qt6-wayland${GPU}:${BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG GPU

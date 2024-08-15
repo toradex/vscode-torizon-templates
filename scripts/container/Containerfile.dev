@@ -1,7 +1,7 @@
 ARG BRANCH=dev
 ARG UID=1000
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS Build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
 ARG BRANCH
 ARG UID
@@ -77,7 +77,7 @@ RUN chmod -R 757 /root && \
     npm install ./apollox-0.1.2.tgz
 
 # from build copy the libraries
-COPY --from=Build /build/bin/Release/net6.0/publish/ /root/.tui/
+COPY --from=build /build/bin/Release/net6.0/publish/ /root/.tui/
 
 # inject the zygote
 COPY ./zygote.ps1 /root/.apollox/scripts/zygote.ps1

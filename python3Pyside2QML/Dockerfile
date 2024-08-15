@@ -21,7 +21,7 @@ ARG GPU=
 
 
 FROM --platform=linux/${IMAGE_ARCH} \
-     torizon/qt5-wayland${GPU}:${BASE_VERSION} AS Deploy
+     torizon/qt5-wayland${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU

@@ -22,7 +22,7 @@ ARG GPU=
 # ARGUMENTS --------------------------------------------------------------------
 
 # BUILD ------------------------------------------------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -42,7 +42,7 @@ fi
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/dotnet-x-gtk:${BASE_VERSION} AS Deploy
+    commontorizon/dotnet-x-gtk:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -77,7 +77,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
+COPY --from=build ${APP_ROOT}/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
 
 # TODO: if you need to run as root user, you can remove this line
 USER torizon

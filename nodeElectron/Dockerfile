@@ -24,7 +24,7 @@ ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Build
+    torizon/wayland-base${GPU}:${BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -115,7 +115,7 @@ RUN  if [ "${GPU}" = "-vivante" ] || [ "${GPU}" = "-imx8" ]; then \
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+    torizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -170,7 +170,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/out/__change__-linux-${IMAGE_ARCH} ${APP_ROOT}
+COPY --from=build ${APP_ROOT}/out/__change__-linux-${IMAGE_ARCH} ${APP_ROOT}
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

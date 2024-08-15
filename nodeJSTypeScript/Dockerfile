@@ -20,7 +20,7 @@ ARG APP_ROOT=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Build
+    torizon/debian:${BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -72,7 +72,7 @@ RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Deploy
+    torizon/debian:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -98,7 +98,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/out ${APP_ROOT}/out
+COPY --from=build ${APP_ROOT}/out ${APP_ROOT}/out
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

@@ -31,7 +31,7 @@ ARG GPU=
 
 
 FROM --platform=linux/${IMAGE_ARCH} \
-     torizon/qt5-wayland${GPU}:${BASE_VERSION} AS Debug
+     torizon/qt5-wayland${GPU}:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG GPU

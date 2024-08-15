@@ -61,6 +61,24 @@ function _openMergeWindow ($_updatedFile, $_currentFile) {
     }
 }
 
+# Don't allow the update of the project if there is no git repository initiated, to avoid losing track of the changes applied in the update
+$cmdOutput = git status 2>&1 | Out-String
+
+if ($cmdOutput.Contains("fatal: not a git repository")) {
+    Write-Host -ForegroundColor DarkRed "❌ fatal: not a git repository."
+    Write-Host -ForegroundColor DarkYellow "It is highly recommended that you create a repo and commit the current state of the project before updating it, to keep track of the changes that will be applied on the update."
+    $_sure = Read-Host -Prompt "Do you want to proceed without creating a git repo? [y/n]"
+    if ($_sure -ne "y") {
+        exit 0
+    } else {
+        Write-Host -ForegroundColor DarkYellow "If the project is not versioned there is no way back!"
+        $_sure = Read-Host -Prompt "Are you sure you want to proceed with the update without creating a git repo? [y/n]"
+        if ($_sure -ne "y") {
+            exit 0
+        }
+    }
+}
+
 # check if the args passed are not empty
 _checkArg $projectFolder
 _checkArg $projectName
@@ -71,8 +89,8 @@ if ([string]::IsNullOrEmpty($acceptAll)) {
 } else {
     if ($acceptAll -eq "1") {
         # ask for confirmation
-        Write-Host -ForegroundColor Yellow "You are about to accept all incoming changes from the updated template"
-        Write-Host -ForegroundColor Yellow "If the project is not versioned there is no way back"
+        Write-Host -ForegroundColor DarkYellow "You are about to accept all incoming changes from the updated template"
+        Write-Host -ForegroundColor DarkYellow "If the project is not versioned there is no way back!"
         $_sure = Read-Host -Prompt "Accept all changes? [y/n]"
 
         if ($_sure -ne "y") {
