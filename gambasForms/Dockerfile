@@ -24,7 +24,7 @@ ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/gambas3${GPU}:${BASE_VERSION} AS Build
+    commontorizon/gambas3${GPU}:${BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -49,7 +49,7 @@ RUN gbc3 /build
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/gambas3${GPU}:${BASE_VERSION} AS Deploy
+    commontorizon/gambas3${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -69,7 +69,7 @@ COPY __change__/assets ${APP_ROOT}/assets
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build /build/__change__/__change__.gambas ${APP_ROOT}
+COPY --from=build /build/__change__/__change__.gambas ${APP_ROOT}
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

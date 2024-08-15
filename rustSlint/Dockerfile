@@ -75,7 +75,7 @@ RUN TARGET=$(cat /rust-toolchain-arch.txt) && \
     cp -r target/$TARGET/release build
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -115,7 +115,7 @@ ENV SLINT_FULLSCREEN=1
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/build/release/__change__ ${APP_ROOT}/__change__
+COPY --from=build ${APP_ROOT}/build/release/__change__ ${APP_ROOT}/__change__
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

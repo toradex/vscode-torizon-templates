@@ -26,7 +26,7 @@ ARG APP_ROOT=
 
 
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/debian:${BASE_VERSION} AS Debug
+    commontorizon/debian:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG DEBUG_SSH_PORT

@@ -15,7 +15,7 @@ ARG BASE_VERSION=3.3.0-bookworm
 ARG APP_ROOT=
 
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/debian:${BASE_VERSION} AS Deploy
+    commontorizon/debian:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT

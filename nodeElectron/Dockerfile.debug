@@ -33,7 +33,7 @@ ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
+    torizon/wayland-base${GPU}:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG GPU

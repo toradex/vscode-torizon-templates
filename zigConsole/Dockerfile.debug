@@ -29,7 +29,7 @@ ARG SSHUSERNAME=
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Debug
+    torizon/debian:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG DEBUG_SSH_PORT

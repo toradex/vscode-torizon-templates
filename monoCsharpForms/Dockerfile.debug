@@ -29,7 +29,7 @@ ARG SSHUSERNAME=
 # Deploy Step .NET Uno
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/mono-sdk:${BASE_VERSION} AS Debug
+    commontorizon/mono-sdk:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG APP_ROOT

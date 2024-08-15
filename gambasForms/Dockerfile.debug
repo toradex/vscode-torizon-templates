@@ -37,7 +37,7 @@ ARG GPU=
 ##
 # TODO: Add arm support
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/gambas3${GPU}:${BASE_VERSION} AS Debug
+    commontorizon/gambas3${GPU}:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG GPU

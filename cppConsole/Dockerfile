@@ -49,7 +49,7 @@ RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
 
 
 # DEPLOY -----------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} commontorizon/debian:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/debian:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -65,7 +65,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/build-${IMAGE_ARCH}/bin ${APP_ROOT}
+COPY --from=build ${APP_ROOT}/build-${IMAGE_ARCH}/bin ${APP_ROOT}
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

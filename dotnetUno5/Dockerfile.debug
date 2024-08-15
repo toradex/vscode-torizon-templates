@@ -36,7 +36,7 @@ ARG GPU=
 # Deploy Step .NET Uno
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/dotnet-gtk-debug${GPU}:${BASE_VERSION} AS Debug
+    commontorizon/dotnet-gtk-debug${GPU}:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG GPU

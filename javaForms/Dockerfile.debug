@@ -34,7 +34,7 @@ ARG GPU=
 # Deploy Step .NET Uno
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG GPU

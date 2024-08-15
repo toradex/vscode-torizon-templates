@@ -70,7 +70,7 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release -B build/${IMAGE_ARCH} -S . \
 
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} commontorizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -82,7 +82,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # copy Slint library
-COPY --from=Build /usr/lib/libslint* /usr/lib
+COPY --from=build /usr/lib/libslint* /usr/lib
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
@@ -112,7 +112,7 @@ ENV SLINT_FULLSCREEN=1
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/build/${IMAGE_ARCH} ${APP_ROOT}
+COPY --from=build ${APP_ROOT}/build/${IMAGE_ARCH} ${APP_ROOT}
 
 # Remove the CMakeFiles directory, that is just needed for the build and not
 # for the execution
