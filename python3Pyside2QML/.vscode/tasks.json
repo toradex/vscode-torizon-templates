@@ -56,13 +56,66 @@
             }
         },
         {
-            "label": "wait-debugpy-start-arm",
+            "label": "rsync-torizon-generic",
             "detail": "",
             "hide": true,
-            "command": "sleep",
+            "command": "rsync",
             "type": "process",
             "args": [
-                "4",
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/src",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}/"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "stop-torizon-debug-generic",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "pkill python3 || true"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-arm",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "shell",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "cT=0; while ! grep -r \": wait_for_client()\" ${config:torizon_app_root}/src/log/debugpy.server*.log 2> /dev/null; do sleep 0.1; if [ \"$cT\" -eq 100 ]; then echo \"Problem debugging main.py file\"; break; fi; cT=$(expr $cT + 1); done"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -74,6 +127,8 @@
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
                 "wait-a-bit",
+                "stop-torizon-debug-generic",
+                "rsync-torizon-generic",
                 "start-torizon-debug-arm"
             ],
             "dependsOrder": "sequence",
@@ -105,7 +160,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port1} --wait-for-client src/main.py",
+                "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port1} --log-to src/log --wait-for-client src/main.py",
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -122,39 +177,11 @@
             }
         },
         {
-            "label": "wait-debugpy-start-amd64",
-            "detail": "",
-            "hide": true,
-            "command": "sleep",
-            "type": "process",
-            "args": [
-                "4"
-            ],
-            "dependsOn": [
-                "validate-settings",
-                "validate-arch-amd64",
-                "host-install-pip-requirements",
-                "copy-docker-compose",
-                "pre-cleanup-debug",
-                "build-container-torizon-debug-amd64",
-                "push-container-torizon-debug-amd64",
-                "pull-container-torizon-debug-amd64",
-                "run-container-torizon-debug-amd64",
-                "wait-a-bit",
-                "start-torizon-debug-amd64"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "start-torizon-debug-amd64",
+            "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
             "command": "ssh",
-            "type": "process",
+            "type": "shell",
             "args": [
                 "-i",
                 "${workspaceFolder}/.conf/id_rsa",
@@ -165,23 +192,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port} --wait-for-client src/main.py"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "wait-debugpy-start-arm64",
-            "detail": "",
-            "hide": true,
-            "command": "sleep",
-            "type": "process",
-            "args": [
-                "4",
+                "cT=0; while ! grep -r \": wait_for_client()\" ${config:torizon_app_root}/src/log/debugpy.server*.log 2> /dev/null; do sleep 0.1; if [ \"$cT\" -eq 100 ]; then echo \"Problem debugging main.py file\"; break; fi; cT=$(expr $cT + 1); done"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -193,6 +204,8 @@
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
                 "wait-a-bit",
+                "stop-torizon-debug-generic",
+                "rsync-torizon-generic",
                 "start-torizon-debug-arm64"
             ],
             "dependsOrder": "sequence",
@@ -224,7 +237,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port1} --wait-for-client src/main.py",
+                "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port1} --log-to src/log --wait-for-client src/main.py",
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -238,6 +251,70 @@
                 "focus": true,
                 "panel": "shared",
                 "group": "build-execution"
+            }
+        },
+        {
+            "label": "start-torizon-debug-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port} --log-to src/log --wait-for-client src/main.py",
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "deploy-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "shell",
+            "args": [
+                "-i",
+                "${workspaceFolder}/.conf/id_rsa",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "cT=0; while ! grep -r \": wait_for_client()\" ${config:torizon_app_root}/src/log/debugpy.server*.log 2> /dev/null; do sleep 0.1; if [ \"$cT\" -eq 100 ]; then echo \"Problem debugging main.py file\"; break; fi; cT=$(expr $cT + 1); done"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-amd64",
+                "host-install-pip-requirements",
+                "copy-docker-compose",
+                "pre-cleanup-debug",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64",
+                "wait-a-bit",
+                "stop-torizon-debug-generic",
+                "rsync-torizon-generic",
+                "start-torizon-debug-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
             }
         },
         {

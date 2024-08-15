@@ -9,6 +9,23 @@
             "preLaunchTask": "host-install-pip-requirements"
         },
         {
+            "name": "Torizon AMD64",
+            "type": "debugpy",
+            "request": "attach",
+            "justMyCode": false,
+            "connect": {
+                "host": "${config:torizon_ip}",
+                "port": "${config:torizon_debug_port}"
+            },
+            "pathMappings": [
+                {
+                "localRoot": "${workspaceFolder}",
+                "remoteRoot": "${config:torizon_app_root}"
+                }
+            ],
+            "preLaunchTask": "deploy-torizon-amd64"
+        },
+        {
             "name": "Torizon ARMv7",
             "type": "debugpy",
             "request": "attach",
@@ -19,11 +36,11 @@
             },
             "pathMappings": [
                 {
-                    "localRoot": "${workspaceFolder}",
-                    "remoteRoot": "${config:torizon_app_root}"
+                "localRoot": "${workspaceFolder}",
+                "remoteRoot": "${config:torizon_app_root}"
                 }
             ],
-            "preLaunchTask": "wait-debugpy-start-arm"
+            "preLaunchTask": "deploy-torizon-arm"
         },
         {
             "name": "Torizon ARMv8",
@@ -36,28 +53,11 @@
             },
             "pathMappings": [
                 {
-                    "localRoot": "${workspaceFolder}",
-                    "remoteRoot": "${config:torizon_app_root}"
+                "localRoot": "${workspaceFolder}",
+                "remoteRoot": "${config:torizon_app_root}"
                 }
             ],
-            "preLaunchTask": "wait-debugpy-start-arm64"
-        },
-        {
-            "name": "Torizon AMD64",
-            "type": "debugpy",
-            "request": "attach",
-            "justMyCode": false,
-            "connect": {
-                "host": "${config:torizon_ip}",
-                "port": "${config:torizon_debug_port}"
-            },
-            "pathMappings": [
-                {
-                    "localRoot": "${workspaceFolder}",
-                    "remoteRoot": "${config:torizon_app_root}"
-                }
-            ],
-            "preLaunchTask": "wait-debugpy-start-amd64"
+            "preLaunchTask": "deploy-torizon-arm64"
         }
     ]
 }
