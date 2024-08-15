@@ -17,7 +17,7 @@ ARG APP_ROOT=
 
 
 # BUILD ------------------------------------------------------------------------
-FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${SDK_BASE_VERSION} As Build
+FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${SDK_BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG COMPILER_ARCH
