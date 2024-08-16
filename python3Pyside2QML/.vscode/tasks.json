@@ -11,8 +11,16 @@
                 "0"
             ],
             "problemMatcher": "$msCompile",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "create-venv",
+                "host-install-pip-requirements"
+            ],
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
             "icon": {
-                "id": "layers",
+                "id": "vm-active",
                 "color": "terminal.ansiCyan"
             },
             "presentation": {
@@ -21,14 +29,6 @@
                 "focus": false,
                 "panel": "shared",
                 "group": "python-related"
-            },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "create-venv",
-                "host-install-pip-requirements"
-            ],
-            "runOptions": {
-                "runOn": "folderOpen"
             }
         },
         {
@@ -44,7 +44,7 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
+                "id": "vm",
                 "color": "terminal.ansiCyan"
             },
             "presentation": {
@@ -70,8 +70,15 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -95,8 +102,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -274,8 +288,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -313,8 +334,15 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {

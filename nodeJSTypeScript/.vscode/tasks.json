@@ -47,15 +47,15 @@
                 "runOn": "folderOpen"
             },
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "desktop-download",
+                "color": "terminal.ansiRed"
             },
             "presentation": {
                 "echo": true,
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "group": "node-related"
+                "group": "build-execution"
             }
         },
         {

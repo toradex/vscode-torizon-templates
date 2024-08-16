@@ -244,13 +244,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "note",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "tcb-setup"
+            }
         },
         {
             "label": "tcb-setup",
@@ -278,14 +285,21 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "create-storage-dir"
-            ]
+            ],
+            "icon": {
+                "id": "note",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "tcb-setup"
+            }
         },
         {
             "label": "tcb-build",
@@ -309,13 +323,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "tcb-build"
+            }
         },
         {
             "label": "tcb-bundle",
@@ -339,13 +360,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "wrench",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "tcb-bundle"
+            }
         },
         {
             "label": "tcb-bundle-platform",
@@ -369,13 +397,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "wrench",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "tcb-bundle"
+            }
         },
         {
             "label": "tcb-bundle-platform-dind-param",
@@ -399,13 +434,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "wrench",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "tcb-bundle"
+            }
         },
         {
             "label": "tcb-unpack",
@@ -430,13 +472,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "package",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "tcb-deploy"
+            }
         },
         {
             "label": "tcb-deploy",
@@ -460,14 +509,21 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "tcb-unpack"
-            ]
+            ],
+            "icon": {
+                "id": "export",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "tcb-deploy"
+            }
         },
         {
             "label": "tcb-platform-push-ostree",
@@ -494,13 +550,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "cloud-upload",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "cloud-related"
+            }
         },
         {
             "label": "platform-update-fleet",

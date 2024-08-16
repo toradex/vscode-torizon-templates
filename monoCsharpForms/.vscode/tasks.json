@@ -14,8 +14,15 @@
             "isBackground": true,
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "eye",
+                "id": "link-external",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "mono-related"
             }
         },
         {
@@ -155,8 +162,15 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -225,7 +239,7 @@
             ],
             "icon": {
                 "id": "layers",
-                "color": "terminal.ansiCyan"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
