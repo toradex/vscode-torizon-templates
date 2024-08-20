@@ -46,20 +46,6 @@
             }
         },
         {
-            "label": "build-debug-arm",
-            "detail": "",
-            "hide": true,
-            "command": "msbuild",
-            "type": "process",
-        "args": [],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
             "label": "deploy-torizon-mono-debug-server-arm",
             "detail": "",
             "hide": true,

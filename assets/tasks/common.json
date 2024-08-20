@@ -133,31 +133,6 @@
             }
         },
         {
-            "label": "set-platform-fleet-name",
-            "detail": "",
-            "hide": true,
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "args": [
-                "echo",
-                "\"setting",
-                "${command:tcb.fleetName}\""
-            ],
-            "problemMatcher": [
-                "$tsc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-            ]
-        },
-        {
             "label": "fill-pipeline-settings",
             "detail": "This task will fill the properties that are needed to be\nset in the .vscode/settings.json to correctly\nrun the GitHub Actions or GitLab CI pipelines.",
             "command": "echo",
@@ -287,8 +262,7 @@
         },
         {
             "label": "docker-login",
-            "detail": "",
-            "hide": true,
+            "detail": "Perform a docker login on the host",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
