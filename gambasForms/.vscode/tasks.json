@@ -16,8 +16,15 @@
             "isBackground": true,
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "tools",
+                "id": "link-external",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -70,6 +77,13 @@
             "icon": {
                 "id": "symbol-parameter",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -217,6 +231,13 @@
             "icon": {
                 "id": "run",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         }
     ],

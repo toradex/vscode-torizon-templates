@@ -16,8 +16,15 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "window",
-                "color": "terminal.ansiYellow"
+                "id": "link-external",
+                "color": "terminal.ansiRed"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -91,6 +98,13 @@
             "icon": {
                 "id": "run",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -130,14 +144,21 @@
                     }
                 }
             ],
+            "dependsOn": [
+                "build",
+                "generate-jar"
+            ],
             "icon": {
                 "id": "run",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOn": [
-                "build",
-                "generate-jar"
-            ]
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
         },
         {
             "label": "rsync-debug-dist",
@@ -156,6 +177,13 @@
             "icon": {
                 "id": "sync",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -179,8 +207,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {

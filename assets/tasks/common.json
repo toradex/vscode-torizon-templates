@@ -133,31 +133,6 @@
             }
         },
         {
-            "label": "set-platform-fleet-name",
-            "detail": "",
-            "hide": true,
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "args": [
-                "echo",
-                "\"setting",
-                "${command:tcb.fleetName}\""
-            ],
-            "problemMatcher": [
-                "$tsc"
-            ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-            ]
-        },
-        {
             "label": "fill-pipeline-settings",
             "detail": "This task will fill the properties that are needed to be\nset in the .vscode/settings.json to correctly\nrun the GitHub Actions or GitLab CI pipelines.",
             "command": "echo",
@@ -287,8 +262,7 @@
         },
         {
             "label": "docker-login",
-            "detail": "",
-            "hide": true,
+            "detail": "Perform a docker login on the host",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
@@ -313,7 +287,7 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "layers",
+                "id": "flame",
                 "color": "terminal.ansiCyan"
             }
         },
@@ -579,8 +553,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -731,7 +712,7 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "gear",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "presentation": {
@@ -770,78 +751,7 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "pre-cleanup-debug",
-            "detail": "Clean the service of the application on the target (default device)(does not down the dependencies)",
-            "hide": true,
-            "command": "docker",
-            "type": "shell",
-            "args": [
-                "compose",
-                "-p",
-                "torizon",
-                "stop",
-                "__container__-debug",
-                "&&",
-                "docker",
-                "compose",
-                "-p",
-                "torizon",
-                "rm",
-                "-f",
-                "__container__-debug"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "remove-dangling-images",
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "gear",
-                "color": "terminal.ansiYellow"
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "group": "build-execution"
-            }
-        },
-        {
-            "label": "pre-cleanup",
-            "detail": "Clean the service of the application on the target (default device)(does not down the dependencies)",
-            "hide": true,
-            "command": "docker",
-            "type": "shell",
-            "args": [
-                "compose",
-                "-p",
-                "torizon",
-                "stop",
-                "__container__",
-                "&&",
-                "docker",
-                "compose",
-                "-p",
-                "torizon",
-                "rm",
-                "-f",
-                "__container__"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "remove-dangling-images",
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "gear",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "presentation": {
@@ -880,7 +790,7 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "gear",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
             },
             "presentation": {
@@ -2341,18 +2251,17 @@
             "detail": "This task will open the project specific documentation\nin a new tab.",
             "command": "${command:torizon.openTemplateDocumentation}",
             "type": "process",
-            "presentation": {
-                "echo": true,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "group": "show-documentation"
-            },
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "book",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
             }
         },
         {
