@@ -48,7 +48,7 @@
             },
             "icon": {
                 "id": "desktop-download",
-                "color": "terminal.ansiRed"
+                "color": "terminal.ansiYellow"
             },
             "presentation": {
                 "echo": true,
