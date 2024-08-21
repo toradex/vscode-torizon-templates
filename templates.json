@@ -103,29 +103,6 @@
             }
         },
         {
-            "img": "unogtk.png",
-            "folder": "dotnetUno",
-            "description": ".NET 6 C# Uno Platform Skia.GTK",
-            "runtime": ".net 6.0",
-            "language": "C#",
-            "debugSSHPort": "2225",
-            "multiContainer": true,
-            "support": "Toradex",
-            "deprecated": true,
-            "tests": {
-                "debuggers": {
-                    "local": ["Local Debug"],
-                    "amd64": ["Torizon AMD64"],
-                    "arm": ["Torizon ARMv7"],
-                    "arm64": ["Torizon ARMv8"]
-                },
-                "debuggerConsole": null,
-                "mainFile": "__change__.Shared/App.xaml.cs",
-                "mainFileBreakpointLine": 113,
-                "successDebugMessage": "Hello Torizon!"
-            }
-        },
-        {
             "img": "unogtk5.png",
             "folder": "dotnetUno5",
             "description": ".NET 8 C# Uno Platform 5.x Skia.GTK",
@@ -143,28 +120,6 @@
                 "debuggerConsole": null,
                 "mainFile": "__change__/App.cs",
                 "mainFileBreakpointLine": 66,
-                "successDebugMessage": "Hello Torizon!"
-            }
-        },
-        {
-            "img": "unofbdrm.png",
-            "folder": "dotnetUnoFrameBuffer",
-            "description": ".NET 6 C# Uno Platform Frame Buffer",
-            "runtime": ".net 6.0",
-            "language": "C#",
-            "debugSSHPort": "2226",
-            "multiContainer": true,
-            "support": "Community",
-            "deprecated": true,
-            "tests": {
-                "debuggers": {
-                    "amd64": ["Torizon AMD64"],
-                    "arm": ["Torizon ARMv7"],
-                    "arm64": ["Torizon ARMv8"]
-                },
-                "debuggerConsole": "run-torizon",
-                "mainFile": "__change__.Shared/App.xaml.cs",
-                "mainFileBreakpointLine": 90,
                 "successDebugMessage": "Hello Torizon!"
             }
         },
