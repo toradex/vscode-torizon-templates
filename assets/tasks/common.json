@@ -1966,6 +1966,7 @@
             "type": "shell",
             "args": [
                 "LOCAL_REGISTRY=${config:host_ip}",
+                "DOCKER_LOGIN=${config:host_ip}",
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
                 "docker",
@@ -1998,6 +1999,7 @@
             "type": "shell",
             "args": [
                 "LOCAL_REGISTRY=${config:host_ip}",
+                "DOCKER_LOGIN=${config:host_ip}",
                 "TAG=arm",
                 "GPU=${config:torizon_gpu}",
                 "docker",
@@ -2030,6 +2032,7 @@
             "type": "shell",
             "args": [
                 "LOCAL_REGISTRY=${config:host_ip}",
+                "DOCKER_LOGIN=${config:host_ip}",
                 "TAG=amd64",
                 "GPU=${config:torizon_gpu}",
                 "docker",
@@ -2062,6 +2065,7 @@
             "type": "shell",
             "args": [
                 "LOCAL_REGISTRY=${config:host_ip}",
+                "DOCKER_LOGIN=${config:host_ip}",
                 "TAG=riscv64",
                 "GPU=${config:torizon_gpu}",
                 "docker",
