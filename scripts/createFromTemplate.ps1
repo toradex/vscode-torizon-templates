@@ -147,7 +147,7 @@ Copy-Item "$templateFolder/../scripts/validateDepsRunning.ps1" "$location/.conf"
 
 
 $templateName = Split-Path -Path $templateFolder -Leaf
-# tcb does not have the Dockerfiles and therefore torizonPackages.json
+# tcb does not have the Dockerfile and Dockerfile.debug, and therefore torizonPackages.json
 if ($templateName -ne "tcb") {
     $_torPackagesJson = Get-Content -Path "$templateFolder/../assets/json/torizonPackages.json" | ConvertFrom-Json
 
