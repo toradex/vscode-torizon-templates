@@ -330,6 +330,7 @@
                 "id": "tools",
                 "color": "terminal.ansiYellow"
             },
+            "group": "build",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -458,7 +459,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "VSCODE_CMD": "--verbose images --remove-storage unpack ${command:tcb.listFolders}"
+                    "VSCODE_CMD": "--verbose images --remove-storage unpack ${command:tcb.outputTEZIFolder}"
                 }
             },
             "args": [
@@ -533,10 +534,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "DOCKER_PSSWD": "${command:docker_password}",
-                    "DOCKER_LOGIN": "${command:docker_login}",
-                    "DOCKER_REGISTRY": "${command:docker_registry}",
-                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} --login-to $DOCKER_REGISTRY $DOCKER_LOGIN $DOCKER_PSSWD __container__"
+                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} __container__"
                 }
             },
             "args": [
