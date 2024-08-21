@@ -65,17 +65,12 @@ function _openMergeWindow ($_updatedFile, $_currentFile) {
 $cmdOutput = git status 2>&1 | Out-String
 
 if ($cmdOutput.Contains("fatal: not a git repository")) {
-    Write-Host -ForegroundColor DarkRed "❌ fatal: not a git repository."
+    Write-Host -ForegroundColor DarkRed "❌ fatal: this workspace is not a git repository."
     Write-Host -ForegroundColor DarkYellow "It is highly recommended that you create a repo and commit the current state of the project before updating it, to keep track of the changes that will be applied on the update."
-    $_sure = Read-Host -Prompt "Do you want to proceed without creating a git repo? [y/n]"
+    Write-Host -ForegroundColor DarkYellow "If the project is not versioned there is no way back!"
+    $_sure = Read-Host -Prompt "Do you really want to proceed? [y/n]"
     if ($_sure -ne "y") {
         exit 0
-    } else {
-        Write-Host -ForegroundColor DarkYellow "If the project is not versioned there is no way back!"
-        $_sure = Read-Host -Prompt "Are you sure you want to proceed with the update without creating a git repo? [y/n]"
-        if ($_sure -ne "y") {
-            exit 0
-        }
     }
 }
 
