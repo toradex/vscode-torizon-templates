@@ -111,7 +111,7 @@
             "debugSSHPort": "2225",
             "multiContainer": true,
             "support": "Toradex",
-            "deprecated": false,
+            "deprecated": true,
             "tests": {
                 "debuggers": {
                     "local": ["Local Debug"],
@@ -155,7 +155,7 @@
             "debugSSHPort": "2226",
             "multiContainer": true,
             "support": "Community",
-            "deprecated": false,
+            "deprecated": true,
             "tests": {
                 "debuggers": {
                     "amd64": ["Torizon AMD64"],

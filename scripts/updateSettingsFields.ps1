@@ -33,7 +33,7 @@ $settingsTemplate = [PSCustomObject]@{
     "torizon_run_as" = "torizon"
     "torizon_app_root" = "/home/torizon/app"
     "tcb.packageName" = "__change__"
-    "tcb.version" = "3.8.1"
+    "tcb.version" = "3.10.0"
     "torizon.gpuPrefixRC" = $false
 }
 
