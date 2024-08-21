@@ -2,8 +2,8 @@
 ##
 # Base container version
 ##
-ARG SDK_BASE_VERSION=next-bookworm
-ARG BASE_VERSION=next-bookworm
+ARG SDK_BASE_VERSION=3.3.0-bookworm
+ARG BASE_VERSION=3.3.0-bookworm
 
 ##
 # Board architecture
@@ -17,7 +17,7 @@ ARG APP_ROOT=
 
 
 # BUILD ------------------------------------------------------------------------
-FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${SDK_BASE_VERSION} AS build
+FROM commontorizon/debian-cross-toolchain-${IMAGE_ARCH}:${SDK_BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG COMPILER_ARCH
@@ -97,7 +97,7 @@ RUN mkdir -p target/deploy && \
 # BUILD ------------------------------------------------------------------------
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/debian:${BASE_VERSION} AS deploy
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/debian:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT

@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next-bookworm
+ARG BASE_VERSION=3.3.0-bookworm
 
 ##
 # Directory of the application inside container
@@ -29,7 +29,7 @@ ARG SSHUSERNAME=
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS debug
+    commontorizon/debian:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG DEBUG_SSH_PORT

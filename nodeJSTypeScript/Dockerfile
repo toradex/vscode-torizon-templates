@@ -2,7 +2,7 @@
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next-bookworm
+ARG BASE_VERSION=3.3.0-bookworm
 
 ##
 # Board architecture
@@ -20,7 +20,7 @@ ARG APP_ROOT=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS build
+    commontorizon/debian:${BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -72,7 +72,7 @@ RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS deploy
+    commontorizon/debian:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT

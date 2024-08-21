@@ -75,7 +75,7 @@ RUN TARGET=$(cat /rust-toolchain-arch.txt) && \
     cp -r target/$TARGET/release build
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU

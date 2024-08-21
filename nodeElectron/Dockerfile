@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next
+ARG BASE_VERSION=3.3.0
 
 ##
 # Directory of the application inside container
@@ -24,7 +24,7 @@ ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS build
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -115,7 +115,7 @@ RUN  if [ "${GPU}" = "-vivante" ] || [ "${GPU}" = "-imx8" ]; then \
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU

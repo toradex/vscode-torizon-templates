@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=next
+ARG BASE_VERSION=3.3.0
 
 ##
 # Directory of the application inside container
@@ -21,7 +21,7 @@ ARG GPU=
 
 
 FROM --platform=linux/${IMAGE_ARCH} \
-     torizon/qt5-wayland${GPU}:${BASE_VERSION} AS deploy
+     commontorizon/qt5-wayland${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU

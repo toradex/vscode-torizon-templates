@@ -3,7 +3,7 @@
 # Base container version
 ##
 ARG SDK_BASE_VERSION=1.74
-ARG BASE_VERSION=next-bookworm
+ARG BASE_VERSION=3.3.0-bookworm
 
 ##
 # Board architecture
@@ -62,7 +62,7 @@ RUN TARGET=$(cat ~/rust-toolchain-arch.txt) && \
 
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/debian:${BASE_VERSION} AS deploy
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/debian:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
