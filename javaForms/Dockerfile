@@ -2,7 +2,7 @@
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.3.0
+ARG BASE_VERSION=3.3.1
 ##
 # Directory of the application inside container
 ##

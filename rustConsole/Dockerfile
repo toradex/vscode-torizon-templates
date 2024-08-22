@@ -3,7 +3,7 @@
 # Base container version
 ##
 ARG SDK_BASE_VERSION=1.74
-ARG BASE_VERSION=3.3.0-bookworm
+ARG BASE_VERSION=3.3.1-bookworm
 
 ##
 # Board architecture

@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.3.0
+ARG BASE_VERSION=3.3.1
 ARG DOTNET_BASE_VERSION=3-8.0
 
 ##
