@@ -10,6 +10,7 @@ $errorActionPreference = "Stop"
 $projectFolder = $args[0]
 $projectName = $args[1]
 $acceptAll = $args[2]
+$_secondRun = $args[3]
 
 function _checkArg ($_arg) {
     if ([string]::IsNullOrEmpty($_arg)) {
@@ -61,16 +62,19 @@ function _openMergeWindow ($_updatedFile, $_currentFile) {
     }
 }
 
-# Don't allow the update of the project if there is no git repository initiated, to avoid losing track of the changes applied in the update
-$cmdOutput = git status 2>&1 | Out-String
+# this check if not needed if this is the second run
+if ($_secondRun -ne $true) {
+    # Don't allow the update of the project if there is no git repository initiated, to avoid losing track of the changes applied in the update
+    $cmdOutput = git status 2>&1 | Out-String
 
-if ($cmdOutput.Contains("fatal: not a git repository")) {
-    Write-Host -ForegroundColor DarkRed "❌ fatal: this workspace is not a git repository."
-    Write-Host -ForegroundColor DarkYellow "It is highly recommended that you create a repo and commit the current state of the project before updating it, to keep track of the changes that will be applied on the update."
-    Write-Host -ForegroundColor DarkYellow "If the project is not versioned there is no way back!"
-    $_sure = Read-Host -Prompt "Do you really want to proceed? [y/n]"
-    if ($_sure -ne "y") {
-        exit 0
+    if ($cmdOutput.Contains("fatal: not a git repository")) {
+        Write-Host -ForegroundColor DarkRed "❌ fatal: this workspace is not a git repository."
+        Write-Host -ForegroundColor DarkYellow "It is highly recommended that you create a repo and commit the current state of the project before updating it, to keep track of the changes that will be applied on the update."
+        Write-Host -ForegroundColor DarkYellow "If the project is not versioned there is no way back!"
+        $_sure = Read-Host -Prompt "Do you really want to proceed? [y/n]"
+        if ($_sure -ne "y") {
+            exit 0
+        }
     }
 }
 
@@ -82,7 +86,7 @@ _checkArg $projectName
 if ([string]::IsNullOrEmpty($acceptAll)) {
     $acceptAll = $false
 } else {
-    if ($acceptAll -eq "1") {
+    if ($acceptAll -eq "1" -and $_secondRun -ne $true) {
         # ask for confirmation
         Write-Host -ForegroundColor DarkYellow "You are about to accept all incoming changes from the updated template"
         Write-Host -ForegroundColor DarkYellow "If the project is not versioned there is no way back!"
@@ -93,7 +97,7 @@ if ([string]::IsNullOrEmpty($acceptAll)) {
         }
 
         $acceptAll = $true
-    } else {
+    } elseif ($_secondRun -ne $true) {
         $acceptAll = $false
     }
 }
@@ -140,7 +144,8 @@ if (
     & $projectFolder/.conf/projectUpdater.ps1 `
         $projectFolder `
         $projectName `
-        $acceptAll
+        $acceptAll `
+        $true
 
     exit $LASTEXITCODE
 }
