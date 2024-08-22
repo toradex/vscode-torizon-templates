@@ -208,8 +208,11 @@ if ($templateName -ne "tcb") {
 Copy-Item $Env:HOME/.apollox/$templateName/.vscode/settings.json `
 $projectFolder/.conf/tmp/settings-next.json
 
-Copy-Item $Env:HOME/.apollox/$templateName/.vscode/extensions.json `
-$projectFolder/.conf/tmp/extensions-next.json
+# check if the template has an extensions.json file
+if (Test-Path -Path $Env:HOME/.apollox/$templateName/.vscode/extensions.json) {
+    Copy-Item $Env:HOME/.apollox/$templateName/.vscode/extensions.json `
+    $projectFolder/.conf/tmp/extensions-next.json
+}
 
 # TASKS.JSON:
 Copy-Item $Env:HOME/.apollox/$templateName/.vscode/tasks.json `
