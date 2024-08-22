@@ -17,6 +17,8 @@
         "Oster",
         "ostree",
         "portproxy",
+        "tcbuild",
+        "TEZI",
         "TORIZONPACKAGES"
     ],
     "ignoreWords": [

@@ -267,6 +267,7 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
     foreach ($item in $list) {
         if ($item.Contains("`${command:tcb")) {
 
+            # this is re-implementation from the TCB extension
             if ($item.Contains("tcb.getNextPackageVersion")) {
                 $_ret =  (
                     ./.conf/torizonIO.ps1 `
@@ -283,6 +284,39 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
                     "`${command:tcb.getNextPackageVersion}",
                     "$_next"
                 )
+            }
+
+            # this is re-implementation from the TCB extension
+            elseif ($item.Contains("tcb.outputTEZIFolder")) {
+                # load the tcbuild.yaml
+                $_tcbuild = Get-Content `
+                    $(Join-Path $Global:workspaceFolder "tcbuild.yaml") -Raw `
+                        | out-string
+
+                # check if the yaml module is installed
+                Write-Host "Importing powershell-yaml ..."
+                if (-not (Get-Module -ListAvailable -Name "powershell-yaml")) {
+                    Write-Host -ForegroundColor Yellow "Installing powershell-yaml ..."
+                    Install-Module -Name "powershell-yaml" -Confirm:$false -Force
+                }
+
+                $_yamlObj = ConvertFrom-Yaml $_tcbuild -AllDocuments -Ordered
+
+                write-host $($_yamlObj.GetType())
+
+                if (
+                    ($null -ne $_yamlObj) -and
+                    ($null -ne $_yamlObj.output) -and
+                    ($null -ne $_yamlObj.output."easy-installer") -and
+                    ($null -ne $_yamlObj.output."easy-installer".local)
+                ) {
+                    $item = $item.Replace(
+                        "`${command:tcb.outputTEZIFolder}",
+                        $_yamlObj.output."easy-installer".local
+                    )
+                } else {
+                    throw "Error reading tcbuild.yaml, check if there is an output.easy.installer.local"
+                }
             }
 
             $maches = ($item |
