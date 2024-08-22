@@ -394,11 +394,14 @@ _openMergeWindow `
 Write-Host -ForegroundColor DarkGreen "✅ settings.json"
 
 # EXTENSIONS.JSON
-_openMergeWindow `
-    $projectFolder/.conf/tmp/extensions-next.json `
-    $projectFolder/.vscode/extensions.json
+# check if the template has an extensions.json file
+if (Test-Path -Path $Env:HOME/.apollox/$templateName/.vscode/extensions.json) {
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/extensions-next.json `
+        $projectFolder/.vscode/extensions.json
 
-Write-Host -ForegroundColor DarkGreen "✅ extensions.json"
+    Write-Host -ForegroundColor DarkGreen "✅ extensions.json"
+}
 
 # ---------------------------------------------------------------------- .VSCODE
 
