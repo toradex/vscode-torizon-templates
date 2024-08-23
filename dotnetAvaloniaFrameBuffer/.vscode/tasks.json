@@ -463,8 +463,6 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false,
                 "group": "debug-amd64"
             }
         },
