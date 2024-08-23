@@ -16,7 +16,7 @@
             "address": "${config:torizon_ip}",
             "port": "${config:torizon_debug_port1}",
             "preLaunchTask": "deploy-torizon-mono-debug-server-amd64",
-            "postDebugTask": "pre-cleanup-debug"
+            "postDebugTask": "pre-cleanup"
         },
         {
             "name": "Torizon ARMv7",
@@ -25,7 +25,7 @@
             "address": "${config:torizon_ip}",
             "port": "${config:torizon_debug_port1}",
             "preLaunchTask": "deploy-torizon-mono-debug-server-arm",
-            "postDebugTask": "pre-cleanup-debug"
+            "postDebugTask": "pre-cleanup"
         },
         {
             "name": "Torizon ARMv8",
@@ -34,7 +34,7 @@
             "address": "${config:torizon_ip}",
             "port": "${config:torizon_debug_port1}",
             "preLaunchTask": "deploy-torizon-mono-debug-server-arm64",
-            "postDebugTask": "pre-cleanup-debug"
+            "postDebugTask": "pre-cleanup"
         },
     ]
 }

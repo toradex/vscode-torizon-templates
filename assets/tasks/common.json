@@ -735,44 +735,6 @@
                 "torizon",
                 "stop",
                 "__container__",
-                "&&",
-                "docker",
-                "compose",
-                "-p",
-                "torizon",
-                "rm",
-                "-f",
-                "__container__"
-            ],
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "remove-dangling-images",
-                "wait-a-bit"
-            ],
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "trash",
-                "color": "terminal.ansiYellow"
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "group": "build-execution"
-            }
-        },
-        {
-            "label": "pre-cleanup-debug",
-            "detail": "Clean the service of the application on the target (default device)(does not down the dependencies)",
-            "hide": true,
-            "command": "docker",
-            "type": "shell",
-            "args": [
-                "compose",
-                "-p",
-                "torizon",
-                "stop",
                 "__container__-debug",
                 "&&",
                 "docker",
@@ -781,6 +743,7 @@
                 "torizon",
                 "rm",
                 "-f",
+                "__container__",
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
