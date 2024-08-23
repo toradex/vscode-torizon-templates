@@ -1843,7 +1843,11 @@
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
-                    "TAG": "arm64"
+                    "TAG": "arm64",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
@@ -1878,7 +1882,11 @@
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
-                    "TAG": "arm"
+                    "TAG": "arm",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
@@ -1913,7 +1921,11 @@
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
-                    "TAG": "amd64"
+                    "TAG": "amd64",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
@@ -1948,7 +1960,11 @@
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
-                    "TAG": "riscv64"
+                    "TAG": "riscv64",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
@@ -1985,6 +2001,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "pull",
@@ -2018,6 +2038,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=arm",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "pull",
@@ -2051,6 +2075,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=amd64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "pull",
@@ -2084,6 +2112,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=riscv64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "pull",
@@ -2115,6 +2147,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -2155,6 +2191,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=arm",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -2195,6 +2235,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=amd64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -2235,6 +2279,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=riscv64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
