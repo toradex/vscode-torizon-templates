@@ -5,16 +5,17 @@
             "label": "create-prepare-venv",
             "detail": "",
             "hide": true,
-            "command": "sleep",
+            "command": "echo",
             "type": "process",
             "args": [
-                "0"
+                "ok"
             ],
             "problemMatcher": "$msCompile",
             "dependsOrder": "sequence",
             "dependsOn": [
                 "create-venv",
-                "host-install-pip-requirements"
+                "host-install-pip-requirements",
+                "wait-a-bit"
             ],
             "runOptions": {
                 "runOn": "folderOpen"
