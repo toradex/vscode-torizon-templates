@@ -49,17 +49,10 @@
             "label": "deploy-torizon-mono-debug-server-arm",
             "detail": "",
             "hide": true,
-            "command": "ssh",
-            "type": "process",
+            "command": "echo",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_debug_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1} __change__.exe > out.log 2> err.log &"
+                "ok"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -71,7 +64,9 @@
                 "push-container-torizon-debug-arm",
                 "pull-container-torizon-debug-arm",
                 "run-container-torizon-debug-arm",
-                "rsync-torizon-debug"
+                "rsync-torizon-debug",
+                "run-torizon-mono-debug-server-common",
+                "wait-a-bit"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -91,17 +86,10 @@
             "label": "deploy-torizon-mono-debug-server-arm64",
             "detail": "",
             "hide": true,
-            "command": "ssh",
-            "type": "process",
+            "command": "echo",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_debug_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1} __change__.exe > out.log 2> err.log &"
+                "ok"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -113,7 +101,9 @@
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
                 "run-container-torizon-debug-arm64",
-                "rsync-torizon-debug"
+                "rsync-torizon-debug",
+                "run-torizon-mono-debug-server-common",
+                "wait-a-bit"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -156,11 +146,12 @@
             }
         },
         {
-            "label": "deploy-torizon-mono-debug-server-amd64",
+            "label": "run-torizon-mono-debug-server-common",
             "detail": "",
             "hide": true,
             "command": "ssh",
             "type": "process",
+            "isBackground": true,
             "args": [
                 "-p",
                 "${config:torizon_debug_ssh_port}",
@@ -169,7 +160,41 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1} __change__.exe > out.log 2> err.log &"
+                "cd ${config:torizon_app_root} && mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1} monozin.exe"
+            ],
+            "problemMatcher": [{
+                "pattern": [{
+                    "regexp": ".",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                }],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "."
+                }
+            }],
+            "icon": {
+                "id": "debug-alt",
+                "color": "terminal.ansiMagenta"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "debug-log"
+            }
+        },
+        {
+            "label": "deploy-torizon-mono-debug-server-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "ok"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -181,7 +206,9 @@
                 "push-container-torizon-debug-amd64",
                 "pull-container-torizon-debug-amd64",
                 "run-container-torizon-debug-amd64",
-                "rsync-torizon-debug"
+                "rsync-torizon-debug",
+                "run-torizon-mono-debug-server-common",
+                "wait-a-bit"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
