@@ -94,15 +94,12 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
                 "node --inspect-brk=0.0.0.0:${config:torizon_debug_port1} ${config:torizon_app_root} >out.log 2>err.log &"
             ],
             "dependsOn": [
@@ -167,15 +164,12 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
                 "node --inspect-brk=0.0.0.0:${config:torizon_debug_port1} ${config:torizon_app_root} >out.log 2>err.log &"
             ],
             "dependsOn": [
@@ -240,15 +234,12 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
                 "node --inspect-brk=0.0.0.0:${config:torizon_debug_port1} ${config:torizon_app_root} >out.log 2>err.log &"
             ],
             "dependsOn": [

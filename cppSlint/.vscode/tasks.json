@@ -7,8 +7,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "-o",
@@ -69,8 +67,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "-o",
@@ -103,8 +99,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "-o",
@@ -333,7 +327,7 @@
             "args": [
                 "-av",
                 "-e",
-                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
                 "${workspaceFolder}/build/arm64/",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
@@ -481,7 +475,7 @@
             "args": [
                 "-av",
                 "-e",
-                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
                 "${workspaceFolder}/build/arm/",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
@@ -629,7 +623,7 @@
             "args": [
                 "-av",
                 "-e",
-                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
                 "${workspaceFolder}/build/amd64/",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],

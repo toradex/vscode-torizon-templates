@@ -103,8 +103,7 @@
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "TORIZON_ARCH": "${input:archList}",
                     "APP_ROOT": "${config:torizon_app_root}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -539,8 +538,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "-o",
@@ -802,8 +799,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm64",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -853,8 +849,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -904,8 +899,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "amd64",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -955,8 +949,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "riscv64",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1164,8 +1157,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1201,8 +1193,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm64",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1238,8 +1229,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "amd64",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1275,8 +1265,7 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "riscv64",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1612,8 +1601,7 @@
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "arm64",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1661,8 +1649,7 @@
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "arm",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1710,8 +1697,7 @@
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "amd64",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1759,8 +1745,7 @@
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "riscv64",
                     "GPU": "${config:torizon_gpu}",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1807,8 +1792,7 @@
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "arm64",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1846,8 +1830,7 @@
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "arm",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1885,8 +1868,7 @@
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "amd64",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -1924,8 +1906,7 @@
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "riscv64",
-                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }

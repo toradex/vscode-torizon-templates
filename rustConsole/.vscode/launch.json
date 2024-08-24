@@ -48,8 +48,6 @@
                     "-q",
                     "-p",
                     "${config:torizon_debug_ssh_port}",
-                    "-i",
-                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",
                     "StrictHostKeyChecking=no",
                     "-o",
@@ -94,8 +92,6 @@
                     "-q",
                     "-p",
                     "${config:torizon_debug_ssh_port}",
-                    "-i",
-                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",
                     "StrictHostKeyChecking=no",
                     "-o",

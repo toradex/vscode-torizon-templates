@@ -251,8 +251,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "-o",
@@ -320,8 +318,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "-o",
@@ -356,8 +352,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "-o",

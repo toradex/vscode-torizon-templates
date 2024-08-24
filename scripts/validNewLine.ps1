@@ -11,6 +11,7 @@ $Global:_ERROR_REACH = $false
 $ignoreFolders = @(
     ".git",
     "node_modules",
+    # FIXME: we do not use key pair anymore, maintaining this for compatibility
     "id_rsa",
     "css",
     "obj"

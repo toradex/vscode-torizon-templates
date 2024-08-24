@@ -35,15 +35,12 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
                 "pkill -f __change__"
             ],
             "dependsOrder": "sequence",
@@ -95,8 +92,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
@@ -104,7 +99,7 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "ssh -i ${config:torizon_app_root}/resources/app/.conf/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${config:torizon_debug_ssh_port} -L 0.0.0.0:${config:torizon_debug_port2}:localhost:${config:torizon_debug_port3} localhost -N >out2.log 2>err2.log &"
+                "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${config:torizon_debug_ssh_port} -L 0.0.0.0:${config:torizon_debug_port2}:localhost:${config:torizon_debug_port3} localhost -N >out2.log 2>err2.log &"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
@@ -165,15 +160,12 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
                 "${config:torizon_app_root}/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port1} --ozone-platform=wayland >out.log 2>err.log &"
             ],
             "dependsOn": [
@@ -242,15 +234,12 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
                 "${config:torizon_app_root}/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port1} --ozone-platform=wayland --use-gl=egl --in-process-gpu >out.log 2>err.log &"
             ],
             "dependsOn": [
@@ -319,15 +308,12 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",
-                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
                 "${config:torizon_app_root}/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port1} --ozone-platform=wayland >out.log 2>err.log &"
             ],
             "dependsOn": [

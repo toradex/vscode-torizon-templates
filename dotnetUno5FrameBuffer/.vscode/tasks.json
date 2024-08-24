@@ -189,7 +189,7 @@
             "args": [
                 "-av",
                 "-e",
-                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
                 "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net8.0/linux-x64/publish/",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
@@ -229,7 +229,7 @@
             "args": [
                 "-av",
                 "-e",
-                "ssh -p ${config:torizon_debug_ssh_port} -i ${workspaceFolder}/.conf/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
                 "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net8.0/linux-arm64/publish/",
                 "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
@@ -268,8 +268,6 @@
             "type": "process",
             "isBackground": true,
             "args": [
-              "-i",
-              "${workspaceFolder}/.conf/id_rsa",
               "-p",
               "${config:torizon_debug_ssh_port}",
               "-o",
@@ -319,8 +317,6 @@
             "type": "process",
             "isBackground": true,
             "args": [
-              "-i",
-              "${workspaceFolder}/.conf/id_rsa",
               "-p",
               "${config:torizon_debug_ssh_port}",
               "-o",
@@ -370,8 +366,6 @@
             "type": "process",
             "isBackground": true,
             "args": [
-              "-i",
-              "${workspaceFolder}/.conf/id_rsa",
               "-p",
               "${config:torizon_debug_ssh_port}",
               "-o",
@@ -542,8 +536,6 @@
             "type": "process",
             "isBackground": false,
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "-o",

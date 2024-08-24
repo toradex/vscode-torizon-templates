@@ -112,10 +112,6 @@ In the `.vscode` folder the following files are expected:
 
 In the `.conf` folder the following files are expected:
 
-- `id_rsa`: private key used for debug purposes, to remote deploy/debug the application inside a container;
-
-- `id_rsa.pub`: public key used for debug purposes, to remote deploy/debug the application inside a container;
-
 - `deps.json`: define an array with the Debian/Ubuntu packages that are dependency for compile and/or run the application locally. Torizon IDE Extension extension will check and will try to install it if they are not installed:
 
   - ```json
