@@ -69,5 +69,5 @@ ENV SLINT_BACKEND=linuxkms-skia
 # Default to Slint running in fullscreen
 ENV SLINT_FULLSCREEN=1
 
-USER torizon
+
 WORKDIR ${APP_ROOT}
