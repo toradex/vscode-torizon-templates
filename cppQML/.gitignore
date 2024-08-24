@@ -12,7 +12,8 @@ credentials.zip
 
 #Build directories
 build-*
-
+#But the build yaml file from ci/cd need to be included
+!.github/workflows/build-*
 
 # After committing it once, to stop having modifications every time you do
 # anything on Qt Creator (like dragging the window, literally almost anything),
