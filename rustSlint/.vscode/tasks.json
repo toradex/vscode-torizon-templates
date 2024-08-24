@@ -122,10 +122,14 @@
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "sleep",
+            "command": "rsync",
             "type": "process",
             "args": [
-                "1"
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/executable-arm64/",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -187,10 +191,14 @@
             "label": "deploy-torizon-amd64",
             "detail": "",
             "hide": true,
-            "command": "sleep",
+            "command": "rsync",
             "type": "process",
             "args": [
-                "1"
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/executable-amd64/",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -301,10 +309,14 @@
             "label": "deploy-torizon-arm",
             "detail": "",
             "hide": true,
-            "command": "sleep",
+            "command": "rsync",
             "type": "process",
             "args": [
-                "1"
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/executable-arm/",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOn": [
                 "validate-settings",
