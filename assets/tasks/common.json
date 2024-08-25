@@ -266,8 +266,8 @@
             "type": "shell",
             "options": {
                 "env": {
-                    "DOCKER_LOGIN": "${input:dockerLogin}",
-                    "DOCKER_PSSWD": "${input:dockerPsswd}"
+                    "DOCKER_LOGIN": "${command:docker_login}",
+                    "DOCKER_PSSWD": "${command:docker_password}"
                 }
             },
             "presentation": {
@@ -283,7 +283,7 @@
                 "docker",
                 "login",
                 "--username",
-                "${input:dockerLogin}",
+                "${command:docker_login}",
                 "--password-stdin"
             ],
             "dependsOrder": "sequence",
