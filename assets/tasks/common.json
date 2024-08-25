@@ -286,7 +286,7 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "flame",
+                "id": "account",
                 "color": "terminal.ansiCyan"
             }
         },
