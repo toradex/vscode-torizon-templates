@@ -345,7 +345,8 @@ function _containsSpecialChars ([String] $str) {
     $ret = $false
 
     if (
-        $str -match "[^a-zA-Z0-9\.\-_]"
+        # do not match pipes like | >
+        $str -match "[^a-zA-Z0-9\.\-_|>]"
     ) {
         $ret = $true
     }
