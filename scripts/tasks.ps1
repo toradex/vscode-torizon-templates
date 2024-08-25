@@ -699,6 +699,11 @@ if (
 
 settingsToGlobal
 
+# edge case for config:docker_password
+if ( $null -ne $env:DOCKER_PSSWD ) {
+    $Global:config:docker_password = $env:DOCKER_PSSWD
+}
+
 try {
     switch ($args[0]) {
         "list" {

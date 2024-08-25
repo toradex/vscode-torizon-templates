@@ -277,12 +277,14 @@
                 "panel": "shared"
             },
             "args": [
+                "echo",
+                "${command:docker_password}",
+                "|",
                 "docker",
                 "login",
                 "--username",
                 "${input:dockerLogin}",
-                "--password",
-                "${input:dockerPsswd}"
+                "--password-stdin"
             ],
             "dependsOrder": "sequence",
             "icon": {
