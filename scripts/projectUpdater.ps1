@@ -262,7 +262,10 @@ if ($templateName -ne "tcb") {
     Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
     Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
     Copy-Item $Env:HOME/.apollox/$templateName/.doc/README.md .
-    Copy-Item $Env:HOME/.apollox/$templateName/.dockerignore .
+    # If there is a .dockerignore file, also include it
+    if (Test-Path -Path $Env:HOME/.apollox/$templateName/.dockerignore) {
+        Copy-Item $Env:HOME/.apollox/$templateName/.dockerignore .
+    }
 
     # ----------------------------------------------------------------- TORIZONPACKAGES.JSON
     $_torPackagesJson = Get-Content -Path "$Env:HOME/.apollox/assets/json/torizonPackages.json" | ConvertFrom-Json
