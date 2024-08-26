@@ -53,6 +53,8 @@ ARG IMAGE_ARCH
 ARG APP_ROOT
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
+    libmono-system-windows4.0-cil \
+    libmono-system-windows-forms4.0-cil \
     libgtk2.0 \
     # ADD YOUR PACKAGES HERE
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
