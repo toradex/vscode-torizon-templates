@@ -459,9 +459,12 @@ if ($templateName -ne "tcb") {
     }
 
     # DOCKERIGNORE:
-    _openMergeWindow `
-        $projectFolder/.conf/tmp/.dockerignore `
-        $projectFolder/.dockerignore
+    # If there is a .dockerignore file, also include it
+    if (Test-Path -Path $projectFolder/.conf/tmp/.dockerignore) {
+        _openMergeWindow `
+            $projectFolder/.conf/tmp/.dockerignore `
+            $projectFolder/.dockerignore
+    }
 
     # TORIZONPACKAGES.JSON:
     _openMergeWindow `
