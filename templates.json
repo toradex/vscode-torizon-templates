@@ -152,8 +152,8 @@
             "debugPort": "55555",
             "debugSSHPort": "2227",
             "multiContainer": true,
-            "deprecated": false,
             "support": "Community",
+            "deprecated": false,
             "tests" : {
                 "debuggers": {
                     "local": ["Mono Local"],
@@ -487,6 +487,7 @@
             "debugSSHPort": "2320",
             "multiContainer": true,
             "support": "Community",
+            "deprecated": false,
             "tests" : {
                 "debuggers": {
                     "local": ["Local AMD64"],
