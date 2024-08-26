@@ -76,11 +76,10 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 
 # install the latest node js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 RUN npm config set registry https://registry.npmjs.org/
-RUN npm install -g npm@8.10.0
 
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
@@ -164,7 +163,7 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 
 # install the latest node js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 # Copy the application compiled in the build step to the $APP_ROOT directory
