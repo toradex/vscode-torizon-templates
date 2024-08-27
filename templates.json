@@ -327,7 +327,6 @@
                 "debuggers": {
                     "local": ["Run Local"],
                     "amd64": ["Torizon AMD64"],
-                    "arm": ["Torizon ARMv7"],
                     "arm64": ["Torizon ARMv8"]
                 },
                 "debuggerConsole": null,
