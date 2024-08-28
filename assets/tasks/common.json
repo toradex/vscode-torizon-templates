@@ -362,7 +362,7 @@
                 "-ContainerRuntime",
                 "docker",
                 "-RunArguments",
-                "--rm --privileged torizon/binfmt",
+                "--rm --privileged commontorizon/binfmt",
                 "-ContainerName",
                 "binfmt"
             ],
