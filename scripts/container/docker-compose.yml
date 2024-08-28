@@ -4,7 +4,7 @@ services:
     build:
       context: ../
       dockerfile: container/Containerfile.pwsh
-    image: torizonextras/pwsh:${BRANCH}
+    image: commontorizon/pwsh:${BRANCH}
 
   tasks:
     build:
@@ -13,7 +13,7 @@ services:
       args:
         - BRANCH=${BRANCH}
         - REPO=toradex/vscode-torizon-templates
-    image: torizonextras/torizon-dev-tasks:${BRANCH}
+    image: commontorizon/torizon-dev-tasks:${BRANCH}
 
   pwsh-gitlab:
     build:
@@ -21,7 +21,7 @@ services:
       dockerfile: container/Containerfile.gitlab
       args:
         - BRANCH=${BRANCH}
-    image: torizonextras/pwsh-gitlab:${BRANCH}
+    image: commontorizon/pwsh-gitlab:${BRANCH}
 
   torizon-dev:
     build:
@@ -30,7 +30,7 @@ services:
       args:
         - BRANCH=${BRANCH}
         - UID=${UUID}
-    image: torizonextras/torizon-dev:${BRANCH}
+    image: commontorizon/torizon-dev:${BRANCH}
     privileged: true
     network_mode: host
     environment:

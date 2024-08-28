@@ -19,7 +19,7 @@ stages:
 initial-setup:
   stage: setup
   image:
-    name: torizonextras/pwsh-gitlab:latest
+    name: commontorizon/pwsh-gitlab:next
 
   variables:
     TORIZON_ARCH: ""
@@ -46,7 +46,7 @@ build-docker-image:
     - initial-setup
   stage: build
   image:
-    name: torizonextras/pwsh-gitlab:latest
+    name: commontorizon/pwsh-gitlab:next
 
   variables:
     TASKS_ITERATIVE: "False"
@@ -71,7 +71,7 @@ push-package-to-platform:
     - build-docker-image
   stage: platform
   image:
-    name: torizonextras/pwsh-gitlab:latest
+    name: commontorizon/pwsh-gitlab:next
 
   variables:
     TASKS_ITERATIVE: "False"
@@ -101,7 +101,7 @@ update-fleet:
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
   image:
-    name: torizonextras/pwsh-gitlab:latest
+    name: commontorizon/pwsh-gitlab:next
 
   variables:
     TASKS_ITERATIVE: "False"
