@@ -160,7 +160,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "cd ${config:torizon_app_root} && mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1} monozin.exe"
+                "cd ${config:torizon_app_root} && mono --debug --debugger-agent=transport=dt_socket,server=y,address=0.0.0.0:${config:torizon_debug_port1} __change__.exe"
             ],
             "problemMatcher": [{
                 "pattern": [{
