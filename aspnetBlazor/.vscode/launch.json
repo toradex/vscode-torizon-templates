@@ -132,7 +132,7 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "deploy-browser-torizon-arm64"
+            "preLaunchTask": "deploy-torizon-browser-arm64"
         },
         {
             "name": "Torizon Browser AMD64",
@@ -159,7 +159,7 @@
                 ],
                 "debuggerPath": "/vsdbg/vsdbg"
             },
-            "preLaunchTask": "deploy-browser-torizon-amd64"
+            "preLaunchTask": "deploy-torizon-browser-amd64"
         }
     ]
 }
