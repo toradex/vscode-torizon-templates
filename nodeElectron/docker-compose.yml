@@ -17,10 +17,8 @@ services:
         source: /dev
         target: /dev
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"
@@ -43,10 +41,8 @@ services:
         source: /dev
         target: /dev
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"
@@ -76,12 +72,8 @@ services:
       - CAP_SYS_TTY_CONFIG
     # Add device access rights through cgroup...
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty1
-      - "c 4:1 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"
