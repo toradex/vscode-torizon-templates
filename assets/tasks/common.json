@@ -1018,6 +1018,8 @@
             "args": [
                 "docker",
                 "build",
+                "--progress",
+                "plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -1059,6 +1061,8 @@
             "args": [
                 "docker",
                 "build",
+                "--progress",
+                "plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -1098,6 +1102,8 @@
             "args": [
                 "docker",
                 "build",
+                "--progress",
+                "plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -1137,6 +1143,8 @@
             "args": [
                 "docker",
                 "build",
+                "--progress",
+                "plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
