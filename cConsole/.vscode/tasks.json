@@ -204,6 +204,7 @@
             "command": "rsync",
             "type": "process",
             "args": [
+                "-P",
                 "-av",
                 "-e",
                 "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
@@ -279,6 +280,7 @@
             "command": "rsync",
             "type": "process",
             "args": [
+                "-P",
                 "-av",
                 "-e",
                 "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
@@ -354,6 +356,7 @@
             "command": "rsync",
             "type": "process",
             "args": [
+                "-P",
                 "-av",
                 "-e",
                 "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
@@ -429,6 +432,7 @@
             "command": "rsync",
             "type": "process",
             "args": [
+                "-P",
                 "-av",
                 "-e",
                 "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
