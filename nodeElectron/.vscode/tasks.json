@@ -40,7 +40,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "pkill -f __change__"
             ],
             "dependsOrder": "sequence",
@@ -165,7 +166,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "${config:torizon_app_root}/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port1} --ozone-platform=wayland >out.log 2>err.log &"
             ],
             "dependsOn": [
@@ -239,7 +241,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "${config:torizon_app_root}/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port1} --ozone-platform=wayland --use-gl=egl --in-process-gpu >out.log 2>err.log &"
             ],
             "dependsOn": [
@@ -313,7 +316,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "${config:torizon_app_root}/__change__ --no-sandbox --remote-debugging-port=${config:torizon_debug_port3} --inspect-brk=0.0.0.0:${config:torizon_debug_port1} --ozone-platform=wayland >out.log 2>err.log &"
             ],
             "dependsOn": [

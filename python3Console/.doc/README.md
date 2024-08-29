@@ -24,6 +24,8 @@ The source code of the template is a simple Hello World (Hello Torizon, actually
 
 ## Create a Python Virtual Environment
 
+> ⚠️ **WARNING:** When the template workspace opens in VSCode, a task called create-venv
+
 How to create a virtual environment on this template:
 
  - On the terminal, run the command:
