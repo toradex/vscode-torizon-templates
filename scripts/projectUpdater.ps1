@@ -261,7 +261,6 @@ if ($templateName -ne "tcb") {
     Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
     Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
     Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
-    Copy-Item $Env:HOME/.apollox/$templateName/.doc/README.md .
     # If there is a .dockerignore file, also include it
     if (Test-Path -Path $Env:HOME/.apollox/$templateName/.dockerignore) {
         Copy-Item $Env:HOME/.apollox/$templateName/.dockerignore .
@@ -289,6 +288,8 @@ if ($templateName -ne "tcb") {
     # ----------------------------------------------------------------- TORIZONPACKAGES.JSON
 
 }
+
+Copy-Item $Env:HOME/.apollox/$templateName/.doc/README.md .
 
 Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
 
@@ -471,10 +472,12 @@ if ($templateName -ne "tcb") {
         $projectFolder/.conf/tmp/torizonPackages.json `
         $projectFolder/torizonPackages.json
 
-    Copy-Item `
-        $Env:HOME/.apollox/$templateName/.doc/README.md `
-        $projectFolder/.doc/README.md
 }
+
+# DOCUMENTATION
+Copy-Item `
+$Env:HOME/.apollox/$templateName/.doc/README.md `
+$projectFolder/.doc/README.md
 
 # GITIGNORE:
 _openMergeWindow `
