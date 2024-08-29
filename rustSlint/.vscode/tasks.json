@@ -218,7 +218,7 @@
                 "executable-amd64",
                 "&&",
                 "cp",
-                "target/x86-64-unknown-linux-gnu/debug/__change__",
+                "target/x86_64-unknown-linux-gnu/debug/__change__",
                 "executable-amd64",
             ],
             "dependsOrder": "sequence",
