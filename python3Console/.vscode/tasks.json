@@ -95,7 +95,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "pkill python3 || true"
             ],
             "dependsOrder": "sequence",
@@ -124,7 +125,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "cT=0; while ! grep -r \": wait_for_client()\" ${config:torizon_app_root}/src/log/debugpy.server*.log 2> /dev/null; do sleep 0.1; if [ \"$cT\" -eq 100 ]; then echo \"Problem debugging main.py file\"; break; fi; cT=$(expr $cT + 1); done"
             ],
             "dependsOn": [
@@ -166,7 +168,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port1} --log-to src/log --wait-for-client src/main.py",
             ],
             "dependsOrder": "sequence",
@@ -195,7 +198,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "cT=0; while ! grep -r \": wait_for_client()\" ${config:torizon_app_root}/src/log/debugpy.server*.log 2> /dev/null; do sleep 0.1; if [ \"$cT\" -eq 100 ]; then echo \"Problem debugging main.py file\"; break; fi; cT=$(expr $cT + 1); done"
             ],
             "dependsOn": [
@@ -237,7 +241,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port1} --log-to src/log --wait-for-client src/main.py",
             ],
             "dependsOrder": "sequence",
@@ -266,7 +271,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "cd ${config:torizon_app_root} && . ${config:torizon_app_root}/.venv/bin/activate && screen -d -m python3 -m debugpy --listen 0.0.0.0:${config:torizon_debug_port} --log-to src/log --wait-for-client src/main.py",
             ],
             "dependsOrder": "sequence",
@@ -295,7 +301,8 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "-p",
-                "${config:torizon_debug_ssh_port}",                "${config:torizon_run_as}@${config:torizon_ip}",
+                "${config:torizon_debug_ssh_port}",
+                "${config:torizon_run_as}@${config:torizon_ip}",
                 "cT=0; while ! grep -r \": wait_for_client()\" ${config:torizon_app_root}/src/log/debugpy.server*.log 2> /dev/null; do sleep 0.1; if [ \"$cT\" -eq 100 ]; then echo \"Problem debugging main.py file\"; break; fi; cT=$(expr $cT + 1); done"
             ],
             "dependsOn": [
