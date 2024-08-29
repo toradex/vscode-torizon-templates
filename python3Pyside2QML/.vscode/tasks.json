@@ -35,7 +35,6 @@
         {
             "label": "create-venv",
             "detail": "Create Python virtual environment at .venv, if it doesn't already exist in the workspace",
-            "hide": true,
             "command": "/usr/bin/python3",
             "type": "process",
             "args": [
