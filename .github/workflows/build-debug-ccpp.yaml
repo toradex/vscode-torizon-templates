@@ -24,6 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Get Host Absolute Workspace Path
+        run: |
+          echo "${{ github.workspace }}" >> abs-path
+          cat abs-path
+
       - name: Build ${{ matrix.project.folder }} Dockerfile
         shell: pwsh
         env:
