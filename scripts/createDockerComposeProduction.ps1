@@ -58,6 +58,7 @@ if ($null -eq $env:TORIZON_ARCH) {
 } else {
     $TORIZON_ARCH = $env:TORIZON_ARCH
 
+    # fix-up if the arch comes from arch command
     if ($TORIZON_ARCH -eq "aarch64") {
         $TORIZON_ARCH = "arm64"
     } elseif ($TORIZON_ARCH -eq "armv7l") {
@@ -66,9 +67,6 @@ if ($null -eq $env:TORIZON_ARCH) {
         $TORIZON_ARCH = "amd64"
     } elseif ($TORIZON_ARCH -eq "riscv") {
         $TORIZON_ARCH = "riscv64"
-    } else {
-        Write-Host -ForegroundColor DarkRed "❌ undefined target device architecture"
-        exit 69
     }
 
     $imageArch = $TORIZON_ARCH
