@@ -51,6 +51,7 @@ jobs:
             false `
             false
 
+          cp abs-path "${env:GITHUB_WORKSPACE}/${env:PROJECT_FOLDER}CITest"
           cd "${env:GITHUB_WORKSPACE}/${env:PROJECT_FOLDER}CITest"
 
           $_settingsJson = Get-Content -Path ".vscode/settings.json" | ConvertFrom-Json
