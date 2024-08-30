@@ -56,7 +56,22 @@ if ($null -eq $env:DOCKER_PSSWD) {
 if ($null -eq $env:TORIZON_ARCH) {
     throw "❌ TORIZON_ARCH not set"
 } else {
-    $imageArch = $env:TORIZON_ARCH
+    $TORIZON_ARCH = $env:TORIZON_ARCH
+
+    if ($TORIZON_ARCH -eq "aarch64") {
+        $TORIZON_ARCH = "arm64"
+    } elseif ($TORIZON_ARCH -eq "armv7l") {
+        $TORIZON_ARCH = "arm"
+    } elseif ($TORIZON_ARCH -eq "x86_64") {
+        $TORIZON_ARCH = "amd64"
+    } elseif ($TORIZON_ARCH -eq "riscv") {
+        $TORIZON_ARCH = "riscv64"
+    } else {
+        Write-Host -ForegroundColor DarkRed "❌ undefined target device architecture"
+        exit 69
+    }
+
+    $imageArch = $TORIZON_ARCH
 }
 
 if ($null -eq $env:APP_ROOT) {
