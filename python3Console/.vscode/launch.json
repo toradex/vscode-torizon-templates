@@ -3,40 +3,61 @@
     "configurations": [
         {
             "name": "Python Local",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/src/main.py",
             "preLaunchTask": "host-install-pip-requirements"
         },
         {
-            "name": "Torizon ARMv7",
-            "type": "python",
+            "name": "Torizon AMD64",
+            "type": "debugpy",
             "request": "attach",
             "justMyCode": false,
-            "host": "${config:torizon_ip}",
-            "port": "${config:torizon_debug_port}",
+            "connect": {
+                "host": "${config:torizon_ip}",
+                "port": "${config:torizon_debug_port}"
+            },
             "pathMappings": [
                 {
                 "localRoot": "${workspaceFolder}",
                 "remoteRoot": "${config:torizon_app_root}"
                 }
             ],
-            "preLaunchTask": "wait-debugpy-start-arm"
+            "preLaunchTask": "deploy-torizon-amd64"
+        },
+        {
+            "name": "Torizon ARMv7",
+            "type": "debugpy",
+            "request": "attach",
+            "justMyCode": false,
+            "connect": {
+                "host": "${config:torizon_ip}",
+                "port": "${config:torizon_debug_port1}"
+            },
+            "pathMappings": [
+                {
+                "localRoot": "${workspaceFolder}",
+                "remoteRoot": "${config:torizon_app_root}"
+                }
+            ],
+            "preLaunchTask": "deploy-torizon-arm"
         },
         {
             "name": "Torizon ARMv8",
-            "type": "python",
+            "type": "debugpy",
             "request": "attach",
             "justMyCode": false,
-            "host": "${config:torizon_ip}",
-            "port": "${config:torizon_debug_port}",
+            "connect": {
+                "host": "${config:torizon_ip}",
+                "port": "${config:torizon_debug_port1}"
+            },
             "pathMappings": [
                 {
                 "localRoot": "${workspaceFolder}",
                 "remoteRoot": "${config:torizon_app_root}"
                 }
             ],
-            "preLaunchTask": "wait-debugpy-start-arm64"
+            "preLaunchTask": "deploy-torizon-arm64"
         }
     ]
 }

@@ -38,10 +38,10 @@ docker compose `
     pwsh-gitlab
 
 # run the build command
-Write-Host -ForegroundColor Green "🔨 :: TORIZONCORE-DEV :: 🔨"
+Write-Host -ForegroundColor Green "🔨 :: TORIZON-DEV :: 🔨"
 docker compose `
     -f ./container/docker-compose.yml `
     build `
     --no-cache `
     --push `
-    torizoncore-dev
+    torizon-dev

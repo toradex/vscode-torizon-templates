@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.1.0-8.0.2
+ARG BASE_VERSION=3-8.0
 
 ##
 # Directory of the application inside container
@@ -18,7 +18,7 @@ ARG APP_ROOT=
 
 
 # BUILD ------------------------------------------------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -27,15 +27,15 @@ COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
 # build
-RUN dotnet restore && \
-dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained
+RUN dotnet restore __change__.csproj && \
+dotnet publish __change__.csproj -c Release -r linux-${IMAGE_ARCH} --no-self-contained
 # BUILD ------------------------------------------------------------------------
 
 
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/aspdotnet:${BASE_VERSION} AS Deploy
+    commontorizon/aspdotnet:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -52,7 +52,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
+COPY --from=build ${APP_ROOT}/bin/Release/net8.0/linux-${IMAGE_ARCH}/publish ${APP_ROOT}
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

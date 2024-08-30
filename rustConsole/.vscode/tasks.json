@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "build-debug-amd64",
-            "detail": "Builds the project for the remote amd64 target",
+            "detail": "Builds the project for local debugging",
             "command": "cargo",
             "type": "shell",
             "args": [
@@ -25,11 +25,18 @@
                     }
                 }
             ],
+            "dependsOrder": "sequence",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOrder": "sequence"
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
         },
         {
             "label": "build-debug-arm64",
@@ -64,14 +71,21 @@
                     }
                 }
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
         },
         {
             "label": "copy-debug-executable-arm64",
@@ -87,14 +101,21 @@
                 "target/aarch64-unknown-linux-gnu/debug/__change__",
                 "executable-arm64",
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-debug-arm64"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
         },
         {
             "label": "deploy-torizon-arm64",
@@ -120,8 +141,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -157,14 +185,21 @@
                     }
                 }
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-container-image-sdk-arm"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
         },
         {
             "label": "copy-debug-executable-arm",
@@ -180,14 +215,21 @@
                 "target/armv7-unknown-linux-gnueabihf/debug/__change__",
                 "executable-arm",
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build-debug-arm"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
         },
         {
             "label": "deploy-torizon-arm",
@@ -213,8 +255,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         }
     ],

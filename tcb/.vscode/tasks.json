@@ -2,18 +2,62 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "try-update-template",
-            "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
+            "label": "check-deps",
+            "detail": "This task will check if the dependencies needed to run\nthe project are installed in the host machine.",
             "command": "pwsh",
             "type": "process",
+            "args": [
+                "-nop",
+                "${workspaceFolder}/.conf/checkDeps.ps1"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            },
             "presentation": {
                 "echo": false,
                 "reveal": "always",
                 "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "fetch-templates-repo",
+            "detail": "",
+            "hide": true,
+            "command": "echo",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
             },
+            "args": [
+                "echo",
+                "${command:torizon.fetchTemplates}"
+            ],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ],
+            "icon": {
+                "id": "git-branch",
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "update-template"
+            }
+        },
+        {
+            "label": "try-update-template",
+            "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
+            "command": "pwsh",
+            "type": "process",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -25,9 +69,19 @@
                 "0"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "fetch-templates-repo"
+            ],
             "icon": {
                 "id": "repo-sync",
-                "color": "terminal.ansiCyan"
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "update-template"
             }
         },
         {
@@ -35,14 +89,6 @@
             "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -54,9 +100,19 @@
                 "1"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "fetch-templates-repo"
+            ],
             "icon": {
                 "id": "repo-sync",
-                "color": "terminal.ansiCyan"
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "update-template"
             }
         },
         {
@@ -65,14 +121,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "-file",
@@ -80,7 +128,7 @@
                 "-ContainerRuntime",
                 "docker",
                 "-RunArguments",
-                "'\"-d -p 5002:5000 --restart=always registry:2\"'",
+                "\"-d -p 5002:5000 --restart=always registry:2\"",
                 "-ContainerName",
                 "registry"
             ],
@@ -88,6 +136,42 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "run-docker-registry-wsl",
+            "detail": "",
+            "hide": true,
+            "command": "pwsh",
+            "type": "process",
+            "options": {
+                "env": {
+                    "TASKS_USE_PWSH_INSTEAD_BASH": "true"
+                }
+            },
+            "args": [
+                "-nop",
+                "-file",
+                "${workspaceFolder}/.vscode/tasks.ps1",
+                "run",
+                "run-docker-registry"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
             }
         },
         {
@@ -96,21 +180,12 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
-                "-nop",
                 "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
                 "-ContainerRuntime",
                 "docker",
                 "-RunArguments",
-                "'--rm --privileged torizon/binfmt'",
+                "\"--rm --privileged commontorizon/binfmt:9.0.2\"",
                 "-ContainerName",
                 "binfmt"
             ],
@@ -118,6 +193,12 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
             }
         },
         {
@@ -126,46 +207,21 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
+            "args": [
+                "-nop",
+                "${workspaceFolder}/.conf/shareWSLPorts.ps1",
+                "${workspaceFolder}"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            },
             "presentation": {
-                "echo": false,
+                "echo": true,
                 "reveal": "silent",
                 "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "args": [
-                "-nop",
-                "${workspaceFolder}/.conf/shareWSLPorts.ps1"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
-            }
-        },
-        {
-            "label": "check-deps",
-            "detail": "",
-            "hide": true,
-            "command": "pwsh",
-            "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "dedicated",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "args": [
-                "-nop",
-                "${workspaceFolder}/.conf/checkDeps.ps1"
-            ],
-            "dependsOrder": "sequence",
-            "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "panel": "dedicated"
             }
         },
         {
@@ -188,13 +244,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "note",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "tcb-setup"
+            }
         },
         {
             "label": "tcb-setup",
@@ -222,14 +285,21 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "create-storage-dir"
-            ]
+            ],
+            "icon": {
+                "id": "note",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "tcb-setup"
+            }
         },
         {
             "label": "tcb-build",
@@ -253,13 +323,21 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "tcb-build"
+            }
         },
         {
             "label": "tcb-bundle",
@@ -283,13 +361,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "wrench",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "tcb-bundle"
+            }
         },
         {
             "label": "tcb-bundle-platform",
@@ -313,13 +398,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "wrench",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "tcb-bundle"
+            }
         },
         {
             "label": "tcb-bundle-platform-dind-param",
@@ -343,13 +435,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "wrench",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "tcb-bundle"
+            }
         },
         {
             "label": "tcb-unpack",
@@ -360,7 +459,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "VSCODE_CMD": "--verbose images --remove-storage unpack ${command:tcb.listFolders}"
+                    "VSCODE_CMD": "--verbose images --remove-storage unpack ${command:tcb.outputTEZIFolder}"
                 }
             },
             "args": [
@@ -374,13 +473,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "package",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "tcb-deploy"
+            }
         },
         {
             "label": "tcb-deploy",
@@ -404,14 +510,21 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
                 "tcb-unpack"
-            ]
+            ],
+            "icon": {
+                "id": "export",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "tcb-deploy"
+            }
         },
         {
             "label": "tcb-platform-push-ostree",
@@ -421,10 +534,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "DOCKER_PSSWD": "${command:docker_password}",
-                    "DOCKER_LOGIN": "${command:docker_login}",
-                    "DOCKER_REGISTRY": "${command:docker_registry}",
-                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} --login-to $DOCKER_REGISTRY $DOCKER_LOGIN $DOCKER_PSSWD __container__"
+                    "VSCODE_CMD": "--verbose platform push --credentials credentials.zip --package-name __change__ --package-version ${command:tcb.getNextPackageVersion} __container__"
                 }
             },
             "args": [
@@ -438,24 +548,32 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+                "tcb-unpack"
+            ],
+            "icon": {
+                "id": "cloud-upload",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "cloud-related"
+            }
         },
         {
             "label": "platform-update-fleet",
-            "detail": "Trigger a fleet update on torizon.io cloud",
+            "detail": "This task will trigger the update of the fleet in the\nTorizon Platform with the latest version\nof the application published to the platform.",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "PLATFORM_CLIENT_ID": "${command:tcb.clientId}",
-                    "PLATFORM_CLIENT_SECRET": "${command:tcb.clientSecret}",
+                    "PLATFORM_CLIENT_SECRET": "${command:tcb.clientSecret}"
                 }
             },
             "args": [
@@ -466,18 +584,24 @@
                 "fleet",
                 "latest",
                 "__change__",
-                "'${command:tcb.fleetName}'"
+                "${command:tcb.fleetName}"
             ],
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "cloud-upload",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            }
         },
         {
             "label": "fill-pipeline-settings",
@@ -487,30 +611,23 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
+                    "DOCKER_REGISTRY": "${command:docker_registry}",
+                    "DOCKER_LOGIN": "${command:docker_login}",
+                    "DOCKER_PSSWD": "${command:docker_password}",
+                    "DOCKER_TAG": "${command:docker_tag}",
                     "TCB_CLIENTID": "${command:tcb.clientId}",
                     "TCB_CLIENTSECRET": "${command:tcb.clientSecret}",
                     "TCB_PACKAGE": "__change__",
-                    "TCB_OSTREE": "__container__",
-                    "TCB_FLEET": "${command:tcb.fleetName}"
+                    "TCB_FLEET": "${command:tcb.fleetName}",
+                    "TORIZON_ARCH": "${command:torizon_arch}"
                 }
-            },
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": false,
-                "clear": false
             },
             "args": [
                 "-e",
-                "\"✅ fill-pipeline-settings done\n packageName: $TCB_PACKAGE\n ostreBranch: $TCB_OSTREE\n fleetName: $TCB_FLEET\n \"",
-                "&&",
-                "echo",
-                "-e",
                 "\"✅ github-actions-settings done\n",
                 "\n",
-                "'⚠️ ENV VARIABLES NEED TO BE SET IN CI/CD PLATFORM'\n",
+                "'⚠️  ENV VARIABLES NEED TO BE SET IN CI/CD PLATFORM'\n",
+                "\tDOCKER_PSSWD\n",
                 "\tPLATFORM_CLIENT_ID\n",
                 "\tPLATFORM_CLIENT_SECRET\n",
                 "\tPLATFORM_CREDENTIALS\n\""
@@ -518,13 +635,38 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "notebook",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "cloud-related"
+            }
+        },
+        {
+            "label": "show-project-documentation",
+            "detail": "This task will open the project specific documentation\nin a new tab.",
+            "command": "${command:torizon.openTemplateDocumentation}",
+            "type": "process",
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "book",
+                "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
+            }
         },
     ],
     "inputs": [

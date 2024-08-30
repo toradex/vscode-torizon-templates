@@ -16,27 +16,26 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "git-branch",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "git-branch",
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "update-template"
+            }
         },
         {
             "label": "try-update-template",
             "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -53,7 +52,14 @@
             ],
             "icon": {
                 "id": "repo-sync",
-                "color": "terminal.ansiCyan"
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "update-template"
             }
         },
         {
@@ -61,14 +67,6 @@
             "detail": "This task has automation steps to update the project\nbased on the template used to create it.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -80,9 +78,19 @@
                 "1"
             ],
             "dependsOrder": "sequence",
+            "dependsOn": [
+                "fetch-templates-repo"
+            ],
             "icon": {
                 "id": "repo-sync",
-                "color": "terminal.ansiCyan"
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "update-template"
             }
         },
         {
@@ -90,20 +98,15 @@
             "detail": "This task has automation steps to build the production\nDocker image. The production Docker image\nis based in the Dockerfile file.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false,
-                "group": "create-prod-image"
-            },
             "options": {
                 "env": {
                     "DOCKER_PSSWD": "${command:docker_password}",
                     "TORIZON_ARCH": "${input:archList}",
-                    "APP_ROOT": "${config:torizon_app_root}"
+                    "APP_ROOT": "${config:torizon_app_root}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
@@ -119,33 +122,15 @@
             "dependsOrder": "sequence",
             "icon": {
                 "id": "package",
-                "color": "terminal.ansiCyan"
-            }
-        },
-        {
-            "label": "set-platform-fleet-name",
-            "detail": "",
-            "hide": true,
-            "command": "DOCKER_HOST=",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "args": [
-                "echo",
-                "\"setting",
-                "${command:tcb.fleetName}\""
-            ],
-            "problemMatcher": [
-                "$tsc"
-            ],
-            "icon": {
-                "id": "flame",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-            ]
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "cloud-related"
+            }
         },
         {
             "label": "fill-pipeline-settings",
@@ -166,19 +151,11 @@
                     "TORIZON_ARCH": "${command:torizon_arch}"
                 }
             },
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": true
-            },
             "args": [
                 "-e",
                 "\"✅ github-actions-settings done\n",
                 "\n",
-                "'⚠️ ENV VARIABLES NEED TO BE SET IN CI/CD PLATFORM'\n",
+                "'⚠️  ENV VARIABLES NEED TO BE SET IN CI/CD PLATFORM'\n",
                 "\tDOCKER_PSSWD\n",
                 "\tPLATFORM_CLIENT_ID\n",
                 "\tPLATFORM_CLIENT_SECRET\n",
@@ -187,13 +164,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ],
             "icon": {
                 "id": "notebook",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-            ]
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "cloud-related"
+            }
         },
         {
             "label": "platform-update-fleet",
@@ -220,13 +204,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+            ],
             "icon": {
                 "id": "cloud-upload",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-            ]
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "group": "cloud-related"
+            }
         },
         {
             "label": "tcb-platform-publish",
@@ -253,25 +244,31 @@
             "problemMatcher": [
                 "$tsc"
             ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "create-production-image"
+            ],
             "icon": {
                 "id": "cloud-upload",
                 "color": "terminal.ansiYellow"
             },
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "create-production-image"
-            ]
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "cloud-related"
+            }
         },
         {
             "label": "docker-login",
-            "detail": "",
-            "hide": true,
+            "detail": "Perform a docker login on the host",
             "command": "DOCKER_HOST=",
             "type": "shell",
             "options": {
                 "env": {
-                    "DOCKER_LOGIN": "${input:dockerLogin}",
-                    "DOCKER_PSSWD": "${input:dockerPsswd}"
+                    "DOCKER_LOGIN": "${command:docker_login}",
+                    "DOCKER_PSSWD": "${command:docker_password}"
                 }
             },
             "presentation": {
@@ -281,16 +278,18 @@
                 "panel": "shared"
             },
             "args": [
+                "echo",
+                "${command:docker_password}",
+                "|",
                 "docker",
                 "login",
                 "--username",
-                "${input:dockerLogin}",
-                "--password",
-                "${input:dockerPsswd}"
+                "${command:docker_login}",
+                "--password-stdin"
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "layers",
+                "id": "account",
                 "color": "terminal.ansiCyan"
             }
         },
@@ -300,14 +299,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "-file",
@@ -323,6 +314,12 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
             }
         },
         {
@@ -331,14 +328,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "env": {
                     "TASKS_USE_PWSH_INSTEAD_BASH": "true"
@@ -355,6 +344,12 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
             }
         },
         {
@@ -363,20 +358,12 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "${workspaceFolder}/.conf/runContainerIfNotExists.ps1",
                 "-ContainerRuntime",
                 "docker",
                 "-RunArguments",
-                "--rm --privileged torizon/binfmt",
+                "\"--rm --privileged commontorizon/binfmt:9.0.2\"",
                 "-ContainerName",
                 "binfmt"
             ],
@@ -384,6 +371,12 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
             }
         },
         {
@@ -392,14 +385,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "${workspaceFolder}/.conf/shareWSLPorts.ps1",
@@ -409,6 +394,12 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
             }
         },
         {
@@ -417,14 +408,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "env": {
                     "DEBUG_SHARED_PORTS": "true"
@@ -439,6 +422,12 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
             }
         },
         {
@@ -446,14 +435,6 @@
             "detail": "This task will check if the dependencies needed to run\nthe project are installed in the host machine.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "dedicated",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "${workspaceFolder}/.conf/checkDeps.ps1"
@@ -462,6 +443,12 @@
             "icon": {
                 "id": "layers",
                 "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
             }
         },
         {
@@ -470,14 +457,6 @@
             "hide": true,
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "dedicated",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "args": [
                 "-nop",
                 "${workspaceFolder}/.conf/torizonPackages.ps1",
@@ -485,8 +464,15 @@
             ],
             "dependsOrder": "sequence",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -514,8 +500,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -530,8 +523,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -541,8 +541,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "-o",
@@ -550,13 +548,20 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "rm -rf ~/app"
+                "rm -rf ${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -571,13 +576,20 @@
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
-            },
             "dependsOn": [
                 "validate-deps-running"
-            ]
+            ],
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
         },
         {
             "label": "validate-arch-amd64",
@@ -592,8 +604,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -609,8 +628,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -626,8 +652,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -643,14 +676,21 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "layers",
-                "color": "terminal.ansiCyan"
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
-            "label": "pre-cleanup",
-            "detail": "",
-            "hide": true,
+            "label": "containers-cleanup",
+            "detail": "Docker compose down on the target (default device)",
+            "hide": false,
             "command": "if",
             "type": "shell",
             "args": [
@@ -658,6 +698,8 @@
                 "DOCKER_HOST=${config:torizon_ip}:2375",
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "-p",
                 "torizon",
                 "down",
@@ -672,8 +714,60 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "trash",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "pre-cleanup",
+            "detail": "Clean the service of the application on the target (default device)(does not down the dependencies)",
+            "hide": true,
+            "command": "docker",
+            "type": "shell",
+            "args": [
+                "compose",
+                "--ansi",
+                "never",
+                "-p",
+                "torizon",
+                "stop",
+                "__container__",
+                "__container__-debug",
+                "&&",
+                "docker",
+                "compose",
+                "--ansi",
+                "never",
+                "-p",
+                "torizon",
+                "rm",
+                "-f",
+                "__container__",
+                "__container__-debug"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "remove-dangling-images",
+                "wait-a-bit"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -692,8 +786,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "gear",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -707,8 +808,8 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm64",
                     "GPU": "${config:torizon_gpu}",
-                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -716,6 +817,8 @@
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -725,7 +828,7 @@
                 "--build-arg",
                 "IMAGE_ARCH=arm64",
                 "--build-arg",
-                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"
@@ -736,8 +839,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -751,8 +861,8 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "arm",
                     "GPU": "${config:torizon_gpu}",
-                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -760,6 +870,8 @@
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -769,7 +881,7 @@
                 "--build-arg",
                 "IMAGE_ARCH=arm",
                 "--build-arg",
-                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"
@@ -780,8 +892,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -795,8 +914,8 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "amd64",
                     "GPU": "${config:torizon_gpu}",
-                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -804,6 +923,8 @@
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -813,7 +934,7 @@
                 "--build-arg",
                 "IMAGE_ARCH=amd64",
                 "--build-arg",
-                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"
@@ -824,8 +945,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -839,8 +967,8 @@
                     "LOCAL_REGISTRY": "localhost",
                     "TAG": "riscv64",
                     "GPU": "${config:torizon_gpu}",
-                    "SSH_DEBUG_PORT": "${config:torizon_debug_ssh_port}",
-                    "DEBUG_PORT": "${config:torizon_debug_port}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
                     "DEBUG_PORT2": "${config:torizon_debug_port2}",
                     "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
@@ -848,6 +976,8 @@
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -857,7 +987,7 @@
                 "--build-arg",
                 "IMAGE_ARCH=riscv64",
                 "--build-arg",
-                "SSH_DEBUG_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
                 "--build-arg",
                 "GPU=${config:torizon_gpu}",
                 "__container__-debug"
@@ -868,8 +998,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -881,6 +1018,7 @@
             "args": [
                 "docker",
                 "build",
+                "--progress=plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -902,8 +1040,15 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -915,6 +1060,7 @@
             "args": [
                 "docker",
                 "build",
+                "--progress=plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -934,8 +1080,15 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -947,6 +1100,7 @@
             "args": [
                 "docker",
                 "build",
+                "--progress=plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -966,8 +1120,15 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -979,6 +1140,7 @@
             "args": [
                 "docker",
                 "build",
+                "--progress=plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -998,8 +1160,15 @@
                 "$gcc"
             ],
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1011,20 +1180,34 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm"
+                    "TAG": "arm",
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "push",
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-push",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1036,20 +1219,34 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "arm64"
+                    "TAG": "arm64",
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "push",
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-push",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1061,20 +1258,34 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "amd64"
+                    "TAG": "amd64",
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "push",
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-push",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1086,40 +1297,56 @@
             "options": {
                 "env": {
                     "LOCAL_REGISTRY": "localhost",
-                    "TAG": "riscv64"
+                    "TAG": "riscv64",
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "push",
                 "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-push",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "pull-container-torizon-debug-arm64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=arm64",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "--ansi",
+                "never",
+                "pull",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1127,28 +1354,37 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-pull",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "pull-container-torizon-debug-arm",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm docker compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=arm",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "--ansi",
+                "never",
+                "pull",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1156,28 +1392,37 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-pull",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "pull-container-torizon-debug-amd64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=amd64 docker compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=amd64",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "--ansi",
+                "never",
+                "pull",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1185,28 +1430,37 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-pull",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "pull-container-torizon-debug-riscv64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=riscv64 docker compose pull __container__-debug"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "TAG=riscv64",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "--ansi",
+                "never",
+                "pull",
+                "__container__-debug"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1214,8 +1468,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-pull",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1228,6 +1489,10 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1242,8 +1507,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1256,6 +1528,10 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=arm",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1270,8 +1546,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1284,6 +1567,10 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=amd64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1298,8 +1585,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1312,6 +1606,10 @@
                 "LOCAL_REGISTRY=${config:host_ip}",
                 "TAG=riscv64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1326,8 +1624,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1340,12 +1645,18 @@
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "arm64",
-                    "GPU": "${config:torizon_gpu}"
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -1364,8 +1675,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1378,12 +1696,18 @@
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "arm",
-                    "GPU": "${config:torizon_gpu}"
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -1402,8 +1726,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1416,12 +1747,18 @@
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "amd64",
-                    "GPU": "${config:torizon_gpu}"
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -1440,8 +1777,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1454,12 +1798,18 @@
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
                     "TAG": "riscv64",
-                    "GPU": "${config:torizon_gpu}"
+                    "GPU": "${config:torizon_gpu}",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -1478,8 +1828,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1491,12 +1848,18 @@
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
-                    "TAG": "arm64"
+                    "TAG": "arm64",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "push",
                 "__container__"
             ],
@@ -1508,6 +1871,13 @@
             "icon": {
                 "id": "repo-push",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1519,12 +1889,18 @@
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
-                    "TAG": "arm"
+                    "TAG": "arm",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "push",
                 "__container__"
             ],
@@ -1536,6 +1912,13 @@
             "icon": {
                 "id": "repo-push",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1547,12 +1930,18 @@
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
-                    "TAG": "amd64"
+                    "TAG": "amd64",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "push",
                 "__container__"
             ],
@@ -1564,6 +1953,13 @@
             "icon": {
                 "id": "repo-push",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1575,12 +1971,18 @@
             "options": {
                 "env": {
                     "DOCKER_LOGIN": "localhost:5002",
-                    "TAG": "riscv64"
+                    "TAG": "riscv64",
+                    "DEBUG_SSH_PORT": "${config:torizon_debug_ssh_port}",
+                    "DEBUG_PORT1": "${config:torizon_debug_port1}",
+                    "DEBUG_PORT2": "${config:torizon_debug_port2}",
+                    "DEBUG_PORT3": "${config:torizon_debug_port3}"
                 }
             },
             "args": [
                 "docker",
                 "compose",
+                "--ansi",
+                "never",
                 "push",
                 "__container__"
             ],
@@ -1592,26 +1994,36 @@
             "icon": {
                 "id": "repo-push",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "pull-container-torizon-release-arm64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm64 docker compose pull __container__"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "DOCKER_LOGIN=${config:host_ip}:5002",
+                "TAG=arm64",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "--ansi",
+                "never",
+                "pull",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1619,28 +2031,38 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-pull",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "pull-container-torizon-release-arm",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=arm docker compose pull __container__"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "DOCKER_LOGIN=${config:host_ip}:5002",
+                "TAG=arm",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "--ansi",
+                "never",
+                "pull",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1648,28 +2070,38 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-pull",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "pull-container-torizon-release-amd64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=amd64 docker compose pull __container__"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "DOCKER_LOGIN=${config:host_ip}:5002",
+                "TAG=amd64",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "--ansi",
+                "never",
+                "pull",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1677,28 +2109,38 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-pull",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "pull-container-torizon-release-riscv64",
             "detail": "",
             "hide": true,
-            "command": "sshpass",
-            "type": "process",
+            "command": "DOCKER_HOST=${config:torizon_ip}:2375",
+            "type": "shell",
             "args": [
-                "-p",
-                "${config:torizon_psswd}",
-                "ssh",
-                "-p",
-                "${config:torizon_ssh_port}",
-                "-o",
-                "UserKnownHostsFile=/dev/null",
-                "-o",
-                "StrictHostKeyChecking=no",
-                "torizon@${config:torizon_ip}",
-                "DOCKER_LOGIN=${config:host_ip}:5002 TAG=riscv64 docker compose pull __container__"
+                "LOCAL_REGISTRY=${config:host_ip}",
+                "DOCKER_LOGIN=${config:host_ip}:5002",
+                "TAG=riscv64",
+                "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
+                "docker",
+                "compose",
+                "--ansi",
+                "never",
+                "pull",
+                "__container__"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -1706,8 +2148,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "repo-pull",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1719,6 +2168,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=arm64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1741,6 +2194,13 @@
             "icon": {
                 "id": "run",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1752,6 +2212,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=arm",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1774,6 +2238,13 @@
             "icon": {
                 "id": "run",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1785,6 +2256,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=amd64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1807,6 +2282,13 @@
             "icon": {
                 "id": "run",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -1818,6 +2300,10 @@
                 "DOCKER_LOGIN=${config:host_ip}:5002",
                 "TAG=riscv64",
                 "GPU=${config:torizon_gpu}",
+                "DEBUG_SSH_PORT=${config:torizon_debug_ssh_port}",
+                "DEBUG_PORT1=${config:torizon_debug_port1}",
+                "DEBUG_PORT2=${config:torizon_debug_port2}",
+                "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
                 "-p",
@@ -1840,53 +2326,31 @@
             "icon": {
                 "id": "run",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "show-project-documentation",
             "detail": "This task will open the project specific documentation\nin a new tab.",
-            "command": "${command:markdown.showPreview}",
+            "command": "${command:torizon.openTemplateDocumentation}",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "dependsOn": [
-                "open-project-documentation-file"
-            ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "book",
-                "color": "terminal.ansiYellow"
-            }
-        },
-        {
-            "label": "open-project-documentation-file",
-            "command": "code",
-            "detail": "",
-            "hide": true,
-            "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "never",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": false,
-                "clear": true
+                "color": "terminal.ansiCyan"
             },
-            "args": [
-                ".doc/README.md"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$msCompile",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
             }
         },
         {
@@ -1916,13 +2380,19 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "notebook",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            }
         },
         {
             "label": "validate-deps-running",
@@ -1948,13 +2418,20 @@
             "problemMatcher": [
                 "$tsc"
             ],
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOrder": "sequence",
             "dependsOn": [
-            ]
+            ],
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
         }
     ]
 }

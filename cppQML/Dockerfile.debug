@@ -7,12 +7,12 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.2.0
+ARG BASE_VERSION=3.3.1
 
 ##
 # Debug port
 ##
-ARG SSH_DEBUG_PORT=
+ARG DEBUG_SSH_PORT=
 
 ##
 # Run as
@@ -35,16 +35,16 @@ ARG APP_ROOT=
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/qt6-wayland${GPU}:${BASE_VERSION} AS Debug
+    commontorizon/qt6-wayland${GPU}:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG SSH_DEBUG_PORT
+ARG DEBUG_SSH_PORT
 ARG SSHUSERNAME
 ARG APP_ROOT
 
 # SSH for remote debug
-EXPOSE ${SSH_DEBUG_PORT}
+EXPOSE ${DEBUG_SSH_PORT}
 # Make sure we don't get notifications we can't answer during building.
 ENV DEBIAN_FRONTEND="noninteractive"
 
@@ -108,8 +108,7 @@ RUN cp /qtpp/.gdbinit /root && \
     cp /qtpp/.gdbinit /home/torizon
 
 # ⚠️ DEBUG PURPOSES ONLY!!
-# copies RSA key to enable SSH login for user
-COPY .conf/id_rsa.pub /id_rsa.pub
+# THIS CONFIGURES AN INSECURE SSH CONNECTION
 
 # create folders needed for the different components
 # configures SSH access to the container and sets environment by default
@@ -119,19 +118,16 @@ RUN mkdir /var/run/sshd && \
     if test $SSHUSERNAME != root ; \
         then mkdir -p /home/$SSHUSERNAME/.ssh ; \
         else mkdir -p /root/.ssh ; fi && \
-    if test $SSHUSERNAME != root ; \
-        then cp /id_rsa.pub /home/$SSHUSERNAME/.ssh/authorized_keys ; \
-        else cp /id_rsa.pub /root/.ssh/authorized_keys ; fi && \
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
-    echo "Port ${SSH_DEBUG_PORT}" >> /etc/ssh/sshd_config && \
-    su -c "env" $SSHUSERNAME > /etc/environment
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+    echo "Port ${DEBUG_SSH_PORT}" >> /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config && \
+    echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config && \
+    su -c "env" $SSHUSERNAME > /etc/environment && \
+    echo "$SSHUSERNAME:" | chpasswd -e
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
 
-# Copy the compiled application to the $APP_ROOT directory path inside the
-# container, where $APP_ROOT is the torizon_app_root configuration defined
-# in settings.json.
-COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./build-${IMAGE_ARCH}/bin ${APP_ROOT}
 
 CMD [ "/usr/sbin/sshd", "-D" ]

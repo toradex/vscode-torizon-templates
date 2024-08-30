@@ -1,7 +1,7 @@
 ARG BRANCH=dev
-ARG REPO=torizonextras/vscode-torizon-templates
+ARG REPO=commontorizon/vscode-torizon-templates
 
-FROM torizonextras/pwsh:${BRANCH}
+FROM commontorizon/pwsh:${BRANCH}
 
 ARG BRANCH
 ARG REPO

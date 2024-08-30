@@ -12,6 +12,10 @@
         "target": ".vscode/launch.json"
     },
     {
+        "source": ".vscode/extensions.json",
+        "target": ".vscode/extensions.json"
+    },
+    {
         "source": "global.json",
         "target": "global.json"
     },
@@ -54,9 +58,5 @@
     {
         "source": "Assets/avalonia-logo.ico",
         "target": "Assets/avalonia-logo.ico"
-    },
-    {
-        "source": ".gitignore",
-        "target": ".gitignore"
     }
 ]

@@ -1,8 +1,7 @@
-ARG CROSS_SDK_BASE_TAG=3.3.0-bookworm
-ARG BASE_VERSION=3.3.0-bookworm
+ARG CROSS_SDK_BASE_TAG=3.3.1
+ARG BASE_VERSION=3.3.1-bookworm
 ##
 # Board architecture
-# arm or arm64
 ##
 ARG IMAGE_ARCH=
 
@@ -13,7 +12,7 @@ ARG APP_ROOT=
 
 
 # BUILD ------------------------------------------------------------------------
-FROM torizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
+FROM commontorizon/debian-cross-toolchain-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} AS build
 
 ARG APP_ROOT
 ARG IMAGE_ARCH
@@ -50,7 +49,7 @@ RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
 
 
 # DEPLOY -----------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/debian:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/debian:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -66,7 +65,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/build-${IMAGE_ARCH}/bin ${APP_ROOT}
+COPY --from=build ${APP_ROOT}/build-${IMAGE_ARCH}/bin ${APP_ROOT}
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

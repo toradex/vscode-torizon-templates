@@ -56,7 +56,20 @@ if ($null -eq $env:DOCKER_PSSWD) {
 if ($null -eq $env:TORIZON_ARCH) {
     throw "❌ TORIZON_ARCH not set"
 } else {
-    $imageArch = $env:TORIZON_ARCH
+    $TORIZON_ARCH = $env:TORIZON_ARCH
+
+    # fix-up if the arch comes from arch command
+    if ($TORIZON_ARCH -eq "aarch64") {
+        $TORIZON_ARCH = "arm64"
+    } elseif ($TORIZON_ARCH -eq "armv7l") {
+        $TORIZON_ARCH = "arm"
+    } elseif ($TORIZON_ARCH -eq "x86_64") {
+        $TORIZON_ARCH = "amd64"
+    } elseif ($TORIZON_ARCH -eq "riscv") {
+        $TORIZON_ARCH = "riscv64"
+    }
+
+    $imageArch = $TORIZON_ARCH
 }
 
 if ($null -eq $env:APP_ROOT) {
@@ -119,7 +132,7 @@ if ([string]::IsNullOrEmpty($tag)) {
     }
 }
 
-if ($null -eq $env:TASKS_CUSTOM_SETTINGS_JSON) {
+if (($null -eq $env:TASKS_CUSTOM_SETTINGS_JSON) -or ($env:TASKS_CUSTOM_SETTINGS_JSON -eq "settings.json")) {
     $env:TASKS_CUSTOM_SETTINGS_JSON = "settings.json"
 } else {
     Write-Host "ℹ️ :: CUSTOM SETTINGS :: ℹ️"

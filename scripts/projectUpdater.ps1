@@ -10,6 +10,7 @@ $errorActionPreference = "Stop"
 $projectFolder = $args[0]
 $projectName = $args[1]
 $acceptAll = $args[2]
+$_secondRun = $args[3]
 
 function _checkArg ($_arg) {
     if ([string]::IsNullOrEmpty($_arg)) {
@@ -61,6 +62,22 @@ function _openMergeWindow ($_updatedFile, $_currentFile) {
     }
 }
 
+# this check if not needed if this is the second run
+if ($_secondRun -ne $true) {
+    # Don't allow the update of the project if there is no git repository initiated, to avoid losing track of the changes applied in the update
+    $cmdOutput = git status 2>&1 | Out-String
+
+    if ($cmdOutput.Contains("fatal: not a git repository")) {
+        Write-Host -ForegroundColor DarkRed "❌ fatal: this workspace is not a git repository."
+        Write-Host -ForegroundColor DarkYellow "It is highly recommended that you create a repo and commit the current state of the project before updating it, to keep track of the changes that will be applied on the update."
+        Write-Host -ForegroundColor DarkYellow "If the project is not versioned there is no way back!"
+        $_sure = Read-Host -Prompt "Do you really want to proceed? [y/n]"
+        if ($_sure -ne "y") {
+            exit 0
+        }
+    }
+}
+
 # check if the args passed are not empty
 _checkArg $projectFolder
 _checkArg $projectName
@@ -69,10 +86,10 @@ _checkArg $projectName
 if ([string]::IsNullOrEmpty($acceptAll)) {
     $acceptAll = $false
 } else {
-    if ($acceptAll -eq "1") {
+    if ($acceptAll -eq "1" -and $_secondRun -ne $true) {
         # ask for confirmation
-        Write-Host -ForegroundColor Yellow "You are about to accept all incoming changes from the updated template"
-        Write-Host -ForegroundColor Yellow "If the project is not versioned there is no way back"
+        Write-Host -ForegroundColor DarkYellow "You are about to accept all incoming changes from the updated template"
+        Write-Host -ForegroundColor DarkYellow "If the project is not versioned there is no way back!"
         $_sure = Read-Host -Prompt "Accept all changes? [y/n]"
 
         if ($_sure -ne "y") {
@@ -80,7 +97,7 @@ if ([string]::IsNullOrEmpty($acceptAll)) {
         }
 
         $acceptAll = $true
-    } else {
+    } elseif ($_secondRun -ne $true) {
         $acceptAll = $false
     }
 }
@@ -127,7 +144,8 @@ if (
     & $projectFolder/.conf/projectUpdater.ps1 `
         $projectFolder `
         $projectName `
-        $acceptAll
+        $acceptAll `
+        $true
 
     exit $LASTEXITCODE
 }
@@ -151,11 +169,6 @@ Copy-Item `
 Copy-Item `
     $Env:HOME/.apollox/scripts/shareWSLPorts.ps1 `
     $projectFolder/.conf/shareWSLPorts.ps1
-
-# TORIZON PACKAGES
-Copy-Item `
-    $Env:HOME/.apollox/scripts/torizonPackages.ps1 `
-    $projectFolder/.conf/torizonPackages.ps1
 
 # TORIZON IO:
 Copy-Item `
@@ -190,7 +203,22 @@ Write-Host -ForegroundColor DarkGreen "✅ always accept new"
 $updateTable = Get-Content $projectFolder/.conf/update.json | ConvertFrom-Json
 
 
-# ----------------------------------------------------------------------- TASKS
+# ----------------------------------------------------------------------- .VSCODE
+# tcb does not have the launch.json
+if ($templateName -ne "tcb") {
+    Copy-Item $Env:HOME/.apollox/$templateName/.vscode/launch.json `
+        $projectFolder/.conf/tmp/launch-next.json
+}
+
+Copy-Item $Env:HOME/.apollox/$templateName/.vscode/settings.json `
+$projectFolder/.conf/tmp/settings-next.json
+
+# check if the template has an extensions.json file
+if (Test-Path -Path $Env:HOME/.apollox/$templateName/.vscode/extensions.json) {
+    Copy-Item $Env:HOME/.apollox/$templateName/.vscode/extensions.json `
+    $projectFolder/.conf/tmp/extensions-next.json
+}
+
 # TASKS.JSON:
 Copy-Item $Env:HOME/.apollox/$templateName/.vscode/tasks.json `
     $projectFolder/.conf/tmp/tasks-next.json
@@ -214,6 +242,7 @@ if ($_templateMetadata.mergeCommon -ne $False) {
         Format-Json | `
         Out-File -FilePath "$projectFolder/.conf/tmp/tasks-next.json"
 }
+# ----------------------------------------------------------------------- .VSCODE
 
 # we need to create a tmp folder to the update files
 Set-Location $projectFolder/.conf/tmp
@@ -221,18 +250,47 @@ Set-Location $projectFolder/.conf/tmp
 # tcb does not have the common Docker files
 if ($templateName -ne "tcb") {
     # The generic template doesn't have a Dockerfile.debug
-    if ($templateName -ne "genericTemplate") {
+    if (Test-Path -Path $Env:HOME/.apollox/$templateName/Dockerfile.debug) {
         Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.debug .
+    }
+    # If there is a Dockerfile.sdk, also include it
+    if (Test-Path -Path $Env:HOME/.apollox/$templateName/Dockerfile.sdk) {
+        Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile.sdk .
     }
     Copy-Item $Env:HOME/.apollox/$templateName/Dockerfile .
     Copy-Item $Env:HOME/.apollox/$templateName/docker-compose.yml .
     Copy-Item $Env:HOME/.apollox/assets/github/workflows/build-application.yaml .
     Copy-Item $Env:HOME/.apollox/assets/gitlab/.gitlab-ci.yml .
-    Copy-Item $Env:HOME/.apollox/$templateName/.doc/README.md .
+    # If there is a .dockerignore file, also include it
+    if (Test-Path -Path $Env:HOME/.apollox/$templateName/.dockerignore) {
+        Copy-Item $Env:HOME/.apollox/$templateName/.dockerignore .
+    }
+
+    # ----------------------------------------------------------------- TORIZONPACKAGES.JSON
+    $_torPackagesJson = Get-Content -Path "$Env:HOME/.apollox/assets/json/torizonPackages.json" | ConvertFrom-Json
+
+    # Check also the build part of Dockerfile, for the presence of torizon_packages_build
+    $dockerfileLines = Get-Content -Path "$Env:HOME/.apollox/$templateName/Dockerfile"
+
+    $buildDepDockerfile = $false
+    foreach ($line in $dockerfileLines) {
+        if ($line.Contains("torizon_packages_build")) {
+            $buildDepDockerfile = $true
+            break
+        }
+    }
+
+    if ((Test-Path -Path "$Env:HOME/.apollox/$templateName/Dockerfile.sdk") -Or ($buildDepDockerfile)) {
+        $_torPackagesJson | Add-Member -NotePropertyName buildDeps -NotePropertyValue @()
+    }
+    # Save the modified JSON object to a file
+    Set-Content -Path "./torizonPackages.json" -Value ($_torPackagesJson | ConvertTo-Json) -Encoding UTF8
+    # ----------------------------------------------------------------- TORIZONPACKAGES.JSON
+
 }
 
-Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
 
+Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
 
 # DEPS.JSON:
 Copy-Item $Env:HOME/.apollox/$templateName/.conf/deps.json .
@@ -266,10 +324,6 @@ if (($_deps.installDepsScripts.Count -gt 0)) {
     }
 }
 
-
-
-
-
 # read the update table:
 for ($i = 0; $i -lt $updateTable.Count; $i++) {
     $_source = $updateTable[$i].source
@@ -286,6 +340,7 @@ Get-ChildItem -Force -File -Recurse * | ForEach-Object {
     $mimeType = file --mime-encoding $a
 
     if (-not $mimeType.Contains("binary")) {
+        # FIXME: we are not using key pair anymore, maintaining this for compatibility
         # id_rsa is a special case, is ascii but we do not have permissions
         if (-not $a.Contains("id_rsa")) {
             if ($_ -isnot [System.IO.DirectoryInfo]) {
@@ -321,15 +376,43 @@ Replace-Tasks-Input
 # and back to the project folder
 Set-Location -
 
+# ---------------------------------------------------------------------- .VSCODE
 # open the merge window
 _openMergeWindow `
     $projectFolder/.conf/tmp/tasks-next.json `
     $projectFolder/.vscode/tasks.json
 
 Write-Host -ForegroundColor DarkGreen "✅ tasks.json"
-# ----------------------------------------------------------------------- TASKS
 
+# LAUNCH.JSON
 
+# tcb does not have the launch.json
+if ($templateName -ne "tcb") {
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/launch-next.json `
+        $projectFolder/.vscode/launch.json
+
+    Write-Host -ForegroundColor DarkGreen "✅ launch.json"
+}
+
+# SETTINGS.JSON
+_openMergeWindow `
+    $projectFolder/.conf/tmp/settings-next.json `
+    $projectFolder/.vscode/settings.json
+
+Write-Host -ForegroundColor DarkGreen "✅ settings.json"
+
+# EXTENSIONS.JSON
+# check if the template has an extensions.json file
+if (Test-Path -Path $Env:HOME/.apollox/$templateName/.vscode/extensions.json) {
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/extensions-next.json `
+        $projectFolder/.vscode/extensions.json
+
+    Write-Host -ForegroundColor DarkGreen "✅ extensions.json"
+}
+
+# ---------------------------------------------------------------------- .VSCODE
 
 # ---------------------------------------------------------------------- COMMON
 
@@ -337,10 +420,17 @@ Write-Host -ForegroundColor DarkGreen "✅ tasks.json"
 if ($templateName -ne "tcb") {
     # DOCKERFILE.DEBUG:
     # The generic template doesn't have a Dockerfile.debug
-    if ($templateName -ne "genericTemplate") {
+    if (Test-Path -Path $projectFolder/.conf/tmp/Dockerfile.debug) {
         _openMergeWindow `
             $projectFolder/.conf/tmp/Dockerfile.debug `
             $projectFolder/Dockerfile.debug
+    }
+    # DOCKERFILE.SDK:
+    # If there is a Dockerfile.sdk, also include it
+    if (Test-Path -Path $projectFolder/.conf/tmp/Dockerfile.sdk) {
+        _openMergeWindow `
+            $projectFolder/.conf/tmp/Dockerfile.sdk `
+            $projectFolder/Dockerfile.sdk
     }
     # DOCKERFILE:
     _openMergeWindow `
@@ -368,15 +458,32 @@ if ($templateName -ne "tcb") {
         mkdir $projectFolder/.doc
     }
 
-    Copy-Item `
-        $Env:HOME/.apollox/$templateName/.doc/README.md `
-        $projectFolder/.doc/README.md
+    # DOCKERIGNORE:
+    # If there is a .dockerignore file, also include it
+    if (Test-Path -Path $projectFolder/.conf/tmp/.dockerignore) {
+        _openMergeWindow `
+            $projectFolder/.conf/tmp/.dockerignore `
+            $projectFolder/.dockerignore
+    }
+
+    # TORIZONPACKAGES.JSON:
+    _openMergeWindow `
+        $projectFolder/.conf/tmp/torizonPackages.json `
+        $projectFolder/torizonPackages.json
+
 }
+
+# DOCUMENTATION
+Copy-Item `
+    $Env:HOME/.apollox/$templateName/.doc `
+    $projectFolder `
+    -Recurse -Force
 
 # GITIGNORE:
 _openMergeWindow `
     $projectFolder/.conf/tmp/.gitignore `
     $projectFolder/.gitignore
+
 
 # DEPS.JSON:
 _openMergeWindow `

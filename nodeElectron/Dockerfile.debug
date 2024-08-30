@@ -9,7 +9,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.3.0
+ARG BASE_VERSION=3.3.1
 
 ##
 # Directory of the application inside container
@@ -19,7 +19,7 @@ ARG APP_ROOT=
 ##
 # Debug port
 ##
-ARG SSH_DEBUG_PORT=
+ARG DEBUG_SSH_PORT=
 
 ##
 # Run as
@@ -33,16 +33,16 @@ ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Debug
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG SSH_DEBUG_PORT
+ARG DEBUG_SSH_PORT
 ARG APP_ROOT
 ARG SSHUSERNAME
 
 # SSH for remote debug
-EXPOSE ${SSH_DEBUG_PORT}
+EXPOSE ${DEBUG_SSH_PORT}
 EXPOSE 9229
 
 # Make sure we don't get notifications we can't answer during building.
@@ -105,15 +105,13 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 
 # install the latest node js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 RUN npm config set registry https://registry.npmjs.org/
-RUN npm install -g npm@8.10.0
 
 # ⚠️ DEBUG PURPOSES ONLY!!
-# copies RSA key to enable SSH login for user
-COPY .conf/id_rsa.pub /id_rsa.pub
+# THIS CONFIGURES AN INSECURE SSH CONNECTION
 
 # create folders needed for the different components
 # configures SSH access to the container and sets environment by default
@@ -123,12 +121,13 @@ RUN mkdir /var/run/sshd && \
     if test $SSHUSERNAME != root ; \
         then mkdir -p /home/$SSHUSERNAME/.ssh ; \
         else mkdir -p /root/.ssh ; fi && \
-    if test $SSHUSERNAME != root ; \
-        then cp /id_rsa.pub /home/$SSHUSERNAME/.ssh/authorized_keys ; \
-        else cp /id_rsa.pub /root/.ssh/authorized_keys ; fi && \
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
-    echo "Port ${SSH_DEBUG_PORT}" >> /etc/ssh/sshd_config && \
-    su -c "env" $SSHUSERNAME > /etc/environment
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+    echo "Port ${DEBUG_SSH_PORT}" >> /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config && \
+    echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config && \
+    su -c "env" $SSHUSERNAME > /etc/environment && \
+    echo "$SSHUSERNAME:" | chpasswd -e
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server

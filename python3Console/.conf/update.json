@@ -1,9 +1,5 @@
 [
     {
-        "source": ".vscode/launch.json",
-        "target": ".vscode/launch.json"
-    },
-    {
         "source": "requirements-local.txt",
         "target": "requirements-local.txt"
     },

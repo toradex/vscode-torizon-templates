@@ -7,11 +7,11 @@ services:
     image: ${LOCAL_REGISTRY}:5002/__container__-debug:${TAG}
     ports:
       # SSH debug
-      - 2231:2231
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
       # gdbserver
-      - 2232:2232
+      - ${DEBUG_PORT1}:${DEBUG_PORT1}
       # qml debug
-      - 2233:2233
+      - ${DEBUG_PORT2}:${DEBUG_PORT2}
     volumes:
       - type: bind
         source: /tmp
@@ -20,10 +20,8 @@ services:
         source: /dev
         target: /dev
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"
@@ -46,10 +44,8 @@ services:
         source: /dev
         target: /dev
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"
@@ -60,7 +56,7 @@ services:
     ]
 
   weston:
-    image: torizon/weston${GPU}:3
+    image: commontorizon/weston${GPU}:3.3.2
     environment:
       - ACCEPT_FSL_EULA=1
     # Required to get udev events from host udevd via netlink
@@ -79,12 +75,8 @@ services:
       - CAP_SYS_TTY_CONFIG
     # Add device access rights through cgroup...
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty1
-      - "c 4:1 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"

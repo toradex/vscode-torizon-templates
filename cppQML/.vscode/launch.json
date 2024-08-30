@@ -29,7 +29,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build-debug-amd64-local"
+            "preLaunchTask": "build-debug-local"
         },
         {
             "name": "Torizon AMD64",
@@ -58,8 +58,6 @@
                     "-q",
                     "-p",
                     "${config:torizon_debug_ssh_port}",
-                    "-i",
-                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",
                     "StrictHostKeyChecking=no",
                     "-o",
@@ -113,8 +111,6 @@
                     "-q",
                     "-p",
                     "${config:torizon_debug_ssh_port}",
-                    "-i",
-                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",
                     "StrictHostKeyChecking=no",
                     "-o",
@@ -168,8 +164,6 @@
                     "-q",
                     "-p",
                     "${config:torizon_debug_ssh_port}",
-                    "-i",
-                    "${workspaceFolder}/.conf/id_rsa", // ssh key path
                     "-o",
                     "StrictHostKeyChecking=no",
                     "-o",

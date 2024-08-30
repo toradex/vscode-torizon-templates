@@ -8,6 +8,10 @@
         "target": ".vscode/settings.json"
     },
     {
+        "source": ".vscode/extensions.json",
+        "target": ".vscode/extensions.json"
+    },
+    {
         "source": "global.json",
         "target": "global.json"
     },
@@ -34,9 +38,5 @@
     {
         "source": "Views/MainWindow.axaml",
         "target": "Views/MainWindow.axaml"
-    },
-    {
-        "source": ".gitignore",
-        "target": ".gitignore"
     }
 ]

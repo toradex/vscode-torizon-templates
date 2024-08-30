@@ -1,5 +1,9 @@
 [
     {
+        "source": ".vscode/launch.json",
+        "target": ".vscode/launch.json"
+    },
+    {
         "source": "__change__.Skia.Gtk/__change__.Skia.Gtk.csproj",
         "target": "$projectName.Skia.Gtk/$projectName.Skia.Gtk.csproj"
     },

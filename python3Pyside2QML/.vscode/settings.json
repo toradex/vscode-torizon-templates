@@ -5,8 +5,8 @@
   "torizon_ssh_port": "",
   "host_ip": "",
   "torizon_workspace": "${workspaceFolder}",
-  "torizon_debug_port": "6512",
   "torizon_debug_ssh_port": "6502",
+  "torizon_debug_port1": "6512",
   "torizon_debug_port2": "",
   "torizon_debug_port3": "",
   "torizon_gpu": "",
@@ -15,6 +15,7 @@
   "torizon_run_as": "torizon",
   "torizon_app_root": "/home/torizon/app",
   "tcb.packageName": "__change__",
-  "tcb.version": "3.8.1",
-  "torizon.gpuPrefixRC": false
+  "tcb.version": "3.11.0",
+  "torizon.gpuPrefixRC": true,
+  "qml-ls-client.qmllsPath": ".venv/lib/python3.11/site-packages/PySide6/qmlls"
 }

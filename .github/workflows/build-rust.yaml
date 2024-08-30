@@ -33,7 +33,7 @@ jobs:
           $env:TORIZON_ARCH = $_vendor.torizon_arch
           $env:PROJECT_ARCH = $_vendor.arch
 
-          docker run --rm --privileged torizon/binfmt
+          ./.vscode/tasks.ps1 run run-torizon-binfmt
 
           scripts/createFromTemplate.ps1 `
             $env:GITHUB_WORKSPACE/$env:PROJECT_FOLDER `

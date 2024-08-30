@@ -6,9 +6,9 @@ ARG IMAGE_ARCH=
 
 ##
 # Base container version
-# Using Slint v1.7.0 base images
+# Using Slint v1.7.2 base images
 ##
-ARG CROSS_SDK_BASE_TAG=3.3.0-bookworm-1.7.1
+ARG CROSS_SDK_BASE_TAG=3.3.1-bookworm-1.7.2
 
 ##
 # Directory of the application inside container
@@ -21,7 +21,7 @@ ARG APP_ROOT=
 ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
-FROM commontorizon/slint-sdk-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
+FROM commontorizon/slint-sdk-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} AS build
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -68,5 +68,6 @@ ENV RUST_FONTCONFIG_DLOPEN=on
 ENV SLINT_BACKEND=linuxkms-skia
 # Default to Slint running in fullscreen
 ENV SLINT_FULLSCREEN=1
+
 
 WORKDIR ${APP_ROOT}

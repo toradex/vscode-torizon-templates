@@ -2,8 +2,7 @@
 ##
 # Base container version
 ##
-ARG BASE_VERSION=4-rc
-
+ARG BASE_VERSION=3.3.1
 ##
 # Directory of the application inside container
 ##
@@ -20,7 +19,7 @@ ARG IMAGE_ARCH=
 ARG GPU=
 
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Build
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -55,7 +54,7 @@ WORKDIR ${APP_ROOT}
 RUN ant jar
 
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -121,7 +120,7 @@ COPY ./assets ${APP_ROOT}/assets
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT} ${APP_ROOT}
+COPY --from=build ${APP_ROOT} ${APP_ROOT}
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

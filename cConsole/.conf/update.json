@@ -2,5 +2,13 @@
     {
         "source": "Makefile",
         "target": "Makefile"
+    },
+    {
+        "source": ".vscode/c_properties.json",
+        "target": ".vscode/c_properties.json"
+    },
+    {
+        "source": "Dockerfile.sdk",
+        "target": "Dockerfile.sdk"
     }
 ]

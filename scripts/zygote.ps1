@@ -57,7 +57,7 @@ function help() {
     Write-Host "`t`t show the help for the tasks command"
     Write-Host ""
     Write-Host " ➡️ version | --version"
-    Write-Host "`t Show the torizoncore-dev version"
+    Write-Host "`t Show the torizon-dev version"
     Write-Host ""
 }
 
@@ -113,16 +113,16 @@ function _list_connected_devices() {
         exit 404
     }
 
-    $_connectDevs = 
+    $_connectDevs =
         Get-Content $env:HOME/.tcd/connected.json | ConvertFrom-Json -Depth 100
-    
+
     # read the target file
     $_targetDev = $null
     if (!(Test-Path $env:HOME/.tcd/target.json)) {
         Write-Host -ForegroundColor Yellow "⚠️ :: No target device set :: ⚠️"
         Write-Host ""
     } else {
-        $_targetDev = 
+        $_targetDev =
             Get-Content $env:HOME/.tcd/target.json | ConvertFrom-Json -Depth 100
     }
 
@@ -146,7 +146,7 @@ function _list_connected_devices() {
     Write-Host ""
 }
 
-function _show_target_device() {
+function _get_target() {
     # read the target file
     if (!(Test-Path $env:HOME/.tcd/target.json)) {
         Write-Host -ForegroundColor Yellow "⚠️ :: No target device set :: ⚠️"
@@ -154,9 +154,12 @@ function _show_target_device() {
         exit 404
     }
 
-    $_targetDev = 
-        Get-Content $env:HOME/.tcd/target.json | ConvertFrom-Json -Depth 100
-    
+    return Get-Content $env:HOME/.tcd/target.json | ConvertFrom-Json -Depth 100
+}
+
+function _show_target_device() {
+    $_targetDev = _get_target
+
     $_hostName = $_targetDev.Hostname
 
     Write-Host ""
@@ -174,9 +177,9 @@ function _set_target_device() {
         exit 404
     }
 
-    $_connectDevs = 
+    $_connectDevs =
         Get-Content $env:HOME/.tcd/connected.json | ConvertFrom-Json -Depth 100
-    
+
     $_id = Read-Host "Device id"
 
     if ($_id -lt 0 -or $_id -gt $_connectDevs.Count -1) {
@@ -202,16 +205,8 @@ function _target_console() {
         [string] $cmd = ""
     )
 
-    # read the target file
-    if (!(Test-Path $env:HOME/.tcd/target.json)) {
-        Write-Host -ForegroundColor Yellow "⚠️ :: No target device set :: ⚠️"
-        Write-Host ""
-        exit 404
-    }
+    $_targetDev = _get_target
 
-    $_targetDev = 
-        Get-Content $env:HOME/.tcd/target.json | ConvertFrom-Json -Depth 100
-    
     $_hostName = $_targetDev.Hostname
     $_ip = $_targetDev.Ip
     $_user = $_targetDev.Login
@@ -229,6 +224,46 @@ function _target_console() {
         -o UserKnownHostsFile=/dev/null `
         -o StrictHostKeyChecking=no `
         $_user@$_ip $cmd
+
+    Write-Host ""
+}
+
+function _target_list_builtin_dto () {
+    $_targetDev = _get_target
+
+    pwsh -nop `
+        -f $env:HOME/.apollox/scripts/targetListDeviceTreeOverlays.ps1 `
+            -login $_targetDev.Login `
+            -pass $_targetDev.__pass__ `
+            -ip $_targetDev.Ip
+}
+
+function _target_apply_dto () {
+    param(
+        [Parameter(Mandatory = $true, HelpMessage="The overlays to apply (comma separated)")]
+        [string] $overlays
+    )
+
+    Write-Host ""
+
+    $_targetDev = _get_target
+
+    pwsh -nop `
+        -f $env:HOME/.apollox/scripts/applyDeviceTreeOverlays.ps1 `
+            -login $_targetDev.Login `
+            -pass $_targetDev.__pass__ `
+            -ip $_targetDev.Ip `
+            -overlays $overlays
+}
+
+function _target_list_applied_dto () {
+    $_targetDev = _get_target
+
+    pwsh -nop `
+        -f $env:HOME/.apollox/scripts/targetListAppliedDeviceTreeOverlays.ps1 `
+            -login $_targetDev.Login `
+            -pass $_targetDev.__pass__ `
+            -ip $_targetDev.Ip
 }
 
 try {
@@ -306,7 +341,7 @@ try {
             # this is intended to be used by automation only, so vscode and the
             # telemetry are disabled
             su $env:UUSER -p `
-                -c "pwsh -nop -f $env:HOME/.apollox/scripts/createFromTemplate.ps1 ${env:HOME}/.apollox/$_templateFolder $_projectName $_containerName $_location $_templateFolder $_isVscode $_telemetryOn" 
+                -c "pwsh -nop -f $env:HOME/.apollox/scripts/createFromTemplate.ps1 ${env:HOME}/.apollox/$_templateFolder $_projectName $_containerName $_location $_templateFolder $_isVscode $_telemetryOn"
         }
         "scan" {
             switch ($args[1]) {
@@ -341,6 +376,15 @@ try {
                     Write-Host " ➡️ shutdown"
                     Write-Host "`t Shutdown the target device"
                     Write-Host ""
+                    Write-Host " ➡️ list-builtin-dto"
+                    Write-Host "`t See a list of available pre-built overlays that can be applied to the target device"
+                    Write-Host ""
+                    Write-Host " ➡️ list-applied-dto"
+                    Write-Host "`t See the list of the overlays applied to the target device"
+                    Write-Host ""
+                    Write-Host " ➡️ apply-dto"
+                    Write-Host "`t Apply a list of overlays to the target device"
+                    Write-Host ""
                     exit 0
                 }
                 "console" {
@@ -351,7 +395,7 @@ try {
                     }
                 }
                 "reboot" {
-                    try { 
+                    try {
                         _target_console "echo `${_pass} | sudo -S reboot now"
                     } catch {
                         # ignore the error
@@ -364,8 +408,34 @@ try {
                         # ignore the error
                     }
                 }
+                "list-builtin-dto" {
+                    try {
+                        _target_list_builtin_dto
+                    } catch {
+                        # ignore the error
+                    }
+                }
+                "apply-dto" {
+                    try {
+                        _target_apply_dto $args[2]
+                    } catch {
+                        # ignore the error
+                    }
+                }
+                "list-applied-dto" {
+                    try {
+                        _target_list_applied_dto
+                    } catch {
+                        # ignore the error
+                    }
+                }
                 Default {
-                    _show_target_device
+                    if ($args[1] -eq "") {
+                        _show_target_device
+                    } else {
+                        Write-Host -ForegroundColor Red "❌ :: Command not found :: ❌"
+                        exit 404
+                    }
                 }
             }
         }

@@ -8,10 +8,8 @@ services:
     environment:
       - ACCEPT_FSL_EULA=1
     ports:
-      # SSH debug
-      - 2231:2231
-      # gdbserver
-      - 2232:2232
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
+      - ${DEBUG_PORT1}:${DEBUG_PORT1}
     volumes:
       - type: bind
         source: /tmp
@@ -23,10 +21,8 @@ services:
         source: /run/udev
         target: /run/udev
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"
@@ -51,10 +47,8 @@ services:
         source: /run/udev
         target: /run/udev
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"

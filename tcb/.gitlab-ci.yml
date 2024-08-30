@@ -18,7 +18,7 @@ stages:
 tcb-build:
   stage: build
   image:
-    name: torizonextras/pwsh-gitlab:latest
+    name: commontorizon/pwsh-gitlab:next
 
   variables:
     TASKS_ITERATIVE: "False"
@@ -44,7 +44,7 @@ push-package-to-platform:
     - tcb-build
   stage: platform
   image:
-    name: torizonextras/pwsh-gitlab:latest
+    name: commontorizon/pwsh-gitlab:next
 
   variables:
     TASKS_ITERATIVE: "False"
@@ -72,7 +72,7 @@ update-fleet:
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
   image:
-    name: torizonextras/pwsh-gitlab:latest
+    name: commontorizon/pwsh-gitlab:next
 
   variables:
     TASKS_ITERATIVE: "False"

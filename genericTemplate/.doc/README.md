@@ -13,7 +13,7 @@ Scenarios that this generic Dockerfile template can be useful include:
 
 ## Using This Template
 
-As described before, this template has no debugging tasks. So, to use it, instead of pressing `F5`, to build the container and run it on the board, use the `run-container-torizon-release-<arch>` task. 
+As described before, this template has no debugging tasks. So, to use it, instead of pressing `F5`, to build the container and run it on the board, use the `run-container-torizon-release-<arch>` task.
 
 To run this task, click on the `Explorer` icon on the VSCode Activity bar (first icon on the vertical bar on the left of the VSCode screen), open the `TASK RUNNER` tab and then click on the task.
 
@@ -26,5 +26,5 @@ To keep the container running indefinely, change the `CMD []` line in the **Dock
 And then, to attach to the shell of this container, click on the Docker extension icon on the activity bar (vertical bar on the left here on VCode), right-click on this container, and then select the **Attach Shell** option.
 
 
-An important side note is that every time you run the `run-container-torizon-release-<arch>` task it creates a new container. So, if you want to keep for example the history of shell commands that you performed and some configuration change that you made, start the container through the Docker extension. 
+An important side note is that every time you run the `run-container-torizon-release-<arch>` task it creates a new container. So, if you want to keep for example the history of shell commands that you performed and some configuration change that you made, start the container through the Docker extension.
 To do it, perform the same steps as for **Attach Shell**, but select the **Start** option instead. After that you can  **Attach Shell** if you want, in the same way as described defore.

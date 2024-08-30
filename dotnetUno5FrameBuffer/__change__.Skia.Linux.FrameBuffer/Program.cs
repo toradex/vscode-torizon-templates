@@ -1,7 +1,7 @@
 using Microsoft.UI.Xaml;
-using System;
 using Uno.UI.Runtime.Skia.Linux.FrameBuffer;
 using Windows.UI.Core;
+using Windows.ApplicationModel.Core;
 
 namespace __change__.Skia.Framebuffer;
 
@@ -38,6 +38,28 @@ public class Program
                             Application.Current.Exit();
                         }
                     };
+
+                    // also handle the console case
+                    // To close the application press F12 to the debug terminal
+                    // attached to the application stdout and press F12
+                    new Thread(async () =>
+                    {
+                        var canExit = false;
+                        while (!canExit)
+                        {
+                            var key = Console.ReadKey(true);
+                            if (key.Key == ConsoleKey.F12)
+                            {
+                                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                                    CoreDispatcherPriority.Normal,
+                                    () => {
+                                        Application.Current.Exit();
+                                    }
+                                );
+                                canExit = true;
+                            }
+                        }
+                    }).Start();
                 }
 
                 return new AppHead();

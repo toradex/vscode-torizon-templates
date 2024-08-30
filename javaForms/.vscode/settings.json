@@ -5,8 +5,8 @@
   "torizon_ssh_port": "",
   "host_ip": "192.168.15.98",
   "torizon_workspace": "${workspaceFolder}",
-  "torizon_debug_port": "2235",
   "torizon_debug_ssh_port": "2234",
+  "torizon_debug_port1": "2235",
   "torizon_debug_port2": "",
   "torizon_debug_port3": "",
   "torizon_gpu": "",
@@ -15,7 +15,7 @@
   "torizon_run_as": "torizon",
   "torizon_app_root": "/home/torizon/app",
   "tcb.packageName": "__change__",
-  "tcb.version": "3.8.1",
+  "tcb.version": "3.11.0",
   "torizon.gpuPrefixRC": true,
   "java.project.referencedLibraries": [
     "libs/**/*.jar"

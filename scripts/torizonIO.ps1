@@ -8,7 +8,7 @@
 param()
 
 # FIXME: ONLY CHANGE THIS WHEN UPDATING THE https://www.powershellgallery.com/packages/TorizonPlatformAPI
-$_VERSION = "0.1.0"
+$_VERSION = "0.2.2"
 
 $ErrorActionPreference = "Stop"
 
@@ -151,6 +151,37 @@ function _resolvePlatformMetadata ([object] $targets, [string] $targetName) {
     return $_ret
 }
 
+function package-new ([string] $packageName, [string] $dockerComposePath) {
+    # make sure that the file exists
+    if (-not (Test-Path $dockerComposePath)) {
+        Write-Host -ForegroundColor Red "File $dockerComposePath not found"
+        exit 404
+    }
+
+    # check if the package already exists
+    # if it exists, increment the version
+    $_ver = package-latest-version $packageName
+    if (
+        ($null -ne $_ver) -and ([int]$_ver -gt 0)
+    ) {
+        $_ver = [int]$_ver +1
+    } else {
+        $_ver = 1
+    }
+
+    $_file = Get-Item $dockerComposePath
+
+    $_ret = Submit-TorizonPlatformAPIPackages `
+                -Name $packageName `
+                -Version $_ver `
+                -TargetFormat "BINARY" `
+                -ContentLength $_file.Length `
+                -Body $_file `
+                -HardwareId "docker-compose"
+
+    return $_ret.hashes.sha256
+}
+
 function package-latest-hash ([string] $packageName) {
     $_targetName = $packageName
     $_targets = `
@@ -212,7 +243,7 @@ $_third = $args[2]
 try {
     # is duple
     if (Get-Command "$_cmd-$_sub" -ErrorAction SilentlyContinue) {
-        $_args = '"' + ($args[3..$args.Length] -join '" "') + '"'
+        $_args = '"' + ($args[2..$args.Length] -join '" "') + '"'
 
         (Invoke-Expression "$_cmd-$_sub $_args")
     # is triple
@@ -226,6 +257,8 @@ try {
         Write-Host ""
         Write-Host "usage:"
         Write-Host ""
+        Write-Host "    Push a new 'docker-compose' package:"
+        Write-Host "        package new <package name> <docker-compose.yml path>"
         Write-Host "    Get the latest hash pushed by package name:"
         Write-Host "        package latest hash <package name>"
         Write-Host "    Get the latest version pushed by package name:"

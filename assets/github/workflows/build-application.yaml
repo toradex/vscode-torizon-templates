@@ -6,8 +6,15 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     name: Build & Deploy
+    container:
+      image: commontorizon/torizon-dev:next
     steps:
       - uses: actions/checkout@v3
+
+      - name: Get Host Absolute Workspace Path
+        run: |
+          echo "${{ github.workspace }}" >> abs-path
+          cat abs-path
 
       - name: Initial Setup
         shell: pwsh
@@ -42,6 +49,7 @@ jobs:
           PLATFORM_CLIENT_ID: ${{ secrets.PLATFORM_CLIENT_ID }}
           PLATFORM_CLIENT_SECRET: ${{ secrets.PLATFORM_CLIENT_SECRET }}
         run: |
+          ./vscode/tasks.ps1 run docker-login
           ./.vscode/tasks.ps1 run run-torizon-binfmt
           ./.vscode/tasks.ps1 run tcb-platform-publish
 

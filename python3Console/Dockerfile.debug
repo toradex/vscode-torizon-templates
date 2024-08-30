@@ -7,12 +7,12 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.3.0-bookworm
+ARG BASE_VERSION=3.3.1-bookworm
 
 ##
 # Debug port
 ##
-ARG SSH_DEBUG_PORT=
+ARG DEBUG_SSH_PORT=
 
 ##
 # Run as
@@ -26,15 +26,15 @@ ARG APP_ROOT=
 
 
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Debug
+    commontorizon/debian:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
-ARG SSH_DEBUG_PORT
+ARG DEBUG_SSH_PORT
 ARG SSHUSERNAME
 ARG APP_ROOT
 
 # SSH for remote debug
-EXPOSE ${SSH_DEBUG_PORT}
+EXPOSE ${DEBUG_SSH_PORT}
 EXPOSE 6512
 
 # Make sure we don't get notifications we can't answer during building.
@@ -74,11 +74,11 @@ RUN python3 -m venv ${APP_ROOT}/.venv --system-site-packages
 COPY requirements-debug.txt /requirements-debug.txt
 RUN . ${APP_ROOT}/.venv/bin/activate && \
     pip3 install --upgrade pip && pip3 install -r requirements-debug.txt && \
-    rm requirements-debug.txt
+    rm requirements-debug.txt && \
+    chown -R ${SSHUSERNAME}:${SSHUSERNAME} ${APP_ROOT}
 
 # ⚠️ DEBUG PURPOSES ONLY!!
-# copies RSA key to enable SSH login for user
-COPY .conf/id_rsa.pub /id_rsa.pub
+# THIS CONFIGURES AN INSECURE SSH CONNECTION
 
 # create folders needed for the different components
 # configures SSH access to the container and sets environment by default
@@ -88,19 +88,15 @@ RUN mkdir /var/run/sshd && \
     if test $SSHUSERNAME != root ; \
         then mkdir -p /home/$SSHUSERNAME/.ssh ; \
         else mkdir -p /root/.ssh ; fi && \
-    if test $SSHUSERNAME != root ; \
-        then cp /id_rsa.pub /home/$SSHUSERNAME/.ssh/authorized_keys ; \
-        else cp /id_rsa.pub /root/.ssh/authorized_keys ; fi && \
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
-    echo "Port ${SSH_DEBUG_PORT}" >> /etc/ssh/sshd_config && \
-    su -c "env" $SSHUSERNAME > /etc/environment
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+    echo "Port ${DEBUG_SSH_PORT}" >> /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config && \
+    echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config && \
+    su -c "env" $SSHUSERNAME > /etc/environment && \
+    echo "$SSHUSERNAME:" | chpasswd -e
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server
-
-# Copy the application source code in the workspace to the $APP_ROOT directory
-# path inside the container, where $APP_ROOT is the torizon_app_root
-# configuration defined in settings.json
-COPY --chown=$SSHUSERNAME:$SSHUSERNAME ./src ${APP_ROOT}/src
 
 CMD [ "/usr/sbin/sshd", "-D" ]

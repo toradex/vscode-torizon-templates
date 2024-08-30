@@ -146,24 +146,33 @@ Copy-Item "$templateFolder/../scripts/checkCIEnv.ps1" "$location/.conf"
 Copy-Item "$templateFolder/../scripts/validateDepsRunning.ps1" "$location/.conf"
 
 
-$_torPackagesJson = Get-Content -Path "$templateFolder/../assets/json/torizonPackages.json" | ConvertFrom-Json
+$templateName = Split-Path -Path $templateFolder -Leaf
+# tcb does not have the Dockerfile and Dockerfile.debug, and therefore torizonPackages.json
+if ($templateName -ne "tcb") {
+    $_torPackagesJson = Get-Content -Path "$templateFolder/../assets/json/torizonPackages.json" | ConvertFrom-Json
 
-# Check also the build part of Dockerfile, for the presence of torizon_packages_build
-$dockerfileLines = Get-Content -Path "$templateFolder/Dockerfile"
+    # Check also the build part of Dockerfile, for the presence of torizon_packages_build
+    $dockerfileLines = Get-Content -Path "$templateFolder/Dockerfile"
 
-$buildDepDockerfile = $false
-foreach ($line in $dockerfileLines) {
-    if ($line.Contains("torizon_packages_build")) {
-        $buildDepDockerfile = $true
-        break
+    $buildDepDockerfile = $false
+    foreach ($line in $dockerfileLines) {
+        if ($line.Contains("torizon_packages_build")) {
+            $buildDepDockerfile = $true
+            break
+        }
     }
+
+    if ((Test-Path -Path "$templateFolder/Dockerfile.sdk") -Or ($buildDepDockerfile)) {
+        $_torPackagesJson | Add-Member -NotePropertyName buildDeps -NotePropertyValue @()
+    }
+    # Generic template does not have Dockerfile.debug
+    if (!(Test-Path -Path "$templateFolder/Dockerfile.debug") ) {
+        $_torPackagesJson.PSObject.Properties.Remove('devRuntimeDeps')
+    }
+    # Save the modified JSON object to a file
+    Set-Content -Path "$location/torizonPackages.json" -Value ($_torPackagesJson | ConvertTo-Json) -Encoding UTF8
 }
 
-if ((Test-Path -Path "$templateFolder/Dockerfile.sdk") -Or ($buildDepDockerfile)) {
-    $_torPackagesJson | Add-Member -NotePropertyName buildDeps -NotePropertyValue @()
-}
-# Save the modified JSON object to a file
-Set-Content -Path "$location/torizonPackages.json" -Value ($_torPackagesJson | ConvertTo-Json) -Encoding UTF8
 
 # Check if there are scripts defined in the .conf/deps.json of the template and, if so,
 # copy them to the .conf of the project
@@ -229,6 +238,7 @@ Get-ChildItem -Force -File -Recurse * | ForEach-Object {
     $mimeType = file --mime-encoding $a
 
     if (-not $mimeType.Contains("binary")) {
+        # FIXME: we are not using key pair anymore, maintaining this for compatibility
         # id_rsa is a special case, is ascii but we do not have permissions
         if (-not $a.Contains("id_rsa")) {
             if ($_ -isnot [System.IO.DirectoryInfo]) {

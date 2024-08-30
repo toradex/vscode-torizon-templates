@@ -7,12 +7,12 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.3.0
+ARG BASE_VERSION=3.3.1
 
 ##
 # Debug port
 ##
-ARG SSH_DEBUG_PORT=
+ARG DEBUG_SSH_PORT=
 
 ##
 # Run as
@@ -31,16 +31,16 @@ ARG GPU=
 
 
 FROM --platform=linux/${IMAGE_ARCH} \
-     torizon/qt5-wayland${GPU}:${BASE_VERSION} AS Debug
+     commontorizon/qt5-wayland${GPU}:${BASE_VERSION} AS debug
 
 ARG IMAGE_ARCH
 ARG GPU
-ARG SSH_DEBUG_PORT
+ARG DEBUG_SSH_PORT
 ARG SSHUSERNAME
 ARG APP_ROOT
 
 # SSH for remote debug
-EXPOSE ${SSH_DEBUG_PORT}
+EXPOSE ${DEBUG_SSH_PORT}
 EXPOSE 6512
 
 ENV QT_QPA_PLATFORM="wayland"
@@ -88,6 +88,17 @@ RUN apt-get -q -y update && \
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# edge case for amd64
+# this prevent the error: texture atlas allocation failed
+RUN apt-get -q -y update && \
+    if [ "${IMAGE_ARCH}" = "amd64" ]; then \
+        apt-get -q -y install \
+        libqt5quick5 \
+    ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
 # automate for torizonPackages.json
 RUN apt-get -q -y update && \
     apt-get -q -y install \
@@ -109,8 +120,7 @@ RUN . ${APP_ROOT}/.venv/bin/activate && \
     rm requirements-debug.txt
 
 # ⚠️ DEBUG PURPOSES ONLY!!
-# copies RSA key to enable SSH login for user
-COPY .conf/id_rsa.pub /id_rsa.pub
+# THIS CONFIGURES AN INSECURE SSH CONNECTION
 
 # create folders needed for the different components
 # configures SSH access to the container and sets environment by default
@@ -120,12 +130,13 @@ RUN mkdir /var/run/sshd && \
     if test $SSHUSERNAME != root ; \
         then mkdir -p /home/$SSHUSERNAME/.ssh ; \
         else mkdir -p /root/.ssh ; fi && \
-    if test $SSHUSERNAME != root ; \
-        then cp /id_rsa.pub /home/$SSHUSERNAME/.ssh/authorized_keys ; \
-        else cp /id_rsa.pub /root/.ssh/authorized_keys ; fi && \
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
-    echo "Port ${SSH_DEBUG_PORT}" >> /etc/ssh/sshd_config && \
-    su -c "env" $SSHUSERNAME > /etc/environment
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
+    echo "Port ${DEBUG_SSH_PORT}" >> /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config && \
+    echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config && \
+    su -c "env" $SSHUSERNAME > /etc/environment && \
+    echo "$SSHUSERNAME:" | chpasswd -e
 
 RUN rm -r /etc/ssh/ssh*key && \
     dpkg-reconfigure openssh-server

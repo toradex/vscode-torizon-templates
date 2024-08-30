@@ -3,16 +3,18 @@
     "tasks": [
         {
             "label": "use-release-task-message",
+            "type": "shell",
             "command": "echo  'This template has no debug, use the run-container-torizon-release-<arch> task (TASK RUNNER tab) to build the container and run it on the board'",
+            "icon": {
+                "id": "layers",
+                "color": "terminal.ansiCyan"
+            },
             "presentation": {
                 "echo": false,
                 "reveal": "always",
                 "focus": true,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": true
+                "panel": "dedicated"
             },
-            "type": "shell"
         },
     ],
 "inputs": []
