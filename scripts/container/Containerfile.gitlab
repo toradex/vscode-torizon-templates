@@ -1,6 +1,6 @@
 ARG BRANCH=dev
 
-FROM torizonextras/torizoncore-dev-tasks:${BRANCH}
+FROM commontorizon/torizon-dev-tasks:${BRANCH}
 
 ARG BRANCH
 

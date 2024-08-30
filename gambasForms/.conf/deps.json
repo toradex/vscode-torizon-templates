@@ -1,6 +1,7 @@
 {
     "packages": [
         "sshpass",
-        "gambas3"
+        "gambas3",
+        "gambas3-gb-gtk3-wayland"
     ]
 }

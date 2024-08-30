@@ -16,26 +16,46 @@
             ],
             "problemMatcher": ["$tsc"],
             "dependsOrder": "sequence",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiYellow"
-            },
             "dependsOn":[
                 "npm-install"
-            ]
+            ],
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
         },
         {
             "label": "npm-install",
             "detail": "Install the node packages dependencies",
             "type": "shell",
+            "command": "npm",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "command": "[ ! -d 'node_modules' ] && npm install || true",
+            "args": [
+                "install"
+            ],
             "dependsOrder": "sequence",
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
             "icon": {
-                "id": "flame",
+                "id": "desktop-download",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -52,9 +72,19 @@
                 "output-arm64"
             ],
             "dependsOrder": "sequence",
+            "dependsOn":[
+                "npm-install"
+            ],
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -64,8 +94,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
@@ -73,12 +101,11 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root} >out.log 2>err.log &"
+                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port1} ${config:torizon_app_root} >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm",
-                "npm-install",
                 "build-typescript-arm",
                 "copy-docker-compose",
                 "pre-cleanup",
@@ -91,8 +118,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -109,9 +143,19 @@
                 "output-arm64"
             ],
             "dependsOrder": "sequence",
+            "dependsOn":[
+                "npm-install"
+            ],
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -121,8 +165,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
@@ -130,12 +172,11 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root} >out.log 2>err.log &"
+                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port1} ${config:torizon_app_root} >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-arm64",
-                "npm-install",
                 "build-typescript-arm64",
                 "copy-docker-compose",
                 "pre-cleanup",
@@ -148,8 +189,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -166,9 +214,19 @@
                 "output-amd64"
             ],
             "dependsOrder": "sequence",
+            "dependsOn":[
+                "npm-install"
+            ],
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -178,8 +236,6 @@
             "command": "ssh",
             "type": "process",
             "args": [
-                "-i",
-                "${workspaceFolder}/.conf/id_rsa",
                 "-o",
                 "UserKnownHostsFile=/dev/null",
                 "-o",
@@ -187,12 +243,11 @@
                 "-p",
                 "${config:torizon_debug_ssh_port}",
                 "${config:torizon_run_as}@${config:torizon_ip}",
-                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port} ${config:torizon_app_root} >out.log 2>err.log &"
+                "node --inspect-brk=0.0.0.0:${config:torizon_debug_port1} ${config:torizon_app_root} >out.log 2>err.log &"
             ],
             "dependsOn": [
                 "validate-settings",
                 "validate-arch-amd64",
-                "npm-install",
                 "build-typescript-amd64",
                 "copy-docker-compose",
                 "pre-cleanup",
@@ -205,8 +260,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         }
     ],

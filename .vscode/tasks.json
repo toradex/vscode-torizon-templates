@@ -19,6 +19,26 @@
             "group": "build"
         },
         {
+            "label": "check-eof-new-line",
+            "command": "pwsh",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "-nop",
+                "-f",
+                "./scripts/validNewLine.ps1"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "build"
+        },
+        {
             "label": "install-cspell",
             "command": "npm",
             "type": "shell",
@@ -69,7 +89,7 @@
             "type": "shell",
             "command": "git",
             "args": [
-                "checkout", 
+                "checkout",
                 "bullseye",
                 "&&",
                 "git",

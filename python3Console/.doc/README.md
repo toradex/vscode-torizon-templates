@@ -24,6 +24,8 @@ The source code of the template is a simple Hello World (Hello Torizon, actually
 
 ## Create a Python Virtual Environment
 
+> ⚠️ **WARNING:** When the template workspace opens in VSCode, a task called **create-venv** which creates a virtual environment at **.venv** is executed (also the **host-install-pip-requirements** is executed in sequence). However, if you want or need to recreate the virtual environment, remove the **.venv** folder and create a new one also in a folder called **.venv**, either using the **create-venv** task or the through steps described below. ⚠️
+
 How to create a virtual environment on this template:
 
  - On the terminal, run the command:

@@ -25,10 +25,16 @@ Write-Host ""
 
 # connect to the device
 try {
+    $_connectDevs = New-Object System.Collections.ArrayList
+
     # first check if the device is already connected
     if (Test-Path $env:HOME/.tcd/connected.json) {
-        $_connectDevs = Get-Content $env:HOME/.tcd/connected.json `
+        $_jsonArray = Get-Content $env:HOME/.tcd/connected.json `
             | ConvertFrom-Json -Depth 100
+
+        foreach ($_dev in $_jsonArray) {
+            $_connectDevs.Add($_dev) | Out-Null
+        }
     } else {
         $_connectDevs = @()
     }
@@ -97,12 +103,12 @@ try {
     } @($id, $login, $pass, $(GetHostIp)) `
         | ConvertFrom-Json -Depth 100
 
-    
+
     # add the __pass__ member to the object
     $_dev | Add-Member -MemberType NoteProperty `
         -Name "__pass__" -Value $pass
 
-    $_connectDevs += $_dev
+    $_connectDevs.Add($_dev) | Out-Null
     $_connectDevs | ConvertTo-Json -AsArray -Depth 100 `
         | Out-File $env:HOME/.tcd/connected.json
 

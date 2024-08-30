@@ -9,12 +9,19 @@
               "${command:o.pickProjectAndStart}"
             ],
             "problemMatcher": "$msCompile",
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
             "icon": {
                 "id": "selection",
                 "color": "terminal.ansiYellow"
             },
-            "runOptions": {
-                "runOn": "folderOpen"
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -28,6 +35,13 @@
             "icon": {
                 "id": "loading",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -35,14 +49,6 @@
             "detail": "This task configure the __change__.Skia.Linux.FrameBuffer project to\nhave remote XAML hot reload. It's good run it everytime you\nopen the project.",
             "command": "pwsh",
             "type": "process",
-            "presentation": {
-                "echo": false,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -55,7 +61,14 @@
             "dependsOrder": "sequence",
             "icon": {
                 "id": "debug-disconnect",
-                "color": "terminal.ansiCyan"
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
           },
         {
@@ -71,8 +84,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -89,8 +109,45 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "package",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "publish-debug-amd64",
+            "detail": "",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Debug",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-r",
+                "linux-x64",
+                "--no-self-contained"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -112,18 +169,71 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "deploy-torizon-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "rsync",
+            "type": "process",
+            "args": [
+                "-P",
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net8.0/linux-x64/publish/",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
+            ],
+            "dependsOn": [
+                "validate-settings",
+                "validate-arch-amd64",
+                "copy-docker-compose",
+                "pre-cleanup",
+                "publish-debug-amd64",
+                "build-container-torizon-debug-amd64",
+                "push-container-torizon-debug-amd64",
+                "pull-container-torizon-debug-amd64",
+                "run-container-torizon-debug-amd64",
+                "wait-a-bit",
+                "pos-cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "debug-alt",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
             "label": "deploy-torizon-arm64",
             "detail": "",
             "hide": true,
-            "command": "sleep",
+            "command": "rsync",
             "type": "process",
             "args": [
-                "1"
+                "-P",
+                "-av",
+                "-e",
+                "ssh -p ${config:torizon_debug_ssh_port} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/bin/Debug/net8.0/linux-arm64/publish/",
+                "${config:torizon_run_as}@${config:torizon_ip}:${config:torizon_app_root}"
             ],
             "dependsOn": [
                 "validate-settings",
@@ -134,13 +244,22 @@
                 "build-container-torizon-debug-arm64",
                 "push-container-torizon-debug-arm64",
                 "pull-container-torizon-debug-arm64",
-                "run-container-torizon-debug-arm64"
+                "run-container-torizon-debug-arm64",
+                "wait-a-bit",
+                "pos-cleanup"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -150,17 +269,7 @@
             "command": "ssh",
             "type": "process",
             "isBackground": true,
-            "presentation": {
-              "echo": true,
-              "reveal": "always",
-              "focus": false,
-              "panel": "dedicated",
-              "showReuseMessage": true,
-              "clear": true
-            },
             "args": [
-              "-i",
-              "${workspaceFolder}/.conf/id_rsa",
               "-p",
               "${config:torizon_debug_ssh_port}",
               "-o",
@@ -191,8 +300,64 @@
               }
             },
             "icon": {
-              "id": "flame",
-              "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "run-torizon-amd64-debug",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "isBackground": true,
+            "args": [
+              "-p",
+              "${config:torizon_debug_ssh_port}",
+              "-o",
+              "UserKnownHostsFile=/dev/null",
+              "-o",
+              "StrictHostKeyChecking=no",
+              "-ttt",
+              "${config:torizon_run_as}@${config:torizon_ip}",
+              "cd ${config:torizon_app_root} && DOTNET_MODIFIABLE_ASSEMBLIES=debug ./__change__.Skia.Linux.FrameBuffer -debug"
+            ],
+            "dependsOn": [
+              "deploy-torizon-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": {
+              "pattern": {
+                "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                "file": 1,
+                "location": 2,
+                "severity": 3,
+                "code": 4,
+                "message": 5
+              },
+              "background": {
+                "activeOnStart": true,
+                "beginsPattern": "^\\s*",
+                "endsPattern": "^\\s*"
+              }
+            },
+            "icon": {
+                "id": "debug-alt",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -202,17 +367,7 @@
             "command": "ssh",
             "type": "process",
             "isBackground": true,
-            "presentation": {
-              "echo": true,
-              "reveal": "always",
-              "focus": false,
-              "panel": "dedicated",
-              "showReuseMessage": true,
-              "clear": true
-            },
             "args": [
-              "-i",
-              "${workspaceFolder}/.conf/id_rsa",
               "-p",
               "${config:torizon_debug_ssh_port}",
               "-o",
@@ -243,12 +398,19 @@
               }
             },
             "icon": {
-              "id": "flame",
-              "color": "terminal.ansiYellow"
+                "id": "debug-alt",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
-            "label": "stop-torizon-arm64",
+            "label": "stop-torizon-and-clean-framebuffer",
             "detail": "",
             "hide": true,
             "command": "sshpass",
@@ -264,20 +426,27 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "dd if=/dev/zero count=1200 bs=1024 > /dev/fb0"
+                "cat /dev/zero > /dev/fb0 | true"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "stop-container-torizon-arm64"
+                "stop-containers"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
-            "label": "stop-container-torizon-arm64",
+            "label": "stop-containers",
             "detail": "",
             "hide": true,
             "command": "sshpass",
@@ -293,13 +462,20 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "LOCAL_REGISTRY=${config:host_ip} TAG=arm64 docker-compose down --remove-orphans"
+                "docker-compose down --remove-orphans"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -319,8 +495,143 @@
             "icon": {
                 "id": "trash",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
+        {
+            "label": "clean-debug-amd64",
+            "detail": "dotnet clean command for cleaning the application build for the x86-64 target",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/__change__.Skia.Linux.FrameBuffer/__change__.Skia.Linux.FrameBuffer.csproj",
+                "-c",
+                "Debug",
+                "-r",
+                "linux-x64"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "launch-torizon-debug-hot-reload",
+            "detail": "",
+            "hide": true,
+            "command": "ssh",
+            "type": "process",
+            "isBackground": false,
+            "args": [
+                "-p",
+                "${config:torizon_debug_ssh_port}",
+                "-o",
+                "UserKnownHostsFile=/dev/null",
+                "-o",
+                "StrictHostKeyChecking=no",
+                "-ttt",
+                "${config:torizon_run_as}@${config:torizon_ip}",
+                "cd ${config:torizon_app_root} && DOTNET_MODIFIABLE_ASSEMBLIES=debug ./__change__.Skia.Linux.FrameBuffer",
+                "||",
+                "true"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 3,
+                    "code": 4,
+                    "message": 5
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^\\s*",
+                    "endsPattern": "^\\s*"
+                }
+            },
+            "icon": {
+                "id": "vm-connect",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "launch-hot-reload-amd64",
+            "detail": "This task will launch the application on the board, without\nattach the debugger, this will allow the application to\nuse the Uno Platform hot reload feature.",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "✅"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "config-hot-reload-address",
+                "deploy-torizon-amd64",
+                "launch-torizon-debug-hot-reload",
+                "stop-torizon-and-clean-framebuffer"
+            ],
+            "icon": {
+                "id": "vm-connect",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "launch-hot-reload-arm64",
+            "detail": "This task will launch the application on the board, without\nattach the debugger, this will allow the application to\nuse the Uno Platform hot reload feature.",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "✅"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "config-hot-reload-address",
+                "deploy-torizon-arm64",
+                "launch-torizon-debug-hot-reload",
+                "stop-torizon-and-clean-framebuffer"
+            ],
+            "icon": {
+                "id": "vm-connect",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        }
     ],
 "inputs": []
 }

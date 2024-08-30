@@ -1,8 +1,7 @@
-ARG BASE_VERSION=3.3.0-bookworm
+ARG BASE_VERSION=3.3.1-bookworm
 
 ##
 # Board architecture
-# arm or arm64
 ##
 ARG IMAGE_ARCH=
 
@@ -17,7 +16,7 @@ ARG GPU=
 ARG APP_ROOT=
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/debian:${BASE_VERSION}
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/debian:${BASE_VERSION}
 
 ARG IMAGE_ARCH
 ARG GPU

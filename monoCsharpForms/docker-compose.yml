@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5002/__container__:${TAG}
     ports:
-      - 2227:2227
-      - 55555:55555
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
+      - ${DEBUG_PORT1}:${DEBUG_PORT1}
     volumes:
       - type: bind
         source: /tmp
@@ -15,9 +15,9 @@ services:
       - type: bind
         source: /dev
         target: /dev
-    depends_on: [
-      weston
-    ]
+    depends_on:
+      xfce:
+        condition: service_healthy
 
   __container__:
     build:
@@ -31,16 +31,15 @@ services:
       - type: bind
         source: /dev
         target: /dev
-    depends_on: [
-      weston
-    ]
+    depends_on:
+      xfce:
+        condition: service_healthy
 
-  weston:
-    image: commontorizon/weston${GPU}:4-rc
-    environment:
-      - ACCEPT_FSL_EULA=1
+  xfce:
+    image: commontorizon/xfce:3.3.1
     # Required to get udev events from host udevd via netlink
     network_mode: host
+    privileged: true
     volumes:
       - type: bind
         source: /tmp
@@ -51,18 +50,19 @@ services:
       - type: bind
         source: /run/udev
         target: /run/udev
+      - type: bind
+        source: /run/user
+        target: /run/user
     cap_add:
       - CAP_SYS_TTY_CONFIG
     # Add device access rights through cgroup...
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty1
-      - "c 4:1 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"
       # ... for /dev/dri devices
       - "c 226:* rmw"
+      # ... for /dev/fb0
+      - "c 29:* rmw"

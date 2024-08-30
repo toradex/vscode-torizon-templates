@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.3.0
+ARG BASE_VERSION=3.3.1
 
 ##
 # Directory of the application inside container
@@ -24,7 +24,7 @@ ARG GPU=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Build
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -68,19 +68,18 @@ RUN apt-get -q -y update && \
     libasound2 \
     curl \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    # __torizon_packages_dev_start__
-    # __torizon_packages_dev_end__
+    # __torizon_packages_build_start__
+    # __torizon_packages_build_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
 # install the latest node js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 RUN npm config set registry https://registry.npmjs.org/
-RUN npm install -g npm@8.10.0
 
 COPY . ${APP_ROOT}
 WORKDIR ${APP_ROOT}
@@ -115,7 +114,7 @@ RUN  if [ "${GPU}" = "-vivante" ] || [ "${GPU}" = "-imx8" ]; then \
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+    commontorizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -164,13 +163,13 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 
 # install the latest node js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/out/__change__-linux-${IMAGE_ARCH} ${APP_ROOT}
+COPY --from=build ${APP_ROOT}/out/__change__-linux-${IMAGE_ARCH} ${APP_ROOT}
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

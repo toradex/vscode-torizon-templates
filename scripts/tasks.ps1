@@ -68,9 +68,16 @@ if ($env:TASKS_USE_PWSH_INSTEAD_BASH -eq $true) {
     $_usePwshInsteadBash = $false;
 }
 
+if (($null -eq $env:TASKS_CUSTOM_SETTINGS_JSON) -or ($env:TASKS_CUSTOM_SETTINGS_JSON -eq "settings.json")) {
+    $env:TASKS_CUSTOM_SETTINGS_JSON = "settings.json"
+} else {
+    Write-Host "ℹ️ :: CUSTOM SETTINGS :: ℹ️"
+    Write-Host "Using custom settings file: $env:TASKS_CUSTOM_SETTINGS_JSON"
+}
+
 try {
     $tasksFileContent = Get-Content $PSScriptRoot/tasks.json
-    $settingsFileContent = Get-Content $PSScriptRoot/settings.json
+    $settingsFileContent = Get-Content $PSScriptRoot/$env:TASKS_CUSTOM_SETTINGS_JSON
     $json = $tasksFileContent | ConvertFrom-Json
     $settings = $settingsFileContent | ConvertFrom-Json
     $inputs = $json.inputs
@@ -215,7 +222,7 @@ function checkTorizonInputs ([System.Collections.ArrayList] $list) {
             foreach ($matchValue in $maches) {
                 $matchValue = $matchValue.Value
                 $item = $item.Replace(
-                    "`${command:torizon_${matchValue}}", 
+                    "`${command:torizon_${matchValue}}",
                     "`${config:torizon_${matchValue}}"
                 )
             }
@@ -242,7 +249,7 @@ function checkDockerInputs ([System.Collections.ArrayList] $list) {
             foreach ($matchValue in $maches) {
                 $matchValue = $matchValue.Value
                 $item = $item.Replace(
-                    "`${command:docker_${matchValue}}", 
+                    "`${command:docker_${matchValue}}",
                     "`${config:docker_${matchValue}}"
                 )
             }
@@ -260,6 +267,7 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
     foreach ($item in $list) {
         if ($item.Contains("`${command:tcb")) {
 
+            # this is re-implementation from the TCB extension
             if ($item.Contains("tcb.getNextPackageVersion")) {
                 $_ret =  (
                     ./.conf/torizonIO.ps1 `
@@ -273,9 +281,42 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
                 }
 
                 $item = $item.Replace(
-                    "`${command:tcb.getNextPackageVersion}", 
+                    "`${command:tcb.getNextPackageVersion}",
                     "$_next"
                 )
+            }
+
+            # this is re-implementation from the TCB extension
+            elseif ($item.Contains("tcb.outputTEZIFolder")) {
+                # load the tcbuild.yaml
+                $_tcbuild = Get-Content `
+                    $(Join-Path $Global:workspaceFolder "tcbuild.yaml") -Raw `
+                        | out-string
+
+                # check if the yaml module is installed
+                Write-Host "Importing powershell-yaml ..."
+                if (-not (Get-Module -ListAvailable -Name "powershell-yaml")) {
+                    Write-Host -ForegroundColor Yellow "Installing powershell-yaml ..."
+                    Install-Module -Name "powershell-yaml" -Confirm:$false -Force
+                }
+
+                $_yamlObj = ConvertFrom-Yaml $_tcbuild -AllDocuments -Ordered
+
+                write-host $($_yamlObj.GetType())
+
+                if (
+                    ($null -ne $_yamlObj) -and
+                    ($null -ne $_yamlObj.output) -and
+                    ($null -ne $_yamlObj.output."easy-installer") -and
+                    ($null -ne $_yamlObj.output."easy-installer".local)
+                ) {
+                    $item = $item.Replace(
+                        "`${command:tcb.outputTEZIFolder}",
+                        $_yamlObj.output."easy-installer".local
+                    )
+                } else {
+                    throw "Error reading tcbuild.yaml, check if there is an output.easy.installer.local"
+                }
             }
 
             $maches = ($item |
@@ -287,7 +328,7 @@ function checkTCBInputs ([System.Collections.ArrayList] $list) {
             foreach ($matchValue in $maches) {
                 $matchValue = $matchValue.Value
                 $item = $item.Replace(
-                    "`${command:tcb.${matchValue}}", 
+                    "`${command:tcb.${matchValue}}",
                     "`${config:tcb.${matchValue}}"
                 )
             }
@@ -304,7 +345,8 @@ function _containsSpecialChars ([String] $str) {
     $ret = $false
 
     if (
-        $str -match "[^a-zA-Z0-9\.\-_]"
+        # do not match pipes like | >
+        $str -match "[^a-zA-Z0-9\.\-_|>]"
     ) {
         $ret = $true
     }
@@ -379,7 +421,7 @@ function bashVariables ([System.Collections.ArrayList] $list) {
             # then we continue because these are meant to be expanded
             if (
                 $item.Contains("`$global:") -or
-                $item.Contains("`$env:") -or 
+                $item.Contains("`$env:") -or
                 $item.Contains("`${")
             ) {
                 [void]$ret.Add($item)
@@ -544,7 +586,7 @@ function runTask () {
                         )
                     } else {
                         if (
-                            $null -eq 
+                            $null -eq
                             [System.Environment]::GetEnvironmentVariable($env)
                         ) {
                             $_env = _parseEnvs $env $task
@@ -648,15 +690,30 @@ function getCliInputs () {
 # main()
 # set the relative workspaceFolder (following the pattern that VS Code expects)
 if (
-    ($null -eq $env:APOLLOX_WORKSPACE) -and 
-    ($env:APOLLOX_CONTAINER -ne 1)
+    ($null -eq $env:APOLLOX_WORKSPACE) -and
+    ($env:APOLLOX_CONTAINER -ne 1) -and
+    (-not $env:GITHUB_WORKSPACE)
 ) {
     $Global:workspaceFolder = Join-Path $PSScriptRoot ..
+} elseif (
+    $env:GITHUB_WORKSPACE
+) {
+    # If running in a github action, this ENV is set automatically,
+    # github actions sandboxes runners by re-writing their ABS path,
+    # so when we do a docker-in-docker build, the mount point for workdir is not found.
+    # This sets the ABS path from a file called abs-path
+    $Global:workspaceFolder = Join-Path $PSScriptRoot ..
+    $env:HOST_GITHUB_WORKSPACE = Get-Content -Path abs-path -ReadCount 1
 } else {
     $Global:workspaceFolder = $env:APOLLOX_WORKSPACE
 }
 
 settingsToGlobal
+
+# edge case for config:docker_password
+if ( $null -ne $env:DOCKER_PSSWD ) {
+    $Global:config:docker_password = $env:DOCKER_PSSWD
+}
 
 try {
     switch ($args[0]) {

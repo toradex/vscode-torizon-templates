@@ -2,11 +2,11 @@
 ##
 # SDK container version
 ##
-ARG SDK_BASE_VERSION=3.2.0
+ARG SDK_BASE_VERSION=3.3.1
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.2.0
+ARG BASE_VERSION=3.3.1
 
 ##
 # Board architecture
@@ -30,7 +30,7 @@ ARG APP_ROOT=
 # Build Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/qt6-wayland${GPU}:${SDK_BASE_VERSION} AS Build
+    commontorizon/qt6-wayland${GPU}:${SDK_BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -72,8 +72,8 @@ RUN apt-get -q -y update && \
     libqt6opengl6-dev \
     # ADD YOUR PACKAGES HERE
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    # __torizon_packages_dev_start__
-    # __torizon_packages_dev_end__
+    # __torizon_packages_build_start__
+    # __torizon_packages_build_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
@@ -102,7 +102,7 @@ RUN cmake --build build-${IMAGE_ARCH}
 # Deploy Step
 ##
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/qt6-wayland${GPU}:${BASE_VERSION} AS Deploy
+    commontorizon/qt6-wayland${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -162,7 +162,7 @@ USER torizon
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json.
-COPY --from=Build ${APP_ROOT}/build-${IMAGE_ARCH}/bin ${APP_ROOT}
+COPY --from=build ${APP_ROOT}/build-${IMAGE_ARCH}/bin ${APP_ROOT}
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

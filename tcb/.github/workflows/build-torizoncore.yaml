@@ -6,6 +6,8 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     name: Build & Deploy TorizonCore
+    container:
+      image: commontorizon/torizon-dev:next
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
@@ -13,6 +15,11 @@ jobs:
         with:
           path: storage/
           key: tcb
+
+      - name: Get Host Absolute Workspace Path
+        run: |
+          echo "${{ github.workspace }}" >> abs-path
+          cat abs-path
 
       - name: Initial Setup
         shell: bash

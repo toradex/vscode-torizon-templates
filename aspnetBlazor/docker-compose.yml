@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5002/__container__-debug:${TAG}
     ports:
-      - 2222:2222
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
       - 7001:7001
 
   __container__:
@@ -23,7 +23,7 @@ services:
         dockerfile: Dockerfile.debug
     image: ${LOCAL_REGISTRY}:5002/__container__-debug:${TAG}
     ports:
-      - 2222:2222
+      - ${DEBUG_SSH_PORT}:${DEBUG_SSH_PORT}
       - 7001:7001
     depends_on:
       - cog
@@ -39,7 +39,7 @@ services:
       - cog
 
   cog:
-    image: commontorizon/cog${GPU}:4-rc
+    image: commontorizon/cog${GPU}:3.3.1
     command: http://localhost:7001 -w
     environment:
       - ACCEPT_FSL_EULA=1
@@ -59,12 +59,8 @@ services:
       - CAP_SYS_TTY_CONFIG
     # Add device access rights through cgroup...
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty1
-      - "c 4:1 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"
@@ -74,7 +70,7 @@ services:
       - weston
 
   weston:
-    image: torizon/weston${GPU}:4-rc
+    image: commontorizon/weston${GPU}:3.3.2
     environment:
       - ACCEPT_FSL_EULA=1
     # Required to get udev events from host udevd via netlink
@@ -93,12 +89,8 @@ services:
       - CAP_SYS_TTY_CONFIG
     # Add device access rights through cgroup...
     device_cgroup_rules:
-      # ... for tty0
-      - "c 4:0 rmw"
-      # ... for tty1
-      - "c 4:1 rmw"
-      # ... for tty7
-      - "c 4:7 rmw"
+      # ... for tty
+      - "c 4:* rmw"
       # ... for /dev/input devices
       - "c 13:* rmw"
       - "c 199:* rmw"

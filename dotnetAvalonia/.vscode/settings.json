@@ -5,8 +5,8 @@
   "torizon_ssh_port": "",
   "host_ip": "",
   "torizon_workspace": "${workspaceFolder}",
-  "torizon_debug_port": "",
   "torizon_debug_ssh_port": "2223",
+  "torizon_debug_port1": "",
   "torizon_debug_port2": "",
   "torizon_debug_port3": "",
   "torizon_gpu": "",
@@ -15,9 +15,14 @@
   "torizon_run_as": "torizon",
   "torizon_app_root": "/home/torizon/app",
   "tcb.packageName": "__change__",
-  "tcb.version": "3.8.1",
+  "tcb.version": "3.11.0",
   "torizon.gpuPrefixRC": true,
-  "dotnet.preferCSharpExtension": true,
+  "dotnet.preferCSharpExtension": false,
   "omnisharp.useModernNet": true,
-  "dotnet.server.useOmnisharp": true
+  "dotnet.server.useOmnisharp": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.axaml": "$(capture).axaml.cs"
+  }
 }

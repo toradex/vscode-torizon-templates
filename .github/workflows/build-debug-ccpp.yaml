@@ -15,25 +15,32 @@ jobs:
         project:
           - folder: cppQML
             container: cpp-qml
-            arch: arm64
+            vendor: "{ arch: 'arm64', torizon_arch: 'aarch64' }"
 
           - folder: cppSlint
             container: cpp-slint
-            arch: arm64
-
+            vendor: "{ arch: 'arm64', torizon_arch: 'aarch64' }"
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build ${{ matrix.project.folder }} Dockerfile.debug
+      - name: Get Host Absolute Workspace Path
+        run: |
+          echo "${{ github.workspace }}" >> abs-path
+          cat abs-path
+
+      - name: Build ${{ matrix.project.folder }} Dockerfile
         shell: pwsh
         env:
           PROJECT_FOLDER: ${{ matrix.project.folder }}
           PROJECT_CONTAINER: ${{ matrix.project.container }}
-          PROJECT_ARCH: ${{ matrix.project.arch }}
+          VENDOR: ${{ matrix.project.vendor }}
+          DOCKER_LOGIN: localhost:5002
 
         run: |
-          docker run --rm --privileged torizon/binfmt
+          $_vendor = ($env:VENDOR | ConvertFrom-Json)
+          $env:TORIZON_ARCH = $_vendor.torizon_arch
+          $env:PROJECT_ARCH = $_vendor.arch
 
           scripts/createFromTemplate.ps1 `
             $env:GITHUB_WORKSPACE/$env:PROJECT_FOLDER `
@@ -44,9 +51,16 @@ jobs:
             false `
             false
 
+          cp abs-path "${env:GITHUB_WORKSPACE}/${env:PROJECT_FOLDER}CITest"
           cd "${env:GITHUB_WORKSPACE}/${env:PROJECT_FOLDER}CITest"
+
+          $_settingsJson = Get-Content -Path ".vscode/settings.json" | ConvertFrom-Json
+          $_settingsJson.torizon_arch = $env:TORIZON_ARCH
+          Set-Content -Path ".vscode/settings.json" -Value ($_settingsJson | ConvertTo-Json) -Encoding UTF8
+
           # TODO: this is bad, but it's the only way to make it work for now
           chmod 777 . -R
 
+          ./.vscode/tasks.ps1 run run-torizon-binfmt
           ./.vscode/tasks.ps1 run build-debug-${env:PROJECT_ARCH}
           ./.vscode/tasks.ps1 run build-container-torizon-debug-${env:PROJECT_ARCH}

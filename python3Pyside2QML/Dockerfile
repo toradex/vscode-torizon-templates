@@ -7,7 +7,7 @@ ARG IMAGE_ARCH=
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.3.0
+ARG BASE_VERSION=3.3.1
 
 ##
 # Directory of the application inside container
@@ -21,7 +21,7 @@ ARG GPU=
 
 
 FROM --platform=linux/${IMAGE_ARCH} \
-     torizon/qt5-wayland${GPU}:${BASE_VERSION} AS Deploy
+     commontorizon/qt5-wayland${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -63,6 +63,17 @@ RUN apt-get -q -y update && \
     # __torizon_packages_prod_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && apt-get clean && apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
+# edge case for amd64
+# this prevent the error: texture atlas allocation failed
+RUN apt-get -q -y update && \
+    if [ "${IMAGE_ARCH}" = "amd64" ]; then \
+        apt-get -q -y install \
+        libqt5quick5 \
+    ; fi \
+    && \
+    apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
 # Create virtualenv

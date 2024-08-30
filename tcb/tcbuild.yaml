@@ -7,13 +7,12 @@ input:
   # ⚠️ change it for your needs
   easy-installer:
     toradex-feed:
-      version: "5.7.2"
-      release: nightly
-      machine: apalis-imx6
-      distro: torizon-upstream
+      version: "6.7.0"
+      release: quarterly
+      machine: verdin-imx8mp
+      distro: torizon
       variant: torizon-core-docker
-      build-number: 715
-      build-date: 20221231
+      build-number: 18
 
 customization:
   # Customization section items.

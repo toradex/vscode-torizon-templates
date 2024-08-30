@@ -5,8 +5,8 @@
   "torizon_ssh_port": "",
   "host_ip": "",
   "torizon_workspace": "${workspaceFolder}",
-  "torizon_debug_port": "",
   "torizon_debug_ssh_port": "2320",
+  "torizon_debug_port1": "",
   "torizon_debug_port2": "",
   "torizon_debug_port3": "",
   "torizon_gpu": "",
@@ -16,5 +16,5 @@
   "torizon_app_root": "/home/torizon/app",
   "tcb.packageName": "__change__",
   "tcb.version": "early-access",
-  "torizon.gpuPrefixRC": false
+  "torizon.gpuPrefixRC": true
 }

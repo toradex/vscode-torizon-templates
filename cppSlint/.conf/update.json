@@ -1,6 +1,6 @@
 [
     {
-        "source": ".vscode/launch.json",
-        "target": ".vscode/launch.json"
+        "source": ".vscode/c_cpp_properties.json",
+        "target": ".vscode/c_cpp_properties.json"
     }
 ]

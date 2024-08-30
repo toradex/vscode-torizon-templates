@@ -1,10 +1,10 @@
 # ARGUMENTS --------------------------------------------------------------------
 ##
 # Base container version
-# Using Slint v1.5.1 base images
+# Using Slint v1.7.2 base images
 ##
-ARG CROSS_SDK_BASE_TAG=3.3.0-bookworm-1.5.1
-ARG BASE_VERSION=3.3.0
+ARG CROSS_SDK_BASE_TAG=3.3.1-bookworm-1.7.2
+ARG BASE_VERSION=3.3.1
 
 ##
 # Board architecture
@@ -23,7 +23,7 @@ ARG GPU=
 
 
 # BUILD ------------------------------------------------------------------------
-FROM commontorizon/slint-sdk-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} As Build
+FROM commontorizon/slint-sdk-${IMAGE_ARCH}:${CROSS_SDK_BASE_TAG} AS build
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -48,8 +48,8 @@ RUN mkdir -p /cargo/registry && chmod 777 /cargo/registry
 RUN apt-get -q -y update && \
     apt-get -q -y install \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    # __torizon_packages_dev_start__
-    # __torizon_packages_dev_end__
+    # __torizon_packages_build_start__
+    # __torizon_packages_build_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \
@@ -75,7 +75,7 @@ RUN TARGET=$(cat /rust-toolchain-arch.txt) && \
     cp -r target/$TARGET/release build
 
 # DEPLOY ------------------------------------------------------------------------
-FROM --platform=linux/${IMAGE_ARCH} torizon/wayland-base${GPU}:${BASE_VERSION} AS Deploy
+FROM --platform=linux/${IMAGE_ARCH} commontorizon/wayland-base${GPU}:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG GPU
@@ -108,14 +108,14 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 
 
 # Default to the Skia backend for best performance
-ENV SLINT_BACKEND=winit-skia
+ENV SLINT_BACKEND=linuxkms-skia
 # Default to Slint running in fullscreen
 ENV SLINT_FULLSCREEN=1
 
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/build/release/__change__ ${APP_ROOT}/__change__
+COPY --from=build ${APP_ROOT}/build/release/__change__ ${APP_ROOT}/__change__
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

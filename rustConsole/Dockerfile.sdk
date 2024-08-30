@@ -19,6 +19,7 @@ ARG APP_ROOT=
 FROM rust:${SDK_BASE_VERSION}
 
 ARG APP_ROOT
+ARG IMAGE_ARCH
 
 RUN apt-get update && \
     apt-get install -y \
@@ -26,8 +27,8 @@ RUN apt-get update && \
     gcc-aarch64-linux-gnu \
     # ADD YOUR PACKAGES HERE
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    # __torizon_packages_dev_start__
-    # __torizon_packages_dev_end__
+    # __torizon_packages_build_start__
+    # __torizon_packages_build_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && \
     apt-get clean && apt-get autoremove && \

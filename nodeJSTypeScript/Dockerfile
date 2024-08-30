@@ -2,11 +2,10 @@
 ##
 # Base container version
 ##
-ARG BASE_VERSION=3.3.0-bookworm
+ARG BASE_VERSION=3.3.1-bookworm
 
 ##
 # Board architecture
-# arm or arm64
 ##
 ARG IMAGE_ARCH=
 
@@ -21,7 +20,7 @@ ARG APP_ROOT=
 
 # BUILD ------------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Build
+    commontorizon/debian:${BASE_VERSION} AS build
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -34,19 +33,18 @@ RUN apt-get -q -y update && \
     make \
     curl \
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
-    # __torizon_packages_dev_start__
-    # __torizon_packages_dev_end__
+    # __torizon_packages_build_start__
+    # __torizon_packages_build_end__
 # DO NOT REMOVE THIS LABEL: this is used for VS Code automation
     && apt-get clean && apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
 
 # install the latest node js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 # install npm and typescript
 RUN npm config set registry https://registry.npmjs.org/
-RUN npm install -g npm@8.10.0
 RUN npm install -g typescript
 RUN npm install -g ts-node
 
@@ -73,7 +71,7 @@ RUN if [ "$IMAGE_ARCH" = "arm64" ] ; then \
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
-    torizon/debian:${BASE_VERSION} AS Deploy
+    commontorizon/debian:${BASE_VERSION} AS deploy
 
 ARG IMAGE_ARCH
 ARG APP_ROOT
@@ -91,7 +89,7 @@ RUN apt-get -q -y update && \
     rm -rf /var/lib/apt/lists/*
 
 # install the latest node js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 # your regular RUN statements here
@@ -99,7 +97,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 # Copy the application compiled in the build step to the $APP_ROOT directory
 # path inside the container, where $APP_ROOT is the torizon_app_root
 # configuration defined in settings.json
-COPY --from=Build ${APP_ROOT}/out ${APP_ROOT}/out
+COPY --from=build ${APP_ROOT}/out ${APP_ROOT}/out
 
 # "cd" (enter) into the APP_ROOT directory
 WORKDIR ${APP_ROOT}

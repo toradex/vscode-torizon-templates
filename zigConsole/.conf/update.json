@@ -1,6 +1,6 @@
 [
     {
-        "source": ".vscode/launch.json",
-        "target": ".vscode/launch.json"
+        "source": "build.zig",
+        "target": "build.zig"
     }
 ]

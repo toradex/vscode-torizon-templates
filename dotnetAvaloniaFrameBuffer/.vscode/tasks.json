@@ -2,8 +2,43 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "watch",
+            "label": "create-preview-assets",
             "hide": true,
+            "command": "${command:avalonia.createPreviewerAssets}",
+            "type": "process",
+            "isBuildCommand": true,
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
+            "icon": {
+                "id": "preview",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "build",
+            "detail": "dotnet build command for building the application \n(only to resolve the assemblies and have the proper intellisense)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/__change__.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "watch-local",
+            "detail": "dotnet watch command, watch the changes on the application, compile it and reload automatically",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -14,8 +49,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "eye-watch",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -35,6 +77,13 @@
             "icon": {
                 "id": "trash",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -54,6 +103,13 @@
             "icon": {
                 "id": "trash",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -73,6 +129,13 @@
             "icon": {
                 "id": "trash",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -94,8 +157,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -121,8 +191,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -142,7 +219,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "dd if=/dev/zero count=1200 bs=1024 > /dev/fb0"
+                "cat /dev/zero > /dev/fb0 ; true"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -150,8 +227,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -176,8 +260,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -199,8 +290,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "tools",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -226,8 +324,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -247,7 +352,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "dd if=/dev/zero count=1200 bs=1024 > /dev/fb0"
+                "cat /dev/zero > /dev/fb0 ; true"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -255,8 +360,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -281,12 +393,19 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
-            "label": "publish-debug-amd64",
+            "label": "build-debug-amd64",
             "detail": "",
             "command": "dotnet",
             "type": "process",
@@ -302,6 +421,68 @@
                 "--no-self-contained"
             ],
             "dependsOrder": "sequence",
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "publish-debug-amd64",
+            "detail": "",
+            "hide": true,
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-amd64",
+                "&&",
+                "mv",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-x64",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-amd64"
+            ],
+            "problemMatcher": "$msCompile",
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "debug-amd64"
+            }
+        },
+        {
+            "label": "publish-debug-amd64",
+            "detail": "",
+            "hide": true,
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-amd64",
+                "&&",
+                "mv",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-x64",
+                "${workspaceFolder}/bin/Debug/net8.0/linux-amd64"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug-amd64"
+            ],
             "problemMatcher": "$msCompile",
             "icon": {
                 "id": "flame",
@@ -331,8 +512,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "debug-alt",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -352,7 +540,7 @@
                 "-o",
                 "StrictHostKeyChecking=no",
                 "torizon@${config:torizon_ip}",
-                "dd if=/dev/zero count=1200 bs=1024 > /dev/fb0"
+                "cat /dev/zero > /dev/fb0 ; true"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
@@ -360,8 +548,15 @@
             ],
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         },
         {
@@ -386,8 +581,15 @@
             "dependsOrder": "sequence",
             "problemMatcher": "$msCompile",
             "icon": {
-                "id": "flame",
+                "id": "stop",
                 "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
             }
         }
     ],
