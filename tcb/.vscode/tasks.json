@@ -626,7 +626,7 @@
                 "-e",
                 "\"✅ github-actions-settings done\n",
                 "\n",
-                "'⚠️ ENV VARIABLES NEED TO BE SET IN CI/CD PLATFORM'\n",
+                "'⚠️  ENV VARIABLES NEED TO BE SET IN CI/CD PLATFORM'\n",
                 "\tDOCKER_PSSWD\n",
                 "\tPLATFORM_CLIENT_ID\n",
                 "\tPLATFORM_CLIENT_SECRET\n",
@@ -643,7 +643,7 @@
                 "color": "terminal.ansiYellow"
             },
             "presentation": {
-                "echo": true,
+                "echo": false,
                 "reveal": "always",
                 "focus": true,
                 "panel": "dedicated",
