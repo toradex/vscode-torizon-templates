@@ -33,8 +33,6 @@ jobs:
           $env:TORIZON_ARCH = $_vendor.torizon_arch
           $env:PROJECT_ARCH = $_vendor.arch
 
-          ./.vscode/tasks.ps1 run run-torizon-binfmt
-
           scripts/createFromTemplate.ps1 `
             $env:GITHUB_WORKSPACE/$env:PROJECT_FOLDER `
             "${env:PROJECT_FOLDER}CITest" `
@@ -50,4 +48,5 @@ jobs:
           $_settingsJson.torizon_arch = $env:TORIZON_ARCH
           Set-Content -Path ".vscode/settings.json" -Value ($_settingsJson | ConvertTo-Json) -Encoding UTF8
 
+          ./.vscode/tasks.ps1 run run-torizon-binfmt
           ./.vscode/tasks.ps1 run build-container-torizon-debug-${env:PROJECT_ARCH}
