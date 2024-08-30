@@ -41,7 +41,6 @@ jobs:
           PLATFORM_CLIENT_SECRET: ${{ secrets.PLATFORM_CLIENT_SECRET }}
         run: |
           ./.vscode/tasks.ps1 run tcb-setup
-          ./.vscode/tasks.ps1 run tcb-unpack
           ./.vscode/tasks.ps1 run tcb-platform-push-ostree
 
       - name: Deploy to Fleet

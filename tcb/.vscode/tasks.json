@@ -550,6 +550,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
+                "tcb-unpack"
             ],
             "icon": {
                 "id": "cloud-upload",
@@ -599,8 +600,7 @@
                 "echo": true,
                 "reveal": "always",
                 "focus": true,
-                "panel": "dedicated",
-                "group": "cloud-related"
+                "panel": "dedicated"
             }
         },
         {

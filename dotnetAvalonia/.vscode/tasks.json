@@ -18,8 +18,7 @@
                 "echo": true,
                 "reveal": "always",
                 "focus": true,
-                "panel": "dedicated",
-                "group": "build-execution"
+                "panel": "dedicated"
             }
         },
         {
@@ -168,7 +167,7 @@
                 "echo": true,
                 "reveal": "always",
                 "focus": true,
-                "panel": "dedicated",
+                "panel": "shared",
                 "group": "build-execution"
             }
         },

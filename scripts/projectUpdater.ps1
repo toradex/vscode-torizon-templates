@@ -475,9 +475,9 @@ if ($templateName -ne "tcb") {
 
 # DOCUMENTATION
 Copy-Item `
-    $Env:HOME/.apollox/$templateName/.doc/* `
-    $projectFolder/.doc `
-    -Recurse
+    $Env:HOME/.apollox/$templateName/.doc `
+    $projectFolder `
+    -Recurse -Force
 
 # GITIGNORE:
 _openMergeWindow `
