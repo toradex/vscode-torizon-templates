@@ -1040,8 +1040,7 @@
                 "echo": true,
                 "reveal": "always",
                 "focus": true,
-                "panel": "dedicated",
-
+                "panel": "shared",
                 "group": "build-execution"
             }
         }

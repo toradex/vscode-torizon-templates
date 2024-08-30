@@ -600,8 +600,7 @@
                 "echo": true,
                 "reveal": "always",
                 "focus": true,
-                "panel": "dedicated",
-                "group": "cloud-related"
+                "panel": "dedicated"
             }
         },
         {
