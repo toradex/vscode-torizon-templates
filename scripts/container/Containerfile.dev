@@ -74,7 +74,7 @@ COPY --from=docker:dind /usr/local/libexec/docker/cli-plugins /usr/local/lib/doc
 RUN mv /root/vscode-torizon-templates /root/.apollox
 RUN chmod -R 757 /root && \
     cd /root/.apollox/scripts/node && \
-    npm install ./apollox-0.1.3.tgz
+    npm install ./apollox-0.1.4.tgz
 
 # from build copy the libraries
 COPY --from=build /build/bin/Release/net6.0/publish/ /root/.tui/
