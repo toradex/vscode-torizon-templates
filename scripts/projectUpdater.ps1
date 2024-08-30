@@ -289,7 +289,6 @@ if ($templateName -ne "tcb") {
 
 }
 
-Copy-Item $Env:HOME/.apollox/$templateName/.doc/README.md .
 
 Copy-Item $Env:HOME/.apollox/$templateName/.gitignore .
 
@@ -476,7 +475,7 @@ if ($templateName -ne "tcb") {
 
 # DOCUMENTATION
 Copy-Item `
-    $Env:HOME/.apollox/$templateName/.doc `
+    $Env:HOME/.apollox/$templateName/.doc/* `
     $projectFolder/.doc `
     -Recurse
 
