@@ -4,10 +4,19 @@
 shopt -s expand_aliases
 
 # For DockerHub the variable can be empty, by tcb platform push command
-# requires a value, so passing the default DockerHub registry to it if it is 
+# requires a value, so passing the default DockerHub registry to it if it is
 # empty
 if [$DOCKER_REGISTRY = ""]; then
     export DOCKER_REGISTRY="registry-1.docker.io"
+fi
+
+# Edge case for Github Actions dind
+if [ -n "$HOST_GITHUB_WORKSPACE" ]; then
+    # in this case we need to mount the workspace to the environment
+    working_directory="$HOST_GITHUB_WORKSPACE"
+else
+    # if not set, we use the current directory
+    working_directory=$(pwd)
 fi
 
 # Check to make sure script is being sourced otherwise exit
@@ -293,7 +302,7 @@ function tcb_dynamic_params() {
 # TODO Not compatible with ZSH
 export -f tcb_dynamic_params
 
-alias torizoncore-builder='docker run --rm'"$volumes"'-v "$(pwd)":/workdir -v '"$storage"':/storage -v /var/run/docker.sock:/var/run/docker.sock'"$network"'$(tcb_dynamic_params) '"$*"' torizon/torizoncore-builder:'"$chosen_tag"
+alias torizoncore-builder='docker run --rm'"$volumes"' -v '"$working_directory"':/workdir -v '"$storage"':/storage -v /var/run/docker.sock:/var/run/docker.sock'"$network"' '"$(tcb_dynamic_params)"' '"$*"' torizon/torizoncore-builder:'"$chosen_tag"
 
 [[ $storage =~ ^[a-zA-Z][a-zA-Z0-9_.-]*$ ]] && storage="Docker volume named '$storage'"
 

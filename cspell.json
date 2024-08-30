@@ -19,7 +19,8 @@
         "portproxy",
         "tcbuild",
         "TEZI",
-        "TORIZONPACKAGES"
+        "TORIZONPACKAGES",
+        "workdir"
     ],
     "ignoreWords": [
         "torizon",
