@@ -6,5 +6,9 @@
     {
         "source": ".gitlab-ci.yml",
         "target": ".gitlab-ci.yml"
+    },
+    {
+        "source": "tcbuild.yaml",
+        "target": "tcbuild.yaml"
     }
 ]
