@@ -145,7 +145,7 @@ $localRegistry = $objSettings.host_ip
 
 $env:LOCAL_REGISTRY="$($localRegistry):5002"
 $env:TAG="$tag"
-if ([string]::IsNullOrEmpty($registry)) {
+if ([string]::IsNullOrEmpty($registry) -or $registry -eq "registry-1.docker.io") {
     $env:DOCKER_LOGIN="$dockerLogin"
 } else {
     $env:DOCKER_LOGIN="$registry/$dockerLogin"
