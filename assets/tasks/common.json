@@ -452,6 +452,25 @@
             }
         },
         {
+            "label": "reload-vscode-window",
+            "detail": "Reloads this VSCode window (workspace)",
+            "command": "${command:workbench.action.reloadWindow}",
+            "type": "process",
+            "args": [
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "refresh",
+                "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
+            }
+        },
+        {
             "label": "apply-torizon-packages",
             "detail": "",
             "hide": true,
