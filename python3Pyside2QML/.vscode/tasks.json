@@ -8,14 +8,14 @@
             "command": "echo",
             "type": "process",
             "args": [
+                "venv",
                 "ok"
             ],
             "problemMatcher": "$msCompile",
             "dependsOrder": "sequence",
             "dependsOn": [
                 "create-venv",
-                "host-install-pip-requirements",
-                "wait-a-bit"
+                "host-install-pip-requirements"
             ],
             "runOptions": {
                 "runOn": "folderOpen"
@@ -25,9 +25,9 @@
                 "color": "terminal.ansiCyan"
             },
             "presentation": {
-                "echo": false,
+                "echo": true,
                 "reveal": "silent",
-                "focus": false,
+                "focus": true,
                 "panel": "shared",
                 "group": "python-related"
             }
@@ -50,7 +50,7 @@
             "presentation": {
                 "echo": true,
                 "reveal": "silent",
-                "focus": false,
+                "focus": true,
                 "panel": "shared",
                 "group": "python-related"
             }
@@ -335,7 +335,7 @@
         {
             "label": "host-install-pip-requirements",
             "detail": "Install pip requirements on the host",
-            "command": "${command:python.interpreterPath}",
+            "command": "${config:python.defaultInterpreterPath}",
             "type": "process",
             "args": [
                 "-m",
@@ -353,7 +353,7 @@
             "presentation": {
                 "echo": true,
                 "reveal": "silent",
-                "focus": false,
+                "focus": true,
                 "panel": "shared",
                 "group": "python-related"
             }
@@ -361,7 +361,7 @@
         {
             "label": "host-upgrade-pip",
             "detail": "Upgrade pip in the host",
-            "command": "${command:python.interpreterPath}",
+            "command": "${config:python.defaultInterpreterPath}",
             "type": "process",
             "args": [
                 "-m",
@@ -378,7 +378,7 @@
             "presentation": {
                 "echo": true,
                 "reveal": "silent",
-                "focus": false,
+                "focus": true,
                 "panel": "shared",
                 "group": "python-related"
             }
