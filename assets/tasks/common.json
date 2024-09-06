@@ -452,6 +452,25 @@
             }
         },
         {
+            "label": "reload-vscode-window",
+            "detail": "Reloads this VSCode window (workspace)",
+            "command": "${command:workbench.action.reloadWindow}",
+            "type": "process",
+            "args": [
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "refresh",
+                "color": "terminal.ansiCyan"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated"
+            }
+        },
+        {
             "label": "apply-torizon-packages",
             "detail": "",
             "hide": true,
@@ -698,8 +717,6 @@
                 "DOCKER_HOST=${config:torizon_ip}:2375",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "-p",
                 "torizon",
                 "down",
@@ -733,8 +750,6 @@
             "type": "shell",
             "args": [
                 "compose",
-                "--ansi",
-                "never",
                 "-p",
                 "torizon",
                 "stop",
@@ -743,8 +758,6 @@
                 "&&",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "-p",
                 "torizon",
                 "rm",
@@ -817,8 +830,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -870,8 +881,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -923,8 +932,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -976,8 +983,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -1018,7 +1023,6 @@
             "args": [
                 "docker",
                 "build",
-                "--progress=plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -1060,7 +1064,6 @@
             "args": [
                 "docker",
                 "build",
-                "--progress=plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -1100,7 +1103,6 @@
             "args": [
                 "docker",
                 "build",
-                "--progress=plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -1140,7 +1142,6 @@
             "args": [
                 "docker",
                 "build",
-                "--progress=plain",
                 "--pull",
                 "-f",
                 "${workspaceFolder}/Dockerfile.sdk",
@@ -1191,8 +1192,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "push",
                 "__container__-debug"
             ],
@@ -1230,8 +1229,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "push",
                 "__container__-debug"
             ],
@@ -1269,8 +1266,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "push",
                 "__container__-debug"
             ],
@@ -1308,8 +1303,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "push",
                 "__container__-debug"
             ],
@@ -1343,8 +1336,6 @@
                 "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "pull",
                 "__container__-debug"
             ],
@@ -1381,8 +1372,6 @@
                 "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "pull",
                 "__container__-debug"
             ],
@@ -1419,8 +1408,6 @@
                 "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "pull",
                 "__container__-debug"
             ],
@@ -1457,8 +1444,6 @@
                 "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "pull",
                 "__container__-debug"
             ],
@@ -1655,8 +1640,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -1706,8 +1689,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -1757,8 +1738,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -1808,8 +1787,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "build",
                 "--pull",
                 "--build-arg",
@@ -1858,8 +1835,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "push",
                 "__container__"
             ],
@@ -1899,8 +1874,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "push",
                 "__container__"
             ],
@@ -1940,8 +1913,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "push",
                 "__container__"
             ],
@@ -1981,8 +1952,6 @@
             "args": [
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "push",
                 "__container__"
             ],
@@ -2020,8 +1989,6 @@
                 "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "pull",
                 "__container__"
             ],
@@ -2059,8 +2026,6 @@
                 "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "pull",
                 "__container__"
             ],
@@ -2098,8 +2063,6 @@
                 "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "pull",
                 "__container__"
             ],
@@ -2137,8 +2100,6 @@
                 "DEBUG_PORT3=${config:torizon_debug_port3}",
                 "docker",
                 "compose",
-                "--ansi",
-                "never",
                 "pull",
                 "__container__"
             ],
