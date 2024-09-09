@@ -46,7 +46,7 @@ function _addDepString ([string]$value) {
         return "`t    ${value} \"
     } else {
         # There are certain packages which have "all" as architecture
-        $value_arch = apt-cache show $pack | sed -n '/^Architecture:/ {s/^Architecture: //; p; q}'
+        $value_arch = apt-cache show $value | sed -n '/^Architecture:/ {s/^Architecture: //; p; q}'
         if ($value_arch -eq "all") {
             return "`t    ${value}:all \"
         } else {
