@@ -301,7 +301,10 @@ $_deps = Get-Content  ./deps.json | ConvertFrom-Json
 
 # If there are installation scripts listed on the .conf/deps.json of the template
 if (($_deps.installDepsScripts.Count -gt 0)) {
-    # Create the installDepsScripts dir on the .conf/tmp dir
+    # Create the installDepsScripts dir on the .conf dir and on the tmp/.conf dir
+    if (-not (Test-Path -Path $projectFolder/.conf/installDepsScripts )){
+        New-Item -ItemType Directory -Path $projectFolder/.conf/installDepsScripts
+    }
     if (-not (Test-Path -Path ./installDepsScripts )){
         New-Item -ItemType Directory -Path ./installDepsScripts
     }
@@ -315,12 +318,12 @@ if (($_deps.installDepsScripts.Count -gt 0)) {
             $script -match  ".conf/installDepsScripts") {
             # Copy the script from the scripts/installDepsScripts folder to the .conf/installDepsScripts folder of the template
             $scriptSource = $script.Replace(".conf","scripts")
-            $scriptDest = $script.Replace(".conf/","")
-            Copy-Item $Env:HOME/.apollox/$scriptSource ./$scriptDest
         } else {
-            $scriptDest = $script.Replace(".conf/","")
-            Copy-Item $Env:HOME/.apollox/$templateName/$script ./$scriptDest
+            $scriptSource = "$templateName/$script"
         }
+
+        $scriptDest = $script.Replace(".conf/","")
+        Copy-Item $Env:HOME/.apollox/$scriptSource ./$scriptDest
     }
 }
 

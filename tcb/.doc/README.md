@@ -4,7 +4,7 @@ This is a special type of template which is meant to ease the use of the [Torizo
 
 > ⚠️ **WARNING:**  At the moment the [TorizonCore Builder Extension](https://marketplace.visualstudio.com/items?itemName=Toradex.tcb-vscode), and therefore this template, are experimental, so it is not guaranteed that everything will work fine ⚠️
 
-Although different than the other tempĺates, this templates shares some similarities with the other templates in some tasks, some scripts and the workspace structure of some files. Therefore, it is highly recommended that you go through the [Torizon IDE Extension documentation](https://developer.toradex.com/torizon/application-development/ide-extension/) before starting to use this template.
+Although different than the other templates, this templates shares some similarities with the other templates in some tasks, some scripts and the workspace structure of some files. Therefore, it is highly recommended that you go through the [Torizon IDE Extension documentation](https://developer.toradex.com/torizon/application-development/ide-extension/) before starting to use this template.
 
 On this template the TCB commands are intended to be used through the [TASK RUNNER tab](https://developer.toradex.com/torizon/application-development/ide-extension/reference-documentation/workspace-tasks#execute-a-task). To check details about about each task, go to the `.vscode/tasks.json` file and find the name of the task, like this `tcb-deploy` task for example:
 ```
