@@ -45,7 +45,13 @@ function _addDepString ([string]$value) {
     if ($value.Contains(":")) {
         return "`t    ${value} \"
     } else {
-        return "`t    ${value}:${TORIZON_ARCH} \"
+        # There are certain packages which have "all" as architecture
+        $value_arch = apt-cache show $pack | sed -n '/^Architecture:/ {s/^Architecture: //; p; q}'
+        if ($value_arch -eq "all") {
+            return "`t    ${value}:all \"
+        } else {
+            return "`t    ${value}:${TORIZON_ARCH} \"
+        }
     }
 }
 
