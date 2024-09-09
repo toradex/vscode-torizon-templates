@@ -1,4 +1,4 @@
-# TorizonCore Builder QML Template Specific Documentation
+# TorizonCore Builder Template Specific Documentation
 
 This is a special type of template which is meant to ease the use of the [TorizonCore Builder tool](https://developer.toradex.com/torizon/os-customization/torizoncore-builder-tool-customizing-torizoncore-images), with the help of the [TorizonCore Builder Extension](https://marketplace.visualstudio.com/items?itemName=Toradex.tcb-vscode).
 
