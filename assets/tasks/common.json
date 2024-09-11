@@ -471,7 +471,7 @@
             }
         },
         {
-            "label": "apply-torizon-packages",
+            "label": "apply-torizon-packages-arm64",
             "detail": "",
             "hide": true,
             "command": "pwsh",
@@ -479,7 +479,79 @@
             "args": [
                 "-nop",
                 "${workspaceFolder}/.conf/torizonPackages.ps1",
-                "${config:torizon_arch}"
+                "arm64"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "apply-torizon-packages-arm",
+            "detail": "",
+            "hide": true,
+            "command": "pwsh",
+            "type": "process",
+            "args": [
+                "-nop",
+                "${workspaceFolder}/.conf/torizonPackages.ps1",
+                "armhf"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "apply-torizon-packages-amd64",
+            "detail": "",
+            "hide": true,
+            "command": "pwsh",
+            "type": "process",
+            "args": [
+                "-nop",
+                "${workspaceFolder}/.conf/torizonPackages.ps1",
+                "amd64"
+            ],
+            "dependsOrder": "sequence",
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "group": "build-execution"
+            }
+        },
+        {
+            "label": "apply-torizon-packages-riscv64",
+            "detail": "",
+            "hide": true,
+            "command": "pwsh",
+            "type": "process",
+            "args": [
+                "-nop",
+                "${workspaceFolder}/.conf/torizonPackages.ps1",
+                "riscv"
             ],
             "dependsOrder": "sequence",
             "icon": {
@@ -846,7 +918,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-arm64"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -897,7 +969,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-arm"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -948,7 +1020,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-amd64"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -999,7 +1071,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-riscv64"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -1038,7 +1110,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-arm64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -1073,11 +1145,13 @@
                 "--build-arg",
                 "IMAGE_ARCH=arm",
                 "--build-arg",
+                "GPU=${config:torizon_gpu}",
+                "--build-arg",
                 "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-arm"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -1112,11 +1186,13 @@
                 "--build-arg",
                 "IMAGE_ARCH=amd64",
                 "--build-arg",
+                "GPU=${config:torizon_gpu}",
+                "--build-arg",
                 "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-amd64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -1151,11 +1227,13 @@
                 "--build-arg",
                 "IMAGE_ARCH=riscv64",
                 "--build-arg",
+                "GPU=${config:torizon_gpu}",
+                "--build-arg",
                 "APP_ROOT=${config:torizon_app_root}"
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-riscv64"
             ],
             "problemMatcher": [
                 "$gcc"
@@ -1654,7 +1732,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-arm64"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -1703,7 +1781,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-arm"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -1752,7 +1830,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-amd64"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
@@ -1801,7 +1879,7 @@
             ],
             "dependsOrder": "sequence",
             "dependsOn": [
-                "apply-torizon-packages"
+                "apply-torizon-packages-riscv64"
             ],
             "problemMatcher": "$msCompile",
             "icon": {
