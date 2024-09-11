@@ -198,7 +198,7 @@ Copy-Item `
 # TORIZONPACKAGES.PS1:
 Copy-Item `
     $Env:HOME/.apollox/scripts/torizonPackages.ps1 `
-    $projectFolder/.vscode/torizonPackages.ps1
+    $projectFolder/.conf/torizonPackages.ps1
 
 Write-Host -ForegroundColor DarkGreen "✅ always accept new"
 # ----------------------------------------------------------- ALWAYS ACCEPT NEW
