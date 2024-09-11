@@ -2,6 +2,8 @@
 
 This is a special type of template which is meant to ease the use of the [TorizonCore Builder tool](https://developer.toradex.com/torizon/os-customization/torizoncore-builder-tool-customizing-torizoncore-images), with the help of the [TorizonCore Builder Extension](https://marketplace.visualstudio.com/items?itemName=Toradex.tcb-vscode).
 
+You can also find other useful information about this template and how to use it on the [TorizonCore Builder VSCode Integration Toradex's developer page](https://developer.toradex.com/torizon/os-customization/torizoncore-builder-vs-code-integration).
+
 > ⚠️ **WARNING:**  At the moment the [TorizonCore Builder Extension](https://marketplace.visualstudio.com/items?itemName=Toradex.tcb-vscode), and therefore this template, are experimental, so it is not guaranteed that everything will work fine ⚠️
 
 Although different than the other templates, this templates shares some similarities with the other templates in some tasks, some scripts and the workspace structure of some files. Therefore, it is highly recommended that you go through the [Torizon IDE Extension documentation](https://developer.toradex.com/torizon/application-development/ide-extension/) before starting to use this template.
