@@ -18,16 +18,15 @@ param()
 
 $TORIZON_ARCH = $args[0]
 
-if ($TORIZON_ARCH -eq "aarch64") {
-    $TORIZON_ARCH = "arm64"
-} elseif ($TORIZON_ARCH -eq "armv7l") {
-    $TORIZON_ARCH = "armhf"
-} elseif ($TORIZON_ARCH -eq "x86_64") {
-    $TORIZON_ARCH = "amd64"
-} elseif ($TORIZON_ARCH -eq "riscv") {
-    $TORIZON_ARCH = "riscv"
-} else {
-    Write-Host -ForegroundColor DarkRed "❌ undefined target device architecture, Set Default the device before applying packages"
+$TORIZON_ARCHS = @(
+    "arm64",
+    "armhf"
+    "amd64",
+    "riscv"
+)
+
+if (!($TORIZON_ARCHS -contains $TORIZON_ARCH)) {
+    Write-Host -ForegroundColor DarkRed "❌ undefined target architecture"
     exit 69
 }
 
@@ -45,7 +44,13 @@ function _addDepString ([string]$value) {
     if ($value.Contains(":")) {
         return "`t    ${value} \"
     } else {
-        return "`t    ${value}:${TORIZON_ARCH} \"
+        # There are certain packages which have "all" as architecture
+        $value_arch = apt-cache show $value | sed -n '/^Architecture:/ {s/^Architecture: //; p; q}'
+        if ($value_arch -eq "all") {
+            return "`t    ${value}:all \"
+        } else {
+            return "`t    ${value}:${TORIZON_ARCH} \"
+        }
     }
 }
 
