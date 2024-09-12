@@ -6,12 +6,22 @@
 Write-Host "📡 :: NETWORK DEVICES :: 📡"
 Write-Host ""
 
-RunCommandInBackgroundWithWaitAnimationAsync {
-    node $env:HOME/.apollox/scripts/node/scanNetworkDevices.mjs
+if (
+    $null -eq $args[1]
+) {
+    RunCommandInBackgroundWithWaitAnimationAsync {
+        node $env:HOME/.apollox/scripts/node/scanNetworkDevices.mjs
+    }
 }
 
 # read the output
-$nets = Get-Content "$env:HOME/.tcd/scan.json" | ConvertFrom-Json
+if (
+    Test-Path "$env:HOME/.tcd/scan.json"
+) {
+    $nets = Get-Content "$env:HOME/.tcd/scan.json" | ConvertFrom-Json
+} else {
+    $nets = @()
+}
 
 if ($nets.Length -lt 1) {
     Write-Host -ForegroundColor DarkYellow `

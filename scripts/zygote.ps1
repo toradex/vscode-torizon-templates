@@ -88,6 +88,11 @@ function _scan_network() {
         -f $env:HOME/.apollox/scripts/scanNetworkDevices.ps1
 }
 
+function _scan_network_display_previous_scan() {
+    pwsh -nop `
+        -f $env:HOME/.apollox/scripts/scanNetworkDevices.ps1 display
+}
+
 function _connect_device() {
     # read the args
     $_id = Read-Host "Device id"
@@ -351,7 +356,13 @@ try {
                     Write-Host " ➡️ connect"
                     Write-Host "`t interactively connect to a network device listed in the scan"
                     Write-Host ""
+                    Write-Host " ➡️ list"
+                    Write-Host "`t display the list of the network devices found in the previous scan"
+                    Write-Host ""
                     exit 0
+                }
+                "list" {
+                    _scan_network_display_previous_scan
                 }
                 "connect" {
                     _scan_network
