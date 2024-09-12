@@ -7,7 +7,7 @@ Write-Host "📡 :: NETWORK DEVICES :: 📡"
 Write-Host ""
 
 if (
-    $null -eq $args[1]
+    $null -eq $args[0]
 ) {
     RunCommandInBackgroundWithWaitAnimationAsync {
         node $env:HOME/.apollox/scripts/node/scanNetworkDevices.mjs
