@@ -28,6 +28,16 @@ if ($nets.Length -lt 1) {
         "`t ❌ :: No network devices found :: ❌"
     Write-Host ""
     exit 404
+} elseif ($args[0] -eq "display") {
+    $_ix = 0
+    foreach ($net in $nets) {
+        $_ip = $net.Ip
+        $_hostname = $net.Hostname
+
+        Write-Host "`t`t $_ix ➡️  $_hostname ($_ip)"
+
+        $_ix++
+    }
 }
 
 Write-Host ""
