@@ -17,5 +17,6 @@
   "tcb.packageName": "__change__",
   "tcb.version": "3.11.0",
   "torizon.gpuPrefixRC": true,
-  "qml-ls-client.qmllsPath": ".venv/lib/python3.11/site-packages/PySide6/qmlls"
+  "qml-ls-client.qmllsPath": ".venv/lib/python3.11/site-packages/PySide6/qmlls",
+  "python.defaultInterpreterPath": "./.venv/bin/python3"
 }
