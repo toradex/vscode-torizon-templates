@@ -8,6 +8,7 @@ ARG IMAGE_ARCH=
 # Base container version
 ##
 ARG BASE_VERSION=3.3.1
+ARG DOTNET_BASE_VERSION=3-8.0
 
 ##
 # Directory of the application inside container
@@ -38,7 +39,9 @@ RUN dotnet restore && \
 dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained
 # BUILD ------------------------------------------------------------------------
 
-
+# DOTNET -----------------------------------------------------------------------
+FROM --platform=linux/${IMAGE_ARCH} \
+    commontorizon/dotnet:${DOTNET_BASE_VERSION} AS Dotnet
 
 # DEPLOY -----------------------------------------------------------------------
 FROM --platform=linux/${IMAGE_ARCH} \
@@ -47,6 +50,11 @@ FROM --platform=linux/${IMAGE_ARCH} \
 ARG IMAGE_ARCH
 ARG GPU
 ARG APP_ROOT
+
+ENV DOTNET_ROOT=/dotnet
+ENV PATH=$PATH:/dotnet
+
+COPY --from=Dotnet /dotnet /dotnet
 
 # for vivante GPU we need some "special" sauce
 RUN apt-get -q -y update && \
