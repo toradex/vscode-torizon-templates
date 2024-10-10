@@ -40,7 +40,7 @@ dotnet publish -c Release -r linux-${IMAGE_ARCH} --no-self-contained
 # BUILD ------------------------------------------------------------------------
 
 # DOTNET -----------------------------------------------------------------------
-    FROM --platform=linux/${IMAGE_ARCH} \
+FROM --platform=linux/${IMAGE_ARCH} \
     commontorizon/dotnet:${DOTNET_BASE_VERSION} AS Dotnet
 
 # DEPLOY -----------------------------------------------------------------------
