@@ -47,6 +47,9 @@
             ],
             "externalConsole": false,
             "internalConsoleOptions": "openOnSessionStart",
+            "logging": {
+                "engineLogging": false,  // set this to true for a detailed log on the debug console
+            },
             "sourceFileMap": {
                 "${config:torizon_app_root}": "${workspaceFolder}"
             },
@@ -100,6 +103,9 @@
             ],
             "externalConsole": false,
             "internalConsoleOptions": "openOnSessionStart",
+            "logging": {
+                "engineLogging": false,  // set this to true for a detailed log on the debug console
+            },
             "sourceFileMap": {
                 "${config:torizon_app_root}": "${workspaceFolder}"
             },
@@ -153,6 +159,9 @@
             ],
             "externalConsole": false,
             "internalConsoleOptions": "openOnSessionStart",
+            "logging": {
+                "engineLogging": false,  // set this to true for a detailed log on the debug console
+            },
             "sourceFileMap": {
                 "${config:torizon_app_root}": "${workspaceFolder}"
             },
